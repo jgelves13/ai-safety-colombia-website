@@ -1,1 +1,3 @@
 node_modules/\ndist/\n.astro/
+
+.vercel
