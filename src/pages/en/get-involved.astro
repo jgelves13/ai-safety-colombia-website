@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const locale = 'en';
+
+const audiences = [
+  {
+    title: 'Students and Newcomers',
+    desc: 'You want to learn about AI Safety from scratch.',
+    actions: ['Join our WhatsApp group', 'Attend an introductory talk', 'Take the 8-week course'],
+  },
+  {
+    title: 'Researchers and Engineers',
+    desc: 'You have a technical background and want to contribute.',
+    actions: ['Participate in the hackathon', 'Join a research group', 'Collaborate on publications'],
+  },
+  {
+    title: 'Policymakers',
+    desc: 'You work in public policy or regulation.',
+    actions: ['Access our policy briefs', 'Participate in roundtables', 'Connect with experts'],
+  },
+  {
+    title: 'Funders and Partners',
+    desc: 'You want to support the AI Safety ecosystem in Colombia.',
+    actions: ['Contact us for partnerships', 'Fund programs or fellowships', 'Support the hackathon'],
+  },
+];
+---
+
+<BaseLayout locale={locale} currentPage="get-involved" title="Get Involved | AI Safety Colombia">
+  <section class="hero-mini">
+    <div class="container">
+      <h1 class="section-title">Get Involved</h1>
+      <p class="page-desc">There are multiple ways to contribute to AI safety in Colombia, regardless of your background or experience.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="audience-grid">
+        {audiences.map(aud => (
+          <div class="card audience-card">
+            <h3>{aud.title}</h3>
+            <p class="aud-desc">{aud.desc}</p>
+            <ul>
+              {aud.actions.map(action => <li>{action}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container">
+      <h2 class="section-title">First Step</h2>
+      <div class="cta-buttons">
+        <a href="https://chat.whatsapp.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Join WhatsApp</a>
+        <a href="/en/contact/" class="btn btn-secondary">Contact Us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-mini {
+    padding: 8rem 1.5rem 3rem;
+    text-align: center;
+  }
+
+  .page-desc {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .audience-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .aud-desc {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+
+  .audience-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .audience-card li {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .audience-card li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-teal);
+  }
+
+  .cta-section {
+    text-align: center;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+</style>

@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const locale = 'en';
+---
+
+<BaseLayout locale={locale} currentPage="about" title="About | AI Safety Colombia">
+  <section class="hero-mini">
+    <div class="container">
+      <h1 class="section-title">About Us</h1>
+      <p class="page-desc">We are a group of researchers, engineers, and professionals committed to building a safe future with artificial intelligence in Colombia and Latin America.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Mission</h2>
+      <p class="text-block">Reduce existential and catastrophic risks from artificial intelligence by developing local talent, producing relevant research, and connecting Colombia with the global AI Safety community.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Theory of Change</h2>
+      <div class="toc-grid">
+        <div class="card">
+          <h3>Talent</h3>
+          <p>We train researchers and professionals who can directly contribute to AI safety.</p>
+        </div>
+        <div class="card">
+          <h3>Research</h3>
+          <p>We produce technical and governance work adapted to the Latin American context.</p>
+        </div>
+        <div class="card">
+          <h3>Community</h3>
+          <p>We build a network of informed people who can influence key decisions about AI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Team</h2>
+      <p class="text-block">Our founding team combines experience in artificial intelligence, public policy, and social impact communities.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-mini {
+    padding: 8rem 1.5rem 3rem;
+    text-align: center;
+  }
+
+  .page-desc {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .text-block {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    max-width: 700px;
+    line-height: 1.7;
+  }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .toc-grid .card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .toc-grid .card p {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+</style>

@@ -1,0 +1,202 @@
+---
+import type { Locale } from '../i18n/ui';
+import { t, localePath, altHref as getAltHref, altLocale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  currentPage?: string;
+}
+
+const { locale, currentPage = '' } = Astro.props;
+const langSwitchHref = getAltHref(locale, Astro.url.pathname);
+
+function isActive(page: string): boolean {
+  return currentPage === page;
+}
+
+const links = [
+  { page: 'about', href: localePath(locale, '/sobre/'), label: t(locale, 'nav.about') },
+  { page: 'hackathon', href: localePath(locale, '/hackathon/'), label: t(locale, 'nav.hackathon') },
+  { page: 'programs', href: localePath(locale, '/programas/'), label: t(locale, 'nav.programs') },
+  { page: 'resources', href: localePath(locale, '/recursos/'), label: t(locale, 'nav.resources') },
+  { page: 'get-involved', href: localePath(locale, '/involucrate/'), label: t(locale, 'nav.get-involved') },
+];
+---
+
+<nav class="navbar">
+  <div class="container">
+    <a href={localePath(locale, '/')} class="nav-logo">
+      <img src="/logo-white.png" alt="AI Safety Colombia" class="nav-logo-img">
+      <span class="nav-logo-text">AI Safety Colombia</span>
+    </a>
+    <div class="nav-links">
+      {links.map(link => (
+        <a href={link.href} class={isActive(link.page) ? 'active' : ''}>{link.label}</a>
+      ))}
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <a href={locale === 'es' ? Astro.url.pathname : langSwitchHref} class={locale === 'es' ? 'active' : ''}>ES</a>
+        <a href={locale === 'en' ? Astro.url.pathname : langSwitchHref} class={locale === 'en' ? 'active' : ''}>EN</a>
+      </div>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-nav">
+  <a href={localePath(locale, '/')} class={isActive('index') ? 'active' : ''}>{t(locale, 'nav.home')}</a>
+  {links.map(link => (
+    <a href={link.href} class={isActive(link.page) ? 'active' : ''}>{link.label}</a>
+  ))}
+  <a href={localePath(locale, '/contacto/')} class={isActive('contact') ? 'active' : ''}>{t(locale, 'nav.contact')}</a>
+</div>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(10, 10, 26, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 0;
+  }
+
+  .navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .nav-logo:hover { opacity: 1; }
+
+  .nav-logo-img {
+    height: 32px;
+    width: auto;
+  }
+
+  .nav-logo-text {
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--text-accent);
+    opacity: 1;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .lang-toggle {
+    display: flex;
+    gap: 0.25rem;
+    background: var(--bg-elevated);
+    border-radius: 0.375rem;
+    padding: 0.125rem;
+  }
+
+  .lang-toggle a {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    border-radius: 0.25rem;
+    transition: all 0.2s;
+  }
+
+  .lang-toggle a.active {
+    background: var(--accent-teal);
+    color: var(--bg-primary);
+  }
+
+  .lang-toggle a:hover { opacity: 1; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 57px;
+    left: 0;
+    right: 0;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    z-index: 99;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .mobile-nav a {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+  }
+
+  .mobile-nav a.active {
+    color: var(--text-accent);
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .mobile-nav.open { display: flex; }
+  }
+</style>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const mobileNav = document.querySelector('.mobile-nav');
+  hamburger?.addEventListener('click', () => {
+    mobileNav?.classList.toggle('open');
+  });
+</script>

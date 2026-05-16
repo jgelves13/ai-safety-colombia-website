@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const locale = 'es';
+
+const audiences = [
+  {
+    title: 'Estudiantes y curiosos',
+    desc: 'Quieres aprender sobre AI Safety desde cero.',
+    actions: ['Unete a nuestro grupo de WhatsApp', 'Asiste a una charla introductoria', 'Toma el curso de 8 semanas'],
+  },
+  {
+    title: 'Investigadores e ingenieros',
+    desc: 'Tienes background tecnico y quieres contribuir.',
+    actions: ['Participa en el hackathon', 'Unete a un grupo de investigacion', 'Colabora en publicaciones'],
+  },
+  {
+    title: 'Decisores de politica',
+    desc: 'Trabajas en politica publica o regulacion.',
+    actions: ['Accede a nuestros policy briefs', 'Participa en mesas de dialogo', 'Conecta con expertos'],
+  },
+  {
+    title: 'Financiadores y aliados',
+    desc: 'Quieres apoyar el ecosistema de AI Safety en Colombia.',
+    actions: ['Contactanos para alianzas', 'Financia programas o becas', 'Apoya el hackathon'],
+  },
+];
+---
+
+<BaseLayout locale={locale} currentPage="get-involved" title="Involucrate | AI Safety Colombia">
+  <section class="hero-mini">
+    <div class="container">
+      <h1 class="section-title">Involucrate</h1>
+      <p class="page-desc">Hay multiples formas de contribuir a la seguridad de IA en Colombia, sin importar tu perfil o experiencia.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="audience-grid">
+        {audiences.map(aud => (
+          <div class="card audience-card">
+            <h3>{aud.title}</h3>
+            <p class="aud-desc">{aud.desc}</p>
+            <ul>
+              {aud.actions.map(action => <li>{action}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container">
+      <h2 class="section-title">Primer paso</h2>
+      <div class="cta-buttons">
+        <a href="https://chat.whatsapp.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Unete al WhatsApp</a>
+        <a href="/contacto/" class="btn btn-secondary">Contactanos</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-mini {
+    padding: 8rem 1.5rem 3rem;
+    text-align: center;
+  }
+
+  .page-desc {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .audience-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .aud-desc {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+
+  .audience-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .audience-card li {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .audience-card li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-teal);
+  }
+
+  .cta-section {
+    text-align: center;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+</style>

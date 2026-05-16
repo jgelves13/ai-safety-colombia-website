@@ -1,0 +1,34 @@
+{
+  "date": "2026-06-19",
+  "endDate": "2026-06-21",
+  "location": "Bogota, Colombia",
+  "organizer": "Apart Research + AI Safety Colombia",
+  "registrationUrl": "https://apartresearch.com",
+  "schedule": [
+    { "day": "Viernes 19", "dayEn": "Friday 19", "events": [
+      { "time": "09:00", "title": "Apertura y bienvenida", "titleEn": "Opening and welcome" },
+      { "time": "10:00", "title": "Charla: Panorama de AI Safety", "titleEn": "Talk: AI Safety Landscape" },
+      { "time": "11:00", "title": "Formacion de equipos", "titleEn": "Team formation" },
+      { "time": "12:00", "title": "Inicio del hackathon", "titleEn": "Hackathon begins" }
+    ]},
+    { "day": "Sabado 20", "dayEn": "Saturday 20", "events": [
+      { "time": "09:00", "title": "Check-in y mentoria", "titleEn": "Check-in and mentoring" },
+      { "time": "14:00", "title": "Workshop tecnico", "titleEn": "Technical workshop" },
+      { "time": "18:00", "title": "Revision de progreso", "titleEn": "Progress review" }
+    ]},
+    { "day": "Domingo 21", "dayEn": "Sunday 21", "events": [
+      { "time": "09:00", "title": "Sprint final", "titleEn": "Final sprint" },
+      { "time": "14:00", "title": "Presentaciones", "titleEn": "Presentations" },
+      { "time": "16:00", "title": "Evaluacion y premios", "titleEn": "Judging and awards" },
+      { "time": "17:00", "title": "Cierre y networking", "titleEn": "Closing and networking" }
+    ]}
+  ],
+  "speakers": [
+    { "name": "Juan Pablo Toro Ramirez", "role": "Speaker", "org": "Colombia" }
+  ],
+  "judges": [],
+  "prizes": {
+    "regional": "$1,000 USD per team (3 LATAM winners)",
+    "regionalEs": "USD 1.000 por equipo (3 ganadores LATAM)"
+  }
+}

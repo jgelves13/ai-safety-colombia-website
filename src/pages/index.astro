@@ -1,0 +1,180 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HackathonBanner from '../components/HackathonBanner.astro';
+import Hero from '../components/Hero.astro';
+import MetricsBar from '../components/MetricsBar.astro';
+import { t } from '../i18n/ui';
+
+const locale = 'es';
+const metrics = [
+  { value: '30+', label: 'Miembros' },
+  { value: '1', label: 'Hackathon' },
+  { value: '3', label: 'Alianzas' },
+];
+---
+
+<BaseLayout locale={locale} currentPage="index">
+  <HackathonBanner locale={locale} />
+  <Hero locale={locale} />
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">{t(locale, 'sections.what-we-do')}</h2>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-icon">&#x1F52C;</div>
+          <h3>{t(locale, 'what-we-do.research.title')}</h3>
+          <p>{t(locale, 'what-we-do.research.desc')}</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#x1F393;</div>
+          <h3>{t(locale, 'what-we-do.education.title')}</h3>
+          <p>{t(locale, 'what-we-do.education.desc')}</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#x1F91D;</div>
+          <h3>{t(locale, 'what-we-do.community.title')}</h3>
+          <p>{t(locale, 'what-we-do.community.desc')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">{t(locale, 'sections.programs')}</h2>
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <span class="pipeline-num">1</span>
+          <span class="pipeline-label">{t(locale, 'programs.curious')}</span>
+        </div>
+        <div class="pipeline-arrow"></div>
+        <div class="pipeline-step">
+          <span class="pipeline-num">2</span>
+          <span class="pipeline-label">{t(locale, 'programs.learning')}</span>
+        </div>
+        <div class="pipeline-arrow"></div>
+        <div class="pipeline-step">
+          <span class="pipeline-num">3</span>
+          <span class="pipeline-label">{t(locale, 'programs.participating')}</span>
+        </div>
+        <div class="pipeline-arrow"></div>
+        <div class="pipeline-step">
+          <span class="pipeline-num">4</span>
+          <span class="pipeline-label">{t(locale, 'programs.contributing')}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <MetricsBar metrics={metrics} />
+
+  <section class="section join-section">
+    <div class="container">
+      <h2 class="section-title">{t(locale, 'sections.join')}</h2>
+      <div class="join-links">
+        <a href="https://chat.whatsapp.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          {t(locale, 'join.whatsapp')}
+        </a>
+        <a href="https://t.me/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          {t(locale, 'join.telegram')}
+        </a>
+        <a href="#newsletter" class="btn btn-primary">
+          {t(locale, 'join.newsletter')}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .card p {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .pipeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .pipeline-step {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .pipeline-num {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--gradient);
+    color: var(--bg-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .pipeline-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .pipeline-arrow {
+    width: 2rem;
+    height: 2px;
+    background: var(--border);
+    position: relative;
+  }
+
+  .pipeline-arrow::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -3px;
+    border: solid var(--border);
+    border-width: 0 2px 2px 0;
+    padding: 3px;
+    transform: rotate(-45deg);
+  }
+
+  .join-section {
+    text-align: center;
+  }
+
+  .join-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .pipeline-arrow { display: none; }
+    .pipeline { gap: 0.75rem; }
+  }
+</style>

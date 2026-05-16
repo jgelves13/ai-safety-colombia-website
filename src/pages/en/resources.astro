@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const locale = 'en';
+
+const paths = [
+  {
+    title: 'AI Safety Fundamentals',
+    items: [
+      { name: 'AGI Safety Fundamentals (BlueDot Impact)', url: 'https://aisafetyfundamentals.com/' },
+      { name: 'Intro to AI Safety (Robert Miles)', url: 'https://www.youtube.com/@RobertMilesAI' },
+      { name: 'The Alignment Problem (Brian Christian)', url: '#' },
+    ],
+  },
+  {
+    title: 'Technical Research',
+    items: [
+      { name: 'Alignment Forum', url: 'https://www.alignmentforum.org/' },
+      { name: 'AI Safety Papers (Apart Research)', url: 'https://apartresearch.com' },
+      { name: 'MIRI Research', url: 'https://intelligence.org/research/' },
+    ],
+  },
+  {
+    title: 'AI Governance',
+    items: [
+      { name: 'AI Governance Research (GovAI)', url: 'https://www.governance.ai/' },
+      { name: 'CAIS Statement on AI Risk', url: 'https://www.safe.ai/statement-on-ai-risk' },
+      { name: 'Colombia AI Framework', url: '#' },
+    ],
+  },
+];
+---
+
+<BaseLayout locale={locale} currentPage="resources" title="Resources | AI Safety Colombia">
+  <section class="hero-mini">
+    <div class="container">
+      <h1 class="section-title">Resources</h1>
+      <p class="page-desc">Curated learning paths to explore AI safety from different angles.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="paths-grid">
+        {paths.map(path => (
+          <div class="card path-card">
+            <h3>{path.title}</h3>
+            <ul>
+              {path.items.map(item => (
+                <li>
+                  <a href={item.url} target="_blank" rel="noopener noreferrer">{item.name}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-mini {
+    padding: 8rem 1.5rem 3rem;
+    text-align: center;
+  }
+
+  .page-desc {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .paths-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .path-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .path-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .path-card li a {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    transition: color 0.2s;
+  }
+
+  .path-card li a:hover {
+    color: var(--text-accent);
+    opacity: 1;
+  }
+</style>

@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const locale = 'en';
+
+const programs = [
+  {
+    stage: 'Curious',
+    desc: 'Discover what AI safety is and why it matters.',
+    items: ['Introductory talks', 'Recommended readings', 'Community events'],
+  },
+  {
+    stage: 'Learning',
+    desc: 'Deepen your understanding of technical and conceptual foundations.',
+    items: ['Introductory course (8 weeks)', 'Study groups', 'One-on-one mentoring'],
+  },
+  {
+    stage: 'Participating',
+    desc: 'Apply your knowledge in real projects.',
+    items: ['Hackathons', 'Research projects', 'International collaborations'],
+  },
+  {
+    stage: 'Contributing',
+    desc: 'Generate direct impact in the field.',
+    items: ['Publications', 'Fellowships', 'Roles at AI Safety organizations'],
+  },
+];
+---
+
+<BaseLayout locale={locale} currentPage="programs" title="Programs | AI Safety Colombia">
+  <section class="hero-mini">
+    <div class="container">
+      <h1 class="section-title">Programs</h1>
+      <p class="page-desc">Our development pipeline takes you from initial curiosity to meaningful contributions to the AI safety field.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="programs-list">
+        {programs.map((prog, i) => (
+          <div class="program-card card">
+            <div class="program-header">
+              <span class="program-num">{i + 1}</span>
+              <h3>{prog.stage}</h3>
+            </div>
+            <p class="program-desc">{prog.desc}</p>
+            <ul class="program-items">
+              {prog.items.map(item => <li>{item}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-mini {
+    padding: 8rem 1.5rem 3rem;
+    text-align: center;
+  }
+
+  .page-desc {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .programs-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .program-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .program-num {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--gradient);
+    color: var(--bg-primary);
+    font-size: 0.875rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .program-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .program-desc {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .program-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .program-items li {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .program-items li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-teal);
+  }
+</style>
