@@ -9,7 +9,7 @@
   --accent-coral: #FF5645;
   --accent-blue: #00BBFF;
   --accent-yellow: #FFE246;      /* fill only — pair with ink text */
-  --accent-yellow-line: #F5C400; /* borders / numerals on white */
+  --accent-yellow-line: #B07A00; /* numerals/borders on white — AA large-text 3.73:1 */
   --accent-red: #FF5645;         /* legacy alias kept = coral */
   /* Text */
   --text-primary: #101010;
