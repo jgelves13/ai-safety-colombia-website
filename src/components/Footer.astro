@@ -45,8 +45,8 @@ const { locale } = Astro.props;
 
 <style>
   .footer {
-    background: var(--bg-secondary);
-    border-top: 1px solid var(--border);
+    background: #101010;
+    border-top: 1px solid #262626;
     padding: 4rem 0 2rem;
     margin-top: 4rem;
   }
@@ -58,7 +58,7 @@ const { locale } = Astro.props;
   }
 
   .footer-brand p {
-    color: var(--text-secondary);
+    color: #9A9A9A;
     margin-top: 1rem;
     max-width: 300px;
     font-size: 0.875rem;
@@ -66,7 +66,7 @@ const { locale } = Astro.props;
   }
 
   .footer-logo {
-    height: 36px;
+    height: 34px;
     width: auto;
   }
 
@@ -83,18 +83,22 @@ const { locale } = Astro.props;
   .newsletter-input input {
     flex: 1;
     padding: 0.625rem 1rem;
-    background: var(--bg-primary);
-    border: 1px solid var(--border);
-    border-radius: 48px;
-    color: var(--text-primary);
+    background: #1a1a1a;
+    border: 1px solid #2f2f2f;
+    border-radius: 999px;
+    color: #f5f5f5;
     font-size: 0.875rem;
     font-family: var(--font-body);
     outline: none;
     transition: border-color 0.2s;
   }
 
+  .newsletter-input input::placeholder {
+    color: #7a7a7a;
+  }
+
   .newsletter-input input:focus {
-    border-color: var(--accent-green);
+    border-color: #2BD576;
   }
 
   .newsletter-btn {
@@ -110,33 +114,33 @@ const { locale } = Astro.props;
   }
 
   .footer-links h4 {
-    font-size: 0.8125rem;
+    font-size: 0.6875rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-primary);
+    letter-spacing: 0.12em;
+    color: #FFFFFF;
     margin-bottom: 0.5rem;
   }
 
   .footer-links a {
-    color: var(--text-secondary);
+    color: #9A9A9A;
     font-size: 0.875rem;
     transition: color 0.2s;
   }
 
   .footer-links a:hover {
-    color: var(--text-accent);
+    color: #FFFFFF;
     opacity: 1;
   }
 
   .footer-bottom {
     margin-top: 3rem;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid #262626;
   }
 
   .footer-bottom p {
-    color: var(--text-secondary);
+    color: #9A9A9A;
     font-size: 0.8125rem;
   }
 
