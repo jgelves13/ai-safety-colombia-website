@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HackathonBanner from '../components/HackathonBanner.astro';
 import Hero from '../components/Hero.astro';
 import MetricsBar from '../components/MetricsBar.astro';
+import WhatWeDo from '../components/WhatWeDo.astro';
 import { t } from '../i18n/ui';
 
 const locale = 'es';
@@ -17,28 +18,7 @@ const metrics = [
   <HackathonBanner locale={locale} />
   <Hero locale={locale} />
 
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">{t(locale, 'sections.what-we-do')}</h2>
-      <div class="grid-3">
-        <div class="card">
-          <div class="card-icon">&#x1F52C;</div>
-          <h3>{t(locale, 'what-we-do.research.title')}</h3>
-          <p>{t(locale, 'what-we-do.research.desc')}</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">&#x1F393;</div>
-          <h3>{t(locale, 'what-we-do.education.title')}</h3>
-          <p>{t(locale, 'what-we-do.education.desc')}</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">&#x1F91D;</div>
-          <h3>{t(locale, 'what-we-do.community.title')}</h3>
-          <p>{t(locale, 'what-we-do.community.desc')}</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <WhatWeDo locale={locale} />
 
   <section class="section">
     <div class="container">
@@ -88,24 +68,6 @@ const metrics = [
 </BaseLayout>
 
 <style>
-  .card-icon {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .card h3 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-  }
-
-  .card p {
-    color: var(--text-secondary);
-    font-size: 0.9375rem;
-    line-height: 1.6;
-  }
-
   .pipeline {
     display: flex;
     align-items: center;
