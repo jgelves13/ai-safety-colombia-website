@@ -22,18 +22,27 @@ const locale = 'en';
   <section class="section">
     <div class="container">
       <h2 class="section-title">Theory of Change</h2>
-      <div class="toc-grid">
-        <div class="card">
-          <h3>Talent</h3>
-          <p>We train researchers and professionals who can directly contribute to AI safety.</p>
+      <div class="editorial">
+        <div class="editorial-row is-green">
+          <div class="editorial-bar"></div>
+          <div class="editorial-tx">
+            <h3>Talent</h3>
+            <p>We train researchers and professionals who can directly contribute to AI safety.</p>
+          </div>
         </div>
-        <div class="card">
-          <h3>Research</h3>
-          <p>We produce technical and governance work adapted to the Latin American context.</p>
+        <div class="editorial-row is-coral">
+          <div class="editorial-bar"></div>
+          <div class="editorial-tx">
+            <h3>Research</h3>
+            <p>We produce technical and governance work adapted to the Latin American context.</p>
+          </div>
         </div>
-        <div class="card">
-          <h3>Community</h3>
-          <p>We build a network of informed people who can influence key decisions about AI.</p>
+        <div class="editorial-row is-blue">
+          <div class="editorial-bar"></div>
+          <div class="editorial-tx">
+            <h3>Community</h3>
+            <p>We build a network of informed people who can influence key decisions about AI.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -68,23 +77,4 @@ const locale = 'en';
     line-height: 1.7;
   }
 
-  .toc-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .toc-grid .card h3 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--accent-green);
-    margin-bottom: 0.5rem;
-  }
-
-  .toc-grid .card p {
-    color: var(--text-secondary);
-    font-size: 0.9375rem;
-    line-height: 1.6;
-  }
 </style>

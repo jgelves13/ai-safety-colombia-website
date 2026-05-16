@@ -26,7 +26,7 @@ const links = [
 <nav class="navbar">
   <div class="navbar-pill">
     <a href={localePath(locale, '/')} class="nav-logo">
-      <img src="/logo-white.png" alt="AI Safety Colombia" class="nav-logo-img">
+      <img src="/logo.png" alt="AI Safety Colombia" class="nav-logo-img">
       <span class="nav-logo-text">AI Safety Colombia</span>
     </a>
     <div class="nav-links">
@@ -39,7 +39,7 @@ const links = [
         <a href={locale === 'es' ? Astro.url.pathname : langSwitchHref} class={locale === 'es' ? 'active' : ''}>ES</a>
         <a href={locale === 'en' ? Astro.url.pathname : langSwitchHref} class={locale === 'en' ? 'active' : ''}>EN</a>
       </div>
-      <a href={localePath(locale, '/contacto/')} class="btn btn-primary nav-cta">
+      <a href={localePath(locale, '/contacto/')} class="btn btn-dark nav-cta">
         {t(locale, 'nav.contact')} &rarr;
       </a>
       <button class="hamburger" aria-label="Menu">
@@ -64,8 +64,8 @@ const links = [
     left: 0;
     right: 0;
     z-index: 100;
-    padding: 16px 1.5rem 0;
-    pointer-events: none;
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--hairline);
   }
 
   .navbar-pill {
@@ -74,12 +74,7 @@ const links = [
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 48px;
-    padding: 0.5rem 0.5rem 0.5rem 1.25rem;
-    backdrop-filter: blur(12px);
-    pointer-events: all;
+    padding: 0.875rem 1.5rem;
   }
 
   .nav-logo {
@@ -95,7 +90,7 @@ const links = [
   .nav-logo:hover { opacity: 1; }
 
   .nav-logo-img {
-    height: 28px;
+    height: 26px;
     width: auto;
   }
 
@@ -106,7 +101,7 @@ const links = [
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1.5rem;
   }
 
   .nav-links a {
@@ -131,8 +126,8 @@ const links = [
   .lang-toggle {
     display: flex;
     gap: 0.125rem;
-    background: var(--bg-elevated);
-    border-radius: 48px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
     padding: 0.125rem;
   }
 
@@ -142,13 +137,13 @@ const links = [
     font-weight: 600;
     letter-spacing: 0.05em;
     color: var(--text-secondary);
-    border-radius: 48px;
+    border-radius: 999px;
     transition: all 0.2s;
   }
 
   .lang-toggle a.active {
     background: var(--accent-green);
-    color: #0a0a0a;
+    color: #101010;
   }
 
   .lang-toggle a:hover { opacity: 1; }
@@ -179,12 +174,12 @@ const links = [
   .mobile-nav {
     display: none;
     position: fixed;
-    top: 72px;
-    left: 1.5rem;
-    right: 1.5rem;
-    background: var(--bg-secondary);
+    top: 60px;
+    left: 1rem;
+    right: 1rem;
+    background: #FFFFFF;
     border: 1px solid var(--border);
-    border-radius: 20px;
+    border-radius: 16px;
     padding: 1.25rem 1.5rem;
     z-index: 99;
     flex-direction: column;
@@ -199,7 +194,7 @@ const links = [
   }
 
   .mobile-nav a.active {
-    color: var(--text-accent);
+    color: var(--green-text);
   }
 
   @media (max-width: 900px) {

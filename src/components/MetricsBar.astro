@@ -23,12 +23,12 @@ const { metrics } = Astro.props;
 
 <style>
   .metrics-bar {
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 1.5rem;
   }
 
   .metrics-card {
-    background: var(--bg-secondary);
-    border-radius: 20px;
+    background: #101010;
+    border-radius: 22px;
     padding: 2.5rem 2rem;
   }
 
@@ -43,20 +43,21 @@ const { metrics } = Astro.props;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.5rem;
   }
 
   .metric-value {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--accent-green);
+    font-size: 2.625rem;
+    font-weight: 700;
+    color: #2BD576;
+    line-height: 1;
   }
 
   .metric-label {
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
+    font-size: 0.6875rem;
+    color: #9A9A9A;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.12em;
   }
 
   @media (max-width: 768px) {

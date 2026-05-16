@@ -1,0 +1,43 @@
+---
+import type { Locale } from '../i18n/ui';
+import { t } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const rows = [
+  { n: '01', cls: 'is-green', title: t(locale, 'what-we-do.research.title'),  desc: t(locale, 'what-we-do.research.desc') },
+  { n: '02', cls: 'is-coral', title: t(locale, 'what-we-do.education.title'), desc: t(locale, 'what-we-do.education.desc') },
+  { n: '03', cls: 'is-blue',  title: t(locale, 'what-we-do.community.title'), desc: t(locale, 'what-we-do.community.desc') },
+];
+---
+
+<section class="section alt">
+  <div class="container">
+    <h2 class="section-title">{t(locale, 'sections.what-we-do')}</h2>
+    <div class="editorial what-we-do">
+      {rows.map(row => (
+        <div class={`editorial-row ${row.cls}`}>
+          <div class="editorial-num">{row.n}</div>
+          <div class="editorial-bar"></div>
+          <div class="editorial-tx">
+            <h3>{row.title}</h3>
+            <p>{row.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .what-we-do {
+    margin-top: 1.5rem;
+  }
+  .editorial-tx {
+    padding-top: 0.125rem;
+  }
+</style>

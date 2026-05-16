@@ -3,21 +3,22 @@
 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 <link href='https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap' rel='stylesheet'>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1200px;height:630px}
-body{background:#0a0a0a;font-family:'Space Grotesk',sans-serif;overflow:hidden;position:relative}
-.grid{position:absolute;inset:0;background-image:radial-gradient(#1f1f1f 1px,transparent 1px);background-size:34px 34px;opacity:.5}
-.glow{position:absolute;width:760px;height:760px;right:-160px;top:-150px;background:radial-gradient(circle,rgba(74,222,128,.22),transparent 62%);filter:blur(6px)}
+body{background:#FFFFFF;font-family:'Instrument Sans',system-ui,sans-serif;overflow:hidden;position:relative}
+.grid{position:absolute;inset:0;background-image:radial-gradient(#e2e2dc 1.6px,transparent 1.6px);background-size:34px 34px;opacity:.7}
+.glow{display:none}
 .wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:84px 96px}
 .left{max-width:660px}
-.kicker{display:inline-flex;align-items:center;gap:10px;font-size:21px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#4ade80;margin-bottom:30px}
-.kicker .dot{width:9px;height:9px;border-radius:50%;background:#4ade80;box-shadow:0 0 14px 3px rgba(74,222,128,.7)}
-h1{font-size:88px;line-height:1.02;font-weight:700;color:#f5f5f5;letter-spacing:-.02em}
-h1 .g{color:#4ade80}
-p{margin-top:30px;font-size:32px;line-height:1.32;font-weight:400;color:#9a9a9a;max-width:600px}
-.url{position:absolute;left:96px;bottom:64px;font-size:25px;font-weight:600;color:#f5f5f5}
-.url .s{color:#4ade80}
-.logo{width:430px;height:auto;filter:drop-shadow(0 16px 50px rgba(74,222,128,.32))}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:21px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#15803D;margin-bottom:30px}
+.kicker .dot{width:9px;height:9px;border-radius:50%;background:#2BD576}
+h1{font-size:88px;line-height:1.02;font-weight:600;color:#101010;letter-spacing:-.04em}
+h1 .g{color:#2BD576}
+p{margin-top:30px;font-size:32px;line-height:1.32;font-weight:400;color:#5B5F5B;max-width:600px}
+.url{position:absolute;left:96px;bottom:64px;font-size:25px;font-weight:600;color:#101010}
+.url .s{color:#15803D}
+.logo{width:430px;height:auto}
 </style></head>
 <body>
 <div class='grid'></div><div class='glow'></div>
