@@ -22,18 +22,27 @@ const locale = 'es';
   <section class="section">
     <div class="container">
       <h2 class="section-title">Teoria de cambio</h2>
-      <div class="toc-grid">
-        <div class="card">
-          <h3>Talento</h3>
-          <p>Formamos investigadores y profesionales que puedan contribuir directamente a la seguridad de IA.</p>
+      <div class="editorial">
+        <div class="editorial-row is-green">
+          <div class="editorial-bar"></div>
+          <div class="editorial-tx">
+            <h3>Talento</h3>
+            <p>Formamos investigadores y profesionales que puedan contribuir directamente a la seguridad de IA.</p>
+          </div>
         </div>
-        <div class="card">
-          <h3>Investigacion</h3>
-          <p>Producimos trabajo tecnico y de gobernanza adaptado al contexto latinoamericano.</p>
+        <div class="editorial-row is-coral">
+          <div class="editorial-bar"></div>
+          <div class="editorial-tx">
+            <h3>Investigacion</h3>
+            <p>Producimos trabajo tecnico y de gobernanza adaptado al contexto latinoamericano.</p>
+          </div>
         </div>
-        <div class="card">
-          <h3>Comunidad</h3>
-          <p>Construimos una red de personas informadas que puedan influir en decisiones clave sobre IA.</p>
+        <div class="editorial-row is-blue">
+          <div class="editorial-bar"></div>
+          <div class="editorial-tx">
+            <h3>Comunidad</h3>
+            <p>Construimos una red de personas informadas que puedan influir en decisiones clave sobre IA.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -68,23 +77,4 @@ const locale = 'es';
     line-height: 1.7;
   }
 
-  .toc-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .toc-grid .card h3 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--accent-green);
-    margin-bottom: 0.5rem;
-  }
-
-  .toc-grid .card p {
-    color: var(--text-secondary);
-    font-size: 0.9375rem;
-    line-height: 1.6;
-  }
 </style>
