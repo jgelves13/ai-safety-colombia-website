@@ -1,15 +1,30 @@
 :root {
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #141414;
-  --bg-elevated: #1e1e1e;
-  --accent-green: #4ade80;
-  --accent-red: #f87171;
-  --text-primary: #f5f5f5;
-  --text-secondary: #888888;
-  --text-accent: #4ade80;
-  --border: #262626;
-  --font-heading: 'Space Grotesk', sans-serif;
-  --font-body: 'Space Grotesk', sans-serif;
+  /* Core surfaces */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F7F7F5;
+  --bg-elevated: #F1F1EE;
+  /* Brand + accents (Apart-matched) */
+  --accent-green: #2BD576;       /* primary fill — pair with ink text */
+  --green-text: #15803D;         /* accessible green for text/links */
+  --accent-coral: #FF5645;
+  --accent-blue: #00BBFF;
+  --accent-yellow: #FFE246;      /* fill only — pair with ink text */
+  --accent-yellow-line: #F5C400; /* borders / numerals on white */
+  --accent-red: #FF5645;         /* legacy alias kept = coral */
+  /* Text */
+  --text-primary: #101010;
+  --text-secondary: #5B5F5B;
+  --text-accent: #15803D;        /* link color (AA on white) */
+  /* Lines */
+  --border: #E6E6E1;
+  --hairline: #EFEFEA;
+  /* Dark block (MetricsBar / Footer "one dark moment") */
+  --dark-bg: #101010;
+  --dark-muted: #9A9A9A;
+  --dark-line: #262626;
+  /* Type */
+  --font-heading: 'Instrument Sans', system-ui, sans-serif;
+  --font-body: 'Instrument Sans', system-ui, sans-serif;
   --section-padding: 5rem 1.5rem;
   --card-padding: 2rem;
   --max-width: 1200px;
@@ -29,7 +44,9 @@ body {
   font-family: var(--font-body);
   background: var(--bg-primary);
   color: var(--text-primary);
+  font-size: 16px;
   line-height: 1.6;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -40,7 +57,7 @@ a {
 }
 
 a:hover {
-  opacity: 0.8;
+  opacity: 0.75;
 }
 
 img {
@@ -59,10 +76,15 @@ img {
   padding: var(--section-padding);
 }
 
+.section.alt {
+  background: var(--bg-secondary);
+}
+
 .section-title {
   font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 500;
-  letter-spacing: -0.03em;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
   margin-bottom: 1rem;
   color: var(--text-primary);
 }
@@ -73,15 +95,17 @@ img {
   max-width: 600px;
 }
 
+/* Pill buttons */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  border-radius: 48px;
+  border-radius: 999px;
+  font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.9375rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
   cursor: pointer;
   border: none;
 }
@@ -93,29 +117,39 @@ img {
 
 .btn-primary {
   background: var(--accent-green);
-  color: #0a0a0a;
+  color: #101010;
 }
 
 .btn-primary:hover {
-  box-shadow: 0 4px 20px rgba(74, 222, 128, 0.3);
+  box-shadow: 0 6px 22px rgba(43, 213, 118, 0.35);
 }
 
 .btn-secondary {
-  background: transparent;
+  background: #FFFFFF;
   color: var(--text-primary);
-  border: 1px solid var(--border);
+  border: 1px solid #D8D8D2;
 }
 
 .btn-secondary:hover {
-  border-color: var(--accent-green);
-  box-shadow: 0 4px 20px rgba(74, 222, 128, 0.1);
+  border-color: #101010;
 }
 
+.btn-dark {
+  background: #101010;
+  color: #FFFFFF;
+}
+
+.btn-dark:hover {
+  box-shadow: 0 6px 22px rgba(16, 16, 16, 0.25);
+}
+
+/* Refined light card (low-chrome — not a generic dark box).
+   Used by interior pages that are not converted to full editorial. */
 .card {
-  background: var(--bg-secondary);
-  border-radius: 20px;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 16px;
   padding: var(--card-padding);
-  border: none;
   transition: none;
 }
 
@@ -125,8 +159,73 @@ img {
   gap: 1.5rem;
 }
 
+/* Editorial helpers (Option B language, reused across pages) */
+.editorial {
+  display: flex;
+  flex-direction: column;
+}
+
+.editorial-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.625rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.editorial-row:last-child {
+  border-bottom: 0;
+}
+
+.editorial-num {
+  font-size: clamp(2.25rem, 5vw, 3.375rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  width: 5.5rem;
+  flex: none;
+}
+
+.editorial-bar {
+  width: 5px;
+  align-self: stretch;
+  border-radius: 4px;
+  flex: none;
+}
+
+.editorial-row h3 {
+  font-size: 1.3125rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.editorial-row p {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  max-width: 560px;
+  line-height: 1.55;
+}
+
+/* Accent color modifiers */
+.is-green .editorial-num, .is-green h3 a { color: var(--accent-green); }
+.is-coral .editorial-num { color: var(--accent-coral); }
+.is-blue  .editorial-num { color: var(--accent-blue); }
+.is-yellow .editorial-num { color: var(--accent-yellow-line); }
+.is-green .editorial-bar  { background: var(--accent-green); }
+.is-coral .editorial-bar  { background: var(--accent-coral); }
+.is-blue  .editorial-bar  { background: var(--accent-blue); }
+.is-yellow .editorial-bar { background: var(--accent-yellow-line); }
+
 @media (max-width: 768px) {
   :root {
     --section-padding: 3rem 1rem;
+  }
+  .editorial-row {
+    gap: 1rem;
+  }
+  .editorial-num {
+    width: 3.5rem;
   }
 }
