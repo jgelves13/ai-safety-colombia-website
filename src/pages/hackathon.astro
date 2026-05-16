@@ -13,7 +13,7 @@ const locale = 'es';
       <p class="hero-desc">Junio 19-21, 2026 | Bogota, Colombia</p>
       <p class="hero-sub">Organizado por Apart Research y AI Safety Colombia</p>
       <a href={hackathonData.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-        Registrate ahora
+        Registrate ahora &rarr;
       </a>
     </div>
   </section>
@@ -66,7 +66,7 @@ const locale = 'es';
 
 <style>
   .hero-mini {
-    padding: 8rem 1.5rem 4rem;
+    padding: 9rem 1.5rem 4rem;
     text-align: center;
   }
 
@@ -84,16 +84,13 @@ const locale = 'es';
 
   .prize-card {
     text-align: center;
-    padding: 2rem;
+    padding: 2.5rem;
   }
 
   .prize-amount {
     font-size: 2.5rem;
-    font-weight: 800;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-weight: 600;
+    color: var(--accent-green);
     margin-bottom: 0.5rem;
   }
 
@@ -110,7 +107,7 @@ const locale = 'es';
   .day-title {
     font-size: 1.125rem;
     font-weight: 600;
-    color: var(--accent-teal);
+    color: var(--accent-green);
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border);
@@ -131,7 +128,7 @@ const locale = 'es';
   .event-time {
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--accent-purple);
+    color: var(--accent-red);
     min-width: 3.5rem;
   }
 

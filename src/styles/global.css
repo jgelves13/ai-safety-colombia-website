@@ -1,18 +1,17 @@
 :root {
-  --bg-primary: #0a0a1a;
-  --bg-secondary: #12122a;
-  --bg-elevated: #1a1a3a;
-  --accent-teal: #2dd4bf;
-  --accent-purple: #a78bfa;
-  --gradient: linear-gradient(135deg, #2dd4bf, #a78bfa);
-  --text-primary: #f0f0f5;
-  --text-secondary: #a0a0b5;
-  --text-accent: #2dd4bf;
-  --border: #2a2a4a;
-  --font-heading: 'Inter', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-elevated: #1e1e1e;
+  --accent-green: #4ade80;
+  --accent-red: #f87171;
+  --text-primary: #f5f5f5;
+  --text-secondary: #888888;
+  --text-accent: #4ade80;
+  --border: #262626;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
   --section-padding: 5rem 1.5rem;
-  --card-padding: 1.5rem;
+  --card-padding: 2rem;
   --max-width: 1200px;
 }
 
@@ -62,12 +61,10 @@ img {
 
 .section-title {
   font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 700;
+  font-weight: 500;
+  letter-spacing: -0.03em;
   margin-bottom: 1rem;
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
 }
 
 .section-subtitle {
@@ -81,7 +78,7 @@ img {
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
+  border-radius: 48px;
   font-weight: 600;
   font-size: 0.9375rem;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -95,12 +92,12 @@ img {
 }
 
 .btn-primary {
-  background: var(--gradient);
-  color: #0a0a1a;
+  background: var(--accent-green);
+  color: #0a0a0a;
 }
 
 .btn-primary:hover {
-  box-shadow: 0 4px 20px rgba(45, 212, 191, 0.3);
+  box-shadow: 0 4px 20px rgba(74, 222, 128, 0.3);
 }
 
 .btn-secondary {
@@ -110,21 +107,16 @@ img {
 }
 
 .btn-secondary:hover {
-  border-color: var(--accent-teal);
-  box-shadow: 0 4px 20px rgba(45, 212, 191, 0.1);
+  border-color: var(--accent-green);
+  box-shadow: 0 4px 20px rgba(74, 222, 128, 0.1);
 }
 
 .card {
   background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: 1rem;
+  border-radius: 20px;
   padding: var(--card-padding);
-  transition: border-color 0.2s, transform 0.2s;
-}
-
-.card:hover {
-  border-color: var(--accent-teal);
-  transform: translateY(-2px);
+  border: none;
+  transition: none;
 }
 
 .grid-3 {

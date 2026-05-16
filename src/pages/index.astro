@@ -74,13 +74,13 @@ const metrics = [
       <h2 class="section-title">{t(locale, 'sections.join')}</h2>
       <div class="join-links">
         <a href="https://chat.whatsapp.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-          {t(locale, 'join.whatsapp')}
+          {t(locale, 'join.whatsapp')} &rarr;
         </a>
         <a href="https://t.me/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-          {t(locale, 'join.telegram')}
+          {t(locale, 'join.telegram')} &rarr;
         </a>
         <a href="#newsletter" class="btn btn-primary">
-          {t(locale, 'join.newsletter')}
+          {t(locale, 'join.newsletter')} &rarr;
         </a>
       </div>
     </div>
@@ -120,8 +120,7 @@ const metrics = [
     align-items: center;
     gap: 0.5rem;
     background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 2rem;
+    border-radius: 48px;
     padding: 0.75rem 1.25rem;
   }
 
@@ -132,8 +131,8 @@ const metrics = [
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: var(--gradient);
-    color: var(--bg-primary);
+    background: var(--accent-green);
+    color: #0a0a0a;
     font-size: 0.75rem;
     font-weight: 700;
   }

@@ -8,23 +8,28 @@ const { metrics } = Astro.props;
 
 <section class="metrics-bar">
   <div class="container">
-    <div class="metrics-grid">
-      {metrics.map(m => (
-        <div class="metric">
-          <span class="metric-value">{m.value}</span>
-          <span class="metric-label">{m.label}</span>
-        </div>
-      ))}
+    <div class="metrics-card">
+      <div class="metrics-grid">
+        {metrics.map(m => (
+          <div class="metric">
+            <span class="metric-value">{m.value}</span>
+            <span class="metric-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   .metrics-bar {
-    padding: 3rem 1.5rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .metrics-card {
     background: var(--bg-secondary);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
   }
 
   .metrics-grid {
@@ -43,11 +48,8 @@ const { metrics } = Astro.props;
 
   .metric-value {
     font-size: 2rem;
-    font-weight: 800;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-weight: 600;
+    color: var(--accent-green);
   }
 
   .metric-label {

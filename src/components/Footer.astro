@@ -15,6 +15,12 @@ const { locale } = Astro.props;
       <div class="footer-brand">
         <img src="/logo-white.png" alt="AI Safety Colombia" class="footer-logo">
         <p>{t(locale, 'footer.tagline')}</p>
+        <div class="newsletter" id="newsletter">
+          <div class="newsletter-input">
+            <input type="email" placeholder={locale === 'es' ? 'Tu email' : 'Your email'} aria-label="Email">
+            <button class="btn btn-primary newsletter-btn">&rarr;</button>
+          </div>
+        </div>
       </div>
       <div class="footer-links">
         <h4>{t(locale, 'footer.nav')}</h4>
@@ -62,6 +68,39 @@ const { locale } = Astro.props;
   .footer-logo {
     height: 36px;
     width: auto;
+  }
+
+  .newsletter {
+    margin-top: 1.5rem;
+  }
+
+  .newsletter-input {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 300px;
+  }
+
+  .newsletter-input input {
+    flex: 1;
+    padding: 0.625rem 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 48px;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-family: var(--font-body);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .newsletter-input input:focus {
+    border-color: var(--accent-green);
+  }
+
+  .newsletter-btn {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    flex-shrink: 0;
   }
 
   .footer-links {
