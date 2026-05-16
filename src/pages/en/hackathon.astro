@@ -51,11 +51,15 @@ const locale = 'en';
   <section class="section">
     <div class="container">
       <h2 class="section-title">Speakers</h2>
-      <div class="grid-3">
-        {hackathonData.speakers.map(speaker => (
-          <div class="card">
-            <h3>{speaker.name}</h3>
-            <p>{speaker.role} - {speaker.org}</p>
+      <div class="editorial">
+        {hackathonData.speakers.map((speaker, i) => (
+          <div class={`editorial-row ${['is-green','is-coral','is-blue','is-yellow'][i % 4]}`}>
+            <div class="editorial-num">{`0${i + 1}`}</div>
+            <div class="editorial-bar"></div>
+            <div class="editorial-tx">
+              <h3>{speaker.name}</h3>
+              <p>{speaker.role} - {speaker.org}</p>
+            </div>
           </div>
         ))}
       </div>

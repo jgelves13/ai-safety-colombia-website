@@ -37,17 +37,18 @@ const programs = [
 
   <section class="section">
     <div class="container">
-      <div class="programs-list">
+      <div class="editorial">
         {programs.map((prog, i) => (
-          <div class="program-card card">
-            <div class="program-header">
-              <span class="program-num">{i + 1}</span>
+          <div class={`editorial-row ${['is-green','is-coral','is-blue','is-yellow'][i]}`}>
+            <div class="editorial-num">{`0${i + 1}`}</div>
+            <div class="editorial-bar"></div>
+            <div class="editorial-tx">
               <h3>{prog.stage}</h3>
+              <p class="program-desc">{prog.desc}</p>
+              <ul class="program-items">
+                {prog.items.map(item => <li>{item}</li>)}
+              </ul>
             </div>
-            <p class="program-desc">{prog.desc}</p>
-            <ul class="program-items">
-              {prog.items.map(item => <li>{item}</li>)}
-            </ul>
           </div>
         ))}
       </div>
@@ -69,43 +70,11 @@ const programs = [
     line-height: 1.7;
   }
 
-  .programs-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .program-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .program-num {
-    width: 2rem;
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: var(--accent-green);
-    color: #0a0a0a;
-    font-size: 0.875rem;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-
-  .program-header h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
 
   .program-desc {
     color: var(--text-secondary);
     font-size: 0.9375rem;
-    margin-bottom: 1rem;
+    margin: 0.25rem 0 0.875rem;
     line-height: 1.6;
   }
 
