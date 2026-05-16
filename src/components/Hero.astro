@@ -7,13 +7,17 @@ interface Props {
 }
 
 const { locale } = Astro.props;
+const titleWords = t(locale, 'hero.title').split(' ');
+const firstWord = titleWords[0];
+const accentWord = titleWords[1] ?? '';
+const restWords = titleWords.slice(2).join(' ');
 ---
 
 <section class="hero">
   <div class="hero-dots"></div>
   <div class="container">
     <div class="hero-content">
-      <h1 class="hero-title">{t(locale, 'hero.title')}</h1>
+      <h1 class="hero-title">{firstWord} <span class="hero-accent">{accentWord}</span>{restWords ? ` ${restWords}` : ''}</h1>
       <p class="hero-subtitle">{t(locale, 'hero.subtitle')}</p>
       <div class="hero-actions">
         <a href={localePath(locale, '/involucrate/')} class="btn btn-primary">
@@ -29,7 +33,7 @@ const { locale } = Astro.props;
 
 <style>
   .hero {
-    padding: 10rem 1.5rem 6rem;
+    padding: 8.5rem 1.5rem 5rem;
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -38,9 +42,9 @@ const { locale } = Astro.props;
   .hero-dots {
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle, #333 1px, transparent 1px);
-    background-size: 24px 24px;
-    opacity: 0.3;
+    background-image: radial-gradient(#e2e2dc 1.4px, transparent 1.4px);
+    background-size: 26px 26px;
+    opacity: 0.6;
     pointer-events: none;
   }
 
@@ -52,18 +56,22 @@ const { locale } = Astro.props;
   }
 
   .hero-title {
-    font-size: clamp(2.75rem, 6vw, 4.5rem);
-    font-weight: 500;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
+    font-size: clamp(2.75rem, 6vw, 3.75rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.04;
+    margin-bottom: 1.25rem;
     color: var(--text-primary);
+  }
+
+  .hero-accent {
+    color: var(--accent-green);
   }
 
   .hero-subtitle {
     font-size: clamp(1.125rem, 2.5vw, 1.375rem);
     color: var(--text-secondary);
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.25rem;
     line-height: 1.5;
   }
 
@@ -76,7 +84,7 @@ const { locale } = Astro.props;
 
   @media (max-width: 768px) {
     .hero {
-      padding: 7rem 1rem 4rem;
+      padding: 6.5rem 1rem 3.5rem;
     }
   }
 </style>
