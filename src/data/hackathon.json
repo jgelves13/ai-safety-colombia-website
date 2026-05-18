@@ -17,8 +17,28 @@
     { "stepEs": "Investigación y colocación", "stepEn": "Research & placement", "descEs": "Mentoría y revisión de expertos hacia investigación publicable y oportunidades.", "descEn": "Expert mentoring and review toward publishable research and opportunities." }
   ],
   "tracks": [
-    { "labelEs": "Technical AI Safety", "labelEn": "Technical AI Safety", "descEs": "Evaluaciones, interpretabilidad, robustez y herramientas de seguridad aplicadas a modelos.", "descEn": "Evaluations, interpretability, robustness, and safety tooling applied to models.", "accent": "is-green" },
-    { "labelEs": "AI Governance & Policy", "labelEn": "AI Governance & Policy", "descEs": "Mecanismos de gobernanza, evaluación de riesgos regionales y herramientas de política.", "descEn": "Governance mechanisms, regional risk assessment, and policy tooling.", "accent": "is-coral" }
+    { "titleEs": "Seguridad Técnica de IA", "titleEn": "Technical AI Safety", "accent": "is-green", "subareas": [
+      { "es": "Evaluaciones para sistemas agénticos", "en": "Evaluations for agentic systems" },
+      { "es": "Interpretabilidad mecanicista", "en": "Mechanistic interpretability" }
+    ]},
+    { "titleEs": "Seguridad de IA", "titleEn": "AI Security", "accent": "is-coral", "subareas": [
+      { "es": "Seguridad de pipelines (API/Cloud)", "en": "Pipeline security (API/Cloud)" },
+      { "es": "Inyección de prompts y jailbreaks", "en": "Prompt injection and jailbreaks" },
+      { "es": "Control de IA", "en": "AI control" }
+    ]},
+    { "titleEs": "IA Responsable", "titleEn": "Responsible AI", "accent": "is-blue", "subareas": [
+      { "es": "Mitigación de alucinaciones", "en": "Hallucination mitigation" },
+      { "es": "Auditoría de comportamiento (multilingüe, intercultural)", "en": "Behavioral audit (multilingual, cross-cultural)" },
+      { "es": "Evaluación de impacto social", "en": "Social impact evaluation" }
+    ]},
+    { "titleEs": "Gobernanza de IA", "titleEn": "AI Governance", "accent": "is-yellow", "subareas": [
+      { "es": "Análisis de política y regulación de IA", "en": "AI policy and regulation analysis" },
+      { "es": "Auditoría y rendición de cuentas de sistemas", "en": "System auditing and accountability" },
+      { "es": "Monitoreo del ecosistema", "en": "Ecosystem monitoring" }
+    ]},
+    { "titleEs": "Gobernanza de LAWS (liderado desde Bogotá)", "titleEn": "LAWS governance (Bogotá-led)", "accent": "is-green", "subareas": [
+      { "es": "Sistemas de armas autónomas letales", "en": "Lethal autonomous weapons systems" }
+    ]}
   ],
   "eligibility": [
     { "es": "Investigadores e ingenieros de IA", "en": "AI researchers and engineers" },
@@ -49,19 +69,24 @@
   },
   "schedule": [
     { "day": "Viernes 19", "dayEn": "Friday 19", "accent": "is-green", "events": [
-      { "time": "—", "title": "Apertura y formación de equipos", "titleEn": "Opening and team formation" }
+      { "time": "", "title": "Apertura y formación de equipos", "titleEn": "Opening and team formation" }
     ]},
     { "day": "Sábado 20", "dayEn": "Saturday 20", "accent": "is-blue", "events": [
-      { "time": "—", "title": "Construcción con mentoría", "titleEn": "Building with mentoring" }
+      { "time": "", "title": "Construcción con mentoría", "titleEn": "Building with mentoring" }
     ]},
     { "day": "Domingo 21", "dayEn": "Sunday 21", "accent": "is-yellow", "events": [
-      { "time": "—", "title": "Entrega del reporte (PDF) y revisión", "titleEn": "Report submission (PDF) and review" }
+      { "time": "", "title": "Entrega del reporte (PDF) y revisión", "titleEn": "Report submission (PDF) and review" }
     ]}
   ],
   "speakers": [
     { "name": "Juan Pablo Toro Ramírez", "role": "Speaker", "org": "Colombia" }
   ],
-  "judges": [],
+  "judges": [
+    { "name": "Melissa Robles", "affiliationEs": "IDB Lab y Quantil", "affiliationEn": "IDB Lab & Quantil" },
+    { "name": "Catalina Bernal", "affiliationEs": "BIP Colombia", "affiliationEn": "BIP Colombia" },
+    { "name": "Juan Pablo Liévano", "affiliationEs": "UC Berkeley", "affiliationEn": "UC Berkeley" },
+    { "name": "Steve Hege", "affiliationEs": "ILAPS", "affiliationEn": "ILAPS" }
+  ],
   "prizes": {
     "regional": "US$1,000 per team (3 LATAM winners)",
     "regionalEs": "USD 1.000 por equipo (3 ganadores LATAM)"
