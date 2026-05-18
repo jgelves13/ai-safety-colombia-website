@@ -1,16 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { t } from '../../i18n/ui';
 
 const locale = 'en';
 ---
 
 <BaseLayout locale={locale} currentPage="about" title="About | AI Safety Colombia">
-  <section class="hero-mini">
-    <div class="container">
-      <h1 class="section-title">About Us</h1>
-      <p class="page-desc">We are a group of researchers, engineers, and professionals committed to building a safe future with artificial intelligence in Colombia and Latin America.</p>
-    </div>
-  </section>
+  <PageHero
+    title="About Us"
+    desc="We are a group of researchers, engineers, and professionals committed to building a safe future with artificial intelligence in Colombia and Latin America."
+  />
 
   <section class="section">
     <div class="container">
@@ -48,28 +48,26 @@ const locale = 'en';
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" aria-labelledby="team-title">
     <div class="container">
-      <h2 class="section-title">Team</h2>
-      <p class="text-block">Our founding team combines experience in artificial intelligence, public policy, and social impact communities.</p>
+      <h2 class="section-title" id="team-title">Team</h2>
+      <div class="memoriam-card">
+        <p class="memoriam-kicker">{t(locale, 'about.memoriam.kicker')}</p>
+        <h3 class="memoriam-name">{t(locale, 'about.memoriam.name')}</h3>
+        <p class="memoriam-role">{t(locale, 'about.memoriam.role')} · {t(locale, 'about.memoriam.affiliation')}</p>
+        <p class="memoriam-tribute">{t(locale, 'about.memoriam.tribute')}</p>
+      </div>
+      <div class="team-list">
+        <div class="team-member">
+          <h3 class="team-name">{t(locale, 'about.team.name')}</h3>
+          <p class="team-role">{t(locale, 'about.team.role')} · {t(locale, 'about.team.affiliation')}</p>
+        </div>
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .hero-mini {
-    padding: 9rem 1.5rem 3rem;
-    text-align: center;
-  }
-
-  .page-desc {
-    color: var(--text-secondary);
-    font-size: 1.125rem;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
-
   .text-block {
     color: var(--text-secondary);
     font-size: 1rem;
@@ -77,4 +75,55 @@ const locale = 'en';
     line-height: 1.7;
   }
 
+  .memoriam-card {
+    background: linear-gradient(140deg, #F1F8F2, #FFF8E7);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 2rem 2.25rem;
+    max-width: 640px;
+  }
+
+  .memoriam-kicker {
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green-text);
+  }
+
+  .memoriam-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 0.5rem;
+  }
+
+  .memoriam-role {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+  }
+
+  .memoriam-tribute {
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    line-height: 1.65;
+    margin-top: 1rem;
+  }
+
+  .team-list {
+    margin-top: 2rem;
+  }
+
+  .team-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .team-role {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+  }
 </style>
