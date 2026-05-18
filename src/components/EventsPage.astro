@@ -2,6 +2,7 @@
 import type { Locale } from '../i18n/ui';
 import { t } from '../i18n/ui';
 import EventCard from './EventCard.astro';
+import PageHero from './PageHero.astro';
 import { splitEvents } from '../utils/events.js';
 import eventsData from '../data/events.json';
 
@@ -24,17 +25,12 @@ const filterOptions = pastTypes.map((type) => ({
 }));
 ---
 
-<section class="hero-mini">
-  <div class="container">
-    <h1 class="section-title">{t(locale, 'events.hero.title')}</h1>
-    <p class="page-desc">{t(locale, 'events.hero.subtitle')}</p>
-  </div>
-</section>
+<PageHero title={t(locale, 'events.hero.title')} desc={t(locale, 'events.hero.subtitle')} />
 
 {upcoming.length > 0 && (
-  <section class="section">
+  <section class="section" aria-labelledby="events-upcoming">
     <div class="container">
-      <h2 class="section-label">{t(locale, 'events.upcoming')}</h2>
+      <h2 class="section-label" id="events-upcoming">{t(locale, 'events.upcoming')}</h2>
       <div class="events-list">
         {upcoming.map(ev => <EventCard event={ev} locale={locale} />)}
       </div>
@@ -42,11 +38,11 @@ const filterOptions = pastTypes.map((type) => ({
   </section>
 )}
 
-<section class="section">
+<section class="section" aria-labelledby="events-past">
   <div class="container">
     {hasAny ? (
       <>
-        <h2 class="section-label">{t(locale, 'events.past')}</h2>
+        <h2 class="section-label" id="events-past">{t(locale, 'events.past')}</h2>
         {showFilter && (
           <div class="event-filters" data-event-filters hidden>
             <button class="filter-pill is-active" type="button" data-filter="all" aria-pressed="true">
@@ -73,19 +69,6 @@ const filterOptions = pastTypes.map((type) => ({
 </section>
 
 <style>
-  .hero-mini {
-    padding: 9rem 1.5rem 3rem;
-    text-align: center;
-  }
-
-  .page-desc {
-    color: var(--text-secondary);
-    font-size: 1.125rem;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
-
   .section-label {
     font-size: 0.75rem;
     font-weight: 700;
