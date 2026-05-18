@@ -1,0 +1,217 @@
+---
+import type { Locale } from '../i18n/ui';
+import { t, localePath } from '../i18n/ui';
+import PageHero from './PageHero.astro';
+import data from '../data/getInvolved.json';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const es = locale === 'es';
+
+const WHATSAPP_URL = 'https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ';
+
+type Action = { labelEs: string; labelEn: string; ext?: string; path?: string };
+
+const resolve = (a: Action) => {
+  if (a.ext) return { href: a.ext, external: true };
+  return { href: localePath(locale, a.path ?? '/'), external: false };
+};
+---
+
+<PageHero
+  title={t(locale, 'getInvolved.hero.title')}
+  desc={t(locale, 'getInvolved.hero.subtitle')}
+/>
+
+<section class="section">
+  <div class="container">
+    <div class="ways-grid">
+      {data.audiences.map((aud) => (
+        <article class={`way-card ${aud.accent}`}>
+          <div class="way-bar"></div>
+          <div class="way-tx">
+            <h3 class="way-title">{es ? aud.titleEs : aud.titleEn}</h3>
+            <p class="way-desc">{es ? aud.descEs : aud.descEn}</p>
+            <ul class="way-actions">
+              {aud.actions.map((a) => {
+                const { href, external } = resolve(a as Action);
+                return (
+                  <li>
+                    <a
+                      class="way-action"
+                      href={href}
+                      target={external ? '_blank' : undefined}
+                      rel={external ? 'noopener noreferrer' : undefined}
+                    >
+                      <span>{es ? a.labelEs : a.labelEn}</span>
+                      <span class="way-arrow" aria-hidden="true">&rarr;</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="ways-cta">
+      <p class="ways-cta-lead">{t(locale, 'getInvolved.ctaLead')}</p>
+      <div class="ways-cta-buttons">
+        <a
+          class="btn btn-primary"
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >{t(locale, 'getInvolved.ctaPrimary')}</a>
+        <a class="btn btn-secondary" href={localePath(locale, '/contacto/')}>
+          {t(locale, 'getInvolved.ctaContact')}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ways-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .way-card {
+    display: flex;
+    gap: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    background: #FFFFFF;
+    transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .way-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(16, 16, 16, 0.06);
+    border-color: var(--accent-green);
+  }
+
+  .way-card.is-coral:hover { border-color: var(--accent-coral); }
+  .way-card.is-blue:hover { border-color: var(--accent-blue); }
+  .way-card.is-yellow:hover { border-color: var(--accent-yellow-line); }
+
+  .way-bar {
+    width: 5px;
+    flex: none;
+    border-radius: 4px;
+    background: var(--accent-green);
+  }
+
+  .way-card.is-coral .way-bar { background: var(--accent-coral); }
+  .way-card.is-blue .way-bar { background: var(--accent-blue); }
+  .way-card.is-yellow .way-bar { background: var(--accent-yellow-line); }
+
+  .way-tx {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .way-title {
+    font-size: 1.1875rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+  }
+
+  .way-desc {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-top: 0.375rem;
+  }
+
+  .way-actions {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 1rem;
+  }
+
+  .way-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: color 0.15s ease, padding-left 0.15s ease;
+  }
+
+  .way-action:hover {
+    color: var(--green-text);
+    padding-left: 0.25rem;
+  }
+
+  .way-card.is-coral .way-action:hover { color: var(--accent-coral); }
+  .way-card.is-blue .way-action:hover { color: #0090c4; }
+  .way-card.is-yellow .way-action:hover { color: var(--accent-yellow-line); }
+
+  .way-arrow {
+    flex: none;
+    color: var(--text-secondary);
+    transition: transform 0.15s ease;
+  }
+
+  .way-action:hover .way-arrow {
+    transform: translateX(3px);
+  }
+
+  .ways-cta {
+    margin-top: 3rem;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    background: linear-gradient(140deg, #F1F8F2, #FFF8E7);
+  }
+
+  .ways-cta-lead {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    max-width: 540px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .ways-cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .way-card,
+    .way-card:hover,
+    .way-action,
+    .way-arrow,
+    .way-action:hover .way-arrow {
+      transition: none;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .ways-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
