@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { t, type Locale } from '../i18n/ui';
 import type { AisEvent } from '../types';
+import { typeColor } from '../utils/eventTypes.js';
 
 interface Props {
   event: AisEvent;
@@ -11,25 +12,13 @@ interface Props {
 
 const { event, locale } = Astro.props;
 
-// AA-safe tag colors, mirroring the approved Style 2 mockup (green #15803D,
-// coral #FF5645, darkened blue #0090c4, ink #101010, yellow-line #B07A00).
-// Labels live in src/i18n/ui.ts (events.type.*); color is not localized.
-const TYPE_COLOR: Record<string, string> = {
-  charla: '#15803D',
-  panel: '#FF5645',
-  conversatorio: '#0090c4',
-  cena: '#101010',
-  taller: '#15803D',
-  curso: '#B07A00',
-};
-
 const flyers = import.meta.glob<ImageMetadata>('../assets/events/*', {
   eager: true,
   import: 'default',
 });
 const flyer = flyers[`../assets/events/${event.flyer}`];
 
-const color = TYPE_COLOR[event.type] ?? '#101010';
+const color = typeColor(event.type);
 const tagLabel =
   t(locale, `events.type.${event.type}` as Parameters<typeof t>[1]) || event.type;
 const title = locale === 'es' ? event.titleEs : event.titleEn;
@@ -52,7 +41,7 @@ const alt = `${title}. ${tagLabel}, ${dateLabel}.`;
         src={flyer}
         alt={alt}
         widths={[192, 384, 768]}
-        sizes="(max-width: 768px) 90vw, 96px"
+        sizes="(max-width: 768px) 90vw, 170px"
         format="webp"
         loading="lazy"
       />
@@ -90,7 +79,7 @@ const alt = `${title}. ${tagLabel}, ${dateLabel}.`;
   }
 
   .event-flyer {
-    width: 96px;
+    width: 170px;
     flex: none;
     aspect-ratio: 3 / 4;
     border-radius: 12px;

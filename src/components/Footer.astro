@@ -13,7 +13,7 @@ const { locale } = Astro.props;
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="/logo-white.png" alt="AI Safety Colombia" class="footer-logo">
+        <img src="/logo-footer.png" alt="AI Safety Colombia" class="footer-logo" width="750" height="607">
         <p>{t(locale, 'footer.tagline')}</p>
         <a
           href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
@@ -68,10 +68,10 @@ const { locale } = Astro.props;
   }
 
   .footer-logo {
-    height: 34px;
+    height: 38px;
     width: auto;
-    /* Asset is the colored mark; render it white so it reads on the dark footer */
-    filter: brightness(0) invert(1);
+    /* Purpose-built tightly-cropped white mark (logo-footer.png) reads
+       cleanly on the dark footer; no filter needed. */
   }
 
   .footer-cta {

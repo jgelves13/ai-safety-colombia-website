@@ -1,0 +1,95 @@
+{
+  "courses": [
+    {
+      "slug": "future-of-ai",
+      "url": "https://bluedot.org/courses/future-of-ai",
+      "accent": "is-green",
+      "titleEs": "El futuro de la IA",
+      "titleEn": "The Future of AI",
+      "metaEs": "2 horas · A tu ritmo · Sin requisitos",
+      "metaEn": "2 hours · Self-paced · No prerequisites",
+      "audienceEs": "Para cualquier persona que quiera entender el impacto de la IA en la sociedad.",
+      "audienceEn": "For anyone who wants to understand AI's impact on society.",
+      "descEs": "Curso introductorio sobre qué puede hacer la IA hoy, hacia dónde va en la próxima década y cómo contribuir a un desarrollo beneficioso. Incluye demostraciones interactivas, prueba de sistemas de IA en el navegador y un certificado al finalizar.",
+      "descEn": "An introductory course on what AI can do today, where it is heading over the next decade, and how to contribute to beneficial development. It includes interactive demos, hands-on AI systems in the browser, and a certificate on completion."
+    },
+    {
+      "slug": "alignment",
+      "url": "https://bluedot.org/courses/alignment",
+      "accent": "is-coral",
+      "titleEs": "Alineación de IA",
+      "titleEn": "AI Alignment",
+      "metaEs": "A tu ritmo · De los fundamentos a tu propio proyecto",
+      "metaEn": "Self-paced · Foundations through your own project",
+      "audienceEs": "Para personas interesadas en la seguridad de IA, desde principiantes hasta quienes quieren contribuir al campo.",
+      "audienceEn": "For people interested in AI safety, from beginners to those wanting to contribute to the field.",
+      "descEs": "Programa que explora cómo lograr que los sistemas de IA avanzados actúen en armonía con los objetivos y valores humanos. Recorre fundamentos como el aprendizaje por refuerzo con retroalimentación humana y la interpretabilidad mecanicista, avanza hacia gobernanza técnica y culmina en el desarrollo de un proyecto propio de seguridad.",
+      "descEn": "A program on how to make advanced AI systems act in harmony with human goals and values. It spans foundations such as reinforcement learning from human feedback and mechanistic interpretability, moves through technical governance, and culminates in building your own safety project."
+    },
+    {
+      "slug": "technical-ai-safety",
+      "url": "https://bluedot.org/courses/technical-ai-safety",
+      "accent": "is-blue",
+      "titleEs": "Seguridad técnica de IA",
+      "titleEn": "Technical AI Safety",
+      "metaEs": "8 días intensivo o 6 semanas a medio tiempo · Cohorte facilitada",
+      "metaEn": "8 days intensive or 6 weeks part-time · Facilitated cohort",
+      "audienceEs": "Para investigadores con base en ML o ciencias de la computación, ingenieros de software y perfiles early-career con alto potencial.",
+      "audienceEn": "For researchers with an ML or CS background, software engineers, and high-potential early-career professionals.",
+      "descEs": "Recorre los principales problemas abiertos en alineación, interpretabilidad, evaluaciones y control de IA, con discusiones semanales lideradas por expertos. Construye fluidez técnica y claridad estratégica, y conecta a quienes participan con fellowships, roles en laboratorios de frontera y posiciones de política.",
+      "descEn": "Surveys the main open problems in alignment, interpretability, evaluations, and AI control, with weekly discussions led by experts. It builds technical fluency and strategic clarity, and connects participants to fellowships, roles at frontier labs, and policy positions."
+    },
+    {
+      "slug": "ai-governance",
+      "url": "https://bluedot.org/courses/ai-governance",
+      "accent": "is-yellow",
+      "titleEs": "Gobernanza de IA de frontera",
+      "titleEn": "Frontier AI Governance",
+      "metaEs": "~30 horas · Cohorte facilitada (6 días o 6 semanas)",
+      "metaEn": "~30 hours · Facilitated cohort (6 days or 6 weeks)",
+      "audienceEs": "Para perfiles técnicos que consideran política, personas early-career y profesionales de política, seguridad nacional o derecho.",
+      "audienceEn": "For technical people considering policy, early-career individuals, and professionals in policy, national security, or law.",
+      "descEs": "Enseña a evaluar los sistemas de IA con la mirada de quien hace política, a mapear las estructuras de poder en la gobernanza de IA de frontera y a poner a prueba propuestas de política bajo presión competitiva. Incluye gobernanza del cómputo, coordinación internacional y una hoja de ruta personal hacia roles de gobernanza.",
+      "descEn": "Teaches you to assess AI systems through a policymaker's lens, map power structures in frontier AI governance, and stress-test policy proposals under competitive pressure. It covers compute governance, international coordination, and a personal roadmap into governance roles."
+    },
+    {
+      "slug": "agi-strategy",
+      "url": "https://bluedot.org/courses/agi-strategy",
+      "accent": "is-green",
+      "titleEs": "Estrategia de AGI",
+      "titleEn": "AGI Strategy",
+      "metaEs": "25 horas · Cohorte facilitada (5 días o 5 semanas)",
+      "metaEn": "25 hours · Facilitated cohort (5 days or 5 weeks)",
+      "audienceEs": "Para personas expertas en política, seguridad, operaciones o ingeniería que quieren reorientar sus habilidades hacia la seguridad de IA.",
+      "audienceEn": "For experts in policy, security, operations, or engineering who want to redirect their skills toward AI safety.",
+      "descEs": "Introducción a fondo a las trayectorias del desarrollo de IA, sus posibles desenlaces y las intervenciones para orientarla hacia futuros beneficiosos. Aprendes a analizar incentivos de las empresas de IA, a construir marcos de evaluación de riesgos y a definir próximos pasos accionables.",
+      "descEn": "An in-depth introduction to AI development trajectories, possible outcomes, and the interventions to steer it toward beneficial futures. You learn to analyze AI companies' incentives, build threat-assessment frameworks, and define actionable next steps."
+    },
+    {
+      "slug": "economics-of-tai",
+      "url": "https://bluedot.org/courses/economics-of-tai",
+      "accent": "is-coral",
+      "titleEs": "Economía de la IA transformadora",
+      "titleEn": "Economics of Transformative AI",
+      "metaEs": "5 unidades · La economía de la AGI",
+      "metaEn": "5 units · The economics of AGI",
+      "audienceEs": "Para economistas y personas interesadas en las implicaciones económicas de la IA.",
+      "audienceEn": "For economists and people interested in the economic implications of AI.",
+      "descEs": "Explora cómo la AGI podría rediseñar mercados, trabajo y crecimiento, y el papel que juegan quienes hacen economía en la trayectoria de la IA. Cinco unidades cubren los sistemas de IA actuales, el progreso proyectado, la automatización, escenarios de crecimiento explosivo y distribución de la riqueza.",
+      "descEn": "Explores how AGI could reshape markets, labour, and growth, and the role economists play in AI's trajectory. Five units cover today's AI systems, projected progress, automation, explosive-growth scenarios, and wealth distribution."
+    },
+    {
+      "slug": "writing",
+      "url": "https://bluedot.org/courses/writing",
+      "accent": "is-blue",
+      "titleEs": "Intensivo de escritura",
+      "titleEn": "Writing Intensive",
+      "metaEs": "5 unidades · De la idea a un texto publicado",
+      "metaEn": "5 units · From idea to a published post",
+      "audienceEs": "Para quienes quieren desarrollar sus habilidades de escritura y publicar contenido.",
+      "audienceEn": "For people who want to develop their writing skills and publish content.",
+      "descEs": "Acompaña un proceso de escritura completo: lluvia de ideas, titulares, esquema, borrador, edición y, finalmente, publicación y difusión. El objetivo es pasar de no tener ideas a publicar un texto corto del que te sientas orgulloso.",
+      "descEn": "Walks through a complete writing process: brainstorming, headlines, outline, draft, editing, and finally publishing and promotion. The goal is to go from having no ideas to publishing a short post you are proud of."
+    }
+  ]
+}
