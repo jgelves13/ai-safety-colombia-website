@@ -47,7 +47,6 @@ const judges = data.judges as { name: string; affiliationEs?: string; affiliatio
     <div class="editorial">
       {data.pipeline.map((step, i) => (
         <div class={`editorial-row ${['is-green','is-coral','is-blue'][i % 3]}`}>
-          <div class="editorial-num">{`0${i + 1}`}</div>
           <div class="editorial-bar"></div>
           <div class="editorial-tx">
             <h3>{es ? step.stepEs : step.stepEn}</h3>
@@ -67,8 +66,10 @@ const judges = data.judges as { name: string; affiliationEs?: string; affiliatio
         <div class={`hk-track ${track.accent}`}>
           <div class="hk-track-bar"></div>
           <div>
-            <h3>{es ? track.labelEs : track.labelEn}</h3>
-            <p>{es ? track.descEs : track.descEn}</p>
+            <h3>{es ? track.titleEs : track.titleEn}</h3>
+            <ul class="hk-track-list">
+              {track.subareas.map(s => <li>{es ? s.es : s.en}</li>)}
+            </ul>
           </div>
         </div>
       ))}
@@ -121,7 +122,6 @@ const judges = data.judges as { name: string; affiliationEs?: string; affiliatio
     <div class="editorial">
       {data.schedule.map((day, i) => (
         <div class={`editorial-row ${day.accent ?? ['is-green','is-blue','is-yellow'][i % 3]}`}>
-          <div class="editorial-num">{`0${i + 1}`}</div>
           <div class="editorial-bar"></div>
           <div class="editorial-tx">
             <h3>{es ? day.day : day.dayEn}</h3>
@@ -236,7 +236,7 @@ const judges = data.judges as { name: string; affiliationEs?: string; affiliatio
 
   .hk-tracks {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.25rem;
   }
 
@@ -257,6 +257,8 @@ const judges = data.judges as { name: string; affiliationEs?: string; affiliatio
 
   .hk-track.is-green .hk-track-bar { background: var(--accent-green); }
   .hk-track.is-coral .hk-track-bar { background: var(--accent-coral); }
+  .hk-track.is-blue .hk-track-bar { background: var(--accent-blue); }
+  .hk-track.is-yellow .hk-track-bar { background: var(--accent-yellow-line); }
 
   .hk-track h3 {
     font-size: 1.125rem;
@@ -269,6 +271,32 @@ const judges = data.judges as { name: string; affiliationEs?: string; affiliatio
     font-size: 0.9375rem;
     color: var(--text-secondary);
     line-height: 1.55;
+  }
+
+  .hk-track-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .hk-track-list li {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    padding-left: 0.875rem;
+    position: relative;
+  }
+
+  .hk-track-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent-green);
   }
 
   .hk-prize {
