@@ -20,6 +20,8 @@ type Person = {
   affiliationEs?: string;
   affiliationEn?: string;
   attendance?: 'inperson' | 'remote' | 'tbc';
+  evalTopicEs?: string;
+  evalTopicEn?: string;
   bioEs?: string;
   bioEn?: string;
   linkedin?: string;
@@ -27,6 +29,24 @@ type Person = {
 };
 const judges = data.judges as Person[];
 const speakers = data.speakers as Person[];
+
+type City = { name: string; bogota?: boolean; tbd?: boolean };
+type Region = {
+  nameEs: string;
+  nameEn: string;
+  accent: string;
+  teamsEs: string;
+  teamsEn: string;
+  prizeEs: string;
+  prizeEn: string;
+  cities: City[];
+};
+const regions = data.regions as Region[];
+
+// Brand LinkedIn glyph, injected inline so the link carries a real logo
+// (not a text arrow). The anchor owns the accessible name; mark decorative.
+const linkedinIcon =
+  '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>';
 
 const initials = (name: string) =>
   name
@@ -70,6 +90,7 @@ const attLabel = (a?: Person['attendance']) =>
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whyTitle')}</h2>
     <p class="hk-why-lead">{es ? data.whyLeadEs : data.whyLeadEn}</p>
+    <h3 class="hk-pathway-label">{es ? data.pathwayLabelEs : data.pathwayLabelEn}</h3>
     <div class="editorial">
       {data.pipeline.map((step, i) => (
         <div class={`editorial-row ${['is-green','is-coral','is-blue'][i % 3]}`}>
@@ -89,11 +110,16 @@ const attLabel = (a?: Person['attendance']) =>
     <h2 class="section-title">{t(locale, 'hackathon.tracksTitle')}</h2>
     <div class="hk-tracks">
       {data.tracks.map(track => (
-        <div class={`hk-track ${track.accent}`} tabindex="0">
+        <div class={`hk-track ${track.accent}`}>
           <div class="hk-track-bar"></div>
-          <div>
+          <div class="hk-track-tx">
             <h3>{es ? track.titleEs : track.titleEn}</h3>
-            <p class="hk-track-desc">{track.subareas.map(s => (es ? s.es : s.en)).join(' / ')}</p>
+            <p class="hk-track-desc">{es ? track.descEs : track.descEn}</p>
+            <ul class="hk-track-subs">
+              {track.subareas.map(s => (
+                <li>{es ? s.es : s.en}</li>
+              ))}
+            </ul>
           </div>
         </div>
       ))}
@@ -114,6 +140,14 @@ const attLabel = (a?: Person['attendance']) =>
         ))}
       </div>
       <p class="hk-prize-extra">{es ? data.prizesDetail.fellowsEs : data.prizesDetail.fellowsEn}</p>
+      <div class="hk-success">
+        <h3 class="hk-success-title">{es ? data.prizesDetail.successTitleEs : data.prizesDetail.successTitleEn}</h3>
+        <ul class="hk-success-list">
+          {data.prizesDetail.successExamples.map(ex => (
+            <li>{es ? ex.es : ex.en}</li>
+          ))}
+        </ul>
+      </div>
     </div>
     <p class="hk-note hk-venue-note">{es ? data.prizesDetail.venueNoteEs : data.prizesDetail.venueNoteEn}</p>
   </div>
@@ -122,9 +156,30 @@ const attLabel = (a?: Person['attendance']) =>
 <section class="section">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.hubsTitle')}</h2>
-    <div class="hk-hubs">
-      {data.hubs.map(hub => (
-        <span class={hub.bogota ? 'hk-hub is-bogota' : 'hk-hub'}>{hub.city}</span>
+    <div class="hk-regions">
+      {regions.map(region => (
+        <article class={`hk-region ${region.accent}`}>
+          <div class="hk-region-head">
+            <h3>{es ? region.nameEs : region.nameEn}</h3>
+            <span class="hk-region-meta">
+              {es ? region.teamsEs : region.teamsEn} · {es ? region.prizeEs : region.prizeEn}
+            </span>
+          </div>
+          <ul class="hk-cities">
+            {region.cities.map((city, ci) => (
+              <li
+                class={`hk-city${city.bogota ? ' is-bogota' : ''}${city.tbd ? ' is-tbd' : ''}`}
+                style={`--ci:${ci}`}
+              >
+                <span class="hk-city-dot" aria-hidden="true"></span>
+                <span class="hk-city-name">{city.name}</span>
+                {city.bogota && (
+                  <span class="hk-city-tag">{t(locale, 'hackathon.ourHub')}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </article>
       ))}
     </div>
     <p class="hk-note">{t(locale, 'hackathon.hubsNote')}</p>
@@ -177,8 +232,15 @@ const attLabel = (a?: Person['attendance']) =>
             )}
             {(es ? sp.bioEs : sp.bioEn) && <p class="hk-person-bio">{es ? sp.bioEs : sp.bioEn}</p>}
             {sp.linkedin && (
-              <a class="hk-person-link" href={sp.linkedin} target="_blank" rel="noopener noreferrer">
-                LinkedIn &rarr;
+              <a
+                class="hk-person-link"
+                href={sp.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`LinkedIn — ${sp.name}`}
+              >
+                <span class="hk-li-icon" set:html={linkedinIcon} />
+                <span>LinkedIn</span>
               </a>
             )}
           </div>
@@ -206,10 +268,23 @@ const attLabel = (a?: Person['attendance']) =>
               {j.attendance && (
                 <span class={`hk-att hk-att-${j.attendance}`}>{attLabel(j.attendance)}</span>
               )}
+              {(es ? j.evalTopicEs : j.evalTopicEn) && (
+                <p class="hk-person-eval">
+                  <span class="hk-person-eval-label">{t(locale, 'hackathon.judgeEvalLabel')}</span>
+                  {es ? j.evalTopicEs : j.evalTopicEn}
+                </p>
+              )}
               {(es ? j.bioEs : j.bioEn) && <p class="hk-person-bio">{es ? j.bioEs : j.bioEn}</p>}
               {j.linkedin && (
-                <a class="hk-person-link" href={j.linkedin} target="_blank" rel="noopener noreferrer">
-                  LinkedIn &rarr;
+                <a
+                  class="hk-person-link"
+                  href={j.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`LinkedIn — ${j.name}`}
+                >
+                  <span class="hk-li-icon" set:html={linkedinIcon} />
+                  <span>LinkedIn</span>
                 </a>
               )}
             </div>
@@ -390,25 +465,121 @@ const attLabel = (a?: Person['attendance']) =>
     color: var(--text-primary);
   }
 
-  .hk-hubs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  /* Regional map: one card per region, cities animate in on load,
+     Bogotá (our hub) gets a pulsing dot + tag. */
+  .hk-regions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
   }
 
-  .hk-hub {
-    font-size: 0.875rem;
-    font-weight: 600;
+  .hk-region {
     border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 0.5rem 1rem;
+    border-radius: 16px;
+    padding: 1.5rem;
+    background: #FFFFFF;
+    border-top: 4px solid var(--border);
+  }
+
+  .hk-region.is-green { border-top-color: var(--accent-green); }
+  .hk-region.is-coral { border-top-color: var(--accent-coral); }
+  .hk-region.is-blue { border-top-color: var(--accent-blue); }
+  .hk-region.is-yellow { border-top-color: var(--accent-yellow-line); }
+
+  .hk-region-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .hk-region-head h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .hk-region-meta {
+    font-size: 0.8125rem;
+    font-weight: 600;
     color: var(--text-secondary);
   }
 
-  .hk-hub.is-bogota {
+  .hk-cities {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hk-city {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    opacity: 0;
+    transform: translateY(6px);
+    animation: hk-city-in 0.45s ease forwards;
+    animation-delay: calc(var(--ci) * 90ms);
+  }
+
+  .hk-city-dot {
+    width: 9px;
+    height: 9px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--text-secondary);
+  }
+
+  .hk-region.is-green .hk-city-dot { background: var(--accent-green); }
+  .hk-region.is-coral .hk-city-dot { background: var(--accent-coral); }
+  .hk-region.is-blue .hk-city-dot { background: var(--accent-blue); }
+
+  .hk-city.is-tbd {
+    color: var(--text-secondary);
+  }
+
+  .hk-city.is-tbd .hk-city-dot {
+    background: transparent;
+    border: 1.5px dashed var(--text-secondary);
+  }
+
+  .hk-city.is-bogota {
+    font-weight: 700;
+  }
+
+  .hk-city.is-bogota .hk-city-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--accent-green);
+    box-shadow: 0 0 0 0 rgba(43, 213, 118, 0.7);
+    animation: hk-bogota-pulse 2s ease-out infinite;
+  }
+
+  .hk-city-tag {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     background: var(--accent-green);
     color: #101010;
-    border-color: var(--accent-green);
+    border-radius: 999px;
+    padding: 0.15rem 0.5rem;
+  }
+
+  @keyframes hk-city-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes hk-bogota-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(43, 213, 118, 0.6); }
+    70% { box-shadow: 0 0 0 10px rgba(43, 213, 118, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(43, 213, 118, 0); }
   }
 
   .hk-note {
@@ -464,40 +635,58 @@ const attLabel = (a?: Person['attendance']) =>
     margin-bottom: 2rem;
   }
 
-  /* Track cards: reveal a short description on hover / keyboard focus */
+  /* Track cards: full description + subareas always visible. */
   .hk-track {
     transition: border-color 0.18s ease, transform 0.18s ease;
   }
 
-  .hk-track:hover,
-  .hk-track:focus-within {
+  .hk-track:hover {
     border-color: var(--accent-green);
     transform: translateY(-2px);
   }
 
-  .hk-track.is-coral:hover,
-  .hk-track.is-coral:focus-within { border-color: var(--accent-coral); }
-  .hk-track.is-blue:hover,
-  .hk-track.is-blue:focus-within { border-color: var(--accent-blue); }
-  .hk-track.is-yellow:hover,
-  .hk-track.is-yellow:focus-within { border-color: var(--accent-yellow-line); }
+  .hk-track.is-coral:hover { border-color: var(--accent-coral); }
+  .hk-track.is-blue:hover { border-color: var(--accent-blue); }
+  .hk-track.is-yellow:hover { border-color: var(--accent-yellow-line); }
+
+  .hk-track-tx {
+    display: flex;
+    flex-direction: column;
+  }
 
   .hk-track-desc {
     font-size: 0.9375rem;
     color: var(--text-secondary);
-    line-height: 1.5;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    margin: 0;
-    transition: max-height 0.22s ease, opacity 0.22s ease, margin 0.22s ease;
+    line-height: 1.55;
+    margin: 0 0 0.875rem;
   }
 
-  .hk-track:hover .hk-track-desc,
-  .hk-track:focus-within .hk-track-desc {
-    max-height: 12rem;
-    opacity: 1;
-    margin: 0 0 0.625rem;
+  .hk-track-subs {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: auto 0 0;
+    padding: 0;
+  }
+
+  .hk-track-subs li {
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: #F4F6F4;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.3rem 0.7rem;
+    color: var(--text-primary);
+  }
+
+  .hk-pathway-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--green-text);
+    margin-bottom: 1rem;
   }
 
   .hk-prize-extra {
@@ -512,6 +701,48 @@ const attLabel = (a?: Person['attendance']) =>
   .hk-venue-note {
     font-weight: 600;
     color: var(--text-primary);
+  }
+
+  .hk-success {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .hk-success-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--green-text);
+    margin-bottom: 0.875rem;
+  }
+
+  .hk-success-list {
+    list-style: none;
+    display: grid;
+    gap: 0.625rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hk-success-list li {
+    position: relative;
+    padding-left: 1.375rem;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .hk-success-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-green);
   }
 
   /* Speaker / judge cards */
@@ -588,6 +819,23 @@ const attLabel = (a?: Person['attendance']) =>
     color: var(--text-secondary);
   }
 
+  .hk-person-eval {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin-top: 0.5rem;
+  }
+
+  .hk-person-eval-label {
+    display: inline-block;
+    margin-right: 0.4rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+  }
+
   .hk-person-bio {
     font-size: 0.9375rem;
     color: var(--text-secondary);
@@ -596,40 +844,53 @@ const attLabel = (a?: Person['attendance']) =>
   }
 
   .hk-person-link {
-    display: inline-block;
-    margin-top: 0.625rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
     font-size: 0.8125rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: #0A66C2;
+  }
+
+  .hk-li-icon {
+    display: inline-flex;
+    color: #0A66C2;
+  }
+
+  .hk-li-icon :global(svg) {
+    display: block;
   }
 
   .hk-person-link:hover {
-    color: var(--green-text);
+    color: #084d92;
   }
 
-  /* Touch devices have no hover: show track descriptions by default */
-  @media (hover: none) {
-    .hk-track-desc {
-      max-height: none;
-      opacity: 1;
-      margin: 0 0 0.625rem;
-    }
+  .hk-person-link:hover .hk-li-icon {
+    color: #084d92;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hk-track,
-    .hk-track-desc {
+    .hk-track {
       transition: none;
     }
-    .hk-track:hover,
-    .hk-track:focus-within {
+    .hk-track:hover {
       transform: none;
+    }
+    .hk-city {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+    .hk-city.is-bogota .hk-city-dot {
+      animation: none;
     }
   }
 
   @media (max-width: 768px) {
     .hk-tracks,
-    .hk-people {
+    .hk-people,
+    .hk-regions {
       grid-template-columns: 1fr;
     }
   }

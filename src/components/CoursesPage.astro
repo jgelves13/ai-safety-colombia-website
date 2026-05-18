@@ -21,15 +21,35 @@ const usesForm = INTEREST_FORM_URL.length > 0;
 const interestHref = (course?: string) => {
   if (usesForm) return INTEREST_FORM_URL;
   const subject = es
-    ? `Interés en formación${course ? `: ${course}` : ''} (web AI Safety Colombia)`
-    : `Interest in training${course ? `: ${course}` : ''} (AI Safety Colombia site)`;
+    ? `Interés en un grupo de discusión${course ? `: ${course}` : ''} (web AI Safety Colombia)`
+    : `Interest in a discussion group${course ? `: ${course}` : ''} (AI Safety Colombia site)`;
   const body = es
-    ? `Hola, me interesa ${course ? `el curso "${course}"` : 'la formación de AI Safety Colombia'}.\n\nNombre:\nCorreo:\nUn poco sobre mí:`
-    : `Hi, I'm interested in ${course ? `the "${course}" course` : 'AI Safety Colombia training'}.\n\nName:\nEmail:\nA bit about me:`;
+    ? `Hola, me interesa ${course ? `el grupo de discusión "${course}"` : 'la formación de AI Safety Colombia'}.\n\nNombre:\nCorreo:\nUn poco sobre mí:`
+    : `Hi, I'm interested in ${course ? `the "${course}" discussion group` : 'AI Safety Colombia training'}.\n\nName:\nEmail:\nA bit about me:`;
   return `mailto:${ORG_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 };
 
 const accents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
+
+// Original line-art glyphs per group (no third-party assets). Stroke is
+// inherited via currentColor; each cover animates the glyph and an orbit.
+const GLYPHS: Record<string, string> = {
+  'future-of-ai':
+    '<circle cx="24" cy="27" r="8"/><line x1="6" y1="40" x2="42" y2="40"/><line x1="24" y1="5" x2="24" y2="11"/><line x1="9" y1="12" x2="13" y2="16"/><line x1="39" y1="12" x2="35" y2="16"/>',
+  alignment:
+    '<circle cx="22" cy="26" r="13"/><circle cx="22" cy="26" r="5"/><line x1="22" y1="26" x2="44" y2="4"/><polyline points="35,5 44,4 43,13"/>',
+  'technical-ai-safety':
+    '<circle cx="11" cy="14" r="3"/><circle cx="37" cy="11" r="3"/><circle cx="22" cy="35" r="3"/><circle cx="40" cy="33" r="3"/><line x1="13" y1="16" x2="20" y2="32"/><line x1="35" y1="13" x2="24" y2="33"/><line x1="25" y1="35" x2="37" y2="34"/><line x1="14" y1="13" x2="34" y2="11"/>',
+  'ai-governance':
+    '<line x1="24" y1="7" x2="24" y2="40"/><line x1="11" y1="13" x2="37" y2="13"/><path d="M11 13 L5 27 a6 6 0 0 0 12 0 Z"/><path d="M37 13 L31 27 a6 6 0 0 0 12 0 Z"/><line x1="16" y1="41" x2="32" y2="41"/>',
+  'agi-strategy':
+    '<circle cx="24" cy="24" r="16"/><polygon points="24,7 28,24 24,41 20,24"/><polygon points="7,24 24,20 41,24 24,28"/>',
+  'economics-of-tai':
+    '<line x1="7" y1="6" x2="7" y2="42"/><line x1="7" y1="42" x2="44" y2="42"/><polyline points="9,37 19,27 27,32 42,11"/><polyline points="34,11 42,11 42,19"/>',
+  writing:
+    '<path d="M13 41 L34 12"/><path d="M34 12 l7 4 -4 8"/><line x1="11" y1="43" x2="20" y2="40"/><line x1="9" y1="29" x2="33" y2="29"/>',
+};
+const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
 ---
 
 <PageHero title={t(locale, 'programs.hero.title')} desc={t(locale, 'programs.hero.subtitle')} />
@@ -38,14 +58,36 @@ const accents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   <div class="container">
     <p class="courses-note">{t(locale, 'programs.bluedotNote')}</p>
 
-    <div class="editorial courses-editorial">
+    <div class="courses-grid">
       {data.courses.map((c, i) => {
         const title = es ? c.titleEs : c.titleEn;
+        const accent = c.accent ?? accents[i % 4];
         return (
-          <div class={`editorial-row ${c.accent ?? accents[i % 4]}`}>
-            <div class="editorial-bar"></div>
-            <div class="editorial-tx course-tx">
-              <h3>{title}</h3>
+          <article class={`course-card ${accent}`}>
+            <a
+              class="course-cover"
+              href={c.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={title}
+            >
+              <span class="cover-orbit" aria-hidden="true"></span>
+              <span class="cover-glow" aria-hidden="true"></span>
+              <span class="cover-kicker">{t(locale, 'programs.coverKicker')}</span>
+              <svg
+                class="cover-glyph"
+                viewBox="0 0 48 48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                set:html={glyph(c.slug)}
+              />
+              <span class="cover-title">{title}</span>
+            </a>
+            <div class="course-body">
               <p class="course-meta">{es ? c.metaEs : c.metaEn}</p>
               <p class="course-aud">
                 <span class="course-aud-label">{t(locale, 'programs.audienceLabel')}:</span>{' '}
@@ -64,7 +106,7 @@ const accents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
                 </a>
               </div>
             </div>
-          </div>
+          </article>
         );
       })}
     </div>
@@ -88,22 +130,140 @@ const accents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     font-size: 0.9375rem;
     line-height: 1.65;
     max-width: 720px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.75rem;
   }
 
-  .courses-editorial {
-    margin-top: 1.5rem;
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.75rem;
   }
 
-  .course-tx {
-    padding-top: 0.125rem;
+  .course-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    background: #FFFFFF;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+
+  .course-card:hover {
+    box-shadow: 0 10px 30px rgba(16, 16, 16, 0.08);
+    transform: translateY(-3px);
+  }
+
+  /* ---- Animated cover ---- */
+  .course-cover {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    aspect-ratio: 16 / 9;
+    padding: 1.25rem 1.375rem;
+    overflow: hidden;
+    color: #FFFFFF;
+    isolation: isolate;
+  }
+
+  .course-card.is-green  .course-cover { background: linear-gradient(150deg, #06281A, #0C5234); }
+  .course-card.is-coral  .course-cover { background: linear-gradient(150deg, #2E0C09, #5A1A14); }
+  .course-card.is-blue   .course-cover { background: linear-gradient(150deg, #06222B, #0A4A5C); }
+  .course-card.is-yellow .course-cover { background: linear-gradient(150deg, #2A1E03, #5A4208); }
+
+  .cover-accent { color: var(--accent-green); }
+
+  .course-card.is-green  { --cover-accent: #2BD576; }
+  .course-card.is-coral  { --cover-accent: #FF6A5C; }
+  .course-card.is-blue   { --cover-accent: #38CCFF; }
+  .course-card.is-yellow { --cover-accent: #F2C200; }
+
+  .cover-kicker {
+    position: relative;
+    z-index: 2;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--cover-accent);
+  }
+
+  .cover-title {
+    position: relative;
+    z-index: 2;
+    font-size: 1.375rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: #FFFFFF;
+    max-width: 80%;
+  }
+
+  .cover-glyph {
+    position: absolute;
+    top: 50%;
+    right: 1.25rem;
+    width: 78px;
+    height: 78px;
+    transform: translateY(-50%);
+    color: var(--cover-accent);
+    z-index: 1;
+    animation: cover-float 6s ease-in-out infinite;
+  }
+
+  .cover-glow {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    width: 150px;
+    height: 150px;
+    transform: translateY(-50%);
+    background: radial-gradient(circle, var(--cover-accent) 0%, transparent 68%);
+    opacity: 0.22;
+    z-index: 0;
+    animation: cover-pulse 5.5s ease-in-out infinite;
+  }
+
+  .cover-orbit {
+    position: absolute;
+    top: -52px;
+    right: -52px;
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: var(--cover-accent);
+    border-right-color: var(--cover-accent);
+    opacity: 0.4;
+    z-index: 0;
+    animation: cover-spin 26s linear infinite;
+  }
+
+  @keyframes cover-float {
+    0%, 100% { transform: translateY(-50%); }
+    50%      { transform: translateY(calc(-50% - 7px)); }
+  }
+  @keyframes cover-pulse {
+    0%, 100% { opacity: 0.18; transform: translateY(-50%) scale(1); }
+    50%      { opacity: 0.32; transform: translateY(-50%) scale(1.08); }
+  }
+  @keyframes cover-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ---- Body ---- */
+  .course-body {
+    padding: 1.25rem 1.375rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 
   .course-meta {
     font-size: 0.8125rem;
     font-weight: 600;
     color: var(--green-text);
-    margin-top: 0.25rem;
   }
 
   .is-coral .course-meta { color: var(--accent-coral); }
@@ -133,31 +293,46 @@ const accents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1.25rem;
-    margin-top: 0.875rem;
+    gap: 0.625rem;
+    margin-top: auto;
+    padding-top: 1.25rem;
+  }
+
+  /* Action buttons */
+  .course-interest,
+  .course-details {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 0.5rem 1.05rem;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s, border-color 0.15s, color 0.15s;
   }
 
   .course-interest {
-    font-size: 0.9375rem;
-    font-weight: 700;
-    color: var(--green-text);
+    background: var(--accent-green);
+    color: #101010;
   }
 
-  .is-coral .course-interest { color: var(--accent-coral); }
-  .is-blue .course-interest { color: #0090c4; }
-  .is-yellow .course-interest { color: var(--accent-yellow-line); }
+  .is-coral .course-interest  { background: var(--accent-coral); color: #FFFFFF; }
+  .is-blue .course-interest   { background: var(--accent-blue); color: #101010; }
+  .is-yellow .course-interest { background: var(--accent-yellow-line); color: #FFFFFF; }
 
   .course-interest:hover {
-    text-decoration: underline;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(16, 16, 16, 0.14);
   }
 
   .course-details {
-    font-size: 0.9375rem;
-    font-weight: 600;
+    background: transparent;
+    border: 1px solid var(--border);
     color: var(--text-secondary);
+    font-weight: 600;
   }
 
   .course-details:hover {
+    border-color: var(--text-primary);
     color: var(--text-primary);
   }
 
@@ -183,5 +358,29 @@ const accents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     line-height: 1.6;
     max-width: 540px;
     margin: 0.625rem auto 1.5rem;
+  }
+
+  @media (max-width: 600px) {
+    .courses-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cover-glyph,
+    .cover-glow,
+    .cover-orbit,
+    .course-card,
+    .course-interest,
+    .course-details {
+      animation: none;
+      transition: none;
+    }
+    .course-card:hover,
+    .course-interest:hover {
+      transform: none;
+    }
+    .cover-glyph { transform: translateY(-50%); }
+    .cover-glow { transform: translateY(-50%); }
   }
 </style>

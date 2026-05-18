@@ -2,22 +2,55 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import data from '../src/data/hackathon.json' with { type: 'json' };
 
-test('hackathon has 4 tracks; hover text derives from subareas', () => {
+test('hackathon has 4 tracks; each has a clear description plus subareas', () => {
   assert.equal(data.tracks.length, 4);
   const accents = data.tracks.map((t) => t.accent);
   assert.deepEqual(accents, ['is-green', 'is-coral', 'is-blue', 'is-yellow']);
   for (const t of data.tracks) {
     assert.equal(typeof t.titleEs, 'string');
     assert.equal(typeof t.titleEn, 'string');
-    // The track card reveals its subareas on hover (joined by " / "),
-    // so there is no separate descEs/descEn copy to maintain.
-    assert.equal(t.descEs, undefined);
-    assert.equal(t.descEn, undefined);
+    // The card now shows a short, always-visible explanation of the
+    // topic, with the subareas listed as readable chips below it.
+    assert.ok(t.descEs && typeof t.descEs === 'string');
+    assert.ok(t.descEn && typeof t.descEn === 'string');
     assert.ok(Array.isArray(t.subareas) && t.subareas.length >= 1);
     for (const s of t.subareas) {
       assert.ok(s.es && typeof s.es === 'string');
       assert.ok(s.en && typeof s.en === 'string');
     }
+  }
+});
+
+test('regions drive the Global South map with Bogotá as our hub', () => {
+  assert.ok(Array.isArray(data.regions) && data.regions.length === 3);
+  for (const r of data.regions) {
+    assert.ok(r.nameEs && r.nameEn);
+    assert.match(r.accent, /^is-(green|coral|blue|yellow)$/);
+    assert.ok(r.teamsEs && r.teamsEn && r.prizeEs && r.prizeEn);
+    assert.ok(Array.isArray(r.cities) && r.cities.length >= 1);
+    for (const c of r.cities) assert.ok(c.name && typeof c.name === 'string');
+  }
+  const allCities = data.regions.flatMap((r) => r.cities);
+  const bogota = allCities.filter((c) => c.bogota === true);
+  assert.equal(bogota.length, 1, 'exactly one Bogotá hub');
+  assert.equal(bogota[0].name, 'Bogotá');
+});
+
+test('each judge declares the topic they will evaluate', () => {
+  for (const j of data.judges) {
+    assert.ok(j.evalTopicEs && typeof j.evalTopicEs === 'string');
+    assert.ok(j.evalTopicEn && typeof j.evalTopicEn === 'string');
+  }
+});
+
+test('prize block carries Apart success stories and a pathway label', () => {
+  assert.ok(data.pathwayLabelEs && data.pathwayLabelEn);
+  const p = data.prizesDetail;
+  assert.ok(p.successTitleEs && p.successTitleEn);
+  assert.ok(Array.isArray(p.successExamples) && p.successExamples.length >= 3);
+  for (const ex of p.successExamples) {
+    assert.ok(ex.es && typeof ex.es === 'string');
+    assert.ok(ex.en && typeof ex.en === 'string');
   }
 });
 
