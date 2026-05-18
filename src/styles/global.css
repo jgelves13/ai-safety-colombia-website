@@ -189,15 +189,6 @@ img {
   border-bottom: 0;
 }
 
-.editorial-num {
-  font-size: clamp(2.25rem, 5vw, 3.375rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  width: 5.5rem;
-  flex: none;
-}
-
 .editorial-bar {
   width: 5px;
   align-self: stretch;
@@ -221,10 +212,7 @@ img {
 }
 
 /* Accent color modifiers */
-.is-green .editorial-num, .is-green h3 a { color: var(--accent-green); }
-.is-coral .editorial-num { color: var(--accent-coral); }
-.is-blue  .editorial-num { color: var(--accent-blue); }
-.is-yellow .editorial-num { color: var(--accent-yellow-line); }
+.is-green h3 a { color: var(--accent-green); }
 .is-green .editorial-bar  { background: var(--accent-green); }
 .is-coral .editorial-bar  { background: var(--accent-coral); }
 .is-blue  .editorial-bar  { background: var(--accent-blue); }
@@ -236,9 +224,6 @@ img {
   }
   .editorial-row {
     gap: 1rem;
-  }
-  .editorial-num {
-    width: 3.5rem;
   }
 }
 
