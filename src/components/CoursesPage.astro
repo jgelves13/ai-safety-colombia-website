@@ -11,8 +11,8 @@ interface Props {
 const { locale } = Astro.props;
 const es = locale === 'es';
 
-// Where the "express interest" buttons submit. When set to an external
-// interest-form URL the buttons open it directly; until then they fall back
+// Where the "express interest" links submit. When set to an external
+// interest-form URL the links open it directly; until then they fall back
 // to a prefilled email so the CTA stays functional on the static site.
 const INTEREST_FORM_URL = '';
 const ORG_EMAIL = 'aisafetycolombia@gmail.com';
@@ -38,14 +38,14 @@ const accents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   <div class="container">
     <p class="courses-note">{t(locale, 'programs.bluedotNote')}</p>
 
-    <div class="courses-grid">
+    <div class="editorial courses-editorial">
       {data.courses.map((c, i) => {
         const title = es ? c.titleEs : c.titleEn;
         return (
-          <article class={`course-card ${c.accent ?? accents[i % 4]}`}>
-            <div class="course-bar"></div>
-            <div class="course-tx">
-              <h3 class="course-title">{title}</h3>
+          <div class={`editorial-row ${c.accent ?? accents[i % 4]}`}>
+            <div class="editorial-bar"></div>
+            <div class="editorial-tx course-tx">
+              <h3>{title}</h3>
               <p class="course-meta">{es ? c.metaEs : c.metaEn}</p>
               <p class="course-aud">
                 <span class="course-aud-label">{t(locale, 'programs.audienceLabel')}:</span>{' '}
@@ -54,7 +54,7 @@ const accents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
               <p class="course-desc">{es ? c.descEs : c.descEn}</p>
               <div class="course-actions">
                 <a
-                  class="btn btn-primary course-cta"
+                  class="course-interest"
                   href={interestHref(title)}
                   target={usesForm ? '_blank' : undefined}
                   rel={usesForm ? 'noopener noreferrer' : undefined}
@@ -64,7 +64,7 @@ const accents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
                 </a>
               </div>
             </div>
-          </article>
+          </div>
         );
       })}
     </div>
@@ -88,57 +88,15 @@ const accents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     font-size: 0.9375rem;
     line-height: 1.65;
     max-width: 720px;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
   }
 
-  .courses-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
+  .courses-editorial {
+    margin-top: 1.5rem;
   }
-
-  .course-card {
-    display: flex;
-    gap: 1rem;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.75rem;
-    background: #FFFFFF;
-    transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
-  }
-
-  .course-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(16, 16, 16, 0.06);
-    border-color: var(--accent-green);
-  }
-
-  .course-card.is-coral:hover { border-color: var(--accent-coral); }
-  .course-card.is-blue:hover { border-color: var(--accent-blue); }
-  .course-card.is-yellow:hover { border-color: var(--accent-yellow-line); }
-
-  .course-bar {
-    width: 5px;
-    flex: none;
-    border-radius: 4px;
-    background: var(--accent-green);
-  }
-
-  .course-card.is-coral .course-bar { background: var(--accent-coral); }
-  .course-card.is-blue .course-bar { background: var(--accent-blue); }
-  .course-card.is-yellow .course-bar { background: var(--accent-yellow-line); }
 
   .course-tx {
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .course-title {
-    font-size: 1.1875rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--text-primary);
+    padding-top: 0.125rem;
   }
 
   .course-meta {
@@ -148,11 +106,15 @@ const accents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     margin-top: 0.25rem;
   }
 
+  .is-coral .course-meta { color: var(--accent-coral); }
+  .is-blue .course-meta { color: #0090c4; }
+  .is-yellow .course-meta { color: var(--accent-yellow-line); }
+
   .course-aud {
     font-size: 0.875rem;
     color: var(--text-secondary);
     line-height: 1.55;
-    margin-top: 0.625rem;
+    margin-top: 0.5rem;
   }
 
   .course-aud-label {
@@ -171,18 +133,32 @@ const accents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1.25rem;
+    gap: 1.25rem;
+    margin-top: 0.875rem;
+  }
+
+  .course-interest {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--green-text);
+  }
+
+  .is-coral .course-interest { color: var(--accent-coral); }
+  .is-blue .course-interest { color: #0090c4; }
+  .is-yellow .course-interest { color: var(--accent-yellow-line); }
+
+  .course-interest:hover {
+    text-decoration: underline;
   }
 
   .course-details {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--text-secondary);
   }
 
   .course-details:hover {
-    color: var(--green-text);
+    color: var(--text-primary);
   }
 
   .courses-any {
@@ -207,19 +183,5 @@ const accents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     line-height: 1.6;
     max-width: 540px;
     margin: 0.625rem auto 1.5rem;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .course-card,
-    .course-card:hover {
-      transition: none;
-      transform: none;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .courses-grid {
-      grid-template-columns: 1fr;
-    }
   }
 </style>
