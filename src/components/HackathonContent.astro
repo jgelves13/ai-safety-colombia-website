@@ -19,6 +19,7 @@ type Person = {
   name: string;
   affiliationEs?: string;
   affiliationEn?: string;
+  attendance?: 'inperson' | 'remote' | 'tbc';
   bioEs?: string;
   bioEn?: string;
   linkedin?: string;
@@ -35,6 +36,10 @@ const initials = (name: string) =>
     .map((w) => w[0])
     .join('')
     .toUpperCase();
+
+// Attendance badge label (key cast: dynamic suffix off the literal union)
+const attLabel = (a?: Person['attendance']) =>
+  a ? t(locale, `hackathon.att.${a}` as Parameters<typeof t>[1]) : '';
 ---
 
 <section class="hk-hero">
@@ -88,10 +93,7 @@ const initials = (name: string) =>
           <div class="hk-track-bar"></div>
           <div>
             <h3>{es ? track.titleEs : track.titleEn}</h3>
-            <p class="hk-track-desc">{es ? track.descEs : track.descEn}</p>
-            <ul class="hk-track-list">
-              {track.subareas.map(s => <li>{es ? s.es : s.en}</li>)}
-            </ul>
+            <p class="hk-track-desc">{track.subareas.map(s => (es ? s.es : s.en)).join(' / ')}</p>
           </div>
         </div>
       ))}
@@ -165,11 +167,14 @@ const initials = (name: string) =>
       {speakers.map((sp, i) => (
         <article class={`hk-person ${['is-green','is-coral','is-blue','is-yellow'][i % 4]}`}>
           {sp.photo
-            ? <img class="hk-person-av" src={`/people/${sp.photo}`} alt="" width="56" height="56" />
+            ? <img class="hk-person-av" src={`/people/${sp.photo}`} alt="" width="104" height="104" />
             : <div class="hk-person-av" aria-hidden="true">{initials(sp.name)}</div>}
           <div class="hk-person-tx">
             <h3>{sp.name}</h3>
             <p class="hk-person-aff">{es ? sp.affiliationEs : sp.affiliationEn}</p>
+            {sp.attendance && (
+              <span class={`hk-att hk-att-${sp.attendance}`}>{attLabel(sp.attendance)}</span>
+            )}
             {(es ? sp.bioEs : sp.bioEn) && <p class="hk-person-bio">{es ? sp.bioEs : sp.bioEn}</p>}
             {sp.linkedin && (
               <a class="hk-person-link" href={sp.linkedin} target="_blank" rel="noopener noreferrer">
@@ -191,12 +196,15 @@ const initials = (name: string) =>
         {judges.map((j, i) => (
           <article class={`hk-person ${['is-green','is-coral','is-blue','is-yellow'][i % 4]}`}>
             {j.photo
-              ? <img class="hk-person-av" src={`/people/${j.photo}`} alt="" width="56" height="56" />
+              ? <img class="hk-person-av" src={`/people/${j.photo}`} alt="" width="104" height="104" />
               : <div class="hk-person-av" aria-hidden="true">{initials(j.name)}</div>}
             <div class="hk-person-tx">
               <h3>{j.name}</h3>
               {(es ? j.affiliationEs : j.affiliationEn) && (
                 <p class="hk-person-aff">{es ? j.affiliationEs : j.affiliationEn}</p>
+              )}
+              {j.attendance && (
+                <span class={`hk-att hk-att-${j.attendance}`}>{attLabel(j.attendance)}</span>
               )}
               {(es ? j.bioEs : j.bioEn) && <p class="hk-person-bio">{es ? j.bioEs : j.bioEn}</p>}
               {j.linkedin && (
@@ -336,32 +344,6 @@ const initials = (name: string) =>
     font-size: 0.9375rem;
     color: var(--text-secondary);
     line-height: 1.55;
-  }
-
-  .hk-track-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .hk-track-list li {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    padding-left: 0.875rem;
-    position: relative;
-  }
-
-  .hk-track-list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.55em;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--accent-green);
   }
 
   .hk-prize {
@@ -513,7 +495,7 @@ const initials = (name: string) =>
 
   .hk-track:hover .hk-track-desc,
   .hk-track:focus-within .hk-track-desc {
-    max-height: 7rem;
+    max-height: 12rem;
     opacity: 1;
     margin: 0 0 0.625rem;
   }
@@ -549,14 +531,14 @@ const initials = (name: string) =>
   }
 
   .hk-person-av {
-    width: 56px;
-    height: 56px;
+    width: 104px;
+    height: 104px;
     flex: none;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.0625rem;
+    font-size: 1.875rem;
     font-weight: 700;
     object-fit: cover;
     color: #FFFFFF;
@@ -578,6 +560,32 @@ const initials = (name: string) =>
     font-weight: 600;
     color: var(--green-text);
     margin-top: 0.125rem;
+  }
+
+  .hk-att {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-radius: 999px;
+    padding: 0.25rem 0.625rem;
+  }
+
+  .hk-att-inperson {
+    background: #E7F8EC;
+    color: var(--green-text);
+  }
+
+  .hk-att-remote {
+    background: #E4F6FC;
+    color: #0090c4;
+  }
+
+  .hk-att-tbc {
+    background: #F0F0EC;
+    color: var(--text-secondary);
   }
 
   .hk-person-bio {
