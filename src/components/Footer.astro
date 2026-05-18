@@ -70,6 +70,8 @@ const { locale } = Astro.props;
   .footer-logo {
     height: 34px;
     width: auto;
+    /* Asset is the colored mark; render it white so it reads on the dark footer */
+    filter: brightness(0) invert(1);
   }
 
   .footer-cta {
