@@ -1,0 +1,292 @@
+---
+import type { Locale } from '../i18n/ui';
+import { t, localePath } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const icons = {
+  talent:
+    '<path d="M3 8.5 12 4l9 4.5-9 4.5-9-4.5Z"/><path d="M7 11v5c0 1.1 2.2 2.5 5 2.5s5-1.4 5-2.5v-5"/><path d="M21 8.5V14"/>',
+  research:
+    '<path d="M9 2h6M10 2v6.6L4.8 18a2 2 0 0 0 1.7 3h11a2 2 0 0 0 1.7-3L14 8.6V2"/><path d="M7.5 14.5h9"/>',
+  community:
+    '<circle cx="9" cy="8" r="3.2"/><path d="M3.5 20v-1.2A4.3 4.3 0 0 1 7.8 14.5h2.4a4.3 4.3 0 0 1 4.3 4.3V20"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6.1"/><path d="M17.4 14.7A4.3 4.3 0 0 1 20.5 18.8V20"/>',
+};
+
+const levers = [
+  { cls: 'is-green', icon: icons.talent, title: t(locale, 'about.toc.talent.title'), desc: t(locale, 'about.toc.talent.desc') },
+  { cls: 'is-coral', icon: icons.research, title: t(locale, 'about.toc.research.title'), desc: t(locale, 'about.toc.research.desc') },
+  { cls: 'is-blue', icon: icons.community, title: t(locale, 'about.toc.community.title'), desc: t(locale, 'about.toc.community.desc') },
+];
+---
+
+<section class="section" aria-labelledby="mission-title">
+  <div class="container">
+    <h2 class="section-title" id="mission-title">{t(locale, 'about.mission.title')}</h2>
+    <p class="section-subtitle">{t(locale, 'about.mission.subtitle')}</p>
+    <p class="text-block">{t(locale, 'about.mission.body')}</p>
+  </div>
+</section>
+
+<section class="section alt" aria-labelledby="toc-title">
+  <div class="container">
+    <h2 class="section-title" id="toc-title">{t(locale, 'about.toc.title')}</h2>
+    <p class="section-subtitle">{t(locale, 'about.toc.subtitle')}</p>
+
+    <div class="toc-grid">
+      {levers.map((l) => (
+        <article class:list={['toc-card', l.cls]}>
+          <span class="toc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={l.icon} />
+          </span>
+          <h3>{l.title}</h3>
+          <p>{l.desc}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="team-title">
+  <div class="container">
+    <h2 class="section-title" id="team-title">{t(locale, 'about.team.title')}</h2>
+    <p class="section-subtitle">{t(locale, 'about.team.subtitle')}</p>
+
+    <div class="people">
+      <article class="person-card is-memoriam">
+        <div class="person-head">
+          <img class="person-photo" src="/people/fernando.jpg" alt={t(locale, 'about.memoriam.name')} width="120" height="150" loading="lazy" />
+          <div class="person-id">
+            <p class="memoriam-kicker">{t(locale, 'about.memoriam.kicker')}</p>
+            <h3 class="person-name">{t(locale, 'about.memoriam.name')}</h3>
+            <p class="person-role">{t(locale, 'about.memoriam.role')}</p>
+            <p class="person-affil">{t(locale, 'about.memoriam.affiliation')}</p>
+          </div>
+        </div>
+        <p class="person-bio">{t(locale, 'about.memoriam.bio')}</p>
+        <p class="memoriam-tribute">{t(locale, 'about.memoriam.tribute')}</p>
+      </article>
+      <article class="person-card">
+        <div class="person-head">
+          <img class="person-photo" src="/people/jose.jpg" alt={t(locale, 'about.team.name')} width="120" height="150" loading="lazy" />
+          <div class="person-id">
+            <h3 class="person-name">{t(locale, 'about.team.name')}</h3>
+            <p class="person-role">{t(locale, 'about.team.role')}</p>
+            <p class="person-affil">{t(locale, 'about.team.affiliation')}</p>
+          </div>
+        </div>
+        <p class="person-bio">{t(locale, 'about.team.bio')}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt about-cta" aria-labelledby="about-cta-title">
+  <div class="container">
+    <h2 class="section-title" id="about-cta-title">{t(locale, 'about.cta.title')}</h2>
+    <p class="section-subtitle">{t(locale, 'about.cta.sub')}</p>
+    <div class="about-cta-actions">
+      <a class="btn btn-primary" href={localePath(locale, '/involucrate/')}>{t(locale, 'about.cta.involve')}</a>
+      <a class="btn btn-secondary" href={localePath(locale, '/recursos/')}>{t(locale, 'about.cta.resources')}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .text-block {
+    color: var(--text-secondary);
+    font-size: 1.0625rem;
+    max-width: 700px;
+    line-height: 1.7;
+  }
+
+  /* Theory of change as three reinforcing levers, mirroring the
+     homepage "Qué hacemos" card grid: accent-tinted icon chip,
+     heading, description, subtle hover lift. */
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .section-subtitle {
+    margin-bottom: 2.5rem;
+  }
+
+  .toc-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .toc-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(16, 16, 16, 0.07);
+    border-color: #d6d6cf;
+  }
+
+  .toc-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    margin-bottom: 1.25rem;
+  }
+
+  .toc-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .is-green .toc-icon { color: #15803D; background: rgba(43, 213, 118, 0.14); }
+  .is-coral .toc-icon { color: var(--accent-coral); background: rgba(255, 86, 69, 0.12); }
+  .is-blue  .toc-icon { color: #0090C4; background: rgba(0, 187, 255, 0.13); }
+
+  .toc-card h3 {
+    font-size: 1.3125rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .toc-card p {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Fernando and Jose are peers, side by side: a two-column grid,
+     top-aligned, each card a clean profile header (photo + identity)
+     then bio, then remembrance. */
+  .people {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    max-width: 920px;
+  }
+
+  .person-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+  }
+
+  /* Only the memorial is visually elevated: soft gradient and the
+     "En memoria" eyebrow. Jose's card shares the shape but stays plain. */
+  .person-card.is-memoriam {
+    background: linear-gradient(140deg, #F1F8F2, #FFF8E7);
+  }
+
+  .person-head {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+  }
+
+  .person-photo {
+    width: 96px;
+    height: 120px;
+    flex: none;
+    object-fit: cover;
+    border-radius: 14px;
+    background: #ECECEC;
+    display: block;
+  }
+
+  .person-id {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .memoriam-kicker {
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green-text);
+    margin-bottom: 0.15rem;
+  }
+
+  .person-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .person-role {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .person-affil {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  .person-bio {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* The tribute is a remembrance set apart from the factual bio:
+     a soft green hairline divides it from the rest of the card. */
+  .memoriam-tribute {
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    line-height: 1.65;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(43, 213, 118, 0.4);
+  }
+
+  .about-cta .container {
+    text-align: center;
+  }
+
+  .about-cta .section-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-cta-actions {
+    display: flex;
+    gap: 0.875rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .people {
+      grid-template-columns: 1fr;
+      max-width: 680px;
+    }
+    .person-card {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .toc-card { transition: none; }
+    .toc-card:hover { transform: none; }
+  }
+</style>
