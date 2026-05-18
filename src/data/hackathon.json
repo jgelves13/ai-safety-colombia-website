@@ -55,11 +55,9 @@
     ]}
   ],
   "eligibility": [
-    { "es": "Investigadores e ingenieros de IA", "en": "AI researchers and engineers" },
-    { "es": "Investigadores de ML", "en": "ML researchers" },
+    { "es": "Investigadores e ingenieros de IA/ML", "en": "AI/ML researchers and engineers" },
     { "es": "Investigadores de política y gobernanza", "en": "Policy and governance researchers" },
-    { "es": "Ingenieros de software", "en": "Software engineers" },
-    { "es": "Red teamers y seguridad", "en": "Red teamers and security researchers" },
+    { "es": "Seguridad y red teaming", "en": "Security researchers and red teamers" },
     { "es": "Estudiantes y early-career", "en": "Students and early-career" }
   ],
   "regions": [
