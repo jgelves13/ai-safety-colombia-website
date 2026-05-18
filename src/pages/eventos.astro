@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EventsPage from '../components/EventsPage.astro';
+
+const locale = 'es';
+---
+
+<BaseLayout locale={locale} currentPage="events" title="Eventos | AI Safety Colombia" description="Charlas, paneles y talleres de seguridad de IA organizados por AI Safety Colombia.">
+  <EventsPage locale={locale} />
+</BaseLayout>
