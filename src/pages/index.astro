@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HackathonBanner from '../components/HackathonBanner.astro';
 import Hero from '../components/Hero.astro';
+import AboutAISafety from '../components/AboutAISafety.astro';
+import StartHere from '../components/StartHere.astro';
+import JourneyPipeline from '../components/JourneyPipeline.astro';
 import MetricsBar from '../components/MetricsBar.astro';
 import WhatWeDo from '../components/WhatWeDo.astro';
 import { t } from '../i18n/ui';
@@ -18,34 +21,13 @@ const metrics = metricsData.map((m) => ({
   <HackathonBanner locale={locale} />
   <Hero locale={locale} />
 
+  <AboutAISafety locale={locale} />
+
   <WhatWeDo locale={locale} />
 
-  <section class="section alt programs-band">
-    <div class="container">
-      <h2 class="section-title" style="text-align:center">{t(locale, 'sections.programs')}</h2>
-      <div class="pipeline">
-        <div class="pipeline-step">
-          <span class="pipeline-dot" aria-hidden="true"></span>
-          <span class="pipeline-label">{t(locale, 'programs.curious')}</span>
-        </div>
-        <div class="pipeline-arrow"></div>
-        <div class="pipeline-step">
-          <span class="pipeline-dot" aria-hidden="true"></span>
-          <span class="pipeline-label">{t(locale, 'programs.learning')}</span>
-        </div>
-        <div class="pipeline-arrow"></div>
-        <div class="pipeline-step">
-          <span class="pipeline-dot" aria-hidden="true"></span>
-          <span class="pipeline-label">{t(locale, 'programs.participating')}</span>
-        </div>
-        <div class="pipeline-arrow"></div>
-        <div class="pipeline-step">
-          <span class="pipeline-dot" aria-hidden="true"></span>
-          <span class="pipeline-label">{t(locale, 'programs.contributing')}</span>
-        </div>
-      </div>
-    </div>
-  </section>
+  <StartHere locale={locale} />
+
+  <JourneyPipeline locale={locale} />
 
   <MetricsBar metrics={metrics} />
 
@@ -73,70 +55,6 @@ const metrics = metricsData.map((m) => ({
 </BaseLayout>
 
 <style>
-  .programs-band .section-title { margin-bottom: 0; }
-
-  .pipeline {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-
-  .pipeline-step {
-    display: flex;
-    align-items: center;
-    gap: 0.625rem;
-    background: #FFFFFF;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 0.625rem 1.125rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-  }
-
-  .pipeline-dot {
-    width: 0.625rem;
-    height: 0.625rem;
-    border-radius: 50%;
-    flex: none;
-  }
-
-  .pipeline-step:nth-of-type(1) .pipeline-dot { background: var(--accent-blue); }
-  .pipeline-step:nth-of-type(3) .pipeline-dot { background: var(--accent-green); }
-  .pipeline-step:nth-of-type(5) .pipeline-dot { background: var(--accent-yellow-line); }
-  .pipeline-step:nth-of-type(7) .pipeline-dot { background: var(--accent-coral); }
-
-  .pipeline-label {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-
-  .pipeline-arrow {
-    width: 1.75rem;
-    height: 2px;
-    background: #cfcfc8;
-    position: relative;
-  }
-
-  .pipeline-arrow::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: -3px;
-    border: solid #cfcfc8;
-    border-width: 0 2px 2px 0;
-    padding: 3px;
-    transform: rotate(-45deg);
-  }
-
-  @media (max-width: 768px) {
-    .pipeline-arrow { display: none; }
-    .pipeline { gap: 0.75rem; }
-  }
-
   .join-card {
     background: linear-gradient(100deg, #eafff2, #e7f6ff);
     border: 1px solid #d5efe0;

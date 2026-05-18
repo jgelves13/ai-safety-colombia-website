@@ -180,25 +180,43 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
         <svg viewBox="0 0 240 240" role="presentation" focusable="false">
           <defs>
             <radialGradient id="hkOcean" cx="40%" cy="34%" r="80%">
-              <stop offset="0%" stop-color="#EAFBF1" />
-              <stop offset="58%" stop-color="#CFF3DF" />
-              <stop offset="100%" stop-color="#A6E7C4" />
+              <stop offset="0%" stop-color="#F4FBF7" />
+              <stop offset="58%" stop-color="#E6F5EC" />
+              <stop offset="100%" stop-color="#D2EBDD" />
             </radialGradient>
-            <radialGradient id="hkShade" cx="36%" cy="32%" r="76%">
-              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.5" />
-              <stop offset="55%" stop-color="#FFFFFF" stop-opacity="0" />
-              <stop offset="100%" stop-color="#0A3D24" stop-opacity="0.22" />
+            <radialGradient id="hkShade" cx="36%" cy="30%" r="78%">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.55" />
+              <stop offset="54%" stop-color="#FFFFFF" stop-opacity="0" />
+              <stop offset="100%" stop-color="#0A3D24" stop-opacity="0.20" />
             </radialGradient>
             <clipPath id="hkGlobeClip">
               <circle cx="120" cy="120" r="90" />
             </clipPath>
-            <g id="hkLand" fill="#41C184" fill-opacity="0.7">
-              <path d="M40 52 C52 54 58 66 54 80 C50 92 60 98 58 110 C56 122 66 128 60 146 C56 160 48 176 40 186 C34 178 36 164 40 150 C44 138 36 130 38 116 C40 102 30 96 32 82 C34 68 32 58 40 52 Z" />
-              <path d="M118 50 C132 50 144 58 142 70 C140 80 128 82 124 92 C132 100 138 112 134 128 C130 146 120 168 116 188 C113 196 108 190 108 178 C108 162 100 150 102 132 C104 116 94 108 98 94 C101 82 96 70 104 60 C109 53 112 50 118 50 Z" />
-              <path d="M170 56 C186 52 206 56 212 68 C216 78 206 86 196 86 C204 94 200 106 188 108 C176 110 168 102 166 92 C164 84 156 82 158 72 C160 62 162 58 170 56 Z" />
-              <path d="M198 152 C210 150 220 156 220 164 C220 172 210 178 200 176 C192 174 188 166 190 160 C191 155 194 153 198 152 Z" />
-              <ellipse cx="150" cy="58" rx="5" ry="3" />
-              <ellipse cx="224" cy="130" rx="4" ry="3" />
+            <pattern id="hkDots" width="6.6" height="6.6" patternUnits="userSpaceOnUse">
+              <circle cx="2.1" cy="2.1" r="1.45" fill="#2BD576" />
+            </pattern>
+            <!-- Equirectangular world map (one 240-wide tile = full globe).
+                 Continents in roughly correct positions/proportions; the
+                 dot-pattern fill reads as a stylised world map. -->
+            <g id="hkLand" fill="url(#hkDots)">
+              <!-- North America -->
+              <path d="M22 70 C18 60 31 53 45 53 C59 51 75 56 83 64 C87 70 82 79 76 83 C84 87 86 97 80 105 C74 113 64 113 60 121 C58 127 56 133 52 133 C48 129 50 118 46 112 C40 108 34 108 30 100 C24 94 28 86 26 80 C25 76 23 73 22 70 Z" />
+              <!-- Greenland -->
+              <path d="M98 52 C106 50 113 54 111 62 C109 69 100 71 96 66 C93 62 94 55 98 52 Z" />
+              <!-- South America -->
+              <path d="M70 127 C79 125 89 130 91 140 C93 150 86 159 84 169 C82 179 78 191 72 195 C68 197 65 188 65 180 C65 170 60 162 62 152 C63 143 64 133 70 127 Z" />
+              <!-- Europe -->
+              <path d="M116 66 C122 62 132 62 140 66 C146 69 144 76 138 78 C132 80 128 84 122 82 C117 80 112 78 112 72 C112 69 114 67 116 66 Z" />
+              <!-- Africa -->
+              <path d="M120 86 C132 84 146 87 152 97 C156 105 152 115 150 124 C156 128 156 136 150 141 C146 151 142 163 134 171 C128 177 124 170 124 162 C124 150 116 143 116 131 C116 118 110 108 112 98 C113 92 115 88 120 86 Z" />
+              <!-- Asia -->
+              <path d="M146 74 C150 64 162 58 178 58 C198 56 219 60 228 70 C232 78 226 87 218 89 C224 95 222 105 214 107 C206 109 198 105 192 109 C190 117 188 127 182 129 C178 131 176 122 176 114 C170 116 164 114 162 108 C156 110 150 106 148 98 C146 90 144 82 146 74 Z" />
+              <!-- SE Asia / Indonesia -->
+              <ellipse cx="192" cy="120" rx="4" ry="2.4" />
+              <ellipse cx="202" cy="127" rx="5" ry="2.6" />
+              <ellipse cx="210" cy="121" rx="3" ry="2" />
+              <!-- Australia -->
+              <path d="M203 143 C211 141 221 143 225 151 C227 159 220 167 212 169 C204 171 198 164 198 156 C198 150 199 146 203 143 Z" />
             </g>
           </defs>
           <circle cx="120" cy="120" r="90" fill="url(#hkOcean)" />
@@ -209,12 +227,10 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
             </g>
           </g>
           <circle cx="120" cy="120" r="90" fill="url(#hkShade)" />
-          <g class="hk-grid" stroke="rgba(16,16,16,0.13)" fill="none" stroke-width="1">
-            <circle cx="120" cy="120" r="90" />
-            <ellipse cx="120" cy="120" rx="34" ry="90" />
-            <ellipse cx="120" cy="120" rx="68" ry="90" />
-            <ellipse cx="120" cy="120" rx="90" ry="34" />
-            <ellipse cx="120" cy="120" rx="90" ry="68" />
+          <g class="hk-grid" stroke="rgba(16,16,16,0.09)" fill="none" stroke-width="1">
+            <circle cx="120" cy="120" r="90" stroke="rgba(16,16,16,0.16)" />
+            <ellipse cx="120" cy="120" rx="45" ry="90" />
+            <ellipse cx="120" cy="120" rx="90" ry="45" />
             <line x1="30" y1="120" x2="210" y2="120" />
             <line x1="120" y1="30" x2="120" y2="210" />
           </g>

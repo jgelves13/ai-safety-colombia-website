@@ -1,0 +1,41 @@
+[
+  {
+    "kind": "video",
+    "accent": "is-coral",
+    "titleEs": "Introducción a la seguridad de IA",
+    "titleEn": "Intro to AI Safety, Remastered",
+    "sourceEs": "Robert Miles",
+    "sourceEn": "Robert Miles",
+    "descEs": "Un recorrido claro y visual por qué dirigir sistemas de IA avanzados es difícil, sin requisitos técnicos.",
+    "descEn": "A clear, visual tour of why steering advanced AI systems is hard, with no technical prerequisites.",
+    "metaEs": "Video · cerca de 30 min · en inglés",
+    "metaEn": "Video · about 30 min · in English",
+    "url": "https://www.youtube.com/watch?v=pYXy-A4siMw"
+  },
+  {
+    "kind": "course",
+    "accent": "is-blue",
+    "titleEs": "The Future of AI",
+    "titleEn": "The Future of AI",
+    "sourceEs": "BlueDot Impact",
+    "sourceEn": "BlueDot Impact",
+    "descEs": "Un curso introductorio gratuito sobre hacia dónde va la IA y por qué su seguridad importa.",
+    "descEn": "A free introductory course on where AI is heading and why its safety matters.",
+    "metaEs": "Curso · gratuito · en inglés",
+    "metaEn": "Course · free · in English",
+    "url": "https://bluedot.org/courses/future-of-ai"
+  },
+  {
+    "kind": "read",
+    "accent": "is-green",
+    "titleEs": "Preventing an AI-related catastrophe",
+    "titleEn": "Preventing an AI-related catastrophe",
+    "sourceEs": "80,000 Hours",
+    "sourceEn": "80,000 Hours",
+    "descEs": "Un perfil de problema riguroso sobre los riesgos de la IA avanzada y qué se puede hacer al respecto.",
+    "descEn": "A rigorous problem profile on the risks from advanced AI and what can be done about it.",
+    "metaEs": "Lectura larga · en inglés",
+    "metaEn": "Long read · in English",
+    "url": "https://80000hours.org/problem-profiles/artificial-intelligence/"
+  }
+]

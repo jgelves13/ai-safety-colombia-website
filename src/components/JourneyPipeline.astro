@@ -1,0 +1,111 @@
+---
+import type { Locale } from '../i18n/ui';
+import { t, localePath } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const steps = [
+  { label: t(locale, 'programs.curious'), href: localePath(locale, '/recursos/') },
+  { label: t(locale, 'programs.learning'), href: `${localePath(locale, '/involucrate/')}#grupos` },
+  { label: t(locale, 'programs.participating'), href: localePath(locale, '/eventos/') },
+  { label: t(locale, 'programs.contributing'), href: localePath(locale, '/hackathon/') },
+];
+---
+
+<section class="section alt journey-band" aria-labelledby="journey-title">
+  <div class="container">
+    <h2 class="section-title" id="journey-title" style="text-align:center">{t(locale, 'sections.journey')}</h2>
+    <div class="pipeline">
+      {steps.map((s, idx) => (
+        <>
+          {idx > 0 && <div class="pipeline-arrow" aria-hidden="true"></div>}
+          <a class="pipeline-step" href={s.href}>
+            <span class="pipeline-dot" aria-hidden="true"></span>
+            <span class="pipeline-label">{s.label}</span>
+          </a>
+        </>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .journey-band .section-title { margin-bottom: 0; }
+
+  .pipeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .pipeline-step {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.625rem 1.125rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .pipeline-step:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(16, 16, 16, 0.08);
+    opacity: 1;
+  }
+
+  .pipeline-dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 50%;
+    flex: none;
+  }
+
+  .pipeline-step:nth-of-type(1) .pipeline-dot { background: var(--accent-blue); }
+  .pipeline-step:nth-of-type(2) .pipeline-dot { background: var(--accent-green); }
+  .pipeline-step:nth-of-type(3) .pipeline-dot { background: var(--accent-yellow-line); }
+  .pipeline-step:nth-of-type(4) .pipeline-dot { background: var(--accent-coral); }
+
+  .pipeline-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .pipeline-arrow {
+    width: 1.75rem;
+    height: 2px;
+    background: #cfcfc8;
+    position: relative;
+  }
+
+  .pipeline-arrow::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -3px;
+    border: solid #cfcfc8;
+    border-width: 0 2px 2px 0;
+    padding: 3px;
+    transform: rotate(-45deg);
+  }
+
+  @media (max-width: 768px) {
+    .pipeline-arrow { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pipeline-step { transition: none; }
+    .pipeline-step:hover { transform: none; }
+  }
+</style>

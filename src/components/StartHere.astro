@@ -1,0 +1,133 @@
+---
+import type { Locale } from '../i18n/ui';
+import { t } from '../i18n/ui';
+import learnData from '../data/learn.json';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const es = locale === 'es';
+
+type Key = Parameters<typeof t>[1];
+
+const items = learnData.map((i) => ({
+  kind: i.kind,
+  accent: i.accent,
+  title: es ? i.titleEs : i.titleEn,
+  source: es ? i.sourceEs : i.sourceEn,
+  desc: es ? i.descEs : i.descEn,
+  meta: es ? i.metaEs : i.metaEn,
+  url: i.url,
+  kindLabel: t(locale, `learn.kind.${i.kind}` as Key),
+  cta: t(locale, `learn.cta.${i.kind}` as Key),
+}));
+---
+
+<section class="section start-here" aria-labelledby="start-here-title">
+  <div class="container">
+    <h2 class="section-title" id="start-here-title">{t(locale, 'learn.title')}</h2>
+    <p class="section-subtitle">{t(locale, 'learn.subtitle')}</p>
+
+    <div class="learn-grid">
+      {items.map((i) => (
+        <article class:list={['learn-card', i.accent]}>
+          <span class="learn-kind">{i.kindLabel}</span>
+          <h3>{i.title}</h3>
+          <p class="learn-source">{i.source}</p>
+          <p class="learn-desc">{i.desc}</p>
+          <p class="learn-meta">{i.meta}</p>
+          <a href={i.url} target="_blank" rel="noopener noreferrer" class="learn-link">
+            {i.cta}
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .start-here .section-subtitle {
+    margin-bottom: 2.5rem;
+  }
+
+  .learn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .learn-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    border-top: 4px solid var(--border);
+  }
+
+  .is-coral.learn-card { border-top-color: var(--accent-coral); }
+  .is-blue.learn-card  { border-top-color: var(--accent-blue); }
+  .is-green.learn-card { border-top-color: var(--accent-green); }
+
+  .learn-kind {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+  }
+
+  .learn-card h3 {
+    font-size: 1.1875rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    line-height: 1.25;
+  }
+
+  .learn-source {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.875rem;
+  }
+
+  .learn-desc {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .learn-meta {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+  }
+
+  .learn-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-top: 1.25rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--green-text);
+    transition: gap 0.2s;
+  }
+
+  .learn-link:hover {
+    gap: 0.625rem;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .learn-link { transition: none; }
+  }
+</style>

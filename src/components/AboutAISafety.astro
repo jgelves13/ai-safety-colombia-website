@@ -1,0 +1,102 @@
+---
+import type { Locale } from '../i18n/ui';
+import { t, localePath } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const claims = [
+  { accent: 'is-coral', title: t(locale, 'aboutai.c1.title'), desc: t(locale, 'aboutai.c1.desc') },
+  { accent: 'is-blue', title: t(locale, 'aboutai.c2.title'), desc: t(locale, 'aboutai.c2.desc') },
+  { accent: 'is-green', title: t(locale, 'aboutai.c3.title'), desc: t(locale, 'aboutai.c3.desc') },
+];
+---
+
+<section class="section about-ai" aria-labelledby="about-ai-title">
+  <div class="container">
+    <p class="about-ai-kicker">{t(locale, 'aboutai.kicker')}</p>
+    <h2 class="section-title" id="about-ai-title">{t(locale, 'aboutai.title')}</h2>
+    <p class="about-ai-lead">{t(locale, 'aboutai.lead')}</p>
+
+    <div class="claims-grid">
+      {claims.map((c) => (
+        <article class:list={['claim-card', c.accent]}>
+          <span class="claim-accent" aria-hidden="true"></span>
+          <h3>{c.title}</h3>
+          <p>{c.desc}</p>
+        </article>
+      ))}
+    </div>
+
+    <a href={localePath(locale, '/recursos/')} class="btn btn-secondary about-ai-cta">
+      {t(locale, 'aboutai.cta')}
+    </a>
+  </div>
+</section>
+
+<style>
+  .about-ai-kicker {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent-coral);
+    margin-bottom: 0.625rem;
+  }
+
+  .about-ai-lead {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    max-width: 720px;
+    margin-top: 0.5rem;
+  }
+
+  .claims-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin: 2.5rem 0;
+  }
+
+  .claim-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .claim-accent {
+    width: 36px;
+    height: 5px;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .is-coral .claim-accent { background: var(--accent-coral); }
+  .is-blue  .claim-accent { background: var(--accent-blue); }
+  .is-green .claim-accent { background: var(--accent-green); }
+
+  .claim-card h3 {
+    font-size: 1.1875rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .claim-card p {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .about-ai-cta {
+    display: inline-flex;
+  }
+</style>
