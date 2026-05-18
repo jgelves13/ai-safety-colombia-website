@@ -14,8 +14,27 @@ const es = locale === 'es';
 const daysLeft = daysUntil(data.date);
 const whatBody = es ? data.whatIsEs : data.whatIsEn;
 const submission = es ? data.submissionEs : data.submissionEn;
-const judges = data.judges as { name: string; affiliationEs?: string; affiliationEn?: string }[];
-const speakers = data.speakers as { name: string; affiliationEs?: string; affiliationEn?: string }[];
+
+type Person = {
+  name: string;
+  affiliationEs?: string;
+  affiliationEn?: string;
+  bioEs?: string;
+  bioEn?: string;
+  linkedin?: string;
+  photo?: string;
+};
+const judges = data.judges as Person[];
+const speakers = data.speakers as Person[];
+
+const initials = (name: string) =>
+  name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join('')
+    .toUpperCase();
 ---
 
 <section class="hk-hero">
@@ -35,7 +54,7 @@ const speakers = data.speakers as { name: string; affiliationEs?: string; affili
   </div>
 </section>
 
-<section class="section">
+<section class="section hk-intro">
   <div class="container hk-narrow">
     <h2 class="section-title">{t(locale, 'hackathon.whatTitle')}</h2>
     <p class="hk-lead">{whatBody}</p>
@@ -45,6 +64,7 @@ const speakers = data.speakers as { name: string; affiliationEs?: string; affili
 <section class="section alt">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whyTitle')}</h2>
+    <p class="hk-why-lead">{es ? data.whyLeadEs : data.whyLeadEn}</p>
     <div class="editorial">
       {data.pipeline.map((step, i) => (
         <div class={`editorial-row ${['is-green','is-coral','is-blue'][i % 3]}`}>
@@ -64,10 +84,11 @@ const speakers = data.speakers as { name: string; affiliationEs?: string; affili
     <h2 class="section-title">{t(locale, 'hackathon.tracksTitle')}</h2>
     <div class="hk-tracks">
       {data.tracks.map(track => (
-        <div class={`hk-track ${track.accent}`}>
+        <div class={`hk-track ${track.accent}`} tabindex="0">
           <div class="hk-track-bar"></div>
           <div>
             <h3>{es ? track.titleEs : track.titleEn}</h3>
+            <p class="hk-track-desc">{es ? track.descEs : track.descEn}</p>
             <ul class="hk-track-list">
               {track.subareas.map(s => <li>{es ? s.es : s.en}</li>)}
             </ul>
@@ -90,7 +111,9 @@ const speakers = data.speakers as { name: string; affiliationEs?: string; affili
           <span class="hk-pill">{es ? perk.es : perk.en}</span>
         ))}
       </div>
+      <p class="hk-prize-extra">{es ? data.prizesDetail.fellowsEs : data.prizesDetail.fellowsEn}</p>
     </div>
+    <p class="hk-note hk-venue-note">{es ? data.prizesDetail.venueNoteEs : data.prizesDetail.venueNoteEn}</p>
   </div>
 </section>
 
@@ -138,15 +161,23 @@ const speakers = data.speakers as { name: string; affiliationEs?: string; affili
 <section class="section alt">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.speakersTitle')}</h2>
-    <div class="editorial">
+    <div class="hk-people">
       {speakers.map((sp, i) => (
-        <div class={`editorial-row ${['is-green','is-coral','is-blue'][i % 3]}`}>
-          <div class="editorial-bar"></div>
-          <div class="editorial-tx">
+        <article class={`hk-person ${['is-green','is-coral','is-blue','is-yellow'][i % 4]}`}>
+          {sp.photo
+            ? <img class="hk-person-av" src={`/people/${sp.photo}`} alt="" width="56" height="56" />
+            : <div class="hk-person-av" aria-hidden="true">{initials(sp.name)}</div>}
+          <div class="hk-person-tx">
             <h3>{sp.name}</h3>
-            <p>{es ? sp.affiliationEs : sp.affiliationEn}</p>
+            <p class="hk-person-aff">{es ? sp.affiliationEs : sp.affiliationEn}</p>
+            {(es ? sp.bioEs : sp.bioEn) && <p class="hk-person-bio">{es ? sp.bioEs : sp.bioEn}</p>}
+            {sp.linkedin && (
+              <a class="hk-person-link" href={sp.linkedin} target="_blank" rel="noopener noreferrer">
+                LinkedIn &rarr;
+              </a>
+            )}
           </div>
-        </div>
+        </article>
       ))}
     </div>
   </div>
@@ -156,15 +187,25 @@ const speakers = data.speakers as { name: string; affiliationEs?: string; affili
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.judgesTitle')}</h2>
     {judges.length > 0 ? (
-      <div class="editorial">
+      <div class="hk-people">
         {judges.map((j, i) => (
-          <div class={`editorial-row ${['is-green','is-coral','is-blue'][i % 3]}`}>
-            <div class="editorial-bar"></div>
-            <div class="editorial-tx">
+          <article class={`hk-person ${['is-green','is-coral','is-blue','is-yellow'][i % 4]}`}>
+            {j.photo
+              ? <img class="hk-person-av" src={`/people/${j.photo}`} alt="" width="56" height="56" />
+              : <div class="hk-person-av" aria-hidden="true">{initials(j.name)}</div>}
+            <div class="hk-person-tx">
               <h3>{j.name}</h3>
-              {(es ? j.affiliationEs : j.affiliationEn) && <p>{es ? j.affiliationEs : j.affiliationEn}</p>}
+              {(es ? j.affiliationEs : j.affiliationEn) && (
+                <p class="hk-person-aff">{es ? j.affiliationEs : j.affiliationEn}</p>
+              )}
+              {(es ? j.bioEs : j.bioEn) && <p class="hk-person-bio">{es ? j.bioEs : j.bioEn}</p>}
+              {j.linkedin && (
+                <a class="hk-person-link" href={j.linkedin} target="_blank" rel="noopener noreferrer">
+                  LinkedIn &rarr;
+                </a>
+              )}
             </div>
-          </div>
+          </article>
         ))}
       </div>
     ) : (
@@ -419,8 +460,168 @@ const speakers = data.speakers as { name: string; affiliationEs?: string; affili
     margin-top: 1.25rem;
   }
 
+  /* "Qué es": lone short lead, so tighten the vertical rhythm */
+  .hk-intro {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .hk-intro .section-title {
+    margin-bottom: 0.625rem;
+  }
+
+  .hk-intro .hk-lead {
+    margin: 0;
+  }
+
+  .hk-why-lead {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 720px;
+    margin-bottom: 2rem;
+  }
+
+  /* Track cards: reveal a short description on hover / keyboard focus */
+  .hk-track {
+    transition: border-color 0.18s ease, transform 0.18s ease;
+  }
+
+  .hk-track:hover,
+  .hk-track:focus-within {
+    border-color: var(--accent-green);
+    transform: translateY(-2px);
+  }
+
+  .hk-track.is-coral:hover,
+  .hk-track.is-coral:focus-within { border-color: var(--accent-coral); }
+  .hk-track.is-blue:hover,
+  .hk-track.is-blue:focus-within { border-color: var(--accent-blue); }
+  .hk-track.is-yellow:hover,
+  .hk-track.is-yellow:focus-within { border-color: var(--accent-yellow-line); }
+
+  .hk-track-desc {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin: 0;
+    transition: max-height 0.22s ease, opacity 0.22s ease, margin 0.22s ease;
+  }
+
+  .hk-track:hover .hk-track-desc,
+  .hk-track:focus-within .hk-track-desc {
+    max-height: 7rem;
+    opacity: 1;
+    margin: 0 0 0.625rem;
+  }
+
+  .hk-prize-extra {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .hk-venue-note {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  /* Speaker / judge cards */
+  .hk-people {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .hk-person {
+    display: flex;
+    gap: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    background: #FFFFFF;
+  }
+
+  .hk-person-av {
+    width: 56px;
+    height: 56px;
+    flex: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    object-fit: cover;
+    color: #FFFFFF;
+    background: var(--accent-green);
+  }
+
+  .hk-person.is-coral .hk-person-av { background: var(--accent-coral); }
+  .hk-person.is-blue .hk-person-av { background: var(--accent-blue); }
+  .hk-person.is-yellow .hk-person-av { background: var(--accent-yellow-line); }
+
+  .hk-person h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .hk-person-aff {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--green-text);
+    margin-top: 0.125rem;
+  }
+
+  .hk-person-bio {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-top: 0.5rem;
+  }
+
+  .hk-person-link {
+    display: inline-block;
+    margin-top: 0.625rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .hk-person-link:hover {
+    color: var(--green-text);
+  }
+
+  /* Touch devices have no hover: show track descriptions by default */
+  @media (hover: none) {
+    .hk-track-desc {
+      max-height: none;
+      opacity: 1;
+      margin: 0 0 0.625rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hk-track,
+    .hk-track-desc {
+      transition: none;
+    }
+    .hk-track:hover,
+    .hk-track:focus-within {
+      transform: none;
+    }
+  }
+
   @media (max-width: 768px) {
-    .hk-tracks {
+    .hk-tracks,
+    .hk-people {
       grid-template-columns: 1fr;
     }
   }
