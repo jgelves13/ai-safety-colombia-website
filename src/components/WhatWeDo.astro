@@ -8,35 +8,103 @@ interface Props {
 
 const { locale } = Astro.props;
 
+const icons = {
+  research:
+    '<path d="M9 2h6M10 2v6.6L4.8 18a2 2 0 0 0 1.7 3h11a2 2 0 0 0 1.7-3L14 8.6V2"/><path d="M7.5 14.5h9"/>',
+  education:
+    '<path d="M3 8.5 12 4l9 4.5-9 4.5-9-4.5Z"/><path d="M7 11v5c0 1.1 2.2 2.5 5 2.5s5-1.4 5-2.5v-5"/><path d="M21 8.5V14"/>',
+  community:
+    '<circle cx="9" cy="8" r="3.2"/><path d="M3.5 20v-1.2A4.3 4.3 0 0 1 7.8 14.5h2.4a4.3 4.3 0 0 1 4.3 4.3V20"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6.1"/><path d="M17.4 14.7A4.3 4.3 0 0 1 20.5 18.8V20"/>',
+};
+
 const rows = [
-  { cls: 'is-green', title: t(locale, 'what-we-do.research.title'),  desc: t(locale, 'what-we-do.research.desc') },
-  { cls: 'is-coral', title: t(locale, 'what-we-do.education.title'), desc: t(locale, 'what-we-do.education.desc') },
-  { cls: 'is-blue',  title: t(locale, 'what-we-do.community.title'), desc: t(locale, 'what-we-do.community.desc') },
+  { cls: 'is-green', icon: icons.research, title: t(locale, 'what-we-do.research.title'), desc: t(locale, 'what-we-do.research.desc') },
+  { cls: 'is-coral', icon: icons.education, title: t(locale, 'what-we-do.education.title'), desc: t(locale, 'what-we-do.education.desc') },
+  { cls: 'is-blue', icon: icons.community, title: t(locale, 'what-we-do.community.title'), desc: t(locale, 'what-we-do.community.desc') },
 ];
 ---
 
-<section class="section alt">
+<section class="section alt" aria-labelledby="wwd-title">
   <div class="container">
-    <h2 class="section-title">{t(locale, 'sections.what-we-do')}</h2>
-    <div class="editorial what-we-do">
-      {rows.map(row => (
-        <div class={`editorial-row ${row.cls}`}>
-          <div class="editorial-bar"></div>
-          <div class="editorial-tx">
-            <h3>{row.title}</h3>
-            <p>{row.desc}</p>
-          </div>
-        </div>
+    <h2 class="section-title" id="wwd-title">{t(locale, 'sections.what-we-do')}</h2>
+    <p class="section-subtitle">{t(locale, 'what-we-do.subtitle')}</p>
+
+    <div class="wwd-grid">
+      {rows.map((row) => (
+        <article class:list={['wwd-card', row.cls]}>
+          <span class="wwd-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={row.icon} />
+          </span>
+          <h3>{row.title}</h3>
+          <p>{row.desc}</p>
+        </article>
       ))}
     </div>
   </div>
 </section>
 
 <style>
-  .what-we-do {
-    margin-top: 1.5rem;
+  .section-subtitle {
+    margin-bottom: 2.5rem;
   }
-  .editorial-tx {
-    padding-top: 0.125rem;
+
+  .wwd-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .wwd-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .wwd-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(16, 16, 16, 0.07);
+    border-color: #d6d6cf;
+  }
+
+  .wwd-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    margin-bottom: 1.25rem;
+  }
+
+  .wwd-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .is-green .wwd-icon { color: #15803D; background: rgba(43, 213, 118, 0.14); }
+  .is-coral .wwd-icon { color: var(--accent-coral); background: rgba(255, 86, 69, 0.12); }
+  .is-blue  .wwd-icon { color: #0090C4; background: rgba(0, 187, 255, 0.13); }
+
+  .wwd-card h3 {
+    font-size: 1.3125rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .wwd-card p {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wwd-card { transition: none; }
+    .wwd-card:hover { transform: none; }
   }
 </style>
