@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { t } from '../../i18n/ui';
 
 const locale = 'en';
 
@@ -32,26 +34,30 @@ const paths = [
 ---
 
 <BaseLayout locale={locale} currentPage="resources" title="Resources | AI Safety Colombia">
-  <section class="hero-mini">
-    <div class="container">
-      <h1 class="section-title">Resources</h1>
-      <p class="page-desc">Curated learning paths to explore AI safety from different angles.</p>
-    </div>
-  </section>
+  <PageHero
+    title="Resources"
+    desc="Curated learning paths to explore AI safety from different angles."
+  />
 
   <section class="section">
     <div class="container">
       <div class="editorial">
         {paths.map((path, i) => (
           <div class={`editorial-row ${['is-green','is-coral','is-blue'][i]}`}>
-            <div class="editorial-num">{`0${i + 1}`}</div>
             <div class="editorial-bar"></div>
             <div class="editorial-tx path-tx">
               <h3>{path.title}</h3>
               <ul>
                 {path.items.map(item => (
                   <li>
-                    <a href={item.url} target="_blank" rel="noopener noreferrer">{item.name}</a>
+                    {item.url === '#' ? (
+                      <span class="path-soon">
+                        {item.name}
+                        <span class="soon-tag">{t(locale, 'resources.comingSoon')}</span>
+                      </span>
+                    ) : (
+                      <a href={item.url} target="_blank" rel="noopener noreferrer">{item.name}</a>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -64,21 +70,6 @@ const paths = [
 </BaseLayout>
 
 <style>
-  .hero-mini {
-    padding: 9rem 1.5rem 3rem;
-    text-align: center;
-  }
-
-  .page-desc {
-    color: var(--text-secondary);
-    font-size: 1.125rem;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
-
-
-
   .path-tx ul {
     list-style: none;
     display: flex;
@@ -95,5 +86,24 @@ const paths = [
 
   .path-tx li a:hover {
     opacity: 0.7;
+  }
+
+  .path-tx .path-soon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+  }
+
+  .path-tx .soon-tag {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-yellow-line);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.125rem 0.5rem;
   }
 </style>
