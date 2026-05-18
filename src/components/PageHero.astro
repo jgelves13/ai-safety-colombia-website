@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+  desc?: string;
+}
+
+const { title, desc } = Astro.props;
+---
+
+<header class="page-hero">
+  <div class="container">
+    <h1 class="section-title">{title}</h1>
+    {desc && <p class="page-desc">{desc}</p>}
+  </div>
+</header>
+
+<style>
+  .page-hero {
+    padding: 9rem 1.5rem 3rem;
+    text-align: center;
+  }
+
+  .page-hero .page-desc {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+</style>
