@@ -4,6 +4,7 @@ import { t } from '../i18n/ui';
 import EventCard from './EventCard.astro';
 import PageHero from './PageHero.astro';
 import { splitEvents } from '../utils/events.js';
+import { typeColor } from '../utils/eventTypes.js';
 import eventsData from '../data/events.json';
 
 interface Props {
@@ -23,6 +24,19 @@ const filterOptions = pastTypes.map((type) => ({
   type,
   label: t(locale, `events.type.${type}` as Parameters<typeof t>[1]) || type,
 }));
+
+// Format legend: distinct types across all events, so "Charla / Panel /
+// Conversatorio / Cena" are spelled out (Jose: the difference wasn't clear).
+const allTypes = [
+  ...new Set([...upcoming, ...past].map((e) => e.type)),
+];
+const legendItems = allTypes.map((type) => ({
+  type,
+  color: typeColor(type),
+  label: t(locale, `events.type.${type}` as Parameters<typeof t>[1]) || type,
+  desc: t(locale, `events.type.${type}Desc` as Parameters<typeof t>[1]),
+}));
+const showLegend = legendItems.length > 1;
 ---
 
 <PageHero title={t(locale, 'events.hero.title')} desc={t(locale, 'events.hero.subtitle')} />
@@ -43,6 +57,19 @@ const filterOptions = pastTypes.map((type) => ({
     {hasAny ? (
       <>
         <h2 class="section-label" id="events-past">{t(locale, 'events.past')}</h2>
+        {showLegend && (
+          <div class="events-legend">
+            <p class="events-legend-title">{t(locale, 'events.legendTitle')}</p>
+            <dl class="events-legend-list">
+              {legendItems.map(it => (
+                <div class="legend-row">
+                  <dt class="legend-tag" style={`color:${it.color}`}>{it.label}</dt>
+                  <dd class="legend-desc">{it.desc}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
         {showFilter && (
           <div class="event-filters" data-event-filters hidden>
             <button class="filter-pill is-active" type="button" data-filter="all" aria-pressed="true">
@@ -76,6 +103,58 @@ const filterOptions = pastTypes.map((type) => ({
     letter-spacing: 0.08em;
     color: var(--green-text);
     margin-bottom: 1.25rem;
+  }
+
+  .events-legend {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    background: #FAFAF7;
+    max-width: 720px;
+  }
+
+  .events-legend-title {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    margin-bottom: 0.625rem;
+  }
+
+  .events-legend-list {
+    display: grid;
+    gap: 0.5rem 1.5rem;
+    margin: 0;
+  }
+
+  .legend-row {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+
+  .legend-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+  }
+
+  .legend-desc {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  @media (min-width: 640px) {
+    .events-legend-list {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   .event-filters {
