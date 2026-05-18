@@ -1,0 +1,225 @@
+---
+import type { Locale } from '../i18n/ui';
+import { t } from '../i18n/ui';
+import PageHero from './PageHero.astro';
+import data from '../data/courses.json';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const es = locale === 'es';
+
+// Where the "express interest" buttons submit. When set to an external
+// interest-form URL the buttons open it directly; until then they fall back
+// to a prefilled email so the CTA stays functional on the static site.
+const INTEREST_FORM_URL = '';
+const ORG_EMAIL = 'aisafetycolombia@gmail.com';
+const usesForm = INTEREST_FORM_URL.length > 0;
+
+const interestHref = (course?: string) => {
+  if (usesForm) return INTEREST_FORM_URL;
+  const subject = es
+    ? `Interés en formación${course ? `: ${course}` : ''} (web AI Safety Colombia)`
+    : `Interest in training${course ? `: ${course}` : ''} (AI Safety Colombia site)`;
+  const body = es
+    ? `Hola, me interesa ${course ? `el curso "${course}"` : 'la formación de AI Safety Colombia'}.\n\nNombre:\nCorreo:\nUn poco sobre mí:`
+    : `Hi, I'm interested in ${course ? `the "${course}" course` : 'AI Safety Colombia training'}.\n\nName:\nEmail:\nA bit about me:`;
+  return `mailto:${ORG_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+};
+
+const accents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
+---
+
+<PageHero title={t(locale, 'programs.hero.title')} desc={t(locale, 'programs.hero.subtitle')} />
+
+<section class="section">
+  <div class="container">
+    <p class="courses-note">{t(locale, 'programs.bluedotNote')}</p>
+
+    <div class="courses-grid">
+      {data.courses.map((c, i) => {
+        const title = es ? c.titleEs : c.titleEn;
+        return (
+          <article class={`course-card ${c.accent ?? accents[i % 4]}`}>
+            <div class="course-bar"></div>
+            <div class="course-tx">
+              <h3 class="course-title">{title}</h3>
+              <p class="course-meta">{es ? c.metaEs : c.metaEn}</p>
+              <p class="course-aud">
+                <span class="course-aud-label">{t(locale, 'programs.audienceLabel')}:</span>{' '}
+                {es ? c.audienceEs : c.audienceEn}
+              </p>
+              <p class="course-desc">{es ? c.descEs : c.descEn}</p>
+              <div class="course-actions">
+                <a
+                  class="btn btn-primary course-cta"
+                  href={interestHref(title)}
+                  target={usesForm ? '_blank' : undefined}
+                  rel={usesForm ? 'noopener noreferrer' : undefined}
+                >{t(locale, 'programs.interestOne')}</a>
+                <a class="course-details" href={c.url} target="_blank" rel="noopener noreferrer">
+                  {t(locale, 'programs.details')} &rarr;
+                </a>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <div class="courses-any">
+      <h2 class="courses-any-title">{t(locale, 'programs.anyTitle')}</h2>
+      <p class="courses-any-sub">{t(locale, 'programs.anySub')}</p>
+      <a
+        class="btn btn-primary courses-any-cta"
+        href={interestHref()}
+        target={usesForm ? '_blank' : undefined}
+        rel={usesForm ? 'noopener noreferrer' : undefined}
+      >{t(locale, 'programs.interestAny')}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .courses-note {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    max-width: 720px;
+    margin-bottom: 2rem;
+  }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .course-card {
+    display: flex;
+    gap: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    background: #FFFFFF;
+    transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .course-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(16, 16, 16, 0.06);
+    border-color: var(--accent-green);
+  }
+
+  .course-card.is-coral:hover { border-color: var(--accent-coral); }
+  .course-card.is-blue:hover { border-color: var(--accent-blue); }
+  .course-card.is-yellow:hover { border-color: var(--accent-yellow-line); }
+
+  .course-bar {
+    width: 5px;
+    flex: none;
+    border-radius: 4px;
+    background: var(--accent-green);
+  }
+
+  .course-card.is-coral .course-bar { background: var(--accent-coral); }
+  .course-card.is-blue .course-bar { background: var(--accent-blue); }
+  .course-card.is-yellow .course-bar { background: var(--accent-yellow-line); }
+
+  .course-tx {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .course-title {
+    font-size: 1.1875rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+  }
+
+  .course-meta {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--green-text);
+    margin-top: 0.25rem;
+  }
+
+  .course-aud {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-top: 0.625rem;
+  }
+
+  .course-aud-label {
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .course-desc {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-top: 0.5rem;
+  }
+
+  .course-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+
+  .course-details {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .course-details:hover {
+    color: var(--green-text);
+  }
+
+  .courses-any {
+    margin-top: 3rem;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    background: linear-gradient(140deg, #F1F8F2, #FFF8E7);
+  }
+
+  .courses-any-title {
+    font-size: clamp(1.375rem, 3vw, 1.875rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+
+  .courses-any-sub {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    max-width: 540px;
+    margin: 0.625rem auto 1.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .course-card,
+    .course-card:hover {
+      transition: none;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .courses-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
