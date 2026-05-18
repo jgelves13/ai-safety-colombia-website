@@ -15,6 +15,7 @@ const daysLeft = daysUntil(data.date);
 const whatBody = es ? data.whatIsEs : data.whatIsEn;
 const submission = es ? data.submissionEs : data.submissionEn;
 const judges = data.judges as { name: string; affiliationEs?: string; affiliationEn?: string }[];
+const speakers = data.speakers as { name: string; affiliationEs?: string; affiliationEn?: string }[];
 ---
 
 <section class="hk-hero">
@@ -136,11 +137,34 @@ const judges = data.judges as { name: string; affiliationEs?: string; affiliatio
 
 <section class="section alt">
   <div class="container">
+    <h2 class="section-title">{t(locale, 'hackathon.speakersTitle')}</h2>
+    <div class="editorial">
+      {speakers.map((sp, i) => (
+        <div class={`editorial-row ${['is-green','is-coral','is-blue'][i % 3]}`}>
+          <div class="editorial-bar"></div>
+          <div class="editorial-tx">
+            <h3>{sp.name}</h3>
+            <p>{es ? sp.affiliationEs : sp.affiliationEn}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.judgesTitle')}</h2>
     {judges.length > 0 ? (
-      <div class="hk-pills">
-        {judges.map(j => (
-          <span class="hk-pill">{j.name}{(es ? j.affiliationEs : j.affiliationEn) ? ` · ${es ? j.affiliationEs : j.affiliationEn}` : ''}</span>
+      <div class="editorial">
+        {judges.map((j, i) => (
+          <div class={`editorial-row ${['is-green','is-coral','is-blue'][i % 3]}`}>
+            <div class="editorial-bar"></div>
+            <div class="editorial-tx">
+              <h3>{j.name}</h3>
+              {(es ? j.affiliationEs : j.affiliationEn) && <p>{es ? j.affiliationEs : j.affiliationEn}</p>}
+            </div>
+          </div>
         ))}
       </div>
     ) : (
