@@ -83,17 +83,20 @@ const locale = 'es';
     line-height: 1.7;
   }
 
+  /* Fernando and Jose are peers, side by side and at the same level:
+     a two-column grid with equal-height cards (Fernando left, Jose right). */
   .people {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
-    max-width: 680px;
+    align-items: stretch;
+    max-width: 920px;
   }
 
   .person-card {
     display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.25rem;
     background: #FFFFFF;
     border: 1px solid var(--border);
     border-radius: 18px;
@@ -160,8 +163,11 @@ const locale = 'es';
   }
 
   @media (max-width: 768px) {
+    .people {
+      grid-template-columns: 1fr;
+      max-width: 680px;
+    }
     .person-card {
-      flex-direction: column;
       padding: 1.5rem;
     }
     .person-photo {
