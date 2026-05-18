@@ -13,7 +13,7 @@
           "ext": "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
         },
         { "labelEs": "Asiste a un evento", "labelEn": "Attend an event", "path": "/eventos/" },
-        { "labelEs": "Explora los programas", "labelEn": "Explore the programs", "path": "/programas/" }
+        { "labelEs": "Únete a un grupo de discusión", "labelEn": "Join a discussion group", "anchor": "#grupos" }
       ]
     },
     {
@@ -25,7 +25,7 @@
       "actions": [
         { "labelEs": "Participa en el hackathon", "labelEn": "Join the hackathon", "path": "/hackathon/" },
         { "labelEs": "Revisa los recursos", "labelEn": "Browse the resources", "path": "/recursos/" },
-        { "labelEs": "Toma un curso técnico", "labelEn": "Take a technical course", "path": "/programas/" }
+        { "labelEs": "Únete a un grupo técnico", "labelEn": "Join a technical group", "anchor": "#grupos" }
       ]
     },
     {

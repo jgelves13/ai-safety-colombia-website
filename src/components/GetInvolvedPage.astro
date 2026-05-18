@@ -2,6 +2,7 @@
 import type { Locale } from '../i18n/ui';
 import { t, localePath } from '../i18n/ui';
 import PageHero from './PageHero.astro';
+import CoursesPage from './CoursesPage.astro';
 import data from '../data/getInvolved.json';
 
 interface Props {
@@ -13,10 +14,11 @@ const es = locale === 'es';
 
 const WHATSAPP_URL = 'https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ';
 
-type Action = { labelEs: string; labelEn: string; ext?: string; path?: string };
+type Action = { labelEs: string; labelEn: string; ext?: string; path?: string; anchor?: string };
 
 const resolve = (a: Action) => {
   if (a.ext) return { href: a.ext, external: true };
+  if (a.anchor) return { href: a.anchor, external: false };
   return { href: localePath(locale, a.path ?? '/'), external: false };
 };
 ---
@@ -57,7 +59,13 @@ const resolve = (a: Action) => {
         </article>
       ))}
     </div>
+  </div>
+</section>
 
+<CoursesPage locale={locale} embedded />
+
+<section class="section">
+  <div class="container">
     <div class="ways-cta">
       <p class="ways-cta-lead">{t(locale, 'getInvolved.ctaLead')}</p>
       <div class="ways-cta-buttons">

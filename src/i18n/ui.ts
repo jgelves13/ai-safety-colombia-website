@@ -241,7 +241,6 @@ export function t(locale: Locale, key: keyof typeof ui.es): string {
 
 const esEnPaths: Record<string, string> = {
   '/sobre/': '/about/',
-  '/programas/': '/programs/',
   '/recursos/': '/resources/',
   '/involucrate/': '/get-involved/',
   '/contacto/': '/contact/',

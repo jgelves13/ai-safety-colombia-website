@@ -6,9 +6,12 @@ import data from '../data/courses.json';
 
 interface Props {
   locale: Locale;
+  // When embedded inside another page (e.g. Get Involved) we skip the
+  // standalone PageHero and the closing CTA, rendering as a section instead.
+  embedded?: boolean;
 }
 
-const { locale } = Astro.props;
+const { locale, embedded = false } = Astro.props;
 const es = locale === 'es';
 
 // Where the "express interest" links submit. When set to an external
@@ -52,10 +55,18 @@ const GLYPHS: Record<string, string> = {
 const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
 ---
 
-<PageHero title={t(locale, 'programs.hero.title')} desc={t(locale, 'programs.hero.subtitle')} />
+{!embedded && (
+  <PageHero title={t(locale, 'programs.hero.title')} desc={t(locale, 'programs.hero.subtitle')} />
+)}
 
-<section class="section">
+<section class:list={['section', { alt: embedded }]} id={embedded ? 'grupos' : undefined}>
   <div class="container">
+    {embedded && (
+      <header class="groups-head">
+        <h2 class="section-title">{t(locale, 'programs.hero.title')}</h2>
+        <p class="section-subtitle">{t(locale, 'programs.hero.subtitle')}</p>
+      </header>
+    )}
     <p class="courses-note">{t(locale, 'programs.bluedotNote')}</p>
 
     <div class="courses-grid">
@@ -111,20 +122,26 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
       })}
     </div>
 
-    <div class="courses-any">
-      <h2 class="courses-any-title">{t(locale, 'programs.anyTitle')}</h2>
-      <p class="courses-any-sub">{t(locale, 'programs.anySub')}</p>
-      <a
-        class="btn btn-primary courses-any-cta"
-        href={interestHref()}
-        target={usesForm ? '_blank' : undefined}
-        rel={usesForm ? 'noopener noreferrer' : undefined}
-      >{t(locale, 'programs.interestAny')}</a>
-    </div>
+    {!embedded && (
+      <div class="courses-any">
+        <h2 class="courses-any-title">{t(locale, 'programs.anyTitle')}</h2>
+        <p class="courses-any-sub">{t(locale, 'programs.anySub')}</p>
+        <a
+          class="btn btn-primary courses-any-cta"
+          href={interestHref()}
+          target={usesForm ? '_blank' : undefined}
+          rel={usesForm ? 'noopener noreferrer' : undefined}
+        >{t(locale, 'programs.interestAny')}</a>
+      </div>
+    )}
   </div>
 </section>
 
 <style>
+  .groups-head {
+    margin-bottom: 2rem;
+  }
+
   .courses-note {
     color: var(--text-secondary);
     font-size: 0.9375rem;
