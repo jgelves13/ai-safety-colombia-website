@@ -257,29 +257,33 @@ If the extension disconnects and does not recover after 2-3 attempts, STOP and t
 
 - [ ] **Step 3: Write `src/data/events.json`**
 
-Create `src/data/events.json` as a JSON array, newest-first, each object exactly this shape (this is the worked example for the Said Saillant talk; produce one object per captured event with real captured values):
+Create `src/data/events.json` as a JSON array, newest-first, each object exactly this shape (this is the worked example for the Said Saillant superintelligence talk; produce one object per captured event with real captured values):
 
 ```json
 [
   {
-    "slug": "riesgos-ia-said-saillant",
+    "slug": "valor-humanidad-superinteligencia",
     "type": "charla",
-    "date": "2024-08-16",
+    "date": "2024-09-20",
     "time": "18:00",
-    "titleEs": "Riesgos de la Inteligencia Artificial",
-    "titleEn": "Risks of Artificial Intelligence",
-    "descEs": "Charla introductoria con Said Saillant (PhD). Organizada con Altruismo Eficaz Uniandes.",
-    "descEn": "Introductory talk with Said Saillant (PhD). Co-hosted with Effective Altruism Uniandes.",
+    "titleEs": "El valor de la humanidad ante la superinteligencia artificial",
+    "titleEn": "The value of humanity in the face of artificial superintelligence",
+    "descEs": "Charla con Said Saillant, PhD en Filosofía del MIT e investigador postdoctoral en Harvard, sobre los dilemas éticos del desarrollo de superinteligencias.",
+    "descEn": "A talk with Said Saillant, MIT Philosophy PhD and Harvard postdoctoral researcher, on the ethical dilemmas of developing superintelligence.",
     "venueEs": "Universidad de los Andes",
     "venueEn": "Universidad de los Andes",
-    "flyer": "riesgos-ia-said-saillant.jpg",
-    "instagramUrl": "https://www.instagram.com/aisafetycolombia/p/C-nthmtxIrQ/",
+    "whyEs": "Primera charla de la organización, introduciendo los dilemas éticos de la superinteligencia con un investigador del MIT y Harvard.",
+    "whyEn": "The organization's first talk, introducing the ethical dilemmas of superintelligence with an MIT and Harvard researcher.",
+    "flyer": "valor-humanidad-superinteligencia.jpg",
+    "instagramUrl": "https://www.instagram.com/aisafetycolombia/p/C_0sc3mOlfX/",
     "featured": false
   }
 ]
 ```
 
-Rules: `slug` is kebab-case, unique, and equals the flyer filename without `.jpg`. `type` is one of `charla | panel | conversatorio | cena | taller | curso`. `date` is ISO `YYYY-MM-DD`. `time` is optional `"HH:MM"` 24h (omit the key if unknown). Descriptions are 1-2 lines, no em dashes. Every `flyer` file must exist in `public/events/`.
+Rules: `slug` is kebab-case, unique, and equals the flyer filename without `.jpg`. `type` is one of `charla | panel | conversatorio | cena | taller | curso`. `date` is ISO `YYYY-MM-DD`. `time` is optional `"HH:MM"` 24h (omit the key if unknown). `descEs`/`descEn` are 1-2 lines, no em dashes. `whyEs`/`whyEn` are a single short sentence justifying why the event was meaningful (required on every event, per Jose's Task 3 review). Every `flyer` file must exist in `public/events/`.
+
+**Task 3 review outcomes applied (Jose, 2026-05-17):** `DXNOo7DljSh` IS a real event (an April 2026 policy dinner) and is included; the post `C_OS-1oRSbM` (Global Challenges Project, Boston) remains excluded as external. The two `curso` posts (`C-1YEhsOHLg`, `C-1d1GOOERs`) and the Fernando Ávalos intro talk (`C-nthmtxIrQ`) are dropped. The Said Saillant talk is `C_0sc3mOlfX` (superintelligence, 2024-09-20), not the intro talk. Every event carries a `whyEs`/`whyEn` justification. Jose supplies the flyer JPEGs into `public/events/` using the exact slug filenames (image-file persistence is blocked in the automation environment). Final set is 7 events.
 
 - [ ] **Step 4: STOP — User review gate**
 
@@ -415,6 +419,8 @@ interface EventItem {
   descEn: string;
   venueEs: string;
   venueEn: string;
+  whyEs: string;
+  whyEn: string;
   flyer: string;
   instagramUrl: string;
   featured?: boolean;
@@ -443,6 +449,7 @@ const tagLabel = locale === 'es' ? meta.es : meta.en;
 const title = locale === 'es' ? event.titleEs : event.titleEn;
 const desc = locale === 'es' ? event.descEs : event.descEn;
 const venue = locale === 'es' ? event.venueEs : event.venueEn;
+const why = locale === 'es' ? event.whyEs : event.whyEn;
 
 const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-CO' : 'en-US', {
   day: 'numeric', month: 'short', year: 'numeric',
@@ -460,6 +467,7 @@ const metaParts = [dateLabel, event.time, venue].filter(Boolean);
     <h3 class="event-title">{title}</h3>
     <p class="event-meta">{metaParts.join(' · ')}</p>
     <p class="event-desc">{desc}</p>
+    <p class="event-why">{why}</p>
     <a class="event-link" href={event.instagramUrl} target="_blank" rel="noopener noreferrer">
       {t(locale, 'events.viewInstagram')} &rarr;
     </a>
@@ -522,6 +530,15 @@ const metaParts = [dateLabel, event.time, venue].filter(Boolean);
     color: var(--text-secondary);
     line-height: 1.5;
     margin-top: 0.375rem;
+  }
+
+  .event-why {
+    font-size: 0.8125rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin-top: 0.5rem;
+    padding-left: 0.625rem;
+    border-left: 2px solid var(--accent-green);
   }
 
   .event-link {
