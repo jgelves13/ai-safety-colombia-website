@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
 
 const locale = 'en';
 
@@ -28,19 +29,16 @@ const audiences = [
 ---
 
 <BaseLayout locale={locale} currentPage="get-involved" title="Get Involved | AI Safety Colombia">
-  <section class="hero-mini">
-    <div class="container">
-      <h1 class="section-title">Get Involved</h1>
-      <p class="page-desc">There are multiple ways to contribute to AI safety in Colombia, regardless of your background or experience.</p>
-    </div>
-  </section>
+  <PageHero
+    title="Get Involved"
+    desc="There are multiple ways to contribute to AI safety in Colombia, regardless of your background or experience."
+  />
 
   <section class="section">
     <div class="container">
       <div class="editorial">
         {audiences.map((aud, i) => (
           <div class={`editorial-row ${['is-green','is-coral','is-blue','is-yellow'][i]}`}>
-            <div class="editorial-num">{`0${i + 1}`}</div>
             <div class="editorial-bar"></div>
             <div class="editorial-tx audience-tx">
               <h3>{aud.title}</h3>
@@ -59,28 +57,14 @@ const audiences = [
     <div class="container">
       <h2 class="section-title">First Step</h2>
       <div class="cta-buttons">
-        <a href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Join WhatsApp &rarr;</a>
-        <a href="/en/contact/" class="btn btn-secondary">Contact Us &rarr;</a>
+        <a href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Join WhatsApp</a>
+        <a href="/en/contact/" class="btn btn-secondary">Contact Us</a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .hero-mini {
-    padding: 9rem 1.5rem 3rem;
-    text-align: center;
-  }
-
-  .page-desc {
-    color: var(--text-secondary);
-    font-size: 1.125rem;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
-
-
   .aud-desc {
     color: var(--text-secondary);
     font-size: 0.9375rem;

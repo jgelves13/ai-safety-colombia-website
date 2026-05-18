@@ -9,16 +9,36 @@
   "support": "Schmidt Sciences",
   "whatIsEs": "Apart Research lleva la seguridad de IA al Sur Global. Investigadores, ingenieros y profesionales de política de América Latina, África y Asia abordan riesgos de IA relevantes para sus regiones durante un fin de semana. AI Safety Colombia organiza el hub de Bogotá.",
   "whatIsEn": "Apart Research brings AI safety to the Global South. Researchers, engineers, and policy professionals from Latin America, Africa, and Asia tackle AI risks relevant to their regions over a weekend. AI Safety Colombia runs the Bogotá hub.",
-  "submissionEs": "Cada equipo entrega un reporte de investigación en PDF que documenta enfoque, resultados e implicaciones.",
-  "submissionEn": "Each team submits a research report (PDF) documenting approach, results, and implications.",
+  "submissionEs": "Cada equipo entrega un reporte de investigación en PDF de 4 a 8 páginas que documenta enfoque, resultados e implicaciones.",
+  "submissionEn": "Each team submits a 4–8 page research report (PDF) documenting approach, results, and implications.",
   "pipeline": [
     { "stepEs": "Hackathon", "stepEn": "Hackathon", "descEs": "Un fin de semana construyendo evaluaciones, herramientas o investigación de política.", "descEn": "A weekend building evaluations, tools, or policy research." },
     { "stepEs": "Apart Fellowship", "stepEn": "Apart Fellowship", "descEs": "Los mejores equipos son invitados al Apart Fellowship para profundizar su trabajo.", "descEn": "Top teams are invited to the Apart Fellowship to deepen their work." },
     { "stepEs": "Investigación y colocación", "stepEn": "Research & placement", "descEs": "Mentoría y revisión de expertos hacia investigación publicable y oportunidades.", "descEn": "Expert mentoring and review toward publishable research and opportunities." }
   ],
   "tracks": [
-    { "labelEs": "Technical AI Safety", "labelEn": "Technical AI Safety", "descEs": "Evaluaciones, interpretabilidad, robustez y herramientas de seguridad aplicadas a modelos.", "descEn": "Evaluations, interpretability, robustness, and safety tooling applied to models.", "accent": "is-green" },
-    { "labelEs": "AI Governance & Policy", "labelEn": "AI Governance & Policy", "descEs": "Mecanismos de gobernanza, evaluación de riesgos regionales y herramientas de política.", "descEn": "Governance mechanisms, regional risk assessment, and policy tooling.", "accent": "is-coral" }
+    { "titleEs": "Seguridad Técnica de IA", "titleEn": "Technical AI Safety", "accent": "is-green", "subareas": [
+      { "es": "Evaluaciones para sistemas agénticos", "en": "Evaluations for agentic systems" },
+      { "es": "Interpretabilidad mecanicista", "en": "Mechanistic interpretability" }
+    ]},
+    { "titleEs": "Seguridad de IA", "titleEn": "AI Security", "accent": "is-coral", "subareas": [
+      { "es": "Seguridad de pipelines (API/Cloud)", "en": "Pipeline security (API/Cloud)" },
+      { "es": "Inyección de prompts y jailbreaks", "en": "Prompt injection and jailbreaks" },
+      { "es": "Control de IA", "en": "AI control" }
+    ]},
+    { "titleEs": "IA Responsable", "titleEn": "Responsible AI", "accent": "is-blue", "subareas": [
+      { "es": "Mitigación de alucinaciones", "en": "Hallucination mitigation" },
+      { "es": "Auditoría de comportamiento (multilingüe, intercultural)", "en": "Behavioral audit (multilingual, cross-cultural)" },
+      { "es": "Evaluación de impacto social", "en": "Social impact evaluation" }
+    ]},
+    { "titleEs": "Gobernanza de IA", "titleEn": "AI Governance", "accent": "is-yellow", "subareas": [
+      { "es": "Análisis de política y regulación de IA", "en": "AI policy and regulation analysis" },
+      { "es": "Auditoría y rendición de cuentas de sistemas", "en": "System auditing and accountability" },
+      { "es": "Monitoreo del ecosistema", "en": "Ecosystem monitoring" }
+    ]},
+    { "titleEs": "Gobernanza de LAWS (liderado desde Bogotá)", "titleEn": "LAWS governance (Bogotá-led)", "accent": "is-green", "subareas": [
+      { "es": "Sistemas de armas autónomas letales", "en": "Lethal autonomous weapons systems" }
+    ]}
   ],
   "eligibility": [
     { "es": "Investigadores e ingenieros de IA", "en": "AI researchers and engineers" },
@@ -49,19 +69,25 @@
   },
   "schedule": [
     { "day": "Viernes 19", "dayEn": "Friday 19", "accent": "is-green", "events": [
-      { "time": "—", "title": "Apertura y formación de equipos", "titleEn": "Opening and team formation" }
+      { "time": "", "title": "Charla de apertura, presentación de retos y formación de equipos", "titleEn": "Opening keynote, challenge briefing, and team formation" }
     ]},
     { "day": "Sábado 20", "dayEn": "Saturday 20", "accent": "is-blue", "events": [
-      { "time": "—", "title": "Construcción con mentoría", "titleEn": "Building with mentoring" }
+      { "time": "", "title": "Desarrollo del proyecto, charlas técnicas y mentoría", "titleEn": "Project development, tech talks, and mentoring" }
     ]},
     { "day": "Domingo 21", "dayEn": "Sunday 21", "accent": "is-yellow", "events": [
-      { "time": "—", "title": "Entrega del reporte (PDF) y revisión", "titleEn": "Report submission (PDF) and review" }
+      { "time": "", "title": "Desarrollo final y entrega del reporte (fecha límite: domingo en la noche)", "titleEn": "Final development and report submission (deadline: Sunday night)" }
     ]}
   ],
   "speakers": [
-    { "name": "Juan Pablo Toro Ramírez", "role": "Speaker", "org": "Colombia" }
+    { "name": "Juan Felipe Cerón", "affiliationEs": "OpenAI", "affiliationEn": "OpenAI" },
+    { "name": "Alejandro Toro", "affiliationEs": "Representante a la Cámara", "affiliationEn": "Member of the House of Representatives" }
   ],
-  "judges": [],
+  "judges": [
+    { "name": "Melissa Robles", "affiliationEs": "IDB Lab y Quantil", "affiliationEn": "IDB Lab & Quantil" },
+    { "name": "Catalina Bernal", "affiliationEs": "BIP Colombia", "affiliationEn": "BIP Colombia" },
+    { "name": "Juan Pablo Liévano", "affiliationEs": "UC Berkeley", "affiliationEn": "UC Berkeley" },
+    { "name": "Steve Hege", "affiliationEs": "ILAPS", "affiliationEn": "ILAPS" }
+  ],
   "prizes": {
     "regional": "US$1,000 per team (3 LATAM winners)",
     "regionalEs": "USD 1.000 por equipo (3 ganadores LATAM)"

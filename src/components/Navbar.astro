@@ -24,7 +24,8 @@ const links = [
 ];
 ---
 
-<nav class="navbar">
+<header class="site-header">
+<nav class="navbar" aria-label={t(locale, 'nav.primary')}>
   <div class="navbar-pill">
     <a href={localePath(locale, '/')} class="nav-logo">
       <img src="/logo.png" alt="AI Safety Colombia" class="nav-logo-img">
@@ -41,7 +42,7 @@ const links = [
         <a href={locale === 'en' ? Astro.url.pathname : langSwitchHref} class={locale === 'en' ? 'active' : ''}>EN</a>
       </div>
       <a href={localePath(locale, '/contacto/')} class="btn btn-dark nav-cta">
-        {t(locale, 'nav.contact')} &rarr;
+        {t(locale, 'nav.contact')}
       </a>
       <button class="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -57,8 +58,13 @@ const links = [
   ))}
   <a href={localePath(locale, '/contacto/')} class={isActive('contact') ? 'active' : ''}>{t(locale, 'nav.contact')}</a>
 </div>
+</header>
 
 <style>
+  .site-header {
+    display: contents;
+  }
+
   .navbar {
     position: fixed;
     top: 0;
@@ -70,7 +76,7 @@ const links = [
   }
 
   .navbar-pill {
-    max-width: 1100px;
+    max-width: var(--max-width);
     margin: 0 auto;
     display: flex;
     align-items: center;

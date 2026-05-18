@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
 
 const locale = 'en';
 
@@ -28,19 +29,16 @@ const programs = [
 ---
 
 <BaseLayout locale={locale} currentPage="programs" title="Programs | AI Safety Colombia">
-  <section class="hero-mini">
-    <div class="container">
-      <h1 class="section-title">Programs</h1>
-      <p class="page-desc">Our development pipeline takes you from initial curiosity to meaningful contributions to the AI safety field.</p>
-    </div>
-  </section>
+  <PageHero
+    title="Programs"
+    desc="Our development pipeline takes you from initial curiosity to meaningful contributions to the AI safety field."
+  />
 
   <section class="section">
     <div class="container">
       <div class="editorial">
         {programs.map((prog, i) => (
           <div class={`editorial-row ${['is-green','is-coral','is-blue','is-yellow'][i]}`}>
-            <div class="editorial-num">{`0${i + 1}`}</div>
             <div class="editorial-bar"></div>
             <div class="editorial-tx">
               <h3>{prog.stage}</h3>
@@ -57,20 +55,6 @@ const programs = [
 </BaseLayout>
 
 <style>
-  .hero-mini {
-    padding: 9rem 1.5rem 3rem;
-    text-align: center;
-  }
-
-  .page-desc {
-    color: var(--text-secondary);
-    font-size: 1.125rem;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
-
-
   .program-desc {
     color: var(--text-secondary);
     font-size: 0.9375rem;

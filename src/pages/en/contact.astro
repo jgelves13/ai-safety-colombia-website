@@ -1,16 +1,15 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
 
 const locale = 'en';
 ---
 
 <BaseLayout locale={locale} currentPage="contact" title="Contact | AI Safety Colombia">
-  <section class="hero-mini">
-    <div class="container">
-      <h1 class="section-title">Contact</h1>
-      <p class="page-desc">Reach out for questions, partnerships, or just to connect.</p>
-    </div>
-  </section>
+  <PageHero
+    title="Contact"
+    desc="Reach out for questions, partnerships, or just to connect."
+  />
 
   <section class="section">
     <div class="container">
@@ -34,10 +33,6 @@ const locale = 'en';
               <span class="channel-icon">&#x1F4F7;</span>
               <span>Instagram</span>
             </a>
-            <a href="https://twitter.com/AISafetyCO" target="_blank" rel="noopener noreferrer" class="channel-item">
-              <span class="channel-icon">&#x1D54F;</span>
-              <span>@AISafetyCO</span>
-            </a>
             <a href="https://www.linkedin.com/company/ai-safety-colombia" target="_blank" rel="noopener noreferrer" class="channel-item">
               <span class="channel-icon">&#x1F517;</span>
               <span>LinkedIn</span>
@@ -47,7 +42,7 @@ const locale = 'en';
 
         <div class="contact-form card">
           <h2>Send a Message</h2>
-          <form action="https://tally.so/r/placeholder" method="POST">
+          <form id="contact-form" novalidate>
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" required>
@@ -60,7 +55,7 @@ const locale = 'en';
               <label for="message">Message</label>
               <textarea id="message" name="message" rows="5" required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Send &rarr;</button>
+            <button type="submit" class="btn btn-primary">Send</button>
           </form>
         </div>
       </div>
@@ -69,19 +64,6 @@ const locale = 'en';
 </BaseLayout>
 
 <style>
-  .hero-mini {
-    padding: 9rem 1.5rem 3rem;
-    text-align: center;
-  }
-
-  .page-desc {
-    color: var(--text-secondary);
-    font-size: 1.125rem;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
-
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
@@ -170,3 +152,20 @@ const locale = 'en';
     }
   }
 </style>
+
+<script>
+  import { buildMailto } from '../../utils/contactMailto.js';
+  const form = document.getElementById('contact-form');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fd = new FormData(form as HTMLFormElement);
+    const locale = document.documentElement.lang === 'en' ? 'en' : 'es';
+    window.location.href = buildMailto({
+      to: 'aisafetycolombia@gmail.com',
+      name: String(fd.get('name') || ''),
+      email: String(fd.get('email') || ''),
+      message: String(fd.get('message') || ''),
+      locale,
+    });
+  });
+</script>
