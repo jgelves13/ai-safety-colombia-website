@@ -60,6 +60,20 @@ const initials = (name: string) =>
 // Attendance badge label (key cast: dynamic suffix off the literal union)
 const attLabel = (a?: Person['attendance']) =>
   a ? t(locale, `hackathon.att.${a}` as Parameters<typeof t>[1]) : '';
+
+// One line-icon per eligibility profile, in data order (chip, chart,
+// scales, brackets, shield, cap). Decorative: cards own the text label.
+const ic = (paths: string) =>
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${paths}</svg>`;
+const whoIcons = [
+  ic('<rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3v2M14 3v2M10 19v2M14 19v2M3 10h2M3 14h2M19 10h2M19 14h2"/>'),
+  ic('<path d="M4 19V5M4 19h16"/><path d="M7 15l3.5-4 3 2.5L20 7"/>'),
+  ic('<path d="M12 4v16M7 20h10M5 8h14M5 8l-2.5 5a3 3 0 0 0 5 0L5 8zM19 8l-2.5 5a3 3 0 0 0 5 0L19 8z"/>'),
+  ic('<path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/>'),
+  ic('<path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/>'),
+  ic('<path d="M12 4L2 9l10 5 10-5-10-5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/>'),
+];
+const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 ---
 
 <section class="hk-hero">
@@ -91,17 +105,18 @@ const attLabel = (a?: Person['attendance']) =>
     <h2 class="section-title">{t(locale, 'hackathon.whyTitle')}</h2>
     <p class="hk-why-lead">{es ? data.whyLeadEs : data.whyLeadEn}</p>
     <h3 class="hk-pathway-label">{es ? data.pathwayLabelEs : data.pathwayLabelEn}</h3>
-    <div class="editorial">
+    <ol class="hk-steps">
       {data.pipeline.map((step, i) => (
-        <div class={`editorial-row ${['is-green','is-coral','is-blue'][i % 3]}`}>
-          <div class="editorial-bar"></div>
-          <div class="editorial-tx">
-            <h3>{es ? step.stepEs : step.stepEn}</h3>
-            <p>{es ? step.descEs : step.descEn}</p>
+        <li class={`hk-step ${['is-green','is-coral','is-blue'][i % 3]}`} style={`--si:${i}`}>
+          <div class="hk-step-marker">{i + 1}</div>
+          <div class="hk-step-body">
+            <span class="hk-step-kicker">{t(locale, 'hackathon.stepLabel')} {i + 1}</span>
+            <h4 class="hk-step-title">{es ? step.stepEs : step.stepEn}</h4>
+            <p class="hk-step-desc">{es ? step.descEs : step.descEn}</p>
           </div>
-        </div>
+        </li>
       ))}
-    </div>
+    </ol>
   </div>
 </section>
 
@@ -144,7 +159,15 @@ const attLabel = (a?: Person['attendance']) =>
         <h3 class="hk-success-title">{es ? data.prizesDetail.successTitleEs : data.prizesDetail.successTitleEn}</h3>
         <ul class="hk-success-list">
           {data.prizesDetail.successExamples.map(ex => (
-            <li>{es ? ex.es : ex.en}</li>
+            <li>
+              <span class="hk-success-tx">{es ? ex.es : ex.en}</span>
+              <a
+                class="hk-success-src"
+                href={ex.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >{t(locale, 'hackathon.sourceLabel')} &rarr;</a>
+            </li>
           ))}
         </ul>
       </div>
@@ -156,7 +179,40 @@ const attLabel = (a?: Person['attendance']) =>
 <section class="section">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.hubsTitle')}</h2>
-    <div class="hk-regions">
+    <div class="hk-globe-wrap">
+      <div class="hk-globe" aria-hidden="true">
+        <svg viewBox="0 0 240 240" role="presentation" focusable="false">
+          <defs>
+            <radialGradient id="hkSphere" cx="38%" cy="34%" r="78%">
+              <stop offset="0%" stop-color="#EAFBF1" />
+              <stop offset="55%" stop-color="#CFF3DF" />
+              <stop offset="100%" stop-color="#9FE3BF" />
+            </radialGradient>
+          </defs>
+          <circle cx="120" cy="120" r="90" fill="url(#hkSphere)" />
+          <g class="hk-grid" stroke="rgba(16,16,16,0.13)" fill="none" stroke-width="1">
+            <circle cx="120" cy="120" r="90" />
+            <ellipse cx="120" cy="120" rx="34" ry="90" />
+            <ellipse cx="120" cy="120" rx="68" ry="90" />
+            <ellipse cx="120" cy="120" rx="90" ry="34" />
+            <ellipse cx="120" cy="120" rx="90" ry="68" />
+            <line x1="30" y1="120" x2="210" y2="120" />
+            <line x1="120" y1="30" x2="120" y2="210" />
+          </g>
+          <g class="hk-arcs" stroke-linecap="round" fill="none" stroke-width="2">
+            <path d="M92 150 Q 118 92 140 168" />
+            <path d="M92 150 Q 150 108 172 102" />
+          </g>
+          <circle class="hk-node is-coral" cx="140" cy="168" r="5" />
+          <circle class="hk-node is-blue" cx="172" cy="102" r="5" />
+          <circle class="hk-hub-halo" cx="92" cy="150" r="9" />
+          <circle class="hk-hub-core" cx="92" cy="150" r="5.5" />
+          <ellipse class="hk-orbit" cx="120" cy="120" rx="110" ry="46"
+            fill="none" stroke="var(--accent-green)" stroke-width="1.5"
+            stroke-dasharray="3 9" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="hk-regions">
       {regions.map(region => (
         <article class={`hk-region ${region.accent}`}>
           <div class="hk-region-head">
@@ -181,6 +237,7 @@ const attLabel = (a?: Person['attendance']) =>
           </ul>
         </article>
       ))}
+      </div>
     </div>
     <p class="hk-note">{t(locale, 'hackathon.hubsNote')}</p>
   </div>
@@ -189,29 +246,38 @@ const attLabel = (a?: Person['attendance']) =>
 <section class="section alt">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whoTitle')}</h2>
-    <div class="hk-pills">
-      {data.eligibility.map(e => (
-        <span class="hk-pill">{es ? e.es : e.en}</span>
+    <ul class="hk-who">
+      {data.eligibility.map((e, i) => (
+        <li class={`hk-who-card ${whoAccents[i % whoAccents.length]}`} style={`--wi:${i}`}>
+          <span class="hk-who-ic" set:html={whoIcons[i % whoIcons.length]} />
+          <span class="hk-who-label">{es ? e.es : e.en}</span>
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.agendaTitle')}</h2>
-    <div class="editorial">
+    <ol class="hk-timeline">
       {data.schedule.map((day, i) => (
-        <div class={`editorial-row ${day.accent ?? ['is-green','is-blue','is-yellow'][i % 3]}`}>
-          <div class="editorial-bar"></div>
-          <div class="editorial-tx">
-            <h3>{es ? day.day : day.dayEn}</h3>
-            <p>{es ? day.events[0].title : day.events[0].titleEn}</p>
+        <li class={`hk-tl-item ${day.accent ?? ['is-green','is-blue','is-yellow'][i % 3]}`} style={`--ti:${i}`}>
+          <span class="hk-tl-marker">{i + 1}</span>
+          <div class="hk-tl-body">
+            <span class="hk-tl-day">{es ? day.day : day.dayEn}</span>
+            <p class="hk-tl-act">{es ? day.events[0].title : day.events[0].titleEn}</p>
           </div>
-        </div>
+        </li>
       ))}
+    </ol>
+    <div class="hk-deliverable">
+      <span class="hk-deliverable-ic" set:html={ic('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>')} />
+      <div class="hk-deliverable-tx">
+        <span class="hk-deliverable-label">{t(locale, 'hackathon.deliverableLabel')}</span>
+        <p>{submission}</p>
+      </div>
     </div>
-    <p class="hk-note">{submission}</p>
   </div>
 </section>
 
@@ -745,6 +811,344 @@ const attLabel = (a?: Person['attendance']) =>
     background: var(--accent-green);
   }
 
+  .hk-success-tx {
+    display: block;
+  }
+
+  .hk-success-src {
+    display: inline-block;
+    margin-top: 0.3rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--green-text);
+  }
+
+  .hk-success-src:hover {
+    text-decoration: underline;
+  }
+
+  /* Pathway stepper: numbered steps with a connector spine,
+     each revealing in sequence. */
+  .hk-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .hk-step {
+    position: relative;
+    display: flex;
+    gap: 1.125rem;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: hk-step-in 0.5s ease forwards;
+    animation-delay: calc(var(--si) * 140ms);
+  }
+
+  .hk-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 2.875rem;
+    bottom: -1rem;
+    width: 2px;
+    height: 1rem;
+    background: var(--border);
+  }
+
+  .hk-step-marker {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    background: var(--accent-green);
+  }
+
+  .hk-step.is-coral .hk-step-marker { background: var(--accent-coral); }
+  .hk-step.is-blue .hk-step-marker { background: var(--accent-blue); }
+
+  .hk-step-kicker {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+  }
+
+  .hk-step-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0.15rem 0 0.4rem;
+  }
+
+  .hk-step-desc {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @keyframes hk-step-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Global South globe: decorative rotating sphere + pulsing Bogotá hub,
+     paired with the accessible region legend. */
+  .hk-globe-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 320px) 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .hk-globe {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .hk-globe svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .hk-orbit {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: hk-spin 18s linear infinite;
+  }
+
+  .hk-node.is-coral { fill: var(--accent-coral); }
+  .hk-node.is-blue { fill: var(--accent-blue); }
+
+  .hk-arcs path {
+    stroke: var(--accent-green);
+    stroke-dasharray: 4 6;
+    opacity: 0.55;
+    animation: hk-flow 2.4s linear infinite;
+  }
+
+  .hk-arcs path:last-child {
+    animation-delay: 1.2s;
+  }
+
+  .hk-hub-core {
+    fill: var(--accent-green);
+  }
+
+  .hk-hub-halo {
+    fill: var(--accent-green);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: hk-hub-pulse 2.2s ease-out infinite;
+  }
+
+  @keyframes hk-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes hk-flow {
+    to { stroke-dashoffset: -20; }
+  }
+
+  @keyframes hk-hub-pulse {
+    0% { opacity: 0.55; transform: scale(1); }
+    70% { opacity: 0; transform: scale(2.4); }
+    100% { opacity: 0; transform: scale(2.4); }
+  }
+
+  /* "Quién puede participar": icon cards with a staggered reveal. */
+  .hk-who {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .hk-who-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.125rem 1.25rem;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: hk-who-in 0.45s ease forwards;
+    animation-delay: calc(var(--wi) * 80ms);
+    transition: border-color 0.18s ease, transform 0.18s ease;
+  }
+
+  .hk-who-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .hk-who-ic {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: var(--green-text);
+    background: #EAF8EF;
+  }
+
+  .hk-who-ic :global(svg) {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+
+  .hk-who-card.is-coral .hk-who-ic { color: var(--accent-coral); background: #FCEBE9; }
+  .hk-who-card.is-blue .hk-who-ic { color: #0090c4; background: #E4F4FB; }
+  .hk-who-card.is-yellow .hk-who-ic { color: var(--accent-yellow-line); background: #FBF2DF; }
+
+  .hk-who-card.is-green:hover { border-color: var(--accent-green); }
+  .hk-who-card.is-coral:hover { border-color: var(--accent-coral); }
+  .hk-who-card.is-blue:hover { border-color: var(--accent-blue); }
+  .hk-who-card.is-yellow:hover { border-color: var(--accent-yellow-line); }
+
+  .hk-who-label {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+
+  @keyframes hk-who-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 3-day timeline + a distinct deliverable callout. */
+  .hk-timeline {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .hk-tl-item {
+    position: relative;
+    display: flex;
+    gap: 1.125rem;
+    align-items: flex-start;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent-green);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    opacity: 0;
+    transform: translateX(-8px);
+    animation: hk-tl-in 0.45s ease forwards;
+    animation-delay: calc(var(--ti) * 130ms);
+  }
+
+  .hk-tl-item.is-blue { border-left-color: var(--accent-blue); }
+  .hk-tl-item.is-yellow { border-left-color: var(--accent-yellow-line); }
+  .hk-tl-item.is-coral { border-left-color: var(--accent-coral); }
+
+  .hk-tl-marker {
+    width: 1.875rem;
+    height: 1.875rem;
+    flex: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    background: #F1F3F1;
+  }
+
+  .hk-tl-day {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--green-text);
+  }
+
+  .hk-tl-item.is-blue .hk-tl-day { color: #0090c4; }
+  .hk-tl-item.is-yellow .hk-tl-day { color: var(--accent-yellow-line); }
+  .hk-tl-item.is-coral .hk-tl-day { color: var(--accent-coral); }
+
+  .hk-tl-act {
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    line-height: 1.55;
+    margin: 0.2rem 0 0;
+  }
+
+  @keyframes hk-tl-in {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .hk-deliverable {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: #F1F8F2;
+    border: 1px solid rgba(43, 213, 118, 0.4);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .hk-deliverable-ic {
+    width: 2.25rem;
+    height: 2.25rem;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--green-text);
+  }
+
+  .hk-deliverable-ic :global(svg) {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+
+  .hk-deliverable-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--green-text);
+    margin-bottom: 0.2rem;
+  }
+
+  .hk-deliverable-tx p {
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
   /* Speaker / judge cards */
   .hk-people {
     display: grid;
@@ -885,12 +1289,40 @@ const attLabel = (a?: Person['attendance']) =>
     .hk-city.is-bogota .hk-city-dot {
       animation: none;
     }
+    .hk-step,
+    .hk-who-card,
+    .hk-tl-item {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+    .hk-who-card {
+      transition: none;
+    }
+    .hk-who-card:hover {
+      transform: none;
+    }
+    .hk-orbit,
+    .hk-arcs path,
+    .hk-hub-halo {
+      animation: none;
+    }
   }
 
   @media (max-width: 768px) {
     .hk-tracks,
     .hk-people,
     .hk-regions {
+      grid-template-columns: 1fr;
+    }
+    .hk-globe-wrap {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .hk-globe {
+      max-width: 240px;
+    }
+    .hk-who {
       grid-template-columns: 1fr;
     }
   }

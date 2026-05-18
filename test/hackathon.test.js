@@ -51,6 +51,7 @@ test('prize block carries Apart success stories and a pathway label', () => {
   for (const ex of p.successExamples) {
     assert.ok(ex.es && typeof ex.es === 'string');
     assert.ok(ex.en && typeof ex.en === 'string');
+    assert.match(ex.url, /^https:\/\/apartresearch\.com\//);
   }
 });
 
