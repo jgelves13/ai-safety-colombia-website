@@ -1,0 +1,98 @@
+---
+import type { Locale } from '../i18n/ui';
+import { t } from '../i18n/ui';
+import EventCard from './EventCard.astro';
+import { splitEvents } from '../utils/events.js';
+import eventsData from '../data/events.json';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { upcoming, past } = splitEvents(eventsData);
+const hasAny = upcoming.length + past.length > 0;
+---
+
+<section class="hero-mini">
+  <div class="container">
+    <h1 class="section-title">{t(locale, 'events.hero.title')}</h1>
+    <p class="page-desc">{t(locale, 'events.hero.subtitle')}</p>
+  </div>
+</section>
+
+{upcoming.length > 0 && (
+  <section class="section">
+    <div class="container">
+      <h2 class="section-label">{t(locale, 'events.upcoming')}</h2>
+      <div class="events-list">
+        {upcoming.map(ev => <EventCard event={ev} locale={locale} />)}
+      </div>
+    </div>
+  </section>
+)}
+
+<section class="section">
+  <div class="container">
+    {hasAny ? (
+      <>
+        <h2 class="section-label">{t(locale, 'events.past')}</h2>
+        <div class="events-grid">
+          {past.map(ev => <EventCard event={ev} locale={locale} />)}
+        </div>
+      </>
+    ) : (
+      <p class="events-empty">
+        {t(locale, 'events.empty')}{' '}
+        <a href="https://www.instagram.com/aisafetycolombia/" target="_blank" rel="noopener noreferrer">@aisafetycolombia</a>
+      </p>
+    )}
+  </div>
+</section>
+
+<style>
+  .hero-mini {
+    padding: 9rem 1.5rem 3rem;
+    text-align: center;
+  }
+
+  .page-desc {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--green-text);
+    margin-bottom: 1.25rem;
+  }
+
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .events-empty {
+    color: var(--text-secondary);
+    font-size: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .events-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

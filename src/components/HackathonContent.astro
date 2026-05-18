@@ -1,0 +1,398 @@
+---
+import type { Locale } from '../i18n/ui';
+import data from '../data/hackathon.json';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const es = locale === 'es';
+
+const heroDate = new Date(data.date + 'T00:00:00');
+const now = new Date();
+const daysLeft = Math.max(0, Math.ceil((heroDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)));
+
+const tx = {
+  kicker: es ? 'Apart Research · Sprint del Sur Global' : 'Apart Research · Global South Sprint',
+  h1a: 'Global South',
+  h1b: 'AI Safety Hackathon',
+  sub: es
+    ? 'Un fin de semana para construir herramientas, evaluaciones e investigación de política sobre los riesgos de IA que más importan en la región.'
+    : 'A weekend building tools, evaluations, and policy research on the AI risks that matter most in the region.',
+  hook: es
+    ? 'USD 3.000 en premios · 3 equipos LATAM · 19–21 jun 2026'
+    : 'US$3,000 in prizes · 3 LATAM teams · Jun 19–21 2026',
+  ctaPrimary: es ? 'Regístrate en Apart' : 'Register on Apart',
+  ctaSecondary: es ? 'Ver bases' : 'View details',
+  countdownLabel: es ? 'días restantes' : 'days left',
+  whatTitle: es ? 'Qué es' : 'What it is',
+  whatBody: es ? data.whatIsEs : data.whatIsEn,
+  whyTitle: es ? 'Por qué participar' : 'Why take part',
+  tracksTitle: es ? 'Dos tracks' : 'Two tracks',
+  prizesTitle: es ? 'Premios' : 'Prizes',
+  hubsTitle: es ? 'Hubs de la región' : 'Regional hubs',
+  hubsNote: es ? 'Más hubs en África y Asia.' : 'Additional hubs in Africa and Asia.',
+  whoTitle: es ? 'Quién puede participar' : 'Who can take part',
+  agendaTitle: es ? 'Agenda · 3 días' : 'Agenda · 3 days',
+  submission: es ? data.submissionEs : data.submissionEn,
+  ctaBandTitle: es ? 'Forma tu equipo este junio' : 'Form your team this June',
+  ctaBandSub: es
+    ? 'Inscríbete en la página del sprint de Apart Research.'
+    : 'Sign up on the Apart Research sprint page.',
+};
+---
+
+<section class="hk-hero">
+  <div class="container">
+    <p class="hk-kicker">{tx.kicker}</p>
+    <h1 class="hk-h1">{tx.h1a} <span class="hk-accent">{tx.h1b}</span></h1>
+    <p class="hk-sub">{tx.sub}</p>
+    <p class="hk-hook">{tx.hook}</p>
+    <div class="hk-cta">
+      <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">{tx.ctaPrimary} &rarr;</a>
+      <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">{tx.ctaSecondary}</a>
+      <div class="hk-count">
+        <span class="hk-count-num" data-hackathon-date={data.date}>{daysLeft}</span>
+        <span class="hk-count-label">{tx.countdownLabel}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container hk-narrow">
+    <h2 class="section-title">{tx.whatTitle}</h2>
+    <p class="hk-lead">{tx.whatBody}</p>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <h2 class="section-title">{tx.whyTitle}</h2>
+    <div class="editorial">
+      {data.pipeline.map((step, i) => (
+        <div class={`editorial-row ${['is-green','is-coral','is-blue'][i % 3]}`}>
+          <div class="editorial-num">{`0${i + 1}`}</div>
+          <div class="editorial-bar"></div>
+          <div class="editorial-tx">
+            <h3>{es ? step.stepEs : step.stepEn}</h3>
+            <p>{es ? step.descEs : step.descEn}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">{tx.tracksTitle}</h2>
+    <div class="hk-tracks">
+      {data.tracks.map(track => (
+        <div class={`hk-track ${track.accent}`}>
+          <div class="hk-track-bar"></div>
+          <div>
+            <h3>{es ? track.labelEs : track.labelEn}</h3>
+            <p>{es ? track.descEs : track.descEn}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <h2 class="section-title">{tx.prizesTitle}</h2>
+    <div class="hk-prize">
+      <p class="hk-prize-amount">{es ? data.prizesDetail.amountEs : data.prizesDetail.amountEn}</p>
+      <p class="hk-prize-head">{es ? data.prizesDetail.headlineEs : data.prizesDetail.headlineEn}</p>
+      <p class="hk-prize-total">{es ? data.prizesDetail.totalEs : data.prizesDetail.totalEn}</p>
+      <div class="hk-pills">
+        {data.prizesDetail.perks.map(perk => (
+          <span class="hk-pill">{es ? perk.es : perk.en}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">{tx.hubsTitle}</h2>
+    <div class="hk-hubs">
+      {data.hubs.map(hub => (
+        <span class={hub.bogota ? 'hk-hub is-bogota' : 'hk-hub'}>{hub.city}</span>
+      ))}
+    </div>
+    <p class="hk-note">{tx.hubsNote}</p>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <h2 class="section-title">{tx.whoTitle}</h2>
+    <div class="hk-pills">
+      {data.eligibility.map(e => (
+        <span class="hk-pill">{es ? e.es : e.en}</span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">{tx.agendaTitle}</h2>
+    <div class="editorial">
+      {data.schedule.map((day, i) => (
+        <div class={`editorial-row ${day.accent ?? ['is-green','is-blue','is-yellow'][i % 3]}`}>
+          <div class="editorial-num">{`0${i + 1}`}</div>
+          <div class="editorial-bar"></div>
+          <div class="editorial-tx">
+            <h3>{es ? day.day : day.dayEn}</h3>
+            <p>{es ? day.events[0].title : day.events[0].titleEn}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <p class="hk-note">{tx.submission}</p>
+  </div>
+</section>
+
+<section class="hk-band">
+  <div class="container">
+    <h2 class="hk-band-title">{tx.ctaBandTitle}</h2>
+    <p class="hk-band-sub">{tx.ctaBandSub}</p>
+    <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">{tx.ctaPrimary} &rarr;</a>
+    <p class="hk-band-mail">{data.contactEmail}</p>
+  </div>
+</section>
+
+<style>
+  .hk-hero {
+    padding: 9rem 1.5rem 4rem;
+    background: linear-gradient(180deg, #F1F8F2, #FFFFFF);
+  }
+
+  .hk-kicker {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--green-text);
+  }
+
+  .hk-h1 {
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.03;
+    margin: 0.5rem 0;
+    color: var(--text-primary);
+  }
+
+  .hk-accent {
+    color: var(--accent-green);
+  }
+
+  .hk-sub {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    line-height: 1.55;
+  }
+
+  .hk-hook {
+    margin-top: 1rem;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .hk-cta {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hk-count {
+    display: flex;
+    align-items: baseline;
+    gap: 0.375rem;
+  }
+
+  .hk-count-num {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--green-text);
+  }
+
+  .hk-count-label {
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+  }
+
+  .hk-narrow {
+    max-width: 760px;
+  }
+
+  .hk-lead {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .hk-tracks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .hk-track {
+    display: flex;
+    gap: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    background: #FFFFFF;
+  }
+
+  .hk-track-bar {
+    width: 5px;
+    flex: none;
+    border-radius: 4px;
+  }
+
+  .hk-track.is-green .hk-track-bar { background: var(--accent-green); }
+  .hk-track.is-coral .hk-track-bar { background: var(--accent-coral); }
+
+  .hk-track h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .hk-track p {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .hk-prize {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    background: #FFFFFF;
+  }
+
+  .hk-prize-amount {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--green-text);
+  }
+
+  .hk-prize-head {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 0.25rem;
+  }
+
+  .hk-prize-total {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+  }
+
+  .hk-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .hk-pill {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.375rem 0.875rem;
+    color: var(--text-primary);
+  }
+
+  .hk-hubs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .hk-hub {
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    color: var(--text-secondary);
+  }
+
+  .hk-hub.is-bogota {
+    background: var(--accent-green);
+    color: #101010;
+    border-color: var(--accent-green);
+  }
+
+  .hk-note {
+    margin-top: 1.25rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+
+  .hk-band {
+    background: var(--dark-bg);
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+
+  .hk-band-title {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #FFFFFF;
+  }
+
+  .hk-band-sub {
+    color: var(--dark-muted);
+    font-size: 0.9375rem;
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  .hk-band-mail {
+    color: var(--dark-muted);
+    font-size: 0.8125rem;
+    margin-top: 1.25rem;
+  }
+
+  @media (max-width: 768px) {
+    .hk-tracks {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  function updateHkCountdown() {
+    const el = document.querySelector('[data-hackathon-date]');
+    if (!el) return;
+    const target = new Date(el.getAttribute('data-hackathon-date') + 'T00:00:00');
+    const now = new Date();
+    const days = Math.max(0, Math.ceil((target.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)));
+    el.textContent = String(days);
+  }
+  updateHkCountdown();
+</script>

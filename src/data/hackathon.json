@@ -1,34 +1,69 @@
 {
   "date": "2026-06-19",
   "endDate": "2026-06-21",
-  "location": "Bogota, Colombia",
-  "organizer": "Apart Research + AI Safety Colombia",
-  "registrationUrl": "https://apartresearch.com",
+  "location": "Online + hub Bogotá",
+  "organizer": "Apart Research",
+  "hubOrganizer": "AI Safety Colombia",
+  "registrationUrl": "https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21",
+  "contactEmail": "sprints@apartresearch.com",
+  "support": "Schmidt Sciences",
+  "whatIsEs": "Apart Research lleva la seguridad de IA al Sur Global. Investigadores, ingenieros y profesionales de política de América Latina, África y Asia abordan riesgos de IA relevantes para sus regiones durante un fin de semana. AI Safety Colombia organiza el hub de Bogotá.",
+  "whatIsEn": "Apart Research brings AI safety to the Global South. Researchers, engineers, and policy professionals from Latin America, Africa, and Asia tackle AI risks relevant to their regions over a weekend. AI Safety Colombia runs the Bogotá hub.",
+  "submissionEs": "Cada equipo entrega un reporte de investigación en PDF que documenta enfoque, resultados e implicaciones.",
+  "submissionEn": "Each team submits a research report (PDF) documenting approach, results, and implications.",
+  "pipeline": [
+    { "stepEs": "Hackathon", "stepEn": "Hackathon", "descEs": "Un fin de semana construyendo evaluaciones, herramientas o investigación de política.", "descEn": "A weekend building evaluations, tools, or policy research." },
+    { "stepEs": "Apart Fellowship", "stepEn": "Apart Fellowship", "descEs": "Los mejores equipos son invitados al Apart Fellowship para profundizar su trabajo.", "descEn": "Top teams are invited to the Apart Fellowship to deepen their work." },
+    { "stepEs": "Investigación y colocación", "stepEn": "Research & placement", "descEs": "Mentoría y revisión de expertos hacia investigación publicable y oportunidades.", "descEn": "Expert mentoring and review toward publishable research and opportunities." }
+  ],
+  "tracks": [
+    { "labelEs": "Technical AI Safety", "labelEn": "Technical AI Safety", "descEs": "Evaluaciones, interpretabilidad, robustez y herramientas de seguridad aplicadas a modelos.", "descEn": "Evaluations, interpretability, robustness, and safety tooling applied to models.", "accent": "is-green" },
+    { "labelEs": "AI Governance & Policy", "labelEn": "AI Governance & Policy", "descEs": "Mecanismos de gobernanza, evaluación de riesgos regionales y herramientas de política.", "descEn": "Governance mechanisms, regional risk assessment, and policy tooling.", "accent": "is-coral" }
+  ],
+  "eligibility": [
+    { "es": "Investigadores e ingenieros de IA", "en": "AI researchers and engineers" },
+    { "es": "Investigadores de ML", "en": "ML researchers" },
+    { "es": "Investigadores de política y gobernanza", "en": "Policy and governance researchers" },
+    { "es": "Ingenieros de software", "en": "Software engineers" },
+    { "es": "Red teamers y seguridad", "en": "Red teamers and security researchers" },
+    { "es": "Estudiantes y early-career", "en": "Students and early-career" }
+  ],
+  "hubs": [
+    { "city": "São Paulo", "bogota": false },
+    { "city": "Buenos Aires", "bogota": false },
+    { "city": "Bogotá", "bogota": true },
+    { "city": "Mérida", "bogota": false }
+  ],
+  "prizesDetail": {
+    "amountEs": "USD 1.000 por equipo",
+    "amountEn": "US$1,000 per team",
+    "headlineEs": "3 equipos ganadores en América Latina",
+    "headlineEn": "3 winning teams in Latin America",
+    "totalEs": "USD 3.000 en premios para LATAM",
+    "totalEn": "US$3,000 in prizes for LATAM",
+    "perks": [
+      { "es": "Invitación al Apart Fellowship", "en": "Apart Fellowship invitation" },
+      { "es": "Mentoría y revisión de expertos", "en": "Expert mentoring and review" },
+      { "es": "Apoyo: Schmidt Sciences", "en": "Supported by Schmidt Sciences" }
+    ]
+  },
   "schedule": [
-    { "day": "Viernes 19", "dayEn": "Friday 19", "events": [
-      { "time": "09:00", "title": "Apertura y bienvenida", "titleEn": "Opening and welcome" },
-      { "time": "10:00", "title": "Charla: Panorama de AI Safety", "titleEn": "Talk: AI Safety Landscape" },
-      { "time": "11:00", "title": "Formacion de equipos", "titleEn": "Team formation" },
-      { "time": "12:00", "title": "Inicio del hackathon", "titleEn": "Hackathon begins" }
+    { "day": "Viernes 19", "dayEn": "Friday 19", "accent": "is-green", "events": [
+      { "time": "—", "title": "Apertura y formación de equipos", "titleEn": "Opening and team formation" }
     ]},
-    { "day": "Sabado 20", "dayEn": "Saturday 20", "events": [
-      { "time": "09:00", "title": "Check-in y mentoria", "titleEn": "Check-in and mentoring" },
-      { "time": "14:00", "title": "Workshop tecnico", "titleEn": "Technical workshop" },
-      { "time": "18:00", "title": "Revision de progreso", "titleEn": "Progress review" }
+    { "day": "Sábado 20", "dayEn": "Saturday 20", "accent": "is-blue", "events": [
+      { "time": "—", "title": "Construcción con mentoría", "titleEn": "Building with mentoring" }
     ]},
-    { "day": "Domingo 21", "dayEn": "Sunday 21", "events": [
-      { "time": "09:00", "title": "Sprint final", "titleEn": "Final sprint" },
-      { "time": "14:00", "title": "Presentaciones", "titleEn": "Presentations" },
-      { "time": "16:00", "title": "Evaluacion y premios", "titleEn": "Judging and awards" },
-      { "time": "17:00", "title": "Cierre y networking", "titleEn": "Closing and networking" }
+    { "day": "Domingo 21", "dayEn": "Sunday 21", "accent": "is-yellow", "events": [
+      { "time": "—", "title": "Entrega del reporte (PDF) y revisión", "titleEn": "Report submission (PDF) and review" }
     ]}
   ],
   "speakers": [
-    { "name": "Juan Pablo Toro Ramirez", "role": "Speaker", "org": "Colombia" }
+    { "name": "Juan Pablo Toro Ramírez", "role": "Speaker", "org": "Colombia" }
   ],
   "judges": [],
   "prizes": {
-    "regional": "$1,000 USD per team (3 LATAM winners)",
+    "regional": "US$1,000 per team (3 LATAM winners)",
     "regionalEs": "USD 1.000 por equipo (3 ganadores LATAM)"
   }
 }
