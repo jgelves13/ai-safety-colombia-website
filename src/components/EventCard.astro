@@ -1,27 +1,11 @@
 ---
-import type { Locale } from '../i18n/ui';
-import { t } from '../i18n/ui';
-
-interface EventItem {
-  slug: string;
-  type: string;
-  date: string;
-  time?: string;
-  titleEs: string;
-  titleEn: string;
-  descEs: string;
-  descEn: string;
-  venueEs: string;
-  venueEn: string;
-  whyEs: string;
-  whyEn: string;
-  flyer: string;
-  instagramUrl: string;
-  featured?: boolean;
-}
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { t, type Locale } from '../i18n/ui';
+import type { AisEvent } from '../types';
 
 interface Props {
-  event: EventItem;
+  event: AisEvent;
   locale: Locale;
 }
 
@@ -29,17 +13,25 @@ const { event, locale } = Astro.props;
 
 // AA-safe tag colors, mirroring the approved Style 2 mockup (green #15803D,
 // coral #FF5645, darkened blue #0090c4, ink #101010, yellow-line #B07A00).
-const TYPE_MAP: Record<string, { es: string; en: string; color: string }> = {
-  charla:        { es: 'Charla',        en: 'Talk',         color: '#15803D' },
-  panel:         { es: 'Panel',         en: 'Panel',        color: '#FF5645' },
-  conversatorio: { es: 'Conversatorio', en: 'Conversation', color: '#0090c4' },
-  cena:          { es: 'Cena',          en: 'Dinner',       color: '#101010' },
-  taller:        { es: 'Taller',        en: 'Workshop',     color: '#15803D' },
-  curso:         { es: 'Curso',         en: 'Course',       color: '#B07A00' },
+// Labels live in src/i18n/ui.ts (events.type.*); color is not localized.
+const TYPE_COLOR: Record<string, string> = {
+  charla: '#15803D',
+  panel: '#FF5645',
+  conversatorio: '#0090c4',
+  cena: '#101010',
+  taller: '#15803D',
+  curso: '#B07A00',
 };
 
-const meta = TYPE_MAP[event.type] ?? { es: event.type, en: event.type, color: '#101010' };
-const tagLabel = locale === 'es' ? meta.es : meta.en;
+const flyers = import.meta.glob<ImageMetadata>('../assets/events/*', {
+  eager: true,
+  import: 'default',
+});
+const flyer = flyers[`../assets/events/${event.flyer}`];
+
+const color = TYPE_COLOR[event.type] ?? '#101010';
+const tagLabel =
+  t(locale, `events.type.${event.type}` as Parameters<typeof t>[1]) || event.type;
 const title = locale === 'es' ? event.titleEs : event.titleEn;
 const desc = locale === 'es' ? event.descEs : event.descEn;
 const venue = locale === 'es' ? event.venueEs : event.venueEn;
@@ -48,18 +40,30 @@ const why = locale === 'es' ? event.whyEs : event.whyEn;
 const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-CO' : 'en-US', {
   day: 'numeric', month: 'short', year: 'numeric',
 });
-const dateLabel = dateFmt.format(new Date(event.date + 'T00:00:00'));
-const metaParts = [dateLabel, event.time, venue].filter(Boolean);
+const dateLabel = dateFmt.format(new Date(event.date + 'T00:00:00-05:00'));
+const metaTail = [event.time, venue].filter(Boolean).join(' · ');
+const alt = `${title}. ${tagLabel}, ${dateLabel}.`;
 ---
 
-<article class="event-card">
+<article class="event-card" data-event-type={event.type}>
   <a class="event-flyer" href={event.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label={title}>
-    <img src={`/events/${event.flyer}`} alt={`${title} — flyer`} loading="lazy" />
+    {flyer && (
+      <Image
+        src={flyer}
+        alt={alt}
+        widths={[192, 384, 768]}
+        sizes="(max-width: 768px) 90vw, 96px"
+        format="webp"
+        loading="lazy"
+      />
+    )}
   </a>
   <div class="event-body">
-    <span class="event-tag" style={`color:${meta.color}`}>{tagLabel}</span>
+    <span class="event-tag" style={`color:${color}`}>{tagLabel}</span>
     <h3 class="event-title">{title}</h3>
-    <p class="event-meta">{metaParts.join(' · ')}</p>
+    <p class="event-meta">
+      <time datetime={event.date}>{dateLabel}</time>{metaTail && <span> · {metaTail}</span>}
+    </p>
     <p class="event-desc">{desc}</p>
     <p class="event-why">{why}</p>
     <a class="event-link" href={event.instagramUrl} target="_blank" rel="noopener noreferrer">
@@ -76,6 +80,13 @@ const metaParts = [dateLabel, event.time, venue].filter(Boolean);
     border-radius: 16px;
     padding: 1.25rem;
     background: #FFFFFF;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+
+  .event-card:hover {
+    border-color: var(--accent-green);
+    box-shadow: 0 6px 24px rgba(16, 16, 16, 0.06);
+    transform: translateY(-2px);
   }
 
   .event-flyer {
@@ -87,7 +98,7 @@ const metaParts = [dateLabel, event.time, venue].filter(Boolean);
     display: block;
   }
 
-  .event-flyer img {
+  .event-flyer :global(img) {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -148,7 +159,16 @@ const metaParts = [dateLabel, event.time, venue].filter(Boolean);
     }
     .event-flyer {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 3 / 4;
+      max-height: 420px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .event-card,
+    .event-card:hover {
+      transition: none;
+      transform: none;
     }
   }
 </style>

@@ -1,7 +1,5 @@
 /**
- * @typedef {Object} AisEvent
- * @property {string} slug
- * @property {string} date  ISO date string, YYYY-MM-DD
+ * @typedef {import('../types').AisEvent} AisEvent
  */
 
 /**

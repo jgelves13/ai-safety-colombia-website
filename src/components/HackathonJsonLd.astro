@@ -1,0 +1,53 @@
+---
+import type { Locale } from '../i18n/ui';
+import data from '../data/hackathon.json';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const es = locale === 'es';
+const site = Astro.site ?? new URL('https://aisafetycolombia.org/');
+
+const event = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: 'Global South AI Safety Hackathon',
+  description: es ? data.whatIsEs : data.whatIsEn,
+  startDate: `${data.date}T00:00:00-05:00`,
+  endDate: `${data.endDate}T23:59:59-05:00`,
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/MixedEventAttendanceMode',
+  location: [
+    {
+      '@type': 'Place',
+      name: 'Hub Bogotá — AI Safety Colombia',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Bogotá',
+        addressCountry: 'CO',
+      },
+    },
+    { '@type': 'VirtualLocation', url: data.registrationUrl },
+  ],
+  organizer: {
+    '@type': 'Organization',
+    name: data.organizer,
+    url: 'https://apartresearch.com',
+  },
+  url: data.registrationUrl,
+  image: new URL('og-image.png', site).href,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    url: data.registrationUrl,
+    availability: 'https://schema.org/InStock',
+  },
+};
+
+const json = JSON.stringify(event).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" is:inline set:html={json} />

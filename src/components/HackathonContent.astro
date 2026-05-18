@@ -1,6 +1,8 @@
 ---
 import type { Locale } from '../i18n/ui';
+import { t } from '../i18n/ui';
 import data from '../data/hackathon.json';
+import { daysUntil } from '../utils/countdown.js';
 
 interface Props {
   locale: Locale;
@@ -9,52 +11,24 @@ interface Props {
 const { locale } = Astro.props;
 const es = locale === 'es';
 
-const heroDate = new Date(data.date + 'T00:00:00');
-const now = new Date();
-const daysLeft = Math.max(0, Math.ceil((heroDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)));
-
-const tx = {
-  kicker: es ? 'Apart Research · Sprint del Sur Global' : 'Apart Research · Global South Sprint',
-  h1a: 'Global South',
-  h1b: 'AI Safety Hackathon',
-  sub: es
-    ? 'Un fin de semana para construir herramientas, evaluaciones e investigación de política sobre los riesgos de IA que más importan en la región.'
-    : 'A weekend building tools, evaluations, and policy research on the AI risks that matter most in the region.',
-  hook: es
-    ? 'USD 3.000 en premios · 3 equipos LATAM · 19–21 jun 2026'
-    : 'US$3,000 in prizes · 3 LATAM teams · Jun 19–21 2026',
-  ctaPrimary: es ? 'Regístrate en Apart' : 'Register on Apart',
-  ctaSecondary: es ? 'Ver bases' : 'View details',
-  countdownLabel: es ? 'días restantes' : 'days left',
-  whatTitle: es ? 'Qué es' : 'What it is',
-  whatBody: es ? data.whatIsEs : data.whatIsEn,
-  whyTitle: es ? 'Por qué participar' : 'Why take part',
-  tracksTitle: es ? 'Dos tracks' : 'Two tracks',
-  prizesTitle: es ? 'Premios' : 'Prizes',
-  hubsTitle: es ? 'Hubs de la región' : 'Regional hubs',
-  hubsNote: es ? 'Más hubs en África y Asia.' : 'Additional hubs in Africa and Asia.',
-  whoTitle: es ? 'Quién puede participar' : 'Who can take part',
-  agendaTitle: es ? 'Agenda · 3 días' : 'Agenda · 3 days',
-  submission: es ? data.submissionEs : data.submissionEn,
-  ctaBandTitle: es ? 'Forma tu equipo este junio' : 'Form your team this June',
-  ctaBandSub: es
-    ? 'Inscríbete en la página del sprint de Apart Research.'
-    : 'Sign up on the Apart Research sprint page.',
-};
+const daysLeft = daysUntil(data.date);
+const whatBody = es ? data.whatIsEs : data.whatIsEn;
+const submission = es ? data.submissionEs : data.submissionEn;
+const judges = data.judges as { name: string; affiliationEs?: string; affiliationEn?: string }[];
 ---
 
 <section class="hk-hero">
   <div class="container">
-    <p class="hk-kicker">{tx.kicker}</p>
-    <h1 class="hk-h1">{tx.h1a} <span class="hk-accent">{tx.h1b}</span></h1>
-    <p class="hk-sub">{tx.sub}</p>
-    <p class="hk-hook">{tx.hook}</p>
+    <p class="hk-kicker">{t(locale, 'hackathon.kicker')}</p>
+    <h1 class="hk-h1">{t(locale, 'hackathon.h1a')} <span class="hk-accent">{t(locale, 'hackathon.h1b')}</span></h1>
+    <p class="hk-sub">{t(locale, 'hackathon.sub')}</p>
+    <p class="hk-hook">{t(locale, 'hackathon.hook')}</p>
     <div class="hk-cta">
-      <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">{tx.ctaPrimary} &rarr;</a>
-      <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">{tx.ctaSecondary}</a>
+      <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">{t(locale, 'hackathon.ctaPrimary')} &rarr;</a>
+      <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">{t(locale, 'hackathon.ctaSecondary')}</a>
       <div class="hk-count">
-        <span class="hk-count-num" data-hackathon-date={data.date}>{daysLeft}</span>
-        <span class="hk-count-label">{tx.countdownLabel}</span>
+        <span class="hk-count-num" data-hackathon-date={data.date} aria-live="polite">{daysLeft}</span>
+        <span class="hk-count-label">{t(locale, 'hackathon.countdownLabel')}</span>
       </div>
     </div>
   </div>
@@ -62,14 +36,14 @@ const tx = {
 
 <section class="section">
   <div class="container hk-narrow">
-    <h2 class="section-title">{tx.whatTitle}</h2>
-    <p class="hk-lead">{tx.whatBody}</p>
+    <h2 class="section-title">{t(locale, 'hackathon.whatTitle')}</h2>
+    <p class="hk-lead">{whatBody}</p>
   </div>
 </section>
 
 <section class="section alt">
   <div class="container">
-    <h2 class="section-title">{tx.whyTitle}</h2>
+    <h2 class="section-title">{t(locale, 'hackathon.whyTitle')}</h2>
     <div class="editorial">
       {data.pipeline.map((step, i) => (
         <div class={`editorial-row ${['is-green','is-coral','is-blue'][i % 3]}`}>
@@ -87,7 +61,7 @@ const tx = {
 
 <section class="section">
   <div class="container">
-    <h2 class="section-title">{tx.tracksTitle}</h2>
+    <h2 class="section-title">{t(locale, 'hackathon.tracksTitle')}</h2>
     <div class="hk-tracks">
       {data.tracks.map(track => (
         <div class={`hk-track ${track.accent}`}>
@@ -104,7 +78,7 @@ const tx = {
 
 <section class="section alt">
   <div class="container">
-    <h2 class="section-title">{tx.prizesTitle}</h2>
+    <h2 class="section-title">{t(locale, 'hackathon.prizesTitle')}</h2>
     <div class="hk-prize">
       <p class="hk-prize-amount">{es ? data.prizesDetail.amountEs : data.prizesDetail.amountEn}</p>
       <p class="hk-prize-head">{es ? data.prizesDetail.headlineEs : data.prizesDetail.headlineEn}</p>
@@ -120,19 +94,19 @@ const tx = {
 
 <section class="section">
   <div class="container">
-    <h2 class="section-title">{tx.hubsTitle}</h2>
+    <h2 class="section-title">{t(locale, 'hackathon.hubsTitle')}</h2>
     <div class="hk-hubs">
       {data.hubs.map(hub => (
         <span class={hub.bogota ? 'hk-hub is-bogota' : 'hk-hub'}>{hub.city}</span>
       ))}
     </div>
-    <p class="hk-note">{tx.hubsNote}</p>
+    <p class="hk-note">{t(locale, 'hackathon.hubsNote')}</p>
   </div>
 </section>
 
 <section class="section alt">
   <div class="container">
-    <h2 class="section-title">{tx.whoTitle}</h2>
+    <h2 class="section-title">{t(locale, 'hackathon.whoTitle')}</h2>
     <div class="hk-pills">
       {data.eligibility.map(e => (
         <span class="hk-pill">{es ? e.es : e.en}</span>
@@ -143,7 +117,7 @@ const tx = {
 
 <section class="section">
   <div class="container">
-    <h2 class="section-title">{tx.agendaTitle}</h2>
+    <h2 class="section-title">{t(locale, 'hackathon.agendaTitle')}</h2>
     <div class="editorial">
       {data.schedule.map((day, i) => (
         <div class={`editorial-row ${day.accent ?? ['is-green','is-blue','is-yellow'][i % 3]}`}>
@@ -156,15 +130,30 @@ const tx = {
         </div>
       ))}
     </div>
-    <p class="hk-note">{tx.submission}</p>
+    <p class="hk-note">{submission}</p>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <h2 class="section-title">{t(locale, 'hackathon.judgesTitle')}</h2>
+    {judges.length > 0 ? (
+      <div class="hk-pills">
+        {judges.map(j => (
+          <span class="hk-pill">{j.name}{(es ? j.affiliationEs : j.affiliationEn) ? ` · ${es ? j.affiliationEs : j.affiliationEn}` : ''}</span>
+        ))}
+      </div>
+    ) : (
+      <p class="hk-note">{t(locale, 'hackathon.judgesTba')}</p>
+    )}
   </div>
 </section>
 
 <section class="hk-band">
   <div class="container">
-    <h2 class="hk-band-title">{tx.ctaBandTitle}</h2>
-    <p class="hk-band-sub">{tx.ctaBandSub}</p>
-    <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">{tx.ctaPrimary} &rarr;</a>
+    <h2 class="hk-band-title">{t(locale, 'hackathon.ctaBandTitle')}</h2>
+    <p class="hk-band-sub">{t(locale, 'hackathon.ctaBandSub')}</p>
+    <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">{t(locale, 'hackathon.ctaPrimary')} &rarr;</a>
     <p class="hk-band-mail">{data.contactEmail}</p>
   </div>
 </section>
@@ -386,13 +375,10 @@ const tx = {
 </style>
 
 <script>
-  function updateHkCountdown() {
-    const el = document.querySelector('[data-hackathon-date]');
-    if (!el) return;
-    const target = new Date(el.getAttribute('data-hackathon-date') + 'T00:00:00');
-    const now = new Date();
-    const days = Math.max(0, Math.ceil((target.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)));
-    el.textContent = String(days);
+  import { daysUntil } from '../utils/countdown.js';
+  const el = document.querySelector('[data-hackathon-date]');
+  const date = el && el.getAttribute('data-hackathon-date');
+  if (el && date) {
+    el.textContent = String(daysUntil(date));
   }
-  updateHkCountdown();
 </script>
