@@ -8,8 +8,10 @@
     "sourceEn": "Robert Miles",
     "descEs": "Un recorrido claro y visual por qué dirigir sistemas de IA avanzados es difícil, sin requisitos técnicos.",
     "descEn": "A clear, visual tour of why steering advanced AI systems is hard, with no technical prerequisites.",
-    "metaEs": "Video · cerca de 30 min · en inglés",
-    "metaEn": "Video · about 30 min · in English",
+    "durationEs": "Cerca de 30 min",
+    "durationEn": "About 30 min",
+    "metaEs": "En inglés",
+    "metaEn": "In English",
     "url": "https://www.youtube.com/watch?v=pYXy-A4siMw"
   },
   {
@@ -21,8 +23,10 @@
     "sourceEn": "BlueDot Impact",
     "descEs": "Un curso introductorio gratuito sobre hacia dónde va la IA y por qué su seguridad importa.",
     "descEn": "A free introductory course on where AI is heading and why its safety matters.",
-    "metaEs": "Curso · gratuito · en inglés",
-    "metaEn": "Course · free · in English",
+    "durationEs": "Cerca de 2 horas · gratis",
+    "durationEn": "About 2 hours · free",
+    "metaEs": "En inglés",
+    "metaEn": "In English",
     "url": "https://bluedot.org/courses/future-of-ai"
   },
   {
@@ -34,8 +38,10 @@
     "sourceEn": "80,000 Hours",
     "descEs": "Un perfil de problema riguroso sobre los riesgos de la IA avanzada y qué se puede hacer al respecto.",
     "descEn": "A rigorous problem profile on the risks from advanced AI and what can be done about it.",
-    "metaEs": "Lectura larga · en inglés",
-    "metaEn": "Long read · in English",
+    "durationEs": "Lectura larga",
+    "durationEn": "Long read",
+    "metaEs": "En inglés",
+    "metaEn": "In English",
     "url": "https://80000hours.org/problem-profiles/artificial-intelligence/"
   }
 ]

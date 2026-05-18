@@ -12,6 +12,8 @@ test('learn items have complete bilingual fields and a https URL', () => {
       'sourceEn',
       'descEs',
       'descEn',
+      'durationEs',
+      'durationEn',
       'metaEs',
       'metaEn',
       'url',
@@ -33,7 +35,7 @@ test('learn covers one video, one course, and one read', () => {
 
 test('no em dash in learn prose (house style)', () => {
   for (const i of data) {
-    for (const k of ['descEs', 'descEn', 'metaEs', 'metaEn']) {
+    for (const k of ['descEs', 'descEn', 'durationEs', 'durationEn', 'metaEs', 'metaEn']) {
       assert.ok(!i[k].includes('—'), `${i.kind}.${k} has no em dash`);
     }
   }

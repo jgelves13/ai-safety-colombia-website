@@ -12,14 +12,25 @@ const es = locale === 'es';
 
 type Key = Parameters<typeof t>[1];
 
+const thumbs: Record<string, string> = {
+  video:
+    '<rect x="96" y="44" width="128" height="92" rx="14" fill="none" stroke="currentColor" stroke-width="5"/><path d="M146 70 146 110 182 90 Z" fill="currentColor"/><circle cx="70" cy="60" r="7" fill="currentColor" opacity="0.55"/><circle cx="250" cy="124" r="10" fill="currentColor" opacity="0.4"/><path d="M236 58h28M250 44v28" stroke="currentColor" stroke-width="5" stroke-linecap="round" opacity="0.55"/>',
+  course:
+    '<path d="M160 48 222 78 160 108 98 78Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M132 92v22c0 9 56 9 56 0V92" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M222 78v26" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><rect x="104" y="130" width="112" height="9" rx="4.5" fill="currentColor" opacity="0.28"/><rect x="104" y="130" width="68" height="9" rx="4.5" fill="currentColor"/>',
+  read:
+    '<path d="M114 40h66l28 28v72a8 8 0 0 1-8 8h-86a8 8 0 0 1-8-8V48a8 8 0 0 1 8-8Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M180 40v28h28" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><rect x="128" y="86" width="64" height="8" rx="4" fill="currentColor"/><rect x="128" y="104" width="58" height="7" rx="3.5" fill="currentColor" opacity="0.45"/><rect x="128" y="120" width="44" height="7" rx="3.5" fill="currentColor" opacity="0.45"/>',
+};
+
 const items = learnData.map((i) => ({
   kind: i.kind,
   accent: i.accent,
   title: es ? i.titleEs : i.titleEn,
   source: es ? i.sourceEs : i.sourceEn,
   desc: es ? i.descEs : i.descEn,
+  duration: es ? i.durationEs : i.durationEn,
   meta: es ? i.metaEs : i.metaEn,
   url: i.url,
+  thumb: thumbs[i.kind],
   kindLabel: t(locale, `learn.kind.${i.kind}` as Key),
   cta: t(locale, `learn.cta.${i.kind}` as Key),
 }));
@@ -33,15 +44,21 @@ const items = learnData.map((i) => ({
     <div class="learn-grid">
       {items.map((i) => (
         <article class:list={['learn-card', i.accent]}>
-          <span class="learn-kind">{i.kindLabel}</span>
-          <h3>{i.title}</h3>
-          <p class="learn-source">{i.source}</p>
-          <p class="learn-desc">{i.desc}</p>
-          <p class="learn-meta">{i.meta}</p>
-          <a href={i.url} target="_blank" rel="noopener noreferrer" class="learn-link">
-            {i.cta}
-            <span aria-hidden="true">&rarr;</span>
-          </a>
+          <div class="learn-thumb" aria-hidden="true">
+            <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid meet" set:html={i.thumb} />
+            <span class="learn-duration">{i.duration}</span>
+          </div>
+          <div class="learn-body">
+            <span class="learn-kind">{i.kindLabel}</span>
+            <h3>{i.title}</h3>
+            <p class="learn-source">{i.source}</p>
+            <p class="learn-desc">{i.desc}</p>
+            <p class="learn-meta">{i.meta}</p>
+            <a href={i.url} target="_blank" rel="noopener noreferrer" class="learn-link">
+              {i.cta}
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
         </article>
       ))}
     </div>
@@ -63,15 +80,52 @@ const items = learnData.map((i) => ({
     background: #FFFFFF;
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 1.75rem;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    border-top: 4px solid var(--border);
   }
 
-  .is-coral.learn-card { border-top-color: var(--accent-coral); }
-  .is-blue.learn-card  { border-top-color: var(--accent-blue); }
-  .is-green.learn-card { border-top-color: var(--accent-green); }
+  .learn-thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .learn-thumb svg {
+    width: 62%;
+    height: 62%;
+  }
+
+  .is-coral .learn-thumb { background: rgba(255, 86, 69, 0.10); color: var(--accent-coral); }
+  .is-blue  .learn-thumb { background: rgba(0, 187, 255, 0.11); color: #0090C4; }
+  .is-green .learn-thumb { background: rgba(43, 213, 118, 0.12); color: #15803D; }
+
+  .learn-duration {
+    position: absolute;
+    left: 0.875rem;
+    bottom: 0.875rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1;
+    padding: 0.4375rem 0.6875rem;
+    border-radius: 999px;
+    color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(16, 16, 16, 0.18);
+  }
+
+  .is-coral .learn-duration { background: var(--accent-coral); }
+  .is-blue  .learn-duration { background: #0090C4; }
+  .is-green .learn-duration { background: #15803D; }
+
+  .learn-body {
+    padding: 1.5rem 1.75rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
 
   .learn-kind {
     font-size: 0.6875rem;
@@ -79,7 +133,7 @@ const items = learnData.map((i) => ({
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--text-secondary);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.625rem;
   }
 
   .learn-card h3 {
