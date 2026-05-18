@@ -1,15 +1,15 @@
 ---
 import type { Locale } from '../i18n/ui';
 import { t } from '../i18n/ui';
+import data from '../data/hackathon.json';
+import { daysUntil } from '../utils/countdown.js';
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
-const hackathonDate = new Date('2026-06-19T00:00:00');
-const now = new Date();
-const daysLeft = Math.max(0, Math.ceil((hackathonDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)));
+const daysLeft = daysUntil(data.date);
 ---
 
 <section class="hackathon-banner">
@@ -24,7 +24,7 @@ const daysLeft = Math.max(0, Math.ceil((hackathonDate.getTime() - now.getTime())
             {t(locale, 'hackathon.banner.cta')} &rarr;
           </a>
           <div class="countdown">
-            <span class="countdown-number" data-hackathon-date="2026-06-19">{daysLeft}</span>
+            <span class="countdown-number" data-hackathon-date={data.date} aria-live="polite">{daysLeft}</span>
             <span class="countdown-label">{t(locale, 'hackathon.banner.countdown')}</span>
           </div>
         </div>
@@ -104,13 +104,10 @@ const daysLeft = Math.max(0, Math.ceil((hackathonDate.getTime() - now.getTime())
 </style>
 
 <script>
-  function updateCountdown() {
-    const el = document.querySelector('[data-hackathon-date]');
-    if (!el) return;
-    const target = new Date(el.getAttribute('data-hackathon-date') + 'T00:00:00');
-    const now = new Date();
-    const days = Math.max(0, Math.ceil((target.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)));
-    el.textContent = String(days);
+  import { daysUntil } from '../utils/countdown.js';
+  const el = document.querySelector('[data-hackathon-date]');
+  const date = el && el.getAttribute('data-hackathon-date');
+  if (el && date) {
+    el.textContent = String(daysUntil(date));
   }
-  updateCountdown();
 </script>

@@ -1,10 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EventsPage from '../components/EventsPage.astro';
+import EventJsonLd from '../components/EventJsonLd.astro';
+import eventsData from '../data/events.json';
+import type { AisEvent } from '../types';
 
 const locale = 'es';
+const events = eventsData as AisEvent[];
 ---
 
 <BaseLayout locale={locale} currentPage="events" title="Eventos | AI Safety Colombia" description="Charlas, paneles y talleres de seguridad de IA organizados por AI Safety Colombia.">
+  <EventJsonLd slot="head" events={events} locale={locale} />
   <EventsPage locale={locale} />
 </BaseLayout>

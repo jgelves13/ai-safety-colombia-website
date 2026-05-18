@@ -1,0 +1,59 @@
+---
+import type { ImageMetadata } from 'astro';
+import type { Locale } from '../i18n/ui';
+import type { AisEvent } from '../types';
+
+interface Props {
+  events: AisEvent[];
+  locale: Locale;
+}
+
+const { events, locale } = Astro.props;
+const es = locale === 'es';
+const site = Astro.site ?? new URL('https://aisafetycolombia.org/');
+
+const flyers = import.meta.glob<ImageMetadata>('../assets/events/*', {
+  eager: true,
+  import: 'default',
+});
+
+const organizer = {
+  '@type': 'Organization',
+  name: 'AI Safety Colombia',
+  url: 'https://aisafetycolombia.org',
+};
+
+const itemList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: es ? 'Eventos de AI Safety Colombia' : 'AI Safety Colombia events',
+  itemListElement: events.map((event, i) => {
+    const venue = es ? event.venueEs : event.venueEn;
+    const online = venue === 'En línea' || venue === 'Online';
+    const flyer = flyers[`../assets/events/${event.flyer}`];
+    const item: Record<string, unknown> = {
+      '@type': 'Event',
+      name: es ? event.titleEs : event.titleEn,
+      description: es ? event.descEs : event.descEn,
+      startDate: event.time
+        ? `${event.date}T${event.time}:00-05:00`
+        : event.date,
+      eventStatus: 'https://schema.org/EventScheduled',
+      eventAttendanceMode: online
+        ? 'https://schema.org/OnlineEventAttendanceMode'
+        : 'https://schema.org/OfflineEventAttendanceMode',
+      location: online
+        ? { '@type': 'VirtualLocation', url: event.instagramUrl }
+        : { '@type': 'Place', name: venue, address: venue },
+      organizer,
+      url: event.instagramUrl,
+    };
+    if (flyer) item.image = new URL(flyer.src, site).href;
+    return { '@type': 'ListItem', position: i + 1, item };
+  }),
+};
+
+const json = JSON.stringify(itemList).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" is:inline set:html={json} />
