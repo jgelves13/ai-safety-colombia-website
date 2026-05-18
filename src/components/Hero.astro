@@ -24,9 +24,10 @@ const restWords = titleWords.slice(2).join(' ');
           {t(locale, 'hero.cta-primary')} &rarr;
         </a>
         <a href={localePath(locale, '/recursos/')} class="btn btn-secondary">
-          {t(locale, 'hero.cta-secondary')} &rarr;
+          {t(locale, 'hero.cta-secondary')}
         </a>
       </div>
+      <p class="hero-credibility">{t(locale, 'hero.credibility')}</p>
     </div>
   </div>
 </section>
@@ -80,6 +81,12 @@ const restWords = titleWords.slice(2).join(' ');
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  .hero-credibility {
+    margin-top: 1.25rem;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
   }
 
   @media (max-width: 768px) {
