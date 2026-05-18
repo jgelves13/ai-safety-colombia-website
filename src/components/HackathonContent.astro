@@ -159,17 +159,15 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
         <h3 class="hk-success-title">{es ? data.prizesDetail.successTitleEs : data.prizesDetail.successTitleEn}</h3>
         <ul class="hk-success-list">
           {data.prizesDetail.successExamples.map(ex => (
-            <li>
-              <span class="hk-success-tx">{es ? ex.es : ex.en}</span>
-              <a
-                class="hk-success-src"
-                href={ex.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >{t(locale, 'hackathon.sourceLabel')} &rarr;</a>
-            </li>
+            <li>{es ? ex.es : ex.en}</li>
           ))}
         </ul>
+        <a
+          class="hk-success-src"
+          href="https://apartresearch.com/impact"
+          target="_blank"
+          rel="noopener noreferrer"
+        >{t(locale, 'hackathon.sourceLabel')} &rarr;</a>
       </div>
     </div>
     <p class="hk-note hk-venue-note">{es ? data.prizesDetail.venueNoteEs : data.prizesDetail.venueNoteEn}</p>
@@ -183,13 +181,36 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
       <div class="hk-globe" aria-hidden="true">
         <svg viewBox="0 0 240 240" role="presentation" focusable="false">
           <defs>
-            <radialGradient id="hkSphere" cx="38%" cy="34%" r="78%">
+            <radialGradient id="hkOcean" cx="40%" cy="34%" r="80%">
               <stop offset="0%" stop-color="#EAFBF1" />
-              <stop offset="55%" stop-color="#CFF3DF" />
-              <stop offset="100%" stop-color="#9FE3BF" />
+              <stop offset="58%" stop-color="#CFF3DF" />
+              <stop offset="100%" stop-color="#A6E7C4" />
             </radialGradient>
+            <radialGradient id="hkShade" cx="36%" cy="32%" r="76%">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.5" />
+              <stop offset="55%" stop-color="#FFFFFF" stop-opacity="0" />
+              <stop offset="100%" stop-color="#0A3D24" stop-opacity="0.22" />
+            </radialGradient>
+            <clipPath id="hkGlobeClip">
+              <circle cx="120" cy="120" r="90" />
+            </clipPath>
+            <g id="hkLand" fill="#41C184" fill-opacity="0.7">
+              <path d="M40 52 C52 54 58 66 54 80 C50 92 60 98 58 110 C56 122 66 128 60 146 C56 160 48 176 40 186 C34 178 36 164 40 150 C44 138 36 130 38 116 C40 102 30 96 32 82 C34 68 32 58 40 52 Z" />
+              <path d="M118 50 C132 50 144 58 142 70 C140 80 128 82 124 92 C132 100 138 112 134 128 C130 146 120 168 116 188 C113 196 108 190 108 178 C108 162 100 150 102 132 C104 116 94 108 98 94 C101 82 96 70 104 60 C109 53 112 50 118 50 Z" />
+              <path d="M170 56 C186 52 206 56 212 68 C216 78 206 86 196 86 C204 94 200 106 188 108 C176 110 168 102 166 92 C164 84 156 82 158 72 C160 62 162 58 170 56 Z" />
+              <path d="M198 152 C210 150 220 156 220 164 C220 172 210 178 200 176 C192 174 188 166 190 160 C191 155 194 153 198 152 Z" />
+              <ellipse cx="150" cy="58" rx="5" ry="3" />
+              <ellipse cx="224" cy="130" rx="4" ry="3" />
+            </g>
           </defs>
-          <circle cx="120" cy="120" r="90" fill="url(#hkSphere)" />
+          <circle cx="120" cy="120" r="90" fill="url(#hkOcean)" />
+          <g clip-path="url(#hkGlobeClip)">
+            <g class="hk-globe-rot">
+              <use href="#hkLand" />
+              <use href="#hkLand" x="240" />
+            </g>
+          </g>
+          <circle cx="120" cy="120" r="90" fill="url(#hkShade)" />
           <g class="hk-grid" stroke="rgba(16,16,16,0.13)" fill="none" stroke-width="1">
             <circle cx="120" cy="120" r="90" />
             <ellipse cx="120" cy="120" rx="34" ry="90" />
@@ -811,13 +832,9 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     background: var(--accent-green);
   }
 
-  .hk-success-tx {
-    display: block;
-  }
-
   .hk-success-src {
     display: inline-block;
-    margin-top: 0.3rem;
+    margin-top: 1rem;
     font-size: 0.8125rem;
     font-weight: 600;
     color: var(--green-text);
@@ -925,6 +942,17 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     width: 100%;
     height: auto;
     overflow: visible;
+  }
+
+  /* Continents scroll behind the fixed meridian grid: a spinning
+     world globe. The strip is duplicated, so -240 units loops seamlessly. */
+  .hk-globe-rot {
+    animation: hk-globe-rotate 26s linear infinite;
+  }
+
+  @keyframes hk-globe-rotate {
+    from { transform: translateX(0); }
+    to { transform: translateX(-240px); }
   }
 
   .hk-orbit {
@@ -1302,6 +1330,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     .hk-who-card:hover {
       transform: none;
     }
+    .hk-globe-rot,
     .hk-orbit,
     .hk-arcs path,
     .hk-hub-halo {
