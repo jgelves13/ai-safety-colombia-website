@@ -98,9 +98,9 @@ const items = learnData.map((i) => ({
   }
 
   .learn-card {
-    background: #FFFFFF;
+    background: var(--card-surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 20px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -173,6 +173,7 @@ const items = learnData.map((i) => ({
     letter-spacing: 0.12em;
     color: var(--text-secondary);
     margin-bottom: 0.625rem;
+    font-family: var(--font-mono);
   }
 
   .learn-card h3 {
