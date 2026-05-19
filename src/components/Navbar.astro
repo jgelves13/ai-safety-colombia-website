@@ -40,8 +40,8 @@ const links = [
         <a href={locale === 'es' ? Astro.url.pathname : langSwitchHref} class={locale === 'es' ? 'active' : ''}>ES</a>
         <a href={locale === 'en' ? Astro.url.pathname : langSwitchHref} class={locale === 'en' ? 'active' : ''}>EN</a>
       </div>
-      <a href={localePath(locale, '/contacto/')} class="btn btn-dark nav-cta">
-        {t(locale, 'nav.contact')}
+      <a href={localePath(locale, '/involucrate/')} class="btn btn-primary nav-cta">
+        {t(locale, 'nav.cta')}
       </a>
       <button class="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -70,17 +70,31 @@ const links = [
     left: 0;
     right: 0;
     z-index: 100;
-    background: #FFFFFF;
-    border-bottom: 1px solid var(--hairline);
+    background: transparent;
+    border-bottom: none;
+    pointer-events: none;
   }
 
   .navbar-pill {
+    pointer-events: auto;
     max-width: var(--max-width);
-    margin: 0 auto;
+    width: calc(100% - 2rem);
+    margin: 0.875rem auto 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.875rem 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #FFFFFF;
+    border: 1px solid var(--hairline);
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(16, 16, 16, 0.08);
+    transition: box-shadow 0.2s, padding 0.2s;
+  }
+
+  .navbar-pill.is-scrolled {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    box-shadow: 0 6px 28px rgba(16, 16, 16, 0.14);
   }
 
   .nav-logo {
@@ -217,4 +231,9 @@ const links = [
   hamburger?.addEventListener('click', () => {
     mobileNav?.classList.toggle('open');
   });
+
+  const pill = document.querySelector('.navbar-pill');
+  const onScroll = () => pill?.classList.toggle('is-scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 </script>
