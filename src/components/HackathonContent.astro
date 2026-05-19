@@ -3,7 +3,6 @@ import type { Locale } from '../i18n/ui';
 import { t } from '../i18n/ui';
 import data from '../data/hackathon.json';
 import { daysUntil } from '../utils/countdown.js';
-import MarkerMotif from './MarkerMotif.astro';
 
 interface Props {
   locale: Locale;
@@ -95,12 +94,6 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 <section class="section hk-intro">
   <div class="container hk-narrow">
     <h2 class="section-title">{t(locale, 'hackathon.whatTitle')}</h2>
-    <MarkerMotif labels={[
-      t(locale, 'motif.research'),
-      t(locale, 'motif.community'),
-      t(locale, 'motif.education'),
-      t(locale, 'motif.governance'),
-    ]} />
     <p class="hk-lead">{whatBody}</p>
   </div>
 </section>
