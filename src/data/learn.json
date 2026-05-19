@@ -12,7 +12,9 @@
     "durationEn": "About 30 min",
     "metaEs": "En inglés",
     "metaEn": "In English",
-    "url": "https://www.youtube.com/watch?v=pYXy-A4siMw"
+    "url": "https://www.youtube.com/watch?v=pYXy-A4siMw",
+    "thumb": "youtube.png",
+    "thumbFit": "mark"
   },
   {
     "kind": "course",
@@ -27,7 +29,9 @@
     "durationEn": "About 2 hours · free",
     "metaEs": "En inglés",
     "metaEn": "In English",
-    "url": "https://bluedot.org/courses/future-of-ai"
+    "url": "https://bluedot.org/courses/future-of-ai",
+    "thumb": "bluedot-future-of-ai.png",
+    "thumbFit": "cover"
   },
   {
     "kind": "read",
@@ -42,6 +46,8 @@
     "durationEn": "Long read",
     "metaEs": "En inglés",
     "metaEn": "In English",
-    "url": "https://80000hours.org/problem-profiles/artificial-intelligence/"
+    "url": "https://80000hours.org/problem-profiles/artificial-intelligence/",
+    "thumb": "80k-ai-catastrophe.jpg",
+    "thumbFit": "cover"
   }
 ]

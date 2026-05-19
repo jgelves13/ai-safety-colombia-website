@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import type { Locale } from '../i18n/ui';
 import { t } from '../i18n/ui';
 import learnData from '../data/learn.json';
@@ -12,14 +14,10 @@ const es = locale === 'es';
 
 type Key = Parameters<typeof t>[1];
 
-const thumbs: Record<string, string> = {
-  video:
-    '<rect x="96" y="44" width="128" height="92" rx="14" fill="none" stroke="currentColor" stroke-width="5"/><path d="M146 70 146 110 182 90 Z" fill="currentColor"/><circle cx="70" cy="60" r="7" fill="currentColor" opacity="0.55"/><circle cx="250" cy="124" r="10" fill="currentColor" opacity="0.4"/><path d="M236 58h28M250 44v28" stroke="currentColor" stroke-width="5" stroke-linecap="round" opacity="0.55"/>',
-  course:
-    '<path d="M160 48 222 78 160 108 98 78Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M132 92v22c0 9 56 9 56 0V92" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M222 78v26" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><rect x="104" y="130" width="112" height="9" rx="4.5" fill="currentColor" opacity="0.28"/><rect x="104" y="130" width="68" height="9" rx="4.5" fill="currentColor"/>',
-  read:
-    '<path d="M114 40h66l28 28v72a8 8 0 0 1-8 8h-86a8 8 0 0 1-8-8V48a8 8 0 0 1 8-8Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M180 40v28h28" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><rect x="128" y="86" width="64" height="8" rx="4" fill="currentColor"/><rect x="128" y="104" width="58" height="7" rx="3.5" fill="currentColor" opacity="0.45"/><rect x="128" y="120" width="44" height="7" rx="3.5" fill="currentColor" opacity="0.45"/>',
-};
+const thumbs = import.meta.glob<ImageMetadata>('../assets/learn/*', {
+  eager: true,
+  import: 'default',
+});
 
 const items = learnData.map((i) => ({
   kind: i.kind,
@@ -30,7 +28,8 @@ const items = learnData.map((i) => ({
   duration: es ? i.durationEs : i.durationEn,
   meta: es ? i.metaEs : i.metaEn,
   url: i.url,
-  thumb: thumbs[i.kind],
+  thumb: thumbs[`../assets/learn/${i.thumb}`],
+  thumbFit: i.thumbFit,
   kindLabel: t(locale, `learn.kind.${i.kind}` as Key),
   cta: t(locale, `learn.cta.${i.kind}` as Key),
 }));
@@ -44,8 +43,30 @@ const items = learnData.map((i) => ({
     <div class="learn-grid">
       {items.map((i) => (
         <article class:list={['learn-card', i.accent]}>
-          <div class="learn-thumb" aria-hidden="true">
-            <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid meet" set:html={i.thumb} />
+          <div
+            class:list={['learn-thumb', i.thumbFit === 'cover' ? 'is-cover' : 'is-mark']}
+            aria-hidden="true"
+          >
+            {i.thumbFit === 'cover' ? (
+              <Image
+                src={i.thumb}
+                alt=""
+                widths={[360, 540, 760]}
+                sizes="(max-width: 560px) 100vw, 400px"
+                format="webp"
+                loading="lazy"
+                class="learn-img"
+              />
+            ) : (
+              <Image
+                src={i.thumb}
+                alt=""
+                width={84}
+                height={84}
+                loading="lazy"
+                class="learn-mark"
+              />
+            )}
             <span class="learn-duration">{i.duration}</span>
           </div>
           <div class="learn-body">
@@ -94,19 +115,37 @@ const items = learnData.map((i) => ({
     border-bottom: 1px solid var(--border);
   }
 
-  .learn-thumb svg {
-    width: 62%;
-    height: 62%;
+  /* Cover treatment: the source's own link-preview miniatura fills the
+     tile edge to edge. */
+  .learn-thumb.is-cover {
+    background: #0E0E0E;
   }
 
-  .is-coral .learn-thumb { background: rgba(255, 86, 69, 0.10); color: var(--accent-coral); }
-  .is-blue  .learn-thumb { background: rgba(0, 187, 255, 0.11); color: #0090C4; }
-  .is-green .learn-thumb { background: rgba(43, 213, 118, 0.12); color: #15803D; }
+  .learn-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Mark treatment: where the source's own miniatura is a portrait
+     (e.g. the video's YouTube thumbnail), show the genuine YouTube
+     brand mark centred on an accent-tinted field instead. */
+  .is-coral .learn-thumb.is-mark { background: rgba(255, 86, 69, 0.10); }
+  .is-blue  .learn-thumb.is-mark { background: rgba(0, 187, 255, 0.11); }
+  .is-green .learn-thumb.is-mark { background: rgba(43, 213, 118, 0.12); }
+
+  .learn-mark {
+    width: 84px;
+    height: auto;
+  }
 
   .learn-duration {
     position: absolute;
     left: 0.875rem;
     bottom: 0.875rem;
+    z-index: 1;
     font-size: 0.8125rem;
     font-weight: 700;
     line-height: 1;
