@@ -1,0 +1,57 @@
+---
+interface Props {
+  /** Up to four ALL-CAPS labels, one per circle (already localized by caller). */
+  labels: string[];
+}
+
+const { labels } = Astro.props;
+const COLORS = ['var(--accent-green)', 'var(--accent-yellow)', 'var(--accent-blue)', 'var(--accent-coral)'];
+// Slightly irregular circle centers/radii give the hand-drawn feel.
+const CIRCLES = [
+  { cx: 150, cy: 120, r: 92 },
+  { cx: 280, cy: 110, r: 86 },
+  { cx: 210, cy: 210, r: 96 },
+  { cx: 340, cy: 205, r: 80 },
+];
+const items = labels.slice(0, 4).map((label, i) => ({
+  label,
+  color: COLORS[i],
+  ...CIRCLES[i],
+}));
+---
+
+<div class="marker-motif" aria-hidden="true" role="presentation">
+  <svg viewBox="0 0 460 320" xmlns="http://www.w3.org/2000/svg">
+    {items.map((c) => (
+      <circle cx={c.cx} cy={c.cy} r={c.r} fill={c.color} fill-opacity="0.5" />
+    ))}
+    {items.map((c) => (
+      <text x={c.cx} y={c.cy} class="marker-label">{c.label}</text>
+    ))}
+  </svg>
+</div>
+
+<style>
+  .marker-motif {
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    mix-blend-mode: multiply;
+  }
+
+  .marker-motif svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .marker-label {
+    font-family: var(--font-hand);
+    font-size: 26px;
+    font-weight: 600;
+    fill: #101010;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    letter-spacing: 0.02em;
+  }
+</style>
