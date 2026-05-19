@@ -101,20 +101,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 <section class="section alt">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whyTitle')}</h2>
-    <p class="hk-why-lead">{es ? data.whyLeadEs : data.whyLeadEn}</p>
-    {data.whyLeadSources && data.whyLeadSources.length > 0 && (
-      <div class="hk-why-sources">
-        <span class="hk-why-sources-label">{t(locale, 'hackathon.sourcesLabel')}</span>
-        <ol>
-          {data.whyLeadSources.map((src) => (
-            <li>
-              <span class="hk-src-n">[{src.n}]</span>{' '}
-              <a href={src.url} target="_blank" rel="noopener noreferrer">{src.label}</a>
-            </li>
-          ))}
-        </ol>
-      </div>
-    )}
+    <p class="hk-why-lead" set:html={es ? data.whyLeadEs : data.whyLeadEn}></p>
     <h3 class="hk-pathway-label">{es ? data.pathwayLabelEs : data.pathwayLabelEn}</h3>
     <ol class="hk-steps">
       {data.pipeline.map((step, i) => (
@@ -746,46 +733,20 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     color: var(--text-secondary);
     line-height: 1.65;
     max-width: 720px;
-    margin-bottom: 0.75rem;
+    margin-bottom: 2rem;
   }
-
-  .hk-why-sources {
-    max-width: 720px;
-    margin: 0 0 2rem;
-    padding: 0.85rem 0 0;
-    border-top: 1px solid var(--border);
-  }
-  .hk-why-sources-label {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  .hk-why-lead a {
     color: var(--text-primary);
-    margin-bottom: 0.45rem;
-  }
-  .hk-why-sources ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 0.35rem;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-  }
-  .hk-why-sources .hk-src-n {
-    color: var(--text-primary);
-    font-weight: 600;
-    margin-right: 0.25rem;
-  }
-  .hk-why-sources a {
-    color: inherit;
     text-decoration: underline;
-    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--accent-green);
+    transition: text-decoration-color 0.15s ease, color 0.15s ease;
   }
-  .hk-why-sources a:hover { color: var(--text-primary); }
+  .hk-why-lead a:hover {
+    color: var(--accent-green);
+    text-decoration-color: currentColor;
+  }
 
   /* Track cards: full description + subareas always visible. */
   .hk-track {
