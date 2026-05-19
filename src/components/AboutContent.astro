@@ -1,6 +1,7 @@
 ---
 import type { Locale } from '../i18n/ui';
 import { t, localePath } from '../i18n/ui';
+import MarkerMotif from './MarkerMotif.astro';
 
 interface Props {
   locale: Locale;
@@ -31,6 +32,15 @@ const levers = [
     <p class="text-block">{t(locale, 'about.mission.body')}</p>
   </div>
 </section>
+
+<div class="about-motif">
+  <MarkerMotif labels={[
+    t(locale, 'motif.research'),
+    t(locale, 'motif.community'),
+    t(locale, 'motif.education'),
+    t(locale, 'motif.governance'),
+  ]} />
+</div>
 
 <section class="section alt" aria-labelledby="toc-title">
   <div class="container">
@@ -102,6 +112,12 @@ const levers = [
     font-size: 1.0625rem;
     max-width: 700px;
     line-height: 1.7;
+  }
+
+  .about-motif {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
   }
 
   /* Theory of change as three reinforcing levers, mirroring the
