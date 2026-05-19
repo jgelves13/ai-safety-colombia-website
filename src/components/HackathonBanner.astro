@@ -40,10 +40,15 @@ const daysLeft = daysUntil(data.date);
   }
 
   .banner-card {
-    background: linear-gradient(100deg, #eafff2, #e7f6ff);
-    border: 1px solid #d5efe0;
-    border-radius: 18px;
-    padding: 2rem 2.5rem;
+    background: var(--accent-green);
+    border: none;
+    border-radius: 20px;
+    padding: 2.5rem 2.75rem;
+    color: #101010;
+  }
+
+  .banner-card :where(h2, h3, p, span, a:not(.btn)) {
+    color: #101010;
   }
 
   .banner-content {
@@ -52,8 +57,8 @@ const daysLeft = daysUntil(data.date);
 
   .banner-badge {
     display: inline-block;
-    background: var(--accent-green);
-    color: #06210f;
+    background: #101010;
+    color: #FFFFFF;
     padding: 0.3125rem 0.875rem;
     border-radius: 999px;
     font-size: 0.6875rem;
@@ -92,13 +97,16 @@ const daysLeft = daysUntil(data.date);
   }
 
   .countdown-number {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
     font-size: 1.75rem;
     font-weight: 700;
-    color: var(--green-text);
+    color: #101010;
   }
 
   .countdown-label {
-    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    color: #101010;
     font-size: 0.8125rem;
   }
 </style>
