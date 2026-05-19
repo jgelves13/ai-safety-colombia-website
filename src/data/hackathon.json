@@ -65,7 +65,7 @@
       "teamsEs": "3 equipos", "teamsEn": "3 teams", "prizeEs": "USD 3.000", "prizeEn": "US$3,000",
       "cities": [
         { "name": "São Paulo" }, { "name": "Buenos Aires" }, { "name": "Bogotá", "bogota": true },
-        { "name": "Mérida" }, { "name": "Santa Cruz" }
+        { "name": "Mérida" }, { "name": "Guadalajara" }, { "name": "Santa Cruz" }
       ]},
     { "nameEs": "África", "nameEn": "Africa", "accent": "is-coral",
       "teamsEs": "1 equipo", "teamsEn": "1 team", "prizeEs": "USD 1.000", "prizeEn": "US$1,000",
