@@ -28,7 +28,7 @@ const filterOptions = pastTypes.map((type) => ({
 <PageHero title={t(locale, 'events.hero.title')} desc={t(locale, 'events.hero.subtitle')} />
 
 {upcoming.length > 0 && (
-  <section class="section" aria-labelledby="events-upcoming">
+  <section class="section featured-block" aria-labelledby="events-upcoming">
     <div class="container">
       <h2 class="section-label" id="events-upcoming">{t(locale, 'events.upcoming')}</h2>
       <div class="events-list">
@@ -69,6 +69,10 @@ const filterOptions = pastTypes.map((type) => ({
 </section>
 
 <style>
+  .featured-block :global(.event-card) {
+    background: #FFFFFF;
+  }
+
   .section-label {
     font-size: 0.75rem;
     font-weight: 700;

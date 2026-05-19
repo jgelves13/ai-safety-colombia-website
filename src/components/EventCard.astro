@@ -67,9 +67,9 @@ const alt = `${title}. ${tagLabel}, ${dateLabel}.`;
     display: flex;
     gap: 1.25rem;
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 1.25rem;
-    background: #FFFFFF;
+    background: var(--card-surface);
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
   }
 
@@ -108,6 +108,7 @@ const alt = `${title}. ${tagLabel}, ${dateLabel}.`;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
+    font-family: var(--font-mono);
   }
 
   .event-title {
@@ -121,6 +122,10 @@ const alt = `${title}. ${tagLabel}, ${dateLabel}.`;
   .event-meta {
     font-size: 0.8125rem;
     color: var(--text-secondary);
+  }
+
+  .event-meta time {
+    font-family: var(--font-mono);
   }
 
   .event-desc {
