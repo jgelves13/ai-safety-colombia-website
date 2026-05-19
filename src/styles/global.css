@@ -25,6 +25,9 @@
   /* Type */
   --font-heading: 'Instrument Sans', system-ui, sans-serif;
   --font-body: 'Instrument Sans', system-ui, sans-serif;
+  --card-surface: var(--bg-secondary);                          /* off-white card fill on white sections */
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', 'Roboto Mono', 'IBM Plex Mono', Menlo, Consolas, monospace;
+  --font-hand: 'Caveat', 'Comic Sans MS', cursive;
   --section-padding: 5rem 1.5rem;
   --card-padding: 2rem;
   --max-width: 1200px;
@@ -163,6 +166,24 @@ img {
   border-radius: 16px;
   padding: var(--card-padding);
   transition: none;
+}
+
+/* Apart-style single solid-color featured block. One per page max.
+   #101010 on --accent-green is the verified-AA pairing from the Bogotá hub. */
+.featured-block {
+  background: var(--accent-green);
+  color: #101010;
+  border: none;
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+}
+
+.featured-block .section-title,
+.featured-block h2,
+.featured-block h3,
+.featured-block p,
+.featured-block a:not(.btn) {
+  color: #101010;
 }
 
 .grid-3 {
