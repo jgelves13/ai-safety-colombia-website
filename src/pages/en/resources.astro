@@ -1,36 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
-import { t } from '../../i18n/ui';
+import ResourcesContent from '../../components/ResourcesContent.astro';
 
 const locale = 'en';
-
-const paths = [
-  {
-    title: 'AI Safety Fundamentals',
-    items: [
-      { name: 'AGI Safety Fundamentals (BlueDot Impact)', url: 'https://aisafetyfundamentals.com/' },
-      { name: 'Intro to AI Safety (Robert Miles)', url: 'https://www.youtube.com/@RobertMilesAI' },
-      { name: 'The Alignment Problem (Brian Christian)', url: '#' },
-    ],
-  },
-  {
-    title: 'Technical Research',
-    items: [
-      { name: 'Alignment Forum', url: 'https://www.alignmentforum.org/' },
-      { name: 'AI Safety Papers (Apart Research)', url: 'https://apartresearch.com' },
-      { name: 'MIRI Research', url: 'https://intelligence.org/research/' },
-    ],
-  },
-  {
-    title: 'AI Governance',
-    items: [
-      { name: 'AI Governance Research (GovAI)', url: 'https://www.governance.ai/' },
-      { name: 'CAIS Statement on AI Risk', url: 'https://www.safe.ai/statement-on-ai-risk' },
-      { name: 'Colombia AI Framework', url: '#' },
-    ],
-  },
-];
 ---
 
 <BaseLayout locale={locale} currentPage="resources" title="Resources | AI Safety Colombia">
@@ -38,72 +11,5 @@ const paths = [
     title="Resources"
     desc="Curated learning paths to explore AI safety from different angles."
   />
-
-  <section class="section">
-    <div class="container">
-      <div class="editorial">
-        {paths.map((path, i) => (
-          <div class={`editorial-row ${['is-green','is-coral','is-blue'][i]}`}>
-            <div class="editorial-bar"></div>
-            <div class="editorial-tx path-tx">
-              <h3>{path.title}</h3>
-              <ul>
-                {path.items.map(item => (
-                  <li>
-                    {item.url === '#' ? (
-                      <span class="path-soon">
-                        {item.name}
-                        <span class="soon-tag">{t(locale, 'resources.comingSoon')}</span>
-                      </span>
-                    ) : (
-                      <a href={item.url} target="_blank" rel="noopener noreferrer">{item.name}</a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <ResourcesContent locale={locale} />
 </BaseLayout>
-
-<style>
-  .path-tx ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
-
-  .path-tx li a {
-    color: var(--green-text);
-    font-size: 0.9375rem;
-    transition: opacity 0.2s;
-  }
-
-  .path-tx li a:hover {
-    opacity: 0.7;
-  }
-
-  .path-tx .path-soon {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-secondary);
-    font-size: 0.9375rem;
-  }
-
-  .path-tx .soon-tag {
-    font-size: 0.625rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--accent-yellow-line);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 0.125rem 0.5rem;
-  }
-</style>
