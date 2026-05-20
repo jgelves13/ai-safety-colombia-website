@@ -69,10 +69,10 @@
       ]},
     { "nameEs": "África", "nameEn": "Africa", "accent": "is-coral",
       "teamsEs": "1 equipo", "teamsEn": "1 team", "prizeEs": "USD 1.000", "prizeEn": "US$1,000",
-      "cities": [ { "name": "Cape Town" }, { "name": "Zimbabwe", "tbd": true } ]},
+      "cities": [ { "name": "Cape Town" }, { "name": "Tanzania" }, { "name": "Zimbabwe" } ]},
     { "nameEs": "Asia", "nameEn": "Asia", "accent": "is-blue",
       "teamsEs": "2 equipos", "teamsEn": "2 teams", "prizeEs": "USD 2.000", "prizeEn": "US$2,000",
-      "cities": [ { "name": "Bengaluru" }, { "name": "Shanghai" }, { "name": "Vietnam" } ]}
+      "cities": [ { "name": "Bengaluru" }, { "name": "India" }, { "name": "Shanghai" }, { "name": "Hanoi" }, { "name": "Ho Chi Minh City" } ]}
   ],
   "prizesDetail": {
     "amountEs": "USD 1.000 por equipo",
