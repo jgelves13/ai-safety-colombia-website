@@ -78,13 +78,14 @@ test('LAWS is a subarea of AI Governance with no Bogotá reference', () => {
 });
 
 test('judges/speakers expose name + affiliation, optional bio/linkedin, no PII', () => {
-  assert.equal(data.judges.length, 4);
+  assert.equal(data.judges.length, 5);
   const names = data.judges.map((j) => j.name);
   assert.deepEqual(names, [
     'Melissa Robles',
     'Catalina Bernal',
     'Juan Pablo Liévano',
     'Steve Hege',
+    'Wanda Muñoz',
   ]);
   for (const p of [...data.judges, ...data.speakers]) {
     assert.equal(typeof p.affiliationEs, 'string');
@@ -113,6 +114,7 @@ test('attendance mapping matches the confirmed roster', () => {
   assert.equal(byName['Catalina Bernal'], 'tbc');
   assert.equal(byName['Juan Pablo Liévano'], 'tbc');
   assert.equal(byName['Steve Hege'], 'inperson');
+  assert.equal(byName['Wanda Muñoz'], 'remote');
 });
 
 test('no em-dash placeholder remains in schedule times', () => {
