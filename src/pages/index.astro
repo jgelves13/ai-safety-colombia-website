@@ -8,7 +8,6 @@ import JourneyPipeline from '../components/JourneyPipeline.astro';
 import MetricsBar from '../components/MetricsBar.astro';
 import WhatWeDo from '../components/WhatWeDo.astro';
 import PartnerStrip from '../components/PartnerStrip.astro';
-import MarkerMotif from '../components/MarkerMotif.astro';
 import { t } from '../i18n/ui';
 import metricsData from '../data/metrics.json';
 
@@ -22,15 +21,6 @@ const metrics = metricsData.map((m) => ({
 <BaseLayout locale={locale} currentPage="index">
   <HackathonBanner locale={locale} />
   <Hero locale={locale} />
-
-  <div class="home-motif">
-    <MarkerMotif labels={[
-      t(locale, 'motif.research'),
-      t(locale, 'motif.community'),
-      t(locale, 'motif.education'),
-      t(locale, 'motif.governance'),
-    ]} />
-  </div>
 
   <AboutAISafety locale={locale} />
 
@@ -68,12 +58,6 @@ const metrics = metricsData.map((m) => ({
 </BaseLayout>
 
 <style>
-  .home-motif {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 1.5rem 4rem;
-  }
-
   .join-card {
     background: linear-gradient(100deg, #eafff2, #e7f6ff);
     border: 1px solid #d5efe0;
