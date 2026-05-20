@@ -72,7 +72,7 @@
       "cities": [ { "name": "Cape Town" }, { "name": "Tanzania" }, { "name": "Lusaka" } ]},
     { "nameEs": "Asia", "nameEn": "Asia", "accent": "is-blue",
       "teamsEs": "2 equipos", "teamsEn": "2 teams", "prizeEs": "USD 2.000", "prizeEn": "US$2,000",
-      "cities": [ { "name": "Bengaluru" }, { "name": "India" }, { "name": "Shanghai" }, { "name": "Hanoi" }, { "name": "Ho Chi Minh City" } ]}
+      "cities": [ { "name": "Bengaluru" }, { "name": "New Delhi" }, { "name": "Shanghai" }, { "name": "Hanoi" }, { "name": "Ho Chi Minh City" } ]}
   ],
   "prizesDetail": {
     "amountEs": "USD 1.000 por equipo",
