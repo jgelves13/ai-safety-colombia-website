@@ -102,6 +102,9 @@ test('judges/speakers expose name + affiliation, optional bio/linkedin, no PII',
     if (p.openreview !== undefined) {
       assert.match(p.openreview, /^https:\/\/openreview\.net\//);
     }
+    if (p.camara !== undefined) {
+      assert.match(p.camara, /^https:\/\/www\.camara\.gov\.co\//);
+    }
     if (p.bioEs !== undefined) assert.equal(typeof p.bioEs, 'string');
     if (p.bioEn !== undefined) assert.equal(typeof p.bioEn, 'string');
   }

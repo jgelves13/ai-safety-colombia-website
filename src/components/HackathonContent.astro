@@ -26,6 +26,7 @@ type Person = {
   bioEn?: string;
   linkedin?: string;
   openreview?: string;
+  camara?: string;
   photo?: string;
 };
 const judges = data.judges as Person[];
@@ -356,6 +357,17 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
                 <span>OpenReview</span>
               </a>
             )}
+            {sp.camara && (
+              <a
+                class="hk-person-link"
+                href={sp.camara}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${t(locale, 'hackathon.camaraLabel')} — ${sp.name}`}
+              >
+                <span>{t(locale, 'hackathon.camaraLabel')}</span>
+              </a>
+            )}
           </div>
         </article>
       ))}
@@ -409,6 +421,17 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
                   aria-label={`OpenReview — ${j.name}`}
                 >
                   <span>OpenReview</span>
+                </a>
+              )}
+              {j.camara && (
+                <a
+                  class="hk-person-link"
+                  href={j.camara}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${t(locale, 'hackathon.camaraLabel')} — ${j.name}`}
+                >
+                  <span>{t(locale, 'hackathon.camaraLabel')}</span>
                 </a>
               )}
             </div>
