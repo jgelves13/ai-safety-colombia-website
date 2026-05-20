@@ -1,36 +1,36 @@
 :root {
   /* Core surfaces */
   --bg-primary: #FFFFFF;
-  --bg-secondary: #F7F7F5;
-  --bg-elevated: #F1F1EE;
-  /* Brand + accents (Apart-matched) */
-  --accent-green: #2BD576;       /* primary fill — pair with ink text */
-  --green-text: #15803D;         /* accessible green for text/links */
-  --accent-coral: #FF5645;
-  --accent-blue: #00BBFF;
-  --accent-yellow: #FFE246;      /* fill only — pair with ink text */
-  --accent-yellow-line: #B07A00; /* numerals/borders on white — AA large-text 3.73:1 */
-  --accent-red: #FF5645;         /* legacy alias kept = coral */
+  --bg-secondary: #F5F5F2;
+  --bg-elevated: #F0F0EC;
+  /* Forest + vermillion palette (Swiss modernist; ties to AISC logo) */
+  --accent-forest: #1F4D32;        /* primary accent — links, buttons, section labels (AA on white) */
+  --accent-forest-deep: #0D2A1A;   /* darkest forest — dark bands, ink-on-dark */
+  --accent-sage: #4A8466;          /* large-text accents, hover, hairline highlights */
+  --accent-vermillion: #E63946;    /* highlight accent — hackathon, urgency, glyphs */
+  --accent-vermillion-dark: #C92E3B;
   /* Text */
-  --text-primary: #101010;
-  --text-secondary: #5B5F5B;
-  --text-accent: #15803D;        /* link color (AA on white) */
+  --text-primary: #0A0F0C;
+  --text-secondary: #5A5F5A;
+  --text-accent: #1F4D32;          /* link color = forest */
   /* Lines */
-  --border: #E6E6E1;
+  --border: #E0E0E0;
   --hairline: #EFEFEA;
-  /* Dark block (MetricsBar / Footer "one dark moment") */
-  --dark-bg: #101010;
-  --dark-muted: #9A9A9A;
-  --dark-line: #262626;
+  /* Dark block (footer / one-dark-moment surfaces) */
+  --dark-bg: #0D2A1A;
+  --dark-muted: #9AA89F;
+  --dark-line: #1F4D32;
   /* Type */
-  --font-heading: 'Instrument Sans', system-ui, sans-serif;
-  --font-body: 'Instrument Sans', system-ui, sans-serif;
-  --card-surface: var(--bg-secondary);                          /* off-white card fill on white sections */
-  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', 'Roboto Mono', 'IBM Plex Mono', Menlo, Consolas, monospace;
+  --font-display: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: var(--font-display);
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
   --font-hand: 'Caveat', 'Comic Sans MS', cursive;
+  /* Spacing */
   --section-padding: 5rem 1.5rem;
   --card-padding: 2rem;
   --max-width: 1200px;
+  --card-surface: var(--bg-secondary);
 }
 
 *, *::before, *::after {
@@ -48,27 +48,33 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.55;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
 }
 
 a {
   color: var(--text-accent);
   text-decoration: none;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, color 0.15s;
 }
 
 a:hover {
-  opacity: 0.75;
+  color: var(--accent-vermillion);
 }
 
-/* Visible keyboard focus ring (keyboard nav only, not mouse clicks).
-   Uses the AA-accessible green so the ring has clear contrast on white. */
 :focus-visible {
-  outline: 3px solid var(--green-text);
+  outline: 2px solid var(--accent-forest);
   outline-offset: 2px;
-  border-radius: 2px;
+  border-radius: 0;
 }
 
 :focus:not(:focus-visible) {
@@ -96,33 +102,59 @@ img {
 }
 
 .section-title {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
   margin-bottom: 1rem;
   color: var(--text-primary);
 }
 
 .section-subtitle {
   color: var(--text-secondary);
-  font-size: 1.125rem;
-  max-width: 600px;
+  font-size: 1.0625rem;
+  max-width: 60ch;
+  line-height: 1.55;
 }
 
-/* Pill buttons */
+/* Section label — extreme letter-spacing, vermillion glyph
+   <div class="section-label">What we do</div> */
+.section-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.section-label::after {
+  content: "▌";
+  color: var(--accent-vermillion);
+}
+
+/* HARD-RECTANGLE BUTTONS — Swiss modernist, no pills */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
-  font-family: var(--font-body);
+  gap: 0.625rem;
+  padding: 1rem 1.875rem;
+  border-radius: 0;
+  font-family: var(--font-display);
   font-weight: 600;
-  font-size: 0.9375rem;
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
   cursor: pointer;
-  border: none;
+  border: 2px solid transparent;
+  white-space: nowrap;
 }
 
 .btn:hover {
@@ -131,59 +163,93 @@ img {
 }
 
 .btn-primary {
-  background: var(--accent-green);
-  color: #101010;
+  background: var(--accent-forest);
+  color: #FFFFFF;
 }
 
 .btn-primary:hover {
-  box-shadow: 0 6px 22px rgba(43, 213, 118, 0.35);
+  background: var(--accent-forest-deep);
+  color: #FFFFFF;
 }
 
 .btn-secondary {
-  background: #FFFFFF;
+  background: transparent;
   color: var(--text-primary);
-  border: 1px solid #D8D8D2;
+  border-color: var(--text-primary);
 }
 
 .btn-secondary:hover {
-  border-color: #101010;
+  background: var(--text-primary);
+  color: #FFFFFF;
 }
 
 .btn-dark {
-  background: #101010;
+  background: var(--dark-bg);
   color: #FFFFFF;
 }
 
 .btn-dark:hover {
-  box-shadow: 0 6px 22px rgba(16, 16, 16, 0.25);
+  background: #051208;
+  color: #FFFFFF;
 }
 
-/* Refined light card (low-chrome — not a generic dark box).
-   Used by interior pages that are not converted to full editorial. */
+/* Used inside .featured-block (forest bg) — vermillion-on-white-text for max contrast against forest */
+.btn-vermillion {
+  background: var(--accent-vermillion);
+  color: #FFFFFF;
+}
+
+.btn-vermillion:hover {
+  background: var(--accent-vermillion-dark);
+  color: #FFFFFF;
+}
+
+/* HARD-RECTANGLE CARD */
 .card {
   background: #FFFFFF;
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 0;
   padding: var(--card-padding);
-  transition: none;
+  transition: border-color 0.15s;
 }
 
-/* Apart-style single solid-color featured block. One per page max.
-   #101010 on --accent-green is the verified-AA pairing from the Bogotá hub. */
+.card:hover {
+  border-color: var(--text-primary);
+}
+
+/* FEATURED BLOCK — solid forest, one per page max */
 .featured-block {
-  background: var(--accent-green);
-  color: #101010;
+  background: var(--accent-forest);
+  color: #FFFFFF;
   border: none;
-  border-radius: 20px;
+  border-radius: 0;
   padding: 3rem 2.5rem;
 }
 
 .featured-block .section-title,
 .featured-block h2,
 .featured-block h3,
-.featured-block p,
+.featured-block p {
+  color: #FFFFFF;
+}
+
 .featured-block a:not(.btn) {
-  color: #101010;
+  color: #FFFFFF;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.featured-block a:not(.btn):hover {
+  color: var(--accent-vermillion);
+}
+
+.featured-block .section-label {
+  color: #FFFFFF;
+}
+
+.featured-block .section-label::after {
+  color: var(--accent-vermillion);
 }
 
 .grid-3 {
@@ -192,7 +258,7 @@ img {
   gap: 1.5rem;
 }
 
-/* Editorial helpers (Option B language, reused across pages) */
+/* EDITORIAL helpers — hard-rectangle bars, forest/vermillion/sage/deep variants */
 .editorial {
   display: flex;
   flex-direction: column;
@@ -211,33 +277,57 @@ img {
 }
 
 .editorial-bar {
-  width: 5px;
+  width: 4px;
   align-self: stretch;
-  border-radius: 4px;
+  border-radius: 0;
   flex: none;
 }
 
+.editorial-num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--accent-forest);
+  text-transform: uppercase;
+  min-width: 3.5rem;
+}
+
+.editorial-tx {
+  flex: 1;
+}
+
 .editorial-row h3 {
+  font-family: var(--font-display);
   font-size: 1.3125rem;
   font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.25rem;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.35rem;
   color: var(--text-primary);
 }
 
 .editorial-row p {
   font-size: 0.9375rem;
   color: var(--text-secondary);
-  max-width: 560px;
+  max-width: 60ch;
   line-height: 1.55;
 }
 
-/* Accent color modifiers */
-.is-green h3 a { color: var(--accent-green); }
-.is-green .editorial-bar  { background: var(--accent-green); }
-.is-coral .editorial-bar  { background: var(--accent-coral); }
-.is-blue  .editorial-bar  { background: var(--accent-blue); }
-.is-yellow .editorial-bar { background: var(--accent-yellow-line); }
+/* Editorial bar accent variants */
+.is-forest h3 a       { color: var(--accent-forest); }
+.is-forest .editorial-bar     { background: var(--accent-forest); }
+.is-vermillion h3 a   { color: var(--accent-vermillion); }
+.is-vermillion .editorial-bar { background: var(--accent-vermillion); }
+.is-deep .editorial-bar       { background: var(--accent-forest-deep); }
+.is-sage .editorial-bar       { background: var(--accent-sage); }
+
+/* Legacy alias shims — keep existing .is-green/.is-coral/.is-blue/.is-yellow markup
+   working until per-component edits land. Map to the new palette. */
+.is-green h3 a        { color: var(--accent-forest); }
+.is-green .editorial-bar      { background: var(--accent-forest); }
+.is-coral .editorial-bar      { background: var(--accent-vermillion); }
+.is-blue  .editorial-bar      { background: var(--accent-sage); }
+.is-yellow .editorial-bar     { background: var(--accent-forest-deep); }
 
 @media (max-width: 768px) {
   :root {
@@ -246,9 +336,12 @@ img {
   .editorial-row {
     gap: 1rem;
   }
+  .section-label {
+    margin-bottom: 1.75rem;
+  }
 }
 
-/* Honor the OS "reduce motion" setting site-wide. */
+/* Honor "reduce motion" OS setting */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

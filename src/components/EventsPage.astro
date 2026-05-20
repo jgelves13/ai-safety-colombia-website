@@ -73,14 +73,7 @@ const filterOptions = pastTypes.map((type) => ({
     background: #FFFFFF;
   }
 
-  .section-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--green-text);
-    margin-bottom: 1.25rem;
-  }
+  /* Inherits .section-label styling from global.css (Swiss letter-spacing + vermillion glyph) */
 
   .event-filters {
     display: flex;
@@ -89,34 +82,33 @@ const filterOptions = pastTypes.map((type) => ({
     margin-bottom: 1.5rem;
   }
 
-  /* Keep the bar hidden until JS enhances it (no non-functional control
-     for no-JS visitors; all cards remain visible). */
   .event-filters[hidden] {
     display: none;
   }
 
   .filter-pill {
-    font-family: var(--font-body);
-    font-size: 0.8125rem;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
     font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     background: #FFFFFF;
     border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 0.375rem 0.875rem;
-    color: var(--text-secondary);
+    border-radius: 0;
+    padding: 0.5rem 1rem;
+    color: var(--text-primary);
     cursor: pointer;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
   }
 
   .filter-pill:hover {
-    border-color: var(--green-text);
-    color: var(--text-primary);
+    border-color: var(--text-primary);
   }
 
   .filter-pill.is-active {
-    background: var(--accent-green);
-    border-color: var(--accent-green);
-    color: #101010;
+    background: var(--accent-forest);
+    border-color: var(--accent-forest);
+    color: #FFFFFF;
   }
 
   .events-list {

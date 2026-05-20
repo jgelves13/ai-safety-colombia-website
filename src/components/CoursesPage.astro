@@ -158,15 +158,14 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border);
-    border-radius: 18px;
+    border-radius: 0;
     overflow: hidden;
     background: #FFFFFF;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    transition: border-color 0.15s;
   }
 
   .course-card:hover {
-    box-shadow: 0 10px 30px rgba(16, 16, 16, 0.08);
-    transform: translateY(-3px);
+    border-color: var(--text-primary);
   }
 
   /* ---- Animated cover ---- */
@@ -182,35 +181,37 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
     isolation: isolate;
   }
 
-  .course-card.is-green  .course-cover { background: linear-gradient(150deg, #06281A, #0C5234); }
-  .course-card.is-coral  .course-cover { background: linear-gradient(150deg, #2E0C09, #5A1A14); }
-  .course-card.is-blue   .course-cover { background: linear-gradient(150deg, #06222B, #0A4A5C); }
-  .course-card.is-yellow .course-cover { background: linear-gradient(150deg, #2A1E03, #5A4208); }
+  .course-card.is-green  .course-cover { background: var(--accent-forest); }
+  .course-card.is-coral  .course-cover { background: var(--accent-forest-deep); }
+  .course-card.is-blue   .course-cover { background: var(--accent-forest-deep); }
+  .course-card.is-yellow .course-cover { background: var(--accent-forest); }
 
-  .cover-accent { color: var(--accent-green); }
+  .cover-accent { color: var(--accent-forest); }
 
-  .course-card.is-green  { --cover-accent: #2BD576; }
-  .course-card.is-coral  { --cover-accent: #FF6A5C; }
-  .course-card.is-blue   { --cover-accent: #38CCFF; }
-  .course-card.is-yellow { --cover-accent: #F2C200; }
+  .course-card.is-green  { --cover-accent: #4A8466; }
+  .course-card.is-coral  { --cover-accent: #E63946; }
+  .course-card.is-blue   { --cover-accent: #4A8466; }
+  .course-card.is-yellow { --cover-accent: #E63946; }
 
   .cover-kicker {
     position: relative;
     z-index: 2;
-    font-size: 0.625rem;
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.4em;
     color: var(--cover-accent);
   }
 
   .cover-title {
     position: relative;
     z-index: 2;
-    font-size: 1.375rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.15;
+    line-height: 1.05;
     color: #FFFFFF;
     max-width: 80%;
   }
@@ -276,14 +277,16 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
   }
 
   .course-meta {
-    font-size: 0.8125rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
     font-weight: 600;
-    color: var(--green-text);
+    letter-spacing: 0.04em;
+    color: var(--accent-forest);
   }
 
-  .is-coral .course-meta { color: var(--accent-coral); }
-  .is-blue .course-meta { color: #0090c4; }
-  .is-yellow .course-meta { color: var(--accent-yellow-line); }
+  .is-coral .course-meta { color: var(--accent-vermillion); }
+  .is-blue .course-meta { color: var(--accent-sage); }
+  .is-yellow .course-meta { color: var(--accent-forest-deep); }
 
   .course-aud {
     font-size: 0.875rem;
@@ -318,32 +321,38 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
   .course-details {
     display: inline-flex;
     align-items: center;
-    font-size: 0.8125rem;
-    font-weight: 700;
-    border-radius: 999px;
-    padding: 0.5rem 1.05rem;
-    transition: transform 0.15s, box-shadow 0.15s, background 0.15s, border-color 0.15s, color 0.15s;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 0;
+    padding: 0.625rem 1.125rem;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
   }
 
   .course-interest {
-    background: var(--accent-green);
-    color: #101010;
+    background: var(--accent-forest);
+    color: #FFFFFF;
   }
 
-  .is-coral .course-interest  { background: var(--accent-coral); color: #FFFFFF; }
-  .is-blue .course-interest   { background: var(--accent-blue); color: #101010; }
-  .is-yellow .course-interest { background: var(--accent-yellow-line); color: #FFFFFF; }
+  .is-coral .course-interest  { background: var(--accent-vermillion); color: #FFFFFF; }
+  .is-blue .course-interest   { background: var(--accent-sage); color: #FFFFFF; }
+  .is-yellow .course-interest { background: var(--accent-forest-deep); color: #FFFFFF; }
 
   .course-interest:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(16, 16, 16, 0.14);
+    background: var(--accent-forest-deep);
+    color: #FFFFFF;
   }
+
+  .is-coral .course-interest:hover { background: var(--accent-vermillion-dark); }
+  .is-blue .course-interest:hover  { background: var(--accent-forest); }
+  .is-yellow .course-interest:hover { background: #051208; }
 
   .course-details {
     background: transparent;
     border: 1px solid var(--border);
     color: var(--text-secondary);
-    font-weight: 600;
   }
 
   .course-details:hover {
@@ -353,11 +362,11 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
 
   .courses-any {
     margin-top: 3rem;
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 2.5rem 2rem;
+    border: 1px solid var(--text-primary);
+    border-radius: 0;
+    padding: 2.75rem 2rem;
     text-align: center;
-    background: linear-gradient(140deg, #F1F8F2, #FFF8E7);
+    background: var(--bg-secondary);
   }
 
   .courses-any-title {

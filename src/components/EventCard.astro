@@ -67,23 +67,21 @@ const alt = `${title}. ${tagLabel}, ${dateLabel}.`;
     display: flex;
     gap: 1.25rem;
     border: 1px solid var(--border);
-    border-radius: 20px;
+    border-radius: 0;
     padding: 1.25rem;
     background: var(--card-surface);
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    transition: border-color 0.15s;
   }
 
   .event-card:hover {
-    border-color: var(--accent-green);
-    box-shadow: 0 6px 24px rgba(16, 16, 16, 0.06);
-    transform: translateY(-2px);
+    border-color: var(--accent-forest);
   }
 
   .event-flyer {
     width: 260px;
     flex: none;
     aspect-ratio: 3 / 4;
-    border-radius: 12px;
+    border-radius: 0;
     overflow: hidden;
     display: block;
     background: #F4F6F4;
@@ -141,13 +139,13 @@ const alt = `${title}. ${tagLabel}, ${dateLabel}.`;
     line-height: 1.5;
     margin-top: 0.5rem;
     padding-left: 0.625rem;
-    border-left: 2px solid var(--accent-green);
+    border-left: 2px solid var(--accent-vermillion);
   }
 
   .event-link {
     font-size: 0.8125rem;
     font-weight: 600;
-    color: var(--green-text);
+    color: var(--accent-forest);
     margin-top: 0.625rem;
   }
 

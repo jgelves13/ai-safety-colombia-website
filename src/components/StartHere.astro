@@ -100,11 +100,14 @@ const items = learnData.map((i) => ({
   .learn-card {
     background: var(--card-surface);
     border: 1px solid var(--border);
-    border-radius: 20px;
+    border-radius: 0;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    transition: border-color 0.15s;
   }
+
+  .learn-card:hover { border-color: var(--text-primary); }
 
   .learn-thumb {
     position: relative;
@@ -132,9 +135,9 @@ const items = learnData.map((i) => ({
   /* Mark treatment: where the source's own miniatura is a portrait
      (e.g. the video's YouTube thumbnail), show the genuine YouTube
      brand mark centred on an accent-tinted field instead. */
-  .is-coral .learn-thumb.is-mark { background: rgba(255, 86, 69, 0.10); }
-  .is-blue  .learn-thumb.is-mark { background: rgba(0, 187, 255, 0.11); }
-  .is-green .learn-thumb.is-mark { background: rgba(43, 213, 118, 0.12); }
+  .is-coral .learn-thumb.is-mark { background: rgba(230, 57, 70, 0.10); }
+  .is-blue  .learn-thumb.is-mark { background: rgba(74, 132, 102, 0.12); }
+  .is-green .learn-thumb.is-mark { background: rgba(31, 77, 50, 0.10); }
 
   .learn-mark {
     width: 84px;
@@ -146,18 +149,20 @@ const items = learnData.map((i) => ({
     left: 0.875rem;
     bottom: 0.875rem;
     z-index: 1;
-    font-size: 0.8125rem;
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 600;
     line-height: 1;
-    padding: 0.4375rem 0.6875rem;
-    border-radius: 999px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0;
     color: #FFFFFF;
-    box-shadow: 0 2px 8px rgba(16, 16, 16, 0.18);
   }
 
-  .is-coral .learn-duration { background: var(--accent-coral); }
-  .is-blue  .learn-duration { background: #0090C4; }
-  .is-green .learn-duration { background: #15803D; }
+  .is-coral .learn-duration { background: var(--accent-vermillion); }
+  .is-blue  .learn-duration { background: var(--accent-sage); }
+  .is-green .learn-duration { background: var(--accent-forest); }
 
   .learn-body {
     padding: 1.5rem 1.75rem 1.75rem;
@@ -212,7 +217,7 @@ const items = learnData.map((i) => ({
     margin-top: 1.25rem;
     font-size: 0.9375rem;
     font-weight: 600;
-    color: var(--green-text);
+    color: var(--accent-forest);
     transition: gap 0.2s;
   }
 

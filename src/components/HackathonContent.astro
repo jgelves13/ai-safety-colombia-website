@@ -224,7 +224,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
               <circle cx="120" cy="120" r="90" />
             </clipPath>
             <pattern id="hkDots" width="6.6" height="6.6" patternUnits="userSpaceOnUse">
-              <circle cx="2.1" cy="2.1" r="1.45" fill="#2BD576" />
+              <circle cx="2.1" cy="2.1" r="1.45" fill="#1F4D32" />
             </pattern>
             <!-- Equirectangular world map (one 240-wide tile = full globe).
                  Continents in roughly correct positions/proportions; the
@@ -274,7 +274,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
           <circle class="hk-hub-halo" cx="92" cy="150" r="9" />
           <circle class="hk-hub-core" cx="92" cy="150" r="5.5" />
           <ellipse class="hk-orbit" cx="120" cy="120" rx="110" ry="46"
-            fill="none" stroke="var(--accent-green)" stroke-width="1.5"
+            fill="none" stroke="var(--accent-forest)" stroke-width="1.5"
             stroke-dasharray="3 9" stroke-linecap="round" />
         </svg>
       </div>
@@ -439,37 +439,39 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   <div class="container">
     <h2 class="hk-band-title">{t(locale, 'hackathon.ctaBandTitle')}</h2>
     <p class="hk-band-sub">{t(locale, 'hackathon.ctaBandSub')}</p>
-    <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">{t(locale, 'hackathon.ctaPrimary')} &rarr;</a>
+    <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-vermillion">{t(locale, 'hackathon.ctaPrimary')} &rarr;</a>
     <p class="hk-band-mail">{data.contactEmail}</p>
   </div>
 </section>
 
 <style>
   .hk-hero {
-    padding: 9rem 1.5rem 4rem;
-    background: linear-gradient(180deg, #F1F8F2, #FFFFFF);
+    padding: 4rem 1.5rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--hairline);
   }
 
   .hk-kicker {
-    font-size: 0.6875rem;
-    font-weight: 700;
+    font-size: 0.75rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.09em;
-    color: var(--green-text);
+    letter-spacing: 0.2em;
+    color: var(--accent-forest);
     font-family: var(--font-mono);
   }
 
   .hk-h1 {
-    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
     font-weight: 700;
     letter-spacing: -0.04em;
-    line-height: 1.03;
+    line-height: 0.95;
     margin: 0.5rem 0;
     color: var(--text-primary);
   }
 
   .hk-accent {
-    color: var(--accent-green);
+    color: var(--accent-vermillion);
   }
 
   .hk-sub {
@@ -501,17 +503,18 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   }
 
   .hk-count-num {
-    font-size: 1.75rem;
+    font-size: 1.875rem;
     font-weight: 700;
-    color: var(--green-text);
+    color: var(--accent-vermillion);
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
   }
 
   .hk-count-label {
     color: var(--text-secondary);
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     font-family: var(--font-mono);
+    letter-spacing: 0.04em;
   }
 
   .hk-narrow {
@@ -534,7 +537,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     display: flex;
     gap: 1rem;
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 0;
     padding: 1.5rem;
     background: #FFFFFF;
   }
@@ -542,13 +545,13 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   .hk-track-bar {
     width: 5px;
     flex: none;
-    border-radius: 4px;
+    border-radius: 0;
   }
 
-  .hk-track.is-green .hk-track-bar { background: var(--accent-green); }
-  .hk-track.is-coral .hk-track-bar { background: var(--accent-coral); }
-  .hk-track.is-blue .hk-track-bar { background: var(--accent-blue); }
-  .hk-track.is-yellow .hk-track-bar { background: var(--accent-yellow-line); }
+  .hk-track.is-green .hk-track-bar { background: var(--accent-forest); }
+  .hk-track.is-coral .hk-track-bar { background: var(--accent-vermillion); }
+  .hk-track.is-blue .hk-track-bar { background: var(--accent-sage); }
+  .hk-track.is-yellow .hk-track-bar { background: var(--accent-forest-deep); }
 
   .hk-track h3 {
     font-size: 1.125rem;
@@ -565,16 +568,17 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 
   .hk-prize {
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 0;
     padding: 2rem;
     background: #FFFFFF;
   }
 
   .hk-prize-amount {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-family: var(--font-display);
+    font-size: clamp(1.875rem, 4vw, 2.5rem);
     font-weight: 700;
     letter-spacing: -0.02em;
-    color: var(--green-text);
+    color: var(--accent-vermillion);
   }
 
   .hk-prize-head {
@@ -598,12 +602,15 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   }
 
   .hk-pill {
-    font-size: 0.8125rem;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     background: #FFFFFF;
     border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 0.375rem 0.875rem;
+    border-radius: 0;
+    padding: 0.4rem 0.75rem;
     color: var(--text-primary);
   }
 
@@ -617,16 +624,16 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 
   .hk-region {
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 0;
     padding: 1.5rem;
     background: #FFFFFF;
     border-top: 4px solid var(--border);
   }
 
-  .hk-region.is-green { border-top-color: var(--accent-green); }
-  .hk-region.is-coral { border-top-color: var(--accent-coral); }
-  .hk-region.is-blue { border-top-color: var(--accent-blue); }
-  .hk-region.is-yellow { border-top-color: var(--accent-yellow-line); }
+  .hk-region.is-green { border-top-color: var(--accent-forest); }
+  .hk-region.is-coral { border-top-color: var(--accent-vermillion); }
+  .hk-region.is-blue { border-top-color: var(--accent-sage); }
+  .hk-region.is-yellow { border-top-color: var(--accent-forest-deep); }
 
   .hk-region-head {
     display: flex;
@@ -674,13 +681,14 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     width: 9px;
     height: 9px;
     flex: none;
-    border-radius: 50%;
+    border-radius: 0;
     background: var(--text-secondary);
   }
 
-  .hk-region.is-green .hk-city-dot { background: var(--accent-green); }
-  .hk-region.is-coral .hk-city-dot { background: var(--accent-coral); }
-  .hk-region.is-blue .hk-city-dot { background: var(--accent-blue); }
+  .hk-region.is-green .hk-city-dot { background: var(--accent-forest); }
+  .hk-region.is-coral .hk-city-dot { background: var(--accent-vermillion); }
+  .hk-region.is-blue .hk-city-dot { background: var(--accent-sage); }
+  .hk-region.is-yellow .hk-city-dot { background: var(--accent-forest-deep); }
 
   .hk-city.is-tbd {
     color: var(--text-secondary);
@@ -698,20 +706,21 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   .hk-city.is-bogota .hk-city-dot {
     width: 12px;
     height: 12px;
-    background: var(--accent-green);
-    box-shadow: 0 0 0 0 rgba(43, 213, 118, 0.7);
+    background: var(--accent-vermillion);
+    box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7);
     animation: hk-bogota-pulse 2s ease-out infinite;
   }
 
   .hk-city-tag {
+    font-family: var(--font-display);
     font-size: 0.625rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    background: var(--accent-green);
-    color: #101010;
-    border-radius: 999px;
-    padding: 0.15rem 0.5rem;
+    letter-spacing: 0.2em;
+    background: var(--accent-vermillion);
+    color: #FFFFFF;
+    border-radius: 0;
+    padding: 0.2rem 0.5rem;
   }
 
   @keyframes hk-city-in {
@@ -719,9 +728,9 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   }
 
   @keyframes hk-bogota-pulse {
-    0% { box-shadow: 0 0 0 0 rgba(43, 213, 118, 0.6); }
-    70% { box-shadow: 0 0 0 10px rgba(43, 213, 118, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(43, 213, 118, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.6); }
+    70% { box-shadow: 0 0 0 10px rgba(230, 57, 70, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
   }
 
   .hk-note {
@@ -736,7 +745,8 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   }
 
   .hk-band-title {
-    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-family: var(--font-display);
+    font-size: clamp(1.875rem, 4vw, 2.75rem);
     font-weight: 700;
     letter-spacing: -0.03em;
   }
@@ -783,27 +793,22 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
-    text-decoration-color: var(--accent-green);
+    text-decoration-color: var(--accent-forest);
     transition: text-decoration-color 0.15s ease, color 0.15s ease;
   }
   .hk-why-lead a:hover {
-    color: var(--accent-green);
+    color: var(--accent-forest);
     text-decoration-color: currentColor;
   }
 
   /* Track cards: full description + subareas always visible. */
   .hk-track {
-    transition: border-color 0.18s ease, transform 0.18s ease;
+    transition: border-color 0.15s;
   }
 
   .hk-track:hover {
-    border-color: var(--accent-green);
-    transform: translateY(-2px);
+    border-color: var(--text-primary);
   }
-
-  .hk-track.is-coral:hover { border-color: var(--accent-coral); }
-  .hk-track.is-blue:hover { border-color: var(--accent-blue); }
-  .hk-track.is-yellow:hover { border-color: var(--accent-yellow-line); }
 
   .hk-track-tx {
     display: flex;
@@ -827,13 +832,15 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   }
 
   .hk-track-subs li {
+    font-family: var(--font-mono);
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 500;
     background: #F4F6F4;
     border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 0.3rem 0.7rem;
+    border-radius: 0;
+    padding: 0.3rem 0.625rem;
     color: var(--text-primary);
+    letter-spacing: 0.02em;
   }
 
   .hk-prize-extra {
@@ -857,11 +864,12 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   }
 
   .hk-success-title {
+    font-family: var(--font-display);
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--green-text);
+    letter-spacing: 0.2em;
+    color: var(--accent-forest);
     margin-bottom: 0.875rem;
   }
 
@@ -888,8 +896,8 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     top: 0.5rem;
     width: 8px;
     height: 8px;
-    border-radius: 50%;
-    background: var(--accent-green);
+    border-radius: 0;
+    background: var(--accent-vermillion);
   }
 
   .hk-success-src {
@@ -897,7 +905,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     margin-top: 1rem;
     font-size: 0.8125rem;
     font-weight: 600;
-    color: var(--green-text);
+    color: var(--accent-forest);
   }
 
   .hk-success-src:hover {
@@ -943,11 +951,11 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     animation: hk-spin 18s linear infinite;
   }
 
-  .hk-node.is-coral { fill: var(--accent-coral); }
-  .hk-node.is-blue { fill: var(--accent-blue); }
+  .hk-node.is-coral { fill: var(--accent-vermillion); }
+  .hk-node.is-blue { fill: var(--accent-sage); }
 
   .hk-arcs path {
-    stroke: var(--accent-green);
+    stroke: var(--accent-forest);
     stroke-dasharray: 4 6;
     opacity: 0.55;
     animation: hk-flow 2.4s linear infinite;
@@ -958,11 +966,11 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   }
 
   .hk-hub-core {
-    fill: var(--accent-green);
+    fill: var(--accent-vermillion);
   }
 
   .hk-hub-halo {
-    fill: var(--accent-green);
+    fill: var(--accent-vermillion);
     transform-box: fill-box;
     transform-origin: center;
     animation: hk-hub-pulse 2.2s ease-out infinite;
@@ -998,17 +1006,17 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     gap: 1rem;
     background: #FFFFFF;
     border: 1px solid var(--border);
-    border-radius: 14px;
+    border-radius: 0;
     padding: 1.125rem 1.25rem;
     opacity: 0;
     transform: translateY(8px);
     animation: hk-who-in 0.45s ease forwards;
     animation-delay: calc(var(--wi) * 80ms);
-    transition: border-color 0.18s ease, transform 0.18s ease;
+    transition: border-color 0.15s;
   }
 
   .hk-who-card:hover {
-    transform: translateY(-2px);
+    border-color: var(--text-primary);
   }
 
   .hk-who-ic {
@@ -1018,9 +1026,10 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
-    color: var(--green-text);
-    background: #EAF8EF;
+    border-radius: 0;
+    border: 2px solid currentColor;
+    color: var(--accent-forest);
+    background: transparent;
   }
 
   .hk-who-ic :global(svg) {
@@ -1029,14 +1038,9 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     display: block;
   }
 
-  .hk-who-card.is-coral .hk-who-ic { color: var(--accent-coral); background: #FCEBE9; }
-  .hk-who-card.is-blue .hk-who-ic { color: #0090c4; background: #E4F4FB; }
-  .hk-who-card.is-yellow .hk-who-ic { color: var(--accent-yellow-line); background: #FBF2DF; }
-
-  .hk-who-card.is-green:hover { border-color: var(--accent-green); }
-  .hk-who-card.is-coral:hover { border-color: var(--accent-coral); }
-  .hk-who-card.is-blue:hover { border-color: var(--accent-blue); }
-  .hk-who-card.is-yellow:hover { border-color: var(--accent-yellow-line); }
+  .hk-who-card.is-coral .hk-who-ic { color: var(--accent-vermillion); }
+  .hk-who-card.is-blue .hk-who-ic { color: var(--accent-sage); }
+  .hk-who-card.is-yellow .hk-who-ic { color: var(--accent-forest-deep); }
 
   .hk-who-label {
     font-size: 0.9375rem;
@@ -1065,8 +1069,8 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     align-items: flex-start;
     background: #FFFFFF;
     border: 1px solid var(--border);
-    border-left: 4px solid var(--accent-green);
-    border-radius: 14px;
+    border-left: 4px solid var(--accent-forest);
+    border-radius: 0;
     padding: 1.25rem 1.5rem;
     opacity: 0;
     transform: translateX(-8px);
@@ -1074,36 +1078,39 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     animation-delay: calc(var(--ti) * 130ms);
   }
 
-  .hk-tl-item.is-blue { border-left-color: var(--accent-blue); }
-  .hk-tl-item.is-yellow { border-left-color: var(--accent-yellow-line); }
-  .hk-tl-item.is-coral { border-left-color: var(--accent-coral); }
+  .hk-tl-item.is-blue { border-left-color: var(--accent-sage); }
+  .hk-tl-item.is-yellow { border-left-color: var(--accent-forest-deep); }
+  .hk-tl-item.is-coral { border-left-color: var(--accent-vermillion); }
 
   .hk-tl-marker {
     width: 1.875rem;
     height: 1.875rem;
     flex: none;
-    border-radius: 50%;
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: var(--font-mono);
     font-size: 0.875rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-primary);
-    background: #F1F3F1;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
   }
 
   .hk-tl-day {
     display: block;
+    font-family: var(--font-display);
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: var(--green-text);
+    letter-spacing: 0.2em;
+    color: var(--accent-forest);
   }
 
-  .hk-tl-item.is-blue .hk-tl-day { color: #0090c4; }
-  .hk-tl-item.is-yellow .hk-tl-day { color: var(--accent-yellow-line); }
-  .hk-tl-item.is-coral .hk-tl-day { color: var(--accent-coral); }
+  .hk-tl-item.is-blue .hk-tl-day { color: var(--accent-sage); }
+  .hk-tl-item.is-yellow .hk-tl-day { color: var(--accent-forest-deep); }
+  .hk-tl-item.is-coral .hk-tl-day { color: var(--accent-vermillion); }
 
   .hk-tl-act {
     font-size: 0.9375rem;
@@ -1120,9 +1127,10 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     display: flex;
     gap: 1rem;
     align-items: flex-start;
-    background: #F1F8F2;
-    border: 1px solid rgba(43, 213, 118, 0.4);
-    border-radius: 14px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent-vermillion);
+    border-radius: 0;
     padding: 1.25rem 1.5rem;
   }
 
@@ -1133,7 +1141,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--green-text);
+    color: var(--accent-vermillion);
   }
 
   .hk-deliverable-ic :global(svg) {
@@ -1144,11 +1152,12 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 
   .hk-deliverable-label {
     display: block;
+    font-family: var(--font-display);
     font-size: 0.6875rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--green-text);
+    letter-spacing: 0.2em;
+    color: var(--accent-vermillion);
     margin-bottom: 0.2rem;
   }
 
@@ -1170,29 +1179,35 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     display: flex;
     gap: 1rem;
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 0;
     padding: 1.5rem;
     background: #FFFFFF;
+    transition: border-color 0.15s;
+  }
+
+  .hk-person:hover {
+    border-color: var(--text-primary);
   }
 
   .hk-person-av {
     width: 104px;
     height: 104px;
     flex: none;
-    border-radius: 50%;
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: var(--font-display);
     font-size: 1.875rem;
     font-weight: 700;
     object-fit: cover;
     color: #FFFFFF;
-    background: var(--accent-green);
+    background: var(--accent-forest);
   }
 
-  .hk-person.is-coral .hk-person-av { background: var(--accent-coral); }
-  .hk-person.is-blue .hk-person-av { background: var(--accent-blue); }
-  .hk-person.is-yellow .hk-person-av { background: var(--accent-yellow-line); }
+  .hk-person.is-coral .hk-person-av { background: var(--accent-vermillion); }
+  .hk-person.is-blue .hk-person-av { background: var(--accent-sage); }
+  .hk-person.is-yellow .hk-person-av { background: var(--accent-forest-deep); }
 
   .hk-person h3 {
     font-size: 1.0625rem;
@@ -1201,36 +1216,39 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   }
 
   .hk-person-aff {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--green-text);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--accent-forest);
     margin-top: 0.125rem;
   }
 
   .hk-att {
     display: inline-block;
     margin-top: 0.5rem;
+    font-family: var(--font-display);
     font-size: 0.6875rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    border-radius: 999px;
+    letter-spacing: 0.2em;
+    border-radius: 0;
     padding: 0.25rem 0.625rem;
+    border: 1px solid currentColor;
   }
 
   .hk-att-inperson {
-    background: #E7F8EC;
-    color: var(--green-text);
+    color: var(--accent-forest);
+    background: transparent;
   }
 
   .hk-att-remote {
-    background: #E4F6FC;
-    color: #0090c4;
+    color: var(--accent-sage);
+    background: transparent;
   }
 
   .hk-att-tbc {
-    background: #F0F0EC;
     color: var(--text-secondary);
+    background: transparent;
   }
 
   .hk-person-eval {

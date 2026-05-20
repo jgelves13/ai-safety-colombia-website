@@ -192,17 +192,15 @@ const paths: {
   .res-card {
     background: var(--card-surface);
     border: 1px solid var(--border);
-    border-radius: 18px;
+    border-radius: 0;
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    transition: border-color 0.15s;
   }
 
   .res-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(16, 16, 16, 0.07);
-    border-color: #d6d6cf;
+    border-color: var(--text-primary);
   }
 
   .res-icon {
@@ -211,7 +209,8 @@ const paths: {
     justify-content: center;
     width: 52px;
     height: 52px;
-    border-radius: 14px;
+    border-radius: 0;
+    border: 2px solid currentColor;
     margin-bottom: 1.25rem;
   }
 
@@ -220,9 +219,9 @@ const paths: {
     height: 26px;
   }
 
-  .is-green .res-icon { color: #15803D; background: rgba(43, 213, 118, 0.14); }
-  .is-coral .res-icon { color: var(--accent-coral); background: rgba(255, 86, 69, 0.12); }
-  .is-blue  .res-icon { color: #0090C4; background: rgba(0, 187, 255, 0.13); }
+  .is-green .res-icon { color: var(--accent-forest); }
+  .is-coral .res-icon { color: var(--accent-vermillion); }
+  .is-blue  .res-icon { color: var(--accent-sage); }
 
   .res-card h3 {
     font-size: 1.3125rem;
@@ -257,15 +256,14 @@ const paths: {
     gap: 0.875rem;
     padding: 0.625rem 0.75rem;
     border: 1px solid var(--border);
-    border-radius: 12px;
-    background: #FCFCFB;
+    border-radius: 0;
+    background: #FFFFFF;
     text-decoration: none;
-    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    transition: border-color 0.15s, transform 0.15s;
   }
 
   .res-item:hover {
-    background: #FFFFFF;
-    border-color: #d6d6cf;
+    border-color: var(--text-primary);
     transform: translateX(2px);
   }
 
@@ -276,7 +274,7 @@ const paths: {
     width: 44px;
     height: 44px;
     flex-shrink: 0;
-    border-radius: 10px;
+    border-radius: 0;
     padding: 6px;
     background: #FFFFFF;
     border: 1px solid var(--border);
@@ -296,7 +294,7 @@ const paths: {
     color: var(--text-secondary);
   }
 
-  .is-coral .res-mono { color: var(--accent-coral); }
+  .is-coral .res-mono { color: var(--accent-vermillion); }
 
   .res-item-body {
     display: flex;
@@ -320,7 +318,7 @@ const paths: {
   }
 
   .res-item-go {
-    color: var(--green-text);
+    color: var(--accent-forest);
     font-weight: 600;
     opacity: 0;
     transform: translateX(-4px);

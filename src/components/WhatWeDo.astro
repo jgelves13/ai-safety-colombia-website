@@ -57,17 +57,15 @@ const rows = [
   .wwd-card {
     background: #FFFFFF;
     border: 1px solid var(--border);
-    border-radius: 18px;
+    border-radius: 0;
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    transition: border-color 0.15s;
   }
 
   .wwd-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(16, 16, 16, 0.07);
-    border-color: #d6d6cf;
+    border-color: var(--text-primary);
   }
 
   .wwd-icon {
@@ -76,7 +74,8 @@ const rows = [
     justify-content: center;
     width: 52px;
     height: 52px;
-    border-radius: 14px;
+    border-radius: 0;
+    border: 2px solid currentColor;
     margin-bottom: 1.25rem;
   }
 
@@ -85,9 +84,9 @@ const rows = [
     height: 26px;
   }
 
-  .is-green .wwd-icon { color: #15803D; background: rgba(43, 213, 118, 0.14); }
-  .is-coral .wwd-icon { color: var(--accent-coral); background: rgba(255, 86, 69, 0.12); }
-  .is-blue  .wwd-icon { color: #0090C4; background: rgba(0, 187, 255, 0.13); }
+  .is-green .wwd-icon { color: var(--accent-forest); }
+  .is-coral .wwd-icon { color: var(--accent-vermillion); }
+  .is-blue  .wwd-icon { color: var(--accent-sage); }
 
   .wwd-card h3 {
     font-size: 1.3125rem;

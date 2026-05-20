@@ -39,12 +39,13 @@ const claims = [
 
 <style>
   .about-ai-kicker {
+    font-family: var(--font-display);
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--accent-coral);
-    margin-bottom: 0.625rem;
+    letter-spacing: 0.4em;
+    color: var(--accent-forest);
+    margin-bottom: 0.875rem;
   }
 
   .about-ai-lead {
@@ -65,22 +66,25 @@ const claims = [
   .claim-card {
     background: #FFFFFF;
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.75rem;
+    border-radius: 0;
+    padding: 1.875rem;
     display: flex;
     flex-direction: column;
+    transition: border-color 0.15s;
   }
+
+  .claim-card:hover { border-color: var(--text-primary); }
 
   .claim-accent {
-    width: 36px;
-    height: 5px;
-    border-radius: 4px;
-    margin-bottom: 1rem;
+    width: 40px;
+    height: 4px;
+    border-radius: 0;
+    margin-bottom: 1.25rem;
   }
 
-  .is-coral .claim-accent { background: var(--accent-coral); }
-  .is-blue  .claim-accent { background: var(--accent-blue); }
-  .is-green .claim-accent { background: var(--accent-green); }
+  .is-coral .claim-accent { background: var(--accent-vermillion); }
+  .is-blue  .claim-accent { background: var(--accent-sage); }
+  .is-green .claim-accent { background: var(--accent-forest); }
 
   .claim-card h3 {
     font-size: 1.1875rem;

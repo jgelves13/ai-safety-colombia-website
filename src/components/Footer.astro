@@ -46,9 +46,9 @@ const { locale } = Astro.props;
 
 <style>
   .footer {
-    background: #101010;
-    border-top: 1px solid #262626;
-    padding: 4rem 0 2rem;
+    background: var(--dark-bg);
+    border-top: 2px solid var(--text-primary);
+    padding: 4.5rem 0 2rem;
     margin-top: 4rem;
   }
 
@@ -59,59 +59,74 @@ const { locale } = Astro.props;
   }
 
   .footer-brand p {
-    color: #9A9A9A;
+    color: var(--dark-muted);
     margin-top: 1rem;
-    max-width: 300px;
-    font-size: 0.875rem;
+    max-width: 320px;
+    font-size: 0.9375rem;
     line-height: 1.6;
   }
 
   .footer-logo {
     height: 38px;
     width: auto;
-    /* Purpose-built tightly-cropped white mark (logo-footer.png) reads
-       cleanly on the dark footer; no filter needed. */
   }
 
   .footer-cta {
-    margin-top: 1.5rem;
+    margin-top: 1.75rem;
+  }
+
+  .footer-cta {
+    background: var(--accent-vermillion);
+    color: #FFFFFF;
+  }
+
+  .footer-cta:hover {
+    background: var(--accent-vermillion-dark);
+    color: #FFFFFF;
   }
 
   .footer-links {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.625rem;
   }
 
   .footer-links h4 {
+    font-family: var(--font-display);
     font-size: 0.6875rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.16em;
     color: #FFFFFF;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
   }
 
   .footer-links a {
-    color: #9A9A9A;
-    font-size: 0.875rem;
-    transition: color 0.2s;
+    font-family: var(--font-display);
+    color: var(--dark-muted);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.15s;
   }
 
   .footer-links a:hover {
-    color: #FFFFFF;
+    color: var(--accent-vermillion);
     opacity: 1;
   }
 
   .footer-bottom {
     margin-top: 3rem;
     padding-top: 1.5rem;
-    border-top: 1px solid #262626;
+    border-top: 1px solid var(--dark-line);
   }
 
   .footer-bottom p {
-    color: #9A9A9A;
-    font-size: 0.8125rem;
+    font-family: var(--font-mono);
+    color: var(--dark-muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
   }
 
   @media (max-width: 768px) {
