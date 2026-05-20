@@ -111,7 +111,7 @@
     ]}
   ],
   "speakers": [
-    { "name": "Juan Felipe Cerón", "affiliationEs": "OpenAI", "affiliationEn": "OpenAI", "attendance": "remote", "bioEs": "Ingeniero de investigación en alineación de IA en OpenAI; trabaja en que los modelos avanzados sean seguros y se comporten según lo previsto.", "bioEn": "AI alignment research engineer at OpenAI, working to make advanced models safe and behave as intended.", "linkedin": "https://www.linkedin.com/in/juan-felipe-ceron-uribe/" },
+    { "name": "Juan Felipe Cerón", "affiliationEs": "OpenAI", "affiliationEn": "OpenAI", "attendance": "remote", "bioEs": "Coautor en OpenAI de <a href=\"https://arxiv.org/abs/2603.10521\" target=\"_blank\" rel=\"noopener noreferrer\">IH-Challenge</a>: dataset de RL para que los LLMs prioricen instrucciones bajo conflicto y resistan inyección de prompts.", "bioEn": "Co-author at OpenAI of <a href=\"https://arxiv.org/abs/2603.10521\" target=\"_blank\" rel=\"noopener noreferrer\">IH-Challenge</a>: an RL dataset that teaches LLMs to prioritize conflicting instructions and resist prompt injection.", "linkedin": "https://www.linkedin.com/in/juan-felipe-ceron-uribe/" },
     { "name": "Alejandro Toro", "affiliationEs": "Representante a la Cámara, Congreso de Colombia", "affiliationEn": "Member of the House of Representatives of Colombia", "attendance": "inperson", "bioEs": "Ha impulsado la gobernanza de la IA y de las armas autónomas en la agenda legislativa colombiana.", "bioEn": "He has pushed AI and autonomous-weapons governance onto Colombia's legislative agenda." }
   ],
   "judges": [
