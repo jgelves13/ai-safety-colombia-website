@@ -102,29 +102,30 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 
 <section class="section alt">
   <div class="container">
+    <h2 class="section-title">{t(locale, 'hackathon.whoTitle')}</h2>
+    <ul class="hk-who">
+      {data.eligibility.map((e, i) => (
+        <li class={`hk-who-card ${whoAccents[i % whoAccents.length]}`} style={`--wi:${i}`}>
+          <span class="hk-who-ic" set:html={whoIcons[i % whoIcons.length]} />
+          <span class="hk-who-label">{es ? e.es : e.en}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whyTitle')}</h2>
     <div class="hk-why-lead">
       {(es ? data.whyLeadEs : data.whyLeadEn).map(para => (
         <p set:html={para}></p>
       ))}
     </div>
-    <h3 class="hk-pathway-label">{es ? data.pathwayLabelEs : data.pathwayLabelEn}</h3>
-    <ol class="hk-steps">
-      {data.pipeline.map((step, i) => (
-        <li class={`hk-step ${['is-green','is-coral','is-blue'][i % 3]}`} style={`--si:${i}`}>
-          <div class="hk-step-marker">{i + 1}</div>
-          <div class="hk-step-body">
-            <span class="hk-step-kicker">{t(locale, 'hackathon.stepLabel')} {i + 1}</span>
-            <h4 class="hk-step-title">{es ? step.stepEs : step.stepEn}</h4>
-            <p class="hk-step-desc">{es ? step.descEs : step.descEn}</p>
-          </div>
-        </li>
-      ))}
-    </ol>
   </div>
 </section>
 
-<section class="section">
+<section class="section alt">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.tracksTitle')}</h2>
     <div class="hk-tracks">
@@ -142,6 +143,30 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
           </div>
         </div>
       ))}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">{t(locale, 'hackathon.agendaTitle')}</h2>
+    <ol class="hk-timeline">
+      {data.schedule.map((day, i) => (
+        <li class={`hk-tl-item ${day.accent ?? ['is-green','is-blue','is-yellow'][i % 3]}`} style={`--ti:${i}`}>
+          <span class="hk-tl-marker">{i + 1}</span>
+          <div class="hk-tl-body">
+            <span class="hk-tl-day">{es ? day.day : day.dayEn}</span>
+            <p class="hk-tl-act">{es ? day.events[0].title : day.events[0].titleEn}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+    <div class="hk-deliverable">
+      <span class="hk-deliverable-ic" set:html={ic('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>')} />
+      <div class="hk-deliverable-tx">
+        <span class="hk-deliverable-label">{t(locale, 'hackathon.deliverableLabel')}</span>
+        <p>{submission}</p>
+      </div>
     </div>
   </div>
 </section>
@@ -281,44 +306,6 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
       </div>
     </div>
     <p class="hk-note">{t(locale, 'hackathon.hubsNote')}</p>
-  </div>
-</section>
-
-<section class="section alt">
-  <div class="container">
-    <h2 class="section-title">{t(locale, 'hackathon.whoTitle')}</h2>
-    <ul class="hk-who">
-      {data.eligibility.map((e, i) => (
-        <li class={`hk-who-card ${whoAccents[i % whoAccents.length]}`} style={`--wi:${i}`}>
-          <span class="hk-who-ic" set:html={whoIcons[i % whoIcons.length]} />
-          <span class="hk-who-label">{es ? e.es : e.en}</span>
-        </li>
-      ))}
-    </ul>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <h2 class="section-title">{t(locale, 'hackathon.agendaTitle')}</h2>
-    <ol class="hk-timeline">
-      {data.schedule.map((day, i) => (
-        <li class={`hk-tl-item ${day.accent ?? ['is-green','is-blue','is-yellow'][i % 3]}`} style={`--ti:${i}`}>
-          <span class="hk-tl-marker">{i + 1}</span>
-          <div class="hk-tl-body">
-            <span class="hk-tl-day">{es ? day.day : day.dayEn}</span>
-            <p class="hk-tl-act">{es ? day.events[0].title : day.events[0].titleEn}</p>
-          </div>
-        </li>
-      ))}
-    </ol>
-    <div class="hk-deliverable">
-      <span class="hk-deliverable-ic" set:html={ic('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>')} />
-      <div class="hk-deliverable-tx">
-        <span class="hk-deliverable-label">{t(locale, 'hackathon.deliverableLabel')}</span>
-        <p>{submission}</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -849,15 +836,6 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     color: var(--text-primary);
   }
 
-  .hk-pathway-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--green-text);
-    margin-bottom: 1rem;
-  }
-
   .hk-prize-extra {
     margin-top: 1.25rem;
     padding-top: 1.25rem;
@@ -924,84 +902,6 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 
   .hk-success-src:hover {
     text-decoration: underline;
-  }
-
-  /* Pathway stepper: numbered steps with a connector spine,
-     each revealing in sequence. */
-  .hk-steps {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 1rem;
-  }
-
-  .hk-step {
-    position: relative;
-    display: flex;
-    gap: 1.125rem;
-    background: #FFFFFF;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.5rem;
-    opacity: 0;
-    transform: translateY(10px);
-    animation: hk-step-in 0.5s ease forwards;
-    animation-delay: calc(var(--si) * 140ms);
-  }
-
-  .hk-step:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    left: 2.875rem;
-    bottom: -1rem;
-    width: 2px;
-    height: 1rem;
-    background: var(--border);
-  }
-
-  .hk-step-marker {
-    width: 2.5rem;
-    height: 2.5rem;
-    flex: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.0625rem;
-    font-weight: 700;
-    color: #FFFFFF;
-    background: var(--accent-green);
-  }
-
-  .hk-step.is-coral .hk-step-marker { background: var(--accent-coral); }
-  .hk-step.is-blue .hk-step-marker { background: var(--accent-blue); }
-
-  .hk-step-kicker {
-    display: block;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-secondary);
-  }
-
-  .hk-step-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0.15rem 0 0.4rem;
-  }
-
-  .hk-step-desc {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  @keyframes hk-step-in {
-    to { opacity: 1; transform: translateY(0); }
   }
 
   /* Global South globe: decorative rotating sphere + pulsing Bogotá hub,
@@ -1399,7 +1299,6 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     .hk-city.is-bogota .hk-city-dot {
       animation: none;
     }
-    .hk-step,
     .hk-who-card,
     .hk-tl-item {
       opacity: 1;
