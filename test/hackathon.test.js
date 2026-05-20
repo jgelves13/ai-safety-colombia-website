@@ -83,7 +83,7 @@ test('judges/speakers expose name + affiliation, optional bio/linkedin, no PII',
   assert.deepEqual(names, [
     'Melissa Robles',
     'Catalina Bernal',
-    'Juan Pablo Liévano',
+    'Juan Liévano-Karim',
     'Steve Hege',
     'Wanda Muñoz',
   ]);
@@ -99,6 +99,9 @@ test('judges/speakers expose name + affiliation, optional bio/linkedin, no PII',
     if (p.linkedin !== undefined) {
       assert.match(p.linkedin, /^https:\/\/www\.linkedin\.com\//);
     }
+    if (p.openreview !== undefined) {
+      assert.match(p.openreview, /^https:\/\/openreview\.net\//);
+    }
     if (p.bioEs !== undefined) assert.equal(typeof p.bioEs, 'string');
     if (p.bioEn !== undefined) assert.equal(typeof p.bioEn, 'string');
   }
@@ -112,7 +115,7 @@ test('attendance mapping matches the confirmed roster', () => {
   assert.equal(byName['Alejandro Toro'], 'inperson');
   assert.equal(byName['Melissa Robles'], 'inperson');
   assert.equal(byName['Catalina Bernal'], 'tbc');
-  assert.equal(byName['Juan Pablo Liévano'], 'tbc');
+  assert.equal(byName['Juan Liévano-Karim'], 'tbc');
   assert.equal(byName['Steve Hege'], 'inperson');
   assert.equal(byName['Wanda Muñoz'], 'remote');
 });

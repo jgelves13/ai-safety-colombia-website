@@ -25,6 +25,7 @@ type Person = {
   bioEs?: string;
   bioEn?: string;
   linkedin?: string;
+  openreview?: string;
   photo?: string;
 };
 const judges = data.judges as Person[];
@@ -344,6 +345,17 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
                 <span>LinkedIn</span>
               </a>
             )}
+            {sp.openreview && (
+              <a
+                class="hk-person-link"
+                href={sp.openreview}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`OpenReview — ${sp.name}`}
+              >
+                <span>OpenReview</span>
+              </a>
+            )}
           </div>
         </article>
       ))}
@@ -386,6 +398,17 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
                 >
                   <span class="hk-li-icon" set:html={linkedinIcon} />
                   <span>LinkedIn</span>
+                </a>
+              )}
+              {j.openreview && (
+                <a
+                  class="hk-person-link"
+                  href={j.openreview}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`OpenReview — ${j.name}`}
+                >
+                  <span>OpenReview</span>
                 </a>
               )}
             </div>
