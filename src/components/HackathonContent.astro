@@ -332,7 +332,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
             {sp.attendance && (
               <span class={`hk-att hk-att-${sp.attendance}`}>{attLabel(sp.attendance)}</span>
             )}
-            {(es ? sp.bioEs : sp.bioEn) && <p class="hk-person-bio">{es ? sp.bioEs : sp.bioEn}</p>}
+            {(es ? sp.bioEs : sp.bioEn) && <p class="hk-person-bio" set:html={es ? sp.bioEs : sp.bioEn} />}
             {sp.linkedin && (
               <a
                 class="hk-person-link"
@@ -387,7 +387,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
                   {es ? j.evalTopicEs : j.evalTopicEn}
                 </p>
               )}
-              {(es ? j.bioEs : j.bioEn) && <p class="hk-person-bio">{es ? j.bioEs : j.bioEn}</p>}
+              {(es ? j.bioEs : j.bioEn) && <p class="hk-person-bio" set:html={es ? j.bioEs : j.bioEn} />}
               {j.linkedin && (
                 <a
                   class="hk-person-link"
