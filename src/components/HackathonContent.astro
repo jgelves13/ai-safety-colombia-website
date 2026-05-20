@@ -94,7 +94,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 </section>
 
 <section class="section hk-intro">
-  <div class="container hk-narrow">
+  <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whatTitle')}</h2>
     <p class="hk-lead">{whatBody}</p>
   </div>
@@ -103,7 +103,11 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 <section class="section alt">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whyTitle')}</h2>
-    <p class="hk-why-lead" set:html={es ? data.whyLeadEs : data.whyLeadEn}></p>
+    <div class="hk-why-lead">
+      {(es ? data.whyLeadEs : data.whyLeadEn).map(para => (
+        <p set:html={para}></p>
+      ))}
+    </div>
     <h3 class="hk-pathway-label">{es ? data.pathwayLabelEs : data.pathwayLabelEn}</h3>
     <ol class="hk-steps">
       {data.pipeline.map((step, i) => (
@@ -775,11 +779,17 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   }
 
   .hk-why-lead {
+    max-width: 720px;
+    margin-bottom: 2rem;
+  }
+  .hk-why-lead p {
     font-size: 1.0625rem;
     color: var(--text-secondary);
     line-height: 1.65;
-    max-width: 720px;
-    margin-bottom: 2rem;
+    margin: 0 0 1rem;
+  }
+  .hk-why-lead p:last-child {
+    margin-bottom: 0;
   }
   .hk-why-lead a {
     color: var(--text-primary);
