@@ -112,7 +112,7 @@ export const ui = {
     'events.notifyKicker': 'Mantente al día',
     'events.notifyTitle': '¿Quieres saber de nuestro próximo evento?',
     'events.notifyText':
-      'Síguenos por el canal que prefieras y te avisamos cuando abramos la próxima convocatoria.',
+      'Síguenos por el canal que prefieras y te avisamos cuando anunciemos el próximo evento.',
     'events.upcoming': 'Próximos eventos',
     'events.past': 'Eventos pasados',
     'events.viewInstagram': 'Ver en Instagram',
@@ -321,7 +321,7 @@ export const ui = {
     'events.notifyKicker': 'Stay in the loop',
     'events.notifyTitle': 'Want to hear about our next event?',
     'events.notifyText':
-      'Follow us on whichever channel you prefer and we will let you know when the next one opens.',
+      'Follow us on whichever channel you prefer and we will let you know when the next event is announced.',
     'events.upcoming': 'Upcoming',
     'events.past': 'Past events',
     'events.viewInstagram': 'View on Instagram',
