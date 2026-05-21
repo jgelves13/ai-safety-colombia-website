@@ -101,8 +101,9 @@ export const ui = {
     'getInvolved.hero.title': 'Involúcrate',
     'getInvolved.hero.subtitle':
       'Hay múltiples formas de contribuir a la seguridad de IA en Colombia, sin importar tu perfil o experiencia. Elige el camino que va contigo.',
-    'getInvolved.ctaLead':
-      '¿No sabes por dónde empezar? Únete a la comunidad y te orientamos.',
+    'getInvolved.ctaKicker': 'Da el primer paso',
+    'getInvolved.ctaTitle': '¿No sabes por dónde empezar?',
+    'getInvolved.ctaSub': 'Únete a la comunidad y te orientamos.',
     'getInvolved.ctaPrimary': 'Únete al WhatsApp',
     'getInvolved.ctaContact': 'Contáctanos',
     'join.whatsapp': 'WhatsApp',
@@ -291,8 +292,9 @@ export const ui = {
     'getInvolved.hero.title': 'Get Involved',
     'getInvolved.hero.subtitle':
       'There are multiple ways to contribute to AI safety in Colombia, regardless of your background or experience. Pick the path that fits you.',
-    'getInvolved.ctaLead':
-      'Not sure where to start? Join the community and we will guide you.',
+    'getInvolved.ctaKicker': 'Take the first step',
+    'getInvolved.ctaTitle': 'Not sure where to start?',
+    'getInvolved.ctaSub': 'Join the community and we will guide you.',
     'getInvolved.ctaPrimary': 'Join WhatsApp',
     'getInvolved.ctaContact': 'Contact us',
     'join.whatsapp': 'WhatsApp',

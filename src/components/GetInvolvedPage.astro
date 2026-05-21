@@ -66,16 +66,19 @@ const resolve = (a: Action) => {
 
 <section class="section">
   <div class="container">
-    <div class="ways-cta">
-      <p class="ways-cta-lead">{t(locale, 'getInvolved.ctaLead')}</p>
+    <div class="ways-cta featured-block">
+      <span class="ways-cta-ring" aria-hidden="true"></span>
+      <span class="section-label">{t(locale, 'getInvolved.ctaKicker')}</span>
+      <h2 class="section-title">{t(locale, 'getInvolved.ctaTitle')}</h2>
+      <p class="ways-cta-sub">{t(locale, 'getInvolved.ctaSub')}</p>
       <div class="ways-cta-buttons">
         <a
-          class="btn btn-primary"
+          class="btn ways-cta-solid"
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
         >{t(locale, 'getInvolved.ctaPrimary')}</a>
-        <a class="btn btn-secondary" href={localePath(locale, '/contacto/')}>
+        <a class="btn ways-cta-ghost" href={localePath(locale, '/contacto/')}>
           {t(locale, 'getInvolved.ctaContact')}
         </a>
       </div>
@@ -176,21 +179,41 @@ const resolve = (a: Action) => {
     transform: translateX(3px);
   }
 
+  /* Closing CTA — solid-green Trópico featured block */
   .ways-cta {
-    margin-top: 3rem;
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    padding: 2.5rem 2rem;
+    border-radius: 28px;
+    padding: 3.75rem 2rem;
     text-align: center;
-    background: var(--bg-secondary);
   }
 
-  .ways-cta-lead {
-    color: var(--text-secondary);
-    font-size: 0.9375rem;
+  /* second decorative shape — a green ring bleeding off the lower-right */
+  .ways-cta-ring {
+    position: absolute;
+    width: 190px;
+    height: 190px;
+    border: 22px solid var(--accent-sage);
+    border-radius: 50%;
+    bottom: -85px;
+    right: -55px;
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .ways-cta .section-label {
+    margin-bottom: 1.25rem;
+  }
+
+  .ways-cta .section-title {
+    max-width: 20ch;
+    margin: 0 auto 0.75rem;
+  }
+
+  .ways-cta-sub {
+    font-size: 1.0625rem;
     line-height: 1.6;
-    max-width: 540px;
-    margin: 0 auto 1.5rem;
+    max-width: 460px;
+    margin: 0 auto 1.875rem;
   }
 
   .ways-cta-buttons {
@@ -198,6 +221,30 @@ const resolve = (a: Action) => {
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  /* Buttons that read on the green block */
+  .ways-cta-solid {
+    background: var(--bg-elevated);
+    color: var(--accent-forest);
+    border-color: var(--bg-elevated);
+  }
+
+  .ways-cta-solid:hover {
+    background: var(--accent-yellow);
+    border-color: var(--accent-yellow);
+    color: var(--text-primary);
+  }
+
+  .ways-cta-ghost {
+    background: transparent;
+    color: var(--bg-elevated);
+    border-color: var(--bg-elevated);
+  }
+
+  .ways-cta-ghost:hover {
+    background: var(--bg-elevated);
+    color: var(--accent-forest);
   }
 
   @media (prefers-reduced-motion: reduce) {
