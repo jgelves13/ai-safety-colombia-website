@@ -64,9 +64,11 @@
   ],
   "eligibility": [
     { "es": "Investigadores e ingenieros de IA/ML", "en": "AI/ML researchers and engineers" },
-    { "es": "Investigadores de política y gobernanza", "en": "Policy and governance researchers" },
-    { "es": "Seguridad y red teaming", "en": "Security researchers and red teamers" },
-    { "es": "Estudiantes y early-career", "en": "Students and early-career" }
+    { "es": "Desarrolladores de software y científicos de datos", "en": "Software developers and data scientists" },
+    { "es": "Profesionales de política, derecho y gobernanza", "en": "Policy, law, and governance professionals" },
+    { "es": "Especialistas en seguridad y red teaming", "en": "Security and red-teaming specialists" },
+    { "es": "Estudiantes y personas en inicios de carrera", "en": "Students and early-career professionals" },
+    { "es": "Curiosos de otras disciplinas, sin experiencia previa", "en": "Curious minds from other fields, no experience required" }
   ],
   "regions": [
     { "nameEs": "América Latina", "nameEn": "Latin America", "accent": "is-green",
