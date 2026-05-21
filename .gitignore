@@ -10,3 +10,6 @@ dist/
 # Temp design/screenshot artifacts
 scripts/og/_*
 .playwright-mcp/
+
+# Design-exploration preview pages (local-only, never deployed)
+src/pages/preview/
