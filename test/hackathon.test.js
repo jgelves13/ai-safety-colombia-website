@@ -123,11 +123,20 @@ test('attendance mapping matches the confirmed roster', () => {
   assert.equal(byName['Wanda Muñoz'], 'remote');
 });
 
-test('no em-dash placeholder remains in schedule times', () => {
+test('the 3-day schedule has timed events with bilingual titles and notes', () => {
+  assert.equal(data.schedule.length, 3);
   for (const day of data.schedule) {
+    assert.ok(day.day && day.dayEn, 'day carries a bilingual label');
+    assert.ok(Array.isArray(day.events) && day.events.length >= 1);
     for (const ev of day.events) {
-      assert.notEqual(ev.time, '—');
-      assert.equal(ev.time, '');
+      // Real part-of-day labels, never the old em-dash placeholder.
+      assert.ok(ev.time && ev.time !== '—', 'event has a non-empty time');
+      assert.ok(ev.timeEn && ev.timeEn !== '—', 'event has a non-empty timeEn');
+      assert.ok(ev.title && typeof ev.title === 'string');
+      assert.ok(ev.titleEn && typeof ev.titleEn === 'string');
+      // Notes are optional but always present as strings for stable typing.
+      assert.equal(typeof ev.note, 'string');
+      assert.equal(typeof ev.noteEn, 'string');
     }
   }
 });

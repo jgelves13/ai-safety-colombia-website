@@ -109,18 +109,49 @@
   },
   "schedule": [
     { "day": "Viernes 19", "dayEn": "Friday 19", "accent": "is-green", "events": [
-      { "time": "", "title": "Charla de apertura, presentación de retos y formación de equipos", "titleEn": "Opening keynote, challenge briefing, and team formation" }
+      { "time": "Tarde", "timeEn": "Afternoon",
+        "title": "Dos charlas de apertura y presentación de los retos",
+        "titleEn": "Two opening talks and challenge briefing",
+        "note": "Con Juan Felipe Cerón (OpenAI) y Alejandro Toro (Congreso de Colombia)",
+        "noteEn": "With Juan Felipe Cerón (OpenAI) and Alejandro Toro (Congress of Colombia)" },
+      { "time": "Noche", "timeEn": "Evening",
+        "title": "Formación de equipos e inicio del desarrollo",
+        "titleEn": "Team formation and start of building",
+        "note": "", "noteEn": "" }
     ]},
     { "day": "Sábado 20", "dayEn": "Saturday 20", "accent": "is-blue", "events": [
-      { "time": "", "title": "Desarrollo del proyecto, charlas técnicas y mentoría", "titleEn": "Project development, tech talks, and mentoring" }
+      { "time": "Mañana", "timeEn": "Morning",
+        "title": "Desarrollo en equipos",
+        "titleEn": "Team development",
+        "note": "", "noteEn": "" },
+      { "time": "Tarde", "timeEn": "Afternoon",
+        "title": "Charlas técnicas y mentoría con expertos",
+        "titleEn": "Technical talks and expert mentoring",
+        "note": "", "noteEn": "" },
+      { "time": "Noche", "timeEn": "Evening",
+        "title": "El desarrollo continúa",
+        "titleEn": "Building continues",
+        "note": "", "noteEn": "" }
     ]},
     { "day": "Domingo 21", "dayEn": "Sunday 21", "accent": "is-yellow", "events": [
-      { "time": "", "title": "Desarrollo final y entrega del reporte (fecha límite: domingo en la noche)", "titleEn": "Final development and report submission (deadline: Sunday night)" }
+      { "time": "Mañana", "timeEn": "Morning",
+        "title": "Desarrollo final del proyecto",
+        "titleEn": "Final project development",
+        "note": "", "noteEn": "" },
+      { "time": "Tarde", "timeEn": "Afternoon",
+        "title": "Escritura del reporte de investigación",
+        "titleEn": "Writing the research report",
+        "note": "", "noteEn": "" },
+      { "time": "Noche", "timeEn": "Evening",
+        "title": "Entrega del reporte de investigación",
+        "titleEn": "Research report submission",
+        "note": "Fecha límite del hackathon",
+        "noteEn": "Hackathon deadline" }
     ]}
   ],
   "speakers": [
     { "name": "Juan Felipe Cerón", "affiliationEs": "OpenAI", "affiliationEn": "OpenAI", "attendance": "remote", "bioEs": "Ingeniero de investigación en alineación de IA en OpenAI. Coautor de <a href=\"https://arxiv.org/abs/2603.10521\" target=\"_blank\" rel=\"noopener noreferrer\">IH-Challenge</a> (RL para resistir inyección de prompts), y de <a href=\"https://arxiv.org/abs/2407.00215\" target=\"_blank\" rel=\"noopener noreferrer\">LLM Critics</a> (modelos de crítica para evaluar salidas de LLMs).", "bioEn": "AI Alignment Research Engineer at OpenAI. Co-author of <a href=\"https://arxiv.org/abs/2603.10521\" target=\"_blank\" rel=\"noopener noreferrer\">IH-Challenge</a> (RL to resist prompt injection), and <a href=\"https://arxiv.org/abs/2407.00215\" target=\"_blank\" rel=\"noopener noreferrer\">LLM Critics</a> (critic models for evaluating LLM outputs).", "linkedin": "https://www.linkedin.com/in/juan-felipe-ceron-uribe/", "photo": "juan-felipe.jpg" },
-    { "name": "Alejandro Toro", "affiliationEs": "Representante a la Cámara, Congreso de Colombia", "affiliationEn": "Member of the House of Representatives of Colombia", "attendance": "inperson", "bioEs": "Coautor y coordinador para primer debate del <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017/\" target=\"_blank\" rel=\"noopener noreferrer\">Proyecto de Ley 368/2025 en la Cámara de Representantes de Colombia</a>, que prohíbe los sistemas de armas autónomas letales y regula los semiautónomos en Colombia.", "bioEn": "Co-author and First-Debate Coordinator of <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017/\" target=\"_blank\" rel=\"noopener noreferrer\">House Bill 368/2025 in Colombia's House of Representatives</a>, which prohibits lethal autonomous weapons systems and regulates semi-autonomous ones in Colombia.", "camara": "https://www.camara.gov.co/representantes/david-alejandro-toro-ramirez/", "photo": "alejandro.jpg" }
+    { "name": "Alejandro Toro", "affiliationEs": "Congreso de la República de Colombia", "affiliationEn": "Congress of the Republic of Colombia", "attendance": "inperson", "bioEs": "Representante a la Cámara. Coautor y coordinador para primer debate del <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017/\" target=\"_blank\" rel=\"noopener noreferrer\">Proyecto de Ley 368/2025</a>, que prohíbe los sistemas de armas autónomas letales y regula los semiautónomos.", "bioEn": "Member of the House of Representatives. Co-author and First-Debate Coordinator of <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017/\" target=\"_blank\" rel=\"noopener noreferrer\">House Bill 368/2025</a>, which prohibits lethal autonomous weapons systems and regulates semi-autonomous ones.", "camara": "https://www.camara.gov.co/representantes/david-alejandro-toro-ramirez/", "photo": "alejandro.jpg" }
   ],
   "judges": [
     { "name": "Melissa Robles", "affiliationEs": "IDB Lab y Quantil", "affiliationEn": "IDB Lab & Quantil", "attendance": "inperson", "evalTopicEs": "Auditoría de comportamiento (multilingüe, intercultural)", "evalTopicEn": "Behavioral audit (multilingual, cross-cultural)", "bioEs": "Coautora de <a href=\"https://arxiv.org/abs/2509.03329\" target=\"_blank\" rel=\"noopener noreferrer\">SESGO</a> (sesgos culturales en LLMs en español) y de un <a href=\"https://arxiv.org/abs/2508.19481\" target=\"_blank\" rel=\"noopener noreferrer\">modelo de traducción al wayuunaiki</a>.", "bioEn": "Co-author of <a href=\"https://arxiv.org/abs/2509.03329\" target=\"_blank\" rel=\"noopener noreferrer\">SESGO</a> (cultural bias in Spanish-language LLMs) and a <a href=\"https://arxiv.org/abs/2508.19481\" target=\"_blank\" rel=\"noopener noreferrer\">Spanish-Wayuunaiki MT model</a>.", "linkedin": "https://www.linkedin.com/in/melissa-robles-carmona/", "photo": "melissa.jpg" },

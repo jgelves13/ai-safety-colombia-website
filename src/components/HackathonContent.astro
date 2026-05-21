@@ -150,13 +150,27 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 <section class="section">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.agendaTitle')}</h2>
+    <p class="hk-agenda-note">{t(locale, 'hackathon.agendaNote')}</p>
     <ol class="hk-timeline">
       {data.schedule.map((day, i) => (
         <li class={`hk-tl-item ${day.accent ?? ['is-green','is-blue','is-yellow'][i % 3]}`} style={`--ti:${i}`}>
           <span class="hk-tl-marker">{i + 1}</span>
           <div class="hk-tl-body">
             <span class="hk-tl-day">{es ? day.day : day.dayEn}</span>
-            <p class="hk-tl-act">{es ? day.events[0].title : day.events[0].titleEn}</p>
+            <ul class="hk-tl-acts">
+              {day.events.map((ev) => {
+                const note = es ? ev.note : ev.noteEn;
+                return (
+                  <li class="hk-tl-act">
+                    <span class="hk-tl-time">{es ? ev.time : ev.timeEn}</span>
+                    <span class="hk-tl-act-tx">
+                      {es ? ev.title : ev.titleEn}
+                      {note && <span class="hk-tl-note">{note}</span>}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </li>
       ))}
@@ -1098,6 +1112,10 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     border: 1px solid var(--border);
   }
 
+  .hk-tl-body {
+    min-width: 0;
+  }
+
   .hk-tl-day {
     display: block;
     font-family: var(--font-display);
@@ -1112,11 +1130,57 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   .hk-tl-item.is-yellow .hk-tl-day { color: var(--accent-forest-deep); }
   .hk-tl-item.is-coral .hk-tl-day { color: var(--accent-vermillion); }
 
+  .hk-agenda-note {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: -0.25rem 0 1.5rem;
+    max-width: 42rem;
+  }
+
+  .hk-tl-acts {
+    list-style: none;
+    margin: 0.45rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
   .hk-tl-act {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+
+  .hk-tl-time {
+    flex: none;
+    min-width: 5.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    text-align: center;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.22rem 0.6rem;
+  }
+
+  .hk-tl-act-tx {
     font-size: 0.9375rem;
     color: var(--text-primary);
-    line-height: 1.55;
-    margin: 0.2rem 0 0;
+    line-height: 1.5;
+  }
+
+  .hk-tl-note {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    margin-top: 0.15rem;
   }
 
   @keyframes hk-tl-in {
