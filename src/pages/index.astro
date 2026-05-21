@@ -3,19 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HackathonBanner from '../components/HackathonBanner.astro';
 import Hero from '../components/Hero.astro';
 import AboutAISafety from '../components/AboutAISafety.astro';
-import StartHere from '../components/StartHere.astro';
-import JourneyPipeline from '../components/JourneyPipeline.astro';
-import MetricsBar from '../components/MetricsBar.astro';
 import WhatWeDo from '../components/WhatWeDo.astro';
-import PartnerStrip from '../components/PartnerStrip.astro';
+import HomeEvents from '../components/HomeEvents.astro';
+import StartHere from '../components/StartHere.astro';
+import Roadmap from '../components/Roadmap.astro';
 import { t } from '../i18n/ui';
-import metricsData from '../data/metrics.json';
 
 const locale = 'es';
-const metrics = metricsData.map((m) => ({
-  value: m.value,
-  label: t(locale, m.labelKey as Parameters<typeof t>[1]),
-}));
 ---
 
 <BaseLayout locale={locale} currentPage="index">
@@ -26,13 +20,11 @@ const metrics = metricsData.map((m) => ({
 
   <WhatWeDo locale={locale} />
 
+  <HomeEvents locale={locale} />
+
   <StartHere locale={locale} />
 
-  <JourneyPipeline locale={locale} />
-
-  <MetricsBar metrics={metrics} />
-
-  <PartnerStrip locale="es" />
+  <Roadmap locale={locale} />
 
   <section class="section join-section featured-block" aria-labelledby="join-title">
     <div class="container">
@@ -59,9 +51,9 @@ const metrics = metricsData.map((m) => ({
 
 <style>
   .join-card {
-    background: linear-gradient(100deg, #eafff2, #e7f6ff);
-    border: 1px solid #d5efe0;
-    border-radius: 18px;
+    background: var(--card-surface);
+    border: 1px solid var(--border);
+    border-radius: 22px;
     padding: 2.25rem 2.5rem;
     display: flex;
     align-items: center;
@@ -72,9 +64,10 @@ const metrics = metricsData.map((m) => ({
 
   .join-card .section-title {
     margin-bottom: 0.375rem;
+    color: var(--text-primary);
   }
 
-  .join-sub {
+  .join-card .join-sub {
     color: var(--text-secondary);
     font-size: 0.9375rem;
   }

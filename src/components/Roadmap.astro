@@ -1,0 +1,95 @@
+---
+import type { Locale } from '../i18n/ui';
+import { t } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const goals = [
+  { n: '01', title: t(locale, 'roadmap.g1.title'), desc: t(locale, 'roadmap.g1.desc') },
+  { n: '02', title: t(locale, 'roadmap.g2.title'), desc: t(locale, 'roadmap.g2.desc') },
+  { n: '03', title: t(locale, 'roadmap.g3.title'), desc: t(locale, 'roadmap.g3.desc') },
+];
+---
+
+<section class="section alt roadmap" aria-labelledby="roadmap-title">
+  <div class="container">
+    <header class="roadmap-head">
+      <div class="section-label">{t(locale, 'roadmap.kicker')}</div>
+      <h2 class="section-title" id="roadmap-title">{t(locale, 'roadmap.title')}</h2>
+      <p class="section-subtitle">{t(locale, 'roadmap.lead')}</p>
+    </header>
+
+    <div class="roadmap-grid">
+      {goals.map((g) => (
+        <article class="roadmap-card">
+          <span class="roadmap-num" aria-hidden="true">{g.n}</span>
+          <h3>{g.title}</h3>
+          <p>{g.desc}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .roadmap-head {
+    margin-bottom: 2.5rem;
+  }
+
+  .roadmap-head .section-label {
+    margin-bottom: 0.9rem;
+  }
+
+  .roadmap-head .section-subtitle {
+    margin-top: 0.5rem;
+  }
+
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
+  }
+
+  .roadmap-card {
+    background: var(--card-surface);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 2rem 1.9rem 2.1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .roadmap-num {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--accent-vermillion);
+    margin-bottom: 1rem;
+  }
+
+  .roadmap-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .roadmap-card p {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 860px) {
+    .roadmap-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

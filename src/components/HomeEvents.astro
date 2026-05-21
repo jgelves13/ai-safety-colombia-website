@@ -1,0 +1,199 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import type { Locale } from '../i18n/ui';
+import { t, localePath } from '../i18n/ui';
+import { splitEvents } from '../utils/events.js';
+import eventsData from '../data/events.json';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { upcoming, past } = splitEvents(eventsData);
+const ordered = [...upcoming, ...past];
+
+const flyers = import.meta.glob<ImageMetadata>('../assets/events/*', {
+  eager: true,
+  import: 'default',
+});
+
+const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-CO' : 'en-US', {
+  month: 'short',
+  year: 'numeric',
+});
+
+const cards = ordered.map((ev) => ({
+  title: locale === 'es' ? ev.titleEs : ev.titleEn,
+  date: dateFmt.format(new Date(ev.date + 'T00:00:00-05:00')),
+  datetime: ev.date,
+  href: ev.instagramUrl,
+  flyer: flyers[`../assets/events/${ev.flyer}`],
+}));
+---
+
+<section class="section alt home-events" aria-labelledby="home-events-title">
+  <div class="container">
+    <header class="home-events-head">
+      <h2 class="section-title" id="home-events-title">{t(locale, 'home.events.title')}</h2>
+    </header>
+
+    <div class="ev-frame">
+      <div class="ev-marquee">
+        <div class="ev-track">
+          <div class="ev-group">
+            {cards.map((c) => (
+              <a class="ev-card" href={c.href} target="_blank" rel="noopener noreferrer">
+                <div class="ev-card-img">
+                  {c.flyer && (
+                    <Image src={c.flyer} alt={c.title} widths={[165, 330]} sizes="165px" format="webp" quality={85} loading="lazy" />
+                  )}
+                </div>
+                <div class="ev-card-cap">
+                  <span class="ev-card-title">{c.title}</span>
+                  <time class="ev-card-date" datetime={c.datetime}>{c.date}</time>
+                </div>
+              </a>
+            ))}
+          </div>
+          <div class="ev-group" aria-hidden="true" data-ev-dup>
+            {cards.map((c) => (
+              <a class="ev-card" href={c.href} target="_blank" rel="noopener noreferrer" tabindex="-1">
+                <div class="ev-card-img">
+                  {c.flyer && (
+                    <Image src={c.flyer} alt="" widths={[165, 330]} sizes="165px" format="webp" quality={85} loading="lazy" />
+                  )}
+                </div>
+                <div class="ev-card-cap">
+                  <span class="ev-card-title">{c.title}</span>
+                  <time class="ev-card-date" datetime={c.datetime}>{c.date}</time>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a class="ev-cta" href={localePath(locale, '/eventos/')}>
+      {t(locale, 'home.events.cta')} &rarr;
+    </a>
+  </div>
+</section>
+
+<style>
+  .home-events-head {
+    margin-bottom: 1.6rem;
+  }
+
+  .ev-frame {
+    --ev-gap: 1rem;
+    --ev-card-w: 165px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 1.4rem 0;
+    overflow: hidden;
+  }
+
+  .ev-marquee {
+    overflow: hidden;
+  }
+
+  .ev-track {
+    display: flex;
+    gap: var(--ev-gap);
+    width: max-content;
+    animation: ev-scroll 52s linear infinite;
+  }
+
+  .ev-marquee:hover .ev-track,
+  .ev-marquee:focus-within .ev-track {
+    animation-play-state: paused;
+  }
+
+  .ev-group {
+    display: flex;
+    gap: var(--ev-gap);
+  }
+
+  @keyframes ev-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - var(--ev-gap) / 2)); }
+  }
+
+  .ev-card {
+    flex: 0 0 var(--ev-card-w);
+    display: flex;
+    flex-direction: column;
+    background: var(--card-surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: border-color 0.15s;
+  }
+
+  .ev-card:hover {
+    border-color: var(--accent-forest);
+  }
+
+  .ev-card-img {
+    aspect-ratio: 3 / 4;
+    background: var(--card-surface);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .ev-card-img :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ev-card-cap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.55rem 0.62rem 0.66rem;
+  }
+
+  .ev-card-title {
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.32;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .ev-card-date {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    color: var(--text-secondary);
+    text-transform: lowercase;
+  }
+
+  .ev-cta {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--accent-forest);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ev-marquee {
+      overflow-x: auto;
+    }
+    .ev-track {
+      animation: none;
+    }
+    [data-ev-dup] {
+      display: none;
+    }
+  }
+</style>
