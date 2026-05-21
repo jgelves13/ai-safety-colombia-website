@@ -26,6 +26,7 @@ const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-CO' : 'en-US', {
 
 const cards = ordered.map((ev) => ({
   title: locale === 'es' ? ev.titleEs : ev.titleEn,
+  blurb: locale === 'es' ? ev.whyEs : ev.whyEn,
   date: dateFmt.format(new Date(ev.date + 'T00:00:00-05:00')),
   datetime: ev.date,
   href: ev.instagramUrl,
@@ -47,12 +48,13 @@ const cards = ordered.map((ev) => ({
               <a class="ev-card" href={c.href} target="_blank" rel="noopener noreferrer">
                 <div class="ev-card-img">
                   {c.flyer && (
-                    <Image src={c.flyer} alt={c.title} widths={[165, 330]} sizes="165px" format="webp" quality={85} loading="lazy" />
+                    <Image src={c.flyer} alt={c.title} widths={[188, 376]} sizes="188px" format="webp" quality={85} loading="lazy" />
                   )}
                 </div>
                 <div class="ev-card-cap">
                   <span class="ev-card-title">{c.title}</span>
                   <time class="ev-card-date" datetime={c.datetime}>{c.date}</time>
+                  <p class="ev-card-blurb">{c.blurb}</p>
                 </div>
               </a>
             ))}
@@ -62,12 +64,13 @@ const cards = ordered.map((ev) => ({
               <a class="ev-card" href={c.href} target="_blank" rel="noopener noreferrer" tabindex="-1">
                 <div class="ev-card-img">
                   {c.flyer && (
-                    <Image src={c.flyer} alt="" widths={[165, 330]} sizes="165px" format="webp" quality={85} loading="lazy" />
+                    <Image src={c.flyer} alt="" widths={[188, 376]} sizes="188px" format="webp" quality={85} loading="lazy" />
                   )}
                 </div>
                 <div class="ev-card-cap">
                   <span class="ev-card-title">{c.title}</span>
                   <time class="ev-card-date" datetime={c.datetime}>{c.date}</time>
+                  <p class="ev-card-blurb">{c.blurb}</p>
                 </div>
               </a>
             ))}
@@ -89,7 +92,7 @@ const cards = ordered.map((ev) => ({
 
   .ev-frame {
     --ev-gap: 1rem;
-    --ev-card-w: 165px;
+    --ev-card-w: 188px;
     background: var(--bg-primary);
     border: 1px solid var(--border);
     border-radius: 22px;
@@ -175,6 +178,17 @@ const cards = ordered.map((ev) => ({
     font-size: 0.66rem;
     color: var(--text-secondary);
     text-transform: lowercase;
+  }
+
+  .ev-card-blurb {
+    margin-top: 0.15rem;
+    font-size: 0.72rem;
+    line-height: 1.45;
+    color: var(--text-secondary);
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .ev-cta {
