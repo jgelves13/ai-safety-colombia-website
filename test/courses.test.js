@@ -9,8 +9,6 @@ test('every course has complete bilingual fields and a BlueDot URL', () => {
       'slug',
       'titleEs',
       'titleEn',
-      'metaEs',
-      'metaEn',
       'audienceEs',
       'audienceEn',
       'descEs',
@@ -20,7 +18,6 @@ test('every course has complete bilingual fields and a BlueDot URL', () => {
     }
     assert.match(c.url, /^https:\/\/bluedot\.org\/courses\//);
     assert.match(c.url, new RegExp(`/${c.slug}$`));
-    assert.ok(['is-green', 'is-coral', 'is-blue', 'is-yellow'].includes(c.accent));
   }
 });
 
@@ -34,7 +31,7 @@ test('no deadline or date language in course copy', () => {
   const datey =
     /\b(deadline|fecha l[ií]mite|apply by|aplica antes|cierr[ae]|enrol(?:lment)? closes|inscripci[oó]n cierra|\d{4}-\d{2}-\d{2})\b/i;
   for (const c of data.courses) {
-    for (const k of ['metaEs', 'metaEn', 'audienceEs', 'audienceEn', 'descEs', 'descEn']) {
+    for (const k of ['audienceEs', 'audienceEn', 'descEs', 'descEn']) {
       assert.ok(!datey.test(c[k]), `${c.slug}.${k} has no deadline/date language`);
     }
   }

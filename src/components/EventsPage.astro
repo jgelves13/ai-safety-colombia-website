@@ -27,6 +27,18 @@ const filterOptions = pastTypes.map((type) => ({
 
 <PageHero title={t(locale, 'events.hero.title')} desc={t(locale, 'events.hero.subtitle')} />
 
+<div class="events-notify">
+  <div class="container">
+    <p class="events-notify-text">{t(locale, 'events.notifyText')}</p>
+    <a
+      class="events-notify-cta"
+      href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
+      target="_blank"
+      rel="noopener noreferrer"
+    >{t(locale, 'events.notifyCta')}</a>
+  </div>
+</div>
+
 {upcoming.length > 0 && (
   <section class="section featured-block" aria-labelledby="events-upcoming">
     <div class="container">
@@ -71,6 +83,44 @@ const filterOptions = pastTypes.map((type) => ({
 <style>
   .featured-block :global(.event-card) {
     background: var(--bg-elevated);
+  }
+
+  .events-notify {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .events-notify .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    padding-top: 1.125rem;
+    padding-bottom: 1.125rem;
+  }
+
+  .events-notify-text {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    margin: 0;
+  }
+
+  .events-notify-cta {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 0.5rem 1.125rem;
+    background: var(--accent-forest);
+    color: var(--bg-elevated);
+    transition: background 0.15s;
+  }
+
+  .events-notify-cta:hover {
+    background: var(--accent-forest-deep);
+    color: var(--bg-elevated);
   }
 
   /* Inherits .section-label styling from global.css (Trópico coral kicker) */

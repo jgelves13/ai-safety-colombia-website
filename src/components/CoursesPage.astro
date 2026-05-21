@@ -32,8 +32,6 @@ const interestHref = (course?: string) => {
   return `mailto:${ORG_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 };
 
-const accents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
-
 // Original line-art glyphs per group (no third-party assets). Stroke is
 // inherited via currentColor; each cover animates the glyph and an orbit.
 const GLYPHS: Record<string, string> = {
@@ -68,11 +66,10 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
     <p class="courses-note">{t(locale, 'programs.bluedotNote')}</p>
 
     <div class="courses-grid">
-      {data.courses.map((c, i) => {
+      {data.courses.map((c) => {
         const title = es ? c.titleEs : c.titleEn;
-        const accent = c.accent ?? accents[i % 4];
         return (
-          <article class={`course-card ${accent}`}>
+          <article class="course-card">
             <a
               class="course-cover"
               href={c.url}
@@ -97,7 +94,6 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
               <span class="cover-title">{title}</span>
             </a>
             <div class="course-body">
-              <p class="course-meta">{es ? c.metaEs : c.metaEn}</p>
               <p class="course-aud">
                 <span class="course-aud-label">{t(locale, 'programs.audienceLabel')}:</span>{' '}
                 {es ? c.audienceEs : c.audienceEn}
@@ -181,17 +177,9 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
     isolation: isolate;
   }
 
-  .course-card.is-green  .course-cover { background: var(--accent-forest); }
-  .course-card.is-coral  .course-cover { background: var(--accent-forest-deep); }
-  .course-card.is-blue   .course-cover { background: var(--accent-forest-deep); }
-  .course-card.is-yellow .course-cover { background: var(--accent-forest); }
+  .course-cover { background: var(--accent-forest); }
 
-  .cover-accent { color: var(--accent-forest); }
-
-  .course-card.is-green  { --cover-accent: #4A8466; }
-  .course-card.is-coral  { --cover-accent: #E5604D; }
-  .course-card.is-blue   { --cover-accent: #4A8466; }
-  .course-card.is-yellow { --cover-accent: #E5604D; }
+  .course-card { --cover-accent: var(--accent-vermillion); }
 
   .cover-kicker {
     position: relative;
@@ -276,23 +264,10 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
     flex: 1;
   }
 
-  .course-meta {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    color: var(--accent-forest);
-  }
-
-  .is-coral .course-meta { color: var(--accent-vermillion); }
-  .is-blue .course-meta { color: var(--accent-sage); }
-  .is-yellow .course-meta { color: var(--accent-forest-deep); }
-
   .course-aud {
     font-size: 0.875rem;
     color: var(--text-secondary);
     line-height: 1.55;
-    margin-top: 0.5rem;
   }
 
   .course-aud-label {
