@@ -22,17 +22,48 @@ const levers = [
   { cls: 'is-coral', icon: icons.research, title: t(locale, 'about.toc.research.title'), desc: t(locale, 'about.toc.research.desc') },
   { cls: 'is-blue', icon: icons.community, title: t(locale, 'about.toc.community.title'), desc: t(locale, 'about.toc.community.desc') },
 ];
+
+const milestones = [
+  { year: '2024', label: t(locale, 'about.origin.m1') },
+  { year: '2024', label: t(locale, 'about.origin.m2') },
+  { year: '2025', label: t(locale, 'about.origin.m3') },
+  { year: '2026', label: t(locale, 'about.origin.m4') },
+];
 ---
 
-<section class="section" aria-labelledby="mission-title">
+<section class="section about-mission" aria-labelledby="mission-title">
+  <span class="am-shape" aria-hidden="true"></span>
   <div class="container">
-    <h2 class="section-title" id="mission-title">{t(locale, 'about.mission.title')}</h2>
-    <p class="section-subtitle">{t(locale, 'about.mission.subtitle')}</p>
-    <p class="text-block">{t(locale, 'about.mission.body')}</p>
+    <h2 class="section-label" id="mission-title">{t(locale, 'about.mission.title')}</h2>
+    <p class="mission-statement">{t(locale, 'about.mission.body')}</p>
+    <p class="mission-support">{t(locale, 'about.mission.support')}</p>
   </div>
 </section>
 
-<section class="section alt" aria-labelledby="toc-title">
+<section class="section alt about-origin" aria-labelledby="origin-title">
+  <div class="container">
+    <p class="section-label">{t(locale, 'about.origin.kicker')}</p>
+    <h2 class="section-title" id="origin-title">{t(locale, 'about.origin.title')}</h2>
+
+    <div class="origin-layout">
+      <div class="origin-body">
+        <p>{t(locale, 'about.origin.body1')}</p>
+        <p>{t(locale, 'about.origin.body2')}</p>
+        <p>{t(locale, 'about.origin.body3')}</p>
+      </div>
+      <ol class="timeline">
+        {milestones.map((m) => (
+          <li class="timeline-item">
+            <span class="timeline-year">{m.year}</span>
+            <p class="timeline-label">{m.label}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="toc-title">
   <div class="container">
     <h2 class="section-title" id="toc-title">{t(locale, 'about.toc.title')}</h2>
     <p class="section-subtitle">{t(locale, 'about.toc.subtitle')}</p>
@@ -51,7 +82,7 @@ const levers = [
   </div>
 </section>
 
-<section class="section" aria-labelledby="team-title">
+<section class="section alt" aria-labelledby="team-title">
   <div class="container">
     <h2 class="section-title" id="team-title">{t(locale, 'about.team.title')}</h2>
     <p class="section-subtitle">{t(locale, 'about.team.subtitle')}</p>
@@ -85,7 +116,7 @@ const levers = [
   </div>
 </section>
 
-<section class="section alt about-cta" aria-labelledby="about-cta-title">
+<section class="section about-cta" aria-labelledby="about-cta-title">
   <div class="container">
     <h2 class="section-title" id="about-cta-title">{t(locale, 'about.cta.title')}</h2>
     <p class="section-subtitle">{t(locale, 'about.cta.sub')}</p>
@@ -97,11 +128,124 @@ const levers = [
 </section>
 
 <style>
-  .text-block {
-    color: var(--text-secondary);
+  /* The mission opens the page as a bold statement: a coral kicker,
+     one large display-type sentence, a quieter support line, and a
+     yellow ring bleeding off the right edge for a Trópico accent. */
+  .about-mission {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-mission .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-mission .section-label {
+    margin-bottom: 1.25rem;
+  }
+
+  .am-shape {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    top: 50%;
+    right: -80px;
+    transform: translateY(-50%);
+    border: 22px solid var(--accent-yellow);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .mission-statement {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+    color: var(--text-primary);
+    max-width: 20ch;
+    margin-bottom: 1.4rem;
+  }
+
+  .mission-support {
     font-size: 1.0625rem;
-    max-width: 700px;
+    color: var(--text-secondary);
     line-height: 1.7;
+    max-width: 52ch;
+  }
+
+  /* The origin story pairs a narrative column with a compact
+     vertical timeline of milestones. */
+  .about-origin .section-label {
+    margin-bottom: 0.9rem;
+  }
+
+  .about-origin .section-title {
+    margin-bottom: 2.5rem;
+  }
+
+  .origin-layout {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  .origin-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .origin-body p {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 0 0 1.6rem 1.6rem;
+    border-left: 2px solid var(--border);
+  }
+
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 0.1rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent-vermillion);
+    border: 2px solid var(--bg-secondary);
+  }
+
+  .timeline-year {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--accent-forest);
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-label {
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    line-height: 1.5;
   }
 
   /* Theory of change as three reinforcing levers, mirroring the
@@ -186,10 +330,10 @@ const levers = [
     padding: 1.75rem 2rem;
   }
 
-  /* The memorial card sits on the secondary surface to set it apart
-     from Jose's plain card while staying inside the Trópico vocabulary. */
+  /* The memorial card sits on the page surface to set it apart
+     from Jose's elevated card while staying inside the Trópico vocabulary. */
   .person-card.is-memoriam {
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
   }
 
   .person-head {
@@ -275,6 +419,13 @@ const levers = [
     flex-wrap: wrap;
   }
 
+  @media (max-width: 860px) {
+    .origin-layout {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+    }
+  }
+
   @media (max-width: 768px) {
     .people {
       grid-template-columns: 1fr;
@@ -282,6 +433,12 @@ const levers = [
     }
     .person-card {
       padding: 1.5rem;
+    }
+    .am-shape {
+      width: 170px;
+      height: 170px;
+      right: -70px;
+      border-width: 16px;
     }
   }
 

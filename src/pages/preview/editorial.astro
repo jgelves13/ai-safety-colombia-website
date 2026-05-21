@@ -1,0 +1,288 @@
+---
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Editorial Latin Journal · preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ed-bg: #FAF7F1;
+      --ed-bg-alt: #F2EEE5;
+      --ed-ink: #1A1A1A;
+      --ed-muted: #555;
+      --ed-teal: #0E6E64;
+      --ed-line: #D9D4C6;
+      --ed-hair: #E5E1D6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--ed-bg);
+      color: var(--ed-ink);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    .ed-serif { font-family: 'Source Serif 4', Georgia, serif; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAVBAR — full-width hairline, NOT a pill */
+    .ed-nav {
+      border-bottom: 1px solid var(--ed-line);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--ed-bg);
+    }
+    .ed-nav-brand {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 700;
+      font-size: 1.0625rem;
+      letter-spacing: 0.01em;
+    }
+    .ed-nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+    .ed-nav a { font-size: 0.875rem; color: var(--ed-muted); }
+    .ed-nav a:hover { color: var(--ed-teal); }
+    .ed-nav .ed-lang { font-size: 0.75rem; color: var(--ed-muted); letter-spacing: 0.05em; }
+
+    /* HERO — left-aligned, big serif, hairline divider */
+    .ed-hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 2rem 5rem;
+    }
+    .ed-kicker {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ed-teal);
+      margin-bottom: 2rem;
+      font-weight: 600;
+    }
+    .ed-hero h1 {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 700;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.75rem;
+      max-width: 18ch;
+    }
+    .ed-hero .ed-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--ed-ink);
+      margin: 1.5rem 0;
+    }
+    .ed-hero p {
+      font-size: 1.1875rem;
+      color: var(--ed-muted);
+      max-width: 56ch;
+      line-height: 1.55;
+      margin-bottom: 2.5rem;
+    }
+    .ed-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .ed-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: opacity .15s, transform .15s;
+    }
+    .ed-btn-primary { background: var(--ed-teal); color: #fff; }
+    .ed-btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .ed-btn-quiet {
+      color: var(--ed-ink);
+      border-bottom: 1px solid var(--ed-ink);
+      border-radius: 0;
+      padding: 0.25rem 0;
+    }
+    .ed-btn-quiet:hover { color: var(--ed-teal); border-color: var(--ed-teal); }
+
+    /* SECTION — hairline above, label, then rows */
+    .ed-section {
+      border-top: 1px solid var(--ed-line);
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .ed-section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ed-muted);
+      margin-bottom: 3rem;
+      font-weight: 600;
+    }
+    .ed-rows { display: flex; flex-direction: column; gap: 0; }
+    .ed-row {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--ed-hair);
+      align-items: start;
+    }
+    .ed-row:last-child { border-bottom: 1px solid var(--ed-hair); }
+    .ed-row h3 {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 600;
+      font-size: 1.5rem;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+    .ed-row p {
+      font-size: 1rem;
+      color: var(--ed-muted);
+      max-width: 60ch;
+    }
+
+    /* FEATURED — cream block on alt bg with rule */
+    .ed-featured-wrap {
+      background: var(--ed-bg-alt);
+      padding: 5rem 2rem;
+      margin-top: 4rem;
+      border-top: 1px solid var(--ed-line);
+      border-bottom: 1px solid var(--ed-line);
+    }
+    .ed-featured {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .ed-featured .ed-kicker { margin-bottom: 1rem; }
+    .ed-featured h2 {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 700;
+      font-size: clamp(1.875rem, 4vw, 2.75rem);
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      margin-bottom: 1.25rem;
+    }
+    .ed-featured p {
+      color: var(--ed-muted);
+      max-width: 50ch;
+      font-size: 1.0625rem;
+      margin-bottom: 1.75rem;
+    }
+    .ed-featured-meta {
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+      color: var(--ed-ink);
+      font-size: 1.5rem;
+      line-height: 1.4;
+    }
+    .ed-featured-meta .ed-meta-label {
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ed-muted);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* FOOTER */
+    .ed-footer {
+      padding: 3rem 2rem 2rem;
+      border-top: 1px solid var(--ed-line);
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.875rem;
+      color: var(--ed-muted);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .ed-footer a { color: var(--ed-ink); }
+    .ed-footer a:hover { color: var(--ed-teal); }
+
+    @media (max-width: 760px) {
+      .ed-row, .ed-featured { grid-template-columns: 1fr; gap: 1rem; }
+      .ed-hero { padding-top: 3rem; padding-bottom: 3rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="ed-nav">
+    <div class="ed-nav-brand">AI Safety Colombia</div>
+    <ul>
+      <li><a href="#">Sobre</a></li>
+      <li><a href="#">Programas</a></li>
+      <li><a href="#">Hackathon</a></li>
+      <li><a href="#">Eventos</a></li>
+      <li><a href="#">Recursos</a></li>
+      <li><a href="#" class="ed-lang">ES · EN</a></li>
+    </ul>
+  </nav>
+
+  <section class="ed-hero">
+    <div class="ed-kicker">Investigación · Comunidad · Política</div>
+    <h1 class="ed-serif">Construimos seguridad de IA desde Colombia.</h1>
+    <div class="ed-rule"></div>
+    <p>Investigación, comunidad y política pública para que la IA avance de forma segura en América Latina. Una comunidad de investigadores, ingenieros y profesionales de política trabajando juntos.</p>
+    <div class="ed-actions">
+      <a class="ed-btn ed-btn-primary" href="#">Únete a la comunidad →</a>
+      <a class="ed-btn ed-btn-quiet" href="#">Ver recursos</a>
+    </div>
+  </section>
+
+  <section class="ed-section">
+    <div class="ed-section-label">Qué hacemos</div>
+    <div class="ed-rows">
+      <div class="ed-row">
+        <h3>Investigación</h3>
+        <p>Evaluaciones, alineación y gobernanza con la comunidad técnica latinoamericana. Trabajamos en problemas abiertos junto con organizaciones del Norte Global.</p>
+      </div>
+      <div class="ed-row">
+        <h3>Comunidad</h3>
+        <p>Reunimos a investigadores, ingenieros y profesionales de política en Bogotá y en línea. Grupos de discusión, hackathons y eventos abiertos.</p>
+      </div>
+      <div class="ed-row">
+        <h3>Formación</h3>
+        <p>Cursos curados de BlueDot Impact y rutas de aprendizaje para distintos puntos de partida — desde fundamentos hasta investigación técnica.</p>
+      </div>
+      <div class="ed-row">
+        <h3>Gobernanza</h3>
+        <p>Política pública sobre IA en Colombia y América Latina. Documentos, conversaciones con decisores y aportes a marcos regulatorios.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ed-featured-wrap">
+    <div class="ed-featured">
+      <div>
+        <div class="ed-kicker">Hackathon · Junio 19–21</div>
+        <h2 class="ed-serif">Global South AI Safety Hackathon 2026</h2>
+        <p>Un fin de semana donde investigadores, ingenieros y profesionales de política de América Latina, África y Asia construyen seguridad de IA para sus regiones. Organiza Apart Research; AI Safety Colombia coordina el hub de Bogotá.</p>
+        <a class="ed-btn ed-btn-primary" href="#">Inscríbete →</a>
+      </div>
+      <div class="ed-featured-meta">
+        <span class="ed-meta-label">Premios regionales</span>
+        “USD 1.000 por equipo ganador en cada hub regional, e invitación al Apart Lab Fellowship.”
+      </div>
+    </div>
+  </div>
+
+  <footer class="ed-footer">
+    <div>© 2026 AI Safety Colombia</div>
+    <div>
+      <a href="#">WhatsApp</a> · <a href="#">Instagram</a> · <a href="#">LinkedIn</a> · <a href="#">Contacto</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,108 @@
+---
+const freshVariants = [
+  {
+    slug: 'modernismo',
+    name: 'Modernismo Arquitectónico',
+    blurb: 'Salmona, ladrillo y concreto. Rejilla estructural, divisores de banda, líneas tipo plano. Modernismo institucional latinoamericano.',
+  },
+  {
+    slug: 'letras',
+    name: 'Revista Literaria Latina',
+    blurb: 'Papel cálido, serif Piazzolla (Buenos Aires), verde como único acento, capitular y notas al pie. Una publicación de investigación regional.',
+  },
+  {
+    slug: 'tropico',
+    name: 'Trópico — Póster Optimista',
+    blurb: 'Amarillo sol, coral y verde. Bloques de color, formas superpuestas, grano risográfico. La más distintiva y arriesgada.',
+  },
+];
+const variants = [
+  {
+    slug: 'editorial',
+    name: 'Editorial Latin Journal',
+    blurb: 'Heavy serif + cream bg + deep teal accent + hairline rules. Reads as a serious research journal.',
+  },
+  {
+    slug: 'dark',
+    name: 'Dark Terminal Research',
+    blurb: 'Deep navy sitewide + electric-lime accent + mono display + sharp rectangles. Terminal-research gravity.',
+  },
+  {
+    slug: 'craft',
+    name: 'Latin Craft Place-Specific',
+    blurb: 'Off-white + terracotta + forest green + corn yellow + textile band dividers + serif with character. Most distinctive, riskiest.',
+  },
+  {
+    slug: 'swiss',
+    name: 'Swiss Modernist Type-Driven',
+    blurb: 'Pure white + massive geometric sans + blue-violet primary + vermillion accent + hard rectangles. Type is the design.',
+  },
+];
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aesthetic previews · AI Safety Colombia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #fafafa;
+      color: #111;
+      padding: 4rem 1.5rem;
+      line-height: 1.55;
+    }
+    main { max-width: 720px; margin: 0 auto; }
+    h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    .lead { color: #555; margin-bottom: 2.5rem; max-width: 60ch; }
+    .grid { display: grid; gap: 1rem; }
+    a.card {
+      display: block;
+      border: 1px solid #e6e6e6;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .15s, transform .15s;
+      background: #fff;
+    }
+    a.card:hover { border-color: #111; transform: translateY(-1px); }
+    a.card h2 { font-size: 1.125rem; font-weight: 600; margin-bottom: 0.35rem; }
+    a.card p { color: #555; font-size: 0.9375rem; }
+    .slug { display: inline-block; font: 500 0.75rem/1 'JetBrains Mono', monospace; color: #888; margin-bottom: 0.35rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .section-label { font: 600 0.75rem/1 'Inter', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: #1F4D32; margin-bottom: 1rem; }
+    .section-label.archive { color: #999; margin-top: 2.75rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Aesthetic previews</h1>
+    <p class="lead">Three fresh, distinctly Latin American directions for redesigning aisafetycolombia.org while keeping content, sections, and CTAs intact. Each keeps only the green from the logo; palette, typography and layout are otherwise new. Every preview shows a navbar, hero, an editorial section, a featured block, and a footer.</p>
+    <p class="section-label">Latin American directions</p>
+    <div class="grid">
+      {freshVariants.map((v) => (
+        <a class="card" href={`/preview/${v.slug}/`}>
+          <span class="slug">/preview/{v.slug}/</span>
+          <h2>{v.name}</h2>
+          <p>{v.blurb}</p>
+        </a>
+      ))}
+    </div>
+    <p class="section-label archive">Earlier explorations</p>
+    <div class="grid">
+      {variants.map((v) => (
+        <a class="card" href={`/preview/${v.slug}/`}>
+          <span class="slug">/preview/{v.slug}/</span>
+          <h2>{v.name}</h2>
+          <p>{v.blurb}</p>
+        </a>
+      ))}
+    </div>
+  </main>
+</body>
+</html>
