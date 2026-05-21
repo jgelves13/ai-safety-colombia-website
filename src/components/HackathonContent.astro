@@ -119,11 +119,16 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 <section class="section">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whyTitle')}</h2>
-    <div class="hk-why-lead">
-      {(es ? data.whyLeadEs : data.whyLeadEn).map(para => (
-        <p set:html={para}></p>
+    <p class="hk-why-intro">{es ? data.whyIntroEs : data.whyIntroEn}</p>
+    <div class="hk-why-grid">
+      {data.whyCases.map((c) => (
+        <article class={`hk-case ${c.accent}`}>
+          <span class="hk-case-area">{es ? c.areaEs : c.areaEn}</span>
+          <p class="hk-case-body" set:html={es ? c.bodyEs : c.bodyEn}></p>
+        </article>
       ))}
     </div>
+    <p class="hk-why-close">{es ? data.whyCloseEs : data.whyCloseEn}</p>
   </div>
 </section>
 
@@ -791,20 +796,58 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     margin: 0;
   }
 
-  .hk-why-lead {
+  /* "Por qué participar": short lead, four motivating cases keyed by
+     accent to the hub's focus areas, then a one-line close. */
+  .hk-why-intro {
     max-width: 720px;
-    margin-bottom: 2rem;
-  }
-  .hk-why-lead p {
     font-size: 1.0625rem;
     color: var(--text-secondary);
     line-height: 1.65;
-    margin: 0 0 1rem;
+    margin: 0 0 2rem;
   }
-  .hk-why-lead p:last-child {
-    margin-bottom: 0;
+
+  .hk-why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.25rem;
   }
-  .hk-why-lead a {
+
+  .hk-case {
+    border: 1px solid var(--border);
+    border-top-width: 3px;
+    border-radius: 22px;
+    padding: 1.5rem;
+    background: var(--card-surface);
+  }
+
+  .hk-case.is-green { border-top-color: var(--accent-forest); }
+  .hk-case.is-coral { border-top-color: var(--accent-vermillion); }
+  .hk-case.is-blue { border-top-color: var(--accent-sage); }
+  .hk-case.is-yellow { border-top-color: var(--accent-yellow); }
+
+  .hk-case-area {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 0.625rem;
+  }
+
+  .hk-case.is-green .hk-case-area { color: var(--accent-forest); }
+  .hk-case.is-coral .hk-case-area { color: var(--accent-vermillion); }
+  .hk-case.is-blue .hk-case-area { color: var(--accent-sage); }
+  .hk-case.is-yellow .hk-case-area { color: var(--accent-yellow); }
+
+  .hk-case-body {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .hk-case-body a {
     color: var(--text-primary);
     text-decoration: underline;
     text-decoration-thickness: 1px;
@@ -812,9 +855,19 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     text-decoration-color: var(--accent-forest);
     transition: text-decoration-color 0.15s ease, color 0.15s ease;
   }
-  .hk-why-lead a:hover {
+
+  .hk-case-body a:hover {
     color: var(--accent-forest);
     text-decoration-color: currentColor;
+  }
+
+  .hk-why-close {
+    max-width: 720px;
+    margin: 2rem 0 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.6;
   }
 
   /* Track cards: full description + subareas always visible. */
