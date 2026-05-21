@@ -110,8 +110,9 @@ export const ui = {
     'events.hero.title': 'Eventos',
     'events.hero.subtitle': 'Charlas, paneles y cenas de diálogo sobre seguridad de IA en Colombia.',
     'events.notifyKicker': 'Mantente al día',
+    'events.notifyTitle': '¿Quieres saber de nuestro próximo evento?',
     'events.notifyText':
-      '¿Quieres que te avisemos de nuestro próximo evento? Síguenos por el canal que prefieras.',
+      'Síguenos por el canal que prefieras y te avisamos cuando abramos la próxima convocatoria.',
     'events.upcoming': 'Próximos eventos',
     'events.past': 'Eventos pasados',
     'events.viewInstagram': 'Ver en Instagram',
@@ -318,8 +319,9 @@ export const ui = {
     'events.hero.title': 'Events',
     'events.hero.subtitle': 'AI safety talks, panels, and dinners in Colombia.',
     'events.notifyKicker': 'Stay in the loop',
+    'events.notifyTitle': 'Want to hear about our next event?',
     'events.notifyText':
-      'Want a heads-up about our next event? Follow us on whichever channel you prefer.',
+      'Follow us on whichever channel you prefer and we will let you know when the next one opens.',
     'events.upcoming': 'Upcoming',
     'events.past': 'Past events',
     'events.viewInstagram': 'View on Instagram',

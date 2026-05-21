@@ -34,12 +34,11 @@ const filterOptions = pastTypes.map((type) => ({
 
 <div class="events-notify">
   <div class="container">
-    <div class="notify-card">
-      <span class="notify-shape" aria-hidden="true"></span>
-      <div class="notify-intro">
-        <span class="section-label notify-kicker">{t(locale, 'events.notifyKicker')}</span>
-        <p class="notify-lead">{t(locale, 'events.notifyText')}</p>
-      </div>
+    <div class="notify-card featured-block">
+      <span class="notify-ring" aria-hidden="true"></span>
+      <span class="section-label">{t(locale, 'events.notifyKicker')}</span>
+      <h2 class="section-title notify-title">{t(locale, 'events.notifyTitle')}</h2>
+      <p class="notify-lead">{t(locale, 'events.notifyText')}</p>
       <div class="notify-channels">
         <a class="notify-btn" href={WHATSAPP} target="_blank" rel="noopener noreferrer">
           <span class="nb-icon nb-whatsapp" aria-hidden="true">
@@ -125,84 +124,73 @@ const filterOptions = pastTypes.map((type) => ({
     background: var(--bg-elevated);
   }
 
-  /* ---- "Stay in the loop" callout ---- */
+  /* ---- "Stay in the loop" callout — green Trópico featured block ---- */
   .events-notify {
     padding: 2.25rem 0 0.5rem;
   }
 
   .notify-card {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem 2.5rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    padding: 1.75rem 2rem;
+    border-radius: 28px;
+    padding: 3.25rem 2rem;
+    text-align: center;
   }
 
-  /* Decorative ring bleeding off the top-right corner */
-  .notify-shape {
+  /* second decorative shape — a yellow ring bleeding off the lower-right
+     (the .featured-block ::before already supplies the sage circle) */
+  .notify-ring {
     position: absolute;
-    top: -70px;
-    right: -50px;
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
+    border: 22px solid var(--accent-yellow);
     border-radius: 50%;
-    border: 24px solid var(--accent-yellow);
-    opacity: 0.4;
+    bottom: -80px;
+    right: -55px;
+    opacity: 0.45;
     z-index: 0;
     pointer-events: none;
   }
 
-  .notify-intro {
-    position: relative;
-    z-index: 1;
-    flex: 1 1 280px;
-    min-width: 0;
+  .notify-card .section-label {
+    margin-bottom: 1.25rem;
   }
 
-  /* Coral kicker (.section-label) needs a tighter gap inside the card */
-  .notify-kicker {
-    margin-bottom: 0.5rem;
+  .notify-title {
+    max-width: 20ch;
+    margin: 0 auto 0.75rem;
   }
 
   .notify-lead {
-    margin: 0;
     font-size: 1.0625rem;
-    line-height: 1.5;
-    color: var(--text-primary);
-    max-width: 30rem;
+    line-height: 1.6;
+    max-width: 32rem;
+    margin: 0 auto 1.875rem;
   }
 
   .notify-channels {
-    position: relative;
-    z-index: 1;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 0.625rem;
   }
 
-  .notify-btn {
+  .notify-card .notify-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     background: var(--card-surface);
-    border: 1.5px solid var(--border);
+    border: 1.5px solid var(--card-surface);
     border-radius: 999px;
     padding: 0.375rem 1rem 0.375rem 0.375rem;
     font-family: var(--font-body);
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--text-primary);
+    text-decoration: none;
     transition: border-color 0.15s, transform 0.15s;
   }
 
-  .notify-btn:hover {
-    border-color: var(--text-primary);
+  .notify-card .notify-btn:hover {
+    border-color: var(--accent-yellow);
     color: var(--text-primary);
     transform: translateY(-2px);
   }
@@ -286,13 +274,13 @@ const filterOptions = pastTypes.map((type) => ({
     }
 
     .notify-card {
-      padding: 1.5rem 1.25rem;
+      padding: 2.5rem 1.25rem;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .notify-btn,
-    .notify-btn:hover {
+    .notify-card .notify-btn,
+    .notify-card .notify-btn:hover {
       transition: none;
       transform: none;
     }
