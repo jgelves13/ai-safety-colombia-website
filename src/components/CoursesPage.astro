@@ -83,6 +83,9 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
               <span class="cover-orbit" aria-hidden="true"></span>
               <span class="cover-glow" aria-hidden="true"></span>
               <span class="cover-kicker">{t(locale, 'programs.coverKicker')}</span>
+              {c.selfPaced && (
+                <span class="cover-badge">{t(locale, 'programs.selfPaced')}</span>
+              )}
               <svg
                 class="cover-glyph"
                 viewBox="0 0 48 48"
@@ -202,6 +205,22 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
     text-transform: uppercase;
     letter-spacing: 0.4em;
     color: var(--cover-accent);
+  }
+
+  .cover-badge {
+    position: absolute;
+    top: 1.125rem;
+    right: 1.125rem;
+    z-index: 3;
+    font-family: var(--font-display);
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--text-primary);
+    background: var(--accent-yellow);
+    border-radius: 999px;
+    padding: 0.3125rem 0.6875rem;
   }
 
   .cover-title {

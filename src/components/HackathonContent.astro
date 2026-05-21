@@ -32,7 +32,7 @@ type Person = {
 const judges = data.judges as Person[];
 const speakers = data.speakers as Person[];
 
-type City = { name: string; bogota?: boolean; tbd?: boolean };
+type City = { name: string; nameEs?: string; bogota?: boolean; tbd?: boolean };
 type Region = {
   nameEs: string;
   nameEn: string;
@@ -294,7 +294,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
                 style={`--ci:${ci}`}
               >
                 <span class="hk-city-dot" aria-hidden="true"></span>
-                <span class="hk-city-name">{city.name}</span>
+                <span class="hk-city-name">{es ? (city.nameEs ?? city.name) : city.name}</span>
                 {city.bogota && (
                   <span class="hk-city-tag">{t(locale, 'hackathon.ourHub')}</span>
                 )}

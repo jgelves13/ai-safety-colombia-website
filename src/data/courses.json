@@ -4,6 +4,7 @@
       "slug": "future-of-ai",
       "url": "https://bluedot.org/courses/future-of-ai",
       "accent": "is-green",
+      "selfPaced": true,
       "titleEs": "El futuro de la IA",
       "titleEn": "The Future of AI",
       "metaEs": "A tu ritmo · sin requisitos",
@@ -17,6 +18,7 @@
       "slug": "alignment",
       "url": "https://bluedot.org/courses/alignment",
       "accent": "is-coral",
+      "selfPaced": true,
       "titleEs": "Alineación de IA",
       "titleEn": "AI Alignment",
       "metaEs": "A tu ritmo",
@@ -27,9 +29,23 @@
       "descEn": "How to make advanced AI systems act in harmony with human goals and values, from the foundations to a project of your own."
     },
     {
+      "slug": "economics-of-tai",
+      "url": "https://bluedot.org/courses/economics-of-tai",
+      "accent": "is-blue",
+      "selfPaced": true,
+      "titleEs": "Economía de la IA transformadora",
+      "titleEn": "Economics of Transformative AI",
+      "metaEs": "A tu ritmo",
+      "metaEn": "Self-paced",
+      "audienceEs": "Para economistas y personas interesadas en las implicaciones económicas de la IA.",
+      "audienceEn": "For economists and people interested in the economic implications of AI.",
+      "descEs": "Cómo la IA transformadora podría rediseñar mercados, trabajo y crecimiento, y el papel de la economía en su trayectoria.",
+      "descEn": "How transformative AI could reshape markets, work, and growth, and the role of economics in its trajectory."
+    },
+    {
       "slug": "technical-ai-safety",
       "url": "https://bluedot.org/courses/technical-ai-safety",
-      "accent": "is-blue",
+      "accent": "is-yellow",
       "titleEs": "Seguridad técnica de IA",
       "titleEn": "Technical AI Safety",
       "metaEs": "6 semanas · grupo guiado",
@@ -42,7 +58,7 @@
     {
       "slug": "ai-governance",
       "url": "https://bluedot.org/courses/ai-governance",
-      "accent": "is-yellow",
+      "accent": "is-green",
       "titleEs": "Gobernanza de IA de frontera",
       "titleEn": "Frontier AI Governance",
       "metaEs": "6 semanas · grupo guiado",
@@ -55,7 +71,7 @@
     {
       "slug": "agi-strategy",
       "url": "https://bluedot.org/courses/agi-strategy",
-      "accent": "is-green",
+      "accent": "is-coral",
       "titleEs": "Estrategia de AGI",
       "titleEn": "AGI Strategy",
       "metaEs": "5 semanas · grupo guiado",
@@ -64,19 +80,6 @@
       "audienceEn": "For experts in policy, security, operations, or engineering who want to redirect toward AI safety.",
       "descEs": "Las trayectorias del desarrollo de IA, sus posibles desenlaces y las intervenciones para orientarla hacia futuros beneficiosos.",
       "descEn": "AI development trajectories, their possible outcomes, and the interventions to steer it toward beneficial futures."
-    },
-    {
-      "slug": "economics-of-tai",
-      "url": "https://bluedot.org/courses/economics-of-tai",
-      "accent": "is-coral",
-      "titleEs": "Economía de la IA transformadora",
-      "titleEn": "Economics of Transformative AI",
-      "metaEs": "A tu ritmo",
-      "metaEn": "Self-paced",
-      "audienceEs": "Para economistas y personas interesadas en las implicaciones económicas de la IA.",
-      "audienceEn": "For economists and people interested in the economic implications of AI.",
-      "descEs": "Cómo la IA transformadora podría rediseñar mercados, trabajo y crecimiento, y el papel de la economía en su trayectoria.",
-      "descEn": "How transformative AI could reshape markets, work, and growth, and the role of economics in its trajectory."
     }
   ]
 }
