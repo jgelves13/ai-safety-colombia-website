@@ -8,19 +8,10 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const icons = {
-  research:
-    '<path d="M9 2h6M10 2v6.6L4.8 18a2 2 0 0 0 1.7 3h11a2 2 0 0 0 1.7-3L14 8.6V2"/><path d="M7.5 14.5h9"/>',
-  education:
-    '<path d="M3 8.5 12 4l9 4.5-9 4.5-9-4.5Z"/><path d="M7 11v5c0 1.1 2.2 2.5 5 2.5s5-1.4 5-2.5v-5"/><path d="M21 8.5V14"/>',
-  community:
-    '<circle cx="9" cy="8" r="3.2"/><path d="M3.5 20v-1.2A4.3 4.3 0 0 1 7.8 14.5h2.4a4.3 4.3 0 0 1 4.3 4.3V20"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6.1"/><path d="M17.4 14.7A4.3 4.3 0 0 1 20.5 18.8V20"/>',
-};
-
 const rows = [
-  { cls: 'is-green', icon: icons.research, title: t(locale, 'what-we-do.research.title'), desc: t(locale, 'what-we-do.research.desc') },
-  { cls: 'is-coral', icon: icons.education, title: t(locale, 'what-we-do.education.title'), desc: t(locale, 'what-we-do.education.desc') },
-  { cls: 'is-blue', icon: icons.community, title: t(locale, 'what-we-do.community.title'), desc: t(locale, 'what-we-do.community.desc') },
+  { cls: 'is-green', title: t(locale, 'what-we-do.research.title'), desc: t(locale, 'what-we-do.research.desc') },
+  { cls: 'is-coral', title: t(locale, 'what-we-do.education.title'), desc: t(locale, 'what-we-do.education.desc') },
+  { cls: 'is-blue', title: t(locale, 'what-we-do.community.title'), desc: t(locale, 'what-we-do.community.desc') },
 ];
 ---
 
@@ -30,11 +21,9 @@ const rows = [
     <p class="section-subtitle">{t(locale, 'what-we-do.subtitle')}</p>
 
     <div class="wwd-grid">
-      {rows.map((row) => (
+      {rows.map((row, i) => (
         <article class:list={['wwd-card', row.cls]}>
-          <span class="wwd-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={row.icon} />
-          </span>
+          <span class="wwd-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
           <h3>{row.title}</h3>
           <p>{row.desc}</p>
         </article>
@@ -50,56 +39,58 @@ const rows = [
 
   .wwd-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
   }
 
   .wwd-card {
-    background: #FFFFFF;
-    border: 1px solid var(--border);
-    border-radius: 0;
-    padding: 2rem;
+    border-radius: 22px;
+    padding: 2.3rem 2.1rem 2.4rem;
     display: flex;
     flex-direction: column;
-    transition: border-color 0.15s;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.15s;
   }
 
   .wwd-card:hover {
-    border-color: var(--text-primary);
+    transform: translateY(-3px);
   }
 
-  .wwd-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 52px;
-    height: 52px;
-    border-radius: 0;
-    border: 2px solid currentColor;
-    margin-bottom: 1.25rem;
-  }
+  /* solid color blocks */
+  .wwd-card.is-green { background: var(--accent-forest); color: var(--bg-elevated); }
+  .wwd-card.is-coral { background: var(--accent-vermillion); color: var(--text-primary); }
+  .wwd-card.is-blue  { background: var(--accent-yellow); color: var(--text-primary); }
 
-  .wwd-icon svg {
-    width: 26px;
-    height: 26px;
+  .wwd-num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 3.4rem;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    opacity: 0.32;
+    margin-bottom: 0.5rem;
   }
-
-  .is-green .wwd-icon { color: var(--accent-forest); }
-  .is-coral .wwd-icon { color: var(--accent-vermillion); }
-  .is-blue  .wwd-icon { color: var(--accent-sage); }
 
   .wwd-card h3 {
-    font-size: 1.3125rem;
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
     letter-spacing: -0.02em;
-    color: var(--text-primary);
+    color: currentColor;
     margin-bottom: 0.5rem;
   }
 
   .wwd-card p {
     font-size: 0.9375rem;
-    color: var(--text-secondary);
+    color: currentColor;
     line-height: 1.6;
+  }
+
+  @media (max-width: 860px) {
+    .wwd-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

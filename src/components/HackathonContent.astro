@@ -258,8 +258,8 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
             </g>
           </g>
           <circle cx="120" cy="120" r="90" fill="url(#hkShade)" />
-          <g class="hk-grid" stroke="rgba(16,16,16,0.09)" fill="none" stroke-width="1">
-            <circle cx="120" cy="120" r="90" stroke="rgba(16,16,16,0.16)" />
+          <g class="hk-grid" stroke="rgba(33,26,18,0.10)" fill="none" stroke-width="1">
+            <circle cx="120" cy="120" r="90" stroke="rgba(33,26,18,0.18)" />
             <ellipse cx="120" cy="120" rx="45" ry="90" />
             <ellipse cx="120" cy="120" rx="90" ry="45" />
             <line x1="30" y1="120" x2="210" y2="120" />
@@ -537,21 +537,21 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     display: flex;
     gap: 1rem;
     border: 1px solid var(--border);
-    border-radius: 0;
+    border-radius: 22px;
     padding: 1.5rem;
-    background: #FFFFFF;
+    background: var(--card-surface);
   }
 
   .hk-track-bar {
     width: 5px;
     flex: none;
-    border-radius: 0;
+    border-radius: 999px;
   }
 
   .hk-track.is-green .hk-track-bar { background: var(--accent-forest); }
   .hk-track.is-coral .hk-track-bar { background: var(--accent-vermillion); }
   .hk-track.is-blue .hk-track-bar { background: var(--accent-sage); }
-  .hk-track.is-yellow .hk-track-bar { background: var(--accent-forest-deep); }
+  .hk-track.is-yellow .hk-track-bar { background: var(--accent-yellow); }
 
   .hk-track h3 {
     font-size: 1.125rem;
@@ -568,9 +568,9 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 
   .hk-prize {
     border: 1px solid var(--border);
-    border-radius: 0;
+    border-radius: 22px;
     padding: 2rem;
-    background: #FFFFFF;
+    background: var(--card-surface);
   }
 
   .hk-prize-amount {
@@ -607,9 +607,9 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    background: #FFFFFF;
+    background: var(--card-surface);
     border: 1px solid var(--border);
-    border-radius: 0;
+    border-radius: 999px;
     padding: 0.4rem 0.75rem;
     color: var(--text-primary);
   }
@@ -624,16 +624,16 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 
   .hk-region {
     border: 1px solid var(--border);
-    border-radius: 0;
+    border-radius: 22px;
     padding: 1.5rem;
-    background: #FFFFFF;
+    background: var(--card-surface);
     border-top: 4px solid var(--border);
   }
 
   .hk-region.is-green { border-top-color: var(--accent-forest); }
   .hk-region.is-coral { border-top-color: var(--accent-vermillion); }
   .hk-region.is-blue { border-top-color: var(--accent-sage); }
-  .hk-region.is-yellow { border-top-color: var(--accent-forest-deep); }
+  .hk-region.is-yellow { border-top-color: var(--accent-yellow); }
 
   .hk-region-head {
     display: flex;
@@ -681,14 +681,14 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     width: 9px;
     height: 9px;
     flex: none;
-    border-radius: 0;
+    border-radius: 50%;
     background: var(--text-secondary);
   }
 
   .hk-region.is-green .hk-city-dot { background: var(--accent-forest); }
   .hk-region.is-coral .hk-city-dot { background: var(--accent-vermillion); }
   .hk-region.is-blue .hk-city-dot { background: var(--accent-sage); }
-  .hk-region.is-yellow .hk-city-dot { background: var(--accent-forest-deep); }
+  .hk-region.is-yellow .hk-city-dot { background: var(--accent-yellow); }
 
   .hk-city.is-tbd {
     color: var(--text-secondary);
@@ -707,7 +707,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     width: 12px;
     height: 12px;
     background: var(--accent-vermillion);
-    box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7);
+    box-shadow: 0 0 0 0 rgba(229, 96, 77, 0.7);
     animation: hk-bogota-pulse 2s ease-out infinite;
   }
 
@@ -718,8 +718,8 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     text-transform: uppercase;
     letter-spacing: 0.2em;
     background: var(--accent-vermillion);
-    color: #FFFFFF;
-    border-radius: 0;
+    color: var(--text-primary);
+    border-radius: 999px;
     padding: 0.2rem 0.5rem;
   }
 
@@ -728,9 +728,9 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   }
 
   @keyframes hk-bogota-pulse {
-    0% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.6); }
-    70% { box-shadow: 0 0 0 10px rgba(230, 57, 70, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(229, 96, 77, 0.6); }
+    70% { box-shadow: 0 0 0 10px rgba(229, 96, 77, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(229, 96, 77, 0); }
   }
 
   .hk-note {
@@ -835,9 +835,9 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     font-family: var(--font-mono);
     font-size: 0.75rem;
     font-weight: 500;
-    background: #F4F6F4;
+    background: var(--bg-secondary);
     border: 1px solid var(--border);
-    border-radius: 0;
+    border-radius: 999px;
     padding: 0.3rem 0.625rem;
     color: var(--text-primary);
     letter-spacing: 0.02em;
@@ -896,7 +896,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     top: 0.5rem;
     width: 8px;
     height: 8px;
-    border-radius: 0;
+    border-radius: 50%;
     background: var(--accent-vermillion);
   }
 
@@ -1004,9 +1004,9 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     display: flex;
     align-items: center;
     gap: 1rem;
-    background: #FFFFFF;
+    background: var(--card-surface);
     border: 1px solid var(--border);
-    border-radius: 0;
+    border-radius: 22px;
     padding: 1.125rem 1.25rem;
     opacity: 0;
     transform: translateY(8px);
@@ -1026,7 +1026,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0;
+    border-radius: 50%;
     border: 2px solid currentColor;
     color: var(--accent-forest);
     background: transparent;
@@ -1067,10 +1067,10 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     display: flex;
     gap: 1.125rem;
     align-items: flex-start;
-    background: #FFFFFF;
+    background: var(--card-surface);
     border: 1px solid var(--border);
     border-left: 4px solid var(--accent-forest);
-    border-radius: 0;
+    border-radius: 22px;
     padding: 1.25rem 1.5rem;
     opacity: 0;
     transform: translateX(-8px);
@@ -1079,14 +1079,14 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   }
 
   .hk-tl-item.is-blue { border-left-color: var(--accent-sage); }
-  .hk-tl-item.is-yellow { border-left-color: var(--accent-forest-deep); }
+  .hk-tl-item.is-yellow { border-left-color: var(--accent-yellow); }
   .hk-tl-item.is-coral { border-left-color: var(--accent-vermillion); }
 
   .hk-tl-marker {
     width: 1.875rem;
     height: 1.875rem;
     flex: none;
-    border-radius: 0;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1130,7 +1130,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     background: var(--bg-secondary);
     border: 1px solid var(--border);
     border-left: 4px solid var(--accent-vermillion);
-    border-radius: 0;
+    border-radius: 22px;
     padding: 1.25rem 1.5rem;
   }
 
@@ -1179,9 +1179,9 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     display: flex;
     gap: 1rem;
     border: 1px solid var(--border);
-    border-radius: 0;
+    border-radius: 22px;
     padding: 1.5rem;
-    background: #FFFFFF;
+    background: var(--card-surface);
     transition: border-color 0.15s;
   }
 
@@ -1193,7 +1193,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     width: 104px;
     height: 104px;
     flex: none;
-    border-radius: 0;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1201,7 +1201,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     font-size: 1.875rem;
     font-weight: 700;
     object-fit: cover;
-    color: #FFFFFF;
+    color: var(--bg-elevated);
     background: var(--accent-forest);
   }
 
@@ -1231,7 +1231,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    border-radius: 0;
+    border-radius: 999px;
     padding: 0.25rem 0.625rem;
     border: 1px solid currentColor;
   }

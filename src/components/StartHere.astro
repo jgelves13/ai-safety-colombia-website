@@ -100,7 +100,7 @@ const items = learnData.map((i) => ({
   .learn-card {
     background: var(--card-surface);
     border: 1px solid var(--border);
-    border-radius: 0;
+    border-radius: 22px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -135,7 +135,7 @@ const items = learnData.map((i) => ({
   /* Mark treatment: where the source's own miniatura is a portrait
      (e.g. the video's YouTube thumbnail), show the genuine YouTube
      brand mark centred on an accent-tinted field instead. */
-  .is-coral .learn-thumb.is-mark { background: rgba(230, 57, 70, 0.10); }
+  .is-coral .learn-thumb.is-mark { background: rgba(229, 96, 77, 0.12); }
   .is-blue  .learn-thumb.is-mark { background: rgba(74, 132, 102, 0.12); }
   .is-green .learn-thumb.is-mark { background: rgba(31, 77, 50, 0.10); }
 
@@ -155,14 +155,11 @@ const items = learnData.map((i) => ({
     line-height: 1;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0;
-    color: #FFFFFF;
+    padding: 0.5rem 0.85rem;
+    border-radius: 999px;
+    color: var(--bg-elevated);
+    background: var(--text-primary);
   }
-
-  .is-coral .learn-duration { background: var(--accent-vermillion); }
-  .is-blue  .learn-duration { background: var(--accent-sage); }
-  .is-green .learn-duration { background: var(--accent-forest); }
 
   .learn-body {
     padding: 1.5rem 1.75rem 1.75rem;

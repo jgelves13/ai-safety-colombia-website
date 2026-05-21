@@ -11,10 +11,6 @@ function occurrences(needle) {
 const NEW_KEYS = [
   'nav.cta',
   'partners.title',
-  'motif.research',
-  'motif.community',
-  'motif.education',
-  'motif.governance',
 ];
 
 for (const key of NEW_KEYS) {

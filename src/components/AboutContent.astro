@@ -118,9 +118,9 @@ const levers = [
   }
 
   .toc-card {
-    background: #FFFFFF;
+    background: var(--card-surface);
     border: 1px solid var(--border);
-    border-radius: 0;
+    border-radius: 22px;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -137,7 +137,7 @@ const levers = [
     justify-content: center;
     width: 52px;
     height: 52px;
-    border-radius: 0;
+    border-radius: 50%;
     border: 2px solid currentColor;
     margin-bottom: 1.25rem;
   }
@@ -180,14 +180,14 @@ const levers = [
     display: flex;
     flex-direction: column;
     gap: 1.1rem;
-    background: #FFFFFF;
+    background: var(--card-surface);
     border: 1px solid var(--border);
-    border-radius: 0;
+    border-radius: 22px;
     padding: 1.75rem 2rem;
   }
 
   /* The memorial card sits on the secondary surface to set it apart
-     from Jose's plain card while staying inside the Swiss vocabulary. */
+     from Jose's plain card while staying inside the Trópico vocabulary. */
   .person-card.is-memoriam {
     background: var(--bg-secondary);
   }
@@ -203,8 +203,8 @@ const levers = [
     height: 120px;
     flex: none;
     object-fit: cover;
-    border-radius: 0;
-    background: #ECECEC;
+    border-radius: 14px;
+    background: var(--bg-secondary);
     display: block;
   }
 

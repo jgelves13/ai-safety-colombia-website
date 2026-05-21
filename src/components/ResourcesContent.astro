@@ -192,7 +192,7 @@ const paths: {
   .res-card {
     background: var(--card-surface);
     border: 1px solid var(--border);
-    border-radius: 0;
+    border-radius: 22px;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -209,7 +209,7 @@ const paths: {
     justify-content: center;
     width: 52px;
     height: 52px;
-    border-radius: 0;
+    border-radius: 50%;
     border: 2px solid currentColor;
     margin-bottom: 1.25rem;
   }
@@ -256,8 +256,8 @@ const paths: {
     gap: 0.875rem;
     padding: 0.625rem 0.75rem;
     border: 1px solid var(--border);
-    border-radius: 0;
-    background: #FFFFFF;
+    border-radius: 14px;
+    background: var(--bg-primary);
     text-decoration: none;
     transition: border-color 0.15s, transform 0.15s;
   }
@@ -274,9 +274,9 @@ const paths: {
     width: 44px;
     height: 44px;
     flex-shrink: 0;
-    border-radius: 0;
+    border-radius: 10px;
     padding: 6px;
-    background: #FFFFFF;
+    background: var(--bg-elevated);
     border: 1px solid var(--border);
     overflow: hidden;
   }
@@ -294,7 +294,7 @@ const paths: {
     color: var(--text-secondary);
   }
 
-  .is-coral .res-mono { color: var(--accent-vermillion); }
+  .is-coral .res-mono { color: var(--accent-vermillion-dark); }
 
   .res-item-body {
     display: flex;

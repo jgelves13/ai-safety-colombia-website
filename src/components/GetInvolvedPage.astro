@@ -94,9 +94,9 @@ const resolve = (a: Action) => {
     display: flex;
     gap: 1rem;
     border: 1px solid var(--border);
-    border-radius: 0;
+    border-radius: 22px;
     padding: 1.75rem;
-    background: #FFFFFF;
+    background: var(--card-surface);
     transition: border-color 0.15s;
   }
 
@@ -107,13 +107,13 @@ const resolve = (a: Action) => {
   .way-bar {
     width: 5px;
     flex: none;
-    border-radius: 0;
+    border-radius: 999px;
     background: var(--accent-forest);
   }
 
   .way-card.is-coral .way-bar { background: var(--accent-vermillion); }
   .way-card.is-blue .way-bar { background: var(--accent-sage); }
-  .way-card.is-yellow .way-bar { background: var(--accent-forest-deep); }
+  .way-card.is-yellow .way-bar { background: var(--accent-yellow); }
 
   .way-tx {
     min-width: 0;
@@ -179,7 +179,7 @@ const resolve = (a: Action) => {
   .ways-cta {
     margin-top: 3rem;
     border: 1px solid var(--border);
-    border-radius: 0;
+    border-radius: 22px;
     padding: 2.5rem 2rem;
     text-align: center;
     background: var(--bg-secondary);

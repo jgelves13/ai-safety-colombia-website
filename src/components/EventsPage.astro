@@ -70,10 +70,10 @@ const filterOptions = pastTypes.map((type) => ({
 
 <style>
   .featured-block :global(.event-card) {
-    background: #FFFFFF;
+    background: var(--bg-elevated);
   }
 
-  /* Inherits .section-label styling from global.css (Swiss letter-spacing + vermillion glyph) */
+  /* Inherits .section-label styling from global.css (Trópico coral kicker) */
 
   .event-filters {
     display: flex;
@@ -87,15 +87,13 @@ const filterOptions = pastTypes.map((type) => ({
   }
 
   .filter-pill {
-    font-family: var(--font-display);
-    font-size: 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    background: #FFFFFF;
+    background: var(--card-surface);
     border: 1px solid var(--border);
-    border-radius: 0;
-    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    padding: 0.5rem 1.1rem;
     color: var(--text-primary);
     cursor: pointer;
     transition: border-color 0.15s, color 0.15s, background 0.15s;
@@ -108,7 +106,7 @@ const filterOptions = pastTypes.map((type) => ({
   .filter-pill.is-active {
     background: var(--accent-forest);
     border-color: var(--accent-forest);
-    color: #FFFFFF;
+    color: var(--bg-elevated);
   }
 
   .events-list {

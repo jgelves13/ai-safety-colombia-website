@@ -42,25 +42,43 @@ const daysLeft = daysUntil(data.date);
   .banner-card {
     background: var(--accent-forest);
     border: none;
-    border-radius: 0;
+    border-radius: 22px;
     padding: 2.75rem 2.75rem;
-    color: #FFFFFF;
+    color: var(--bg-elevated);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .banner-card::before {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background: var(--accent-sage);
+    opacity: 0.45;
+    border-radius: 50%;
+    top: -120px;
+    right: -80px;
+    pointer-events: none;
+    z-index: 0;
   }
 
   .banner-card :where(h2, h3, p, span, a:not(.btn)) {
-    color: #FFFFFF;
+    color: var(--bg-elevated);
   }
 
   .banner-content {
     text-align: center;
+    position: relative;
+    z-index: 1;
   }
 
   .banner-badge {
     display: inline-block;
     background: var(--accent-vermillion);
-    color: #FFFFFF;
+    color: var(--bg-elevated);
     padding: 0.375rem 0.875rem;
-    border-radius: 0;
+    border-radius: 999px;
     font-family: var(--font-display);
     font-size: 0.6875rem;
     font-weight: 600;
@@ -74,12 +92,12 @@ const daysLeft = daysUntil(data.date);
     font-size: clamp(1.5rem, 3.5vw, 2rem);
     font-weight: 700;
     letter-spacing: -0.02em;
-    color: #FFFFFF;
+    color: var(--bg-elevated);
     margin-bottom: 0.5rem;
   }
 
   .banner-subtitle {
-    color: rgba(255, 255, 255, 0.82);
+    color: var(--dark-muted);
     font-size: 1rem;
     margin-bottom: 1.5rem;
   }
@@ -108,7 +126,7 @@ const daysLeft = daysUntil(data.date);
 
   .countdown-label {
     font-family: var(--font-mono);
-    color: #FFFFFF;
+    color: var(--bg-elevated);
     font-size: 0.75rem;
     letter-spacing: 0.04em;
   }

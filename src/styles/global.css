@@ -1,36 +1,36 @@
 :root {
-  /* Core surfaces */
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F5F5F2;
-  --bg-elevated: #F0F0EC;
-  /* Forest + vermillion palette (Swiss modernist; ties to AISC logo) */
-  --accent-forest: #1F4D32;        /* primary accent — links, buttons, section labels (AA on white) */
-  --accent-forest-deep: #0D2A1A;   /* darkest forest — dark bands, ink-on-dark */
-  --accent-sage: #4A8466;          /* large-text accents, hover, hairline highlights */
-  --accent-vermillion: #E63946;    /* highlight accent — hackathon, urgency, glyphs */
-  --accent-vermillion-dark: #C92E3B;
+  /* Core surfaces — Trópico warm paper */
+  --bg-primary: #FBF6EC;           /* warm off-white page background */
+  --bg-secondary: #F1E8D6;         /* deeper warm tint — .section.alt bands */
+  --bg-elevated: #FFFBF2;          /* paper — elevated / card surface */
+  /* Trópico palette — anchored by the AISC logo green */
+  --accent-forest: #1F4D32;        /* primary accent — links, buttons, labels (logo green) */
+  --accent-forest-deep: #143620;   /* deep green — dark-green moments */
+  --accent-sage: #4A8466;          /* light green — large-text accents, hover, translucent shapes */
+  --accent-vermillion: #E5604D;    /* coral — highlight accent, kickers, urgency */
+  --accent-vermillion-dark: #CF4A39; /* darker coral — button hover */
+  --accent-yellow: #F2B705;        /* sun yellow — highlight box, color-block cards, pills */
   /* Text */
-  --text-primary: #0A0F0C;
-  --text-secondary: #5A5F5A;
-  --text-accent: #1F4D32;          /* link color = forest */
+  --text-primary: #211A12;         /* warm ink */
+  --text-secondary: #5A5044;       /* warm muted */
+  --text-accent: #1F4D32;          /* link color = forest green */
   /* Lines */
-  --border: #E0E0E0;
-  --hairline: #EFEFEA;
-  /* Dark block (footer / one-dark-moment surfaces) */
-  --dark-bg: #0D2A1A;
-  --dark-muted: #9AA89F;
-  --dark-line: #1F4D32;
+  --border: #E4D9C4;
+  --hairline: #EDE3D0;
+  /* Dark block (footer / one-dark-moment surfaces) — stays deep green */
+  --dark-bg: #143620;
+  --dark-muted: #9FB3A4;
+  --dark-line: #2E6344;
   /* Type */
-  --font-display: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Bricolage Grotesque', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-heading: var(--font-display);
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
-  --font-hand: 'Caveat', 'Comic Sans MS', cursive;
   /* Spacing */
   --section-padding: 5rem 1.5rem;
   --card-padding: 2rem;
   --max-width: 1200px;
-  --card-surface: var(--bg-secondary);
+  --card-surface: var(--bg-elevated);
 }
 
 *, *::before, *::after {
@@ -48,16 +48,28 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   font-size: 16px;
-  line-height: 1.55;
+  line-height: 1.6;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
+/* Risograph grain overlay — sits above content, inert to pointer input */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   color: var(--text-primary);
 }
 
@@ -74,7 +86,6 @@ a:hover {
 :focus-visible {
   outline: 2px solid var(--accent-forest);
   outline-offset: 2px;
-  border-radius: 0;
 }
 
 :focus:not(:focus-visible) {
@@ -104,8 +115,8 @@ img {
 .section-title {
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-weight: 800;
+  letter-spacing: -0.035em;
   line-height: 0.98;
   margin-bottom: 1rem;
   color: var(--text-primary);
@@ -115,141 +126,160 @@ img {
   color: var(--text-secondary);
   font-size: 1.0625rem;
   max-width: 60ch;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
-/* Section label — extreme letter-spacing, vermillion glyph
+/* Section label — Trópico coral kicker (uppercase, tracked)
    <div class="section-label">What we do</div> */
 .section-label {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.4em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-primary);
+  color: var(--accent-vermillion);
   margin-bottom: 2.5rem;
   display: flex;
   align-items: center;
   gap: 0.875rem;
 }
 
-.section-label::after {
-  content: "▌";
-  color: var(--accent-vermillion);
-}
-
-/* HARD-RECTANGLE BUTTONS — Swiss modernist, no pills */
+/* ROUNDED PILL BUTTONS — Trópico */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.625rem;
-  padding: 1rem 1.875rem;
-  border-radius: 0;
-  font-family: var(--font-display);
+  padding: 0.95rem 1.7rem;
+  border-radius: 999px;
+  font-family: var(--font-body);
   font-weight: 600;
-  font-size: 0.875rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 0.9375rem;
   line-height: 1;
   transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
   cursor: pointer;
-  border: 2px solid transparent;
+  border: 2.5px solid transparent;
   white-space: nowrap;
 }
 
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   opacity: 1;
 }
 
 .btn-primary {
   background: var(--accent-forest);
-  color: #FFFFFF;
+  color: var(--bg-elevated);
+  border-color: var(--accent-forest);
 }
 
 .btn-primary:hover {
   background: var(--accent-forest-deep);
-  color: #FFFFFF;
+  color: var(--bg-elevated);
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--text-primary);
-  border-color: var(--text-primary);
+  color: var(--accent-forest);
+  border-color: var(--accent-forest);
 }
 
 .btn-secondary:hover {
-  background: var(--text-primary);
-  color: #FFFFFF;
+  background: var(--accent-forest);
+  color: var(--bg-elevated);
 }
 
 .btn-dark {
   background: var(--dark-bg);
-  color: #FFFFFF;
+  color: var(--bg-elevated);
+  border-color: var(--dark-bg);
 }
 
 .btn-dark:hover {
-  background: #051208;
-  color: #FFFFFF;
+  background: #0C2114;
+  color: var(--bg-elevated);
 }
 
-/* Used inside .featured-block (forest bg) — vermillion-on-white-text for max contrast against forest */
+/* Coral pill — used inside .featured-block and for urgency CTAs */
 .btn-vermillion {
   background: var(--accent-vermillion);
-  color: #FFFFFF;
+  color: var(--bg-elevated);
+  border-color: var(--accent-vermillion);
 }
 
 .btn-vermillion:hover {
   background: var(--accent-vermillion-dark);
-  color: #FFFFFF;
+  color: var(--bg-elevated);
 }
 
-/* HARD-RECTANGLE CARD */
+/* ROUNDED CARD — paper on warm */
 .card {
-  background: #FFFFFF;
+  background: var(--card-surface);
   border: 1px solid var(--border);
-  border-radius: 0;
+  border-radius: 22px;
   padding: var(--card-padding);
-  transition: border-color 0.15s;
+  transition: border-color 0.15s, transform 0.15s;
 }
 
 .card:hover {
   border-color: var(--text-primary);
 }
 
-/* FEATURED BLOCK — solid forest, one per page max */
+/* FEATURED BLOCK — solid forest green, one per page max */
 .featured-block {
   background: var(--accent-forest);
-  color: #FFFFFF;
+  color: var(--bg-elevated);
   border: none;
   border-radius: 0;
   padding: 3rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* translucent light-green circle bleeding off the corner */
+.featured-block::before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: var(--accent-sage);
+  opacity: 0.5;
+  border-radius: 50%;
+  top: -130px;
+  left: -90px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.featured-block > * {
+  position: relative;
+  z-index: 1;
 }
 
 .featured-block .section-title,
 .featured-block h2,
 .featured-block h3,
 .featured-block p {
-  color: #FFFFFF;
+  color: var(--bg-elevated);
 }
 
 .featured-block a:not(.btn) {
-  color: #FFFFFF;
+  color: var(--bg-elevated);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 
 .featured-block a:not(.btn):hover {
-  color: var(--accent-vermillion);
+  color: var(--accent-yellow);
 }
 
+/* kicker inside the green block becomes a yellow pill */
 .featured-block .section-label {
-  color: #FFFFFF;
-}
-
-.featured-block .section-label::after {
-  color: var(--accent-vermillion);
+  display: inline-flex;
+  background: var(--accent-yellow);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
 }
 
 .grid-3 {
@@ -258,7 +288,7 @@ img {
   gap: 1.5rem;
 }
 
-/* EDITORIAL helpers — hard-rectangle bars, forest/vermillion/sage/deep variants */
+/* EDITORIAL helpers — accent bars, forest/coral/sage/deep variants */
 .editorial {
   display: flex;
   flex-direction: column;
@@ -279,7 +309,7 @@ img {
 .editorial-bar {
   width: 4px;
   align-self: stretch;
-  border-radius: 0;
+  border-radius: 999px;
   flex: none;
 }
 
@@ -300,8 +330,8 @@ img {
 .editorial-row h3 {
   font-family: var(--font-display);
   font-size: 1.3125rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   margin-bottom: 0.35rem;
   color: var(--text-primary);
 }
@@ -310,7 +340,7 @@ img {
   font-size: 0.9375rem;
   color: var(--text-secondary);
   max-width: 60ch;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 /* Editorial bar accent variants */
@@ -322,12 +352,12 @@ img {
 .is-sage .editorial-bar       { background: var(--accent-sage); }
 
 /* Legacy alias shims — keep existing .is-green/.is-coral/.is-blue/.is-yellow markup
-   working until per-component edits land. Map to the new palette. */
+   working. Mapped to the Trópico palette. */
 .is-green h3 a        { color: var(--accent-forest); }
 .is-green .editorial-bar      { background: var(--accent-forest); }
 .is-coral .editorial-bar      { background: var(--accent-vermillion); }
 .is-blue  .editorial-bar      { background: var(--accent-sage); }
-.is-yellow .editorial-bar     { background: var(--accent-forest-deep); }
+.is-yellow .editorial-bar     { background: var(--accent-yellow); }
 
 @media (max-width: 768px) {
   :root {
