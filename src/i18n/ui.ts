@@ -108,8 +108,9 @@ export const ui = {
     'join.whatsapp': 'WhatsApp',
     'events.hero.title': 'Eventos',
     'events.hero.subtitle': 'Charlas, paneles y cenas de diálogo sobre seguridad de IA en Colombia.',
-    'events.notifyText': '¿Quieres que te avisemos del próximo evento? Únete a la comunidad.',
-    'events.notifyCta': 'Unirse por WhatsApp',
+    'events.notifyKicker': 'Mantente al día',
+    'events.notifyText':
+      '¿Quieres que te avisemos de nuestro próximo evento? Síguenos por el canal que prefieras.',
     'events.upcoming': 'Próximos eventos',
     'events.past': 'Eventos pasados',
     'events.viewInstagram': 'Ver en Instagram',
@@ -314,8 +315,9 @@ export const ui = {
     'join.whatsapp': 'WhatsApp',
     'events.hero.title': 'Events',
     'events.hero.subtitle': 'AI safety talks, panels, and dinners in Colombia.',
-    'events.notifyText': 'Want us to let you know about the next event? Join the community.',
-    'events.notifyCta': 'Join on WhatsApp',
+    'events.notifyKicker': 'Stay in the loop',
+    'events.notifyText':
+      'Want a heads-up about our next event? Follow us on whichever channel you prefer.',
     'events.upcoming': 'Upcoming',
     'events.past': 'Past events',
     'events.viewInstagram': 'View on Instagram',
