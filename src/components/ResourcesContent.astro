@@ -54,7 +54,7 @@ const paths: {
         name: 'AGI Safety Course',
         source: 'Google DeepMind',
         url: 'https://deepmindsafetyresearch.medium.com/introducing-our-short-course-on-agi-safety-1072adb7912c',
-        mono: 'DM',
+        img: 'deepmind.png',
       },
       {
         name: 'AI Safety, Ethics & Society',
@@ -80,13 +80,13 @@ const paths: {
         name: 'AI Safety Atlas',
         source: 'CeSIA',
         url: 'https://ai-safety-atlas.com/read/',
-        mono: 'AT',
+        img: 'ai-safety-atlas.png',
       },
       {
         name: 'ARENA',
         source: 'Research Engineer Accelerator',
         url: 'https://arena.education/',
-        mono: 'AR',
+        img: 'arena.png',
       },
     ],
   },
@@ -177,7 +177,14 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
             {path.links.map((item) => (
               <li>
                 <a class="res-item" href={item.url} target="_blank" rel="noopener noreferrer">
-                  <span class="res-thumb" aria-hidden="true">
+                  <span
+                    class:list={[
+                      'res-thumb',
+                      !(item.img && logos[`../assets/resources/${item.img}`]) &&
+                        'res-thumb-mono',
+                    ]}
+                    aria-hidden="true"
+                  >
                     {item.img && logos[`../assets/resources/${item.img}`] ? (
                       <Image
                         src={logos[`../assets/resources/${item.img}`]}
@@ -368,6 +375,21 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
   }
 
   .is-coral .res-mono { color: var(--accent-vermillion-dark); }
+
+  /* Branded monogram chip for resources with no real brand logo
+     (the AI Alignment Forum is a wordmark-only site, so its row uses
+     a deliberate solid chip rather than a faux logo). */
+  .res-thumb-mono {
+    background: var(--accent-vermillion-dark);
+    border-color: var(--accent-vermillion-dark);
+  }
+
+  .res-thumb-mono .res-mono,
+  .is-coral .res-thumb-mono .res-mono {
+    color: #fff;
+    font-size: 1.0625rem;
+    letter-spacing: 0.04em;
+  }
 
   .res-item-body {
     display: flex;
