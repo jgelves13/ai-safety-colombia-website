@@ -136,8 +136,14 @@ export const ui = {
     'contact.formEmail': 'Email',
     'contact.formMessage': 'Mensaje',
     'contact.formSubmit': 'Enviar mensaje',
+    'contact.formSending': 'Enviando…',
     'contact.formNote':
-      'Al enviar se abrirá tu aplicación de correo con el mensaje listo.',
+      'Te responderemos al correo electrónico que nos dejes.',
+    'contact.formError':
+      'No se pudo enviar el mensaje. Inténtalo de nuevo o escríbenos a aisafetycolombia@gmail.com.',
+    'contact.formSuccessTitle': 'Mensaje enviado',
+    'contact.formSuccessText':
+      'Gracias por escribirnos. Te responderemos pronto.',
     'partners.title': 'En colaboración con',
     'hero.credibility': 'Comunidad de investigadores, ingenieros y profesionales de política en Colombia',
     'join.subtitle': 'Conéctate con la comunidad de seguridad de IA en Colombia.',
@@ -358,8 +364,14 @@ export const ui = {
     'contact.formEmail': 'Email',
     'contact.formMessage': 'Message',
     'contact.formSubmit': 'Send message',
+    'contact.formSending': 'Sending…',
     'contact.formNote':
-      'Submitting opens your email app with the message ready to go.',
+      'We will reply to the email address you give us.',
+    'contact.formError':
+      'We could not send your message. Please try again or write to us at aisafetycolombia@gmail.com.',
+    'contact.formSuccessTitle': 'Message sent',
+    'contact.formSuccessText':
+      'Thanks for reaching out. We will get back to you soon.',
     'partners.title': 'In collaboration with',
     'hero.credibility': 'A community of researchers, engineers, and policy professionals in Colombia',
     'join.subtitle': 'Connect with the AI safety community in Colombia.',

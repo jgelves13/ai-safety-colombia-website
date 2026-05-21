@@ -93,22 +93,45 @@ const LINKEDIN = 'https://www.linkedin.com/company/ai-safety-col/';
       <span class="section-label contact-kicker">{t(locale, 'contact.formKicker')}</span>
       <h2 class="contact-h">{t(locale, 'contact.formTitle')}</h2>
 
-      <form id="contact-form" class="cf" novalidate>
+      <form id="contact-form" class="cf">
         <div class="cf-field">
           <label for="name">{t(locale, 'contact.formName')}</label>
-          <input type="text" id="name" name="name" required />
+          <input type="text" id="name" name="name" required autocomplete="name" />
         </div>
         <div class="cf-field">
           <label for="email">{t(locale, 'contact.formEmail')}</label>
-          <input type="email" id="email" name="email" required />
+          <input type="email" id="email" name="email" required autocomplete="email" />
         </div>
         <div class="cf-field">
           <label for="message">{t(locale, 'contact.formMessage')}</label>
           <textarea id="message" name="message" rows="5" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary cf-submit">{t(locale, 'contact.formSubmit')}</button>
+
+        <input type="text" name="_honey" class="cf-honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <input type="hidden" name="_subject" value="Nuevo mensaje · aisafetycolombia.org" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+
+        <button
+          type="submit"
+          class="btn btn-primary cf-submit"
+          data-idle={t(locale, 'contact.formSubmit')}
+          data-sending={t(locale, 'contact.formSending')}
+        >{t(locale, 'contact.formSubmit')}</button>
+
+        <p class="cf-error" id="cf-error" role="alert" hidden data-error={t(locale, 'contact.formError')}></p>
         <p class="cf-note">{t(locale, 'contact.formNote')}</p>
       </form>
+
+      <div class="cf-success" id="cf-success" role="status" aria-live="polite" hidden>
+        <span class="cf-success-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        </span>
+        <h3 class="cf-success-h">{t(locale, 'contact.formSuccessTitle')}</h3>
+        <p class="cf-success-tx">{t(locale, 'contact.formSuccessText')}</p>
+      </div>
     </div>
   </div>
 </section>
@@ -309,11 +332,73 @@ const LINKEDIN = 'https://www.linkedin.com/company/ai-safety-col/';
     margin-top: 0.25rem;
   }
 
+  .cf-submit:disabled {
+    opacity: 0.65;
+    cursor: progress;
+  }
+
+  /* Honeypot — hidden from users, bait for bots */
+  .cf-honey {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
   .cf-note {
     font-size: 0.8125rem;
     color: var(--text-secondary);
     text-align: center;
     line-height: 1.5;
+  }
+
+  .cf-error {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--accent-vermillion-dark);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ---- Success state ---- */
+  .cf-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625rem;
+    text-align: center;
+    padding: 1.25rem 0 0.5rem;
+  }
+
+  .cf-success-ic {
+    width: 56px;
+    height: 56px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--accent-forest);
+    color: var(--bg-elevated);
+  }
+
+  .cf-success-ic svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .cf-success-h {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+
+  .cf-success-tx {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 32ch;
   }
 
   @media (max-width: 860px) {
@@ -339,19 +424,45 @@ const LINKEDIN = 'https://www.linkedin.com/company/ai-safety-col/';
 </style>
 
 <script>
-  import { buildMailto } from '../utils/contactMailto.js';
+  // FormSubmit.co AJAX endpoint — delivers each submission straight to the inbox.
+  const ENDPOINT = 'https://formsubmit.co/ajax/aisafetycolombia@gmail.com';
 
-  const form = document.getElementById('contact-form');
-  form?.addEventListener('submit', (e) => {
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const submitBtn = form?.querySelector('.cf-submit') as HTMLButtonElement | null;
+  const errorEl = document.getElementById('cf-error');
+  const successEl = document.getElementById('cf-success');
+
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const fd = new FormData(form as HTMLFormElement);
-    const locale = document.documentElement.lang === 'en' ? 'en' : 'es';
-    window.location.href = buildMailto({
-      to: 'aisafetycolombia@gmail.com',
-      name: String(fd.get('name') || ''),
-      email: String(fd.get('email') || ''),
-      message: String(fd.get('message') || ''),
-      locale,
-    });
+    if (!form || !submitBtn) return;
+
+    if (errorEl) errorEl.hidden = true;
+    submitBtn.disabled = true;
+    submitBtn.textContent = submitBtn.dataset.sending || submitBtn.textContent;
+
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+      });
+      const data = await res.json().catch(() => null);
+      const ok =
+        res.ok && data && (data.success === 'true' || data.success === true);
+      if (!ok) throw new Error('submit failed');
+
+      form.hidden = true;
+      if (successEl) {
+        successEl.hidden = false;
+        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    } catch {
+      if (errorEl) {
+        errorEl.textContent = errorEl.dataset.error || '';
+        errorEl.hidden = false;
+      }
+      submitBtn.disabled = false;
+      submitBtn.textContent = submitBtn.dataset.idle || submitBtn.textContent;
+    }
   });
 </script>
