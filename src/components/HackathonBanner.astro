@@ -37,15 +37,16 @@ const daysLeft = daysUntil(data.date);
   .hackathon-banner {
     /* The navbar is position: sticky, so it already reserves its own
        space in flow — no top offset is needed here. This is just a
-       small breathing gap below the navbar. */
-    padding: 2rem 0 0;
+       small breathing gap below the navbar. Kept compact so the
+       welcoming Hero below it still clears the fold. */
+    padding: 1.25rem 0 0;
   }
 
   .banner-card {
     background: var(--accent-forest);
     border: none;
     border-radius: 22px;
-    padding: 2.75rem 2.75rem;
+    padding: 2.25rem 2.75rem;
     color: var(--bg-elevated);
     position: relative;
     overflow: hidden;
@@ -84,7 +85,7 @@ const daysLeft = daysUntil(data.date);
     font-family: var(--font-display);
     font-size: 0.6875rem;
     font-weight: 600;
-    margin-bottom: 0.875rem;
+    margin-bottom: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.2em;
   }
@@ -103,7 +104,7 @@ const daysLeft = daysUntil(data.date);
        card, where plain --dark-muted only reaches ~4.4:1. */
     color: #C2D0C6;
     font-size: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .banner-actions {
