@@ -134,7 +134,6 @@ const caseIcons = [
     <div class="hk-why-grid">
       {data.whyCases.map((c, i) => (
         <article class={`hk-case ${c.accent}`}>
-          <span class="hk-case-index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
           <div class="hk-case-head">
             <span class="hk-case-ic" set:html={caseIcons[i % caseIcons.length]} />
             <h3 class="hk-case-area">{es ? c.areaEs : c.areaEn}</h3>
@@ -828,8 +827,6 @@ const caseIcons = [
   }
 
   .hk-case {
-    position: relative;
-    overflow: hidden;
     border: 1px solid var(--border);
     border-top-width: 3px;
     border-radius: 22px;
@@ -849,25 +846,7 @@ const caseIcons = [
   .hk-case.is-blue { border-top-color: var(--accent-sage); }
   .hk-case.is-yellow { border-top-color: var(--accent-yellow); }
 
-  /* Faint sequence numeral: a watermark that makes the four cards
-     read as one deliberate set. Sits behind the content. */
-  .hk-case-index {
-    position: absolute;
-    top: 0.45rem;
-    right: 1.05rem;
-    z-index: 0;
-    font-family: var(--font-mono);
-    font-size: 3.25rem;
-    font-weight: 700;
-    line-height: 1;
-    color: color-mix(in srgb, var(--text-primary) 9%, transparent);
-    pointer-events: none;
-    user-select: none;
-  }
-
   .hk-case-head {
-    position: relative;
-    z-index: 1;
     display: flex;
     align-items: center;
     gap: 0.875rem;
@@ -918,8 +897,6 @@ const caseIcons = [
   }
 
   .hk-case-body {
-    position: relative;
-    z-index: 1;
     font-size: 0.9375rem;
     color: var(--text-secondary);
     line-height: 1.6;
