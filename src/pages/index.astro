@@ -1,19 +1,22 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import HackathonBanner from '../components/HackathonBanner.astro';
-import Hero from '../components/Hero.astro';
-import AboutAISafety from '../components/AboutAISafety.astro';
-import WhatWeDo from '../components/WhatWeDo.astro';
-import HomeEvents from '../components/HomeEvents.astro';
-import StartHere from '../components/StartHere.astro';
-import { t } from '../i18n/ui';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HackathonBanner from "../components/HackathonBanner.astro";
+import Hero from "../components/Hero.astro";
+import AboutAISafety from "../components/AboutAISafety.astro";
+import WhatWeDo from "../components/WhatWeDo.astro";
+import HomeEvents from "../components/HomeEvents.astro";
+import StartHere from "../components/StartHere.astro";
+import { t } from "../i18n/ui";
 
-const locale = 'es';
+const locale = "es";
 ---
 
 <BaseLayout locale={locale} currentPage="index">
-  <HackathonBanner locale={locale} />
-  <Hero locale={locale} />
+  <div class="relative overflow-x-hidden">
+    <span class="absolute rounded-full pointer-events-none z-0 w-60 h-60 bg-(--accent-yellow) top-72 -right-35 min-[480px]:-right-17.5 md:w-95 md:h-95 md:top-56 md:-right-25" aria-hidden="true"></span>
+    <HackathonBanner locale={locale} />
+    <Hero locale={locale} />
+  </div>
 
   <AboutAISafety locale={locale} />
 
@@ -23,21 +26,41 @@ const locale = 'es';
 
   <StartHere locale={locale} />
 
-  <section class="section join-section featured-block" aria-labelledby="join-title">
+  <section
+    class="section join-section featured-block"
+    aria-labelledby="join-title"
+  >
     <div class="container">
       <div class="join-card">
         <div class="join-text">
-          <h2 class="section-title" id="join-title">{t(locale, 'sections.join')}</h2>
-          <p class="join-sub">{t(locale, 'join.subtitle')}</p>
+          <h2 class="section-title" id="join-title">
+            {t(locale, "sections.join")}
+          </h2>
+          <p class="join-sub">{t(locale, "join.subtitle")}</p>
         </div>
         <div class="join-links">
-          <a href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-            {t(locale, 'join.whatsapp')}
+          <a
+            href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
+          >
+            {t(locale, "join.whatsapp")}
           </a>
-          <a href="https://www.linkedin.com/company/ai-safety-col/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          <a
+            href="https://www.linkedin.com/company/ai-safety-col/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary"
+          >
             LinkedIn
           </a>
-          <a href="https://www.instagram.com/aisafetycolombia/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          <a
+            href="https://www.instagram.com/aisafetycolombia/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary"
+          >
             Instagram
           </a>
         </div>
