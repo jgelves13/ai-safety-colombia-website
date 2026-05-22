@@ -209,7 +209,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
         <h3 class="hk-success-title">{es ? data.prizesDetail.successTitleEs : data.prizesDetail.successTitleEn}</h3>
         <ul class="hk-success-list">
           {data.prizesDetail.successExamples.map(ex => (
-            <li>{es ? ex.es : ex.en}</li>
+            <li set:html={es ? ex.es : ex.en} />
           ))}
         </ul>
         <a
@@ -967,6 +967,21 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     height: 8px;
     border-radius: 50%;
     background: var(--accent-vermillion);
+  }
+
+  .hk-success-list li a {
+    color: var(--text-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--accent-forest);
+    transition: text-decoration-color 0.15s ease, color 0.15s ease;
+  }
+
+  .hk-success-list li a:hover {
+    color: var(--accent-forest);
+    text-decoration-color: currentColor;
   }
 
   .hk-success-src {
