@@ -52,7 +52,7 @@ const milestones = [
     <div class="origin-layout">
       <div class="origin-body">
         <p>{t(locale, 'about.origin.body1')}</p>
-        <p>{t(locale, 'about.origin.body2')}</p>
+        <p set:html={t(locale, 'about.origin.body2')}></p>
         <p>{t(locale, 'about.origin.body3')}</p>
       </div>
       <ol class="timeline">
@@ -209,6 +209,21 @@ const milestones = [
     font-size: 1.0625rem;
     color: var(--text-secondary);
     line-height: 1.7;
+  }
+
+  .origin-body a {
+    color: var(--text-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--accent-forest);
+    transition: text-decoration-color 0.15s ease, color 0.15s ease;
+  }
+
+  .origin-body a:hover {
+    color: var(--accent-forest);
+    text-decoration-color: currentColor;
   }
 
   .timeline {
