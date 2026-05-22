@@ -14,10 +14,10 @@
   "whyIntroEs": "Los sistemas de IA ya operan en América Latina, pero la investigación que los hace seguros se concentra en unos pocos países y se prueba casi siempre en inglés: casi nadie revisa cómo se comportan en nuestro contexto. El hackathon aborda ese vacío desde cuatro frentes. Cada caso que sigue es un ejemplo concreto de uno de ellos, apenas una muestra de lo que podrás trabajar.",
   "whyIntroEn": "AI systems are already operating across Latin America, but the research that makes them safe is concentrated in a handful of countries and tested mostly in English: almost no one checks how they behave in our context. The hackathon addresses that gap across four fronts. Each case below is a concrete example of one of them, just a sample of what you could take on.",
   "whyCases": [
-    { "accent": "is-green", "areaEs": "Seguridad Técnica de IA", "areaEn": "Technical AI Safety",
+    { "accent": "is-green", "areaEs": "Technical AI Safety", "areaEn": "Technical AI Safety",
       "bodyEs": "Los modelos de frontera ya actúan solos: navegan, escriben y ejecutan código por su cuenta. En pruebas controladas, <a href=\"https://arxiv.org/abs/2412.04984\" target=\"_blank\" rel=\"noopener noreferrer\">Apollo Research documentó</a> modelos que intentaban desactivar su propia supervisión y mentían al respecto para cumplir un objetivo. Llegan a la región sin que nadie verifique cómo razonan por dentro. Evaluar a los agentes e inspeccionar lo que aprenden es la única forma de detectarlo a tiempo.",
       "bodyEn": "Frontier models already act on their own: they browse the web, write, and run code without supervision. In controlled tests, <a href=\"https://arxiv.org/abs/2412.04984\" target=\"_blank\" rel=\"noopener noreferrer\">Apollo Research documented</a> models that tried to disable their own oversight and lied about it to reach a goal. They are reaching the region with no one verifying how they reason inside. Evaluating agents and inspecting what they learn is the only way to catch that in time." },
-    { "accent": "is-coral", "areaEs": "Ciberseguridad de la IA", "areaEn": "AI Security",
+    { "accent": "is-coral", "areaEs": "AI Security", "areaEn": "AI Security",
       "bodyEs": "Empresas y gobiernos de la región ya conectan modelos de IA a correos, documentos y sistemas internos. Con inyección de prompts, un atacante esconde instrucciones en cualquier texto que el modelo lea y logra que el asistente filtre datos o actúe en nombre del usuario, algo <a href=\"https://arxiv.org/abs/2302.12173\" target=\"_blank\" rel=\"noopener noreferrer\">ya demostrado contra aplicaciones reales</a>. Un modelo capaz sin pipelines asegurados ni control sobre sus acciones es una puerta abierta.",
       "bodyEn": "Companies and governments across the region are already wiring AI models into email, documents, and internal systems. Through prompt injection, an attacker hides instructions in any text the model reads and gets the assistant to leak data or act on the user's behalf, something <a href=\"https://arxiv.org/abs/2302.12173\" target=\"_blank\" rel=\"noopener noreferrer\">already demonstrated against real-world applications</a>. A capable model with unsecured pipelines and no control over its actions is an open door." },
     { "accent": "is-blue", "areaEs": "IA Responsable", "areaEn": "Responsible AI",
@@ -37,14 +37,14 @@
     { "stepEs": "Investigación y colocación", "stepEn": "Research & placement", "descEs": "Mentoría y revisión de expertos hacia investigación publicable, talleres de conferencias y oportunidades en organizaciones de seguridad de IA.", "descEn": "Expert mentoring and review toward publishable research, conference workshops, and opportunities at AI safety organizations." }
   ],
   "tracks": [
-    { "titleEs": "Seguridad Técnica de IA", "titleEn": "Technical AI Safety", "accent": "is-green",
+    { "titleEs": "Technical AI Safety", "titleEn": "Technical AI Safety", "accent": "is-green",
       "descEs": "Entender y verificar cómo se comportan los modelos por dentro: cómo evalúan, planean y actúan los sistemas agénticos, y cómo inspeccionar lo que aprenden.",
       "descEn": "Understand and verify how models behave inside: how agentic systems evaluate, plan and act, and how to inspect what they learn.",
       "subareas": [
       { "es": "Evaluaciones para sistemas agénticos", "en": "Evaluations for agentic systems" },
       { "es": "Interpretabilidad mecanicista", "en": "Mechanistic interpretability" }
     ]},
-    { "titleEs": "Ciberseguridad de la IA", "titleEn": "AI Security", "accent": "is-coral",
+    { "titleEs": "AI Security", "titleEn": "AI Security", "accent": "is-coral",
       "descEs": "Proteger los sistemas de IA frente a abuso y ataques: asegurar pipelines de despliegue, resistir inyección de prompts y jailbreaks, y mantener el control sobre modelos capaces.",
       "descEn": "Protect AI systems against misuse and attacks: secure deployment pipelines, resist prompt injection and jailbreaks, and keep control over capable models.",
       "subareas": [
