@@ -35,8 +35,10 @@ const daysLeft = daysUntil(data.date);
 
 <style>
   .hackathon-banner {
-    padding: 1.5rem 0 0;
-    margin-top: 5rem;
+    /* The navbar is position: sticky, so it already reserves its own
+       space in flow — no top offset is needed here. This is just a
+       small breathing gap below the navbar. */
+    padding: 2rem 0 0;
   }
 
   .banner-card {
@@ -97,7 +99,9 @@ const daysLeft = daysUntil(data.date);
   }
 
   .banner-subtitle {
-    color: var(--dark-muted);
+    /* Lighter than --dark-muted: clears WCAG AA (4.5:1) on the forest
+       card, where plain --dark-muted only reaches ~4.4:1. */
+    color: #C2D0C6;
     font-size: 1rem;
     margin-bottom: 1.5rem;
   }
