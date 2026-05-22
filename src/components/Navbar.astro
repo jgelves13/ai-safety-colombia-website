@@ -117,6 +117,7 @@ const links = [
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--text-primary);
+    white-space: nowrap;
     transition: color 0.15s;
   }
 
@@ -212,7 +213,7 @@ const links = [
 
   .mobile-nav a.active { color: var(--accent-vermillion); }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     .nav-links { display: none; }
     .nav-cta { display: none; }
     .hamburger { display: flex; }
