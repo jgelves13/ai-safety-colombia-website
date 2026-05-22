@@ -59,7 +59,7 @@ export const ui = {
     'journey.learning.sub': 'Únete a un grupo de discusión',
     'journey.participating.sub': 'Asiste a un evento',
     'journey.contributing.sub': 'Aplica al hackathon',
-    'sections.join': 'Unete a la comunidad',
+    'sections.join': 'Únete a la comunidad',
     'aboutai.kicker': 'El problema',
     'aboutai.title': '¿Qué es la seguridad de IA?',
     'aboutai.lead': 'La inteligencia artificial avanza más rápido de lo que avanzan nuestras herramientas para entenderla y dirigirla. La seguridad de IA es el campo que busca cerrar esa brecha: que los sistemas cada vez más capaces sean confiables, controlables y beneficiosos para todos.',
