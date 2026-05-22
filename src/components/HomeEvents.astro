@@ -1,9 +1,8 @@
 ---
-import { Image } from 'astro:assets';
-import type { ImageMetadata } from 'astro';
 import type { Locale } from '../i18n/ui';
 import { t, localePath } from '../i18n/ui';
 import { splitEvents } from '../utils/events.js';
+import { typeColor } from '../utils/eventTypes.js';
 import eventsData from '../data/events.json';
 
 interface Props {
@@ -11,179 +10,123 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const { upcoming, past } = splitEvents(eventsData);
-const ordered = [...upcoming, ...past];
 
-const flyers = import.meta.glob<ImageMetadata>('../assets/events/*', {
-  eager: true,
-  import: 'default',
-});
+// Curated teaser: the three most recent gatherings (an upcoming event,
+// if one exists, surfaces first). The full archive lives on /eventos/.
+const { upcoming, past } = splitEvents(eventsData);
+const featured = [...upcoming, ...past].slice(0, 3);
 
 const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-CO' : 'en-US', {
+  day: 'numeric',
   month: 'short',
   year: 'numeric',
 });
 
-const cards = ordered.map((ev) => ({
+const cards = featured.map((ev) => ({
+  typeLabel:
+    t(locale, `events.type.${ev.type}` as Parameters<typeof t>[1]) || ev.type,
+  color: typeColor(ev.type),
   title: locale === 'es' ? ev.titleEs : ev.titleEn,
-  blurb: locale === 'es' ? ev.whyEs : ev.whyEn,
+  why: locale === 'es' ? ev.whyEs : ev.whyEn,
   date: dateFmt.format(new Date(ev.date + 'T00:00:00-05:00')),
   datetime: ev.date,
   href: ev.instagramUrl,
-  flyer: flyers[`../assets/events/${ev.flyer}`],
 }));
 ---
 
 <section class="section alt home-events" aria-labelledby="home-events-title">
   <div class="container">
-    <header class="home-events-head">
-      <h2 class="section-title" id="home-events-title">{t(locale, 'home.events.title')}</h2>
-    </header>
+    <h2 class="section-title" id="home-events-title">{t(locale, 'home.events.title')}</h2>
+    <p class="section-subtitle">{t(locale, 'home.events.lead')}</p>
 
-    <div class="ev-frame">
-      <div class="ev-marquee">
-        <div class="ev-track">
-          <div class="ev-group">
-            {cards.map((c) => (
-              <a class="ev-card" href={c.href} target="_blank" rel="noopener noreferrer">
-                <div class="ev-card-img">
-                  {c.flyer && (
-                    <Image src={c.flyer} alt={c.title} widths={[188, 376]} sizes="188px" format="webp" quality={85} loading="lazy" />
-                  )}
-                </div>
-                <div class="ev-card-cap">
-                  <span class="ev-card-title">{c.title}</span>
-                  <time class="ev-card-date" datetime={c.datetime}>{c.date}</time>
-                  <p class="ev-card-blurb">{c.blurb}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-          <div class="ev-group" aria-hidden="true" data-ev-dup>
-            {cards.map((c) => (
-              <a class="ev-card" href={c.href} target="_blank" rel="noopener noreferrer" tabindex="-1">
-                <div class="ev-card-img">
-                  {c.flyer && (
-                    <Image src={c.flyer} alt="" widths={[188, 376]} sizes="188px" format="webp" quality={85} loading="lazy" />
-                  )}
-                </div>
-                <div class="ev-card-cap">
-                  <span class="ev-card-title">{c.title}</span>
-                  <time class="ev-card-date" datetime={c.datetime}>{c.date}</time>
-                  <p class="ev-card-blurb">{c.blurb}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
+    <div class="he-grid">
+      {cards.map((c) => (
+        <a class="he-card" href={c.href} target="_blank" rel="noopener noreferrer">
+          <span class="he-meta">
+            <span class="he-type" style={`color:${c.color}`}>{c.typeLabel}</span>
+            <span class="he-sep" aria-hidden="true">·</span>
+            <time class="he-date" datetime={c.datetime}>{c.date}</time>
+          </span>
+          <h3 class="he-title">{c.title}</h3>
+          <p class="he-why">{c.why}</p>
+          <span class="he-foot">{t(locale, 'events.viewInstagram')} &rarr;</span>
+        </a>
+      ))}
     </div>
 
-    <a class="ev-cta" href={localePath(locale, '/eventos/')}>
-      {t(locale, 'home.events.cta')} &rarr;
+    <a class="btn btn-secondary he-cta" href={localePath(locale, '/eventos/')}>
+      {t(locale, 'home.events.cta')}
     </a>
   </div>
 </section>
 
 <style>
-  .home-events-head {
-    margin-bottom: 1.6rem;
+  .home-events .section-subtitle {
+    margin-bottom: 2.5rem;
   }
 
-  .ev-frame {
-    --ev-gap: 1rem;
-    --ev-card-w: 188px;
-    background: var(--bg-primary);
+  .he-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
+  }
+
+  .he-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card-surface);
     border: 1px solid var(--border);
     border-radius: 22px;
-    padding: 1.4rem 0;
-    overflow: hidden;
-  }
-
-  .ev-marquee {
-    overflow: hidden;
-  }
-
-  .ev-track {
-    display: flex;
-    gap: var(--ev-gap);
-    width: max-content;
-    animation: ev-scroll 52s linear infinite;
-  }
-
-  .ev-marquee:hover .ev-track,
-  .ev-marquee:focus-within .ev-track {
-    animation-play-state: paused;
-  }
-
-  .ev-group {
-    display: flex;
-    gap: var(--ev-gap);
-  }
-
-  @keyframes ev-scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(calc(-50% - var(--ev-gap) / 2)); }
-  }
-
-  .ev-card {
-    flex: 0 0 var(--ev-card-w);
-    display: flex;
-    flex-direction: column;
-    background: var(--card-surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: hidden;
+    padding: 1.6rem 1.5rem 1.45rem;
     text-decoration: none;
-    transition: border-color 0.15s;
+    transition: border-color 0.15s, transform 0.15s;
   }
 
-  .ev-card:hover {
+  .he-card:hover {
     border-color: var(--accent-forest);
+    transform: translateY(-3px);
   }
 
-  .ev-card-img {
-    aspect-ratio: 3 / 4;
-    background: var(--card-surface);
-    border-bottom: 1px solid var(--hairline);
-  }
-
-  .ev-card-img :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .ev-card-cap {
+  .he-meta {
     display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    padding: 0.55rem 0.62rem 0.66rem;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    margin-bottom: 0.7rem;
   }
 
-  .ev-card-title {
-    font-size: 0.78rem;
-    font-weight: 600;
-    line-height: 1.32;
+  .he-type {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .he-sep {
+    color: var(--border);
+  }
+
+  .he-date {
+    color: var(--text-secondary);
+  }
+
+  .he-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
     letter-spacing: -0.01em;
     color: var(--text-primary);
+    margin-bottom: 0.55rem;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
-  .ev-card-date {
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    color: var(--text-secondary);
-    text-transform: lowercase;
-  }
-
-  .ev-card-blurb {
-    margin-top: 0.15rem;
-    font-size: 0.72rem;
-    line-height: 1.45;
+  .he-why {
+    font-size: 0.875rem;
+    line-height: 1.55;
     color: var(--text-secondary);
     display: -webkit-box;
     -webkit-line-clamp: 4;
@@ -191,23 +134,30 @@ const cards = ordered.map((ev) => ({
     overflow: hidden;
   }
 
-  .ev-cta {
-    display: inline-block;
-    margin-top: 1.5rem;
-    font-size: 0.9375rem;
+  .he-foot {
+    margin-top: auto;
+    padding-top: 1.15rem;
+    font-size: 0.8125rem;
     font-weight: 600;
     color: var(--accent-forest);
   }
 
+  .he-cta {
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 860px) {
+    .he-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .ev-marquee {
-      overflow-x: auto;
+    .he-card {
+      transition: border-color 0.15s;
     }
-    .ev-track {
-      animation: none;
-    }
-    [data-ev-dup] {
-      display: none;
+    .he-card:hover {
+      transform: none;
     }
   }
 </style>
