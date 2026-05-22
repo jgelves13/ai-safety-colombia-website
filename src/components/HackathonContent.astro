@@ -76,6 +76,17 @@ const whoIcons = [
   ic('<path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2v.3h6v-.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/>'),  // bulb (other fields)
 ];
 const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
+
+// One line-icon per hackathon front, in whyCases order: magnifier
+// (technical safety — evaluate/inspect), shield + keyhole (security),
+// compass (responsible AI — steering), institution columns
+// (governance). Decorative — the card heading owns the text label.
+const caseIcons = [
+  ic('<circle cx="11" cy="11" r="7.5"/><path d="M16.8 16.8 21 21"/>'),
+  ic('<path d="M12 3l7 3v6c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6l7-3z"/><circle cx="12" cy="10.8" r="1.7"/><path d="M12 12.5V15"/>'),
+  ic('<circle cx="12" cy="12" r="9"/><path d="M16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88Z"/>'),
+  ic('<path d="M3 9l9-5 9 5M5 9.5V19M19 9.5V19M3 21h18M9.5 9.5V19M14.5 9.5V19"/>'),
+];
 ---
 
 <section class="hk-hero">
@@ -121,9 +132,13 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     <h2 class="section-title">{t(locale, 'hackathon.whyTitle')}</h2>
     <p class="hk-why-intro">{es ? data.whyIntroEs : data.whyIntroEn}</p>
     <div class="hk-why-grid">
-      {data.whyCases.map((c) => (
+      {data.whyCases.map((c, i) => (
         <article class={`hk-case ${c.accent}`}>
-          <span class="hk-case-area">{es ? c.areaEs : c.areaEn}</span>
+          <span class="hk-case-index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <div class="hk-case-head">
+            <span class="hk-case-ic" set:html={caseIcons[i % caseIcons.length]} />
+            <h3 class="hk-case-area">{es ? c.areaEs : c.areaEn}</h3>
+          </div>
           <p class="hk-case-body" set:html={es ? c.bodyEs : c.bodyEn}></p>
         </article>
       ))}
@@ -813,11 +828,20 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   }
 
   .hk-case {
+    position: relative;
+    overflow: hidden;
     border: 1px solid var(--border);
     border-top-width: 3px;
     border-radius: 22px;
-    padding: 1.5rem;
+    padding: 1.75rem;
     background: var(--card-surface);
+    transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .hk-case:hover {
+    border-color: var(--text-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px -20px rgba(33, 26, 18, 0.5);
   }
 
   .hk-case.is-green { border-top-color: var(--accent-forest); }
@@ -825,22 +849,77 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   .hk-case.is-blue { border-top-color: var(--accent-sage); }
   .hk-case.is-yellow { border-top-color: var(--accent-yellow); }
 
-  .hk-case-area {
-    display: block;
+  /* Faint sequence numeral: a watermark that makes the four cards
+     read as one deliberate set. Sits behind the content. */
+  .hk-case-index {
+    position: absolute;
+    top: 0.45rem;
+    right: 1.05rem;
+    z-index: 0;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    margin-bottom: 0.625rem;
+    font-size: 3.25rem;
+    font-weight: 700;
+    line-height: 1;
+    color: color-mix(in srgb, var(--text-primary) 9%, transparent);
+    pointer-events: none;
+    user-select: none;
   }
 
-  .hk-case.is-green .hk-case-area { color: var(--accent-forest); }
-  .hk-case.is-coral .hk-case-area { color: var(--accent-vermillion); }
-  .hk-case.is-blue .hk-case-area { color: var(--accent-sage); }
-  .hk-case.is-yellow .hk-case-area { color: var(--accent-yellow); }
+  .hk-case-head {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .hk-case-ic {
+    width: 2.75rem;
+    height: 2.75rem;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+  }
+
+  .hk-case-ic :global(svg) {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  .hk-case.is-green .hk-case-ic {
+    color: var(--accent-forest);
+    background: color-mix(in srgb, var(--accent-forest) 13%, transparent);
+  }
+  .hk-case.is-coral .hk-case-ic {
+    color: var(--accent-vermillion);
+    background: color-mix(in srgb, var(--accent-vermillion) 14%, transparent);
+  }
+  .hk-case.is-blue .hk-case-ic {
+    color: var(--accent-sage);
+    background: color-mix(in srgb, var(--accent-sage) 16%, transparent);
+  }
+  .hk-case.is-yellow .hk-case-ic {
+    color: var(--accent-forest-deep);
+    background: color-mix(in srgb, var(--accent-yellow) 26%, transparent);
+  }
+
+  .hk-case-area {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    color: var(--text-primary);
+  }
 
   .hk-case-body {
+    position: relative;
+    z-index: 1;
     font-size: 0.9375rem;
     color: var(--text-secondary);
     line-height: 1.6;
@@ -1437,10 +1516,12 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hk-track {
+    .hk-track,
+    .hk-case {
       transition: none;
     }
-    .hk-track:hover {
+    .hk-track:hover,
+    .hk-case:hover {
       transform: none;
     }
     .hk-city {
