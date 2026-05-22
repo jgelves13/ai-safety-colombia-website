@@ -550,7 +550,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 
   .hk-tracks {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
   }
 
@@ -808,7 +808,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
 
   .hk-why-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
   }
 
@@ -1065,7 +1065,7 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
 
@@ -1459,7 +1459,8 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
   @media (max-width: 768px) {
     .hk-tracks,
     .hk-people,
-    .hk-regions {
+    .hk-regions,
+    .hk-why-grid {
       grid-template-columns: 1fr;
     }
     .hk-globe-wrap {
@@ -1469,6 +1470,12 @@ const whoAccents = ['is-green', 'is-coral', 'is-blue', 'is-yellow'];
     .hk-globe {
       max-width: 240px;
     }
+    .hk-who {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
     .hk-who {
       grid-template-columns: 1fr;
     }
