@@ -1,8 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-import tailwindcss from '@tailwindcss/vite';
-
 export default defineConfig({
   site: 'https://aisafetycolombia.org',
   output: 'static',
@@ -19,9 +17,5 @@ export default defineConfig({
 
   build: {
     format: 'directory',
-  },
-
-  vite: {
-    plugins: [tailwindcss()],
   },
 });
