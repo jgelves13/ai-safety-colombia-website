@@ -13,9 +13,9 @@ const accentWord = titleWords[1] ?? '';
 const restWords = titleWords.slice(2).join(' ');
 ---
 
-<section class="hero relative">
-  <span class="absolute rounded-full z-0 pointer-events-none w-47.5 h-47.5 bg-(--accent-vermillion) bottom-5 right-77.5 hidden lg:block" aria-hidden="true"></span>
-  <span class="absolute rounded-full z-0 pointer-events-none w-[120px] h-[120px] bg-transparent border-[12px] border-[var(--accent-forest)] bottom-[60px] right-[40px] hidden lg:block" aria-hidden="true"></span>
+<section class="hero">
+  <span class="hero-s2" aria-hidden="true"></span>
+  <span class="hero-s3" aria-hidden="true"></span>
   <div class="container">
     <div class="hero-content">
       <h1 class="hero-title">{firstWord} <span class="hero-accent">{accentWord}</span>{restWords ? ` ${restWords}` : ''}</h1>
@@ -35,11 +35,42 @@ const restWords = titleWords.slice(2).join(' ');
 
 <style>
   .hero {
+    position: relative;
     overflow: hidden;
-    padding: 2.75rem 1.5rem 4.5rem;
+    padding: 2.75rem 1.5rem 6rem;
     text-align: left;
-    padding-bottom: 6rem;
     border-bottom: 1px solid var(--hairline);
+  }
+
+  .hero-s2 {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+    width: 190px;
+    height: 190px;
+    background: var(--accent-vermillion);
+    bottom: 20px;
+    right: 310px;
+    display: none;
+  }
+
+  .hero-s3 {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+    width: 120px;
+    height: 120px;
+    background: transparent;
+    border: 12px solid var(--accent-forest);
+    bottom: 60px;
+    right: 40px;
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-s2, .hero-s3 { display: block; }
   }
 
   .hero-content {

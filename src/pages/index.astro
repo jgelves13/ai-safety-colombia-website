@@ -12,8 +12,8 @@ const locale = "es";
 ---
 
 <BaseLayout locale={locale} currentPage="index">
-  <div class="relative overflow-x-hidden">
-    <span class="absolute rounded-full pointer-events-none z-0 w-60 h-60 bg-(--accent-yellow) top-72 -right-35 min-[480px]:-right-17.5 md:w-95 md:h-95 md:top-56 md:-right-25" aria-hidden="true"></span>
+  <div class="hero-wrapper">
+    <span class="hero-yellow-shape" aria-hidden="true"></span>
     <HackathonBanner locale={locale} />
     <Hero locale={locale} />
   </div>
@@ -70,6 +70,37 @@ const locale = "es";
 </BaseLayout>
 
 <style>
+  .hero-wrapper {
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .hero-yellow-shape {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    width: 240px;
+    height: 240px;
+    background: var(--accent-yellow);
+    top: 288px;
+    right: -140px;
+    display: block;
+  }
+
+  @media (min-width: 480px) {
+    .hero-yellow-shape { right: -70px; }
+  }
+
+  @media (min-width: 768px) {
+    .hero-yellow-shape {
+      width: 380px;
+      height: 380px;
+      top: 224px;
+      right: -100px;
+    }
+  }
+
   .join-card {
     background: var(--card-surface);
     border: 1px solid var(--border);
