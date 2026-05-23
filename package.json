@@ -8,6 +8,9 @@
     "preview": "astro preview",
     "check": "astro check"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": ["sharp", "esbuild"]
+  },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/sitemap": "^3.3.0",
