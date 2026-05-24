@@ -26,12 +26,12 @@ const learnThumbs = import.meta.glob<ImageMetadata>('../assets/learn/*', {
 // Featured cards: grouped by format (videos, courses, readings, podcasts,
 // books). Each card reuses the homepage "Empieza aquí" learn-card UI so
 // visitors hitting "See all resources" land on a continuous experience.
-// Cards with a cover-style thumbnail use the source's own miniature;
-// cards backed only by a brand logo use the .is-mark slot with the logo;
-// the remaining cards fall back to a kind-themed SVG mark.
+// Three thumbnail treatments: 'cover' fills the 16:9 tile with a wide
+// source image, 'mark' centers a square logo over an accent-tinted field,
+// 'portrait' lets a tall book cover float over the same tinted field.
 type Kind = 'video' | 'course' | 'read' | 'podcast' | 'book';
 type Accent = 'is-coral' | 'is-blue' | 'is-green' | 'is-yellow';
-type Fit = 'cover' | 'mark' | 'icon';
+type Fit = 'cover' | 'mark' | 'portrait';
 
 interface FeatItem {
   kind: Kind;
@@ -42,25 +42,9 @@ interface FeatItem {
   duration: string;
   meta: string;
   url: string;
-  thumb?: ImageMetadata;
-  iconPath?: string;
+  thumb: ImageMetadata;
   thumbFit: Fit;
 }
-
-// Inline SVG marks (single <path d="..."> contents) for cards without a
-// brand logo. Color is inherited via .is-{accent} on the parent card.
-const kindIcons: Record<Kind, string> = {
-  video:
-    '<path d="M5 4.5v15c0 .56.63.9 1.1.6l11.7-7.5a.7.7 0 0 0 0-1.2L6.1 3.9A.7.7 0 0 0 5 4.5Z"/>',
-  course:
-    '<path d="M12 4 2 9l10 5 7.5-3.75V17"/><path d="M6.5 11.6v3.9L12 18.5l5.5-3v-3.9"/><path d="M19.5 10.25V17"/>',
-  read:
-    '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6Z"/><path d="M14 3v6h6M8 14h8M8 18h8M8 10h2"/>',
-  podcast:
-    '<rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3M8 21h8"/>',
-  book:
-    '<path d="M3 4.5a1.5 1.5 0 0 1 1.5-1.5H9a3 3 0 0 1 3 3v15a2 2 0 0 0-2-2H3V4.5Z"/><path d="M21 4.5a1.5 1.5 0 0 0-1.5-1.5H15a3 3 0 0 0-3 3v15a2 2 0 0 1 2-2h7V4.5Z"/>',
-};
 
 const fromLearn: FeatItem[] = learnData.map((i) => ({
   kind: i.kind as Kind,
@@ -106,8 +90,8 @@ const videos: FeatItem[] = [
     duration: es ? 'Canal · gratis' : 'Channel · free',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://www.youtube.com/@RationalAnimations',
-    iconPath: kindIcons.video,
-    thumbFit: 'icon',
+    thumb: logos['../assets/resources/rational-animations.png'],
+    thumbFit: 'mark',
   },
 ];
 
@@ -198,8 +182,8 @@ const readings: FeatItem[] = [
     duration: es ? 'Artículo' : 'Paper',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://arxiv.org/abs/1606.06565',
-    iconPath: kindIcons.read,
-    thumbFit: 'icon',
+    thumb: logos['../assets/resources/arxiv.jpg'],
+    thumbFit: 'mark',
   },
   {
     kind: 'read',
@@ -212,8 +196,8 @@ const readings: FeatItem[] = [
     duration: es ? 'Ensayo' : 'Essay',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://www.anthropic.com/news/core-views-on-ai-safety',
-    iconPath: kindIcons.read,
-    thumbFit: 'icon',
+    thumb: logos['../assets/resources/anthropic-core-views.png'],
+    thumbFit: 'cover',
   },
 ];
 
@@ -229,8 +213,8 @@ const podcasts: FeatItem[] = [
     duration: es ? 'Podcast · gratis' : 'Podcast · free',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://axrp.net/',
-    iconPath: kindIcons.podcast,
-    thumbFit: 'icon',
+    thumb: logos['../assets/resources/axrp.jpg'],
+    thumbFit: 'mark',
   },
   {
     kind: 'podcast',
@@ -243,8 +227,8 @@ const podcasts: FeatItem[] = [
     duration: es ? 'Podcast · gratis' : 'Podcast · free',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://80000hours.org/podcast/',
-    iconPath: kindIcons.podcast,
-    thumbFit: 'icon',
+    thumb: logos['../assets/resources/80k-podcast.jpg'],
+    thumbFit: 'cover',
   },
   {
     kind: 'podcast',
@@ -257,8 +241,8 @@ const podcasts: FeatItem[] = [
     duration: es ? 'Podcast · gratis' : 'Podcast · free',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://theinsideview.ai/',
-    iconPath: kindIcons.podcast,
-    thumbFit: 'icon',
+    thumb: logos['../assets/resources/inside-view.png'],
+    thumbFit: 'mark',
   },
 ];
 
@@ -288,8 +272,8 @@ const books: FeatItem[] = [
     duration: es ? 'Libro' : 'Book',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://people.eecs.berkeley.edu/~russell/hc.html',
-    iconPath: kindIcons.book,
-    thumbFit: 'icon',
+    thumb: logos['../assets/resources/human-compatible.jpg'],
+    thumbFit: 'portrait',
   },
   {
     kind: 'book',
@@ -302,8 +286,8 @@ const books: FeatItem[] = [
     duration: es ? 'Libro' : 'Book',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://www.nickbostrom.com/superintelligence',
-    iconPath: kindIcons.book,
-    thumbFit: 'icon',
+    thumb: logos['../assets/resources/superintelligence.jpg'],
+    thumbFit: 'portrait',
   },
   {
     kind: 'book',
@@ -316,8 +300,8 @@ const books: FeatItem[] = [
     duration: es ? 'Libro' : 'Book',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://ifanyonebuildsit.com/',
-    iconPath: kindIcons.book,
-    thumbFit: 'icon',
+    thumb: logos['../assets/resources/if-anyone-builds-it.png'],
+    thumbFit: 'cover',
   },
 ];
 
@@ -499,12 +483,13 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
               <div
                 class:list={[
                   'learn-thumb',
-                  i.thumbFit === 'cover' ? 'is-cover' : 'is-mark',
-                  i.thumbFit === 'icon' ? 'is-icon' : '',
+                  i.thumbFit === 'cover' && 'is-cover',
+                  i.thumbFit === 'mark' && 'is-mark',
+                  i.thumbFit === 'portrait' && 'is-portrait',
                 ]}
                 aria-hidden="true"
               >
-                {i.thumbFit === 'cover' && i.thumb && (
+                {i.thumbFit === 'cover' && (
                   <Image
                     src={i.thumb}
                     alt=""
@@ -515,26 +500,25 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
                     class="learn-img"
                   />
                 )}
-                {i.thumbFit === 'mark' && i.thumb && (
+                {i.thumbFit === 'mark' && (
                   <Image
                     src={i.thumb}
                     alt=""
-                    width={84}
-                    height={84}
+                    width={96}
+                    height={96}
                     loading="lazy"
                     class="learn-mark"
                   />
                 )}
-                {i.thumbFit === 'icon' && i.iconPath && (
-                  <svg
-                    class="learn-svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    set:html={i.iconPath}
+                {i.thumbFit === 'portrait' && (
+                  <Image
+                    src={i.thumb}
+                    alt=""
+                    widths={[180, 260, 360]}
+                    sizes="180px"
+                    format="webp"
+                    loading="lazy"
+                    class="learn-portrait"
                   />
                 )}
                 <span class="learn-duration">{i.duration}</span>
@@ -713,29 +697,36 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
   }
 
   .is-coral  .learn-thumb.is-mark,
-  .is-coral  .learn-thumb.is-icon { background: rgba(229, 96, 77, 0.12); }
+  .is-coral  .learn-thumb.is-portrait { background: rgba(229, 96, 77, 0.12); }
   .is-blue   .learn-thumb.is-mark,
-  .is-blue   .learn-thumb.is-icon { background: rgba(74, 132, 102, 0.12); }
+  .is-blue   .learn-thumb.is-portrait { background: rgba(74, 132, 102, 0.12); }
   .is-green  .learn-thumb.is-mark,
-  .is-green  .learn-thumb.is-icon { background: rgba(31, 77, 50, 0.10); }
+  .is-green  .learn-thumb.is-portrait { background: rgba(31, 77, 50, 0.10); }
   .is-yellow .learn-thumb.is-mark,
-  .is-yellow .learn-thumb.is-icon { background: rgba(212, 169, 56, 0.14); }
+  .is-yellow .learn-thumb.is-portrait { background: rgba(212, 169, 56, 0.14); }
 
   .learn-mark {
-    width: 84px;
-    height: auto;
+    width: 96px;
+    height: 96px;
     object-fit: contain;
+    border-radius: 14px;
   }
 
-  .learn-svg {
-    width: 56px;
-    height: 56px;
+  /* Portrait book covers float over the same accent-tinted field as
+     .is-mark, but fill the full thumb height so the cover stays legible
+     at card size. */
+  .learn-portrait {
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: calc(100% - 16px);
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
   }
-
-  .is-coral  .learn-svg { color: var(--accent-vermillion); }
-  .is-blue   .learn-svg { color: var(--accent-sage); }
-  .is-green  .learn-svg { color: var(--accent-forest); }
-  .is-yellow .learn-svg { color: var(--accent-yellow); }
 
   .learn-duration {
     position: absolute;
