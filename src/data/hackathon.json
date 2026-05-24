@@ -117,18 +117,18 @@
     "venueNoteEn": ""
   },
   "inPerson": {
-    "kickerEs": "Bogotá",
-    "kickerEn": "Bogotá",
-    "leadEs": "Es un cupo limitado: AISC selecciona el grupo presencial mediante una postulación corta. Quienes no entren al cupo presencial pueden participar en línea desde cualquier lugar.",
-    "leadEn": "Seats are limited: AISC selects the in-person cohort through a short application. Anyone not selected can still take part online from anywhere.",
+    "kickerEs": "Sede presencial · Bogotá",
+    "kickerEn": "In-person venue · Bogotá",
+    "leadEs": "El cupo presencial es limitado y se asigna mediante una postulación corta. Quienes no entren pueden participar en línea desde cualquier lugar.",
+    "leadEn": "Seats at the venue are limited and assigned through a short application. Anyone not selected can still take part online from anywhere.",
     "items": [
-      { "es": "Comida durante todo el fin de semana, viernes a domingo.", "en": "Meals throughout the weekend, Friday to Sunday." },
-      { "es": "Mentoría presencial y charlas en sitio con varios de los jueces.", "en": "In-person mentorship and on-site talks from several of the judges." },
-      { "es": "Alojamiento y apoyo con transporte (bus o vuelo, hasta un tope por persona) para participantes que viajen desde otras ciudades de Colombia.", "en": "Housing and transport support (bus or flight, up to a per-person cap) for participants traveling from other Colombian cities." },
-      { "es": "Quienes participen en línea desde Colombia o el Sur Global también acceden a mentoría y charlas de jueces vía livestream en Discord y Zoom.", "en": "Online participants in Colombia and the Global South also get mentorship and judge talks via livestream on Discord and Zoom." }
+      { "labelEs": "Comidas", "labelEn": "Meals", "descEs": "Comidas servidas en sitio durante todo el fin de semana, de viernes a domingo.", "descEn": "Meals served on-site throughout the weekend, Friday to Sunday." },
+      { "labelEs": "Mentoría", "labelEn": "Mentorship", "descEs": "Mentoría presencial y charlas con varios de los jueces durante el fin de semana.", "descEn": "In-person mentorship and on-site talks from several of the judges across the weekend." },
+      { "labelEs": "Viajes", "labelEn": "Travel", "descEs": "Alojamiento y apoyo con transporte (bus o vuelo, hasta un tope por persona) para participantes que viajen desde otras ciudades de Colombia.", "descEn": "Housing and transport support (bus or flight, up to a per-person cap) for participants traveling from other Colombian cities." },
+      { "labelEs": "En línea", "labelEn": "Online", "descEs": "Mentoría y charlas de jueces vía livestream en Discord y Zoom para participantes desde Colombia o el Sur Global.", "descEn": "Livestream mentorship and judge talks on Discord and Zoom for participants joining from Colombia or the Global South." }
     ],
-    "applyEs": "Para postular al cupo presencial, escríbenos a <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>.",
-    "applyEn": "To apply for an in-person seat, email us at <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>."
+    "applyEs": "Postulaciones al cupo presencial: <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>.",
+    "applyEn": "In-person applications: <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>."
   },
   "schedule": [
     { "day": "Viernes 19", "dayEn": "Friday 19", "accent": "is-green", "events": [

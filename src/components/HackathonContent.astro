@@ -110,6 +110,22 @@ const caseIcons = [
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whatTitle')}</h2>
     <p class="hk-lead">{whatBody}</p>
+
+    <div class="hk-venue">
+      <div class="hk-venue-head">
+        <span class="hk-venue-kicker">{es ? data.inPerson.kickerEs : data.inPerson.kickerEn}</span>
+        <p class="hk-venue-lead">{es ? data.inPerson.leadEs : data.inPerson.leadEn}</p>
+      </div>
+      <dl class="hk-venue-defs">
+        {data.inPerson.items.map(item => (
+          <div class="hk-venue-row">
+            <dt class="hk-venue-label">{es ? item.labelEs : item.labelEn}</dt>
+            <dd class="hk-venue-desc">{es ? item.descEs : item.descEn}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="hk-venue-apply" set:html={es ? data.inPerson.applyEs : data.inPerson.applyEn} />
+    </div>
   </div>
 </section>
 
@@ -343,24 +359,7 @@ const caseIcons = [
   </div>
 </section>
 
-<section class="section alt hk-inperson-sec">
-  <div class="container">
-    <span class="section-label hk-inperson-kicker">{es ? data.inPerson.kickerEs : data.inPerson.kickerEn}</span>
-    <h2 class="section-title">{t(locale, 'hackathon.inPersonTitle')}</h2>
-    <p class="hk-inperson-lead">{es ? data.inPerson.leadEs : data.inPerson.leadEn}</p>
-    <ul class="hk-inperson-list">
-      {data.inPerson.items.map(item => (
-        <li class="hk-inperson-item">
-          <span class="hk-inperson-bullet" aria-hidden="true"></span>
-          <span class="hk-inperson-tx">{es ? item.es : item.en}</span>
-        </li>
-      ))}
-    </ul>
-    <p class="hk-inperson-apply" set:html={es ? data.inPerson.applyEs : data.inPerson.applyEn} />
-  </div>
-</section>
-
-<section class="section">
+<section class="section alt">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.speakersTitle')}</h2>
     <div class="hk-people">
@@ -417,7 +416,7 @@ const caseIcons = [
   </div>
 </section>
 
-<section class="section alt">
+<section class="section">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.judgesTitle')}</h2>
     {judges.length > 0 ? (
@@ -1005,70 +1004,79 @@ const caseIcons = [
     text-decoration-color: currentColor;
   }
 
-  /* ---- In-person hub section (Bogotá) ---- */
-  .hk-inperson-sec .section-title {
-    margin-bottom: 0.5rem;
+  /* ---- Venue sub-block inside "Qué es" ---- */
+  .hk-venue {
+    margin-top: 2.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border);
   }
 
-  .hk-inperson-kicker {
+  .hk-venue-head {
+    margin-bottom: 1.5rem;
+  }
+
+  .hk-venue-kicker {
     display: inline-block;
     margin-bottom: 0.625rem;
     font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--accent-forest);
   }
 
-  .hk-inperson-lead {
-    margin: 0 0 2rem;
-    font-size: 1.0625rem;
+  .hk-venue-lead {
+    margin: 0;
+    font-size: 1rem;
     line-height: 1.6;
     color: var(--text-secondary);
     max-width: 62ch;
   }
 
-  .hk-inperson-list {
-    list-style: none;
-    margin: 0 0 1.75rem;
+  .hk-venue-defs {
+    margin: 0 0 1.5rem;
     padding: 0;
     display: grid;
-    gap: 0.875rem;
   }
 
-  .hk-inperson-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.875rem;
-    padding: 1rem 1.125rem;
-    background: var(--card-surface, #fff);
-    border: 1px solid var(--border);
-    border-radius: 14px;
+  .hk-venue-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1.5rem;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border);
   }
 
-  .hk-inperson-bullet {
-    flex: none;
-    margin-top: 0.55rem;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent-forest);
+  .hk-venue-row:last-child {
+    border-bottom: 1px solid var(--border);
   }
 
-  .hk-inperson-tx {
+  .hk-venue-label {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-forest);
+  }
+
+  .hk-venue-desc {
+    margin: 0;
     font-size: 0.9375rem;
     line-height: 1.55;
     color: var(--text-primary);
   }
 
-  .hk-inperson-apply {
+  .hk-venue-apply {
     margin: 0;
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     color: var(--text-secondary);
   }
 
-  .hk-inperson-apply a {
+  .hk-venue-apply a {
     color: var(--text-primary);
     font-weight: 600;
     text-decoration: underline;
@@ -1078,9 +1086,16 @@ const caseIcons = [
     transition: text-decoration-color 0.15s ease, color 0.15s ease;
   }
 
-  .hk-inperson-apply a:hover {
+  .hk-venue-apply a:hover {
     color: var(--accent-forest);
     text-decoration-color: currentColor;
+  }
+
+  @media (max-width: 600px) {
+    .hk-venue-row {
+      grid-template-columns: 1fr;
+      gap: 0.375rem;
+    }
   }
 
   .hk-success {
