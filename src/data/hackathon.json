@@ -113,8 +113,22 @@
       { "es": "Desde Bogotá, el hub conecta a quienes trabajan en política, derecho y gobernanza con discusiones activas en el país, como el <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017\" target=\"_blank\" rel=\"noopener noreferrer\">proyecto de ley para prohibir y regular las armas autónomas</a> en la Cámara de Representantes, cuyo coautor abrirá el hackathon.", "en": "From Bogotá, the hub connects people working in policy, law, and governance to live discussions in the country, like the <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017\" target=\"_blank\" rel=\"noopener noreferrer\">bill to ban and regulate autonomous weapons</a> in the Chamber of Representatives, whose co-author will open the hackathon.", "url": "https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017" },
       { "es": "Trabajo de fellows de Apart ha sido publicado en conferencias líderes de aprendizaje automático y ha llevado a roles a tiempo completo en seguridad de IA, como ingeniero de investigación en <a href=\"https://www.cooperativeai.com/\" target=\"_blank\" rel=\"noopener noreferrer\">CAIF</a> o líder de investigación en <a href=\"https://withmartian.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Martian</a>.", "en": "Apart fellows' work has been published at leading machine-learning conferences and has led to full-time AI safety roles, such as research engineer at <a href=\"https://www.cooperativeai.com/\" target=\"_blank\" rel=\"noopener noreferrer\">CAIF</a> and research lead at <a href=\"https://withmartian.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Martian</a>.", "url": "https://apartresearch.com/fellowships" }
     ],
-    "venueNoteEs": "Bogotá tendrá una sede presencial con cupos limitados para participantes seleccionados. Cualquier persona en Colombia y el Sur Global puede participar en línea.",
-    "venueNoteEn": "Bogotá will host an in-person venue with limited seats for selected participants. Anyone in Colombia and the Global South can take part online."
+    "venueNoteEs": "",
+    "venueNoteEn": ""
+  },
+  "inPerson": {
+    "kickerEs": "Bogotá",
+    "kickerEn": "Bogotá",
+    "leadEs": "Es un cupo limitado: AISC selecciona el grupo presencial mediante una postulación corta. Quienes no entren al cupo presencial pueden participar en línea desde cualquier lugar.",
+    "leadEn": "Seats are limited: AISC selects the in-person cohort through a short application. Anyone not selected can still take part online from anywhere.",
+    "items": [
+      { "es": "Comida durante todo el fin de semana, viernes a domingo.", "en": "Meals throughout the weekend, Friday to Sunday." },
+      { "es": "Mentoría presencial y charlas en sitio con varios de los jueces.", "en": "In-person mentorship and on-site talks from several of the judges." },
+      { "es": "Alojamiento y apoyo con transporte (bus o vuelo, hasta un tope por persona) para participantes que viajen desde otras ciudades de Colombia.", "en": "Housing and transport support (bus or flight, up to a per-person cap) for participants traveling from other Colombian cities." },
+      { "es": "Quienes participen en línea desde Colombia o el Sur Global también acceden a mentoría y charlas de jueces vía livestream en Discord y Zoom.", "en": "Online participants in Colombia and the Global South also get mentorship and judge talks via livestream on Discord and Zoom." }
+    ],
+    "applyEs": "Para postular al cupo presencial, escríbenos a <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>.",
+    "applyEn": "To apply for an in-person seat, email us at <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>."
   },
   "schedule": [
     { "day": "Viernes 19", "dayEn": "Friday 19", "accent": "is-green", "events": [

@@ -234,7 +234,6 @@ const caseIcons = [
         >{t(locale, 'hackathon.sourceLabel')}</a>
       </div>
     </div>
-    <p class="hk-note hk-venue-note">{es ? data.prizesDetail.venueNoteEs : data.prizesDetail.venueNoteEn}</p>
   </div>
 </section>
 
@@ -344,7 +343,24 @@ const caseIcons = [
   </div>
 </section>
 
-<section class="section alt">
+<section class="section alt hk-inperson-sec">
+  <div class="container">
+    <span class="section-label hk-inperson-kicker">{es ? data.inPerson.kickerEs : data.inPerson.kickerEn}</span>
+    <h2 class="section-title">{t(locale, 'hackathon.inPersonTitle')}</h2>
+    <p class="hk-inperson-lead">{es ? data.inPerson.leadEs : data.inPerson.leadEn}</p>
+    <ul class="hk-inperson-list">
+      {data.inPerson.items.map(item => (
+        <li class="hk-inperson-item">
+          <span class="hk-inperson-bullet" aria-hidden="true"></span>
+          <span class="hk-inperson-tx">{es ? item.es : item.en}</span>
+        </li>
+      ))}
+    </ul>
+    <p class="hk-inperson-apply" set:html={es ? data.inPerson.applyEs : data.inPerson.applyEn} />
+  </div>
+</section>
+
+<section class="section">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.speakersTitle')}</h2>
     <div class="hk-people">
@@ -401,7 +417,7 @@ const caseIcons = [
   </div>
 </section>
 
-<section class="section">
+<section class="section alt">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.judgesTitle')}</h2>
     {judges.length > 0 ? (
@@ -989,9 +1005,82 @@ const caseIcons = [
     text-decoration-color: currentColor;
   }
 
-  .hk-venue-note {
+  /* ---- In-person hub section (Bogotá) ---- */
+  .hk-inperson-sec .section-title {
+    margin-bottom: 0.5rem;
+  }
+
+  .hk-inperson-kicker {
+    display: inline-block;
+    margin-bottom: 0.625rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
     font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-forest);
+  }
+
+  .hk-inperson-lead {
+    margin: 0 0 2rem;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 62ch;
+  }
+
+  .hk-inperson-list {
+    list-style: none;
+    margin: 0 0 1.75rem;
+    padding: 0;
+    display: grid;
+    gap: 0.875rem;
+  }
+
+  .hk-inperson-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    padding: 1rem 1.125rem;
+    background: var(--card-surface, #fff);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+
+  .hk-inperson-bullet {
+    flex: none;
+    margin-top: 0.55rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-forest);
+  }
+
+  .hk-inperson-tx {
+    font-size: 0.9375rem;
+    line-height: 1.55;
     color: var(--text-primary);
+  }
+
+  .hk-inperson-apply {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+  }
+
+  .hk-inperson-apply a {
+    color: var(--text-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--accent-forest);
+    transition: text-decoration-color 0.15s ease, color 0.15s ease;
+  }
+
+  .hk-inperson-apply a:hover {
+    color: var(--accent-forest);
+    text-decoration-color: currentColor;
   }
 
   .hk-success {
