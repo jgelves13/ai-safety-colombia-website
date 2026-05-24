@@ -7,8 +7,8 @@
   "registrationUrl": "https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21?utm_source=hub-bogota",
   "contactEmail": "sprints@apartresearch.com",
   "support": "Schmidt Sciences",
-  "whatIsEs": "Tres días de hackathon intensiva en seguridad de IA. En línea, con sede presencial en Bogotá, para investigadores, ingenieros y profesionales de política de América Latina, África y Asia.",
-  "whatIsEn": "Three days of an intensive AI safety hackathon. Online, with an in-person venue in Bogotá, for researchers, engineers, and policy professionals from Latin America, Africa, and Asia.",
+  "whatIsEs": "Hackathon de tres días en seguridad de IA. En línea, con sede presencial en Bogotá, dirigido a investigadores, ingenieros y profesionales de política de América Latina, África y Asia.",
+  "whatIsEn": "A three-day AI safety hackathon. Online, with an in-person venue in Bogotá, for researchers, engineers, and policy professionals from Latin America, Africa, and Asia.",
   "organizerNoteEs": "Organiza Apart Research; AI Safety Colombia coordina el hub de Bogotá.",
   "organizerNoteEn": "Apart Research organizes it; AI Safety Colombia runs the Bogotá hub.",
   "submissionEs": "Cada equipo entrega un reporte de investigación en PDF de 4 a 8 páginas que documenta enfoque, resultados e implicaciones.",
@@ -119,12 +119,12 @@
     "venueNoteEn": ""
   },
   "inPerson": {
-    "para1Es": "La sede en Bogotá tiene cupos limitados. Te postulas con un formulario corto y, si no quedas, igual puedes hacer la hackathon en línea desde donde estés.",
-    "para1En": "The Bogotá venue has limited seats. You apply with a short form, and if you don't get in you can still join the hackathon online from wherever you are.",
-    "para2Es": "En la sede ponemos comidas todo el fin de semana, mentoría en persona y charlas con varios de los jueces. A quienes viajen desde otras ciudades de Colombia les cubrimos transporte (bus o vuelo, con un tope) y alojamiento. Si participas en línea desde Colombia o el Sur Global, tienes mentoría y charlas por Discord y Zoom.",
-    "para2En": "At the venue we cover meals across the weekend, in-person mentorship, and talks with several of the judges. For people traveling in from other Colombian cities, we cover transport (bus or flight, up to a cap) and housing. If you're joining online from Colombia or the Global South, you get mentorship and judge talks on Discord and Zoom.",
-    "applyEs": "Para postularte al cupo presencial, escríbenos a <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>.",
-    "applyEn": "To apply for an in-person seat, email us at <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>."
+    "para1Es": "La sede en Bogotá tiene cupos limitados y se asignan por postulación. Quienes no sean seleccionados pueden participar en línea desde cualquier lugar.",
+    "para1En": "The Bogotá venue has limited seats, assigned by application. Anyone not selected can still take part online from anywhere.",
+    "para2Es": "Los participantes en sede reciben alimentación durante todo el fin de semana, mentoría presencial y acceso a charlas con varios de los jueces. Quienes viajen desde otras ciudades de Colombia cuentan con apoyo de transporte (bus o vuelo, hasta un monto definido) y alojamiento. Los participantes en línea, desde Colombia o el Sur Global, acceden a mentoría y charlas a través de Discord y Zoom.",
+    "para2En": "Participants at the venue receive meals across the weekend, in-person mentorship, and access to talks with several of the judges. Participants traveling in from other Colombian cities receive transport support (bus or flight, up to a defined cap) and accommodation. Online participants from Colombia or the Global South receive mentorship and judge talks through Discord and Zoom.",
+    "applyEs": "Postulación al cupo presencial: <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>.",
+    "applyEn": "Apply for an in-person seat: <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>."
   },
   "schedule": [
     { "day": "Viernes 19", "dayEn": "Friday 19", "accent": "is-green", "events": [
