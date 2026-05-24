@@ -359,8 +359,8 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
                 <Image
                   src={i.thumb}
                   alt=""
-                  widths={[220, 360, 540]}
-                  sizes="(max-width: 560px) 100vw, 360px"
+                  widths={[260, 360, 520]}
+                  sizes="(max-width: 560px) 100vw, 320px"
                   format="webp"
                   loading="lazy"
                   class="learn-img"
@@ -477,14 +477,13 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
 
   .learn-card:hover { border-color: var(--text-primary); }
 
-  /* Unified thumbnail: every image fills the 16:9 tile with
-     object-fit: contain so wide hero screenshots go edge-to-edge,
-     square brand marks scale up to full tile height, and tall book
-     covers fill the height. Every card carries the same visual
-     weight; only the natural aspect ratio of each source varies. */
+  /* Unified thumbnail: every image is cropped to a square and fills the
+     tile with object-fit: cover, so logos, hero screenshots, podcast art,
+     and book covers all read as identical shapes regardless of their
+     source aspect ratio. */
   .learn-thumb {
     position: relative;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 1 / 1;
     border-bottom: 1px solid var(--border);
     overflow: hidden;
   }
@@ -498,7 +497,7 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
   }
 
   .learn-duration {
