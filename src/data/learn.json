@@ -2,7 +2,7 @@
   {
     "kind": "video",
     "accent": "is-coral",
-    "titleEs": "Introducción a la seguridad de IA",
+    "titleEs": "Intro to AI Safety, Remastered",
     "titleEn": "Intro to AI Safety, Remastered",
     "sourceEs": "Robert Miles",
     "sourceEn": "Robert Miles",
@@ -19,7 +19,7 @@
   {
     "kind": "course",
     "accent": "is-blue",
-    "titleEs": "El futuro de la IA",
+    "titleEs": "The Future of AI",
     "titleEn": "The Future of AI",
     "sourceEs": "BlueDot Impact",
     "sourceEn": "BlueDot Impact",
@@ -42,8 +42,8 @@
     "sourceEn": "80,000 Hours",
     "descEs": "Un perfil de problema riguroso sobre los riesgos de la IA avanzada y qué se puede hacer al respecto.",
     "descEn": "A rigorous problem profile on the risks from advanced AI and what can be done about it.",
-    "durationEs": "Lectura larga",
-    "durationEn": "Long read",
+    "durationEs": "Lectura",
+    "durationEn": "Read",
     "metaEs": "En inglés",
     "metaEn": "In English",
     "url": "https://80000hours.org/problem-profiles/artificial-intelligence/",

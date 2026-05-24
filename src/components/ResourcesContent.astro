@@ -2,17 +2,110 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { t, localePath, type Locale } from '../i18n/ui';
+import learnData from '../data/learn.json';
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
+const es = locale === 'es';
+
+type Key = Parameters<typeof t>[1];
 
 const logos = import.meta.glob<ImageMetadata>('../assets/resources/*', {
   eager: true,
   import: 'default',
 });
+
+const learnThumbs = import.meta.glob<ImageMetadata>('../assets/learn/*', {
+  eager: true,
+  import: 'default',
+});
+
+// Featured cards: 3 starter picks from learn.json (same as the homepage
+// "Empieza aquí" block) plus 3 extra hand-picked deepenings, all in the
+// same card format so visitors hitting "See all resources" land on a
+// continuous experience.
+interface FeatItem {
+  kind: 'video' | 'course' | 'read';
+  accent: string;
+  title: string;
+  source: string;
+  desc: string;
+  duration: string;
+  meta: string;
+  url: string;
+  thumb: ImageMetadata;
+  thumbFit: 'cover' | 'mark';
+}
+
+const fromLearn: FeatItem[] = learnData.map((i) => ({
+  kind: i.kind as FeatItem['kind'],
+  accent: i.accent,
+  title: es ? i.titleEs : i.titleEn,
+  source: es ? i.sourceEs : i.sourceEn,
+  desc: es ? i.descEs : i.descEn,
+  duration: es ? i.durationEs : i.durationEn,
+  meta: es ? i.metaEs : i.metaEn,
+  url: i.url,
+  thumb: learnThumbs[`../assets/learn/${i.thumb}`],
+  thumbFit: i.thumbFit as 'cover' | 'mark',
+}));
+
+const extraItems: FeatItem[] = [
+  {
+    kind: 'video',
+    accent: 'is-coral',
+    title: es ? 'Canal de Robert Miles' : 'Robert Miles channel',
+    source: 'Robert Miles AI Safety',
+    desc: es
+      ? 'Una biblioteca de videos cortos, claros y rigurosos sobre alineación, control y los retos abiertos en seguridad de IA.'
+      : 'A library of short, clear, rigorous videos on alignment, control, and the open problems in AI safety.',
+    duration: es ? 'Videos · gratis' : 'Videos · free',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://www.youtube.com/@RobertMilesAI/videos',
+    thumb: logos['../assets/resources/robert-miles.png'],
+    thumbFit: 'mark',
+  },
+  {
+    kind: 'course',
+    accent: 'is-blue',
+    title: es ? 'AI Safety Fundamentals: Alignment' : 'AI Safety Fundamentals: Alignment',
+    source: 'BlueDot Impact',
+    desc: es
+      ? 'El curso de referencia para entrar a fondo en alineación técnica: 12 semanas, lecturas guiadas y un proyecto final.'
+      : 'The reference course for going deep on technical alignment: 12 weeks, guided readings, and a final project.',
+    duration: es ? '12 semanas · gratis' : '12 weeks · free',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://bluedot.org/courses/alignment',
+    thumb: logos['../assets/resources/bluedot.png'],
+    thumbFit: 'mark',
+  },
+  {
+    kind: 'read',
+    accent: 'is-green',
+    title: 'The Alignment Problem',
+    source: 'Brian Christian',
+    desc: es
+      ? 'Una narración accesible de los problemas centrales para alinear la IA con valores humanos, contada a través de los investigadores que los enfrentan.'
+      : 'An accessible narrative of the core problems in aligning AI with human values, told through the researchers facing them.',
+    duration: es ? 'Libro' : 'Book',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://brianchristian.org/the-alignment-problem/',
+    thumb: logos['../assets/resources/alignment-problem.png'],
+    thumbFit: 'mark',
+  },
+];
+
+const featuredItems: (FeatItem & { kindLabel: string; cta: string })[] = [
+  ...fromLearn,
+  ...extraItems,
+].map((i) => ({
+  ...i,
+  kindLabel: t(locale, `learn.kind.${i.kind}` as Key),
+  cta: t(locale, `learn.cta.${i.kind}` as Key),
+}));
 
 const icons = {
   fundamentals:
@@ -160,6 +253,56 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
 ];
 ---
 
+<section class="section res-featured" aria-labelledby="res-featured-title">
+  <div class="container">
+    <h2 class="section-title" id="res-featured-title">{t(locale, 'resources.featured.title')}</h2>
+    <p class="section-subtitle">{t(locale, 'resources.featured.subtitle')}</p>
+
+    <div class="learn-grid">
+      {featuredItems.map((i) => (
+        <article class:list={['learn-card', i.accent]}>
+          <div
+            class:list={['learn-thumb', i.thumbFit === 'cover' ? 'is-cover' : 'is-mark']}
+            aria-hidden="true"
+          >
+            {i.thumbFit === 'cover' ? (
+              <Image
+                src={i.thumb}
+                alt=""
+                widths={[360, 540, 760]}
+                sizes="(max-width: 560px) 100vw, 400px"
+                format="webp"
+                loading="lazy"
+                class="learn-img"
+              />
+            ) : (
+              <Image
+                src={i.thumb}
+                alt=""
+                width={84}
+                height={84}
+                loading="lazy"
+                class="learn-mark"
+              />
+            )}
+            <span class="learn-duration">{i.duration}</span>
+          </div>
+          <div class="learn-body">
+            <span class="learn-kind">{i.kindLabel}</span>
+            <h3>{i.title}</h3>
+            <p class="learn-source">{i.source}</p>
+            <p class="learn-desc">{i.desc}</p>
+            <p class="learn-meta">{i.meta}</p>
+            <a href={i.url} target="_blank" rel="noopener noreferrer" class="learn-link">
+              {i.cta}
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
 <section class="section" aria-labelledby="resources-title">
   <div class="container">
     <h2 class="section-title" id="resources-title">{t(locale, 'resources.title')}</h2>
@@ -248,6 +391,138 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
 <style>
   .section-subtitle {
     margin-bottom: 2.5rem;
+  }
+
+  .res-featured .section-subtitle {
+    max-width: none;
+  }
+
+  /* Featured cards reuse the homepage "Empieza aquí" treatment so visitors
+     hitting "See all resources" land on a continuous experience. */
+  .learn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .learn-card {
+    background: var(--card-surface);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.15s;
+  }
+
+  .learn-card:hover { border-color: var(--text-primary); }
+
+  .learn-thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .learn-thumb.is-cover { background: #0E0E0E; }
+
+  .learn-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .is-coral .learn-thumb.is-mark { background: rgba(229, 96, 77, 0.12); }
+  .is-blue  .learn-thumb.is-mark { background: rgba(74, 132, 102, 0.12); }
+  .is-green .learn-thumb.is-mark { background: rgba(31, 77, 50, 0.10); }
+
+  .learn-mark {
+    width: 84px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .learn-duration {
+    position: absolute;
+    left: 0.875rem;
+    bottom: 0.875rem;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.5rem 0.85rem;
+    border-radius: 999px;
+    color: var(--bg-elevated);
+    background: var(--text-primary);
+  }
+
+  .learn-body {
+    padding: 1.5rem 1.75rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .learn-kind {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+    margin-bottom: 0.625rem;
+    font-family: var(--font-mono);
+  }
+
+  .learn-card h3 {
+    font-size: 1.1875rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    line-height: 1.25;
+  }
+
+  .learn-source {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.875rem;
+  }
+
+  .learn-desc {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .learn-meta {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+  }
+
+  .learn-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-top: 1.25rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--accent-forest);
+    transition: gap 0.2s;
+  }
+
+  .learn-link:hover {
+    gap: 0.625rem;
+    opacity: 1;
   }
 
   /* Learning paths as accent-tinted cards, mirroring the homepage

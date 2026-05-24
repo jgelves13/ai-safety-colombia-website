@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import type { Locale } from '../i18n/ui';
-import { t } from '../i18n/ui';
+import { t, localePath } from '../i18n/ui';
 import learnData from '../data/learn.json';
 
 interface Props {
@@ -82,12 +82,49 @@ const items = learnData.map((i) => ({
         </article>
       ))}
     </div>
+
+    <p class="learn-more">
+      <a href={localePath(locale, '/recursos/')} class="learn-more-link">
+        {t(locale, 'learn.viewMore')} &rarr;
+      </a>
+    </p>
   </div>
 </section>
 
 <style>
   .start-here .section-subtitle {
+    max-width: none;
     margin-bottom: 2.5rem;
+  }
+
+  .learn-more {
+    margin-top: 2.5rem;
+    text-align: right;
+  }
+
+  .learn-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-forest);
+    padding-bottom: 0.25rem;
+    transition: gap 0.2s ease, color 0.15s ease;
+  }
+
+  .learn-more-link:hover {
+    gap: 0.625rem;
+    color: var(--accent-forest);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .learn-more-link { transition: none; }
   }
 
   .learn-grid {
