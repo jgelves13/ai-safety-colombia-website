@@ -185,19 +185,6 @@ const readings: FeatItem[] = [
     url: 'https://www.anthropic.com/news/core-views-on-ai-safety',
     thumb: logos['../assets/resources/anthropic-core-views.png'],
   },
-  {
-    kind: 'read',
-    accent: 'is-green',
-    title: es ? 'Política Nacional de Inteligencia Artificial' : 'National AI Policy of Colombia',
-    source: 'CONPES 4144 · DNP',
-    desc: es
-      ? 'El marco de política pública de Colombia para el desarrollo y la gobernanza de la IA, con líneas de acción hasta 2030.'
-      : "Colombia's public-policy framework for AI development and governance, with action lines running through 2030.",
-    duration: es ? 'Documento de política' : 'Policy document',
-    meta: es ? 'En español' : 'In Spanish',
-    url: 'https://colaboracion.dnp.gov.co/CDT/Conpes/Econ%C3%B3micos/4144.pdf',
-    thumb: logos['../assets/resources/conpes.png'],
-  },
 ];
 
 const podcasts: FeatItem[] = [
@@ -490,18 +477,16 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
 
   .learn-card:hover { border-color: var(--text-primary); }
 
-  /* Unified thumbnail: 16:9 accent-tinted tile, image centered with
-     object-fit: contain so wide hero screenshots nearly fill, square
-     brand marks scale to fit, and tall book covers float at full
-     height. Same canvas across every card. */
+  /* Unified thumbnail: every image fills the 16:9 tile with
+     object-fit: contain so wide hero screenshots go edge-to-edge,
+     square brand marks scale up to full tile height, and tall book
+     covers fill the height. Every card carries the same visual
+     weight; only the natural aspect ratio of each source varies. */
   .learn-thumb {
     position: relative;
     aspect-ratio: 16 / 9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
     border-bottom: 1px solid var(--border);
+    overflow: hidden;
   }
 
   .is-coral  .learn-thumb { background: rgba(229, 96, 77, 0.10); }
@@ -510,12 +495,10 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
   .is-yellow .learn-thumb { background: rgba(212, 169, 56, 0.12); }
 
   .learn-img {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
+    display: block;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
-    border-radius: 4px;
   }
 
   .learn-duration {
