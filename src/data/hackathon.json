@@ -7,10 +7,10 @@
   "registrationUrl": "https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21?utm_source=hub-bogota",
   "contactEmail": "sprints@apartresearch.com",
   "support": "Schmidt Sciences",
-  "whatIsEs": "Hackathon de tres días en seguridad de IA. En línea, con sede presencial en Bogotá, dirigido a investigadores, ingenieros y profesionales de política de América Latina, África y Asia.",
-  "whatIsEn": "A three-day AI safety hackathon. Online, with an in-person venue in Bogotá, for researchers, engineers, and policy professionals from Latin America, Africa, and Asia.",
-  "organizerNoteEs": "Organiza Apart Research; AI Safety Colombia coordina el hub de Bogotá.",
-  "organizerNoteEn": "Apart Research organizes it; AI Safety Colombia runs the Bogotá hub.",
+  "whatIsEs": "Hackathon internacional de tres días enfocado en seguridad y gobernanza de la IA, con participación híbrida: en línea y con sede presencial en Bogotá. Está dirigido a investigadores, ingenieros, estudiantes y profesionales de política pública de América Latina, África y Asia interesados en contribuir al desarrollo seguro y responsable de sistemas de IA.",
+  "whatIsEn": "A three-day international hackathon focused on AI safety and governance, with hybrid participation: online and at an in-person venue in Bogotá. It is open to researchers, engineers, students, and public-policy professionals from Latin America, Africa, and Asia interested in contributing to the safe and responsible development of AI systems.",
+  "organizerNoteEs": "El evento es organizado por Apart Research, y el hub de Bogotá es coordinado por AI Safety Colombia.",
+  "organizerNoteEn": "The event is organized by Apart Research, and the Bogotá hub is coordinated by AI Safety Colombia.",
   "submissionEs": "Cada equipo entrega un reporte de investigación en PDF de 4 a 8 páginas que documenta enfoque, resultados e implicaciones.",
   "submissionEn": "Each team submits a 4–8 page research report (PDF) documenting approach, results, and implications.",
   "whyIntroEs": "Los sistemas de IA ya operan en América Latina, pero la investigación que los hace seguros se concentra en unos pocos países y se prueba casi siempre en inglés: casi nadie revisa cómo se comportan en nuestro contexto. El hackathon aborda ese vacío desde cuatro frentes. Cada caso que sigue es un ejemplo concreto de uno de ellos, apenas una muestra de lo que podrás trabajar.",
@@ -119,10 +119,18 @@
     "venueNoteEn": ""
   },
   "inPerson": {
-    "para1Es": "La sede en Bogotá tiene cupos limitados, asignados por postulación. Quienes no sean seleccionados pueden participar en línea desde cualquier lugar.",
-    "para1En": "The Bogotá venue has limited seats, assigned by application. Anyone not selected can take part online from anywhere.",
-    "para2Es": "En la sede, los participantes reciben alimentación durante todo el fin de semana, mentoría presencial y acceso a charlas con varios de los jueces. Quienes viajen desde otras ciudades de Colombia cuentan con apoyo de transporte (bus o vuelo, hasta un monto definido) y alojamiento. Los participantes en línea, desde Colombia o el Sur Global, acceden a mentoría y a las charlas a través de Discord y Zoom.",
-    "para2En": "On site, participants receive meals across the entire weekend, in-person mentorship, and access to talks with several of the judges. Participants traveling in from other Colombian cities receive transport support (bus or flight, up to a defined cap) and accommodation. Online participants from Colombia or the Global South receive mentorship and judge talks through Discord and Zoom.",
+    "para1Es": "La participación virtual está abierta para personas de cualquier lugar del mundo. La sede presencial en Bogotá cuenta con cupos limitados, asignados mediante un proceso de postulación.",
+    "para1En": "Virtual participation is open to people from anywhere in the world. The in-person venue in Bogotá has limited seats, assigned through an application process.",
+    "inPersonIntroEs": "Quienes participen presencialmente tendrán acceso a:",
+    "inPersonIntroEn": "On-site participants will have access to:",
+    "items": [
+      { "es": "Alimentación durante todo el fin de semana", "en": "Meals across the entire weekend" },
+      { "es": "Mentoría presencial con investigadores y profesionales del área", "en": "In-person mentorship with researchers and professionals in the field" },
+      { "es": "Charlas y espacios de conversación con parte del panel de jueces y mentores", "en": "Talks and conversation spaces with part of the panel of judges and mentors" },
+      { "es": "Apoyo de transporte nacional (bus o vuelo, sujeto a un monto máximo definido) y alojamiento para participantes seleccionados que viajen desde otras ciudades de Colombia", "en": "Domestic transport support (bus or flight, subject to a defined maximum) and accommodation for selected participants traveling from other Colombian cities" }
+    ],
+    "onlineCloseEs": "Las personas que participen en línea podrán acceder a mentorías, charlas y espacios colaborativos a través de Discord y Zoom.",
+    "onlineCloseEn": "Online participants will be able to access mentorship, talks, and collaborative spaces through Discord and Zoom.",
     "applyEs": "Postulación al cupo presencial: <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>.",
     "applyEn": "Apply for an in-person seat: <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>."
   },

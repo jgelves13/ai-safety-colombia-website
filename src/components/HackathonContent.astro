@@ -107,14 +107,20 @@ const caseIcons = [
 </section>
 
 <section class="section hk-intro">
-  <div class="container hk-intro-narrow">
+  <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whatTitle')}</h2>
     <p class="hk-lead">{whatBody}</p>
     <p class="hk-attr">{es ? data.organizerNoteEs : data.organizerNoteEn}</p>
 
     <div class="hk-venue">
       <p class="hk-venue-p">{es ? data.inPerson.para1Es : data.inPerson.para1En}</p>
-      <p class="hk-venue-p">{es ? data.inPerson.para2Es : data.inPerson.para2En}</p>
+      <p class="hk-venue-list-intro">{es ? data.inPerson.inPersonIntroEs : data.inPerson.inPersonIntroEn}</p>
+      <ul class="hk-venue-list">
+        {data.inPerson.items.map(item => (
+          <li>{es ? item.es : item.en}</li>
+        ))}
+      </ul>
+      <p class="hk-venue-p">{es ? data.inPerson.onlineCloseEs : data.inPerson.onlineCloseEn}</p>
       <p class="hk-venue-apply" set:html={es ? data.inPerson.applyEs : data.inPerson.applyEn} />
     </div>
   </div>
@@ -811,20 +817,16 @@ const caseIcons = [
     margin-bottom: 0.625rem;
   }
 
-  .hk-intro-narrow {
-    max-width: 760px;
-  }
-
   .hk-intro .hk-lead {
     margin: 0 0 0.875rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
+    font-size: 1.1875rem;
+    line-height: 1.55;
     color: var(--text-primary);
   }
 
   .hk-intro .hk-attr {
     margin: 0;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     line-height: 1.55;
     color: var(--text-secondary);
   }
@@ -1009,23 +1011,45 @@ const caseIcons = [
     text-decoration-color: currentColor;
   }
 
-  /* ---- Venue prose (single-column flow) ---- */
+  /* ---- Venue prose (full-width single-column flow + bullet list) ---- */
   .hk-venue {
     margin-top: 2.25rem;
   }
 
   .hk-venue-p {
-    margin: 0 0 1rem;
+    margin: 0 0 1.25rem;
     font-size: 1rem;
     line-height: 1.65;
     color: var(--text-secondary);
   }
-  .hk-venue-p:last-of-type {
-    margin-bottom: 1.25rem;
+
+  .hk-venue-list-intro {
+    margin: 0 0 0.625rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .hk-venue-list {
+    margin: 0 0 1.5rem;
+    padding: 0 0 0 1.25rem;
+    list-style: disc;
+  }
+
+  .hk-venue-list li {
+    margin: 0 0 0.5rem;
+    padding-left: 0.25rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+  .hk-venue-list li::marker {
+    color: var(--accent-forest);
   }
 
   .hk-venue-apply {
-    margin: 0;
+    margin: 1.25rem 0 0;
     font-size: 0.9375rem;
     line-height: 1.6;
     color: var(--text-secondary);
