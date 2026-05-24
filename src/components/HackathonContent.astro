@@ -110,6 +110,7 @@ const caseIcons = [
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whatTitle')}</h2>
     <p class="hk-lead">{whatBody}</p>
+    <p class="hk-attr">{es ? data.organizerNoteEs : data.organizerNoteEn}</p>
 
     <div class="hk-venue">
       <p class="hk-venue-p">{es ? data.inPerson.para1Es : data.inPerson.para1En}</p>
@@ -811,7 +812,19 @@ const caseIcons = [
   }
 
   .hk-intro .hk-lead {
+    margin: 0 0 0.75rem;
+    font-size: 1.1875rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+    max-width: 60ch;
+  }
+
+  .hk-intro .hk-attr {
     margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    max-width: 60ch;
   }
 
   /* "Por qué participar": short lead, four motivating cases keyed by
