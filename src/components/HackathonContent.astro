@@ -226,6 +226,7 @@ const caseIcons = [
             <li set:html={es ? ex.es : ex.en} />
           ))}
         </ul>
+        <p class="hk-success-close" set:html={es ? data.prizesDetail.successCloseEs : data.prizesDetail.successCloseEn} />
         <a
           class="hk-success-src"
           href="https://apartresearch.com/impact"
@@ -1033,6 +1034,28 @@ const caseIcons = [
   }
 
   .hk-success-list li a:hover {
+    color: var(--accent-forest);
+    text-decoration-color: currentColor;
+  }
+
+  .hk-success-close {
+    margin-top: 1.25rem;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .hk-success-close a {
+    color: var(--text-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--accent-forest);
+    transition: text-decoration-color 0.15s ease, color 0.15s ease;
+  }
+
+  .hk-success-close a:hover {
     color: var(--accent-forest);
     text-decoration-color: currentColor;
   }
