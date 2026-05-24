@@ -38,7 +38,6 @@ const LINKEDIN = 'https://www.linkedin.com/company/ai-safety-col/';
             <span class="ch-name">Email</span>
             <span class="ch-value">{EMAIL}</span>
           </span>
-          <span class="ch-arrow" aria-hidden="true">&rarr;</span>
         </a>
 
         <a class="ch-card ch-whatsapp" href={WHATSAPP} target="_blank" rel="noopener noreferrer">
@@ -54,7 +53,6 @@ const LINKEDIN = 'https://www.linkedin.com/company/ai-safety-col/';
             <span class="ch-name">WhatsApp</span>
             <span class="ch-value">{t(locale, 'contact.whatsappValue')}</span>
           </span>
-          <span class="ch-arrow" aria-hidden="true">&rarr;</span>
         </a>
 
         <a class="ch-card ch-instagram" href={INSTAGRAM} target="_blank" rel="noopener noreferrer">
@@ -69,7 +67,6 @@ const LINKEDIN = 'https://www.linkedin.com/company/ai-safety-col/';
             <span class="ch-name">Instagram</span>
             <span class="ch-value">@aisafetycolombia</span>
           </span>
-          <span class="ch-arrow" aria-hidden="true">&rarr;</span>
         </a>
 
         <a class="ch-card ch-linkedin" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
@@ -84,7 +81,6 @@ const LINKEDIN = 'https://www.linkedin.com/company/ai-safety-col/';
             <span class="ch-name">LinkedIn</span>
             <span class="ch-value">AI Safety Colombia</span>
           </span>
-          <span class="ch-arrow" aria-hidden="true">&rarr;</span>
         </a>
       </div>
     </aside>
@@ -262,19 +258,6 @@ const LINKEDIN = 'https://www.linkedin.com/company/ai-safety-col/';
     text-overflow: ellipsis;
   }
 
-  .ch-arrow {
-    margin-left: auto;
-    flex: none;
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-    transition: transform 0.15s, color 0.15s;
-  }
-
-  .ch-card:hover .ch-arrow {
-    transform: translateX(3px);
-    color: var(--text-primary);
-  }
-
   /* ---- Message form ---- */
   .contact-form-card {
     background: var(--card-surface);
@@ -414,9 +397,7 @@ const LINKEDIN = 'https://www.linkedin.com/company/ai-safety-col/';
 
   @media (prefers-reduced-motion: reduce) {
     .ch-card,
-    .ch-card:hover,
-    .ch-arrow,
-    .ch-card:hover .ch-arrow {
+    .ch-card:hover {
       transition: none;
       transform: none;
     }

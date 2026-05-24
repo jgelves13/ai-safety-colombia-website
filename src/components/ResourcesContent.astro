@@ -194,7 +194,6 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
                     <span class="res-item-name">{item.name}</span>
                     <span class="res-item-src">{item.source}</span>
                   </span>
-                  <span class="res-item-go" aria-hidden="true">&rarr;</span>
                 </a>
               </li>
             ))}
@@ -228,7 +227,6 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
                 <span class="res-item-name">{link.name}</span>
                 <span class="res-item-src">{link.desc}</span>
               </span>
-              <span class="res-item-go" aria-hidden="true">&rarr;</span>
             </a>
           </li>
         ))}
@@ -390,19 +388,6 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
     line-height: 1.3;
   }
 
-  .res-item-go {
-    color: var(--accent-forest);
-    font-weight: 600;
-    opacity: 0;
-    transform: translateX(-4px);
-    transition: opacity 0.2s, transform 0.2s;
-  }
-
-  .res-item:hover .res-item-go {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
   /* aisafety.com ecosystem hub — a calm paper band bridging the
      curated cards above and the closing CTA below. Reuses the same
      .res-item rows so it never reads as a foreign element. */
@@ -496,10 +481,8 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
 
   @media (prefers-reduced-motion: reduce) {
     .res-card,
-    .res-item,
-    .res-item-go { transition: none; }
+    .res-item { transition: none; }
     .res-card:hover,
     .res-item:hover { transform: none; }
-    .res-item:hover .res-item-go { transform: none; }
   }
 </style>

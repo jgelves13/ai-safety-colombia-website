@@ -96,7 +96,7 @@ const caseIcons = [
     <p class="hk-sub">{t(locale, 'hackathon.sub')}</p>
     <p class="hk-hook">{t(locale, 'hackathon.hook')}</p>
     <div class="hk-cta">
-      <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">{t(locale, 'hackathon.ctaPrimary')} &rarr;</a>
+      <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">{t(locale, 'hackathon.ctaPrimary')}</a>
       <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">{t(locale, 'hackathon.ctaSecondary')}</a>
       <div class="hk-count">
         <span class="hk-count-num" data-hackathon-date={data.date} aria-live="polite">{daysLeft}</span>
@@ -218,7 +218,7 @@ const caseIcons = [
           <span class="hk-pill">{es ? perk.es : perk.en}</span>
         ))}
       </div>
-      <p class="hk-prize-extra">{es ? data.prizesDetail.fellowsEs : data.prizesDetail.fellowsEn}</p>
+      <p class="hk-prize-extra" set:html={es ? data.prizesDetail.fellowsEs : data.prizesDetail.fellowsEn} />
       <div class="hk-success">
         <h3 class="hk-success-title">{es ? data.prizesDetail.successTitleEs : data.prizesDetail.successTitleEn}</h3>
         <ul class="hk-success-list">
@@ -231,7 +231,7 @@ const caseIcons = [
           href="https://apartresearch.com/impact"
           target="_blank"
           rel="noopener noreferrer"
-        >{t(locale, 'hackathon.sourceLabel')} &rarr;</a>
+        >{t(locale, 'hackathon.sourceLabel')}</a>
       </div>
     </div>
     <p class="hk-note hk-venue-note">{es ? data.prizesDetail.venueNoteEs : data.prizesDetail.venueNoteEn}</p>
@@ -474,7 +474,7 @@ const caseIcons = [
   <div class="container">
     <h2 class="hk-band-title">{t(locale, 'hackathon.ctaBandTitle')}</h2>
     <p class="hk-band-sub">{t(locale, 'hackathon.ctaBandSub')}</p>
-    <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-vermillion">{t(locale, 'hackathon.ctaPrimary')} &rarr;</a>
+    <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-vermillion">{t(locale, 'hackathon.ctaPrimary')}</a>
     <p class="hk-band-mail">{data.contactEmail}</p>
   </div>
 </section>
@@ -972,6 +972,21 @@ const caseIcons = [
     font-size: 0.9375rem;
     color: var(--text-secondary);
     line-height: 1.6;
+  }
+
+  .hk-prize-extra a {
+    color: var(--text-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--accent-forest);
+    transition: text-decoration-color 0.15s ease, color 0.15s ease;
+  }
+
+  .hk-prize-extra a:hover {
+    color: var(--accent-forest);
+    text-decoration-color: currentColor;
   }
 
   .hk-venue-note {

@@ -21,7 +21,7 @@ const daysLeft = daysUntil(data.date);
         <p class="banner-subtitle">{t(locale, 'hackathon.banner.subtitle')}</p>
         <div class="banner-actions">
           <a href={locale === 'es' ? '/hackathon/' : '/en/hackathon/'} class="btn btn-vermillion">
-            {t(locale, 'hackathon.banner.cta')} &rarr;
+            {t(locale, 'hackathon.banner.cta')}
           </a>
           <div class="countdown">
             <span class="countdown-number" data-hackathon-date={data.date} aria-live="polite">{daysLeft}</span>
