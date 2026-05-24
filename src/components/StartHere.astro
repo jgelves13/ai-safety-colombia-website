@@ -83,11 +83,9 @@ const items = learnData.map((i) => ({
       ))}
     </div>
 
-    <p class="learn-more">
-      <a href={localePath(locale, '/recursos/')} class="learn-more-link">
-        {t(locale, 'learn.viewMore')}
-      </a>
-    </p>
+    <a class="btn btn-secondary learn-more-cta" href={localePath(locale, '/recursos/')}>
+      {t(locale, 'learn.viewMore')}
+    </a>
   </div>
 </section>
 
@@ -97,31 +95,8 @@ const items = learnData.map((i) => ({
     margin-bottom: 2.5rem;
   }
 
-  .learn-more {
-    margin-top: 2.5rem;
-    text-align: right;
-  }
-
-  .learn-more-link {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-primary);
-    text-decoration: none;
-    border-bottom: 1px solid var(--accent-forest);
-    padding-bottom: 0.25rem;
-    transition: color 0.15s ease;
-  }
-
-  .learn-more-link:hover {
-    color: var(--accent-forest);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .learn-more-link { transition: none; }
+  .learn-more-cta {
+    margin-top: 2rem;
   }
 
   .learn-grid {
