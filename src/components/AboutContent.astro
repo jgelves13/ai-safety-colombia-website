@@ -351,10 +351,13 @@ const milestones = [
     padding: 1.75rem 2rem;
   }
 
-  /* The memorial card sits on the page surface to set it apart
-     from Jose's elevated card while staying inside the Trópico vocabulary. */
+  /* The memorial card carries a forest-tinted surface and a forest
+     accent bar at the top — set apart from Jose's elevated card while
+     staying inside the Trópico vocabulary. */
   .person-card.is-memoriam {
-    background: var(--bg-primary);
+    background: color-mix(in srgb, var(--accent-forest) 8%, var(--bg-primary));
+    border-color: color-mix(in srgb, var(--accent-forest) 35%, var(--border));
+    border-top: 4px solid var(--accent-forest);
   }
 
   .person-head {
