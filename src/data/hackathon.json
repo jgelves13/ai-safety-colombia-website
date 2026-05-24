@@ -117,18 +117,12 @@
     "venueNoteEn": ""
   },
   "inPerson": {
-    "kickerEs": "Sede presencial · Bogotá",
-    "kickerEn": "In-person venue · Bogotá",
-    "leadEs": "El cupo presencial es limitado y se asigna mediante una postulación corta. Quienes no entren pueden participar en línea desde cualquier lugar.",
-    "leadEn": "Seats at the venue are limited and assigned through a short application. Anyone not selected can still take part online from anywhere.",
-    "items": [
-      { "labelEs": "Comidas", "labelEn": "Meals", "descEs": "Comidas servidas en sitio durante todo el fin de semana, de viernes a domingo.", "descEn": "Meals served on-site throughout the weekend, Friday to Sunday." },
-      { "labelEs": "Mentoría", "labelEn": "Mentorship", "descEs": "Mentoría presencial y charlas con varios de los jueces durante el fin de semana.", "descEn": "In-person mentorship and on-site talks from several of the judges across the weekend." },
-      { "labelEs": "Viajes", "labelEn": "Travel", "descEs": "Alojamiento y apoyo con transporte (bus o vuelo, hasta un tope por persona) para participantes que viajen desde otras ciudades de Colombia.", "descEn": "Housing and transport support (bus or flight, up to a per-person cap) for participants traveling from other Colombian cities." },
-      { "labelEs": "En línea", "labelEn": "Online", "descEs": "Mentoría y charlas de jueces vía livestream en Discord y Zoom para participantes desde Colombia o el Sur Global.", "descEn": "Livestream mentorship and judge talks on Discord and Zoom for participants joining from Colombia or the Global South." }
-    ],
-    "applyEs": "Postulaciones al cupo presencial: <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>.",
-    "applyEn": "In-person applications: <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>."
+    "para1Es": "La sede en Bogotá tiene cupos limitados. Te postulas con un formulario corto y, si no quedas, igual puedes hacer la hackathon en línea desde donde estés.",
+    "para1En": "The Bogotá venue has limited seats. You apply with a short form, and if you don't get in you can still join the hackathon online from wherever you are.",
+    "para2Es": "En la sede ponemos comidas todo el fin de semana, mentoría en persona y charlas con varios de los jueces. A quienes viajen desde otras ciudades de Colombia les cubrimos transporte (bus o vuelo, con un tope) y alojamiento. Si participas en línea desde Colombia o el Sur Global, tienes mentoría y charlas por Discord y Zoom.",
+    "para2En": "At the venue we cover meals across the weekend, in-person mentorship, and talks with several of the judges. For people traveling in from other Colombian cities, we cover transport (bus or flight, up to a cap) and housing. If you're joining online from Colombia or the Global South, you get mentorship and judge talks on Discord and Zoom.",
+    "applyEs": "Para postularte al cupo presencial, escríbenos a <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>.",
+    "applyEn": "To apply for an in-person seat, email us at <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>."
   },
   "schedule": [
     { "day": "Viernes 19", "dayEn": "Friday 19", "accent": "is-green", "events": [

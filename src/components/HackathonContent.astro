@@ -112,18 +112,8 @@ const caseIcons = [
     <p class="hk-lead">{whatBody}</p>
 
     <div class="hk-venue">
-      <div class="hk-venue-head">
-        <span class="hk-venue-kicker">{es ? data.inPerson.kickerEs : data.inPerson.kickerEn}</span>
-        <p class="hk-venue-lead">{es ? data.inPerson.leadEs : data.inPerson.leadEn}</p>
-      </div>
-      <dl class="hk-venue-defs">
-        {data.inPerson.items.map(item => (
-          <div class="hk-venue-row">
-            <dt class="hk-venue-label">{es ? item.labelEs : item.labelEn}</dt>
-            <dd class="hk-venue-desc">{es ? item.descEs : item.descEn}</dd>
-          </div>
-        ))}
-      </dl>
+      <p class="hk-venue-p">{es ? data.inPerson.para1Es : data.inPerson.para1En}</p>
+      <p class="hk-venue-p">{es ? data.inPerson.para2Es : data.inPerson.para2En}</p>
       <p class="hk-venue-apply" set:html={es ? data.inPerson.applyEs : data.inPerson.applyEn} />
     </div>
   </div>
@@ -1004,81 +994,34 @@ const caseIcons = [
     text-decoration-color: currentColor;
   }
 
-  /* ---- Venue sub-block inside "Qué es" ---- */
+  /* ---- Venue prose inside "Qué es" ---- */
   .hk-venue {
-    margin-top: 2.5rem;
-    padding-top: 1.75rem;
-    border-top: 1px solid var(--border);
+    margin-top: 1.75rem;
   }
 
-  .hk-venue-head {
-    margin-bottom: 1.5rem;
-  }
-
-  .hk-venue-kicker {
-    display: inline-block;
-    margin-bottom: 0.625rem;
-    font-family: var(--font-body);
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent-forest);
-  }
-
-  .hk-venue-lead {
-    margin: 0;
+  .hk-venue-p {
+    margin: 0 0 1rem;
     font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 62ch;
+  }
+
+  .hk-venue-p:last-of-type {
+    margin-bottom: 1.25rem;
+  }
+
+  .hk-venue-apply {
+    margin: 0;
+    font-size: 0.9375rem;
     line-height: 1.6;
     color: var(--text-secondary);
     max-width: 62ch;
   }
 
-  .hk-venue-defs {
-    margin: 0 0 1.5rem;
-    padding: 0;
-    display: grid;
-  }
-
-  .hk-venue-row {
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 1.5rem;
-    align-items: baseline;
-    padding: 1rem 0;
-    border-top: 1px solid var(--border);
-  }
-
-  .hk-venue-row:last-child {
-    border-bottom: 1px solid var(--border);
-  }
-
-  .hk-venue-label {
-    margin: 0;
-    font-family: var(--font-body);
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent-forest);
-  }
-
-  .hk-venue-desc {
-    margin: 0;
-    font-size: 0.9375rem;
-    line-height: 1.55;
-    color: var(--text-primary);
-  }
-
-  .hk-venue-apply {
-    margin: 0;
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-  }
-
   .hk-venue-apply a {
     color: var(--text-primary);
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
@@ -1089,13 +1032,6 @@ const caseIcons = [
   .hk-venue-apply a:hover {
     color: var(--accent-forest);
     text-decoration-color: currentColor;
-  }
-
-  @media (max-width: 600px) {
-    .hk-venue-row {
-      grid-template-columns: 1fr;
-      gap: 0.375rem;
-    }
   }
 
   .hk-success {
