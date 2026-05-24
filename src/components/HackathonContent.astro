@@ -109,15 +109,16 @@ const caseIcons = [
 <section class="section hk-intro">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whatTitle')}</h2>
-    <p class="hk-lead">{whatBody}</p>
-    <p class="hk-attr">{es ? data.organizerNoteEs : data.organizerNoteEn}</p>
-
-    <div class="hk-venue">
-      <div class="hk-venue-cols">
+    <div class="hk-intro-grid">
+      <div class="hk-intro-left">
+        <p class="hk-lead">{whatBody}</p>
+        <p class="hk-attr">{es ? data.organizerNoteEs : data.organizerNoteEn}</p>
+      </div>
+      <div class="hk-intro-right">
         <p class="hk-venue-p">{es ? data.inPerson.para1Es : data.inPerson.para1En}</p>
         <p class="hk-venue-p">{es ? data.inPerson.para2Es : data.inPerson.para2En}</p>
+        <p class="hk-venue-apply" set:html={es ? data.inPerson.applyEs : data.inPerson.applyEn} />
       </div>
-      <p class="hk-venue-apply" set:html={es ? data.inPerson.applyEs : data.inPerson.applyEn} />
     </div>
   </div>
 </section>
@@ -813,12 +814,23 @@ const caseIcons = [
     margin-bottom: 0.625rem;
   }
 
+  .hk-intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .hk-intro-left,
+  .hk-intro-right {
+    min-width: 0;
+  }
+
   .hk-intro .hk-lead {
-    margin: 0 0 0.75rem;
+    margin: 0 0 1rem;
     font-size: 1.1875rem;
     line-height: 1.5;
     color: var(--text-primary);
-    max-width: 60ch;
   }
 
   .hk-intro .hk-attr {
@@ -826,7 +838,13 @@ const caseIcons = [
     font-size: 0.875rem;
     line-height: 1.55;
     color: var(--text-secondary);
-    max-width: 60ch;
+  }
+
+  @media (max-width: 860px) {
+    .hk-intro-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
   }
 
   /* "Por qué participar": short lead, four motivating cases keyed by
@@ -1009,39 +1027,19 @@ const caseIcons = [
     text-decoration-color: currentColor;
   }
 
-  /* ---- Venue prose inside "Qué es" ---- */
-  .hk-venue {
-    margin-top: 2rem;
-    padding-top: 1.75rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .hk-venue-cols {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
-    margin-bottom: 1.25rem;
-  }
-
+  /* ---- Venue prose (right column of intro row) ---- */
   .hk-venue-p {
-    margin: 0;
+    margin: 0 0 1rem;
     font-size: 1rem;
     line-height: 1.65;
     color: var(--text-secondary);
   }
 
   .hk-venue-apply {
-    margin: 0;
+    margin: 1.25rem 0 0;
     font-size: 0.9375rem;
     line-height: 1.6;
     color: var(--text-secondary);
-  }
-
-  @media (max-width: 720px) {
-    .hk-venue-cols {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
   }
 
   .hk-venue-apply a {
@@ -1053,10 +1051,13 @@ const caseIcons = [
     text-decoration-color: var(--accent-forest);
     transition: text-decoration-color 0.15s ease, color 0.15s ease;
   }
-
   .hk-venue-apply a:hover {
     color: var(--accent-forest);
     text-decoration-color: currentColor;
+  }
+
+  .hk-intro-right .hk-venue-p:last-of-type {
+    margin-bottom: 0;
   }
 
   .hk-success {
