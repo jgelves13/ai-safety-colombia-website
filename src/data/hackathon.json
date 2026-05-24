@@ -80,41 +80,39 @@
   ],
   "regions": [
     { "nameEs": "América Latina", "nameEn": "Latin America", "accent": "is-green",
-      "teamsEs": "3 equipos", "teamsEn": "3 teams", "prizeEs": "USD 3.000", "prizeEn": "US$3,000",
+      "teamsEs": "3 equipos ganadores", "teamsEn": "3 winning teams", "prizeEs": "USD 3.000", "prizeEn": "US$3,000",
       "cities": [
         { "name": "São Paulo" }, { "name": "Buenos Aires" }, { "name": "Bogotá", "bogota": true },
         { "name": "Mérida" }, { "name": "Guadalajara" }, { "name": "Santa Cruz" }
       ]},
     { "nameEs": "África", "nameEn": "Africa", "accent": "is-coral",
-      "teamsEs": "1 equipo", "teamsEn": "1 team", "prizeEs": "USD 1.000", "prizeEn": "US$1,000",
+      "teamsEs": "1 equipo ganador", "teamsEn": "1 winning team", "prizeEs": "USD 1.000", "prizeEn": "US$1,000",
       "cities": [ { "name": "Cape Town", "nameEs": "Ciudad del Cabo" }, { "name": "Tanzania" }, { "name": "Lusaka" } ]},
     { "nameEs": "Asia", "nameEn": "Asia", "accent": "is-blue",
-      "teamsEs": "2 equipos", "teamsEn": "2 teams", "prizeEs": "USD 2.000", "prizeEn": "US$2,000",
+      "teamsEs": "2 equipos ganadores", "teamsEn": "2 winning teams", "prizeEs": "USD 2.000", "prizeEn": "US$2,000",
       "cities": [ { "name": "Bengaluru", "nameEs": "Bangalore" }, { "name": "New Delhi", "nameEs": "Nueva Delhi" }, { "name": "Shanghai", "nameEs": "Shanghái" }, { "name": "Hanoi", "nameEs": "Hanói" }, { "name": "Ho Chi Minh City", "nameEs": "Ciudad Ho Chi Minh" } ]}
   ],
   "prizesDetail": {
-    "amountEs": "USD 1.000 por equipo",
-    "amountEn": "US$1,000 per team",
-    "headlineEs": "3 equipos ganadores en América Latina",
-    "headlineEn": "3 winning teams in Latin America",
-    "totalEs": "USD 3.000 en premios para LATAM",
-    "totalEn": "US$3,000 in prizes for LATAM",
+    "amountEs": "USD 3.000",
+    "amountEn": "US$3,000",
+    "headlineEs": "para 3 equipos ganadores en América Latina",
+    "headlineEn": "for 3 winning teams in Latin America",
+    "totalEs": "Parte del pool global de USD 6.000 entre 6 equipos ganadores del Sur Global.",
+    "totalEn": "Part of a global pool of US$6,000 across 6 winning teams from the Global South.",
     "perks": [
       { "es": "Invitación al Apart Lab Fellowship", "en": "Apart Lab Fellowship invitation" },
       { "es": "Mentoría y revisión de expertos", "en": "Expert mentoring and review" },
       { "es": "Apoyo: Schmidt Sciences", "en": "Supported by Schmidt Sciences" }
     ],
-    "fellowsEs": "El premio no es solo el dinero. Equipos ganadores de sprints anteriores han sido invitados al Apart Lab Fellowship, donde durante varias semanas profundizan el trabajo del fin de semana con apoyo de investigación. Los resultados toman formas distintas según el frente: artículos y herramientas en el lado técnico; análisis y aportes de política en gobernanza e IA responsable. Muchos participantes han avanzado hacia roles en organizaciones de seguridad de IA y redes regionales.",
-    "fellowsEn": "The prize is more than the money. Winning teams from past sprints have been invited to the Apart Lab Fellowship, where over several weeks they deepen the weekend's work with research support. Outputs take different shapes depending on the front: papers and tools on the technical side; analysis and policy contributions on the governance and responsible-AI side. Many participants have moved into roles at AI safety organizations and regional networks.",
+    "fellowsEs": "El premio no es solo el dinero. Equipos ganadores de sprints anteriores han sido invitados al Apart Lab Fellowship, donde durante varias semanas profundizan el trabajo con apoyo de investigación. Lo que cada equipo entrega depende del frente: investigación técnica y herramientas en evaluaciones y seguridad; análisis y aportes de política en gobernanza e IA responsable.",
+    "fellowsEn": "The prize is more than the money. Winning teams from past sprints have been invited to the Apart Lab Fellowship, where over several weeks they deepen the work with research support. What each team delivers depends on the front: technical research and tools on the evaluations and security side; analysis and policy contributions on the governance and responsible-AI side.",
     "successTitleEs": "Algunos resultados de sprints anteriores",
     "successTitleEn": "Some results from past sprints",
     "successExamples": [
-      { "es": "El trabajo de fellows de Apart ha sido aceptado en conferencias líderes de aprendizaje automático como NeurIPS, ICLR, ACL y EMNLP.", "en": "Apart fellows' work has been accepted at leading machine-learning conferences including NeurIPS, ICLR, ACL and EMNLP.", "url": "https://apartresearch.com/research" },
-      { "es": "Participantes han pasado de roles fuera de la investigación a posiciones de tiempo completo en seguridad de IA, como ingeniero de investigación en <a href=\"https://www.cooperativeai.com/\" target=\"_blank\" rel=\"noopener noreferrer\">CAIF</a> o líder de investigación en <a href=\"https://withmartian.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Martian</a>.", "en": "Participants have moved from non-research roles into full-time AI safety positions, such as research engineer at <a href=\"https://www.cooperativeai.com/\" target=\"_blank\" rel=\"noopener noreferrer\">CAIF</a> and research lead at <a href=\"https://withmartian.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Martian</a>.", "url": "https://apartresearch.com/fellowships" },
-      { "es": "Una colaboración con <a href=\"https://metr.org/\" target=\"_blank\" rel=\"noopener noreferrer\">METR</a> generó 230 ideas de evaluación y 28 implementaciones en un solo hackathon de más de 100 participantes.", "en": "A collaboration with <a href=\"https://metr.org/\" target=\"_blank\" rel=\"noopener noreferrer\">METR</a> produced 230 evaluation ideas and 28 implementations in a single hackathon of 100+ participants.", "url": "https://apartresearch.com/sprints" }
+      { "es": "No es un programa solo para investigadores con experiencia: Apart reporta más de 3.000 participantes y 36 nuevos fellows en los últimos tres meses, muchos en su primer paso hacia el campo.", "en": "This is not only for established researchers: Apart reports over 3,000 participants and 36 new fellows in the last three months, many of them taking their first step into the field.", "url": "https://apartresearch.com/impact" },
+      { "es": "Desde Bogotá, el hub conecta a quienes trabajan en política, derecho y gobernanza con discusiones activas en el país, como el <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017\" target=\"_blank\" rel=\"noopener noreferrer\">proyecto de ley para prohibir y regular las armas autónomas</a> en la Cámara de Representantes, cuyo coautor abrirá el hackathon.", "en": "From Bogotá, the hub connects people working in policy, law, and governance to live discussions in the country, like the <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017\" target=\"_blank\" rel=\"noopener noreferrer\">bill to ban and regulate autonomous weapons</a> in the Chamber of Representatives, whose co-author will open the hackathon.", "url": "https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017" },
+      { "es": "Trabajo de fellows de Apart ha sido publicado en conferencias líderes de aprendizaje automático y ha llevado a roles a tiempo completo en seguridad de IA, como ingeniero de investigación en <a href=\"https://www.cooperativeai.com/\" target=\"_blank\" rel=\"noopener noreferrer\">CAIF</a> o líder de investigación en <a href=\"https://withmartian.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Martian</a>.", "en": "Apart fellows' work has been published at leading machine-learning conferences and has led to full-time AI safety roles, such as research engineer at <a href=\"https://www.cooperativeai.com/\" target=\"_blank\" rel=\"noopener noreferrer\">CAIF</a> and research lead at <a href=\"https://withmartian.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Martian</a>.", "url": "https://apartresearch.com/fellowships" }
     ],
-    "successCloseEs": "Y desde el hub de Bogotá, el frente de gobernanza conecta directamente con discusiones de política activas en Colombia, como el <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017\" target=\"_blank\" rel=\"noopener noreferrer\">proyecto de ley para prohibir y regular las armas autónomas</a> que cursa en la Cámara de Representantes, cuyo coautor abrirá el hackathon.",
-    "successCloseEn": "And from the Bogotá hub, the governance front connects directly with live policy discussions in Colombia, such as the <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017\" target=\"_blank\" rel=\"noopener noreferrer\">bill to ban and regulate autonomous weapons</a> currently before the Chamber of Representatives, whose co-author will open the hackathon.",
     "venueNoteEs": "Bogotá tendrá una sede presencial con cupos limitados para participantes seleccionados. Cualquier persona en Colombia y el Sur Global puede participar en línea.",
     "venueNoteEn": "Bogotá will host an in-person venue with limited seats for selected participants. Anyone in Colombia and the Global South can take part online."
   },
@@ -172,7 +170,7 @@
     { "name": "Wanda Muñoz", "affiliationEs": "SEHLAC · Campaña para Detener a los Robots Asesinos", "affiliationEn": "SEHLAC · Campaign to Stop Killer Robots", "attendance": "remote", "evalTopicEs": "Gobernanza de armas autónomas letales (LAWS)", "evalTopicEn": "Lethal autonomous weapons (LAWS) governance", "bioEs": "Coautora de un <a href=\"https://www.cambridge.org/core/journals/international-review-of-the-red-cross/article/abs/risks-of-autonomous-weapons-an-analysis-centred-on-the-rights-of-persons-with-disabilities/54872E40DBC09DC95D5F1DFD6DB89F51\" target=\"_blank\" rel=\"noopener noreferrer\">análisis del CICR</a> sobre armas autónomas y discapacidad, y de un <a href=\"https://unesdoc.unesco.org/ark:/48223/pf0000384787/PDF/384787eng.pdf.multi#page=323\" target=\"_blank\" rel=\"noopener noreferrer\">capítulo de UNESCO y Mila</a> sobre deepfakes y armamentización de la IA.", "bioEn": "Co-author of an <a href=\"https://www.cambridge.org/core/journals/international-review-of-the-red-cross/article/abs/risks-of-autonomous-weapons-an-analysis-centred-on-the-rights-of-persons-with-disabilities/54872E40DBC09DC95D5F1DFD6DB89F51\" target=\"_blank\" rel=\"noopener noreferrer\">ICRC analysis</a> of autonomous weapons and disability, and a <a href=\"https://unesdoc.unesco.org/ark:/48223/pf0000384787/PDF/384787eng.pdf.multi#page=323\" target=\"_blank\" rel=\"noopener noreferrer\">UNESCO/Mila chapter</a> on deepfakes and AI weaponization.", "linkedin": "https://www.linkedin.com/in/wandamunoz/", "photo": "wanda.jpg" }
   ],
   "prizes": {
-    "regional": "US$1,000 per team (3 LATAM winners)",
-    "regionalEs": "USD 1.000 por equipo (3 ganadores LATAM)"
+    "regional": "US$3,000 across 3 winning teams in LATAM",
+    "regionalEs": "USD 3.000 entre 3 equipos ganadores en LATAM"
   }
 }
