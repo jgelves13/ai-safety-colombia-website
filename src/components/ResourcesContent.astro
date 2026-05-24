@@ -23,26 +23,48 @@ const learnThumbs = import.meta.glob<ImageMetadata>('../assets/learn/*', {
   import: 'default',
 });
 
-// Featured cards: 3 starter picks from learn.json (same as the homepage
-// "Empieza aquí" block) plus 3 extra hand-picked deepenings, all in the
-// same card format so visitors hitting "See all resources" land on a
-// continuous experience.
+// Featured cards: grouped by format (videos, courses, readings, podcasts,
+// books). Each card reuses the homepage "Empieza aquí" learn-card UI so
+// visitors hitting "See all resources" land on a continuous experience.
+// Cards with a cover-style thumbnail use the source's own miniature;
+// cards backed only by a brand logo use the .is-mark slot with the logo;
+// the remaining cards fall back to a kind-themed SVG mark.
+type Kind = 'video' | 'course' | 'read' | 'podcast' | 'book';
+type Accent = 'is-coral' | 'is-blue' | 'is-green' | 'is-yellow';
+type Fit = 'cover' | 'mark' | 'icon';
+
 interface FeatItem {
-  kind: 'video' | 'course' | 'read';
-  accent: string;
+  kind: Kind;
+  accent: Accent;
   title: string;
   source: string;
   desc: string;
   duration: string;
   meta: string;
   url: string;
-  thumb: ImageMetadata;
-  thumbFit: 'cover' | 'mark';
+  thumb?: ImageMetadata;
+  iconPath?: string;
+  thumbFit: Fit;
 }
 
+// Inline SVG marks (single <path d="..."> contents) for cards without a
+// brand logo. Color is inherited via .is-{accent} on the parent card.
+const kindIcons: Record<Kind, string> = {
+  video:
+    '<path d="M5 4.5v15c0 .56.63.9 1.1.6l11.7-7.5a.7.7 0 0 0 0-1.2L6.1 3.9A.7.7 0 0 0 5 4.5Z"/>',
+  course:
+    '<path d="M12 4 2 9l10 5 7.5-3.75V17"/><path d="M6.5 11.6v3.9L12 18.5l5.5-3v-3.9"/><path d="M19.5 10.25V17"/>',
+  read:
+    '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6Z"/><path d="M14 3v6h6M8 14h8M8 18h8M8 10h2"/>',
+  podcast:
+    '<rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3M8 21h8"/>',
+  book:
+    '<path d="M3 4.5a1.5 1.5 0 0 1 1.5-1.5H9a3 3 0 0 1 3 3v15a2 2 0 0 0-2-2H3V4.5Z"/><path d="M21 4.5a1.5 1.5 0 0 0-1.5-1.5H15a3 3 0 0 0-3 3v15a2 2 0 0 1 2-2h7V4.5Z"/>',
+};
+
 const fromLearn: FeatItem[] = learnData.map((i) => ({
-  kind: i.kind as FeatItem['kind'],
-  accent: i.accent,
+  kind: i.kind as Kind,
+  accent: i.accent as Accent,
   title: es ? i.titleEs : i.titleEn,
   source: es ? i.sourceEs : i.sourceEn,
   desc: es ? i.descEs : i.descEn,
@@ -50,32 +72,55 @@ const fromLearn: FeatItem[] = learnData.map((i) => ({
   meta: es ? i.metaEs : i.metaEn,
   url: i.url,
   thumb: learnThumbs[`../assets/learn/${i.thumb}`],
-  thumbFit: i.thumbFit as 'cover' | 'mark',
+  thumbFit: i.thumbFit as Fit,
 }));
 
-const extraItems: FeatItem[] = [
+const introVideo = fromLearn.find((i) => i.kind === 'video')!;
+const introCourse = fromLearn.find((i) => i.kind === 'course')!;
+const introRead = fromLearn.find((i) => i.kind === 'read')!;
+
+const videos: FeatItem[] = [
+  introVideo,
   {
     kind: 'video',
     accent: 'is-coral',
     title: es ? 'Canal de Robert Miles' : 'Robert Miles channel',
     source: 'Robert Miles AI Safety',
     desc: es
-      ? 'Una biblioteca de videos cortos, claros y rigurosos sobre alineación, control y los retos abiertos en seguridad de IA.'
-      : 'A library of short, clear, rigorous videos on alignment, control, and the open problems in AI safety.',
-    duration: es ? 'Videos · gratis' : 'Videos · free',
+      ? 'La biblioteca de referencia en video sobre alineación, control y los retos abiertos en seguridad de IA, presentada con rigor y sin requisitos técnicos.'
+      : 'The reference video library on alignment, control, and the open problems in AI safety, presented rigorously and with no technical prerequisites.',
+    duration: es ? 'Canal · gratis' : 'Channel · free',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://www.youtube.com/@RobertMilesAI/videos',
     thumb: logos['../assets/resources/robert-miles.png'],
     thumbFit: 'mark',
   },
   {
+    kind: 'video',
+    accent: 'is-coral',
+    title: 'Rational Animations',
+    source: 'YouTube',
+    desc: es
+      ? 'Un canal de animaciones que adapta ensayos clásicos sobre IA, racionalidad y riesgo existencial a un formato visual cuidado.'
+      : 'An animation channel adapting classic essays on AI, rationality, and existential risk into a polished visual format.',
+    duration: es ? 'Canal · gratis' : 'Channel · free',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://www.youtube.com/@RationalAnimations',
+    iconPath: kindIcons.video,
+    thumbFit: 'icon',
+  },
+];
+
+const courses: FeatItem[] = [
+  introCourse,
+  {
     kind: 'course',
     accent: 'is-blue',
-    title: es ? 'AI Safety Fundamentals: Alignment' : 'AI Safety Fundamentals: Alignment',
+    title: 'AI Safety Fundamentals: Alignment',
     source: 'BlueDot Impact',
     desc: es
-      ? 'El curso de referencia para entrar a fondo en alineación técnica: 12 semanas, lecturas guiadas y un proyecto final.'
-      : 'The reference course for going deep on technical alignment: 12 weeks, guided readings, and a final project.',
+      ? 'El curso de referencia para entrar a fondo en alineación técnica: 12 semanas, lecturas guiadas y un proyecto final con cohorte.'
+      : 'The reference course for going deep on technical alignment: 12 weeks, guided readings, and a final cohort project.',
     duration: es ? '12 semanas · gratis' : '12 weeks · free',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://bluedot.org/courses/alignment',
@@ -83,7 +128,143 @@ const extraItems: FeatItem[] = [
     thumbFit: 'mark',
   },
   {
+    kind: 'course',
+    accent: 'is-blue',
+    title: 'AGI Safety Course',
+    source: 'Google DeepMind',
+    desc: es
+      ? 'Un curso corto del equipo de seguridad de DeepMind sobre los riesgos de la IA de nivel humano y cómo se está abordando la alineación.'
+      : "A short course from DeepMind's safety team on the risks from human-level AI and how alignment is being approached today.",
+    duration: es ? 'Curso corto · gratis' : 'Short course · free',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://deepmindsafetyresearch.medium.com/introducing-our-short-course-on-agi-safety-1072adb7912c',
+    thumb: logos['../assets/resources/deepmind.png'],
+    thumbFit: 'mark',
+  },
+  {
+    kind: 'course',
+    accent: 'is-blue',
+    title: 'ARENA',
+    source: es ? 'Acelerador para Ingenieros de Investigación' : 'Research Engineer Accelerator',
+    desc: es
+      ? 'Currículo intensivo de cinco semanas sobre interpretabilidad, evaluaciones y RL para personas que ya programan en PyTorch.'
+      : 'A five-week intensive curriculum on interpretability, evaluations, and RL for people already comfortable with PyTorch.',
+    duration: es ? '5 semanas · gratis' : '5 weeks · free',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://www.arena.education/curriculum',
+    thumb: logos['../assets/resources/arena.png'],
+    thumbFit: 'mark',
+  },
+  {
+    kind: 'course',
+    accent: 'is-blue',
+    title: 'AI Safety, Ethics & Society',
+    source: 'Center for AI Safety',
+    desc: es
+      ? 'Libro de texto y curso abierto del CAIS que cubre los riesgos catastróficos de la IA y los marcos éticos para enfrentarlos.'
+      : "CAIS's open textbook and course covering the catastrophic risks from AI and the ethical frameworks for addressing them.",
+    duration: es ? 'Libro · curso · gratis' : 'Textbook · course · free',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://www.aisafetybook.com/',
+    thumb: logos['../assets/resources/cais.png'],
+    thumbFit: 'mark',
+  },
+];
+
+const readings: FeatItem[] = [
+  introRead,
+  {
     kind: 'read',
+    accent: 'is-green',
+    title: 'AGI Safety from First Principles',
+    source: 'Richard Ngo',
+    desc: es
+      ? 'Una secuencia fundacional que reconstruye el caso por el riesgo de la IA general desde cero, sin presuponer literatura previa.'
+      : 'A foundational sequence rebuilding the case for AGI risk from scratch, without assuming any prior literature.',
+    duration: es ? 'Secuencia' : 'Sequence',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://www.alignmentforum.org/s/mzgtmmTKKn5MuCzFJ',
+    thumb: logos['../assets/resources/alignment-forum.png'],
+    thumbFit: 'mark',
+  },
+  {
+    kind: 'read',
+    accent: 'is-green',
+    title: 'Concrete Problems in AI Safety',
+    source: 'Amodei et al. · 2016',
+    desc: es
+      ? 'El artículo seminal que catalogó los problemas técnicos abiertos en seguridad de IA y definió la agenda de investigación de la década.'
+      : "The seminal paper that catalogued the open technical problems in AI safety and set the field's research agenda for a decade.",
+    duration: es ? 'Artículo' : 'Paper',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://arxiv.org/abs/1606.06565',
+    iconPath: kindIcons.read,
+    thumbFit: 'icon',
+  },
+  {
+    kind: 'read',
+    accent: 'is-green',
+    title: 'Core Views on AI Safety',
+    source: 'Anthropic',
+    desc: es
+      ? 'La declaración de Anthropic sobre por qué la seguridad de la IA es urgente y cómo el laboratorio piensa abordarla en la práctica.'
+      : "Anthropic's statement on why AI safety is urgent and how the lab plans to address it in practice.",
+    duration: es ? 'Ensayo' : 'Essay',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://www.anthropic.com/news/core-views-on-ai-safety',
+    iconPath: kindIcons.read,
+    thumbFit: 'icon',
+  },
+];
+
+const podcasts: FeatItem[] = [
+  {
+    kind: 'podcast',
+    accent: 'is-yellow',
+    title: 'AXRP',
+    source: 'Daniel Filan',
+    desc: es
+      ? 'El podcast de referencia en investigación técnica de alineación: entrevistas extensas con investigadores activos sobre sus artículos.'
+      : 'The reference podcast for technical alignment research: long-form interviews with active researchers about their papers.',
+    duration: es ? 'Podcast · gratis' : 'Podcast · free',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://axrp.net/',
+    iconPath: kindIcons.podcast,
+    thumbFit: 'icon',
+  },
+  {
+    kind: 'podcast',
+    accent: 'is-yellow',
+    title: 'The 80,000 Hours Podcast',
+    source: '80,000 Hours',
+    desc: es
+      ? 'Conversaciones largas con investigadores, fundadores y formuladores de política de IA sobre cómo orientar una carrera al impacto.'
+      : 'Long-form conversations with AI researchers, founders, and policy-makers on how to orient a career toward impact.',
+    duration: es ? 'Podcast · gratis' : 'Podcast · free',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://80000hours.org/podcast/',
+    iconPath: kindIcons.podcast,
+    thumbFit: 'icon',
+  },
+  {
+    kind: 'podcast',
+    accent: 'is-yellow',
+    title: 'The Inside View',
+    source: 'Michaël Trazzi',
+    desc: es
+      ? 'Entrevistas a profundidad con investigadores y formuladores de política sobre los riesgos, la gobernanza y el futuro cercano de la IA.'
+      : 'In-depth interviews with researchers and policy-makers on the risks, governance, and near-term future of AI.',
+    duration: es ? 'Podcast · gratis' : 'Podcast · free',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://theinsideview.ai/',
+    iconPath: kindIcons.podcast,
+    thumbFit: 'icon',
+  },
+];
+
+const books: FeatItem[] = [
+  {
+    kind: 'book',
     accent: 'is-green',
     title: 'The Alignment Problem',
     source: 'Brian Christian',
@@ -96,15 +277,66 @@ const extraItems: FeatItem[] = [
     thumb: logos['../assets/resources/alignment-problem.png'],
     thumbFit: 'mark',
   },
+  {
+    kind: 'book',
+    accent: 'is-green',
+    title: 'Human Compatible',
+    source: 'Stuart Russell',
+    desc: es
+      ? 'El argumento de uno de los pioneros del campo para redefinir la inteligencia artificial alrededor de la incertidumbre sobre los valores humanos.'
+      : "The argument from one of the field's pioneers for redefining AI around uncertainty about human values.",
+    duration: es ? 'Libro' : 'Book',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://people.eecs.berkeley.edu/~russell/hc.html',
+    iconPath: kindIcons.book,
+    thumbFit: 'icon',
+  },
+  {
+    kind: 'book',
+    accent: 'is-green',
+    title: 'Superintelligence',
+    source: 'Nick Bostrom',
+    desc: es
+      ? 'El libro que llevó el debate sobre los riesgos de la IA general al debate público y definió buena parte del vocabulario que usamos hoy.'
+      : 'The book that brought the debate about AGI risk into the public sphere and shaped much of the vocabulary the field uses today.',
+    duration: es ? 'Libro' : 'Book',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://www.nickbostrom.com/superintelligence',
+    iconPath: kindIcons.book,
+    thumbFit: 'icon',
+  },
+  {
+    kind: 'book',
+    accent: 'is-green',
+    title: 'If Anyone Builds It, Everyone Dies',
+    source: 'Yudkowsky & Soares · 2025',
+    desc: es
+      ? 'El caso más directo publicado hasta ahora sobre por qué construir una IA superinteligente, con las técnicas actuales, terminaría mal para todos.'
+      : 'The most direct case yet published for why building superintelligent AI with current techniques would end badly for everyone.',
+    duration: es ? 'Libro' : 'Book',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://ifanyonebuildsit.com/',
+    iconPath: kindIcons.book,
+    thumbFit: 'icon',
+  },
 ];
 
-const featuredItems: (FeatItem & { kindLabel: string; cta: string })[] = [
-  ...fromLearn,
-  ...extraItems,
-].map((i) => ({
-  ...i,
-  kindLabel: t(locale, `learn.kind.${i.kind}` as Key),
-  cta: t(locale, `learn.cta.${i.kind}` as Key),
+const featuredGroups: {
+  label: string;
+  items: (FeatItem & { kindLabel: string; cta: string })[];
+}[] = [
+  { label: t(locale, 'resources.featured.videos'), items: videos },
+  { label: t(locale, 'resources.featured.courses'), items: courses },
+  { label: t(locale, 'resources.featured.readings'), items: readings },
+  { label: t(locale, 'resources.featured.podcasts'), items: podcasts },
+  { label: t(locale, 'resources.featured.books'), items: books },
+].map((g) => ({
+  label: g.label,
+  items: g.items.map((i) => ({
+    ...i,
+    kindLabel: t(locale, `learn.kind.${i.kind}` as Key),
+    cta: t(locale, `learn.cta.${i.kind}` as Key),
+  })),
 }));
 
 const icons = {
@@ -258,48 +490,70 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
     <h2 class="section-title" id="res-featured-title">{t(locale, 'resources.featured.title')}</h2>
     <p class="section-subtitle">{t(locale, 'resources.featured.subtitle')}</p>
 
-    <div class="learn-grid">
-      {featuredItems.map((i) => (
-        <article class:list={['learn-card', i.accent]}>
-          <div
-            class:list={['learn-thumb', i.thumbFit === 'cover' ? 'is-cover' : 'is-mark']}
-            aria-hidden="true"
-          >
-            {i.thumbFit === 'cover' ? (
-              <Image
-                src={i.thumb}
-                alt=""
-                widths={[360, 540, 760]}
-                sizes="(max-width: 560px) 100vw, 400px"
-                format="webp"
-                loading="lazy"
-                class="learn-img"
-              />
-            ) : (
-              <Image
-                src={i.thumb}
-                alt=""
-                width={84}
-                height={84}
-                loading="lazy"
-                class="learn-mark"
-              />
-            )}
-            <span class="learn-duration">{i.duration}</span>
-          </div>
-          <div class="learn-body">
-            <span class="learn-kind">{i.kindLabel}</span>
-            <h3>{i.title}</h3>
-            <p class="learn-source">{i.source}</p>
-            <p class="learn-desc">{i.desc}</p>
-            <p class="learn-meta">{i.meta}</p>
-            <a href={i.url} target="_blank" rel="noopener noreferrer" class="learn-link">
-              {i.cta}
-            </a>
-          </div>
-        </article>
-      ))}
-    </div>
+    {featuredGroups.map((group) => (
+      <div class="kind-block">
+        <h3 class="kind-label">{group.label}</h3>
+        <div class="learn-grid">
+          {group.items.map((i) => (
+            <article class:list={['learn-card', i.accent]}>
+              <div
+                class:list={[
+                  'learn-thumb',
+                  i.thumbFit === 'cover' ? 'is-cover' : 'is-mark',
+                  i.thumbFit === 'icon' ? 'is-icon' : '',
+                ]}
+                aria-hidden="true"
+              >
+                {i.thumbFit === 'cover' && i.thumb && (
+                  <Image
+                    src={i.thumb}
+                    alt=""
+                    widths={[360, 540, 760]}
+                    sizes="(max-width: 560px) 100vw, 400px"
+                    format="webp"
+                    loading="lazy"
+                    class="learn-img"
+                  />
+                )}
+                {i.thumbFit === 'mark' && i.thumb && (
+                  <Image
+                    src={i.thumb}
+                    alt=""
+                    width={84}
+                    height={84}
+                    loading="lazy"
+                    class="learn-mark"
+                  />
+                )}
+                {i.thumbFit === 'icon' && i.iconPath && (
+                  <svg
+                    class="learn-svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    set:html={i.iconPath}
+                  />
+                )}
+                <span class="learn-duration">{i.duration}</span>
+              </div>
+              <div class="learn-body">
+                <span class="learn-kind">{i.kindLabel}</span>
+                <h3>{i.title}</h3>
+                <p class="learn-source">{i.source}</p>
+                <p class="learn-desc">{i.desc}</p>
+                <p class="learn-meta">{i.meta}</p>
+                <a href={i.url} target="_blank" rel="noopener noreferrer" class="learn-link">
+                  {i.cta}
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    ))}
   </div>
 </section>
 
@@ -398,7 +652,29 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
   }
 
   /* Featured cards reuse the homepage "Empieza aquí" treatment so visitors
-     hitting "See all resources" land on a continuous experience. */
+     hitting "See all resources" land on a continuous experience. They
+     are grouped by format (videos, courses, readings, podcasts, books)
+     so each strip reads as its own row. */
+  .kind-block {
+    margin-top: 2.75rem;
+  }
+
+  .kind-block:first-of-type {
+    margin-top: 0;
+  }
+
+  .kind-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin: 0 0 1.25rem;
+    padding-bottom: 0.625rem;
+    border-bottom: 1px solid var(--border);
+  }
+
   .learn-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -436,15 +712,30 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
     object-fit: cover;
   }
 
-  .is-coral .learn-thumb.is-mark { background: rgba(229, 96, 77, 0.12); }
-  .is-blue  .learn-thumb.is-mark { background: rgba(74, 132, 102, 0.12); }
-  .is-green .learn-thumb.is-mark { background: rgba(31, 77, 50, 0.10); }
+  .is-coral  .learn-thumb.is-mark,
+  .is-coral  .learn-thumb.is-icon { background: rgba(229, 96, 77, 0.12); }
+  .is-blue   .learn-thumb.is-mark,
+  .is-blue   .learn-thumb.is-icon { background: rgba(74, 132, 102, 0.12); }
+  .is-green  .learn-thumb.is-mark,
+  .is-green  .learn-thumb.is-icon { background: rgba(31, 77, 50, 0.10); }
+  .is-yellow .learn-thumb.is-mark,
+  .is-yellow .learn-thumb.is-icon { background: rgba(212, 169, 56, 0.14); }
 
   .learn-mark {
     width: 84px;
     height: auto;
     object-fit: contain;
   }
+
+  .learn-svg {
+    width: 56px;
+    height: 56px;
+  }
+
+  .is-coral  .learn-svg { color: var(--accent-vermillion); }
+  .is-blue   .learn-svg { color: var(--accent-sage); }
+  .is-green  .learn-svg { color: var(--accent-forest); }
+  .is-yellow .learn-svg { color: var(--accent-yellow); }
 
   .learn-duration {
     position: absolute;

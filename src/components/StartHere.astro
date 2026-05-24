@@ -85,7 +85,7 @@ const items = learnData.map((i) => ({
 
     <p class="learn-more">
       <a href={localePath(locale, '/recursos/')} class="learn-more-link">
-        {t(locale, 'learn.viewMore')} &rarr;
+        {t(locale, 'learn.viewMore')}
       </a>
     </p>
   </div>
@@ -103,9 +103,7 @@ const items = learnData.map((i) => ({
   }
 
   .learn-more-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
+    display: inline-block;
     font-family: var(--font-mono);
     font-size: 0.8125rem;
     font-weight: 600;
@@ -115,11 +113,10 @@ const items = learnData.map((i) => ({
     text-decoration: none;
     border-bottom: 1px solid var(--accent-forest);
     padding-bottom: 0.25rem;
-    transition: gap 0.2s ease, color 0.15s ease;
+    transition: color 0.15s ease;
   }
 
   .learn-more-link:hover {
-    gap: 0.625rem;
     color: var(--accent-forest);
   }
 
