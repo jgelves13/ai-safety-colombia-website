@@ -7,8 +7,8 @@
   "registrationUrl": "https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21?utm_source=hub-bogota",
   "contactEmail": "sprints@apartresearch.com",
   "support": "Schmidt Sciences",
-  "whatIsEs": "Hackathon internacional de tres días enfocado en seguridad y gobernanza de la IA, con participación híbrida: en línea y con sede presencial en Bogotá. Está dirigido a investigadores, ingenieros, estudiantes y profesionales de política pública de América Latina, África y Asia interesados en contribuir al desarrollo seguro y responsable de sistemas de IA.",
-  "whatIsEn": "A three-day international hackathon focused on AI safety and governance, with hybrid participation: online and at an in-person venue in Bogotá. It is open to researchers, engineers, students, and public-policy professionals from Latin America, Africa, and Asia interested in contributing to the safe and responsible development of AI systems.",
+  "whatIsEs": "Hackathon internacional de tres días enfocado en seguridad y gobernanza de la IA. La participación es híbrida: en línea desde cualquier parte del Sur Global y en sedes presenciales distribuidas en América Latina, África y Asia, una de ellas en Bogotá. Está dirigido a investigadores, ingenieros, estudiantes y profesionales de política pública interesados en contribuir al desarrollo seguro y responsable de sistemas de IA.",
+  "whatIsEn": "A three-day international hackathon focused on AI safety and governance. Participation is hybrid: online from anywhere in the Global South and at in-person venues across Latin America, Africa, and Asia, one of them in Bogotá. It is open to researchers, engineers, students, and public-policy professionals interested in contributing to the safe and responsible development of AI systems.",
   "organizerNoteEs": "El evento es organizado por <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, y el hub de Bogotá es coordinado por AI Safety Colombia.",
   "organizerNoteEn": "The event is organized by <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, and the Bogotá hub is coordinated by AI Safety Colombia.",
   "submissionEs": "Cada equipo entrega un reporte de investigación en PDF de 4 a 8 páginas que documenta enfoque, resultados e implicaciones.",
@@ -125,7 +125,7 @@
     "items": [
       { "es": "Alimentación vegana durante todo el fin de semana", "en": "Vegan meals across the entire weekend" },
       { "es": "Charlas y mentoría presencial con el panel de jueces, mentores y profesionales del área", "en": "In-person talks and mentorship with the panel of judges, mentors, and professionals in the field" },
-      { "es": "Apoyo de transporte nacional (bus o vuelo, sujeto a un monto máximo definido) y alojamiento para participantes seleccionados que viajen desde otras ciudades de Colombia", "en": "Domestic transport support (bus or flight, subject to a defined maximum) and accommodation for selected participants traveling from other Colombian cities" }
+      { "es": "Apoyo limitado de transporte nacional y alojamiento para participantes seleccionados que viajen desde otras ciudades de Colombia", "en": "Limited domestic transport and accommodation support for selected participants traveling from other Colombian cities" }
     ],
     "onlineCloseEs": "Las personas que participen en línea podrán acceder a mentorías, charlas y espacios colaborativos a través de Discord y Zoom.",
     "onlineCloseEn": "Online participants will be able to access mentorship, talks, and collaborative spaces through Discord and Zoom."
