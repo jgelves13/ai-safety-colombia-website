@@ -107,18 +107,15 @@ const caseIcons = [
 </section>
 
 <section class="section hk-intro">
-  <div class="container">
+  <div class="container hk-intro-narrow">
     <h2 class="section-title">{t(locale, 'hackathon.whatTitle')}</h2>
-    <div class="hk-intro-grid">
-      <div class="hk-intro-left">
-        <p class="hk-lead">{whatBody}</p>
-        <p class="hk-attr">{es ? data.organizerNoteEs : data.organizerNoteEn}</p>
-      </div>
-      <div class="hk-intro-right">
-        <p class="hk-venue-p">{es ? data.inPerson.para1Es : data.inPerson.para1En}</p>
-        <p class="hk-venue-p">{es ? data.inPerson.para2Es : data.inPerson.para2En}</p>
-        <p class="hk-venue-apply" set:html={es ? data.inPerson.applyEs : data.inPerson.applyEn} />
-      </div>
+    <p class="hk-lead">{whatBody}</p>
+    <p class="hk-attr">{es ? data.organizerNoteEs : data.organizerNoteEn}</p>
+
+    <div class="hk-venue">
+      <p class="hk-venue-p">{es ? data.inPerson.para1Es : data.inPerson.para1En}</p>
+      <p class="hk-venue-p">{es ? data.inPerson.para2Es : data.inPerson.para2En}</p>
+      <p class="hk-venue-apply" set:html={es ? data.inPerson.applyEs : data.inPerson.applyEn} />
     </div>
   </div>
 </section>
@@ -814,21 +811,13 @@ const caseIcons = [
     margin-bottom: 0.625rem;
   }
 
-  .hk-intro-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .hk-intro-left,
-  .hk-intro-right {
-    min-width: 0;
+  .hk-intro-narrow {
+    max-width: 760px;
   }
 
   .hk-intro .hk-lead {
-    margin: 0 0 1rem;
-    font-size: 1.1875rem;
+    margin: 0 0 0.875rem;
+    font-size: 1.25rem;
     line-height: 1.5;
     color: var(--text-primary);
   }
@@ -838,13 +827,6 @@ const caseIcons = [
     font-size: 0.875rem;
     line-height: 1.55;
     color: var(--text-secondary);
-  }
-
-  @media (max-width: 860px) {
-    .hk-intro-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
   }
 
   /* "Por qué participar": short lead, four motivating cases keyed by
@@ -1027,16 +1009,23 @@ const caseIcons = [
     text-decoration-color: currentColor;
   }
 
-  /* ---- Venue prose (right column of intro row) ---- */
+  /* ---- Venue prose (single-column flow) ---- */
+  .hk-venue {
+    margin-top: 2.25rem;
+  }
+
   .hk-venue-p {
     margin: 0 0 1rem;
     font-size: 1rem;
     line-height: 1.65;
     color: var(--text-secondary);
   }
+  .hk-venue-p:last-of-type {
+    margin-bottom: 1.25rem;
+  }
 
   .hk-venue-apply {
-    margin: 1.25rem 0 0;
+    margin: 0;
     font-size: 0.9375rem;
     line-height: 1.6;
     color: var(--text-secondary);
@@ -1056,9 +1045,6 @@ const caseIcons = [
     text-decoration-color: currentColor;
   }
 
-  .hk-intro-right .hk-venue-p:last-of-type {
-    margin-bottom: 0;
-  }
 
   .hk-success {
     margin-top: 1.25rem;

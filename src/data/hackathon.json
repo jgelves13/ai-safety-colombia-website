@@ -119,10 +119,10 @@
     "venueNoteEn": ""
   },
   "inPerson": {
-    "para1Es": "La sede en Bogotá tiene cupos limitados y se asignan por postulación. Quienes no sean seleccionados pueden participar en línea desde cualquier lugar.",
-    "para1En": "The Bogotá venue has limited seats, assigned by application. Anyone not selected can still take part online from anywhere.",
-    "para2Es": "Los participantes en sede reciben alimentación durante todo el fin de semana, mentoría presencial y acceso a charlas con varios de los jueces. Quienes viajen desde otras ciudades de Colombia cuentan con apoyo de transporte (bus o vuelo, hasta un monto definido) y alojamiento. Los participantes en línea, desde Colombia o el Sur Global, acceden a mentoría y charlas a través de Discord y Zoom.",
-    "para2En": "Participants at the venue receive meals across the weekend, in-person mentorship, and access to talks with several of the judges. Participants traveling in from other Colombian cities receive transport support (bus or flight, up to a defined cap) and accommodation. Online participants from Colombia or the Global South receive mentorship and judge talks through Discord and Zoom.",
+    "para1Es": "La sede en Bogotá tiene cupos limitados, asignados por postulación. Quienes no sean seleccionados pueden participar en línea desde cualquier lugar.",
+    "para1En": "The Bogotá venue has limited seats, assigned by application. Anyone not selected can take part online from anywhere.",
+    "para2Es": "En la sede, los participantes reciben alimentación durante todo el fin de semana, mentoría presencial y acceso a charlas con varios de los jueces. Quienes viajen desde otras ciudades de Colombia cuentan con apoyo de transporte (bus o vuelo, hasta un monto definido) y alojamiento. Los participantes en línea, desde Colombia o el Sur Global, acceden a mentoría y a las charlas a través de Discord y Zoom.",
+    "para2En": "On site, participants receive meals across the entire weekend, in-person mentorship, and access to talks with several of the judges. Participants traveling in from other Colombian cities receive transport support (bus or flight, up to a defined cap) and accommodation. Online participants from Colombia or the Global South receive mentorship and judge talks through Discord and Zoom.",
     "applyEs": "Postulación al cupo presencial: <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>.",
     "applyEn": "Apply for an in-person seat: <a href=\"mailto:aisafetycolombia@gmail.com\">aisafetycolombia@gmail.com</a>."
   },
