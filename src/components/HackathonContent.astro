@@ -121,7 +121,6 @@ const caseIcons = [
         ))}
       </ul>
       <p class="hk-venue-p">{es ? data.inPerson.onlineCloseEs : data.inPerson.onlineCloseEn}</p>
-      <p class="hk-venue-apply" set:html={es ? data.inPerson.applyEs : data.inPerson.applyEn} />
     </div>
   </div>
 </section>
@@ -807,28 +806,30 @@ const caseIcons = [
     margin-top: 1.25rem;
   }
 
-  /* "Qué es": lone short lead, so tighten the vertical rhythm */
+  /* "Qué es": single body voice — one size, one weight, one color */
   .hk-intro {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
 
   .hk-intro .section-title {
-    margin-bottom: 0.625rem;
+    margin-bottom: 1.25rem;
   }
 
-  .hk-intro .hk-lead {
-    margin: 0 0 0.875rem;
-    font-size: 1.1875rem;
-    line-height: 1.55;
+  .hk-intro p,
+  .hk-intro li {
+    font-size: 1.0625rem;
+    line-height: 1.65;
     color: var(--text-primary);
+    font-weight: 400;
   }
 
-  .hk-intro .hk-attr {
-    margin: 0;
-    font-size: 0.9375rem;
-    line-height: 1.55;
-    color: var(--text-secondary);
+  .hk-intro p {
+    margin: 0 0 1.25rem;
+  }
+
+  .hk-intro p:last-child {
+    margin-bottom: 0;
   }
 
   /* "Por qué participar": short lead, four motivating cases keyed by
@@ -1011,28 +1012,17 @@ const caseIcons = [
     text-decoration-color: currentColor;
   }
 
-  /* ---- Venue prose (full-width single-column flow + bullet list) ---- */
+  /* ---- Venue prose: spacing + bullet markers only (typography inherited) ---- */
   .hk-venue {
-    margin-top: 2.25rem;
+    margin-top: 2rem;
   }
 
-  .hk-venue-p {
-    margin: 0 0 1.25rem;
-    font-size: 1rem;
-    line-height: 1.65;
-    color: var(--text-secondary);
-  }
-
-  .hk-venue-list-intro {
-    margin: 0 0 0.625rem;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--text-primary);
-    font-weight: 500;
+  .hk-intro p.hk-venue-list-intro {
+    margin-bottom: 0.5rem;
   }
 
   .hk-venue-list {
-    margin: 0 0 1.5rem;
+    margin: 0 0 1.25rem;
     padding: 0 0 0 1.25rem;
     list-style: disc;
   }
@@ -1040,33 +1030,10 @@ const caseIcons = [
   .hk-venue-list li {
     margin: 0 0 0.5rem;
     padding-left: 0.25rem;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
   }
+
   .hk-venue-list li::marker {
     color: var(--accent-forest);
-  }
-
-  .hk-venue-apply {
-    margin: 1.25rem 0 0;
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
-  }
-
-  .hk-venue-apply a {
-    color: var(--text-primary);
-    font-weight: 500;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
-    text-decoration-color: var(--accent-forest);
-    transition: text-decoration-color 0.15s ease, color 0.15s ease;
-  }
-  .hk-venue-apply a:hover {
-    color: var(--accent-forest);
-    text-decoration-color: currentColor;
   }
 
 
