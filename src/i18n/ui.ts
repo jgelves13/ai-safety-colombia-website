@@ -141,7 +141,7 @@ export const ui = {
     'getInvolved.ctaContact': 'Contáctanos',
     'join.whatsapp': 'WhatsApp',
     'events.hero.title': 'Eventos',
-    'events.hero.subtitle': 'Charlas, paneles y cenas de diálogo sobre seguridad de IA en Colombia.',
+    'events.hero.subtitle': 'Encuentros presenciales y en línea sobre seguridad de IA: charlas, paneles, conversatorios y cenas de diálogo con investigadores, estudiantes y profesionales del campo en Colombia.',
     'events.notifyKicker': 'Mantente al día',
     'events.notifyTitle': '¿Quieres saber de nuestro próximo evento?',
     'events.notifyText':
@@ -395,7 +395,7 @@ export const ui = {
     'getInvolved.ctaContact': 'Contact us',
     'join.whatsapp': 'WhatsApp',
     'events.hero.title': 'Events',
-    'events.hero.subtitle': 'AI safety talks, panels, and dinners in Colombia.',
+    'events.hero.subtitle': 'In-person and online gatherings on AI safety: talks, panels, fireside conversations, and discussion dinners with researchers, students, and practitioners in Colombia.',
     'events.notifyKicker': 'Stay in the loop',
     'events.notifyTitle': 'Want to hear about our next event?',
     'events.notifyText':
