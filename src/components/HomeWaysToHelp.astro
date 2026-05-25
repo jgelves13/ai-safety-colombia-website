@@ -10,15 +10,24 @@ interface Props {
 const { locale } = Astro.props;
 const es = locale === 'es';
 
-type Action = { labelEs: string; labelEn: string; ext?: string; path?: string; anchor?: string };
+type Action = {
+  labelEs: string;
+  labelEn: string;
+  descEs: string;
+  descEn: string;
+  metaEs: string;
+  metaEn: string;
+  accent: string;
+  ext?: string;
+  path?: string;
+  anchor?: string;
+};
 
 const resolve = (a: Action) => {
   if (a.ext) return { href: a.ext, external: true };
   if (a.anchor) return { href: a.anchor, external: false };
   return { href: localePath(locale, a.path ?? '/'), external: false };
 };
-
-const accents = ['is-coral', 'is-blue', 'is-green', 'is-yellow', 'is-coral', 'is-blue'];
 ---
 
 <section class="section ways-section" aria-labelledby="ways-title">
@@ -27,25 +36,40 @@ const accents = ['is-coral', 'is-blue', 'is-green', 'is-yellow', 'is-coral', 'is
     <h2 class="section-title" id="ways-title">{t(locale, 'home.ways.title')}</h2>
     <p class="section-subtitle">{t(locale, 'home.ways.subtitle')}</p>
 
-    <ul class="ways-grid">
+    <ol class="ways-list">
       {(data.actions as Action[]).map((a, i) => {
         const { href, external } = resolve(a);
+        const num = String(i + 1).padStart(2, '0');
         return (
-          <li>
+          <li class:list={['way-row', a.accent]}>
+            <span class="way-bar" aria-hidden="true"></span>
+            <span class="way-num">{num}</span>
+            <div class="way-body">
+              <h3 class="way-label">
+                <a
+                  href={href}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noopener noreferrer' : undefined}
+                >
+                  {es ? a.labelEs : a.labelEn}
+                </a>
+              </h3>
+              <p class="way-desc">{es ? a.descEs : a.descEn}</p>
+              <span class="way-meta">{es ? a.metaEs : a.metaEn}</span>
+            </div>
             <a
-              class:list={['way-card', accents[i % accents.length]]}
+              class="way-arrow"
               href={href}
               target={external ? '_blank' : undefined}
               rel={external ? 'noopener noreferrer' : undefined}
+              aria-label={es ? a.labelEs : a.labelEn}
             >
-              <span class="way-accent" aria-hidden="true"></span>
-              <h3 class="way-label">{es ? a.labelEs : a.labelEn}</h3>
-              <span class="way-arrow" aria-hidden="true">&rarr;</span>
+              &rarr;
             </a>
           </li>
         );
       })}
-    </ul>
+    </ol>
   </div>
 </section>
 
@@ -61,85 +85,143 @@ const accents = ['is-coral', 'is-blue', 'is-green', 'is-yellow', 'is-coral', 'is
   }
 
   .ways-section .section-subtitle {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.75rem;
   }
 
-  .ways-grid {
+  .ways-list {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
-  .way-card {
-    position: relative;
     display: flex;
     flex-direction: column;
-    background: var(--card-surface);
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    padding: 1.875rem 1.875rem 1.625rem;
-    min-height: 9rem;
-    color: var(--text-primary);
-    transition: border-color 0.15s ease, transform 0.15s ease;
   }
 
-  .way-card:hover {
-    border-color: var(--text-primary);
-    transform: translateY(-2px);
+  .way-row {
+    display: grid;
+    grid-template-columns: 4px 4rem 1fr auto;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--hairline);
   }
 
-  .way-accent {
-    width: 40px;
-    height: 4px;
+  .way-row:first-child {
+    padding-top: 0.25rem;
+  }
+
+  .way-row:last-child {
+    border-bottom: 0;
+  }
+
+  .way-bar {
+    align-self: stretch;
     border-radius: 999px;
-    margin-bottom: 1.25rem;
   }
 
-  .is-coral .way-accent  { background: var(--accent-vermillion); }
-  .is-blue  .way-accent  { background: var(--accent-sage); }
-  .is-green .way-accent  { background: var(--accent-forest); }
-  .is-yellow .way-accent { background: var(--accent-yellow); }
+  .is-coral .way-bar  { background: var(--accent-vermillion); }
+  .is-blue  .way-bar  { background: var(--accent-sage); }
+  .is-green .way-bar  { background: var(--accent-forest); }
+  .is-yellow .way-bar { background: var(--accent-yellow); }
+
+  .way-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--accent-forest);
+    padding-top: 0.55rem;
+  }
+
+  .way-body {
+    min-width: 0;
+  }
 
   .way-label {
     font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.2;
+    line-height: 1.15;
     color: var(--text-primary);
-    margin: 0;
+    margin: 0 0 0.5rem;
+  }
+
+  .way-label a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .way-row:hover .way-label a {
+    color: var(--accent-forest);
+  }
+
+  .way-desc {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 60ch;
+    margin: 0 0 0.625rem;
+  }
+
+  .way-meta {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
   }
 
   .way-arrow {
-    margin-top: auto;
-    padding-top: 1.5rem;
-    font-size: 1.25rem;
+    align-self: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: var(--accent-forest);
-    transition: transform 0.15s ease;
+    font-size: 1.25rem;
+    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
   }
 
-  .way-card:hover .way-arrow {
-    transform: translateX(4px);
+  .way-row:hover .way-arrow {
+    background: var(--accent-forest);
+    border-color: var(--accent-forest);
+    color: var(--bg-elevated);
+    transform: translateX(3px);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .way-card,
-    .way-card:hover,
+    .way-label a,
     .way-arrow,
-    .way-card:hover .way-arrow {
+    .way-row:hover .way-arrow {
       transition: none;
       transform: none;
     }
   }
 
-  @media (max-width: 900px) {
-    .ways-grid { grid-template-columns: repeat(2, 1fr); }
-  }
+  @media (max-width: 760px) {
+    .way-row {
+      grid-template-columns: 4px 1fr auto;
+      gap: 1.125rem;
+      padding: 1.5rem 0;
+    }
 
-  @media (max-width: 560px) {
-    .ways-grid { grid-template-columns: 1fr; }
+    .way-num {
+      display: none;
+    }
+
+    .way-label {
+      font-size: 1.25rem;
+    }
+
+    .way-arrow {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
   }
 </style>
