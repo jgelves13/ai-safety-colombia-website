@@ -143,19 +143,18 @@
     "virtualTagEs": "Abierto a participantes del Sur Global.",
     "virtualTagEn": "Open to participants from the Global South.",
     "items": [
-      { "es": "Espacio dedicado, abierto las 24 horas durante los tres días, donde los equipos trabajan juntos en persona", "en": "Dedicated venue, open around the clock throughout the three days, where teams work together in person" },
-      { "es": "Alimentación vegana durante todo el fin de semana", "en": "Vegan meals throughout the entire weekend" },
-      { "es": "Mentorías y conversaciones presenciales con investigadores, jueces y profesionales del área", "en": "In-person mentorships and conversations with researchers, judges, and professionals in the field" },
-      { "es": "Charlas especializadas sobre seguridad y gobernanza de la IA", "en": "Specialized talks on AI safety and governance" },
-      { "es": "Apoyo limitado de transporte nacional y alojamiento para participantes seleccionados que viajen desde otras ciudades de Colombia", "en": "Limited domestic transport and accommodation support for selected participants traveling from other Colombian cities" }
+      { "es": "Espacio de trabajo presencial disponible 24/7 durante los tres días del evento.", "en": "In-person workspace available 24/7 throughout the three days of the event." },
+      { "es": "Alimentación vegana incluida durante todo el fin de semana.", "en": "Vegan meals included throughout the entire weekend." },
+      { "es": "Mentorías y sesiones presenciales con investigadores, jueces y expertos del sector.", "en": "In-person mentoring and sessions with researchers, judges, and sector experts." },
+      { "es": "Charlas especializadas sobre seguridad y gobernanza de la IA.", "en": "Specialized talks on AI safety and governance." },
+      { "es": "Apoyo limitado para transporte y alojamiento de participantes seleccionados que viajen desde otras ciudades de Colombia.", "en": "Limited travel and accommodation support for selected participants coming from other Colombian cities." }
     ],
     "onlineCloseEs": "Quienes participen en línea podrán acceder a mentorías, charlas y espacios colaborativos a través de Discord y Zoom.",
     "onlineCloseEn": "Those participating online will have access to mentorships, talks, and collaborative spaces through Discord and Zoom.",
     "onlineItems": [
-      { "es": "Mentorías individuales con investigadores y jueces", "en": "Individual mentoring with researchers and judges" },
-      { "es": "Charlas técnicas y sesiones de preguntas en vivo", "en": "Technical talks and live Q&A sessions" },
-      { "es": "Canales en Discord y sesiones sincrónicas en Zoom", "en": "Discord channels and synchronous Zoom sessions" },
-      { "es": "Acceso completo a retos, recursos y entregas del hackathon", "en": "Full access to all challenges, resources, and deliverables" }
+      { "es": "Charlas técnicas y sesiones de preguntas en vivo.", "en": "Technical talks and live Q&A sessions." },
+      { "es": "Acceso a canales de Discord y sesiones sincrónicas por Zoom.", "en": "Access to Discord channels and synchronous Zoom sessions." },
+      { "es": "Acceso completo a los retos, recursos y entregables del hackathon.", "en": "Full access to all hackathon challenges, resources, and deliverables." }
     ]
   },
   "schedule": [
