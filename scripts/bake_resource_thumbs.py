@@ -59,6 +59,7 @@ SOURCES: list[tuple[str, str, str, str]] = [
     ("robert-miles.jpg",        "video",   "coral",  "center"),
     ("rational-animations.jpg", "video",   "coral",  "center"),
     ("doom-debates.jpg",        "video",   "coral",  "center"),
+    ("mlst.jpg",                "video",   "coral",  "center"),
     ("bluedot.png",             "course",  "blue",   "center"),
     ("deepmind.png",            "course",  "blue",   "center"),
     ("arena.png",               "course",  "blue",   "center"),
