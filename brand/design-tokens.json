@@ -1,0 +1,234 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "AI Safety Colombia design tokens. 1:1 export of src/styles/global.css custom properties. Format follows the W3C Design Tokens Community Group draft. Ingestible by Figma Tokens Studio plugin. When this file and global.css disagree, global.css wins — open a PR to re-sync.",
+  "$source": "src/styles/global.css",
+  "color": {
+    "bg": {
+      "primary": {
+        "$value": "#FBF6EC",
+        "$type": "color",
+        "$description": "Warm off-white page background. Trópico paper."
+      },
+      "secondary": {
+        "$value": "#F1E8D6",
+        "$type": "color",
+        "$description": "Deeper warm tint for .section.alt band breaks."
+      },
+      "elevated": {
+        "$value": "#FFFBF2",
+        "$type": "color",
+        "$description": "Paper / card surface. Slightly brighter than bg.primary."
+      }
+    },
+    "accent": {
+      "forest": {
+        "$value": "#1F4D32",
+        "$type": "color",
+        "$description": "Primary brand accent. Logo green. Buttons, links, kicker rules."
+      },
+      "forest-deep": {
+        "$value": "#143620",
+        "$type": "color",
+        "$description": "Deep green hover state for forest buttons."
+      },
+      "sage": {
+        "$value": "#4A8466",
+        "$type": "color",
+        "$description": "Light green. Hover, translucent decorative shapes, soft callouts."
+      },
+      "vermillion": {
+        "$value": "#E5604D",
+        "$type": "color",
+        "$description": "Coral. Kicker labels, urgency, urgency-CTA pills."
+      },
+      "vermillion-dark": {
+        "$value": "#CF4A39",
+        "$type": "color",
+        "$description": "Coral button hover state."
+      },
+      "yellow": {
+        "$value": "#F2B705",
+        "$type": "color",
+        "$description": "Sun yellow. Highlight pills inside featured blocks, hub callouts."
+      }
+    },
+    "text": {
+      "primary": {
+        "$value": "#211A12",
+        "$type": "color",
+        "$description": "Body ink. Warm black."
+      },
+      "secondary": {
+        "$value": "#5A5044",
+        "$type": "color",
+        "$description": "Body muted / metadata."
+      },
+      "accent": {
+        "$value": "{color.accent.forest}",
+        "$type": "color",
+        "$description": "Link color. Alias of accent.forest."
+      }
+    },
+    "structural": {
+      "border": {
+        "$value": "#E4D9C4",
+        "$type": "color",
+        "$description": "Card and divider borders."
+      },
+      "hairline": {
+        "$value": "#EDE3D0",
+        "$type": "color",
+        "$description": "Subtle in-section dividers (editorial rows)."
+      }
+    },
+    "dark": {
+      "bg": {
+        "$value": "#143620",
+        "$type": "color",
+        "$description": "Footer and one-dark-moment panel background."
+      },
+      "muted": {
+        "$value": "#9FB3A4",
+        "$type": "color",
+        "$description": "Muted text on dark panels."
+      },
+      "line": {
+        "$value": "#2E6344",
+        "$type": "color",
+        "$description": "Dividers on dark panels."
+      }
+    }
+  },
+  "font": {
+    "family": {
+      "display": {
+        "$value": ["Bricolage Grotesque", "system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        "$type": "fontFamily",
+        "$description": "Display family. Headings, hero titles, section titles."
+      },
+      "body": {
+        "$value": ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        "$type": "fontFamily",
+        "$description": "Body family. Paragraphs, buttons, navigation."
+      },
+      "mono": {
+        "$value": ["JetBrains Mono", "ui-monospace", "SF Mono", "Cascadia Mono", "Menlo", "Consolas", "monospace"],
+        "$type": "fontFamily",
+        "$description": "Monospace. Kickers, metadata, editorial numerals."
+      }
+    },
+    "weight": {
+      "display-bold": { "$value": 700, "$type": "fontWeight" },
+      "display-black": { "$value": 800, "$type": "fontWeight" },
+      "body-regular": { "$value": 400, "$type": "fontWeight" },
+      "body-medium": { "$value": 500, "$type": "fontWeight" },
+      "body-semibold": { "$value": 600, "$type": "fontWeight" },
+      "body-bold": { "$value": 700, "$type": "fontWeight" }
+    },
+    "size": {
+      "hero-title": {
+        "$value": "clamp(3rem, 9vw, 7rem)",
+        "$type": "dimension",
+        "$description": "Hero (Hero.astro) title."
+      },
+      "page-title": {
+        "$value": "clamp(2.5rem, 7vw, 5.5rem)",
+        "$type": "dimension",
+        "$description": "PageHero title."
+      },
+      "section-title": {
+        "$value": "clamp(2rem, 5vw, 3.5rem)",
+        "$type": "dimension",
+        "$description": "In-section H2."
+      },
+      "editorial-h3": {
+        "$value": "1.3125rem",
+        "$type": "dimension"
+      },
+      "body": {
+        "$value": "1rem",
+        "$type": "dimension"
+      },
+      "section-subtitle": {
+        "$value": "1.0625rem",
+        "$type": "dimension"
+      },
+      "editorial-body": {
+        "$value": "0.9375rem",
+        "$type": "dimension"
+      },
+      "kicker": {
+        "$value": "0.75rem",
+        "$type": "dimension",
+        "$description": "Section label / kicker. Uppercase, 0.16em tracking."
+      },
+      "mono-meta": {
+        "$value": "0.75rem",
+        "$type": "dimension",
+        "$description": "Editorial numeral / metadata mono."
+      },
+      "button": {
+        "$value": "0.9375rem",
+        "$type": "dimension"
+      }
+    },
+    "tracking": {
+      "heading": {
+        "$value": "-0.03em",
+        "$type": "dimension",
+        "$description": "Default heading letter-spacing. Tighter than 0."
+      },
+      "section-title": {
+        "$value": "-0.035em",
+        "$type": "dimension",
+        "$description": "Section title — tighter than heading default."
+      },
+      "kicker": {
+        "$value": "0.16em",
+        "$type": "dimension"
+      },
+      "mono-meta": {
+        "$value": "0.08em",
+        "$type": "dimension"
+      }
+    },
+    "lineHeight": {
+      "body": { "$value": 1.6, "$type": "number" },
+      "section-title": { "$value": 0.98, "$type": "number" },
+      "button": { "$value": 1, "$type": "number" }
+    }
+  },
+  "spacing": {
+    "section-y": {
+      "$value": "5rem",
+      "$type": "dimension",
+      "$description": "Section vertical padding (desktop). Mobile: 3rem."
+    },
+    "section-x": {
+      "$value": "1.5rem",
+      "$type": "dimension",
+      "$description": "Section horizontal padding (desktop). Mobile: 1rem."
+    },
+    "card-padding": {
+      "$value": "2rem",
+      "$type": "dimension"
+    },
+    "max-width": {
+      "$value": "1200px",
+      "$type": "dimension",
+      "$description": "Container max-width."
+    }
+  },
+  "radius": {
+    "card": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Default card border-radius."
+    },
+    "pill": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Buttons and kicker pills."
+    }
+  }
+}

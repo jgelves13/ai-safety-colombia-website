@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <!--
+    Orbit + glow motif. Lifted from .way-cover-orbit / .way-cover-glow in
+    src/components/HomeWaysToHelp.astro (lines 147-167). Static export for
+    Figma / print. Animation on the web version: orbit spins 28s linear,
+    glow pulses 5s ease-in-out.
+  -->
+
+  <!-- glow (soft translucent disc) -->
+  <circle cx="120" cy="120" r="60" fill="rgba(255,255,255,0.12)" />
+
+  <!-- orbit ring (rotates on the web) -->
+  <circle cx="120" cy="120" r="84" fill="none"
+    stroke="rgba(255,255,255,0.25)" stroke-width="2" />
+</svg>
