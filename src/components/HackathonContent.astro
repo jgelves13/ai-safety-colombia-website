@@ -109,6 +109,7 @@ const caseIcons = [
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whatTitle')}</h2>
     <p class="hk-lead">{whatBody}</p>
+    <p class="hk-lead">{es ? data.hybridParaEs : data.hybridParaEn}</p>
     <p class="hk-attr" set:html={es ? data.organizerNoteEs : data.organizerNoteEn} />
 
     <div class="hk-venue">

@@ -7,8 +7,10 @@
   "registrationUrl": "https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21?utm_source=hub-bogota",
   "contactEmail": "sprints@apartresearch.com",
   "support": "Schmidt Sciences",
-  "whatIsEs": "Hackathon internacional de tres días enfocado en seguridad y gobernanza de la IA. La participación es híbrida: en línea desde cualquier parte del Sur Global y en sedes presenciales distribuidas en América Latina, África y Asia, una de ellas en Bogotá. Está dirigido a investigadores, ingenieros, estudiantes y profesionales de política pública interesados en contribuir al desarrollo seguro y responsable de sistemas de IA.",
-  "whatIsEn": "A three-day international hackathon focused on AI safety and governance. Participation is hybrid: online from anywhere in the Global South and at in-person venues across Latin America, Africa, and Asia, one of them in Bogotá. It is open to researchers, engineers, students, and public-policy professionals interested in contributing to the safe and responsible development of AI systems.",
+  "whatIsEs": "Hackathon internacional de tres días enfocado en seguridad y gobernanza de la IA, dirigido a investigadores, ingenieros, estudiantes y profesionales de política pública interesados en contribuir al desarrollo seguro y responsable de sistemas de IA.",
+  "whatIsEn": "A three-day international hackathon focused on AI safety and governance, open to researchers, engineers, students, and public policy professionals interested in contributing to the safe and responsible development of AI systems.",
+  "hybridParaEs": "La participación es híbrida: puede realizarse en línea desde cualquier lugar del Sur Global o de manera presencial en alguno de los hubs distribuidos en América Latina, África y Asia, incluido Bogotá.",
+  "hybridParaEn": "Participation is hybrid: it can take place online from anywhere in the Global South or in person at one of the hubs distributed across Latin America, Africa, and Asia, including Bogotá.",
   "organizerNoteEs": "El evento es organizado por <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, y el hub de Bogotá es coordinado por AI Safety Colombia.",
   "organizerNoteEn": "The event is organized by <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, and the Bogotá hub is coordinated by AI Safety Colombia.",
   "submissionEs": "Cada equipo entrega un reporte de investigación en PDF de 4 a 8 páginas que documenta enfoque, resultados e implicaciones.",
@@ -118,17 +120,18 @@
     "venueNoteEn": ""
   },
   "inPerson": {
-    "para1Es": "La participación virtual está abierta para personas del Sur Global, por nacionalidad o por residencia. Quienes vivan en Colombia y quieran sumarse a la sede presencial de Bogotá lo indican al inscribirse en Apart Research y reciben un formulario adicional con preguntas de selección; los cupos son limitados.",
-    "para1En": "Virtual participation is open to people from the Global South, by nationality or residence. Those based in Colombia interested in joining the in-person Bogotá venue can indicate this when registering on Apart Research, and will receive a follow-up form with selection questions; in-person seats are limited.",
-    "inPersonIntroEs": "Quienes participen presencialmente tendrán acceso a:",
-    "inPersonIntroEn": "On-site participants will have access to:",
+    "para1Es": "La participación virtual está abierta a personas del Sur Global, ya sea por nacionalidad o residencia. Quienes deseen postularse a la sede presencial de Bogotá deben indicarlo en el formulario de inscripción de Apart Research; posteriormente recibirán un formulario adicional de selección. Los cupos presenciales son limitados.",
+    "para1En": "Virtual participation is open to people from the Global South, whether by nationality or residence. Those who wish to apply for the in-person Bogotá venue must indicate this on the Apart Research registration form; they will subsequently receive an additional selection form. In-person spots are limited.",
+    "inPersonIntroEs": "Las personas seleccionadas para participar presencialmente en Bogotá tendrán acceso a:",
+    "inPersonIntroEn": "Participants selected for in-person attendance in Bogotá will have access to:",
     "items": [
-      { "es": "Alimentación vegana durante todo el fin de semana", "en": "Vegan meals across the entire weekend" },
-      { "es": "Charlas y mentoría presencial con el panel de jueces, mentores y profesionales del área", "en": "In-person talks and mentorship with the panel of judges, mentors, and professionals in the field" },
+      { "es": "Alimentación vegana durante todo el fin de semana", "en": "Vegan meals throughout the entire weekend" },
+      { "es": "Mentorías y conversaciones presenciales con investigadores, jueces y profesionales del área", "en": "In-person mentorships and conversations with researchers, judges, and professionals in the field" },
+      { "es": "Charlas especializadas sobre seguridad y gobernanza de la IA", "en": "Specialized talks on AI safety and governance" },
       { "es": "Apoyo limitado de transporte nacional y alojamiento para participantes seleccionados que viajen desde otras ciudades de Colombia", "en": "Limited domestic transport and accommodation support for selected participants traveling from other Colombian cities" }
     ],
-    "onlineCloseEs": "Las personas que participen en línea podrán acceder a mentorías, charlas y espacios colaborativos a través de Discord y Zoom.",
-    "onlineCloseEn": "Online participants will be able to access mentorship, talks, and collaborative spaces through Discord and Zoom."
+    "onlineCloseEs": "Quienes participen en línea podrán acceder a mentorías, charlas y espacios colaborativos a través de Discord y Zoom.",
+    "onlineCloseEn": "Those participating online will have access to mentorships, talks, and collaborative spaces through Discord and Zoom."
   },
   "schedule": [
     { "day": "Viernes 19", "dayEn": "Friday 19", "accent": "is-green", "events": [
