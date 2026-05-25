@@ -139,6 +139,7 @@
     "virtualTagEs": "Abierto a participantes del Sur Global.",
     "virtualTagEn": "Open to participants from the Global South.",
     "items": [
+      { "es": "Espacio dedicado, abierto las 24 horas durante los tres días, donde los equipos trabajan juntos en persona", "en": "Dedicated venue, open around the clock throughout the three days, where teams work together in person" },
       { "es": "Alimentación vegana durante todo el fin de semana", "en": "Vegan meals throughout the entire weekend" },
       { "es": "Mentorías y conversaciones presenciales con investigadores, jueces y profesionales del área", "en": "In-person mentorships and conversations with researchers, judges, and professionals in the field" },
       { "es": "Charlas especializadas sobre seguridad y gobernanza de la IA", "en": "Specialized talks on AI safety and governance" },
