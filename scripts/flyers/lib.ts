@@ -89,13 +89,13 @@ export async function getLogos() {
   if (cachedLogos) return cachedLogos;
   const [apartBuf, aiscBuf] = await Promise.all([
     readFile(path.join(projectRoot, 'public', 'images', 'apart-logo.png')),
-    readFile(path.join(projectRoot, 'public', 'images', 'aisc-logo-trim.png')),
+    readFile(path.join(projectRoot, 'public', 'images', 'aisc-lockup.png')),
   ]);
   cachedLogos = {
     apartLogo: `data:image/png;base64,${apartBuf.toString('base64')}`,
-    apartRatio: 174 / 164,
+    apartRatio: 1004 / 427,
     aiscLogo: `data:image/png;base64,${aiscBuf.toString('base64')}`,
-    aiscRatio: 296 / 240,
+    aiscRatio: 1400 / 420,
   };
   return cachedLogos;
 }
@@ -275,19 +275,18 @@ export function hostsRow(opts: {
   aiscRatio?: number;
 }): string {
   const fs = opts.fontSize ?? 18;
-  const gap = opts.gap ?? 18;
-  const lh = Math.round(fs * 1.55);
-  const innerGap = Math.round(fs * 0.55);
-  const ruleW = Math.round(fs * 0.8);
+  const gap = opts.gap ?? Math.round(fs * 1.6);
+  const markH = Math.round(fs * 2.4);
+  const dividerH = Math.round(fs * 1.6);
 
   const apartLockup = opts.apartLogo
-    ? `<div style="display:flex;align-items:center;gap:${innerGap}px"><img src="${opts.apartLogo}" style="display:flex;height:${lh}px;width:${Math.round(lh * (opts.apartRatio ?? 1))}px"/><div style="display:flex">Apart Research</div></div>`
-    : `<div style="display:flex">Apart Research</div>`;
+    ? `<img src="${opts.apartLogo}" style="display:flex;height:${markH}px;width:${Math.round(markH * (opts.apartRatio ?? 2.35))}px"/>`
+    : `<div style="display:flex;font-family:Inter;font-weight:700;font-size:${fs}px;color:${opts.color}">Apart Research</div>`;
   const aiscLockup = opts.aiscLogo
-    ? `<div style="display:flex;align-items:center;gap:${innerGap}px"><img src="${opts.aiscLogo}" style="display:flex;height:${lh}px;width:${Math.round(lh * (opts.aiscRatio ?? 1))}px"/><div style="display:flex">AI Safety Colombia</div></div>`
-    : `<div style="display:flex">AI Safety Colombia</div>`;
+    ? `<img src="${opts.aiscLogo}" style="display:flex;height:${markH}px;width:${Math.round(markH * (opts.aiscRatio ?? 3.33))}px"/>`
+    : `<div style="display:flex;font-family:Inter;font-weight:700;font-size:${fs}px;color:${opts.color}">AI Safety Colombia</div>`;
 
-  return `<div style="display:flex;align-items:center;gap:${gap}px;font-family:JetBrains Mono;font-size:${fs}px;letter-spacing:0.18em;text-transform:uppercase;color:${opts.color}">${apartLockup}<div style="display:flex;width:${ruleW}px;height:1px;background:${opts.color};opacity:0.5"></div>${aiscLockup}</div>`;
+  return `<div style="display:flex;align-items:center;gap:${gap}px">${apartLockup}<div style="display:flex;width:1px;height:${dividerH}px;background:${opts.color};opacity:0.3"></div>${aiscLockup}</div>`;
 }
 
 export function orbitDot(opts: { color: string; size?: number }): string {
