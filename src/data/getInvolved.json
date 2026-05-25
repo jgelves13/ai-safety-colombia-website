@@ -1,6 +1,7 @@
 {
   "actions": [
     {
+      "slug": "community",
       "labelEs": "Únete al grupo de WhatsApp",
       "labelEn": "Join the WhatsApp group",
       "descEs": "Espacio abierto de la comunidad para compartir papers, eventos y oportunidades en seguridad de IA.",
@@ -11,6 +12,7 @@
       "ext": "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
     },
     {
+      "slug": "hackathon",
       "labelEs": "Participa en el hackathon",
       "labelEn": "Join the hackathon",
       "descEs": "Apart Research Global South Hackathon: tres días para construir y publicar un proyecto de AI safety.",
@@ -21,6 +23,7 @@
       "path": "/hackathon/"
     },
     {
+      "slug": "resources",
       "labelEs": "Revisa los recursos",
       "labelEn": "Browse the resources",
       "descEs": "Lecturas, videos, podcasts, libros y cursos curados para entrar al campo a tu ritmo.",
@@ -31,6 +34,7 @@
       "path": "/recursos/"
     },
     {
+      "slug": "events",
       "labelEs": "Asiste a un evento",
       "labelEn": "Attend an event",
       "descEs": "Charlas, paneles y meetups en Bogotá y en línea con investigadores y profesionales del campo.",
@@ -41,6 +45,7 @@
       "path": "/eventos/"
     },
     {
+      "slug": "discussion",
       "labelEs": "Únete a un grupo de discusión",
       "labelEn": "Join a discussion group",
       "descEs": "Lectura guiada entre pares: fundamentos, AI alignment técnico y gobernanza de IA.",
@@ -51,6 +56,7 @@
       "path": "/involucrate/"
     },
     {
+      "slug": "contact",
       "labelEs": "Escríbenos",
       "labelEn": "Reach out",
       "descEs": "¿Tienes una idea, pregunta o quieres colaborar con el capítulo? Escríbenos directamente.",
