@@ -11,26 +11,6 @@
       "ext": "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
     },
     {
-      "labelEs": "Asiste a un evento",
-      "labelEn": "Attend an event",
-      "descEs": "Charlas, paneles y meetups en Bogotá y en línea con investigadores y profesionales del campo.",
-      "descEn": "Talks, panels and meetups in Bogotá and online with researchers and practitioners.",
-      "metaEs": "Cada pocos meses",
-      "metaEn": "Every few months",
-      "accent": "is-blue",
-      "path": "/eventos/"
-    },
-    {
-      "labelEs": "Únete a un grupo de discusión",
-      "labelEn": "Join a discussion group",
-      "descEs": "Lectura guiada entre pares: fundamentos, AI alignment técnico y gobernanza de IA.",
-      "descEn": "Peer-led reading: fundamentals, technical AI alignment and AI governance.",
-      "metaEs": "Cohortes de 6 a 8 semanas",
-      "metaEn": "6 to 8 week cohorts",
-      "accent": "is-green",
-      "path": "/involucrate/"
-    },
-    {
       "labelEs": "Participa en el hackathon",
       "labelEn": "Join the hackathon",
       "descEs": "Apart Research Global South Hackathon: tres días para construir y publicar un proyecto de AI safety.",
@@ -47,8 +27,28 @@
       "descEn": "Curated reading, videos, podcasts, books and courses to enter the field at your own pace.",
       "metaEs": "A tu ritmo",
       "metaEn": "Self-paced",
-      "accent": "is-coral",
+      "accent": "is-green",
       "path": "/recursos/"
+    },
+    {
+      "labelEs": "Asiste a un evento",
+      "labelEn": "Attend an event",
+      "descEs": "Charlas, paneles y meetups en Bogotá y en línea con investigadores y profesionales del campo.",
+      "descEn": "Talks, panels and meetups in Bogotá and online with researchers and practitioners.",
+      "metaEs": "Cada pocos meses",
+      "metaEn": "Every few months",
+      "accent": "is-blue",
+      "path": "/eventos/"
+    },
+    {
+      "labelEs": "Únete a un grupo de discusión",
+      "labelEn": "Join a discussion group",
+      "descEs": "Lectura guiada entre pares: fundamentos, AI alignment técnico y gobernanza de IA.",
+      "descEn": "Peer-led reading: fundamentals, technical AI alignment and AI governance.",
+      "metaEs": "Cohortes de 6 a 8 semanas",
+      "metaEn": "6 to 8 week cohorts",
+      "accent": "is-coral",
+      "path": "/involucrate/"
     },
     {
       "labelEs": "Escríbenos",
