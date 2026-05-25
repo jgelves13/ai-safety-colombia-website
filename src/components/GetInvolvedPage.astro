@@ -14,7 +14,16 @@ const es = locale === 'es';
 
 const WHATSAPP_URL = 'https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ';
 
-type Action = { labelEs: string; labelEn: string; ext?: string; path?: string; anchor?: string };
+type Action = {
+  accent: string;
+  titleEs: string;
+  titleEn: string;
+  descEs: string;
+  descEn: string;
+  ext?: string;
+  path?: string;
+  anchor?: string;
+};
 
 const resolve = (a: Action) => {
   if (a.ext) return { href: a.ext, external: true };
@@ -31,32 +40,23 @@ const resolve = (a: Action) => {
 <section class="section">
   <div class="container">
     <div class="ways-grid">
-      {data.audiences.map((aud) => (
-        <article class={`way-card ${aud.accent}`}>
-          <div class="way-bar"></div>
-          <div class="way-tx">
-            <h3 class="way-title">{es ? aud.titleEs : aud.titleEn}</h3>
-            <p class="way-desc">{es ? aud.descEs : aud.descEn}</p>
-            <ul class="way-actions">
-              {aud.actions.map((a) => {
-                const { href, external } = resolve(a as Action);
-                return (
-                  <li>
-                    <a
-                      class="way-action"
-                      href={href}
-                      target={external ? '_blank' : undefined}
-                      rel={external ? 'noopener noreferrer' : undefined}
-                    >
-                      <span>{es ? a.labelEs : a.labelEn}</span>
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </article>
-      ))}
+      {(data.actions as Action[]).map((a) => {
+        const { href, external } = resolve(a);
+        return (
+          <a
+            class={`way-card ${a.accent}`}
+            href={href}
+            target={external ? '_blank' : undefined}
+            rel={external ? 'noopener noreferrer' : undefined}
+          >
+            <div class="way-bar"></div>
+            <div class="way-tx">
+              <h3 class="way-title">{es ? a.titleEs : a.titleEn}</h3>
+              <p class="way-desc">{es ? a.descEs : a.descEn}</p>
+            </div>
+          </a>
+        );
+      })}
     </div>
   </div>
 </section>
@@ -99,11 +99,14 @@ const resolve = (a: Action) => {
     border-radius: 22px;
     padding: 1.75rem;
     background: var(--card-surface);
-    transition: border-color 0.15s;
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.15s, transform 0.15s;
   }
 
   .way-card:hover {
     border-color: var(--text-primary);
+    transform: translateY(-2px);
   }
 
   .way-bar {
@@ -137,36 +140,6 @@ const resolve = (a: Action) => {
     line-height: 1.6;
     margin-top: 0.375rem;
   }
-
-  .way-actions {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    margin-top: 1rem;
-  }
-
-  .way-action {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    padding: 0.625rem 0;
-    border-top: 1px solid var(--border);
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    transition: color 0.15s ease, padding-left 0.15s ease;
-  }
-
-  .way-action:hover {
-    color: var(--accent-forest);
-    padding-left: 0.25rem;
-  }
-
-  .way-card.is-coral .way-action:hover { color: var(--accent-vermillion); }
-  .way-card.is-blue .way-action:hover { color: var(--accent-sage); }
-  .way-card.is-yellow .way-action:hover { color: var(--accent-forest-deep); }
 
   /* Closing CTA — solid-green Trópico featured block */
   .ways-cta {
@@ -238,8 +211,7 @@ const resolve = (a: Action) => {
 
   @media (prefers-reduced-motion: reduce) {
     .way-card,
-    .way-card:hover,
-    .way-action {
+    .way-card:hover {
       transition: none;
       transform: none;
     }

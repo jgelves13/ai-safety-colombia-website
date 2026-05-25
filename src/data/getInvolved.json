@@ -1,52 +1,52 @@
 {
-  "audiences": [
+  "actions": [
     {
       "accent": "is-green",
-      "titleEs": "Estudiantes y curiosos",
-      "titleEn": "Students and newcomers",
-      "descEs": "Quieres aprender sobre seguridad de IA desde cero.",
-      "descEn": "You want to learn about AI safety from scratch.",
-      "actions": [
-        {
-          "labelEs": "Únete al grupo de WhatsApp",
-          "labelEn": "Join the WhatsApp group",
-          "ext": "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
-        },
-        { "labelEs": "Únete a un grupo de discusión", "labelEn": "Join a discussion group", "anchor": "#grupos" }
-      ]
+      "titleEs": "Únete al grupo de WhatsApp",
+      "titleEn": "Join the WhatsApp group",
+      "descEs": "El canal principal donde anunciamos eventos y conversamos sobre seguridad de IA.",
+      "descEn": "Our main channel for event announcements and AI safety discussion.",
+      "ext": "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
     },
     {
       "accent": "is-coral",
-      "titleEs": "Investigadores e ingenieros",
-      "titleEn": "Researchers and engineers",
-      "descEs": "Tienes formación técnica y quieres contribuir.",
-      "descEn": "You have a technical background and want to contribute.",
-      "actions": [
-        { "labelEs": "Participa en el hackathon", "labelEn": "Join the hackathon", "path": "/hackathon/" },
-        { "labelEs": "Únete a un grupo técnico", "labelEn": "Join a technical group", "anchor": "#grupos" }
-      ]
+      "titleEs": "Asiste a un evento",
+      "titleEn": "Attend an event",
+      "descEs": "Charlas, paneles y encuentros en Bogotá y virtuales sobre seguridad de IA.",
+      "descEn": "Talks, panels, and meetups in Bogotá and online on AI safety.",
+      "path": "/eventos/"
     },
     {
       "accent": "is-blue",
-      "titleEs": "Decisores de política",
-      "titleEn": "Policymakers",
-      "descEs": "Trabajas en política pública o regulación.",
-      "descEn": "You work in public policy or regulation.",
-      "actions": [
-        { "labelEs": "Conecta con nosotros", "labelEn": "Connect with us", "path": "/contacto/" },
-        { "labelEs": "Consulta los recursos", "labelEn": "Read the resources", "path": "/recursos/" }
-      ]
+      "titleEs": "Únete a un grupo de discusión",
+      "titleEn": "Join a discussion group",
+      "descEs": "Grupos pequeños que estudian seguridad de IA semanalmente, con currículum guiado.",
+      "descEn": "Small groups studying AI safety each week with a guided curriculum.",
+      "anchor": "#grupos"
     },
     {
       "accent": "is-yellow",
-      "titleEs": "Financiadores y aliados",
-      "titleEn": "Funders and partners",
-      "descEs": "Quieres apoyar el ecosistema de seguridad de IA en Colombia.",
-      "descEn": "You want to support the AI safety ecosystem in Colombia.",
-      "actions": [
-        { "labelEs": "Contáctanos para aliarnos", "labelEn": "Contact us about partnerships", "path": "/contacto/" },
-        { "labelEs": "Apoya el hackathon", "labelEn": "Support the hackathon", "path": "/hackathon/" }
-      ]
+      "titleEs": "Participa en el hackathon",
+      "titleEn": "Join the hackathon",
+      "descEs": "Construye un proyecto de seguridad de IA en un fin de semana con la comunidad global.",
+      "descEn": "Build an AI safety project over a weekend with the global community.",
+      "path": "/hackathon/"
+    },
+    {
+      "accent": "is-green",
+      "titleEs": "Explora los recursos",
+      "titleEn": "Explore the resources",
+      "descEs": "Videos, lecturas, podcasts, libros y cursos seleccionados para entender el campo.",
+      "descEn": "Curated videos, readings, podcasts, books, and courses for understanding the field.",
+      "path": "/recursos/"
+    },
+    {
+      "accent": "is-coral",
+      "titleEs": "Escríbenos",
+      "titleEn": "Reach out",
+      "descEs": "¿Trabajas en política, quieres financiar o aliarte? Cuéntanos y nos ponemos en contacto.",
+      "descEn": "Work in policy, want to fund or partner? Tell us and we'll get in touch.",
+      "path": "/contacto/"
     }
   ]
 }
