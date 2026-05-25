@@ -375,10 +375,8 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
 ];
 ---
 
-<section class="section res-featured" aria-labelledby="res-featured-title">
+<section class="section res-featured">
   <div class="container">
-    <h2 class="section-title" id="res-featured-title">{t(locale, 'resources.featured.title')}</h2>
-
     {featuredGroups.map((group) => (
       <div class="kind-block">
         <h3 class="kind-label">{group.label}</h3>

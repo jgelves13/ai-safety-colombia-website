@@ -57,12 +57,6 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
 
 <section class:list={['section', { alt: embedded }]} id={embedded ? 'grupos' : undefined}>
   <div class="container">
-    {embedded && (
-      <header class="groups-head">
-        <h2 class="section-title">{t(locale, 'programs.hero.title')}</h2>
-        <p class="section-subtitle">{t(locale, 'programs.hero.subtitle')}</p>
-      </header>
-    )}
     <p class="courses-note">{t(locale, 'programs.bluedotNote')}</p>
 
     <div class="courses-grid">
