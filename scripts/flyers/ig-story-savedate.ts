@@ -1,46 +1,41 @@
-import { render, html, BRAND } from './lib';
+import { render, html, BRAND, hostsRow, latAmOutline } from './lib';
 
 export default async function () {
   const W = 1080;
   const H = 1920;
 
-  const markup = html`
-    <div style="display:flex;flex-direction:column;width:${W}px;height:${H}px;background:${BRAND.cream};font-family:Inter">
+  const outline = latAmOutline({ stroke: BRAND.forest, strokeWidth: 5, width: 480, height: 720 });
 
-      <div style="display:flex;height:480px;width:${W}px"></div>
+  const source = `
+    <div style="display:flex;width:${W}px;height:${H}px;background:${BRAND.cream};font-family:Inter;position:relative">
 
-      <div style="display:flex;flex-direction:column;align-items:center;padding:0 80px;gap:36px">
+      <div style="display:flex;flex-direction:column;width:${W}px;height:${H}px;padding:200px 96px 160px 96px;justify-content:space-between;align-items:flex-start">
+
         <div style="display:flex;align-items:center;gap:14px">
-          <div style="display:flex;width:14px;height:14px;border-radius:9999px;background:${BRAND.coral}"></div>
-          <div style="display:flex;font-family:JetBrains Mono;font-size:24px;letter-spacing:0.18em;text-transform:uppercase;color:${BRAND.coral}">Save the date</div>
+          <div style="display:flex;width:16px;height:16px;border-radius:9999px;background:${BRAND.coral}"></div>
+          <div style="display:flex;font-family:JetBrains Mono;font-size:26px;letter-spacing:0.22em;text-transform:uppercase;color:${BRAND.coral}">Hackathon</div>
         </div>
 
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
-          <div style="display:flex;font-family:Bricolage Grotesque;font-weight:800;font-size:260px;line-height:0.9;letter-spacing:-0.03em;color:${BRAND.forest}">19–21</div>
-          <div style="display:flex;font-family:Bricolage Grotesque;font-weight:700;font-size:88px;line-height:1;color:${BRAND.forest}">JUN 2026</div>
-        </div>
-
-        <div style="display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:14px">
-          <div style="display:flex;font-family:Bricolage Grotesque;font-weight:700;font-size:52px;line-height:1.15;color:${BRAND.forest};text-align:center;max-width:880px">Global South AI Safety Hackathon</div>
-          <div style="display:flex;align-items:center;gap:10px;padding:10px 22px;border-radius:9999px;background:${BRAND.forest}">
-            <div style="display:flex;width:10px;height:10px;border-radius:9999px;background:${BRAND.coral}"></div>
-            <div style="display:flex;font-family:JetBrains Mono;font-size:22px;letter-spacing:0.18em;text-transform:uppercase;color:${BRAND.cream}">Hub Bogotá</div>
+        <div style="display:flex;flex-direction:column;gap:42px">
+          <div style="display:flex;font-family:Bricolage Grotesque;font-weight:700;font-size:96px;line-height:0.98;letter-spacing:-0.02em;color:${BRAND.forest};max-width:880px">Global South AI Safety Hackathon</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;font-family:Bricolage Grotesque;font-weight:800;font-size:200px;line-height:0.92;letter-spacing:-0.03em;color:${BRAND.forest}">19–21</div>
+            <div style="display:flex;font-family:Bricolage Grotesque;font-weight:700;font-size:96px;line-height:1;color:${BRAND.forest}">JUN 2026</div>
           </div>
         </div>
+
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <div style="display:flex;font-family:Inter;font-weight:700;font-size:34px;color:${BRAND.forest}">Hub Bogotá + remoto</div>
+          ${hostsRow({ color: BRAND.ink2, fontSize: 22 })}
+        </div>
+
       </div>
 
-      <div style="display:flex;flex-direction:column;flex-grow:1;justify-content:flex-end;padding:0 80px 100px 80px;gap:30px">
-        <div style="display:flex;flex-direction:column;gap:12px;padding:36px 40px;border-radius:24px;background:${BRAND.forest}">
-          <div style="display:flex;font-family:JetBrains Mono;font-size:20px;letter-spacing:0.18em;text-transform:uppercase;color:${BRAND.coral}">Inscríbete</div>
-          <div style="display:flex;font-family:Bricolage Grotesque;font-weight:700;font-size:42px;color:${BRAND.cream}">apartresearch.com</div>
-          <div style="display:flex;font-family:Inter;font-weight:500;font-size:22px;color:${BRAND.cream};opacity:0.85">Información y guía en aisafetycolombia.org/hackathon</div>
-        </div>
-        <div style="display:flex;justify-content:center;font-family:JetBrains Mono;font-size:20px;letter-spacing:0.22em;text-transform:uppercase;color:${BRAND.ink2}">AI Safety Colombia · 2026</div>
-      </div>
+      <div style="display:flex;position:absolute;top:200px;right:60px;opacity:0.14">${outline}</div>
 
     </div>
   `;
 
-  const png = await render(markup, W, H);
+  const png = await render(html(source), W, H);
   return { filename: 'aisc-ig-story-hackathon-2026-06-savedate-es.png', png };
 }

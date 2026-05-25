@@ -21,8 +21,10 @@ Outputs land in `scripts/flyers/dist/` (gitignored, regenerable). Each render lo
 | `ig-story-savedate.ts` | IG story, 1080×1920, ES — save-the-date. |
 | `li-single-announce.ts` | LinkedIn single, 1200×627 — renders ES + EN from one template. |
 | `wa-status-announce.ts` | WhatsApp status, 1080×1920, ES — community-framed (per voice rules). |
-| `print-a4-poster.ts` | A4 poster, 2480×3508 @ 300 dpi, ES — QR + full track grid. |
+| `ig-feed-judges.ts` | IG feed, 1080×1080, ES — text-only credibility card with 5 confirmed judges. |
+| `print-a4-poster.ts` | A4 poster, 2480×3508 @ 300 dpi, ES — QR + four-track manifesto + judges row. |
 | `render-all.ts` | Runner. Awaits all templates in parallel, writes to `dist/`. |
+| `captions/hackathon-2026-06.md` | ES + EN paste-anywhere captions for 7 assets (poster has none). |
 
 ## Add a new template
 
@@ -40,6 +42,14 @@ These already live in the templates but matter when editing:
 - **Don't `${arr.map(html\`...\`)}` inline.** `satori-html` coerces tagged fragments to `[object Object]` when interpolated. Repeating elements are written inline, or built as plain strings and passed to `html(source)` as a function call (see `ig-feed-tracks.ts`, `print-a4-poster.ts`).
 - **Tagged template escapes interpolated values as text.** Use the function form `html(source)` when interpolating raw HTML, the tagged form ``html`...` `` only when interpolating safe text.
 - **Fonts use the `latin-NNN-normal.woff` subset.** Not `latin-ext` (no ASCII). Spanish accents render correctly with the `latin` subset.
+
+## AISSA caption pattern
+
+After the W-4 review, every campaign in this directory follows the AISSA Cape Town hub pattern: **the image carries brand and date, the caption carries substance.** See `brand/MARKETING.md` §6.5.
+
+Each PNG holds at most: kicker, title, dates, hub line, hosts row, one decorative motif. Body text on the image stays under ~20 words. Anything heavier (hook, project explorations, what Apart brings, judges, CTA) lives in `captions/<campaign>.md` as a single file with one section per asset, ES + EN paired. Link strategy is left blank per asset (`[link]`) so Jose fills the right URL per channel at copy-paste time: link-in-bio for IG, full URL for LinkedIn/WhatsApp, link sticker for stories.
+
+The pattern source plus phrasing references for the current hackathon campaign live in `.research/PATTERNS.md` (gitignored, regenerable via Exa API; see `~/.claude/projects/C--Users-joseg/memory/api_keys.md`).
 
 ## Voice rules (enforced by hand for now)
 

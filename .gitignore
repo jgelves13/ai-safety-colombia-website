@@ -16,3 +16,6 @@ src/pages/preview/
 
 # Flyer renders (regenerable via `pnpm flyers`)
 scripts/flyers/dist/
+
+# Flyer marketing research scratch (Exa exports, regenerable)
+scripts/flyers/.research/

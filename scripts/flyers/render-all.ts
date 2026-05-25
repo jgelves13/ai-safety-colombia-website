@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 import igFeedAnnounce from './ig-feed-announce';
 import igFeedTracks from './ig-feed-tracks';
+import igFeedJudges from './ig-feed-judges';
 import igStorySavedate from './ig-story-savedate';
 import liSingleAnnounce from './li-single-announce';
 import waStatusAnnounce from './wa-status-announce';
@@ -37,6 +38,7 @@ async function main() {
   const tasks: Promise<RenderResult>[] = [
     igFeedAnnounce(),
     igFeedTracks(),
+    igFeedJudges(),
     igStorySavedate(),
     liSingleAnnounce(),
     waStatusAnnounce(),

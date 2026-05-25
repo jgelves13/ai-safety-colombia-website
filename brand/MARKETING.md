@@ -140,12 +140,13 @@ npm run flyers
 
 Outputs land in `scripts/flyers/dist/` (gitignored, regenerable). One TypeScript file per template, one shared module (`lib.ts`) with `BRAND` palette, font loader, hackathon data, and QR-data-URL helper. Copy edits become diffs; assets stay token-aligned.
 
-W-4 produces seven PNGs from `scripts/flyers/`:
+W-4 produces eight PNGs from `scripts/flyers/`:
 
 | File | Dimensions | Locale |
 |---|---|---|
 | `aisc-ig-feed-hackathon-2026-06-announce-es.png` | 1080×1080 | ES |
 | `aisc-ig-feed-hackathon-2026-06-tracks-es.png` | 1080×1080 | ES |
+| `aisc-ig-feed-hackathon-2026-06-judges-es.png` | 1080×1080 | ES |
 | `aisc-ig-story-hackathon-2026-06-savedate-es.png` | 1080×1920 | ES |
 | `aisc-li-single-hackathon-2026-06-announce-es.png` | 1200×627 | ES |
 | `aisc-li-single-hackathon-2026-06-announce-en.png` | 1200×627 | EN |
@@ -153,6 +154,14 @@ W-4 produces seven PNGs from `scripts/flyers/`:
 | `aisc-print-a4-hackathon-2026-06-poster-es.png` | 2480×3508 @ 300 dpi | ES |
 
 Workflow: render → spot-check in viewer → drag into `G:\Mon Drive\AI Safety Colombia\marketing\hackathon-2026-06\source-renders\` → post manually. The A4 poster is RGB; for CMYK print see `scripts/flyers/README.md`.
+
+### 6.5 AISSA caption pattern
+
+Every campaign in `scripts/flyers/` follows the AISSA Cape Town hub pattern: **the image carries brand and date, the caption carries substance.** Forced by the W-4 launch review: the original assets shipped to master communicated nothing beyond title and URL because every channel was treated as a self-contained poster instead of a feed scroll-stopper plus its caption.
+
+Each PNG holds at most: kicker, title, dates, hub line, hosts row, one decorative motif. Body text on the image stays under ~20 words; ~40% of the canvas is negative space. Anything heavier (hook, project explorations, what Apart brings, judges, CTA) lives in `scripts/flyers/captions/<campaign>.md` as a single file with one section per asset, ES + EN paired. Link strategy is left blank per asset (`[link]`) so the channel owner fills the right URL per post: link-in-bio for IG, full URL for LinkedIn/WhatsApp, link sticker for stories. The A4 poster has no caption channel; substance lives on the printed surface.
+
+Hook follows Apart Research's framing: "AI research that makes systems safe is concentrated in a handful of countries. This weekend is for that." Never invert into savior framing (see `BRAND.md` §6.6). For the current campaign, the reference patterns and lifted phrasing live in `scripts/flyers/.research/PATTERNS.md`.
 
 ---
 
