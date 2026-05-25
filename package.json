@@ -9,12 +9,21 @@
     "check": "astro check"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["sharp", "esbuild"]
+    "onlyBuiltDependencies": [
+      "sharp",
+      "esbuild"
+    ]
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/sitemap": "^3.3.0",
+    "@fontsource/bricolage-grotesque": "^5.2.10",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@resvg/resvg-js": "^2.6.2",
     "astro": "^5.8.0",
+    "satori": "^0.26.0",
+    "satori-html": "^0.3.2",
     "sharp": "^0.34.5",
     "typescript": "^6.0.3"
   }

@@ -197,18 +197,19 @@ marketing/
 
 ---
 
-## 10. Open Graph Migration
+## 10. Open Graph
 
-Current state (May 2026): all 22 site routes share the static `public/og-image.png` fallback. Next step (tracked in [`brand/`](./) backlog and the plan file): wire up Satori endpoints under `/og/*.png.ts` so every route renders a contextual image.
+Per-route share previews are generated at build time by Satori. The pipeline:
 
-Done means:
-- `/og/default.png` exists and returns a 1200×630 PNG matching this brand.
-- `/og/hackathon.png` renders dates + tracks pulled from `hackathon.json`.
-- `/og/event/[slug].png` renders per event from `events.json`.
-- `src/layouts/BaseLayout.astro` accepts an `ogImage` prop with `/og/default.png` as fallback.
-- Pasting `https://aisafetycolombia.org/hackathon/` into WhatsApp Web shows the dynamic hackathon image.
+- `src/lib/og.ts` — loads Bricolage / Inter / JetBrains Mono WOFFs, exposes `renderOg(html\`...\`)` returning a 1200×630 PNG.
+- `src/pages/og/default.png.ts` — site-wide fallback (cream + forest + tagline).
+- `src/pages/og/hackathon.png.ts` — dates + four track pills (forest / coral / sage / yellow).
+- `src/pages/og/event/[slug].png.ts` — per event from `src/data/events.json`; type pill colored by event type.
+- `src/layouts/BaseLayout.astro` — accepts `ogImage` prop, defaults to `/og/default.png`, writes both `og:image` and `twitter:image`.
 
-Once shipped, `scripts/og/og-image.html` (the current manual screenshot workflow) is deprecated.
+To add a contextual image for a new route: create an endpoint under `src/pages/og/`, then pass `ogImage="/og/your-route.png"` to `<BaseLayout>` on the corresponding `.astro` page.
+
+The legacy manual workflow under `scripts/og/` (HTML → headless screenshot → `public/og-image.png`) is deprecated; see [`scripts/og/README.md`](../scripts/og/README.md).
 
 ---
 
