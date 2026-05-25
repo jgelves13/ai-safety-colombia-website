@@ -145,8 +145,7 @@
     "items": [
       { "es": "Espacio de trabajo presencial disponible 24/7 durante los tres días del evento.", "en": "In-person workspace available 24/7 throughout the three days of the event." },
       { "es": "Alimentación vegana incluida durante todo el fin de semana.", "en": "Vegan meals included throughout the entire weekend." },
-      { "es": "Mentorías y sesiones presenciales con investigadores, jueces y expertos del sector.", "en": "In-person mentoring and sessions with researchers, judges, and sector experts." },
-      { "es": "Charlas especializadas sobre seguridad y gobernanza de la IA.", "en": "Specialized talks on AI safety and governance." },
+      { "es": "Acceso directo a investigadores, jueces y expertos mediante mentorías, charlas y sesiones de preguntas y respuestas, en persona.", "en": "Direct access to researchers, judges, and experts through in-person mentoring, talks, and Q&A sessions." },
       { "es": "Apoyo limitado para transporte y alojamiento de participantes seleccionados que viajen desde otras ciudades de Colombia.", "en": "Limited travel and accommodation support for selected participants coming from other Colombian cities." }
     ],
     "onlineCloseEs": "Quienes participen en línea podrán acceder a mentorías, charlas y espacios colaborativos a través de Discord y Zoom.",
