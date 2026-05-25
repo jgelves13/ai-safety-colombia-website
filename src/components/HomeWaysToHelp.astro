@@ -32,196 +32,160 @@ const resolve = (a: Action) => {
 
 <section class="section ways-section" aria-labelledby="ways-title">
   <div class="container">
-    <p class="ways-kicker">{es ? 'Cómo participar' : 'Get involved'}</p>
     <h2 class="section-title" id="ways-title">{t(locale, 'home.ways.title')}</h2>
     <p class="section-subtitle">{t(locale, 'home.ways.subtitle')}</p>
 
-    <ol class="ways-list">
+    <ul class="ways-grid">
       {(data.actions as Action[]).map((a, i) => {
         const { href, external } = resolve(a);
         const num = String(i + 1).padStart(2, '0');
         return (
-          <li class:list={['way-row', a.accent]}>
-            <span class="way-bar" aria-hidden="true"></span>
-            <span class="way-num">{num}</span>
-            <div class="way-body">
-              <h3 class="way-label">
-                <a
-                  href={href}
-                  target={external ? '_blank' : undefined}
-                  rel={external ? 'noopener noreferrer' : undefined}
-                >
-                  {es ? a.labelEs : a.labelEn}
-                </a>
-              </h3>
-              <p class="way-desc">{es ? a.descEs : a.descEn}</p>
-              <span class="way-meta">{es ? a.metaEs : a.metaEn}</span>
-            </div>
+          <li>
             <a
-              class="way-arrow"
+              class:list={['way-card', a.accent]}
               href={href}
               target={external ? '_blank' : undefined}
               rel={external ? 'noopener noreferrer' : undefined}
-              aria-label={es ? a.labelEs : a.labelEn}
             >
-              &rarr;
+              <span class="way-num" aria-hidden="true">{num}</span>
+              <h3 class="way-label">{es ? a.labelEs : a.labelEn}</h3>
+              <p class="way-desc">{es ? a.descEs : a.descEn}</p>
+              <div class="way-foot">
+                <span class="way-meta">{es ? a.metaEs : a.metaEn}</span>
+                <span class="way-arrow" aria-hidden="true">&rarr;</span>
+              </div>
             </a>
           </li>
         );
       })}
-    </ol>
+    </ul>
   </div>
 </section>
 
 <style>
-  .ways-kicker {
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: var(--accent-vermillion);
-    margin-bottom: 0.875rem;
-  }
-
   .ways-section .section-subtitle {
     margin-bottom: 2.75rem;
   }
 
-  .ways-list {
+  .ways-grid {
     list-style: none;
     margin: 0;
     padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .way-card {
+    position: relative;
     display: flex;
     flex-direction: column;
+    background: var(--card-surface);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 2rem 2rem 1.75rem;
+    color: var(--text-primary);
+    overflow: hidden;
+    transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
   }
 
-  .way-row {
-    display: grid;
-    grid-template-columns: 4px 4rem 1fr auto;
-    align-items: flex-start;
-    gap: 1.5rem;
-    padding: 1.75rem 0;
-    border-bottom: 1px solid var(--hairline);
+  .way-card:hover {
+    border-color: var(--text-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 32px -22px rgba(31, 26, 18, 0.22);
   }
 
-  .way-row:first-child {
-    padding-top: 0.25rem;
-  }
-
-  .way-row:last-child {
-    border-bottom: 0;
-  }
-
-  .way-bar {
-    align-self: stretch;
-    border-radius: 999px;
-  }
-
-  .is-coral .way-bar  { background: var(--accent-vermillion); }
-  .is-blue  .way-bar  { background: var(--accent-sage); }
-  .is-green .way-bar  { background: var(--accent-forest); }
-  .is-yellow .way-bar { background: var(--accent-yellow); }
-
+  /* Big accent numeral — the WhatWeDo signature move, recoloured per card */
   .way-num {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
+    font-family: var(--font-display);
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.25rem;
     color: var(--accent-forest);
-    padding-top: 0.55rem;
   }
 
-  .way-body {
-    min-width: 0;
-  }
+  .is-coral  .way-num { color: var(--accent-vermillion); }
+  .is-blue   .way-num { color: var(--accent-sage); }
+  .is-green  .way-num { color: var(--accent-forest); }
+  .is-yellow .way-num { color: var(--accent-yellow); }
 
   .way-label {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: 1.375rem;
     font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.15;
+    line-height: 1.18;
     color: var(--text-primary);
-    margin: 0 0 0.5rem;
-  }
-
-  .way-label a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.15s ease;
-  }
-
-  .way-row:hover .way-label a {
-    color: var(--accent-forest);
+    margin: 0 0 0.625rem;
   }
 
   .way-desc {
     font-size: 0.9375rem;
     color: var(--text-secondary);
     line-height: 1.55;
-    max-width: 60ch;
-    margin: 0 0 0.625rem;
+    margin: 0 0 1.5rem;
+    flex: 1;
+  }
+
+  .way-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--hairline);
   }
 
   .way-meta {
-    display: inline-block;
     font-family: var(--font-mono);
     font-size: 0.6875rem;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-secondary);
   }
 
   .way-arrow {
-    align-self: center;
-    width: 3rem;
-    height: 3rem;
+    width: 2.25rem;
+    height: 2.25rem;
     border-radius: 999px;
     border: 1px solid var(--border);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     color: var(--accent-forest);
-    font-size: 1.25rem;
-    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    font-size: 1.05rem;
+    flex: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
   }
 
-  .way-row:hover .way-arrow {
+  .way-card:hover .way-arrow {
     background: var(--accent-forest);
     border-color: var(--accent-forest);
     color: var(--bg-elevated);
-    transform: translateX(3px);
+    transform: translateX(2px);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .way-label a,
+    .way-card,
+    .way-card:hover,
     .way-arrow,
-    .way-row:hover .way-arrow {
+    .way-card:hover .way-arrow {
       transition: none;
       transform: none;
+      box-shadow: none;
     }
   }
 
-  @media (max-width: 760px) {
-    .way-row {
-      grid-template-columns: 4px 1fr auto;
-      gap: 1.125rem;
-      padding: 1.5rem 0;
-    }
+  @media (max-width: 900px) {
+    .ways-grid { grid-template-columns: repeat(2, 1fr); }
+  }
 
-    .way-num {
-      display: none;
-    }
+  @media (max-width: 560px) {
+    .ways-grid { grid-template-columns: 1fr; }
 
-    .way-label {
-      font-size: 1.25rem;
-    }
-
-    .way-arrow {
-      width: 2.5rem;
-      height: 2.5rem;
-    }
+    .way-num { font-size: 2.75rem; }
   }
 </style>
