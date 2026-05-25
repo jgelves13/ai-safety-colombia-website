@@ -21,7 +21,7 @@ const baked = import.meta.glob<ImageMetadata>('../assets/resources-baked/*', {
   import: 'default',
 });
 
-type Kind = 'video' | 'course' | 'read' | 'podcast' | 'book';
+type Kind = 'video' | 'channel' | 'course' | 'read' | 'podcast' | 'book';
 type Accent = 'is-coral' | 'is-blue' | 'is-green' | 'is-yellow';
 
 interface FeatItem {
@@ -66,7 +66,7 @@ const introRead: FeatItem = {
 
 const videos: FeatItem[] = [
   {
-    kind: 'video',
+    kind: 'channel',
     accent: 'is-coral',
     title: es ? 'Canal de Robert Miles' : 'Robert Miles channel',
     source: 'Robert Miles AI Safety',
@@ -79,7 +79,7 @@ const videos: FeatItem[] = [
     thumb: baked['../assets/resources-baked/robert-miles.png'],
   },
   {
-    kind: 'video',
+    kind: 'channel',
     accent: 'is-coral',
     title: 'Rational Animations',
     source: 'YouTube',
@@ -92,7 +92,7 @@ const videos: FeatItem[] = [
     thumb: baked['../assets/resources-baked/rational-animations.png'],
   },
   {
-    kind: 'video',
+    kind: 'channel',
     accent: 'is-coral',
     title: 'Doom Debates',
     source: 'Liron Shapira',
@@ -105,7 +105,7 @@ const videos: FeatItem[] = [
     thumb: baked['../assets/resources-baked/doom-debates.png'],
   },
   {
-    kind: 'video',
+    kind: 'channel',
     accent: 'is-coral',
     title: 'Machine Learning Street Talk',
     source: 'MLST',
