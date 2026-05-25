@@ -3,8 +3,8 @@
     {
       "labelEs": "Únete al grupo de WhatsApp",
       "labelEn": "Join the WhatsApp group",
-      "descEs": "Conversación diaria sobre seguridad de IA: papers, eventos y oportunidades en la comunidad.",
-      "descEn": "Daily conversation on AI safety: papers, events and opportunities across the community.",
+      "descEs": "Espacio abierto de la comunidad para compartir papers, eventos y oportunidades en seguridad de IA.",
+      "descEn": "Open community space to share papers, events and opportunities in AI safety.",
       "metaEs": "Abierto · sin requisitos",
       "metaEn": "Open · no requirements",
       "accent": "is-coral",
@@ -45,8 +45,8 @@
       "labelEn": "Join a discussion group",
       "descEs": "Lectura guiada entre pares: fundamentos, AI alignment técnico y gobernanza de IA.",
       "descEn": "Peer-led reading: fundamentals, technical AI alignment and AI governance.",
-      "metaEs": "Cohortes de 6 a 8 semanas",
-      "metaEn": "6 to 8 week cohorts",
+      "metaEs": "Grupos pequeños, ritmo semanal",
+      "metaEn": "Small groups, weekly pace",
       "accent": "is-coral",
       "path": "/involucrate/"
     },
@@ -55,8 +55,8 @@
       "labelEn": "Reach out",
       "descEs": "¿Tienes una idea, pregunta o quieres colaborar con el capítulo? Escríbenos directamente.",
       "descEn": "Have an idea, a question, or want to collaborate with the chapter? Write to us directly.",
-      "metaEs": "Respondemos en pocos días",
-      "metaEn": "We reply within a few days",
+      "metaEs": "Respondemos en pocas horas",
+      "metaEn": "We reply within a few hours",
       "accent": "is-blue",
       "path": "/contacto/"
     }
