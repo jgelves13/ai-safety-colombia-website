@@ -307,10 +307,10 @@ const featuredGroups: {
   items: (FeatItem & { kindLabel: string; cta: string })[];
 }[] = [
   { label: t(locale, 'resources.featured.videos'), items: videos },
-  { label: t(locale, 'resources.featured.courses'), items: courses },
   { label: t(locale, 'resources.featured.readings'), items: readings },
   { label: t(locale, 'resources.featured.podcasts'), items: podcasts },
   { label: t(locale, 'resources.featured.books'), items: books },
+  { label: t(locale, 'resources.featured.courses'), items: courses },
 ].map((g) => ({
   label: g.label,
   items: g.items.map((i) => ({
