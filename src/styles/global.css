@@ -128,7 +128,6 @@ img {
 .section-subtitle {
   color: var(--text-secondary);
   font-size: 1.0625rem;
-  max-width: 60ch;
   line-height: 1.6;
 }
 
@@ -342,7 +341,6 @@ img {
 .editorial-row p {
   font-size: 0.9375rem;
   color: var(--text-secondary);
-  max-width: 60ch;
   line-height: 1.6;
 }
 
