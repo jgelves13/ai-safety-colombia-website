@@ -132,10 +132,12 @@
     "bogotaHubTitleEn": "Bogotá Hub",
     "onlineTitleEs": "Sur Global",
     "onlineTitleEn": "Global South",
-    "bogotaTagEs": "Cupos limitados · indica tu interés al inscribirte en Apart Research; recibirás un formulario adicional de selección.",
-    "bogotaTagEn": "Limited spots · indicate your interest when registering on Apart Research; you will receive an additional selection form.",
-    "virtualTagEs": "Abierto por nacionalidad o residencia en el Sur Global.",
-    "virtualTagEn": "Open by nationality or residence in the Global South.",
+    "bogotaTagEs": "Hub Bogotá · cupos limitados",
+    "bogotaTagEn": "Bogotá Hub · limited spots",
+    "bogotaApplyEs": "Al inscribirte en Apart Research, indica tu interés en la sede de Bogotá; recibirás un formulario de selección adicional.",
+    "bogotaApplyEn": "When registering on Apart Research, indicate your interest in the Bogotá venue; you will receive an additional selection form.",
+    "virtualTagEs": "Abierto a participantes del Sur Global.",
+    "virtualTagEn": "Open to participants from the Global South.",
     "items": [
       { "es": "Alimentación vegana durante todo el fin de semana", "en": "Vegan meals throughout the entire weekend" },
       { "es": "Mentorías y conversaciones presenciales con investigadores, jueces y profesionales del área", "en": "In-person mentorships and conversations with researchers, judges, and professionals in the field" },
@@ -145,8 +147,10 @@
     "onlineCloseEs": "Quienes participen en línea podrán acceder a mentorías, charlas y espacios colaborativos a través de Discord y Zoom.",
     "onlineCloseEn": "Those participating online will have access to mentorships, talks, and collaborative spaces through Discord and Zoom.",
     "onlineItems": [
-      { "es": "Mentorías, charlas y espacios colaborativos", "en": "Mentorships, talks, and collaborative spaces" },
-      { "es": "Canales en Discord y sesiones de Zoom", "en": "Discord channels and Zoom sessions" }
+      { "es": "Mentorías individuales con investigadores y jueces", "en": "Individual mentoring with researchers and judges" },
+      { "es": "Charlas técnicas y sesiones de preguntas en vivo", "en": "Technical talks and live Q&A sessions" },
+      { "es": "Canales en Discord y sesiones sincrónicas en Zoom", "en": "Discord channels and synchronous Zoom sessions" },
+      { "es": "Acceso completo a retos, recursos y entregas del hackathon", "en": "Full access to all challenges, resources, and deliverables" }
     ]
   },
   "schedule": [
