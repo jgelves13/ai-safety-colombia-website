@@ -8,7 +8,7 @@ export const ui = {
     'nav.events': 'Eventos',
     'nav.programs': 'Grupos de discusión',
     'nav.resources': 'Recursos',
-    'nav.get-involved': 'Involúcrate',
+    'nav.get-involved': 'Grupos de discusión',
     'nav.contact': 'Contacto',
     'nav.cta': 'Únete',
     'hero.title': 'AI Safety Colombia',
@@ -117,9 +117,9 @@ export const ui = {
     'home.ways.title': 'Cómo participar',
     'home.ways.subtitle':
       'Para cualquier persona interesada en seguridad de IA, sin importar tu perfil o experiencia.',
-    'getInvolved.hero.title': 'Involúcrate',
+    'getInvolved.hero.title': 'Grupos de discusión',
     'getInvolved.hero.subtitle':
-      'Únete a un grupo de discusión: lectura guiada entre pares sobre seguridad de IA, desde los fundamentos hasta temas técnicos y de gobernanza.',
+      'Lectura guiada entre pares sobre seguridad de IA, desde los fundamentos hasta temas técnicos y de gobernanza.',
     'getInvolved.ctaKicker': 'Da el primer paso',
     'getInvolved.ctaTitle': '¿No sabes por dónde empezar?',
     'getInvolved.ctaSub': 'Únete a la comunidad y te orientamos.',
@@ -248,7 +248,7 @@ export const ui = {
     'nav.events': 'Events',
     'nav.programs': 'Discussion groups',
     'nav.resources': 'Resources',
-    'nav.get-involved': 'Get Involved',
+    'nav.get-involved': 'Discussion groups',
     'nav.contact': 'Contact',
     'nav.cta': 'Join',
     'hero.title': 'AI Safety Colombia',
@@ -357,9 +357,9 @@ export const ui = {
     'home.ways.title': 'How to get involved',
     'home.ways.subtitle':
       'For anyone interested in AI safety, regardless of background or experience.',
-    'getInvolved.hero.title': 'Get Involved',
+    'getInvolved.hero.title': 'Discussion groups',
     'getInvolved.hero.subtitle':
-      'Join a discussion group: peer-led reading on AI safety, from fundamentals to technical and governance topics.',
+      'Peer-led reading on AI safety, from fundamentals to technical and governance topics.',
     'getInvolved.ctaKicker': 'Take the first step',
     'getInvolved.ctaTitle': 'Not sure where to start?',
     'getInvolved.ctaSub': 'Join the community and we will guide you.',
