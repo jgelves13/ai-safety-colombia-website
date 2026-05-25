@@ -13,22 +13,22 @@ const es = locale === 'es';
 
 type Key = Parameters<typeof t>[1];
 
-const logos = import.meta.glob<ImageMetadata>('../assets/resources/*', {
+// Thumbnails are pre-baked to uniform 800x800 plates by
+// scripts/bake_resource_thumbs.py so every card carries identical
+// shape and treatment regardless of source aspect ratio.
+const baked = import.meta.glob<ImageMetadata>('../assets/resources-baked/*', {
   eager: true,
   import: 'default',
 });
 
-const learnThumbs = import.meta.glob<ImageMetadata>('../assets/learn/*', {
-  eager: true,
-  import: 'default',
-});
+const learnData2 = learnData.map((i) => ({
+  ...i,
+  bakedThumb: baked[`../assets/resources-baked/${i.thumb.replace(/\.jpg$/i, '.png')}`],
+}));
 
 // Featured cards: grouped by format (videos, courses, readings, podcasts,
 // books). Each card reuses the homepage "Empieza aquí" learn-card UI so
 // visitors hitting "See all resources" land on a continuous experience.
-// One unified thumbnail treatment: image with object-fit: contain over an
-// accent-tinted 16:9 tile, so wide hero screenshots, square brand marks,
-// and tall book covers all sit consistently inside the same canvas.
 type Kind = 'video' | 'course' | 'read' | 'podcast' | 'book';
 type Accent = 'is-coral' | 'is-blue' | 'is-green' | 'is-yellow';
 
@@ -44,7 +44,7 @@ interface FeatItem {
   thumb: ImageMetadata;
 }
 
-const fromLearn: FeatItem[] = learnData.map((i) => ({
+const fromLearn: FeatItem[] = learnData2.map((i) => ({
   kind: i.kind as Kind,
   accent: i.accent as Accent,
   title: es ? i.titleEs : i.titleEn,
@@ -53,7 +53,7 @@ const fromLearn: FeatItem[] = learnData.map((i) => ({
   duration: es ? i.durationEs : i.durationEn,
   meta: es ? i.metaEs : i.metaEn,
   url: i.url,
-  thumb: learnThumbs[`../assets/learn/${i.thumb}`],
+  thumb: i.bakedThumb,
 }));
 
 const introCourse = fromLearn.find((i) => i.kind === 'course')!;
@@ -71,7 +71,7 @@ const videos: FeatItem[] = [
     duration: es ? 'Canal · gratis' : 'Channel · free',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://www.youtube.com/@RobertMilesAI/videos',
-    thumb: logos['../assets/resources/robert-miles.png'],
+    thumb: baked['../assets/resources-baked/robert-miles.png'],
   },
   {
     kind: 'video',
@@ -84,7 +84,7 @@ const videos: FeatItem[] = [
     duration: es ? 'Canal · gratis' : 'Channel · free',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://www.youtube.com/@RationalAnimations',
-    thumb: logos['../assets/resources/rational-animations.png'],
+    thumb: baked['../assets/resources-baked/rational-animations.png'],
   },
 ];
 
@@ -101,7 +101,7 @@ const courses: FeatItem[] = [
     duration: es ? 'Curso corto · gratis' : 'Short course · free',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://deepmindsafetyresearch.medium.com/introducing-our-short-course-on-agi-safety-1072adb7912c',
-    thumb: logos['../assets/resources/deepmind.png'],
+    thumb: baked['../assets/resources-baked/deepmind.png'],
   },
   {
     kind: 'course',
@@ -114,7 +114,7 @@ const courses: FeatItem[] = [
     duration: es ? '5 semanas · gratis' : '5 weeks · free',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://www.arena.education/curriculum',
-    thumb: logos['../assets/resources/arena.png'],
+    thumb: baked['../assets/resources-baked/arena.png'],
   },
   {
     kind: 'course',
@@ -127,7 +127,7 @@ const courses: FeatItem[] = [
     duration: es ? 'Libro · curso · gratis' : 'Textbook · course · free',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://www.aisafetybook.com/',
-    thumb: logos['../assets/resources/cais.png'],
+    thumb: baked['../assets/resources-baked/cais.png'],
   },
 ];
 
@@ -144,7 +144,7 @@ const readings: FeatItem[] = [
     duration: es ? 'Secuencia' : 'Sequence',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://www.alignmentforum.org/s/mzgtmmTKKn5MuCzFJ',
-    thumb: logos['../assets/resources/alignment-forum.png'],
+    thumb: baked['../assets/resources-baked/alignment-forum.png'],
   },
   {
     kind: 'read',
@@ -157,7 +157,7 @@ const readings: FeatItem[] = [
     duration: es ? 'Artículo' : 'Paper',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://arxiv.org/abs/1606.06565',
-    thumb: logos['../assets/resources/arxiv.jpg'],
+    thumb: baked['../assets/resources-baked/arxiv.png'],
   },
   {
     kind: 'read',
@@ -170,7 +170,7 @@ const readings: FeatItem[] = [
     duration: es ? 'Artículo' : 'Paper',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://arxiv.org/abs/2307.03718',
-    thumb: logos['../assets/resources/arxiv.jpg'],
+    thumb: baked['../assets/resources-baked/arxiv.png'],
   },
   {
     kind: 'read',
@@ -183,7 +183,7 @@ const readings: FeatItem[] = [
     duration: es ? 'Ensayo' : 'Essay',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://www.anthropic.com/news/core-views-on-ai-safety',
-    thumb: logos['../assets/resources/anthropic-core-views.png'],
+    thumb: baked['../assets/resources-baked/anthropic-core-views.png'],
   },
 ];
 
@@ -199,7 +199,7 @@ const podcasts: FeatItem[] = [
     duration: es ? 'Podcast · gratis' : 'Podcast · free',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://axrp.net/',
-    thumb: logos['../assets/resources/axrp.jpg'],
+    thumb: baked['../assets/resources-baked/axrp.png'],
   },
   {
     kind: 'podcast',
@@ -212,7 +212,7 @@ const podcasts: FeatItem[] = [
     duration: es ? 'Podcast · gratis' : 'Podcast · free',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://80000hours.org/podcast/',
-    thumb: logos['../assets/resources/80k-podcast.jpg'],
+    thumb: baked['../assets/resources-baked/80k-podcast.png'],
   },
   {
     kind: 'podcast',
@@ -225,7 +225,7 @@ const podcasts: FeatItem[] = [
     duration: es ? 'Podcast · gratis' : 'Podcast · free',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://theinsideview.ai/',
-    thumb: logos['../assets/resources/inside-view.png'],
+    thumb: baked['../assets/resources-baked/inside-view.png'],
   },
 ];
 
@@ -241,7 +241,7 @@ const books: FeatItem[] = [
     duration: es ? 'Libro' : 'Book',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://brianchristian.org/the-alignment-problem/',
-    thumb: logos['../assets/resources/alignment-problem.png'],
+    thumb: baked['../assets/resources-baked/alignment-problem.png'],
   },
   {
     kind: 'book',
@@ -254,7 +254,7 @@ const books: FeatItem[] = [
     duration: es ? 'Libro' : 'Book',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://people.eecs.berkeley.edu/~russell/hc.html',
-    thumb: logos['../assets/resources/human-compatible.jpg'],
+    thumb: baked['../assets/resources-baked/human-compatible.png'],
   },
   {
     kind: 'book',
@@ -267,7 +267,7 @@ const books: FeatItem[] = [
     duration: es ? 'Libro' : 'Book',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://www.nickbostrom.com/superintelligence',
-    thumb: logos['../assets/resources/superintelligence.jpg'],
+    thumb: baked['../assets/resources-baked/superintelligence.png'],
   },
   {
     kind: 'book',
@@ -280,7 +280,7 @@ const books: FeatItem[] = [
     duration: es ? 'Libro' : 'Book',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://ifanyonebuildsit.com/',
-    thumb: logos['../assets/resources/if-anyone-builds-it.png'],
+    thumb: baked['../assets/resources-baked/if-anyone-builds-it.png'],
   },
 ];
 
@@ -477,21 +477,16 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
 
   .learn-card:hover { border-color: var(--text-primary); }
 
-  /* Unified thumbnail: every image is cropped to a square and fills the
-     tile with object-fit: cover, so logos, hero screenshots, podcast art,
-     and book covers all read as identical shapes regardless of their
-     source aspect ratio. */
+  /* Unified thumbnail: each image is pre-baked to an 800x800 plate with
+     its accent-tinted background and the source mark centered at a
+     consistent inner size, so every card has identical shape and
+     visual weight. The tile just renders the asset edge-to-edge. */
   .learn-thumb {
     position: relative;
     aspect-ratio: 1 / 1;
     border-bottom: 1px solid var(--border);
     overflow: hidden;
   }
-
-  .is-coral  .learn-thumb { background: rgba(229, 96, 77, 0.10); }
-  .is-blue   .learn-thumb { background: rgba(74, 132, 102, 0.10); }
-  .is-green  .learn-thumb { background: rgba(31, 77, 50, 0.08); }
-  .is-yellow .learn-thumb { background: rgba(212, 169, 56, 0.12); }
 
   .learn-img {
     display: block;
