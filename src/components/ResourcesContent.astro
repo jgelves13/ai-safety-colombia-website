@@ -497,6 +497,7 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
   }
 
   .learn-card {
+    position: relative;
     background: var(--card-surface);
     border: 1px solid var(--border);
     border-radius: 22px;
@@ -504,6 +505,7 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
     display: flex;
     flex-direction: column;
     transition: border-color 0.15s;
+    cursor: pointer;
   }
 
   .learn-card:hover { border-color: var(--text-primary); }
@@ -602,6 +604,13 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
     font-weight: 600;
     color: var(--accent-forest);
     transition: gap 0.2s;
+  }
+
+  .learn-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
   }
 
   .learn-link:hover {
