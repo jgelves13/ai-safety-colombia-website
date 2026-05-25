@@ -145,6 +145,7 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
             </li>
           ))}
         </ul>
+        <p class="hk-mode-footer">{es ? data.inPerson.bogotaApplyEs : data.inPerson.bogotaApplyEn}</p>
       </article>
 
       <article class="hk-mode is-blue">
@@ -164,11 +165,6 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
         </ul>
       </article>
     </div>
-
-    <p class="hk-mode-note">
-      <span class="hk-mode-note-ic" set:html={infoIcon} />
-      <span>{es ? data.inPerson.bogotaApplyEs : data.inPerson.bogotaApplyEn}</span>
-    </p>
 
     <p class="hk-attr" set:html={es ? data.organizerNoteEs : data.organizerNoteEn} />
   </div>
@@ -1240,27 +1236,20 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
   .hk-mode.is-coral .hk-mode-perk-ic { color: var(--accent-vermillion); }
   .hk-mode.is-blue  .hk-mode-perk-ic { color: var(--accent-sage); }
 
-  .hk-mode-note {
-    margin-top: 1rem;
-    display: flex;
-    gap: 0.5rem;
-    align-items: flex-start;
-    font-size: 0.875rem;
+  .hk-mode-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8125rem;
     color: var(--text-secondary);
     line-height: 1.5;
   }
 
-  .hk-mode-note-ic {
-    flex: none;
-    margin-top: 0.1rem;
-    display: flex;
-    color: var(--accent-forest);
-  }
-
-  .hk-mode-note-ic :global(svg) {
-    width: 14px;
-    height: 14px;
-    display: block;
+  .hk-attr {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
   }
 
   @media (max-width: 680px) {
