@@ -21,54 +21,40 @@ const resolve = (a: Action) => {
 
 <section class="section ways-section" aria-labelledby="ways-title">
   <div class="container">
-    <h2 class="section-title" id="ways-title">{t(locale, 'home.ways.title')}</h2>
-    <p class="section-subtitle">{t(locale, 'home.ways.subtitle')}</p>
-
-    <div class="ways-grid">
-      {data.audiences.map((aud) => (
-        <article class={`way-card ${aud.accent}`}>
-          <div class="way-bar"></div>
-          <div class="way-tx">
-            <h3 class="way-title">{es ? aud.titleEs : aud.titleEn}</h3>
-            <p class="way-desc">{es ? aud.descEs : aud.descEn}</p>
-            <ul class="way-actions">
-              {aud.actions.map((a) => {
-                const { href, external } = resolve(a as Action);
-                return (
-                  <li>
-                    <a
-                      class="way-action"
-                      href={href}
-                      target={external ? '_blank' : undefined}
-                      rel={external ? 'noopener noreferrer' : undefined}
-                    >
-                      <span>{es ? a.labelEs : a.labelEn}</span>
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </article>
-      ))}
-    </div>
+    <article class="way-card is-green">
+      <div class="way-bar"></div>
+      <div class="way-tx">
+        <h2 class="way-title" id="ways-title">{t(locale, 'home.ways.cardTitle')}</h2>
+        <p class="way-desc">{t(locale, 'home.ways.cardDesc')}</p>
+        <ul class="way-actions">
+          {(data.actions as Action[]).map((a) => {
+            const { href, external } = resolve(a);
+            return (
+              <li>
+                <a
+                  class="way-action"
+                  href={href}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noopener noreferrer' : undefined}
+                >
+                  <span>{es ? a.labelEs : a.labelEn}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </article>
   </div>
 </section>
 
 <style>
-  .ways-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-  }
-
   .way-card {
     display: flex;
-    gap: 1rem;
+    gap: 1.25rem;
     border: 1px solid var(--border);
     border-radius: 22px;
-    padding: 1.75rem;
+    padding: 2rem 2.25rem;
     background: var(--card-surface);
     transition: border-color 0.15s;
   }
@@ -84,10 +70,6 @@ const resolve = (a: Action) => {
     background: var(--accent-forest);
   }
 
-  .way-card.is-coral .way-bar { background: var(--accent-vermillion); }
-  .way-card.is-blue .way-bar { background: var(--accent-sage); }
-  .way-card.is-yellow .way-bar { background: var(--accent-yellow); }
-
   .way-tx {
     min-width: 0;
     display: flex;
@@ -96,25 +78,25 @@ const resolve = (a: Action) => {
   }
 
   .way-title {
-    font-size: 1.1875rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
     color: var(--text-primary);
   }
 
   .way-desc {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-top: 0.375rem;
+    margin-top: 0.5rem;
   }
 
   .way-actions {
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+    margin-top: 1.5rem;
   }
 
   .way-action {
@@ -122,7 +104,7 @@ const resolve = (a: Action) => {
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
-    padding: 0.625rem 0;
+    padding: 0.75rem 0;
     border-top: 1px solid var(--border);
     font-size: 0.9375rem;
     font-weight: 600;
@@ -135,10 +117,6 @@ const resolve = (a: Action) => {
     padding-left: 0.25rem;
   }
 
-  .way-card.is-coral .way-action:hover { color: var(--accent-vermillion); }
-  .way-card.is-blue .way-action:hover { color: var(--accent-sage); }
-  .way-card.is-yellow .way-action:hover { color: var(--accent-forest-deep); }
-
   @media (prefers-reduced-motion: reduce) {
     .way-card,
     .way-card:hover,
@@ -149,7 +127,11 @@ const resolve = (a: Action) => {
   }
 
   @media (max-width: 768px) {
-    .ways-grid {
+    .way-card {
+      padding: 1.75rem;
+    }
+
+    .way-actions {
       grid-template-columns: 1fr;
     }
   }

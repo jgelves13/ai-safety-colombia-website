@@ -114,9 +114,9 @@ export const ui = {
     'programs.anyTitle': '¿Te interesa más de uno?',
     'programs.anySub': 'Si no sabes por dónde empezar o quieres explorar varios grupos, escríbenos y te orientamos.',
     'programs.interestAny': 'Expresar interés en cualquier grupo',
-    'home.ways.title': 'Cómo participar',
-    'home.ways.subtitle':
-      'Hay múltiples formas de contribuir a la seguridad de IA en Colombia, sin importar tu perfil o experiencia. Elige el camino que va contigo.',
+    'home.ways.cardTitle': 'Cómo participar',
+    'home.ways.cardDesc':
+      'Para cualquier persona interesada en seguridad de IA, sin importar tu perfil o experiencia.',
     'getInvolved.hero.title': 'Involúcrate',
     'getInvolved.hero.subtitle':
       'Únete a un grupo de discusión: lectura guiada entre pares sobre seguridad de IA, desde los fundamentos hasta temas técnicos y de gobernanza.',
@@ -354,9 +354,9 @@ export const ui = {
     'programs.anyTitle': 'Interested in more than one?',
     'programs.anySub': 'If you are not sure where to start or want to explore several groups, reach out and we will guide you.',
     'programs.interestAny': 'Express interest in any group',
-    'home.ways.title': 'How to take part',
-    'home.ways.subtitle':
-      'There are multiple ways to contribute to AI safety in Colombia, regardless of your background or experience. Pick the path that fits you.',
+    'home.ways.cardTitle': 'How to get involved',
+    'home.ways.cardDesc':
+      'For anyone interested in AI safety, regardless of background or experience.',
     'getInvolved.hero.title': 'Get Involved',
     'getInvolved.hero.subtitle':
       'Join a discussion group: peer-led reading on AI safety, from fundamentals to technical and governance topics.',

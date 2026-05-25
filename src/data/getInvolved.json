@@ -1,55 +1,14 @@
 {
-  "audiences": [
+  "actions": [
     {
-      "accent": "is-green",
-      "titleEs": "Estudiantes y curiosos",
-      "titleEn": "Students and newcomers",
-      "descEs": "Quieres aprender sobre seguridad de IA desde cero.",
-      "descEn": "You want to learn about AI safety from scratch.",
-      "actions": [
-        {
-          "labelEs": "Únete al grupo de WhatsApp",
-          "labelEn": "Join the WhatsApp group",
-          "ext": "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
-        },
-        { "labelEs": "Asiste a un evento", "labelEn": "Attend an event", "path": "/eventos/" },
-        { "labelEs": "Únete a un grupo de discusión", "labelEn": "Join a discussion group", "path": "/involucrate/" }
-      ]
+      "labelEs": "Únete al grupo de WhatsApp",
+      "labelEn": "Join the WhatsApp group",
+      "ext": "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
     },
-    {
-      "accent": "is-coral",
-      "titleEs": "Investigadores e ingenieros",
-      "titleEn": "Researchers and engineers",
-      "descEs": "Tienes formación técnica y quieres contribuir.",
-      "descEn": "You have a technical background and want to contribute.",
-      "actions": [
-        { "labelEs": "Participa en el hackathon", "labelEn": "Join the hackathon", "path": "/hackathon/" },
-        { "labelEs": "Revisa los recursos", "labelEn": "Browse the resources", "path": "/recursos/" },
-        { "labelEs": "Únete a un grupo técnico", "labelEn": "Join a technical group", "path": "/involucrate/" }
-      ]
-    },
-    {
-      "accent": "is-blue",
-      "titleEs": "Decisores de política",
-      "titleEn": "Policymakers",
-      "descEs": "Trabajas en política pública o regulación.",
-      "descEn": "You work in public policy or regulation.",
-      "actions": [
-        { "labelEs": "Consulta los recursos", "labelEn": "Read the resources", "path": "/recursos/" },
-        { "labelEs": "Asiste a un evento", "labelEn": "Attend an event", "path": "/eventos/" },
-        { "labelEs": "Conecta con nosotros", "labelEn": "Connect with us", "path": "/contacto/" }
-      ]
-    },
-    {
-      "accent": "is-yellow",
-      "titleEs": "Financiadores y aliados",
-      "titleEn": "Funders and partners",
-      "descEs": "Quieres apoyar el ecosistema de seguridad de IA en Colombia.",
-      "descEn": "You want to support the AI safety ecosystem in Colombia.",
-      "actions": [
-        { "labelEs": "Contáctanos para aliarnos", "labelEn": "Contact us about partnerships", "path": "/contacto/" },
-        { "labelEs": "Apoya el hackathon", "labelEn": "Support the hackathon", "path": "/hackathon/" }
-      ]
-    }
+    { "labelEs": "Asiste a un evento", "labelEn": "Attend an event", "path": "/eventos/" },
+    { "labelEs": "Únete a un grupo de discusión", "labelEn": "Join a discussion group", "path": "/involucrate/" },
+    { "labelEs": "Participa en el hackathon", "labelEn": "Join the hackathon", "path": "/hackathon/" },
+    { "labelEs": "Revisa los recursos", "labelEn": "Browse the resources", "path": "/recursos/" },
+    { "labelEs": "Escríbenos", "labelEn": "Reach out", "path": "/contacto/" }
   ]
 }
