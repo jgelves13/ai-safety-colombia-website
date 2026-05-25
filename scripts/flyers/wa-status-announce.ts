@@ -1,9 +1,10 @@
-import { render, html, BRAND, hostsRow } from './lib';
+import { render, html, BRAND, hostsRow, getLogos } from './lib';
 
 export default async function () {
   const W = 1080;
   const H = 1920;
 
+  const logos = await getLogos();
   const source = `
     <div style="display:flex;flex-direction:column;width:${W}px;height:${H}px;background:${BRAND.cream};font-family:Inter;padding:240px 96px 200px 96px;justify-content:space-between;align-items:flex-start">
 
@@ -22,7 +23,7 @@ export default async function () {
 
       <div style="display:flex;flex-direction:column;gap:18px">
         <div style="display:flex;font-family:Inter;font-weight:700;font-size:32px;color:${BRAND.forest}">Hub Bogotá + remoto</div>
-        ${hostsRow({ color: BRAND.ink2, fontSize: 22 })}
+        ${hostsRow({ color: BRAND.ink2, fontSize: 22, ...logos })}
       </div>
 
     </div>

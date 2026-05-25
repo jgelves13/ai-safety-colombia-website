@@ -1,4 +1,4 @@
-import { render, html, BRAND, ACCENT, latAmOutline, hostsRow, loadHackathon, qrPngDataUrl } from './lib';
+import { render, html, BRAND, ACCENT, regionMotif, hostsRow, loadHackathon, qrPngDataUrl, getLogos } from './lib';
 
 interface Track { titleEn: string; accent: string; }
 interface Judge { name: string; affiliationEs: string; }
@@ -11,7 +11,8 @@ export default async function () {
   const H = 3508;
 
   const qr = await qrPngDataUrl(data.registrationUrl, 660);
-  const outline = latAmOutline({ stroke: BRAND.forest, strokeWidth: 8, width: 720, height: 1100 });
+  const logos = await getLogos();
+  const outline = regionMotif({ stroke: BRAND.forest, strokeWidth: 14, width: 880, height: 1450 });
 
   const manifesto = tracks
     .map((t) => {
@@ -73,13 +74,13 @@ export default async function () {
             <div style="display:flex;font-family:JetBrains Mono;font-size:30px;letter-spacing:0.18em;text-transform:uppercase;color:${BRAND.coral}">Inscripciones</div>
             <div style="display:flex;font-family:Bricolage Grotesque;font-weight:700;font-size:64px;line-height:1.05;color:${BRAND.forest}">apartresearch.com/sprints</div>
             <div style="display:flex;font-family:Inter;font-weight:500;font-size:34px;color:${BRAND.ink2}">aisafetycolombia.org/hackathon</div>
-            <div style="display:flex;margin-top:18px">${hostsRow({ color: BRAND.ink2, fontSize: 26 })}</div>
+            <div style="display:flex;margin-top:18px">${hostsRow({ color: BRAND.ink2, fontSize: 26, ...logos })}</div>
           </div>
         </div>
 
       </div>
 
-      <div style="display:flex;position:absolute;top:420px;right:120px;opacity:0.10">${outline}</div>
+      <div style="display:flex;position:absolute;top:380px;right:80px;opacity:0.30">${outline}</div>
 
     </div>
   `;

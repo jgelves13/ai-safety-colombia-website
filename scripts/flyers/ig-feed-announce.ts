@@ -1,10 +1,11 @@
-import { render, html, BRAND, latAmOutline, hostsRow } from './lib';
+import { render, html, BRAND, regionMotif, hostsRow, getLogos } from './lib';
 
 export default async function () {
   const W = 1080;
   const H = 1080;
 
-  const outline = latAmOutline({ stroke: BRAND.forest, strokeWidth: 4, width: 360, height: 540 });
+  const logos = await getLogos();
+  const outline = regionMotif({ stroke: BRAND.forest, strokeWidth: 7, width: 420, height: 700 });
 
   const source = `
     <div style="display:flex;width:${W}px;height:${H}px;background:${BRAND.cream};font-family:Inter;position:relative">
@@ -26,12 +27,12 @@ export default async function () {
 
         <div style="display:flex;flex-direction:column;gap:14px">
           <div style="display:flex;font-family:Inter;font-weight:700;font-size:28px;color:${BRAND.forest}">Hub Bogotá + remoto</div>
-          ${hostsRow({ color: BRAND.ink2, fontSize: 18 })}
+          ${hostsRow({ color: BRAND.ink2, fontSize: 18, ...logos })}
         </div>
 
       </div>
 
-      <div style="display:flex;position:absolute;top:120px;right:80px;opacity:0.16">${outline}</div>
+      <div style="display:flex;position:absolute;top:100px;right:60px;opacity:0.42">${outline}</div>
 
     </div>
   `;

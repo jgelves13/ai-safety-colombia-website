@@ -1,4 +1,4 @@
-import { render, html, BRAND, latAmOutline, hostsRow } from './lib';
+import { render, html, BRAND, regionMotif, hostsRow, getLogos } from './lib';
 
 type Locale = 'es' | 'en';
 
@@ -17,12 +17,12 @@ const COPY = {
   },
 } as const;
 
-function build(locale: Locale): string {
+function build(locale: Locale, logos: Awaited<ReturnType<typeof getLogos>>): string {
   const c = COPY[locale];
   const W = 1200;
   const H = 627;
 
-  const outline = latAmOutline({ stroke: BRAND.forest, strokeWidth: 3.5, width: 260, height: 400 });
+  const outline = regionMotif({ stroke: BRAND.forest, strokeWidth: 5, width: 320, height: 520 });
 
   return `
     <div style="display:flex;width:${W}px;height:${H}px;background:${BRAND.cream};font-family:Inter;position:relative">
@@ -41,12 +41,12 @@ function build(locale: Locale): string {
 
         <div style="display:flex;justify-content:space-between;align-items:flex-end">
           <div style="display:flex;font-family:Inter;font-weight:700;font-size:24px;color:${BRAND.forest}">${c.hub}</div>
-          ${hostsRow({ color: BRAND.ink2, fontSize: 15 })}
+          ${hostsRow({ color: BRAND.ink2, fontSize: 15, ...logos })}
         </div>
 
       </div>
 
-      <div style="display:flex;position:absolute;top:60px;right:50px;opacity:0.16">${outline}</div>
+      <div style="display:flex;position:absolute;top:55px;right:40px;opacity:0.42">${outline}</div>
 
     </div>
   `;
@@ -56,8 +56,9 @@ export default async function () {
   const W = 1200;
   const H = 627;
 
-  const esPng = await render(html(build('es')), W, H);
-  const enPng = await render(html(build('en')), W, H);
+  const logos = await getLogos();
+  const esPng = await render(html(build('es', logos)), W, H);
+  const enPng = await render(html(build('en', logos)), W, H);
 
   return [
     { filename: 'aisc-li-single-hackathon-2026-06-announce-es.png', png: esPng },

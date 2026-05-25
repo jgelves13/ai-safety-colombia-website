@@ -83,24 +83,211 @@ export async function qrPngDataUrl(url: string, size: number): Promise<string> {
   });
 }
 
+let cachedLogos: { apartLogo: string; apartRatio: number; aiscLogo: string; aiscRatio: number } | null = null;
+
+export async function getLogos() {
+  if (cachedLogos) return cachedLogos;
+  const [apartBuf, aiscBuf] = await Promise.all([
+    readFile(path.join(projectRoot, 'public', 'images', 'apart-logo.png')),
+    readFile(path.join(projectRoot, 'public', 'images', 'aisc-logo-trim.png')),
+  ]);
+  cachedLogos = {
+    apartLogo: `data:image/png;base64,${apartBuf.toString('base64')}`,
+    apartRatio: 174 / 164,
+    aiscLogo: `data:image/png;base64,${aiscBuf.toString('base64')}`,
+    aiscRatio: 296 / 240,
+  };
+  return cachedLogos;
+}
+
 export { html };
 export const PROJECT_ROOT = projectRoot;
 
-const LATAM_PATH = 'M 60 110 Q 100 80 180 90 Q 240 96 290 110 Q 340 122 380 110 Q 410 100 440 116 Q 472 130 460 168 Q 446 200 410 196 Q 380 192 360 210 Q 348 230 360 252 Q 372 268 386 268 Q 412 270 444 286 Q 480 308 488 354 Q 494 396 478 444 Q 460 494 432 530 Q 410 562 396 596 Q 384 632 376 668 Q 368 700 352 728 Q 332 754 308 766 Q 286 772 274 754 Q 266 736 270 712 Q 274 686 282 658 Q 286 632 278 612 Q 264 580 248 552 Q 230 520 218 484 Q 206 442 208 396 Q 212 348 230 308 Q 246 274 258 248 Q 268 226 268 200 Q 266 174 252 158 Q 230 138 192 138 Q 142 138 102 144 Q 76 146 60 134 Q 50 122 60 110 Z';
-const COLOMBIA_DOT = { cx: 280, cy: 220 };
+const LATAM_PATH = [
+  'M 7 0',
+  'L 121 23',
+  'C 130 40, 140 70, 143 100',
+  'L 143 114',
+  'C 162 118, 180 122, 200 125',
+  'L 221 119',
+  'C 220 135, 217 150, 214 159',
+  'C 209 170, 207 178, 207 182',
+  'C 213 195, 218 210, 221 216',
+  'L 250 216',
+  'C 270 225, 280 245, 293 261',
+  'C 305 255, 318 245, 321 239',
+  'L 336 227',
+  'C 360 233, 385 247, 400 250',
+  'C 415 260, 430 275, 436 284',
+  'C 455 295, 468 304, 471 307',
+  'C 478 325, 484 345, 486 364',
+  'C 520 380, 560 400, 593 420',
+  'L 593 455',
+  'C 585 480, 575 500, 571 511',
+  'C 565 545, 555 590, 543 625',
+  'L 536 625',
+  'L 514 636',
+  'C 500 665, 490 695, 486 705',
+  'C 470 730, 450 750, 436 761',
+  'C 420 780, 405 800, 400 807',
+  'C 385 830, 375 860, 364 886',
+  'L 364 988',
+  'C 352 980, 340 974, 336 966',
+  'C 325 940, 322 900, 321 830',
+  'C 322 800, 325 770, 329 739',
+  'C 333 700, 340 660, 343 625',
+  'L 343 568',
+  'C 320 540, 305 520, 293 500',
+  'C 285 475, 281 460, 279 455',
+  'L 271 420',
+  'L 271 386',
+  'C 274 370, 277 360, 279 352',
+  'L 286 343',
+  'L 293 318',
+  'L 293 295',
+  'L 293 273',
+  'L 279 261',
+  'C 260 256, 245 252, 236 250',
+  'L 221 227',
+  'L 207 216',
+  'L 193 205',
+  'L 164 182',
+  'L 129 170',
+  'L 100 148',
+  'L 86 102',
+  'L 50 45',
+  'L 43 57',
+  'L 57 91',
+  'L 57 103',
+  'C 50 95, 45 80, 40 60',
+  'L 35 35',
+  'L 7 0',
+  'Z',
+].join(' ');
+const BOGOTA_DOT = { cx: 314, cy: 311 };
 
 export function latAmOutline(opts: { stroke: string; strokeWidth?: number; width?: number; height?: number; rotate?: number }): string {
   const w = opts.width ?? 280;
   const h = opts.height ?? 420;
   const sw = opts.strokeWidth ?? 3;
   const rot = opts.rotate ?? 0;
-  return `<svg width="${w}" height="${h}" viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg" style="display:flex;transform:rotate(${rot}deg)"><path d="${LATAM_PATH}" fill="none" stroke="${opts.stroke}" stroke-width="${sw}" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${COLOMBIA_DOT.cx}" cy="${COLOMBIA_DOT.cy}" r="${sw * 2.5}" fill="${opts.stroke}"/></svg>`;
+  return `<svg width="${w}" height="${h}" viewBox="0 0 600 1000" xmlns="http://www.w3.org/2000/svg" style="display:flex;transform:rotate(${rot}deg)"><path d="${LATAM_PATH}" fill="none" stroke="${opts.stroke}" stroke-width="${sw}" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${BOGOTA_DOT.cx}" cy="${BOGOTA_DOT.cy}" r="${sw * 2.5}" fill="${opts.stroke}"/></svg>`;
 }
 
-export function hostsRow(opts: { color: string; fontSize?: number; gap?: number }): string {
+const AFRICA_PATH = [
+  'M 110 30',
+  'L 220 28',
+  'L 245 40',
+  'L 250 65',
+  'L 280 85',
+  'L 308 110',
+  'L 320 140',
+  'L 290 158',
+  'L 268 175',
+  'L 252 198',
+  'L 240 225',
+  'L 230 260',
+  'L 224 295',
+  'L 220 330',
+  'L 214 360',
+  'L 200 385',
+  'L 175 395',
+  'L 145 388',
+  'L 120 370',
+  'L 105 345',
+  'L 95 310',
+  'L 92 275',
+  'L 100 245',
+  'L 110 218',
+  'L 105 190',
+  'L 90 165',
+  'L 70 145',
+  'L 55 120',
+  'L 50 95',
+  'L 60 70',
+  'L 80 50',
+  'L 110 30',
+  'Z',
+].join(' ');
+
+const INDIA_PATH = [
+  'M 30 10',
+  'L 110 8',
+  'L 145 28',
+  'L 138 70',
+  'L 120 115',
+  'L 95 155',
+  'L 70 185',
+  'L 55 175',
+  'L 50 145',
+  'L 38 110',
+  'L 25 75',
+  'L 18 45',
+  'L 30 10',
+  'Z',
+].join(' ');
+
+const SEASIA_BORNEO = 'M 10 20 L 70 15 L 95 40 L 100 75 L 80 100 L 40 105 L 15 80 L 5 50 Z';
+const SEASIA_SUMATRA = 'M 5 5 L 35 0 L 55 25 L 70 55 L 65 85 L 45 100 L 30 90 L 15 60 Z';
+const SEASIA_JAVA = 'M 5 5 L 60 0 L 85 15 L 75 35 L 40 38 L 10 28 Z';
+const SEASIA_PHILIPPINES = 'M 20 5 L 40 0 L 50 30 L 45 65 L 30 90 L 18 70 L 12 35 Z';
+
+export function regionMotif(opts: { stroke: string; strokeWidth?: number; width?: number; height?: number }): string {
+  const motif = process.env.MOTIF ?? 'latam';
+  if (motif === 'globalsouth') {
+    const w = opts.width ?? 360;
+    const h = Math.round(w * 700 / 1200);
+    return globalSouthOutline({ stroke: opts.stroke, strokeWidth: opts.strokeWidth, width: w, height: h });
+  }
+  return latAmOutline({ stroke: opts.stroke, strokeWidth: opts.strokeWidth, width: opts.width, height: opts.height });
+}
+
+export function globalSouthOutline(opts: { stroke: string; strokeWidth?: number; width?: number; height?: number }): string {
+  const w = opts.width ?? 540;
+  const h = opts.height ?? 360;
+  const sw = opts.strokeWidth ?? 3;
+  return `<svg width="${w}" height="${h}" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" style="display:flex">
+    <g transform="translate(60, 80) scale(0.52)">
+      <path d="${LATAM_PATH}" fill="none" stroke="${opts.stroke}" stroke-width="${sw / 0.52}" stroke-linejoin="round" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(450, 110) scale(1.4)">
+      <path d="${AFRICA_PATH}" fill="none" stroke="${opts.stroke}" stroke-width="${sw / 1.4}" stroke-linejoin="round" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(900, 220) scale(0.85)">
+      <path d="${INDIA_PATH}" fill="none" stroke="${opts.stroke}" stroke-width="${sw / 0.85}" stroke-linejoin="round" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(1040, 380) scale(0.75)">
+      <path d="${SEASIA_SUMATRA}" fill="none" stroke="${opts.stroke}" stroke-width="${sw / 0.75}" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="${SEASIA_BORNEO}" transform="translate(80, 30)" fill="none" stroke="${opts.stroke}" stroke-width="${sw / 0.75}" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="${SEASIA_JAVA}" transform="translate(40, 130)" fill="none" stroke="${opts.stroke}" stroke-width="${sw / 0.75}" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="${SEASIA_PHILIPPINES}" transform="translate(160, -80)" fill="none" stroke="${opts.stroke}" stroke-width="${sw / 0.75}" stroke-linejoin="round" stroke-linecap="round"/>
+    </g>
+  </svg>`;
+}
+
+export function hostsRow(opts: {
+  color: string;
+  fontSize?: number;
+  gap?: number;
+  apartLogo?: string;
+  apartRatio?: number;
+  aiscLogo?: string;
+  aiscRatio?: number;
+}): string {
   const fs = opts.fontSize ?? 18;
   const gap = opts.gap ?? 18;
-  return `<div style="display:flex;align-items:center;gap:${gap}px;font-family:JetBrains Mono;font-size:${fs}px;letter-spacing:0.18em;text-transform:uppercase;color:${opts.color}"><div style="display:flex">Apart Research</div><div style="display:flex;width:${Math.round(fs * 0.6)}px;height:1px;background:${opts.color};opacity:0.5"></div><div style="display:flex">AI Safety Colombia</div></div>`;
+  const lh = Math.round(fs * 1.55);
+  const innerGap = Math.round(fs * 0.55);
+  const ruleW = Math.round(fs * 0.8);
+
+  const apartLockup = opts.apartLogo
+    ? `<div style="display:flex;align-items:center;gap:${innerGap}px"><img src="${opts.apartLogo}" style="display:flex;height:${lh}px;width:${Math.round(lh * (opts.apartRatio ?? 1))}px"/><div style="display:flex">Apart Research</div></div>`
+    : `<div style="display:flex">Apart Research</div>`;
+  const aiscLockup = opts.aiscLogo
+    ? `<div style="display:flex;align-items:center;gap:${innerGap}px"><img src="${opts.aiscLogo}" style="display:flex;height:${lh}px;width:${Math.round(lh * (opts.aiscRatio ?? 1))}px"/><div style="display:flex">AI Safety Colombia</div></div>`
+    : `<div style="display:flex">AI Safety Colombia</div>`;
+
+  return `<div style="display:flex;align-items:center;gap:${gap}px;font-family:JetBrains Mono;font-size:${fs}px;letter-spacing:0.18em;text-transform:uppercase;color:${opts.color}">${apartLockup}<div style="display:flex;width:${ruleW}px;height:1px;background:${opts.color};opacity:0.5"></div>${aiscLockup}</div>`;
 }
 
 export function orbitDot(opts: { color: string; size?: number }): string {

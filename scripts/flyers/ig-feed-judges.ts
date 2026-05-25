@@ -1,4 +1,4 @@
-import { render, html, BRAND, hostsRow, loadHackathon } from './lib';
+import { render, html, BRAND, hostsRow, loadHackathon, getLogos } from './lib';
 
 interface Judge {
   name: string;
@@ -8,6 +8,7 @@ interface Judge {
 export default async function () {
   const data = await loadHackathon();
   const judges: Judge[] = data.judges;
+  const logos = await getLogos();
   const W = 1080;
   const H = 1080;
 
@@ -36,7 +37,7 @@ export default async function () {
 
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="display:flex;font-family:Inter;font-weight:700;font-size:24px;color:${BRAND.forest}">19–21 jun 2026 · Hub Bogotá + remoto</div>
-        ${hostsRow({ color: BRAND.ink2, fontSize: 18 })}
+        ${hostsRow({ color: BRAND.ink2, fontSize: 18, ...logos })}
       </div>
 
     </div>
