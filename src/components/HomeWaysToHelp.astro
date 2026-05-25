@@ -24,100 +24,129 @@ const resolve = (a: Action) => {
     <h2 class="section-title" id="ways-title">{t(locale, 'home.ways.title')}</h2>
     <p class="section-subtitle">{t(locale, 'home.ways.subtitle')}</p>
 
-    <ul class="ways-grid">
-      {(data.actions as Action[]).map((a, i) => {
-        const { href, external } = resolve(a);
-        const num = String(i + 1).padStart(2, '0');
-        return (
-          <li>
-            <a
-              class="way-tile"
-              href={href}
-              target={external ? '_blank' : undefined}
-              rel={external ? 'noopener noreferrer' : undefined}
-            >
-              <span class="way-num">{num}</span>
-              <span class="way-label">{es ? a.labelEs : a.labelEn}</span>
-              <span class="way-arrow" aria-hidden="true">&rarr;</span>
-            </a>
-          </li>
-        );
-      })}
-    </ul>
+    <article class="way-card is-green">
+      <div class="way-bar"></div>
+      <div class="way-tx">
+        <ul class="way-actions">
+          {(data.actions as Action[]).map((a) => {
+            const { href, external } = resolve(a);
+            return (
+              <li>
+                <a
+                  class="way-action"
+                  href={href}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noopener noreferrer' : undefined}
+                >
+                  <span>{es ? a.labelEs : a.labelEn}</span>
+                  <span class="way-arrow" aria-hidden="true">&rarr;</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </article>
   </div>
 </section>
 
 <style>
-  .ways-grid {
+  .ways-section .section-subtitle {
+    margin-bottom: 2.5rem;
+  }
+
+  .way-card {
+    display: flex;
+    gap: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 1.25rem 2.25rem;
+    background: var(--card-surface);
+    transition: border-color 0.15s;
+  }
+
+  .way-card:hover {
+    border-color: var(--text-primary);
+  }
+
+  .way-bar {
+    width: 5px;
+    flex: none;
+    border-radius: 999px;
+    background: var(--accent-forest);
+  }
+
+  .way-tx {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .way-actions {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2.5rem;
     margin: 0;
     padding: 0;
   }
 
-  .way-tile {
-    position: relative;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+  .way-actions li:nth-child(1) .way-action,
+  .way-actions li:nth-child(2) .way-action {
+    border-top: 0;
+  }
+
+  .way-action {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
-    padding: 1.5rem 1.75rem;
-    min-height: 5.5rem;
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    background: var(--card-surface);
-    color: var(--text-primary);
-    font-size: 1rem;
+    padding: 1.1rem 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.9375rem;
     font-weight: 600;
-    line-height: 1.3;
-    transition: border-color 0.15s ease, transform 0.15s ease, color 0.15s ease;
-  }
-
-  .way-tile:hover {
-    border-color: var(--text-primary);
-    color: var(--accent-forest);
-    transform: translateY(-2px);
-  }
-
-  .way-num {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    color: var(--accent-forest);
-  }
-
-  .way-label {
-    min-width: 0;
+    color: var(--text-primary);
+    transition: color 0.15s ease, padding-left 0.15s ease;
   }
 
   .way-arrow {
-    font-size: 1.125rem;
     color: var(--accent-forest);
+    font-size: 1rem;
     transition: transform 0.15s ease;
   }
 
-  .way-tile:hover .way-arrow {
+  .way-action:hover {
+    color: var(--accent-forest);
+    padding-left: 0.25rem;
+  }
+
+  .way-action:hover .way-arrow {
     transform: translateX(3px);
   }
 
-  @media (max-width: 900px) {
-    .ways-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 560px) {
-    .ways-grid { grid-template-columns: 1fr; }
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .way-tile,
-    .way-tile:hover,
+    .way-card,
+    .way-card:hover,
+    .way-action,
     .way-arrow,
-    .way-tile:hover .way-arrow {
+    .way-action:hover .way-arrow {
       transition: none;
       transform: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .way-card {
+      padding: 0.75rem 1.75rem;
+    }
+
+    .way-actions {
+      grid-template-columns: 1fr;
+    }
+
+    .way-actions li:nth-child(2) .way-action {
+      border-top: 1px solid var(--border);
     }
   }
 </style>
