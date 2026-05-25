@@ -124,7 +124,7 @@ export const ui = {
     'groups.lead':
       'Lectura y conversación abierta sobre seguridad de IA: fundamentos, investigación técnica y gobernanza. Sin costo, sin requisitos previos.',
     'groups.sourceLabel': 'Materiales',
-    'groups.sourceBody': 'BlueDot Impact, con discusión guiada en cada sesión.',
+    'groups.sourceBody': 'Lecturas de BlueDot Impact, debatidas en grupo.',
     'groups.viewGroups': 'Ver los cinco grupos',
     'groups.howTitle': 'Cómo funciona',
     'groups.step1.title': 'Elige un tema',
@@ -378,7 +378,7 @@ export const ui = {
     'groups.lead':
       'Open reading and conversation on AI safety: fundamentals, technical research, and governance. Free, with no prior requirements.',
     'groups.sourceLabel': 'Materials',
-    'groups.sourceBody': 'BlueDot Impact, with guided discussion at each session.',
+    'groups.sourceBody': 'BlueDot Impact readings, discussed as a group.',
     'groups.viewGroups': 'See the five groups',
     'groups.howTitle': 'How it works',
     'groups.step1.title': 'Pick a topic',
