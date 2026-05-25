@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { t, localePath, type Locale } from '../i18n/ui';
-import learnData from '../data/learn.json';
 
 interface Props {
   locale: Locale;
@@ -13,22 +12,15 @@ const es = locale === 'es';
 
 type Key = Parameters<typeof t>[1];
 
-// Thumbnails are pre-baked to uniform 800x800 plates by
-// scripts/bake_resource_thumbs.py so every card carries identical
-// shape and treatment regardless of source aspect ratio.
+// Thumbnails are pre-baked per-category by scripts/bake_resource_thumbs.py.
+// Within each category every image shares dimensions and treatment so the
+// row reads as a uniform grid: videos/courses/readings/podcasts at 800x800
+// square, books at 600x900 portrait.
 const baked = import.meta.glob<ImageMetadata>('../assets/resources-baked/*', {
   eager: true,
   import: 'default',
 });
 
-const learnData2 = learnData.map((i) => ({
-  ...i,
-  bakedThumb: baked[`../assets/resources-baked/${i.thumb.replace(/\.jpg$/i, '.png')}`],
-}));
-
-// Featured cards: grouped by format (videos, courses, readings, podcasts,
-// books). Each card reuses the homepage "Empieza aquí" learn-card UI so
-// visitors hitting "See all resources" land on a continuous experience.
 type Kind = 'video' | 'course' | 'read' | 'podcast' | 'book';
 type Accent = 'is-coral' | 'is-blue' | 'is-green' | 'is-yellow';
 
@@ -44,20 +36,33 @@ interface FeatItem {
   thumb: ImageMetadata;
 }
 
-const fromLearn: FeatItem[] = learnData2.map((i) => ({
-  kind: i.kind as Kind,
-  accent: i.accent as Accent,
-  title: es ? i.titleEs : i.titleEn,
-  source: es ? i.sourceEs : i.sourceEn,
-  desc: es ? i.descEs : i.descEn,
-  duration: es ? i.durationEs : i.durationEn,
-  meta: es ? i.metaEs : i.metaEn,
-  url: i.url,
-  thumb: i.bakedThumb,
-}));
+const introCourse: FeatItem = {
+  kind: 'course',
+  accent: 'is-blue',
+  title: 'The Future of AI',
+  source: 'BlueDot Impact',
+  desc: es
+    ? 'Un curso introductorio gratuito sobre hacia dónde va la IA y por qué su seguridad importa.'
+    : 'A free introductory course on where AI is heading and why its safety matters.',
+  duration: es ? 'Cerca de 2 horas · gratis' : 'About 2 hours · free',
+  meta: es ? 'En inglés' : 'In English',
+  url: 'https://bluedot.org/courses/future-of-ai',
+  thumb: baked['../assets/resources-baked/bluedot.png'],
+};
 
-const introCourse = fromLearn.find((i) => i.kind === 'course')!;
-const introRead = fromLearn.find((i) => i.kind === 'read')!;
+const introRead: FeatItem = {
+  kind: 'read',
+  accent: 'is-green',
+  title: 'Preventing an AI-related catastrophe',
+  source: '80,000 Hours',
+  desc: es
+    ? 'Un perfil de problema riguroso sobre los riesgos de la IA avanzada y qué se puede hacer al respecto.'
+    : 'A rigorous problem profile on the risks from advanced AI and what can be done about it.',
+  duration: es ? 'Lectura' : 'Read',
+  meta: es ? 'En inglés' : 'In English',
+  url: 'https://80000hours.org/problem-profiles/artificial-intelligence/',
+  thumb: baked['../assets/resources-baked/80k.png'],
+};
 
 const videos: FeatItem[] = [
   {
@@ -183,7 +188,7 @@ const readings: FeatItem[] = [
     duration: es ? 'Ensayo' : 'Essay',
     meta: es ? 'En inglés' : 'In English',
     url: 'https://www.anthropic.com/news/core-views-on-ai-safety',
-    thumb: baked['../assets/resources-baked/anthropic-core-views.png'],
+    thumb: baked['../assets/resources-baked/anthropic.png'],
   },
 ];
 
@@ -354,12 +359,12 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
         <h3 class="kind-label">{group.label}</h3>
         <div class="learn-grid">
           {group.items.map((i) => (
-            <article class:list={['learn-card', i.accent]}>
+            <article class:list={['learn-card', i.accent, `kind-${i.kind}`]}>
               <div class="learn-thumb" aria-hidden="true">
                 <Image
                   src={i.thumb}
                   alt=""
-                  widths={[260, 360, 520]}
+                  widths={i.kind === 'book' ? [240, 360, 480] : [260, 360, 520]}
                   sizes="(max-width: 560px) 100vw, 320px"
                   format="webp"
                   loading="lazy"
@@ -477,15 +482,19 @@ const hubLinks: { name: string; desc: string; url: string; icon: string }[] = [
 
   .learn-card:hover { border-color: var(--text-primary); }
 
-  /* Unified thumbnail: each image is pre-baked to an 800x800 plate with
-     its accent-tinted background and the source mark centered at a
-     consistent inner size, so every card has identical shape and
-     visual weight. The tile just renders the asset edge-to-edge. */
+  /* Unified thumbnail: each image is pre-baked per-category so every
+     card in a row reads as identical. Videos / courses / readings /
+     podcasts are 800x800 squares; books are 600x900 portraits so real
+     cover art keeps its natural shape. */
   .learn-thumb {
     position: relative;
     aspect-ratio: 1 / 1;
     border-bottom: 1px solid var(--border);
     overflow: hidden;
+  }
+
+  .learn-card.kind-book .learn-thumb {
+    aspect-ratio: 2 / 3;
   }
 
   .learn-img {

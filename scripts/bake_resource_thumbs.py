@@ -1,9 +1,17 @@
-"""Bake uniform 800x800 thumbnails for the /recursos/ featured cards.
+"""Bake per-category thumbnails for the /recursos/ featured cards.
 
-Each source image is fit to ~72% of the canvas (centered, aspect preserved)
-on top of a paper-colored field tinted with the card's accent. The result
-is a set of visually identical plates that the component can drop in with
-a single object-fit rule and no per-card padding tricks.
+Within each category the output is a single (width, height) at a single
+treatment so every card in the row reads as identical. Across categories
+the dimensions/treatment vary by kind:
+
+  videos     800x800  center on accent plate (channel avatars)
+  courses    800x800  center on accent plate (org logos)
+  readings   800x800  center on accent plate (publisher logos)
+  podcasts   800x800  full-bleed (real podcast cover art)
+  books      600x900  full-bleed (real portrait book covers)
+
+Sources live in src/assets/resources-fresh/ and are committed alongside
+the bake output in src/assets/resources-baked/.
 """
 
 from __future__ import annotations
@@ -12,13 +20,10 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-RES = ROOT / "src" / "assets" / "resources"
-LEARN = ROOT / "src" / "assets" / "learn"
+SRC = ROOT / "src" / "assets" / "resources-fresh"
 OUT = ROOT / "src" / "assets" / "resources-baked"
 OUT.mkdir(parents=True, exist_ok=True)
 
-CANVAS = 800
-INNER = int(CANVAS * 0.72)
 PAPER = (255, 251, 242)
 
 ACCENTS = {
@@ -35,29 +40,43 @@ ACCENT_OPACITY = {
     "yellow": 0.12,
 }
 
-# filename in source folder -> accent key
-SOURCES: list[tuple[Path, str, str]] = [
-    (RES / "robert-miles.png",         "coral",  "robert-miles.png"),
-    (RES / "rational-animations.png",  "coral",  "rational-animations.png"),
-    (LEARN / "bluedot-future-of-ai.png", "blue", "bluedot-future-of-ai.png"),
-    (RES / "deepmind.png",             "blue",   "deepmind.png"),
-    (RES / "arena.png",                "blue",   "arena.png"),
-    (RES / "cais.png",                 "blue",   "cais.png"),
-    (LEARN / "80k-ai-catastrophe.jpg", "green",  "80k-ai-catastrophe.png"),
-    (RES / "alignment-forum.png",      "green",  "alignment-forum.png"),
-    (RES / "arxiv.jpg",                "green",  "arxiv.png"),
-    (RES / "anthropic-core-views.png", "green",  "anthropic-core-views.png"),
-    (RES / "axrp.jpg",                 "yellow", "axrp.png"),
-    (RES / "80k-podcast.jpg",          "yellow", "80k-podcast.png"),
-    (RES / "inside-view.png",          "yellow", "inside-view.png"),
-    (RES / "alignment-problem.png",    "green",  "alignment-problem.png"),
-    (RES / "human-compatible.jpg",     "green",  "human-compatible.png"),
-    (RES / "superintelligence.jpg",    "green",  "superintelligence.png"),
-    (RES / "if-anyone-builds-it.png",  "green",  "if-anyone-builds-it.png"),
+DIMS = {
+    "video":   (800, 800),
+    "course":  (800, 800),
+    "read":    (800, 800),
+    "podcast": (800, 800),
+    "book":    (600, 900),
+}
+
+INNER_SCALE = {
+    "video":  0.78,
+    "course": 0.72,
+    "read":   0.72,
+}
+
+# (source file, kind, accent, mode)
+SOURCES: list[tuple[str, str, str, str]] = [
+    ("robert-miles.jpg",        "video",   "coral",  "center"),
+    ("rational-animations.jpg", "video",   "coral",  "center"),
+    ("bluedot.png",             "course",  "blue",   "center"),
+    ("deepmind.png",            "course",  "blue",   "center"),
+    ("arena.png",               "course",  "blue",   "center"),
+    ("cais.png",                "course",  "blue",   "center"),
+    ("80k.png",                 "read",    "green",  "center"),
+    ("alignment-forum.png",     "read",    "green",  "center"),
+    ("arxiv.png",               "read",    "green",  "center"),
+    ("anthropic.png",           "read",    "green",  "center"),
+    ("axrp.jpg",                "podcast", "yellow", "cover"),
+    ("80k-podcast.jpg",         "podcast", "yellow", "cover"),
+    ("inside-view.jpg",         "podcast", "yellow", "cover"),
+    ("alignment-problem.jpg",   "book",    "green",  "cover"),
+    ("human-compatible.jpg",    "book",    "green",  "cover"),
+    ("superintelligence.jpg",   "book",    "green",  "cover"),
+    ("if-anyone-builds-it.jpg", "book",    "green",  "cover"),
 ]
 
 
-def tinted_background(accent: str) -> Image.Image:
+def tinted_background(accent: str, size: tuple[int, int]) -> Image.Image:
     r, g, b = ACCENTS[accent]
     a = ACCENT_OPACITY[accent]
     pr, pg, pb = PAPER
@@ -66,34 +85,50 @@ def tinted_background(accent: str) -> Image.Image:
         round(pg * (1 - a) + g * a),
         round(pb * (1 - a) + b * a),
     )
-    return Image.new("RGB", (CANVAS, CANVAS), mix)
+    return Image.new("RGB", size, mix)
 
 
-def fit_inside(img: Image.Image, max_side: int) -> Image.Image:
+def fit_inside(img: Image.Image, max_w: int, max_h: int) -> Image.Image:
     w, h = img.size
-    scale = min(max_side / w, max_side / h)
-    new_w = max(1, round(w * scale))
-    new_h = max(1, round(h * scale))
-    return img.resize((new_w, new_h), Image.LANCZOS)
+    scale = min(max_w / w, max_h / h)
+    return img.resize((max(1, round(w * scale)), max(1, round(h * scale))), Image.LANCZOS)
 
 
-def bake(source: Path, accent: str, out_name: str) -> None:
-    if not source.exists():
-        raise FileNotFoundError(source)
-    canvas = tinted_background(accent)
-    img = Image.open(source).convert("RGBA")
-    fitted = fit_inside(img, INNER)
-    x = (CANVAS - fitted.width) // 2
-    y = (CANVAS - fitted.height) // 2
-    canvas.paste(fitted, (x, y), fitted)
-    out_path = OUT / out_name
+def fill_cover(img: Image.Image, w: int, h: int) -> Image.Image:
+    iw, ih = img.size
+    scale = max(w / iw, h / ih)
+    nw, nh = max(1, round(iw * scale)), max(1, round(ih * scale))
+    resized = img.resize((nw, nh), Image.LANCZOS)
+    left = (nw - w) // 2
+    top = (nh - h) // 2
+    return resized.crop((left, top, left + w, top + h))
+
+
+def bake(name: str, kind: str, accent: str, mode: str) -> None:
+    src = SRC / name
+    if not src.exists():
+        raise FileNotFoundError(src)
+    width, height = DIMS[kind]
+    img = Image.open(src).convert("RGBA")
+
+    if mode == "cover":
+        canvas = fill_cover(img, width, height).convert("RGB")
+    else:
+        inner = INNER_SCALE[kind]
+        canvas = tinted_background(accent, (width, height))
+        fitted = fit_inside(img, round(width * inner), round(height * inner))
+        x = (width - fitted.width) // 2
+        y = (height - fitted.height) // 2
+        canvas.paste(fitted, (x, y), fitted)
+
+    out_path = OUT / (Path(name).stem + ".png")
     canvas.save(out_path, format="PNG", optimize=True)
-    print(f"baked {out_path.relative_to(ROOT)}  ({fitted.width}x{fitted.height})")
+    print(f"baked {out_path.relative_to(ROOT)}  {width}x{height}  ({mode})")
 
 
 def main() -> None:
-    for src, accent, out_name in SOURCES:
-        bake(src, accent, out_name)
+    for entry in SOURCES:
+        bake(*entry)
     print(f"\nWrote {len(SOURCES)} thumbnails to {OUT.relative_to(ROOT)}")
 
 
