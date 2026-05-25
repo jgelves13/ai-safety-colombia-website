@@ -21,11 +21,12 @@ const resolve = (a: Action) => {
 
 <section class="section ways-section" aria-labelledby="ways-title">
   <div class="container">
+    <h2 class="section-title" id="ways-title">{t(locale, 'home.ways.title')}</h2>
+    <p class="section-subtitle">{t(locale, 'home.ways.subtitle')}</p>
+
     <article class="way-card is-green">
       <div class="way-bar"></div>
       <div class="way-tx">
-        <h2 class="way-title" id="ways-title">{t(locale, 'home.ways.cardTitle')}</h2>
-        <p class="way-desc">{t(locale, 'home.ways.cardDesc')}</p>
         <ul class="way-actions">
           {(data.actions as Action[]).map((a) => {
             const { href, external } = resolve(a);

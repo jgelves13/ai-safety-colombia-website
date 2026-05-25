@@ -114,8 +114,8 @@ export const ui = {
     'programs.anyTitle': '¿Te interesa más de uno?',
     'programs.anySub': 'Si no sabes por dónde empezar o quieres explorar varios grupos, escríbenos y te orientamos.',
     'programs.interestAny': 'Expresar interés en cualquier grupo',
-    'home.ways.cardTitle': 'Cómo participar',
-    'home.ways.cardDesc':
+    'home.ways.title': 'Cómo participar',
+    'home.ways.subtitle':
       'Para cualquier persona interesada en seguridad de IA, sin importar tu perfil o experiencia.',
     'getInvolved.hero.title': 'Involúcrate',
     'getInvolved.hero.subtitle':
@@ -354,8 +354,8 @@ export const ui = {
     'programs.anyTitle': 'Interested in more than one?',
     'programs.anySub': 'If you are not sure where to start or want to explore several groups, reach out and we will guide you.',
     'programs.interestAny': 'Express interest in any group',
-    'home.ways.cardTitle': 'How to get involved',
-    'home.ways.cardDesc':
+    'home.ways.title': 'How to get involved',
+    'home.ways.subtitle':
       'For anyone interested in AI safety, regardless of background or experience.',
     'getInvolved.hero.title': 'Get Involved',
     'getInvolved.hero.subtitle':
