@@ -12,7 +12,6 @@
           "labelEn": "Join the WhatsApp group",
           "ext": "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
         },
-        { "labelEs": "Asiste a un evento", "labelEn": "Attend an event", "path": "/eventos/" },
         { "labelEs": "Únete a un grupo de discusión", "labelEn": "Join a discussion group", "anchor": "#grupos" }
       ]
     },
@@ -24,7 +23,6 @@
       "descEn": "You have a technical background and want to contribute.",
       "actions": [
         { "labelEs": "Participa en el hackathon", "labelEn": "Join the hackathon", "path": "/hackathon/" },
-        { "labelEs": "Revisa los recursos", "labelEn": "Browse the resources", "path": "/recursos/" },
         { "labelEs": "Únete a un grupo técnico", "labelEn": "Join a technical group", "anchor": "#grupos" }
       ]
     },
@@ -35,9 +33,8 @@
       "descEs": "Trabajas en política pública o regulación.",
       "descEn": "You work in public policy or regulation.",
       "actions": [
-        { "labelEs": "Consulta los recursos", "labelEn": "Read the resources", "path": "/recursos/" },
-        { "labelEs": "Asiste a un evento", "labelEn": "Attend an event", "path": "/eventos/" },
-        { "labelEs": "Conecta con nosotros", "labelEn": "Connect with us", "path": "/contacto/" }
+        { "labelEs": "Conecta con nosotros", "labelEn": "Connect with us", "path": "/contacto/" },
+        { "labelEs": "Consulta los recursos", "labelEn": "Read the resources", "path": "/recursos/" }
       ]
     },
     {
