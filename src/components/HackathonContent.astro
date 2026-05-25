@@ -137,6 +137,7 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
         </div>
         <h3 class="hk-mode-h3">{es ? data.inPerson.bogotaHubTitleEs : data.inPerson.bogotaHubTitleEn}</h3>
         <p class="hk-mode-tag">{es ? data.inPerson.bogotaTagEs : data.inPerson.bogotaTagEn}</p>
+        <p class="hk-mode-exp">{es ? data.inPerson.experienceEs : data.inPerson.experienceEn}</p>
         <ul class="hk-mode-perks">
           {data.inPerson.items.map((item, i) => (
             <li class="hk-mode-perk">
@@ -154,6 +155,7 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
         </div>
         <h3 class="hk-mode-h3">{es ? data.inPerson.onlineTitleEs : data.inPerson.onlineTitleEn}</h3>
         <p class="hk-mode-tag">{es ? data.inPerson.virtualTagEs : data.inPerson.virtualTagEn}</p>
+        <p class="hk-mode-exp">{es ? data.inPerson.onlineExperienceEs : data.inPerson.onlineExperienceEn}</p>
         <ul class="hk-mode-perks">
           {data.inPerson.onlineItems.map((item: {es: string; en: string}, i: number) => (
             <li class="hk-mode-perk">
@@ -1198,6 +1200,13 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
     margin-bottom: 1.25rem;
     padding-bottom: 1.25rem;
     border-bottom: 1px solid var(--border);
+  }
+
+  .hk-mode-exp {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
   }
 
   .hk-mode-perks {
