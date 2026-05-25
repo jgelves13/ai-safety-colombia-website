@@ -124,6 +124,18 @@
     "para1En": "Virtual participation is open to people from the Global South, whether by nationality or residence. Those who wish to apply for the in-person Bogotá venue must indicate this on the Apart Research registration form; they will subsequently receive an additional selection form. In-person spots are limited.",
     "inPersonIntroEs": "Las personas seleccionadas para participar presencialmente en Bogotá tendrán acceso a:",
     "inPersonIntroEn": "Participants selected for in-person attendance in Bogotá will have access to:",
+    "modeInpersonLabelEs": "Presencial",
+    "modeInpersonLabelEn": "In-person",
+    "modeOnlineLabelEs": "En línea",
+    "modeOnlineLabelEn": "Online",
+    "bogotaHubTitleEs": "Hub Bogotá",
+    "bogotaHubTitleEn": "Bogotá Hub",
+    "onlineTitleEs": "Sur Global",
+    "onlineTitleEn": "Global South",
+    "bogotaTagEs": "Cupos limitados · indica tu interés al inscribirte en Apart Research; recibirás un formulario adicional de selección.",
+    "bogotaTagEn": "Limited spots · indicate your interest when registering on Apart Research; you will receive an additional selection form.",
+    "virtualTagEs": "Abierto por nacionalidad o residencia en el Sur Global.",
+    "virtualTagEn": "Open by nationality or residence in the Global South.",
     "items": [
       { "es": "Alimentación vegana durante todo el fin de semana", "en": "Vegan meals throughout the entire weekend" },
       { "es": "Mentorías y conversaciones presenciales con investigadores, jueces y profesionales del área", "en": "In-person mentorships and conversations with researchers, judges, and professionals in the field" },
@@ -131,7 +143,11 @@
       { "es": "Apoyo limitado de transporte nacional y alojamiento para participantes seleccionados que viajen desde otras ciudades de Colombia", "en": "Limited domestic transport and accommodation support for selected participants traveling from other Colombian cities" }
     ],
     "onlineCloseEs": "Quienes participen en línea podrán acceder a mentorías, charlas y espacios colaborativos a través de Discord y Zoom.",
-    "onlineCloseEn": "Those participating online will have access to mentorships, talks, and collaborative spaces through Discord and Zoom."
+    "onlineCloseEn": "Those participating online will have access to mentorships, talks, and collaborative spaces through Discord and Zoom.",
+    "onlineItems": [
+      { "es": "Mentorías, charlas y espacios colaborativos", "en": "Mentorships, talks, and collaborative spaces" },
+      { "es": "Canales en Discord y sesiones de Zoom", "en": "Discord channels and Zoom sessions" }
+    ]
   },
   "schedule": [
     { "day": "Viernes 19", "dayEn": "Friday 19", "accent": "is-green", "events": [

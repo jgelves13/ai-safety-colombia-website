@@ -87,6 +87,20 @@ const caseIcons = [
   ic('<circle cx="12" cy="12" r="9"/><path d="M16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88Z"/>'),
   ic('<path d="M3 9l9-5 9 5M5 9.5V19M19 9.5V19M3 21h18M9.5 9.5V19M14.5 9.5V19"/>'),
 ];
+
+// Mode card icons: header icon for each card, then per-perk icons
+const pinIcon   = ic('<path d="M12 2C8.7 2 6 4.7 6 8c0 5.3 6 14 6 14s6-8.7 6-14c0-3.3-2.7-6-6-6z"/><circle cx="12" cy="8" r="2.5"/>');
+const globeIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8"/><ellipse cx="12" cy="12" rx="4.5" ry="9"/>');
+const inPersonIcons = [
+  ic('<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20"/><path d="M21 15V2c-3 0-5 2-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>'),  // food
+  ic('<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>'),  // mentorship
+  ic('<path d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 19v3M8 22h8"/>'),  // talks/mic
+  ic('<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>'),  // travel/map pin
+];
+const onlineIcons = [
+  ic('<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'),  // chat/mentorship
+  ic('<polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>'),  // video/Zoom
+];
 ---
 
 <section class="hk-hero">
@@ -110,18 +124,43 @@ const caseIcons = [
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whatTitle')}</h2>
     <p class="hk-lead">{whatBody}</p>
-    <p class="hk-lead">{es ? data.hybridParaEs : data.hybridParaEn}</p>
 
-    <div class="hk-venue">
-      <p class="hk-venue-p">{es ? data.inPerson.para1Es : data.inPerson.para1En}</p>
-      <p class="hk-venue-list-intro">{es ? data.inPerson.inPersonIntroEs : data.inPerson.inPersonIntroEn}</p>
-      <ul class="hk-venue-list">
-        {data.inPerson.items.map(item => (
-          <li>{es ? item.es : item.en}</li>
-        ))}
-      </ul>
-      <p class="hk-venue-p">{es ? data.inPerson.onlineCloseEs : data.inPerson.onlineCloseEn}</p>
+    <div class="hk-modes">
+      <article class="hk-mode is-coral">
+        <div class="hk-mode-top">
+          <span class="hk-mode-icon" set:html={pinIcon} />
+          <span class="hk-mode-badge">{es ? data.inPerson.modeInpersonLabelEs : data.inPerson.modeInpersonLabelEn}</span>
+        </div>
+        <h3 class="hk-mode-h3">{es ? data.inPerson.bogotaHubTitleEs : data.inPerson.bogotaHubTitleEn}</h3>
+        <p class="hk-mode-tag">{es ? data.inPerson.bogotaTagEs : data.inPerson.bogotaTagEn}</p>
+        <ul class="hk-mode-perks">
+          {data.inPerson.items.map((item, i) => (
+            <li class="hk-mode-perk">
+              <span class="hk-mode-perk-ic" set:html={inPersonIcons[i % inPersonIcons.length]} />
+              <span>{es ? item.es : item.en}</span>
+            </li>
+          ))}
+        </ul>
+      </article>
+
+      <article class="hk-mode is-blue">
+        <div class="hk-mode-top">
+          <span class="hk-mode-icon" set:html={globeIcon} />
+          <span class="hk-mode-badge">{es ? data.inPerson.modeOnlineLabelEs : data.inPerson.modeOnlineLabelEn}</span>
+        </div>
+        <h3 class="hk-mode-h3">{es ? data.inPerson.onlineTitleEs : data.inPerson.onlineTitleEn}</h3>
+        <p class="hk-mode-tag">{es ? data.inPerson.virtualTagEs : data.inPerson.virtualTagEn}</p>
+        <ul class="hk-mode-perks">
+          {data.inPerson.onlineItems.map((item: {es: string; en: string}, i: number) => (
+            <li class="hk-mode-perk">
+              <span class="hk-mode-perk-ic" set:html={onlineIcons[i % onlineIcons.length]} />
+              <span>{es ? item.es : item.en}</span>
+            </li>
+          ))}
+        </ul>
+      </article>
     </div>
+
     <p class="hk-attr" set:html={es ? data.organizerNoteEs : data.organizerNoteEn} />
   </div>
 </section>
@@ -1057,6 +1096,138 @@ const caseIcons = [
 
   .hk-venue-list li::marker {
     color: var(--accent-forest);
+  }
+
+  /* ---- Participation mode cards (Presencial / En línea) ---- */
+  .hk-modes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .hk-mode {
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--border);
+    border-radius: 22px;
+    padding: 1.75rem;
+    background: var(--card-surface);
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .hk-mode:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px -20px rgba(33, 26, 18, 0.4);
+    border-color: var(--text-primary);
+  }
+
+  .hk-mode.is-coral { border-top-color: var(--accent-vermillion); }
+  .hk-mode.is-blue  { border-top-color: var(--accent-sage); }
+
+  .hk-mode-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .hk-mode-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+  }
+
+  .hk-mode-icon :global(svg) {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+
+  .hk-mode.is-coral .hk-mode-icon {
+    color: var(--accent-vermillion);
+    background: color-mix(in srgb, var(--accent-vermillion) 13%, transparent);
+  }
+
+  .hk-mode.is-blue .hk-mode-icon {
+    color: var(--accent-sage);
+    background: color-mix(in srgb, var(--accent-sage) 16%, transparent);
+  }
+
+  .hk-mode-badge {
+    font-family: var(--font-display);
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    border-radius: 999px;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid currentColor;
+  }
+
+  .hk-mode.is-coral .hk-mode-badge { color: var(--accent-vermillion); }
+  .hk-mode.is-blue  .hk-mode-badge { color: var(--accent-sage); }
+
+  .hk-mode-h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 0.375rem;
+  }
+
+  .hk-mode-tag {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hk-mode-perks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .hk-mode-perk {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+
+  .hk-mode-perk-ic {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.1rem;
+  }
+
+  .hk-mode-perk-ic :global(svg) {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+
+  .hk-mode.is-coral .hk-mode-perk-ic { color: var(--accent-vermillion); }
+  .hk-mode.is-blue  .hk-mode-perk-ic { color: var(--accent-sage); }
+
+  @media (max-width: 680px) {
+    .hk-modes { grid-template-columns: 1fr; }
   }
 
 
