@@ -71,7 +71,6 @@ SOURCES: list[tuple[str, str, str, str]] = [
     ("axrp.jpg",                "podcast", "yellow", "cover"),
     ("80k-podcast.jpg",         "podcast", "yellow", "cover"),
     ("cognitive-revolution.jpg","podcast", "yellow", "cover"),
-    ("dwarkesh.jpg",            "podcast", "yellow", "cover"),
     ("fli-podcast.jpg",         "podcast", "yellow", "cover"),
     ("alignment-problem.jpg",   "book",    "green",  "cover"),
     ("human-compatible.jpg",    "book",    "green",  "cover"),
