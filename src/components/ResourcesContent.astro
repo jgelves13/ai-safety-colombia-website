@@ -91,6 +91,19 @@ const videos: FeatItem[] = [
     url: 'https://www.youtube.com/@RationalAnimations',
     thumb: baked['../assets/resources-baked/rational-animations.png'],
   },
+  {
+    kind: 'video',
+    accent: 'is-coral',
+    title: 'Doom Debates',
+    source: 'Liron Shapira',
+    desc: es
+      ? 'Debates y entrevistas semanales sobre riesgo existencial por IA, con investigadores, escépticos y formuladores de política.'
+      : 'Weekly debates and interviews on existential risk from AI, with researchers, skeptics, and policy-makers.',
+    duration: es ? 'Canal · gratis' : 'Channel · free',
+    meta: es ? 'En inglés' : 'In English',
+    url: 'https://www.youtube.com/@DoomDebates',
+    thumb: baked['../assets/resources-baked/doom-debates.png'],
+  },
 ];
 
 const courses: FeatItem[] = [
@@ -150,19 +163,6 @@ const readings: FeatItem[] = [
     meta: es ? 'En inglés' : 'In English',
     url: 'https://www.alignmentforum.org/s/mzgtmmTKKn5MuCzFJ',
     thumb: baked['../assets/resources-baked/alignment-forum.png'],
-  },
-  {
-    kind: 'read',
-    accent: 'is-green',
-    title: 'Concrete Problems in AI Safety',
-    source: 'Amodei et al. · 2016',
-    desc: es
-      ? 'El artículo seminal que catalogó los problemas técnicos abiertos en seguridad de IA y definió la agenda de investigación de la década.'
-      : "The seminal paper that catalogued the open technical problems in AI safety and set the field's research agenda for a decade.",
-    duration: es ? 'Artículo' : 'Paper',
-    meta: es ? 'En inglés' : 'In English',
-    url: 'https://arxiv.org/abs/1606.06565',
-    thumb: baked['../assets/resources-baked/arxiv.png'],
   },
   {
     kind: 'read',
