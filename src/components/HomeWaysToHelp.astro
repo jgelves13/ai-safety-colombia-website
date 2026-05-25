@@ -17,170 +17,129 @@ const resolve = (a: Action) => {
   if (a.anchor) return { href: a.anchor, external: false };
   return { href: localePath(locale, a.path ?? '/'), external: false };
 };
+
+const accents = ['is-coral', 'is-blue', 'is-green', 'is-yellow', 'is-coral', 'is-blue'];
 ---
 
 <section class="section ways-section" aria-labelledby="ways-title">
   <div class="container">
+    <p class="ways-kicker">{es ? 'Cómo participar' : 'Get involved'}</p>
     <h2 class="section-title" id="ways-title">{t(locale, 'home.ways.title')}</h2>
     <p class="section-subtitle">{t(locale, 'home.ways.subtitle')}</p>
 
-    <article class="way-card">
-      <aside class="way-side" aria-hidden="true">
-        <span class="way-side-num">{String(data.actions.length).padStart(2, '0')}</span>
-        <span class="way-side-label">{es ? 'Vías' : 'Ways'}</span>
-      </aside>
-
-      <ul class="way-actions">
-        {(data.actions as Action[]).map((a, i) => {
-          const { href, external } = resolve(a);
-          const num = String(i + 1).padStart(2, '0');
-          return (
-            <li>
-              <a
-                class="way-action"
-                href={href}
-                target={external ? '_blank' : undefined}
-                rel={external ? 'noopener noreferrer' : undefined}
-              >
-                <span class="way-num">{num}</span>
-                <span class="way-label">{es ? a.labelEs : a.labelEn}</span>
-                <span class="way-arrow" aria-hidden="true">&rarr;</span>
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </article>
+    <ul class="ways-grid">
+      {(data.actions as Action[]).map((a, i) => {
+        const { href, external } = resolve(a);
+        return (
+          <li>
+            <a
+              class:list={['way-card', accents[i % accents.length]]}
+              href={href}
+              target={external ? '_blank' : undefined}
+              rel={external ? 'noopener noreferrer' : undefined}
+            >
+              <span class="way-accent" aria-hidden="true"></span>
+              <h3 class="way-label">{es ? a.labelEs : a.labelEn}</h3>
+              <span class="way-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
   </div>
 </section>
 
 <style>
+  .ways-kicker {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--accent-vermillion);
+    margin-bottom: 0.875rem;
+  }
+
   .ways-section .section-subtitle {
     margin-bottom: 2.5rem;
   }
 
-  .way-card {
-    display: grid;
-    grid-template-columns: 230px 1fr;
-    border-radius: 28px;
-    background: var(--card-surface);
-    border: 1px solid var(--border);
-    overflow: hidden;
-  }
-
-  /* Left identity panel — solid forest green */
-  .way-side {
-    background: var(--accent-forest);
-    color: var(--bg-elevated);
-    padding: 2.25rem 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100%;
-  }
-
-  .way-side-num {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 5.5rem;
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-  }
-
-  .way-side-label {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent-yellow);
-  }
-
-  /* Right action grid */
-  .way-actions {
+  .ways-grid {
     list-style: none;
     margin: 0;
-    padding: 1rem;
+    padding: 0;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.625rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
   }
 
-  .way-action {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.1rem 1.25rem;
-    border-radius: 14px;
-    background: transparent;
+  .way-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--card-surface);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 1.875rem 1.875rem 1.625rem;
+    min-height: 9rem;
     color: var(--text-primary);
-    font-size: 0.9375rem;
-    font-weight: 600;
-    line-height: 1.3;
-    transition: background-color 0.15s ease, color 0.15s ease;
+    transition: border-color 0.15s ease, transform 0.15s ease;
   }
 
-  .way-action:hover {
-    background: var(--bg-secondary);
-    color: var(--accent-forest);
+  .way-card:hover {
+    border-color: var(--text-primary);
+    transform: translateY(-2px);
   }
 
-  .way-num {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    color: var(--accent-forest);
-    opacity: 0.7;
+  .way-accent {
+    width: 40px;
+    height: 4px;
+    border-radius: 999px;
+    margin-bottom: 1.25rem;
   }
+
+  .is-coral .way-accent  { background: var(--accent-vermillion); }
+  .is-blue  .way-accent  { background: var(--accent-sage); }
+  .is-green .way-accent  { background: var(--accent-forest); }
+  .is-yellow .way-accent { background: var(--accent-yellow); }
 
   .way-label {
-    min-width: 0;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin: 0;
   }
 
   .way-arrow {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    font-size: 1.25rem;
     color: var(--accent-forest);
-    font-size: 1.1rem;
     transition: transform 0.15s ease;
   }
 
-  .way-action:hover .way-arrow {
-    transform: translateX(3px);
+  .way-card:hover .way-arrow {
+    transform: translateX(4px);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .way-action,
-    .way-action:hover,
+    .way-card,
+    .way-card:hover,
     .way-arrow,
-    .way-action:hover .way-arrow {
+    .way-card:hover .way-arrow {
       transition: none;
       transform: none;
     }
   }
 
-  @media (max-width: 860px) {
-    .way-card {
-      grid-template-columns: 1fr;
-    }
-
-    .way-side {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.5rem 1.75rem;
-      min-height: 0;
-    }
-
-    .way-side-num {
-      font-size: 3rem;
-    }
+  @media (max-width: 900px) {
+    .ways-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 560px) {
-    .way-actions {
-      grid-template-columns: 1fr;
-      padding: 0.75rem;
-    }
+    .ways-grid { grid-template-columns: 1fr; }
   }
 </style>
