@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "flyers": "tsx scripts/flyers/render-all.ts"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -26,5 +27,10 @@
     "satori-html": "^0.3.2",
     "sharp": "^0.34.5",
     "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/qrcode": "^1.5.5",
+    "qrcode": "^1.5.4",
+    "tsx": "^4.20.3"
   }
 }

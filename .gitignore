@@ -13,3 +13,6 @@ scripts/og/_*
 
 # Design-exploration preview pages (local-only, never deployed)
 src/pages/preview/
+
+# Flyer renders (regenerable via `pnpm flyers`)
+scripts/flyers/dist/

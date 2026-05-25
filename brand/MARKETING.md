@@ -129,6 +129,31 @@ Speaker / judge cards use verified canonical bios. References live in `~/.claude
 
 **Photo policy:** only photos those individuals have already published on professional channels (LinkedIn, institutional pages). No facial-scraping. No AI-generated portraits. If a verified photo is not available, use the line-art glyph + initials block.
 
+### 6.4 Production via `npm run flyers`
+
+Launch-week PNGs render in-repo from code, no Figma round-trip. The Satori pipeline that already powers `/og/*.png` is reused by `scripts/flyers/` for arbitrary canvases.
+
+```
+npm install
+npm run flyers
+```
+
+Outputs land in `scripts/flyers/dist/` (gitignored, regenerable). One TypeScript file per template, one shared module (`lib.ts`) with `BRAND` palette, font loader, hackathon data, and QR-data-URL helper. Copy edits become diffs; assets stay token-aligned.
+
+W-4 produces seven PNGs from `scripts/flyers/`:
+
+| File | Dimensions | Locale |
+|---|---|---|
+| `aisc-ig-feed-hackathon-2026-06-announce-es.png` | 1080×1080 | ES |
+| `aisc-ig-feed-hackathon-2026-06-tracks-es.png` | 1080×1080 | ES |
+| `aisc-ig-story-hackathon-2026-06-savedate-es.png` | 1080×1920 | ES |
+| `aisc-li-single-hackathon-2026-06-announce-es.png` | 1200×627 | ES |
+| `aisc-li-single-hackathon-2026-06-announce-en.png` | 1200×627 | EN |
+| `aisc-wa-status-hackathon-2026-06-announce-es.png` | 1080×1920 | ES |
+| `aisc-print-a4-hackathon-2026-06-poster-es.png` | 2480×3508 @ 300 dpi | ES |
+
+Workflow: render → spot-check in viewer → drag into `G:\Mon Drive\AI Safety Colombia\marketing\hackathon-2026-06\source-renders\` → post manually. The A4 poster is RGB; for CMYK print see `scripts/flyers/README.md`.
+
 ---
 
 ## 7. Steady-State Content Calendar (Post-Hackathon)
