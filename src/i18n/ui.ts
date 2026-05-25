@@ -114,9 +114,12 @@ export const ui = {
     'programs.anyTitle': '¿Te interesa más de uno?',
     'programs.anySub': 'Si no sabes por dónde empezar o quieres explorar varios grupos, escríbenos y te orientamos.',
     'programs.interestAny': 'Expresar interés en cualquier grupo',
+    'home.ways.title': 'Cómo participar',
+    'home.ways.subtitle':
+      'Hay múltiples formas de contribuir a la seguridad de IA en Colombia, sin importar tu perfil o experiencia. Elige el camino que va contigo.',
     'getInvolved.hero.title': 'Involúcrate',
     'getInvolved.hero.subtitle':
-      'Hay múltiples formas de contribuir a la seguridad de IA en Colombia, sin importar tu perfil o experiencia. Elige el camino que va contigo.',
+      'Únete a un grupo de discusión: lectura guiada entre pares sobre seguridad de IA, desde los fundamentos hasta temas técnicos y de gobernanza.',
     'getInvolved.ctaKicker': 'Da el primer paso',
     'getInvolved.ctaTitle': '¿No sabes por dónde empezar?',
     'getInvolved.ctaSub': 'Únete a la comunidad y te orientamos.',
@@ -351,9 +354,12 @@ export const ui = {
     'programs.anyTitle': 'Interested in more than one?',
     'programs.anySub': 'If you are not sure where to start or want to explore several groups, reach out and we will guide you.',
     'programs.interestAny': 'Express interest in any group',
+    'home.ways.title': 'How to take part',
+    'home.ways.subtitle':
+      'There are multiple ways to contribute to AI safety in Colombia, regardless of your background or experience. Pick the path that fits you.',
     'getInvolved.hero.title': 'Get Involved',
     'getInvolved.hero.subtitle':
-      'There are multiple ways to contribute to AI safety in Colombia, regardless of your background or experience. Pick the path that fits you.',
+      'Join a discussion group: peer-led reading on AI safety, from fundamentals to technical and governance topics.',
     'getInvolved.ctaKicker': 'Take the first step',
     'getInvolved.ctaTitle': 'Not sure where to start?',
     'getInvolved.ctaSub': 'Join the community and we will guide you.',
