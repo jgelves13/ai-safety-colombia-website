@@ -127,7 +127,7 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
 <section class="section hk-intro">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whatTitle')}</h2>
-    <p class="hk-lead">{whatBody}</p>
+    <div class="hk-lead" set:html={whatBody} />
 
     <div class="hk-modes">
       <article class="hk-mode is-coral">
@@ -629,10 +629,15 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
     max-width: 760px;
   }
 
-  .hk-lead {
+  .hk-lead :global(p) {
     font-size: 1.0625rem;
     color: var(--text-secondary);
     line-height: 1.65;
+    margin: 0 0 1.25rem;
+  }
+
+  .hk-lead :global(p:last-child) {
+    margin-bottom: 0;
   }
 
   .hk-tracks {
