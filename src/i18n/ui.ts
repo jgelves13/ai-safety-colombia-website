@@ -120,6 +120,20 @@ export const ui = {
     'getInvolved.hero.title': 'Grupos de discusión',
     'getInvolved.hero.subtitle':
       'Lectura guiada entre pares sobre seguridad de IA, desde los fundamentos hasta temas técnicos y de gobernanza.',
+    'groups.kicker': 'Formación · Por interés · Cinco grupos',
+    'groups.lead':
+      'Lectura y conversación abierta sobre seguridad de IA: fundamentos, investigación técnica y gobernanza. Sin costo, sin requisitos previos.',
+    'groups.sourceLabel': 'Materiales',
+    'groups.sourceBody': 'BlueDot Impact, con discusión guiada en cada sesión.',
+    'groups.viewGroups': 'Ver los cinco grupos',
+    'groups.howTitle': 'Cómo funciona',
+    'groups.step1.title': 'Elige un tema',
+    'groups.step1.body': 'Explora los cinco grupos y mira cuál encaja con tu perfil.',
+    'groups.step2.title': 'Expresa interés',
+    'groups.step2.body': 'Nos cuentas un poco sobre ti y por qué te interesa.',
+    'groups.step3.title': 'Abrimos el grupo',
+    'groups.step3.body':
+      'Cuando reunimos suficientes personas con el mismo tema, anunciamos fechas y formato.',
     'getInvolved.ctaKicker': 'Da el primer paso',
     'getInvolved.ctaTitle': '¿No sabes por dónde empezar?',
     'getInvolved.ctaSub': 'Únete a la comunidad y te orientamos.',
@@ -360,6 +374,20 @@ export const ui = {
     'getInvolved.hero.title': 'Discussion groups',
     'getInvolved.hero.subtitle':
       'Peer-led reading on AI safety, from fundamentals to technical and governance topics.',
+    'groups.kicker': 'Reading groups · Interest-based · Five topics',
+    'groups.lead':
+      'Open reading and conversation on AI safety: fundamentals, technical research, and governance. Free, with no prior requirements.',
+    'groups.sourceLabel': 'Materials',
+    'groups.sourceBody': 'BlueDot Impact, with guided discussion at each session.',
+    'groups.viewGroups': 'See the five groups',
+    'groups.howTitle': 'How it works',
+    'groups.step1.title': 'Pick a topic',
+    'groups.step1.body': 'Browse the five groups and find the one that fits your profile.',
+    'groups.step2.title': 'Express interest',
+    'groups.step2.body': 'Tell us a bit about you and why this group.',
+    'groups.step3.title': 'We open the group',
+    'groups.step3.body':
+      'Once enough people share the same topic, we announce dates and format.',
     'getInvolved.ctaKicker': 'Take the first step',
     'getInvolved.ctaTitle': 'Not sure where to start?',
     'getInvolved.ctaSub': 'Join the community and we will guide you.',

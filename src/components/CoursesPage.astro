@@ -57,7 +57,7 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
 
 <section class:list={['section', { alt: embedded }]} id={embedded ? 'grupos' : undefined}>
   <div class="container">
-    <p class="courses-note">{t(locale, 'programs.bluedotNote')}</p>
+    {!embedded && <p class="courses-note">{t(locale, 'programs.bluedotNote')}</p>}
 
     <div class="courses-grid">
       {data.courses.map((c) => {

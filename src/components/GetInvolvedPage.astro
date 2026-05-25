@@ -1,7 +1,6 @@
 ---
 import type { Locale } from '../i18n/ui';
 import { t, localePath } from '../i18n/ui';
-import PageHero from './PageHero.astro';
 import CoursesPage from './CoursesPage.astro';
 
 interface Props {
@@ -11,12 +10,63 @@ interface Props {
 const { locale } = Astro.props;
 
 const WHATSAPP_URL = 'https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ';
+
+const steps = [
+  {
+    n: '01',
+    title: t(locale, 'groups.step1.title'),
+    body: t(locale, 'groups.step1.body'),
+  },
+  {
+    n: '02',
+    title: t(locale, 'groups.step2.title'),
+    body: t(locale, 'groups.step2.body'),
+  },
+  {
+    n: '03',
+    title: t(locale, 'groups.step3.title'),
+    body: t(locale, 'groups.step3.body'),
+  },
+];
 ---
 
-<PageHero
-  title={t(locale, 'getInvolved.hero.title')}
-  desc={t(locale, 'getInvolved.hero.subtitle')}
-/>
+<header class="groups-intro">
+  <span class="gi-shape gi-s1" aria-hidden="true"></span>
+  <span class="gi-shape gi-s2" aria-hidden="true"></span>
+  <div class="container">
+    <span class="gi-kicker">{t(locale, 'groups.kicker')}</span>
+
+    <div class="gi-grid">
+      <div class="gi-headline">
+        <h1 class="gi-title">{t(locale, 'getInvolved.hero.title')}</h1>
+        <p class="gi-lead">{t(locale, 'groups.lead')}</p>
+        <p class="gi-source">
+          <span class="gi-source-label">{t(locale, 'groups.sourceLabel')}</span>
+          <span class="gi-source-body">{t(locale, 'groups.sourceBody')}</span>
+        </p>
+        <a class="gi-anchor" href="#grupos">
+          <span>{t(locale, 'groups.viewGroups')}</span>
+          <span class="gi-anchor-arrow" aria-hidden="true">↓</span>
+        </a>
+      </div>
+
+      <aside class="gi-steps" aria-label={t(locale, 'groups.howTitle')}>
+        <h2 class="gi-steps-title">{t(locale, 'groups.howTitle')}</h2>
+        <ol class="gi-steps-list">
+          {steps.map((s) => (
+            <li class="gi-step">
+              <span class="gi-step-num">{s.n}</span>
+              <div class="gi-step-body">
+                <h3 class="gi-step-h">{s.title}</h3>
+                <p>{s.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </aside>
+    </div>
+  </div>
+</header>
 
 <CoursesPage locale={locale} embedded />
 
@@ -43,14 +93,244 @@ const WHATSAPP_URL = 'https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ';
 </section>
 
 <style>
-  /* Closing CTA — solid-green Trópico featured block */
+  /* ---- Intro: editorial two-column with steps rail ---- */
+  .groups-intro {
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 1.5rem 4.5rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .groups-intro .container {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max-width);
+  }
+
+  .gi-shape {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .gi-s1 {
+    width: 240px;
+    height: 240px;
+    background: var(--accent-yellow);
+    top: -80px;
+    right: -60px;
+  }
+
+  .gi-s2 {
+    width: 110px;
+    height: 110px;
+    background: transparent;
+    border: 11px solid var(--accent-forest);
+    bottom: -55px;
+    right: 180px;
+  }
+
+  .gi-kicker {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--accent-vermillion);
+    margin-bottom: 2.25rem;
+  }
+
+  .gi-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .gi-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 0.94;
+    margin: 0 0 1.5rem;
+    color: var(--text-primary);
+    max-width: 14ch;
+  }
+
+  .gi-lead {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    line-height: 1.55;
+    max-width: 40ch;
+    margin: 0 0 1.75rem;
+  }
+
+  .gi-source {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    padding: 0.125rem 0 0.125rem 0.875rem;
+    border-left: 2px solid var(--accent-forest);
+    margin: 0 0 2rem;
+    max-width: 44ch;
+  }
+
+  .gi-source-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .gi-source-body {
+    color: var(--text-secondary);
+  }
+
+  .gi-anchor {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--accent-forest);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    transition: gap 0.2s ease, color 0.15s ease;
+  }
+
+  .gi-anchor:hover {
+    color: var(--accent-vermillion);
+    gap: 0.875rem;
+  }
+
+  .gi-anchor-arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .gi-anchor:hover .gi-anchor-arrow {
+    transform: translateY(3px);
+  }
+
+  /* ---- Steps panel (right column) ---- */
+  .gi-steps {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 1.5rem 1.75rem 1.625rem;
+  }
+
+  .gi-steps-title {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--text-primary);
+    margin: 0 0 1.25rem;
+    padding-bottom: 0.875rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .gi-steps-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .gi-step {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.75rem;
+    align-items: start;
+  }
+
+  .gi-step-num {
+    font-family: var(--font-display);
+    font-size: 1.625rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--accent-vermillion);
+    line-height: 1;
+    padding-top: 0.125rem;
+  }
+
+  .gi-step-body {
+    min-width: 0;
+  }
+
+  .gi-step-h {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem;
+    line-height: 1.2;
+  }
+
+  .gi-step p {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 960px) {
+    .gi-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .gi-source {
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .groups-intro {
+      padding: 2.75rem 1rem 3rem;
+    }
+    .gi-s1 {
+      width: 160px;
+      height: 160px;
+      top: -60px;
+      right: -50px;
+    }
+    .gi-s2 {
+      display: none;
+    }
+    .gi-kicker {
+      margin-bottom: 1.75rem;
+    }
+    .gi-grid {
+      gap: 2rem;
+    }
+    .gi-steps {
+      padding: 1.25rem 1.25rem 1.375rem;
+    }
+  }
+
+  /* ---- Closing CTA — solid-green Trópico featured block ---- */
   .ways-cta {
     border-radius: 28px;
     padding: 3.75rem 2rem;
     text-align: center;
   }
 
-  /* Decorative ring bleeding off the lower-right */
   .ways-cta-ring {
     position: absolute;
     width: 190px;
