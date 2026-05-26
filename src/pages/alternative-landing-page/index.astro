@@ -1,0 +1,15 @@
+---
+import AlternativeHackathonLanding from "../../components/AlternativeHackathonLanding.astro";
+import { alternativeHackathonLanding } from "../../data/alternativeHackathonLanding";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const locale = "es";
+---
+
+<BaseLayout
+  locale={locale}
+  title="Alternative hackathon landing | AI Safety Colombia"
+  description={alternativeHackathonLanding.lead}
+>
+  <AlternativeHackathonLanding />
+</BaseLayout>
