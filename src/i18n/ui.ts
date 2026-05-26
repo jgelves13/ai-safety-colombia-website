@@ -26,7 +26,7 @@ export const ui = {
     'hackathon.hook': 'USD 3.000 en premios · 3 equipos ganadores en LATAM · 19–21 jun 2026',
     'hackathon.ctaPrimary': 'Regístrate en Apart',
     'hackathon.countdownPre': 'faltan',
-    'hackathon.countdownLabel': 'días restantes',
+    'hackathon.countdownLabel': 'días',
     'hackathon.whatTitle': 'Qué es',
     'hackathon.whyTitle': 'Por qué participar',
     'hackathon.tracksTitle': 'Tracks',
