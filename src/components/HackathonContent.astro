@@ -106,6 +106,7 @@ const onlineIcons = [
   ic('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>'),  // document/checklist
 ];
 const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/>');
+const clockIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>');
 ---
 
 <section class="hk-hero">
@@ -123,11 +124,15 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
       </div>
     </div>
     {data.deadlineDate && (
-      <p class="hk-deadline-note">
-        {t(locale, 'hackathon.deadlineNoteA')}
-        <strong data-deadline-date={data.deadlineDate} aria-live="polite">{deadlineDaysLeft}</strong>
-        {t(locale, 'hackathon.deadlineNoteB')}
-      </p>
+      <div class="hk-deadline-note">
+        <span class="hk-deadline-ic" set:html={clockIcon} />
+        <span class="hk-deadline-label">{t(locale, 'hackathon.deadlineLabel')}</span>
+        <span class="hk-deadline-sep" aria-hidden="true">·</span>
+        <span class="hk-deadline-date">{t(locale, 'hackathon.deadlineDateDisplay')}</span>
+        <span class="hk-deadline-sep" aria-hidden="true">·</span>
+        <strong class="hk-deadline-count" data-deadline-date={data.deadlineDate} aria-live="polite">{deadlineDaysLeft}</strong>
+        <span class="hk-deadline-days">{t(locale, 'hackathon.deadlineDaysLabel')}</span>
+      </div>
     )}
   </div>
 </section>
@@ -629,15 +634,68 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
 
   .hk-deadline-note {
     margin: 1.25rem 0 0;
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.55rem 0.9rem;
+    background: rgba(229, 96, 77, 0.07);
+    border-left: 3px solid var(--accent-vermillion);
+    border-radius: 0 8px 8px 0;
+    line-height: 1.2;
+    flex-wrap: wrap;
   }
 
-  .hk-deadline-note strong {
+  .hk-deadline-ic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
     color: var(--accent-vermillion);
-    font-weight: 700;
+  }
+
+  .hk-deadline-ic :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hk-deadline-label,
+  .hk-deadline-date {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .hk-deadline-label {
+    color: var(--text-primary);
+  }
+
+  .hk-deadline-date {
+    color: var(--text-secondary);
+  }
+
+  .hk-deadline-sep {
+    color: var(--border);
+    font-size: 0.75rem;
+  }
+
+  .hk-deadline-count {
+    color: var(--accent-vermillion);
+    font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .hk-deadline-days {
+    font-size: 0.6875rem;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+    margin-left: -0.25rem;
   }
 
   .hk-narrow {
