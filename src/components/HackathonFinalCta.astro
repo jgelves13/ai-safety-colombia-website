@@ -1,0 +1,81 @@
+---
+import { t, type Locale } from '../i18n/ui';
+import data from '../data/hackathon.json';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<section class="alt-cta">
+  <div class="container alt-cta-grid">
+    <div>
+      <p class="alt-eyebrow">{t(locale, 'hackathon.altFinalCtaKicker')}</p>
+      <h2>{t(locale, 'hackathon.altFinalCtaTitle')}</h2>
+    </div>
+    <a
+      class="btn btn-vermillion"
+      href={data.registrationUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {t(locale, 'hackathon.altPrimaryCta')}
+    </a>
+  </div>
+</section>
+
+<style>
+  .alt-cta {
+    background: var(--accent-forest);
+    color: var(--bg-elevated);
+    overflow: hidden;
+    padding: clamp(3rem, 6vw, 4.25rem) 0;
+    position: relative;
+  }
+
+  .alt-cta::before {
+    background: var(--accent-sage);
+    border-radius: 50%;
+    content: "";
+    height: 280px;
+    opacity: 0.5;
+    position: absolute;
+    right: -70px;
+    top: -110px;
+    width: 280px;
+  }
+
+  .alt-cta-grid {
+    align-items: center;
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+
+  .alt-eyebrow {
+    color: var(--bg-elevated);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .alt-cta h2 {
+    color: var(--bg-elevated);
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1;
+    max-width: 780px;
+  }
+
+  @media (max-width: 900px) {
+    .alt-cta-grid {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

@@ -2,7 +2,9 @@
 import type { Locale } from '../i18n/ui';
 import { t } from '../i18n/ui';
 import data from '../data/hackathon.json';
-import { daysUntil } from '../utils/countdown.js';
+import HackathonHeroBlock from './HackathonHeroBlock.astro';
+import HackathonDetails from './HackathonDetails.astro';
+import HackathonFinalCta from './HackathonFinalCta.astro';
 
 interface Props {
   locale: Locale;
@@ -11,8 +13,6 @@ interface Props {
 const { locale } = Astro.props;
 const es = locale === 'es';
 
-const daysLeft = daysUntil(data.date);
-const deadlineDaysLeft = data.deadlineDate ? daysUntil(data.deadlineDate) : 0;
 const whatBody = es ? data.whatIsEs : data.whatIsEn;
 const submission = es ? data.submissionEs : data.submissionEn;
 
@@ -106,36 +106,10 @@ const onlineIcons = [
   ic('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>'),  // document/checklist
 ];
 const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/>');
-const clockIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>');
 ---
 
-<section class="hk-hero">
-  <div class="container">
-    <p class="hk-kicker">{t(locale, 'hackathon.kicker')}</p>
-    <h1 class="hk-h1">{t(locale, 'hackathon.h1a')} <span class="hk-accent">{t(locale, 'hackathon.h1b')}</span></h1>
-    <p class="hk-sub">{t(locale, 'hackathon.sub')}</p>
-    <p class="hk-hook">{t(locale, 'hackathon.hook')}</p>
-    <div class="hk-cta">
-      <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">{t(locale, 'hackathon.ctaPrimary')}</a>
-      <div class="hk-count">
-        {t(locale, 'hackathon.countdownPre') && <span class="hk-count-pre">{t(locale, 'hackathon.countdownPre')}</span>}
-        <span class="hk-count-num" data-hackathon-date={data.date} aria-live="polite">{daysLeft}</span>
-        <span class="hk-count-label">{t(locale, 'hackathon.countdownLabel')}</span>
-      </div>
-    </div>
-    {data.deadlineDate && (
-      <div class="hk-deadline-note">
-        <span class="hk-deadline-ic" set:html={clockIcon} />
-        <span class="hk-deadline-label">{t(locale, 'hackathon.deadlineLabel')}</span>
-        <span class="hk-deadline-sep" aria-hidden="true">·</span>
-        <span class="hk-deadline-date">{t(locale, 'hackathon.deadlineDateDisplay')}</span>
-        <span class="hk-deadline-sep" aria-hidden="true">·</span>
-        <strong class="hk-deadline-count" data-deadline-date={data.deadlineDate} aria-live="polite">{deadlineDaysLeft}</strong>
-        <span class="hk-deadline-days">{t(locale, 'hackathon.deadlineDaysLabel')}</span>
-      </div>
-    )}
-  </div>
-</section>
+<HackathonHeroBlock locale={locale} />
+<HackathonDetails locale={locale} />
 
 <section class="section hk-intro">
   <div class="container">
@@ -538,14 +512,7 @@ const clockIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>')
   </div>
 </section>
 
-<section class="hk-band featured-block">
-  <div class="container">
-    <h2 class="hk-band-title">{t(locale, 'hackathon.ctaBandTitle')}</h2>
-    <p class="hk-band-sub">{t(locale, 'hackathon.ctaBandSub')}</p>
-    <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-vermillion">{t(locale, 'hackathon.ctaPrimary')}</a>
-    <p class="hk-band-mail">{data.contactEmail}</p>
-  </div>
-</section>
+<HackathonFinalCta locale={locale} />
 
 <style>
   .hk-hero {
@@ -1956,14 +1923,3 @@ const clockIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>')
     }
   }
 </style>
-
-<script>
-  import { daysUntil } from '../utils/countdown.js';
-  for (const attr of ['data-hackathon-date', 'data-deadline-date']) {
-    const el = document.querySelector('[' + attr + ']');
-    const date = el && el.getAttribute(attr);
-    if (el && date) {
-      el.textContent = String(daysUntil(date));
-    }
-  }
-</script>

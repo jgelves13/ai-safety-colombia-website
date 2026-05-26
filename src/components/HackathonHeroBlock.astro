@@ -1,0 +1,187 @@
+---
+import { t, type Locale } from '../i18n/ui';
+import data from '../data/hackathon.json';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const es = locale === 'es';
+
+const facts = (es ? data.panelFactsEs : data.panelFactsEn) as string[];
+---
+
+<section class="alt-hero">
+  <div class="container alt-hero-grid">
+    <div class="alt-copy">
+      <p class="alt-eyebrow">{t(locale, 'hackathon.altEyebrow')}</p>
+      <h1>
+        <span>{t(locale, 'hackathon.altHubTitle')}</span>
+        {t(locale, 'hackathon.altHeadline')}
+      </h1>
+      <p class="alt-meta">{t(locale, 'hackathon.altMeta')}</p>
+      <p class="alt-lead">{t(locale, 'hackathon.altLead')}</p>
+      <div class="alt-actions">
+        <a
+          class="btn btn-primary"
+          href={data.registrationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t(locale, 'hackathon.altPrimaryCta')}
+        </a>
+        <a class="btn btn-secondary" href="#details">{t(locale, 'hackathon.altSecondaryCta')}</a>
+      </div>
+    </div>
+
+    <aside class="alt-panel" aria-label={t(locale, 'hackathon.altPanelAria')}>
+      <h2>{t(locale, 'hackathon.altPanelTitle')}</h2>
+      <ul>
+        {facts.map((fact) => <li>{fact}</li>)}
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .alt-hero {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--hairline);
+    overflow: hidden;
+    padding: clamp(3rem, 7vw, 5rem) 0 clamp(2.75rem, 5vw, 4rem);
+    position: relative;
+  }
+
+  .alt-hero::before {
+    aspect-ratio: 1;
+    background: var(--accent-yellow);
+    border-radius: 50%;
+    content: "";
+    min-width: 0;
+    opacity: 0.2;
+    position: absolute;
+    right: -4.5rem;
+    top: 2rem;
+    width: clamp(140px, 20vw, 260px);
+  }
+
+  .alt-hero-grid {
+    align-items: center;
+    display: grid;
+    gap: clamp(2rem, 6vw, 4.5rem);
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.44fr);
+    position: relative;
+    z-index: 1;
+  }
+
+  .alt-eyebrow {
+    color: var(--accent-forest);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .alt-copy h1 {
+    font-size: clamp(3rem, 7vw, 6.2rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+    margin: 0.75rem 0;
+    max-width: 10.5ch;
+  }
+
+  .alt-copy h1 span {
+    color: var(--accent-vermillion);
+    display: block;
+    font-size: 0.62em;
+    line-height: 0.95;
+    margin-bottom: 0.12em;
+  }
+
+  .alt-meta {
+    color: var(--text-primary);
+    font-weight: 800;
+    line-height: 1.45;
+    margin: 0 0 0.95rem;
+    max-width: 720px;
+  }
+
+  .alt-lead {
+    color: var(--text-secondary);
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+    line-height: 1.5;
+    max-width: 650px;
+  }
+
+  .alt-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 1.35rem;
+  }
+
+  .alt-panel {
+    aspect-ratio: 1;
+    background: var(--accent-forest);
+    border-radius: 8px;
+    box-shadow: 0 28px 65px -48px rgba(33, 26, 18, 0.7);
+    color: var(--bg-elevated);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 330px;
+    padding: clamp(1.35rem, 3vw, 2rem);
+  }
+
+  .alt-panel h2 {
+    color: var(--bg-elevated);
+    font-size: clamp(2rem, 3.6vw, 3rem);
+    line-height: 0.95;
+    margin-bottom: 0.75rem;
+  }
+
+  .alt-panel ul {
+    display: grid;
+    gap: 0.7rem;
+    list-style: none;
+    margin-top: 1.2rem;
+    padding: 0;
+  }
+
+  .alt-panel li {
+    border-top: 1px solid rgba(255, 251, 242, 0.22);
+    color: var(--bg-elevated);
+    font-size: 0.92rem;
+    font-weight: 800;
+    line-height: 1.28;
+    padding-top: 0.65rem;
+  }
+
+  @media (max-width: 900px) {
+    .alt-hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .alt-copy h1 {
+      font-size: clamp(3rem, 13vw, 4.5rem);
+      max-width: 11ch;
+    }
+
+    .alt-panel {
+      aspect-ratio: auto;
+      min-height: auto;
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .alt-actions :global(.btn) {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+</style>
