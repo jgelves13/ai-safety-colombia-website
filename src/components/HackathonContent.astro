@@ -121,14 +121,14 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
         <span class="hk-count-num" data-hackathon-date={data.date} aria-live="polite">{daysLeft}</span>
         <span class="hk-count-label">{t(locale, 'hackathon.countdownLabel')}</span>
       </div>
-      {data.deadlineDate && (
-        <div class="hk-count hk-count-deadline">
-          <span class="hk-count-pre">{t(locale, 'hackathon.deadlinePre')}</span>
-          <span class="hk-count-num" data-deadline-date={data.deadlineDate} aria-live="polite">{deadlineDaysLeft}</span>
-          <span class="hk-count-label">{t(locale, 'hackathon.deadlineLabel')}</span>
-        </div>
-      )}
     </div>
+    {data.deadlineDate && (
+      <p class="hk-deadline-note">
+        {t(locale, 'hackathon.deadlineNoteA')}
+        <strong data-deadline-date={data.deadlineDate} aria-live="polite">{deadlineDaysLeft}</strong>
+        {t(locale, 'hackathon.deadlineNoteB')}
+      </p>
+    )}
   </div>
 </section>
 
@@ -627,14 +627,17 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
     letter-spacing: 0.04em;
   }
 
-  .hk-count-deadline {
-    padding-left: 1rem;
-    border-left: 1px solid var(--border);
+  .hk-deadline-note {
+    margin: 1.25rem 0 0;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
   }
 
-  .hk-count-deadline .hk-count-num {
-    color: var(--text-primary);
-    font-size: 1.375rem;
+  .hk-deadline-note strong {
+    color: var(--accent-vermillion);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
   }
 
   .hk-narrow {
