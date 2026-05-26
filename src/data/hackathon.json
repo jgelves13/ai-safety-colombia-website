@@ -131,7 +131,7 @@
       { "es": "Espacio de trabajo presencial abierto 24 horas durante los tres días del evento.", "en": "In-person workspace open around the clock throughout the three days of the event." },
       { "es": "Alimentación vegana incluida durante todo el fin de semana.", "en": "Vegan meals included throughout the entire weekend." },
       { "es": "Mentorías, charlas y Q&A en vivo con investigadores, jueces y expertos.", "en": "Live mentoring, talks, and Q&A with researchers, judges, and experts." },
-      { "es": "Apoyo limitado de viaje y alojamiento para participantes seleccionados de otras ciudades.", "en": "Limited travel and accommodation support for selected participants from other cities." }
+      { "es": "Apoyo limitado de viaje y alojamiento para participantes seleccionados de otras ciudades del país.", "en": "Limited travel and accommodation support for selected participants from other cities in the country." }
     ],
     "onlineItems": [
       { "es": "Charlas técnicas y Q&A en vivo por Zoom.", "en": "Technical talks and live Q&A over Zoom." },
