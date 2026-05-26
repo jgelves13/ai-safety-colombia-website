@@ -9,14 +9,12 @@
   "support": "Schmidt Sciences",
   "whatIsEs": "<p>Hoy, gran parte de la investigación en seguridad de IA se concentra en un número reducido de países. Sin embargo, estos sistemas ya están siendo desplegados en nuestra región, muchas veces con riesgos poco evaluados: sesgos no auditados, vulnerabilidades sin documentar y decisiones automatizadas sin mecanismos claros de rendición de cuentas. La capacidad de analizar, verificar y cuestionar estos sistemas desde contextos locales sigue siendo muy limitada.</p><p>El <a href=\"https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21?utm_source=hub-bogota\" target=\"_blank\" rel=\"noopener noreferrer\">Global South AIS Hackathon</a> es un sprint internacional de investigación de tres días diseñado para cerrar esa brecha. Los participantes forman equipos pequeños y trabajan en retos definidos por expertos en seguridad y gobernanza de IA, con mentoría en vivo durante todo el evento. Los equipos ganadores reciben una invitación al <a href=\"https://apartresearch.com/fellowships\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Lab Fellowship</a>, donde continúan desarrollando sus proyectos junto al equipo de investigación de <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, con oportunidades de publicación y vinculación a organizaciones dedicadas a la seguridad de la IA.</p>",
   "whatIsEn": "<p>Today, most AI safety research is concentrated in a small number of countries. Yet these systems are already being deployed across our region, often with risks that remain poorly evaluated: unaudited biases, undocumented vulnerabilities, and automated decisions with no clear accountability mechanisms. The capacity to analyze, verify, and challenge these systems from local contexts remains very limited.</p><p>The <a href=\"https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21?utm_source=hub-bogota\" target=\"_blank\" rel=\"noopener noreferrer\">Global South AIS Hackathon</a> is a three-day international research sprint designed to close that gap. Participants form small teams and work on challenges defined by AI safety and governance experts, with live mentoring throughout the event. Winning teams receive an invitation to the <a href=\"https://apartresearch.com/fellowships\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Lab Fellowship</a>, where they continue developing their projects alongside the <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a> team, with opportunities for publication and placement at organizations dedicated to AI safety.</p>",
-  "hybridParaEs": "La participación es híbrida: puede realizarse en línea desde cualquier lugar del Sur Global o de manera presencial en alguno de los hubs distribuidos en América Latina, África y Asia, incluido Bogotá.",
-  "hybridParaEn": "Participation is hybrid: it can take place online from anywhere in the Global South or in person at one of the hubs distributed across Latin America, Africa, and Asia, including Bogotá.",
   "organizerNoteEs": "El evento es organizado por <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, y el hub de Bogotá es coordinado por AI Safety Colombia.",
   "organizerNoteEn": "The event is organized by <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, and the Bogotá hub is coordinated by AI Safety Colombia.",
   "submissionEs": "Cada equipo entrega un reporte de investigación en PDF de 4 a 8 páginas que documenta enfoque, resultados e implicaciones.",
   "submissionEn": "Each team submits a 4–8 page research report (PDF) documenting approach, results, and implications.",
-  "whyIntroEs": "Los sistemas de IA ya operan en América Latina, pero la investigación que los hace seguros se concentra en unos pocos países: casi nadie revisa cómo se comportan en nuestro contexto. El hackathon aborda ese vacío desde cuatro frentes. Cada caso que sigue es un ejemplo concreto de uno de ellos, apenas una muestra de lo que podrás trabajar.",
-  "whyIntroEn": "AI systems are already operating across Latin America, but the research that makes them safe is concentrated in a handful of countries: almost no one checks how they behave in our context. The hackathon addresses that gap across four fronts. Each case below is a concrete example of one of them, just a sample of what you could take on.",
+  "whyIntroEs": "Ese vacío se aborda desde cuatro frentes. Cada caso es un ejemplo concreto de uno de ellos, apenas una muestra de lo que podrás trabajar.",
+  "whyIntroEn": "That gap is addressed across four fronts. Each case is a concrete example of one of them, just a sample of what you could take on.",
   "whyCases": [
     { "accent": "is-green", "areaEs": "Technical AI Safety", "areaEn": "Technical AI Safety",
       "bodyEs": "Los modelos de frontera ya actúan solos: navegan, escriben y ejecutan código por su cuenta. En pruebas controladas, <a href=\"https://arxiv.org/abs/2412.04984\" target=\"_blank\" rel=\"noopener noreferrer\">Apollo Research documentó</a> modelos que intentaban desactivar su propia supervisión y mentían al respecto para cumplir un objetivo. Llegan a la región sin que nadie verifique cómo razonan por dentro. Evaluar a los agentes e inspeccionar lo que aprenden es la única forma de detectarlo a tiempo.",
@@ -31,15 +29,8 @@
       "bodyEs": "La gobernanza de IA define qué usos de estos sistemas se permiten, cómo se auditan y quién responde cuando fallan. En octubre de 2025 la estatal colombiana CIAC presentó el <a href=\"https://www.zona-militar.com/2025/10/17/conociendo-al-dragom-el-nuevo-drone-de-ataque-desarrollado-por-la-ciac-para-las-fuerzas-armadas-de-colombia/\" target=\"_blank\" rel=\"noopener noreferrer\">Dragom</a>, un dron militar de ataque que vuela en modo manual, semiautomático o autónomo. Que un sistema mate por su cuenta no es una decisión técnica sino política, y por eso la Cámara discute un <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017\" target=\"_blank\" rel=\"noopener noreferrer\">proyecto de ley</a> para prohibir las armas autónomas letales.",
       "bodyEn": "AI governance defines which uses of these systems are allowed, how they are audited, and who answers when they fail. In October 2025 Colombia's state corporation CIAC unveiled the <a href=\"https://www.zona-militar.com/2025/10/17/conociendo-al-dragom-el-nuevo-drone-de-ataque-desarrollado-por-la-ciac-para-las-fuerzas-armadas-de-colombia/\" target=\"_blank\" rel=\"noopener noreferrer\">Dragom</a>, a military attack drone that flies in manual, semi-automatic, or autonomous mode. Letting a system kill on its own is not a technical decision but a political one, which is why the Chamber of Representatives is debating a <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017\" target=\"_blank\" rel=\"noopener noreferrer\">bill</a> to ban lethal autonomous weapons." }
   ],
-  "whyCloseEs": "En un fin de semana construyes evaluaciones, herramientas o investigación de política sobre uno de estos frentes, con mentoría en vivo y retos definidos por expertos. Es la puerta de entrada al pipeline de Apart.",
-  "whyCloseEn": "Over one weekend you build evaluations, tools, or policy research on one of these fronts, with live mentoring and expert-defined challenges. It is the entry point to the Apart pipeline.",
-  "pathwayLabelEs": "La ruta, paso a paso",
-  "pathwayLabelEn": "The pathway, step by step",
-  "pipeline": [
-    { "stepEs": "Hackathon", "stepEn": "Hackathon", "descEs": "Un fin de semana construyendo evaluaciones, herramientas o investigación de política, con mentoría en vivo y retos definidos por expertos.", "descEn": "A weekend building evaluations, tools, or policy research, with live mentoring and expert-defined challenges." },
-    { "stepEs": "Apart Lab Fellowship", "stepEn": "Apart Lab Fellowship", "descEs": "Los equipos ganadores son invitados al Apart Lab Fellowship para profundizar el trabajo durante varias semanas con apoyo de investigación.", "descEn": "Winning teams are invited to the Apart Lab Fellowship to deepen the work over several weeks with research support." },
-    { "stepEs": "Investigación y colocación", "stepEn": "Research & placement", "descEs": "Mentoría y revisión de expertos hacia investigación publicable, talleres de conferencias y oportunidades en organizaciones de seguridad de IA.", "descEn": "Expert mentoring and review toward publishable research, conference workshops, and opportunities at AI safety organizations." }
-  ],
+  "whyCloseEs": "Los retos completos se publican el viernes; los cuatro frentes anteriores son apenas el mapa. Los tracks de abajo detallan los subtemas concretos.",
+  "whyCloseEn": "The full challenges are released on Friday; the four fronts above are only the map. The tracks below break out the concrete subtopics.",
   "tracks": [
     { "titleEs": "Technical AI Safety", "titleEn": "Technical AI Safety", "accent": "is-green",
       "descEs": "Entender y verificar cómo se comportan los modelos por dentro: cómo evalúan, planean y actúan los sistemas agénticos, y cómo inspeccionar lo que aprenden.",
@@ -108,8 +99,8 @@
       { "es": "Mentoría y revisión de expertos", "en": "Expert mentoring and review" },
       { "es": "Apoyo: Schmidt Sciences", "en": "Supported by Schmidt Sciences" }
     ],
-    "fellowsEs": "Además del premio en efectivo, los equipos ganadores reciben una invitación al <a href=\"https://apartresearch.com/fellowships\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Lab Fellowship</a>: un programa de varias semanas en el que extienden su trabajo con acompañamiento del equipo de investigación de Apart. Lo que cada equipo construye depende del track: prototipos, evaluaciones o herramientas técnicas en seguridad; memorandos o análisis de política en gobernanza.",
-    "fellowsEn": "On top of the cash prize, winning teams receive an invitation to the <a href=\"https://apartresearch.com/fellowships\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Lab Fellowship</a>: a multi-week program where they extend their work with support from Apart's research team. What each team builds depends on the track: prototypes, evaluations, or technical tools in safety; policy memos or analysis in governance.",
+    "fellowsEs": "Lo que cada equipo construye en el <a href=\"https://apartresearch.com/fellowships\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Lab Fellowship</a> depende del track: prototipos, evaluaciones o herramientas técnicas en seguridad; memorandos o análisis de política en gobernanza.",
+    "fellowsEn": "What each team builds in the <a href=\"https://apartresearch.com/fellowships\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Lab Fellowship</a> depends on the track: prototypes, evaluations, or technical tools in safety; policy memos or analysis in governance.",
     "successTitleEs": "Algunos resultados de sprints anteriores",
     "successTitleEn": "Some results from past sprints",
     "successExamples": [
@@ -122,12 +113,6 @@
   "inPerson": {
     "para1Es": "La participación virtual está abierta a personas del Sur Global, ya sea por nacionalidad o residencia. Quienes deseen postularse a la sede presencial de Bogotá deben indicarlo en el formulario de inscripción de Apart Research; posteriormente recibirán un formulario adicional de selección. Los cupos presenciales son limitados.",
     "para1En": "Virtual participation is open to people from the Global South, whether by nationality or residence. Those who wish to apply for the in-person Bogotá venue must indicate this on the Apart Research registration form; they will subsequently receive an additional selection form. In-person spots are limited.",
-    "inPersonIntroEs": "Las personas seleccionadas para participar presencialmente en Bogotá tendrán acceso a:",
-    "inPersonIntroEn": "Participants selected for in-person attendance in Bogotá will have access to:",
-    "experienceEs": "Un espacio dedicado en Bogotá, abierto 24 horas durante los tres días del hackathon, con trabajo en equipo presencial, mentoría en sitio y alimentación incluida.",
-    "experienceEn": "A dedicated venue in Bogotá, open 24 hours throughout the three hackathon days, with in-person teamwork, on-site mentoring, and meals included.",
-    "onlineExperienceEs": "Participación remota desde cualquier lugar del Sur Global, con acceso completo a mentorías, charlas técnicas y a los canales oficiales del hackathon en Discord y Zoom.",
-    "onlineExperienceEn": "Remote participation from anywhere in the Global South, with full access to mentoring, technical talks, and the hackathon's official Discord and Zoom channels.",
     "modeInpersonLabelEs": "Presencial",
     "modeInpersonLabelEn": "In-person",
     "modeOnlineLabelEs": "En línea",
@@ -148,11 +133,9 @@
       { "es": "Mentorías, charlas y Q&A en vivo con investigadores, jueces y expertos.", "en": "Live mentoring, talks, and Q&A with researchers, judges, and experts." },
       { "es": "Apoyo limitado de viaje y alojamiento para participantes seleccionados de otras ciudades.", "en": "Limited travel and accommodation support for selected participants from other cities." }
     ],
-    "onlineCloseEs": "Quienes participen en línea podrán acceder a mentorías, charlas y espacios colaborativos a través de Discord y Zoom.",
-    "onlineCloseEn": "Those participating online will have access to mentorships, talks, and collaborative spaces through Discord and Zoom.",
     "onlineItems": [
-      { "es": "Charlas técnicas y sesiones de preguntas en vivo.", "en": "Technical talks and live Q&A sessions." },
-      { "es": "Acceso a canales de Discord y sesiones sincrónicas por Zoom.", "en": "Access to Discord channels and synchronous Zoom sessions." },
+      { "es": "Charlas técnicas y Q&A en vivo por Zoom.", "en": "Technical talks and live Q&A over Zoom." },
+      { "es": "Canales oficiales del hackathon en Discord para mentoría y colaboración.", "en": "Official hackathon Discord channels for mentoring and collaboration." },
       { "es": "Acceso completo a los retos, recursos y entregables del hackathon.", "en": "Full access to all hackathon challenges, resources, and deliverables." }
     ]
   },
