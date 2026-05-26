@@ -145,7 +145,7 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
             </li>
           ))}
         </ul>
-        <p class="hk-mode-footer">{es ? data.inPerson.bogotaApplyEs : data.inPerson.bogotaApplyEn}</p>
+        <p class="hk-mode-footer" set:html={es ? data.inPerson.bogotaApplyEs : data.inPerson.bogotaApplyEn} />
       </article>
 
       <article class="hk-mode is-blue">
