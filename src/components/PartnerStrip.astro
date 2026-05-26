@@ -21,7 +21,6 @@ const apartDescriptor = es
   ? 'Red internacional de investigación en seguridad de IA. Organizadores del Global South AIS Hackathon.'
   : 'International AI safety research network. Organizers of the Global South AIS Hackathon.';
 
-const apartCta = es ? 'Visitar apartresearch.com' : 'Visit apartresearch.com';
 const supportEyebrow = es ? 'Con el apoyo de' : 'With support from';
 ---
 
@@ -33,7 +32,6 @@ const supportEyebrow = es ? 'Con el apoyo de' : 'With support from';
       <Image src={apartLogo} alt="Apart Research" width={320} height={120} loading="lazy" class="partner-feature-logo" />
       <p class="partner-feature-name">Apart Research</p>
       <p class="partner-feature-desc">{apartDescriptor}</p>
-      <span class="partner-feature-cta">{apartCta} <span aria-hidden="true">&rarr;</span></span>
     </a>
 
     <div class="partners-support">
@@ -105,13 +103,6 @@ const supportEyebrow = es ? 'Con el apoyo de' : 'With support from';
     font-size: 0.9375rem;
     line-height: 1.55;
     color: var(--text-secondary);
-  }
-
-  .partner-feature-cta {
-    margin-top: 0.5rem;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: var(--accent-forest);
   }
 
   .partners-support {
