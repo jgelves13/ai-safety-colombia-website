@@ -29,7 +29,7 @@ export const ui = {
     'hackathon.countdownLabel': 'días',
     'hackathon.deadlineLabel': 'Cierre hub presencial',
     'hackathon.deadlineDateDisplay': '12 jun, 23:59',
-    'hackathon.deadlineDaysLabel': 'días',
+    'hackathon.deadlineDaysLabel': 'días restantes',
     'hackathon.whatTitle': '¿Qué es?',
     'hackathon.whyTitle': '¿Por qué participar?',
     'hackathon.tracksTitle': 'Tracks',
