@@ -1332,6 +1332,21 @@ const clockIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>')
     text-align: center;
   }
 
+  .hk-attr a {
+    color: var(--text-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--accent-forest);
+    transition: text-decoration-color 0.15s ease, color 0.15s ease;
+  }
+
+  .hk-attr a:hover {
+    color: var(--accent-forest);
+    text-decoration-color: currentColor;
+  }
+
   @media (max-width: 680px) {
     .hk-modes { grid-template-columns: 1fr; }
   }
@@ -1423,10 +1438,15 @@ const clockIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>')
     font-size: 0.8125rem;
     font-weight: 600;
     color: var(--accent-forest);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: currentColor;
+    transition: opacity 0.15s ease;
   }
 
   .hk-success-src:hover {
-    text-decoration: underline;
+    opacity: 0.75;
   }
 
   /* Global South globe: decorative rotating sphere + pulsing Bogotá hub,
@@ -1849,6 +1869,12 @@ const clockIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>')
     font-size: 0.8125rem;
     font-weight: 600;
     color: #0A66C2;
+  }
+
+  .hk-person-link span:last-child {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
   }
 
   .hk-li-icon {
