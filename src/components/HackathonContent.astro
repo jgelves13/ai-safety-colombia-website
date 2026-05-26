@@ -12,6 +12,7 @@ const { locale } = Astro.props;
 const es = locale === 'es';
 
 const daysLeft = daysUntil(data.date);
+const deadlineDaysLeft = data.deadlineDate ? daysUntil(data.deadlineDate) : 0;
 const whatBody = es ? data.whatIsEs : data.whatIsEn;
 const submission = es ? data.submissionEs : data.submissionEn;
 
@@ -120,6 +121,13 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
         <span class="hk-count-num" data-hackathon-date={data.date} aria-live="polite">{daysLeft}</span>
         <span class="hk-count-label">{t(locale, 'hackathon.countdownLabel')}</span>
       </div>
+      {data.deadlineDate && (
+        <div class="hk-count hk-count-deadline">
+          <span class="hk-count-pre">{t(locale, 'hackathon.deadlinePre')}</span>
+          <span class="hk-count-num" data-deadline-date={data.deadlineDate} aria-live="polite">{deadlineDaysLeft}</span>
+          <span class="hk-count-label">{t(locale, 'hackathon.deadlineLabel')}</span>
+        </div>
+      )}
     </div>
   </div>
 </section>
@@ -617,6 +625,16 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
     font-size: 0.6875rem;
     font-family: var(--font-mono);
     letter-spacing: 0.04em;
+  }
+
+  .hk-count-deadline {
+    padding-left: 1rem;
+    border-left: 1px solid var(--border);
+  }
+
+  .hk-count-deadline .hk-count-num {
+    color: var(--text-primary);
+    font-size: 1.375rem;
   }
 
   .hk-narrow {
@@ -1854,9 +1872,11 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
 
 <script>
   import { daysUntil } from '../utils/countdown.js';
-  const el = document.querySelector('[data-hackathon-date]');
-  const date = el && el.getAttribute('data-hackathon-date');
-  if (el && date) {
-    el.textContent = String(daysUntil(date));
+  for (const attr of ['data-hackathon-date', 'data-deadline-date']) {
+    const el = document.querySelector('[' + attr + ']');
+    const date = el && el.getAttribute(attr);
+    if (el && date) {
+      el.textContent = String(daysUntil(date));
+    }
   }
 </script>
