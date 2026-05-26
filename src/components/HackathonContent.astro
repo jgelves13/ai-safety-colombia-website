@@ -179,20 +179,6 @@ const clockIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>')
       </article>
     </div>
 
-    <aside class="hk-coorg" aria-label={es ? 'En colaboración' : 'In collaboration'}>
-      <p class="hk-coorg-eyebrow">{es ? 'En colaboración' : 'In collaboration'}</p>
-      <div class="hk-coorg-row">
-        <a class="hk-coorg-card" href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
-          <img src="/images/apart-logo.png" alt="Apart Research" width="240" height="64" loading="lazy" />
-          <span class="hk-coorg-role">{es ? 'Organizador internacional' : 'International organizer'}</span>
-        </a>
-        <span class="hk-coorg-x" aria-hidden="true">×</span>
-        <a class="hk-coorg-card" href="/">
-          <img src="/images/aisc-lockup.png" alt="AI Safety Colombia" width="240" height="64" loading="lazy" />
-          <span class="hk-coorg-role">{es ? 'Hub Bogotá' : 'Bogotá hub'}</span>
-        </a>
-      </div>
-    </aside>
   </div>
 </section>
 
@@ -1360,84 +1346,6 @@ const clockIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>')
     text-decoration-color: currentColor;
   }
 
-  /* Co-organizers panel: gives the partnership real visual weight
-     (logos + role labels) instead of a thin centered sentence. */
-  .hk-coorg {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--hairline, var(--border));
-    text-align: center;
-  }
-
-  .hk-coorg-eyebrow {
-    margin: 0 0 1.25rem;
-    font-family: var(--font-display, inherit);
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.22em;
-    color: var(--text-secondary);
-  }
-
-  .hk-coorg-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 1.25rem 2rem;
-  }
-
-  .hk-coorg-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1.25rem 1.75rem;
-    min-width: 220px;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    background: var(--bg-primary, #fff);
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
-  }
-
-  .hk-coorg-card:hover {
-    border-color: var(--accent-forest);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-  }
-
-  .hk-coorg-card img {
-    display: block;
-    height: 44px;
-    width: auto;
-    max-width: 240px;
-    object-fit: contain;
-  }
-
-  .hk-coorg-role {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-  }
-
-  .hk-coorg-x {
-    font-family: var(--font-display, inherit);
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: var(--text-secondary);
-    opacity: 0.55;
-    user-select: none;
-  }
-
-  @media (max-width: 600px) {
-    .hk-coorg-x { display: none; }
-    .hk-coorg-row { flex-direction: column; gap: 1rem; }
-    .hk-coorg-card { width: 100%; max-width: 320px; }
-  }
 
   @media (max-width: 680px) {
     .hk-modes { grid-template-columns: 1fr; }
