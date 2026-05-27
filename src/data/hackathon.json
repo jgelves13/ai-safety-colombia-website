@@ -10,13 +10,13 @@
   "support": "Schmidt Sciences",
   "panelFactsEs": [
     "Charla inaugural de un investigador colombiano de OpenAI",
-    "Jurado con el autor del proyecto de ley contra armas autónomas en Colombia",
-    "Apart Lab Fellowship para los equipos ganadores: 22 publicaciones en ICLR, NeurIPS y ACL"
+    "Jurado con el autor del proyecto de ley contra armas autónomas",
+    "Apart Lab Fellowship: 22 publicaciones en ICLR, NeurIPS y ACL"
   ],
   "panelFactsEn": [
     "Opening talk by a Colombian researcher at OpenAI",
-    "Judges include the author of Colombia's bill banning autonomous weapons",
-    "Apart Lab Fellowship for winning teams: 22 publications at ICLR, NeurIPS, ACL"
+    "Judges include the author of Colombia's autonomous-weapons bill",
+    "Apart Lab Fellowship: 22 publications at ICLR, NeurIPS, ACL"
   ],
   "detailCards": [
     {
@@ -24,16 +24,16 @@
       "labelEn": "Date",
       "titleEs": "19-21 de junio",
       "titleEn": "June 19-21",
-      "bodyEs": "Hub presencial en Bogotá, con sede por confirmar en la zona de Usaquén. Las comidas están incluidas durante el fin de semana.",
-      "bodyEn": "In-person hub in Bogotá, venue to be confirmed in the Usaquén area. Meals are included throughout the weekend."
+      "bodyEs": "Hub presencial gratuito en el norte de Bogotá, con sede por confirmar en la zona de Usaquén. Las comidas están incluidas durante el fin de semana.",
+      "bodyEn": "Free in-person hub in north Bogotá, venue to be confirmed in the Usaquén area. Meals are included throughout the weekend."
     },
     {
       "labelEs": "Formato",
       "labelEn": "Format",
       "titleEs": "Bogotá u online",
       "titleEn": "Bogotá or online",
-      "bodyEs": "Cupos limitados para el hub presencial, participación abierta en línea para el Sur Global y posible apoyo de viaje.",
-      "bodyEn": "Limited seats for the in-person hub, open online participation across the Global South, and possible travel support."
+      "bodyEs": "Cupos limitados para el hub presencial, participación abierta en línea para el Sur Global y posible apoyo de viaje para quienes vengan al hub de Bogotá.",
+      "bodyEn": "Limited seats for the in-person hub, open online participation across the Global South, and possible travel support for those joining the Bogotá hub."
     },
     {
       "labelEs": "Entrega",

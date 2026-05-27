@@ -78,9 +78,9 @@ const facts = (es ? data.panelFactsEs : data.panelFactsEn) as string[];
   .alt-eyebrow {
     color: var(--accent-forest);
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
     font-weight: 700;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
   }
 
