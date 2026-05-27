@@ -129,9 +129,8 @@ const facts = (es ? data.panelFactsEs : data.panelFactsEn) as string[];
     color: var(--bg-elevated);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: clamp(340px, 26vw, 420px);
-    padding: clamp(1.75rem, 3vw, 2.5rem);
+    gap: clamp(2rem, 3.5vw, 3rem);
+    padding: clamp(2rem, 3.2vw, 2.75rem);
   }
 
   .alt-panel h2 {
@@ -170,7 +169,7 @@ const facts = (es ? data.panelFactsEs : data.panelFactsEn) as string[];
     }
 
     .alt-panel {
-      min-height: auto;
+      gap: 1.5rem;
       padding: 1.75rem;
     }
   }
