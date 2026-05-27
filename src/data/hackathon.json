@@ -9,13 +9,15 @@
   "contactEmail": "sprints@apartresearch.com",
   "support": "Schmidt Sciences",
   "panelFactsEs": [
+    "Participación gratuita en el hub presencial de Bogotá",
     "Charla inaugural de un investigador colombiano de OpenAI",
-    "Ponencia del coautor del proyecto de ley contra armas autónomas",
+    "USD 3.000 en premios para los tres mejores equipos de LATAM",
     "Apart Lab Fellowship: 22 publicaciones en ICLR, NeurIPS y ACL"
   ],
   "panelFactsEn": [
+    "Free participation in the in-person Bogotá hub",
     "Opening talk by a Colombian researcher at OpenAI",
-    "Talk by the co-author of Colombia's autonomous-weapons bill",
+    "US$3,000 in prizes for the top three LATAM teams",
     "Apart Lab Fellowship: 22 publications at ICLR, NeurIPS, ACL"
   ],
   "detailCards": [
@@ -24,8 +26,8 @@
       "labelEn": "Date",
       "titleEs": "19-21 de junio",
       "titleEn": "June 19-21",
-      "bodyEs": "Hub presencial gratuito en el norte de Bogotá, con sede por confirmar en la zona de Usaquén. Las comidas están incluidas durante el fin de semana.",
-      "bodyEn": "Free in-person hub in north Bogotá, venue to be confirmed in the Usaquén area. Meals are included throughout the weekend."
+      "bodyEs": "Hub presencial gratuito en el norte de Bogotá, con sede por confirmar. Las comidas están incluidas durante el fin de semana.",
+      "bodyEn": "Free in-person hub in north Bogotá, venue to be confirmed. Meals are included throughout the weekend."
     },
     {
       "labelEs": "Formato",
