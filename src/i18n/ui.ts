@@ -36,7 +36,7 @@ export const ui = {
     'hackathon.altMeta': '19-21 de junio · Bogotá presencial u online',
     'hackathon.altLead': 'Un fin de semana para construir herramientas, evaluaciones e investigación de política sobre los riesgos de IA que más importan en la región.',
     'hackathon.altPrimaryCta': 'Aplica antes del 12 de junio',
-    'hackathon.altPanelTitle': 'Claves',
+    'hackathon.altPanelTitle': 'Destacados',
     'hackathon.altPanelAria': 'Datos clave del hackathon',
     'hackathon.altFinalCtaKicker': 'Cupos limitados',
     'hackathon.altFinalCtaTitle': 'Aplica antes del 12 de junio para postularte al Bogotá Hub.',
