@@ -397,7 +397,7 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
             : <div class="hk-person-av" aria-hidden="true">{initials(sp.name)}</div>}
           <div class="hk-person-tx">
             <h3>{sp.name}</h3>
-            <p class="hk-person-aff">{es ? sp.affiliationEs : sp.affiliationEn}</p>
+            <p class="hk-person-aff" set:html={es ? sp.affiliationEs : sp.affiliationEn} />
             {sp.attendance && (
               <span class={`hk-att hk-att-${sp.attendance}`}>{attLabel(sp.attendance)}</span>
             )}
@@ -456,7 +456,7 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
             <div class="hk-person-tx">
               <h3>{j.name}</h3>
               {(es ? j.affiliationEs : j.affiliationEn) && (
-                <p class="hk-person-aff">{es ? j.affiliationEs : j.affiliationEn}</p>
+                <p class="hk-person-aff" set:html={es ? j.affiliationEs : j.affiliationEn} />
               )}
               {j.attendance && (
                 <span class={`hk-att hk-att-${j.attendance}`}>{attLabel(j.attendance)}</span>
@@ -1774,6 +1774,18 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
     font-weight: 500;
     color: var(--accent-forest);
     margin-top: 0.125rem;
+  }
+
+  .hk-person-aff :global(a) {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: opacity 0.15s ease;
+  }
+
+  .hk-person-aff :global(a:hover) {
+    opacity: 0.7;
   }
 
   .hk-att {
