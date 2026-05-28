@@ -1,0 +1,276 @@
+---
+// Standalone preview for single LinkedIn-boost flyer.
+// Three sub-variants of A (editorial sobrio) with the prize as
+// the dominant element instead of the dates. Same canvas 1080x1350,
+// scaled for viewport. Final render via Satori once chosen.
+
+const BRAND = {
+  cream: '#FBF6EC',
+  forest: '#1F4D32',
+  coral: '#E5604D',
+  ink: '#211A12',
+  ink2: '#4A4030',
+  mint: '#5BFFA8',
+};
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LinkedIn flyer · A variants · AI Safety Colombia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #1a1a1a; color: #fff; }
+    body { font-family: 'Inter', system-ui, sans-serif; padding: 40px 24px 96px; line-height: 1.5; }
+
+    .topbar { max-width: 1480px; margin: 0 auto 28px; display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap; }
+    .topbar h1 { font: 700 1.5rem/1 'Bricolage Grotesque'; letter-spacing: -0.02em; }
+    .topbar p { color: #999; font-size: 0.875rem; max-width: 720px; }
+
+    .compare {
+      max-width: 1480px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .col { display: flex; flex-direction: column; gap: 12px; }
+    .label { display: flex; align-items: center; gap: 10px; font: 500 0.75rem/1 'JetBrains Mono', monospace; letter-spacing: 0.18em; text-transform: uppercase; color: #888; }
+    .label .tag { background: #2a2a2a; color: #fff; padding: 6px 10px; border-radius: 999px; letter-spacing: 0.12em; }
+    .notes { color: #aaa; font-size: 0.8125rem; line-height: 1.5; min-height: 5em; }
+
+    /* Stage: 1080x1350 scaled into 459x574 (0.425) */
+    .stage {
+      width: 459px;
+      height: 574px;
+      overflow: hidden;
+      border-radius: 6px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      align-self: center;
+    }
+    .canvas {
+      width: 1080px;
+      height: 1350px;
+      transform: scale(0.425);
+      transform-origin: top left;
+      position: relative;
+      background: var(--cream);
+    }
+
+    /* ---- Shared editorial / token system ---- */
+    .canvas { padding: 120px 80px 90px; display: flex; flex-direction: column; justify-content: space-between; }
+
+    .kicker {
+      font: 500 16px/1 'JetBrains Mono', monospace;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 14px;
+    }
+    .title {
+      font: 700 96px/0.97 'Bricolage Grotesque';
+      letter-spacing: -0.02em;
+      color: var(--forest);
+    }
+    .title-md { font-size: 86px; }
+    .title-sm { font-size: 78px; }
+
+    .sub {
+      font: 500 26px/1.4 'Inter';
+      color: var(--ink2);
+      max-width: 820px;
+      margin-top: 24px;
+    }
+
+    .editorial { display: flex; flex-direction: column; gap: 16px; max-width: 940px; }
+    .row { display: flex; align-items: baseline; gap: 18px; }
+    .num { font: 500 16px/1 'JetBrains Mono'; color: var(--forest); letter-spacing: 0.12em; min-width: 32px; }
+    .bar { width: 34px; height: 2px; background: var(--coral); flex-shrink: 0; align-self: center; }
+    .tx { font: 500 21px/1.45 'Inter'; color: var(--ink); flex: 1; max-width: 820px; }
+
+    .foot { display: flex; align-items: flex-end; justify-content: space-between; }
+    .qr {
+      width: 196px; height: 196px;
+      border: 7px solid var(--mint);
+      border-radius: 16px;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font: 500 12px 'JetBrains Mono';
+      color: #999;
+    }
+    .qr-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .qr-label {
+      font: 500 14px 'JetBrains Mono';
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--forest);
+    }
+    .hosts { display: flex; flex-direction: column; gap: 6px; font: 500 17px 'Inter'; color: var(--ink2); align-items: flex-end; }
+    .hosts .label-min { font: 500 12px 'JetBrains Mono'; letter-spacing: 0.18em; text-transform: uppercase; color: #999; }
+    .hosts strong { font: 700 17px 'Inter'; color: var(--ink2); }
+
+    /* ---- Prize blocks (per variant) ---- */
+
+    /* A1: Direct swap — prize block at same scale as the old dates hero */
+    .a1 .prize { display: flex; flex-direction: column; gap: 10px; }
+    .a1 .amount { font: 800 104px/0.95 'Bricolage Grotesque'; letter-spacing: -0.03em; color: var(--forest); }
+    .a1 .amount-tag { font: 600 24px/1.3 'Inter'; color: var(--ink); max-width: 840px; }
+    .a1 .meta { font: 500 22px/1.3 'Inter'; color: var(--ink2); }
+    .a1 .deadline { font: 700 22px/1.3 'Inter'; color: var(--coral); margin-top: 2px; }
+
+    /* A2: Prize dominant — much bigger amount */
+    .a2 .prize { display: flex; flex-direction: column; gap: 10px; }
+    .a2 .amount { font: 800 156px/0.92 'Bricolage Grotesque'; letter-spacing: -0.04em; color: var(--forest); }
+    .a2 .amount-tag { font: 600 24px/1.3 'Inter'; color: var(--ink); max-width: 840px; margin-top: 4px; }
+    .a2 .meta { font: 500 22px/1.3 'Inter'; color: var(--ink2); margin-top: 18px; }
+    .a2 .deadline { font: 700 22px/1.3 'Inter'; color: var(--coral); margin-top: 2px; }
+
+    /* A3: Compact info block — prize as anchor, info stacked tightly with rule */
+    .a3 .prize { display: flex; flex-direction: column; gap: 8px; }
+    .a3 .amount { font: 800 120px/0.95 'Bricolage Grotesque'; letter-spacing: -0.03em; color: var(--forest); }
+    .a3 .amount-tag { font: 600 22px/1.35 'Inter'; color: var(--ink); max-width: 800px; }
+    .a3 .divider { width: 80px; height: 3px; background: var(--coral); margin: 14px 0 10px; }
+    .a3 .meta { font: 500 21px/1.35 'Inter'; color: var(--ink2); }
+    .a3 .deadline { font: 700 21px/1.35 'Inter'; color: var(--coral); margin-top: 2px; }
+
+  </style>
+</head>
+<body style={`--cream:${BRAND.cream};--forest:${BRAND.forest};--coral:${BRAND.coral};--ink:${BRAND.ink};--ink2:${BRAND.ink2};--mint:${BRAND.mint};`}>
+  <div class="topbar">
+    <div>
+      <h1>LinkedIn flyer · A variants (prize as hero)</h1>
+      <p>Tres tratamientos del mismo contenido: USD 3.000 reemplaza al hero de la fecha. Las fechas se reubican (kicker o meta). Mismo canvas 1080×1350, escalado 42.5% para verlos en paralelo.</p>
+    </div>
+    <div style="font: 500 0.75rem 'JetBrains Mono'; color:#666; letter-spacing:0.15em; text-transform:uppercase;">draft · {new Date().toISOString().slice(0,10)}</div>
+  </div>
+
+  <div class="compare">
+
+    <!-- A1: minimal swap -->
+    <div class="col">
+      <div class="label"><span class="tag">A1</span> Drop-in swap</div>
+      <p class="notes">Mínimo cambio: el bloque del premio reemplaza el de la fecha al mismo tamaño (104px). Fechas suben al kicker. Estructura editorial intacta, lectura ordenada.</p>
+      <div class="stage">
+        <div class="canvas a1">
+          <div>
+            <div class="kicker">Hub Bogotá · 19–21 jun 2026 · postulaciones hasta 12 jun</div>
+            <div class="title">Global South AI Safety Hackathon</div>
+            <div class="sub">Tres días para investigar seguridad de IA con pares desde América Latina.</div>
+          </div>
+
+          <div class="editorial">
+            <div class="row"><div class="num">01</div><div class="bar"></div><div class="tx"><strong>Charlas de apertura:</strong> investigador colombiano en OpenAI y representante autor del proyecto de ley sobre armas autónomas.</div></div>
+            <div class="row"><div class="num">02</div><div class="bar"></div><div class="tx"><strong>Jueces:</strong> OpenAI, UC Berkeley, BID Lab, ILAPS y SEHLAC.</div></div>
+            <div class="row"><div class="num">03</div><div class="bar"></div><div class="tx"><strong>Apart Lab Fellowship:</strong> 22 publicaciones en ICLR, NeurIPS y ACL.</div></div>
+          </div>
+
+          <div class="prize">
+            <div class="amount">USD 3.000</div>
+            <div class="amount-tag">en premios para los 3 equipos ganadores de América Latina.</div>
+            <div class="meta">Hub Bogotá presencial · remoto desde el Sur Global</div>
+            <div class="deadline">Postula hasta el 12 de junio</div>
+          </div>
+
+          <div class="foot">
+            <div class="qr-wrap">
+              <div class="qr">QR</div>
+              <div class="qr-label">Escanea e inscríbete</div>
+            </div>
+            <div class="hosts">
+              <span class="label-min">Organizan</span>
+              <strong>Apart Research</strong>
+              <strong>AI Safety Colombia</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2: prize dominant -->
+    <div class="col">
+      <div class="label"><span class="tag">A2</span> Premio dominante</div>
+      <p class="notes">El monto se agranda a 156px y se vuelve el ancla visual del flyer. El título del evento baja a 86px. Fechas en kicker. Más scroll-stop, mantiene tono editorial.</p>
+      <div class="stage">
+        <div class="canvas a2">
+          <div>
+            <div class="kicker">Hub Bogotá · 19–21 jun 2026 · postulaciones hasta 12 jun</div>
+            <div class="title title-md">Global South AI Safety Hackathon</div>
+            <div class="sub">Tres días para investigar seguridad de IA con pares desde América Latina.</div>
+          </div>
+
+          <div class="editorial">
+            <div class="row"><div class="num">01</div><div class="bar"></div><div class="tx"><strong>Charlas de apertura:</strong> investigador colombiano en OpenAI y representante autor del proyecto de ley sobre armas autónomas.</div></div>
+            <div class="row"><div class="num">02</div><div class="bar"></div><div class="tx"><strong>Jueces:</strong> OpenAI, UC Berkeley, BID Lab, ILAPS y SEHLAC.</div></div>
+            <div class="row"><div class="num">03</div><div class="bar"></div><div class="tx"><strong>Apart Lab Fellowship:</strong> 22 publicaciones en ICLR, NeurIPS y ACL.</div></div>
+          </div>
+
+          <div class="prize">
+            <div class="amount">USD 3.000</div>
+            <div class="amount-tag">en premios para los 3 equipos ganadores de América Latina.</div>
+            <div class="meta">Hub Bogotá presencial · remoto desde el Sur Global</div>
+            <div class="deadline">Postula hasta el 12 de junio</div>
+          </div>
+
+          <div class="foot">
+            <div class="qr-wrap">
+              <div class="qr">QR</div>
+              <div class="qr-label">Escanea e inscríbete</div>
+            </div>
+            <div class="hosts">
+              <span class="label-min">Organizan</span>
+              <strong>Apart Research</strong>
+              <strong>AI Safety Colombia</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A3: compact prize block with coral divider -->
+    <div class="col">
+      <div class="label"><span class="tag">A3</span> Bloque compacto</div>
+      <p class="notes">Premio a 120px con divisor coral debajo. La info de logística se agrupa apretada bajo el premio, leyendo como un bloque único. Más jerarquía explícita.</p>
+      <div class="stage">
+        <div class="canvas a3">
+          <div>
+            <div class="kicker">Hub Bogotá · 19–21 jun 2026 · postulaciones hasta 12 jun</div>
+            <div class="title title-md">Global South AI Safety Hackathon</div>
+            <div class="sub">Tres días para investigar seguridad de IA con pares desde América Latina.</div>
+          </div>
+
+          <div class="editorial">
+            <div class="row"><div class="num">01</div><div class="bar"></div><div class="tx"><strong>Charlas de apertura:</strong> investigador colombiano en OpenAI y representante autor del proyecto de ley sobre armas autónomas.</div></div>
+            <div class="row"><div class="num">02</div><div class="bar"></div><div class="tx"><strong>Jueces:</strong> OpenAI, UC Berkeley, BID Lab, ILAPS y SEHLAC.</div></div>
+            <div class="row"><div class="num">03</div><div class="bar"></div><div class="tx"><strong>Apart Lab Fellowship:</strong> 22 publicaciones en ICLR, NeurIPS y ACL.</div></div>
+          </div>
+
+          <div class="prize">
+            <div class="amount">USD 3.000</div>
+            <div class="amount-tag">en premios para los 3 equipos ganadores de América Latina.</div>
+            <div class="divider"></div>
+            <div class="meta">Hub Bogotá presencial · remoto desde el Sur Global</div>
+            <div class="deadline">Postula hasta el 12 de junio</div>
+          </div>
+
+          <div class="foot">
+            <div class="qr-wrap">
+              <div class="qr">QR</div>
+              <div class="qr-label">Escanea e inscríbete</div>
+            </div>
+            <div class="hosts">
+              <span class="label-min">Organizan</span>
+              <strong>Apart Research</strong>
+              <strong>AI Safety Colombia</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
