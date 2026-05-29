@@ -18,7 +18,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/sitemap": "^3.3.0",
-    "@astrojs/vercel": "^10.0.8",
+    "@astrojs/vercel": "^9.0.0",
     "resend": "^6.12.4",
     "@fontsource/bricolage-grotesque": "^5.2.10",
     "@fontsource/inter": "^5.2.8",
