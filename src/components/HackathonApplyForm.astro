@@ -549,12 +549,32 @@ const copy = {
   }
 
   .apply-radio input[type='radio'] {
-    margin-top: 0.3rem;
-    width: 1.1rem;
-    height: 1.1rem;
-    accent-color: var(--accent-forest);
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0.3rem 0 0;
+    width: 1.15rem;
+    height: 1.15rem;
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    background: var(--bg-elevated);
     cursor: pointer;
     flex-shrink: 0;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+
+  .apply-radio:hover input[type='radio'] {
+    border-color: var(--accent-forest);
+  }
+
+  .apply-radio input[type='radio']:checked {
+    border-color: var(--accent-forest);
+    background: var(--accent-forest);
+    box-shadow: inset 0 0 0 3px var(--bg-elevated);
+  }
+
+  .apply-radio input[type='radio']:focus-visible {
+    outline: 2px solid var(--accent-forest);
+    outline-offset: 2px;
   }
 
   .apply-radio span {
