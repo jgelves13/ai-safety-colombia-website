@@ -1,12 +1,10 @@
 import { readFile } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import satori from 'satori';
 import { html } from 'satori-html';
 import { Resvg } from '@resvg/resvg-js';
 
-const moduleDir = path.dirname(fileURLToPath(import.meta.url));
-const projectRoot = path.resolve(moduleDir, '..', '..');
+const projectRoot = process.cwd();
 
 async function loadFont(rel: string): Promise<ArrayBuffer> {
   const buf = await readFile(path.join(projectRoot, 'node_modules', '@fontsource', rel));
