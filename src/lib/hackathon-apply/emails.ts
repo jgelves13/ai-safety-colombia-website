@@ -127,7 +127,7 @@ export function renderApplicantConfirmation(
         intro: 'Gracias por postular al hub presencial de Bogotá del Global South AI Safety Hackathon. El evento se realizará del 19 al 21 de junio de 2026.',
         nextTitle: 'Qué sigue',
         step1Title: 'Revisión',
-        step1: 'Tu postulación entra a la ronda de selección del hub. Evaluamos claridad sobre el problema que quieres abordar, ajuste con los tracks del hackathon y disponibilidad para los tres días completos.',
+        step1: 'Tu postulación entra a la ronda de selección del hub. La única pregunta de selección es cómo describes el problema que quieres abordar y tu enfoque inicial: buscamos pensamiento concreto y propio, no credenciales.',
         step2Title: 'Resultados',
         step2: 'Anunciamos la selección el 15 de junio. Vas a recibir un correo a esta misma dirección con la decisión.',
         step3Title: 'Detalles del evento',
@@ -147,7 +147,7 @@ export function renderApplicantConfirmation(
         intro: 'Thank you for applying to the in-person Bogotá hub of the Global South AI Safety Hackathon. The event runs from June 19 to 21, 2026.',
         nextTitle: 'What happens next',
         step1Title: 'Review',
-        step1: 'Your application enters the hub selection round. We look at how clearly you describe the problem you want to tackle, the fit with the hackathon tracks, and your availability for the three full days.',
+        step1: 'Your application enters the hub selection round. The only selection question is how you describe the problem you want to tackle and your initial approach: we look for concrete thinking in your own words, not credentials.',
         step2Title: 'Results',
         step2: 'We announce the selection on June 15. You will receive an email at this same address with the decision.',
         step3Title: 'Event details',
@@ -160,17 +160,20 @@ export function renderApplicantConfirmation(
         footerDisclaimer: 'You are receiving this because you applied to the Bogotá hub of the Global South AI Safety Hackathon.',
       };
 
-  const step = (n: string, title: string, body: string) => `
+  const display = `'Bricolage Grotesque','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif`;
+  const body = `'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif`;
+
+  const step = (n: string, title: string, bodyText: string) => `
           <tr>
-            <td style="padding:0 32px 18px">
+            <td style="padding:0 36px 20px">
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
                 <tr>
-                  <td valign="top" width="40" style="width:40px;padding-right:14px">
-                    <div style="width:28px;height:28px;line-height:28px;text-align:center;background:#1F4D32;color:#FBF6EC;border-radius:50%;font-size:13px;font-weight:700">${n}</div>
+                  <td valign="top" width="44" style="width:44px;padding-right:16px">
+                    <div style="width:32px;height:32px;line-height:32px;text-align:center;background:#E5604D;color:#FFFBF2;border-radius:50%;font-family:${display};font-size:15px;font-weight:700">${n}</div>
                   </td>
                   <td valign="top">
-                    <p style="margin:0 0 4px;font-size:14px;font-weight:700;color:#1F4D32">${title}</p>
-                    <p style="margin:0;font-size:14px;line-height:1.6;color:#211A12">${body}</p>
+                    <p style="margin:0 0 4px;font-family:${display};font-size:15px;font-weight:700;letter-spacing:-0.01em;color:#143620">${title}</p>
+                    <p style="margin:0;font-family:${body};font-size:14px;line-height:1.65;color:#211A12">${bodyText}</p>
                   </td>
                 </tr>
               </table>
@@ -182,32 +185,53 @@ export function renderApplicantConfirmation(
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light only">
 <title>${esc(t.subject)}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body style="margin:0;padding:0;background:#FBF6EC;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#211A12">
+<body style="margin:0;padding:0;background:#FBF6EC;font-family:${body};color:#211A12">
   <div style="display:none;overflow:hidden;line-height:1px;opacity:0;max-height:0;max-width:0">${esc(t.preheader)}</div>
   <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#FBF6EC">
     <tr>
       <td align="center" style="padding:32px 16px">
-        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="560" style="max-width:560px;width:100%;background:#FFFFFF;border:1px solid #E6DCC8;border-radius:6px">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="580" style="max-width:580px;width:100%;background:#FFFBF2;border:1px solid #E4D9C4;border-radius:20px">
 
           <tr>
-            <td style="padding:18px 32px;background:#1F4D32;color:#FBF6EC;border-radius:6px 6px 0 0">
-              <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700">${t.eyebrow}</div>
+            <td style="padding:22px 36px 20px;background:#143620;color:#FBF6EC;border-radius:20px 20px 0 0">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td valign="middle">
+                    <img src="https://aisafetycolombia.org/logo.png" alt="" width="26" height="26" style="display:inline-block;vertical-align:middle;height:26px;width:auto;margin-right:10px;border:0">
+                    <span style="font-family:${display};font-size:14px;font-weight:700;letter-spacing:-0.01em;color:#FBF6EC;vertical-align:middle">AI Safety Colombia</span>
+                  </td>
+                  <td valign="middle" align="right">
+                    <span style="font-family:${body};font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:#9FB3A4">Hub Bogotá</span>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
 
           <tr>
-            <td style="padding:36px 32px 4px">
-              <p style="margin:0 0 18px;font-size:18px;font-weight:600;color:#1F4D32">${t.greeting}</p>
-              <p style="margin:0 0 28px;font-size:15px;line-height:1.6;color:#211A12">${t.intro}</p>
+            <td style="padding:0 36px">
+              <div style="height:4px;background:#E5604D;border-radius:0 0 4px 4px;width:64px;margin:0 0 0"></div>
             </td>
           </tr>
 
           <tr>
-            <td style="padding:0 32px">
-              <div style="border-top:1px solid #E6DCC8;margin:0 0 22px"></div>
-              <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;color:#4A4030;margin:0 0 18px">${t.nextTitle}</div>
+            <td style="padding:32px 36px 4px">
+              <p style="margin:0 0 18px;font-family:${display};font-size:26px;font-weight:700;letter-spacing:-0.03em;line-height:1.15;color:#143620">${t.greeting}</p>
+              <p style="margin:0 0 30px;font-family:${body};font-size:15.5px;line-height:1.65;color:#211A12">${t.intro}</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:0 36px">
+              <div style="border-top:1px solid #EDE3D0;margin:0 0 22px"></div>
+              <div style="font-family:${body};font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:#1F4D32;margin:0 0 18px">${t.nextTitle}</div>
             </td>
           </tr>
 
@@ -216,22 +240,22 @@ export function renderApplicantConfirmation(
           ${step('3', t.step3Title, t.step3)}
 
           <tr>
-            <td style="padding:4px 32px 0">
-              <div style="border-top:1px solid #E6DCC8;margin:18px 0 24px"></div>
-              <p style="margin:0 0 22px;font-size:15px;line-height:1.6;color:#211A12">${t.whatsappBlurb}</p>
-              <p style="margin:0 0 30px">
-                <a href="${wa}" style="display:inline-block;background:#1F4D32;color:#FBF6EC;text-decoration:none;padding:13px 24px;border-radius:999px;font-size:14px;font-weight:600">${t.cta}</a>
+            <td style="padding:4px 36px 0">
+              <div style="border-top:1px solid #EDE3D0;margin:18px 0 24px"></div>
+              <p style="margin:0 0 22px;font-family:${body};font-size:15px;line-height:1.65;color:#211A12">${t.whatsappBlurb}</p>
+              <p style="margin:0 0 32px">
+                <a href="${wa}" style="display:inline-block;background:#E5604D;color:#FFFBF2;text-decoration:none;padding:14px 26px;border-radius:999px;font-family:${display};font-size:14.5px;font-weight:700;letter-spacing:-0.005em">${t.cta}</a>
               </p>
-              <p style="margin:0 0 24px;font-size:14px;line-height:1.6;color:#4A4030">${t.closing}</p>
-              <p style="margin:0;font-size:14px;color:#4A4030;font-weight:600">${t.signOff}</p>
+              <p style="margin:0 0 24px;font-family:${body};font-size:14px;line-height:1.65;color:#5A5044">${t.closing}</p>
+              <p style="margin:0;font-family:${display};font-size:15px;color:#143620;font-weight:700;letter-spacing:-0.01em">${t.signOff}</p>
             </td>
           </tr>
 
           <tr>
-            <td style="padding:28px 32px 28px">
-              <div style="border-top:1px solid #E6DCC8;margin:8px 0 16px"></div>
-              <p style="margin:0 0 6px;font-size:12px;color:#4A4030">${t.footerOrg} · <a href="https://aisafetycolombia.org" style="color:#1F4D32;text-decoration:none">aisafetycolombia.org</a></p>
-              <p style="margin:0;font-size:11px;color:#8a8170;line-height:1.5">${t.footerDisclaimer}</p>
+            <td style="padding:28px 36px 30px">
+              <div style="border-top:1px solid #EDE3D0;margin:8px 0 16px"></div>
+              <p style="margin:0 0 6px;font-family:${body};font-size:12px;color:#5A5044">${t.footerOrg} · <a href="https://aisafetycolombia.org" style="color:#1F4D32;text-decoration:none;font-weight:600">aisafetycolombia.org</a></p>
+              <p style="margin:0;font-family:${body};font-size:11px;color:#8a8170;line-height:1.55">${t.footerDisclaimer}</p>
             </td>
           </tr>
 
