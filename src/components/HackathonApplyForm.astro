@@ -290,10 +290,30 @@ const copy = {
       errorBox.hidden = false;
       errorBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+    function va(name, props) {
+      try {
+        if (typeof window !== 'undefined' && typeof window.va === 'function') {
+          window.va('event', { name: name, ...(props || {}) });
+        }
+      } catch (_) {}
+    }
+
+    let startedTracked = false;
+    form.addEventListener(
+      'focusin',
+      function () {
+        if (startedTracked) return;
+        startedTracked = true;
+        va('apply_started', { locale: locale });
+      },
+      { once: false }
+    );
+
     retryBtn.addEventListener('click', function () {
       errorBox.hidden = true;
       form.hidden = false;
       setLoading(false);
+      va('apply_retry', { locale: locale });
     });
 
     form.addEventListener('submit', async function (ev) {
@@ -316,9 +336,18 @@ const copy = {
           try { detail = (await res.json()).error || ''; } catch (_) {}
           throw new Error(detail || 'Request failed with status ' + res.status);
         }
+        va('apply_submitted', {
+          locale: locale,
+          hub_track: String(payload.hubTrack || ''),
+          hub_travel: String(payload.hubTravel || ''),
+        });
         showSuccess();
       } catch (err) {
         console.error('apply submit failed', err);
+        va('apply_failed', {
+          locale: locale,
+          message: String((err && err.message) || 'unknown').slice(0, 120),
+        });
         showErrorBox();
       } finally {
         setLoading(false);
