@@ -16,8 +16,8 @@ create table if not exists public.hub_applications (
   career_es text not null,
   reason_es text not null,
   hub_problem_es text not null,
-  hub_track text not null check (hub_track in ('technical', 'security', 'either')),
-  hub_days text not null check (hub_days in ('all', 'some', 'unsure')),
+  hub_track text not null check (hub_track in ('technical', 'security', 'responsible', 'governance', 'either')),
+  hub_travel text not null check (hub_travel in ('bogota', 'colombia_self', 'colombia_help', 'international')),
   hub_access_es text,
   hub_extra_es text,
 

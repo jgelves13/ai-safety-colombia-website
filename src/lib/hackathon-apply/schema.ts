@@ -9,8 +9,8 @@ export interface ApplyPayload {
   career: string;
   reason: string;
   hubProblem: string;
-  hubTrack: 'technical' | 'security' | 'either';
-  hubDays: 'all' | 'some' | 'unsure';
+  hubTrack: 'technical' | 'security' | 'responsible' | 'governance' | 'either';
+  hubTravel: 'bogota' | 'colombia_self' | 'colombia_help' | 'international';
   hubAccess?: string;
   hubExtra?: string;
 }
@@ -24,11 +24,11 @@ const REQUIRED_FIELDS: (keyof ApplyPayload)[] = [
   'reason',
   'hubProblem',
   'hubTrack',
-  'hubDays',
+  'hubTravel',
 ];
 
-const TRACK_VALUES = new Set(['technical', 'security', 'either']);
-const DAYS_VALUES = new Set(['all', 'some', 'unsure']);
+const TRACK_VALUES = new Set(['technical', 'security', 'responsible', 'governance', 'either']);
+const TRAVEL_VALUES = new Set(['bogota', 'colombia_self', 'colombia_help', 'international']);
 
 export function validate(raw: unknown): { ok: true; data: ApplyPayload } | { ok: false; error: string } {
   if (!raw || typeof raw !== 'object') return { ok: false, error: 'Invalid payload' };
@@ -47,7 +47,7 @@ export function validate(raw: unknown): { ok: true; data: ApplyPayload } | { ok:
   }
 
   if (!TRACK_VALUES.has(String(r.hubTrack))) return { ok: false, error: 'Invalid track' };
-  if (!DAYS_VALUES.has(String(r.hubDays))) return { ok: false, error: 'Invalid days' };
+  if (!TRAVEL_VALUES.has(String(r.hubTravel))) return { ok: false, error: 'Invalid travel' };
 
   const locale = r.locale === 'en' ? 'en' : 'es';
 
@@ -65,7 +65,7 @@ export function validate(raw: unknown): { ok: true; data: ApplyPayload } | { ok:
       reason: String(r.reason).trim().slice(0, 1500),
       hubProblem: String(r.hubProblem).trim().slice(0, 2500),
       hubTrack: String(r.hubTrack) as ApplyPayload['hubTrack'],
-      hubDays: String(r.hubDays) as ApplyPayload['hubDays'],
+      hubTravel: String(r.hubTravel) as ApplyPayload['hubTravel'],
       hubAccess: typeof r.hubAccess === 'string' ? r.hubAccess.trim().slice(0, 800) : undefined,
       hubExtra: typeof r.hubExtra === 'string' ? r.hubExtra.trim().slice(0, 800) : undefined,
     },
@@ -76,16 +76,19 @@ export function trackLabel(t: ApplyPayload['hubTrack'], locale: 'es' | 'en'): st
   const map = {
     technical: { es: 'Technical AI Safety', en: 'Technical AI Safety' },
     security: { es: 'AI Security', en: 'AI Security' },
+    responsible: { es: 'IA Responsable', en: 'Responsible AI' },
+    governance: { es: 'Gobernanza de IA', en: 'AI Governance' },
     either: { es: 'Sin preferencia', en: 'No preference' },
   };
   return map[t][locale];
 }
 
-export function daysLabel(d: ApplyPayload['hubDays'], locale: 'es' | 'en'): string {
+export function travelLabel(t: ApplyPayload['hubTravel'], locale: 'es' | 'en'): string {
   const map = {
-    all: { es: 'Los 3 días completos', en: 'All 3 full days' },
-    some: { es: 'Solo algunos bloques', en: 'Only some blocks' },
-    unsure: { es: 'No está seguro/a aún', en: 'Not sure yet' },
+    bogota: { es: 'Vive en Bogotá o área metropolitana', en: 'Lives in Bogotá or the metropolitan area' },
+    colombia_self: { es: 'Otra ciudad en Colombia — puede cubrir su viaje', en: 'Another Colombian city — can cover own travel' },
+    colombia_help: { es: 'Otra ciudad en Colombia — necesita hospedaje o apoyo de viaje', en: 'Another Colombian city — needs lodging or travel support' },
+    international: { es: 'Fuera de Colombia', en: 'Outside Colombia' },
   };
-  return map[d][locale];
+  return map[t][locale];
 }

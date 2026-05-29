@@ -1,5 +1,5 @@
 import type { ApplyPayload } from './schema';
-import { trackLabel, daysLabel } from './schema';
+import { trackLabel, travelLabel } from './schema';
 
 const RESEND_API = 'https://api.resend.com/emails';
 
@@ -95,7 +95,7 @@ export async function sendApartEmail(translated: ApplyPayload, original: ApplyPa
   <table style="width:100%;border-collapse:collapse;font-size:14px">
     <tbody>
       <tr><td style="padding:6px 0;color:#777;width:160px">Preferred track</td><td style="padding:6px 0">${esc(trackLabel(translated.hubTrack, 'en'))}</td></tr>
-      <tr><td style="padding:6px 0;color:#777">In-person attendance</td><td style="padding:6px 0">${esc(daysLabel(translated.hubDays, 'en'))}</td></tr>
+      <tr><td style="padding:6px 0;color:#777">Travel / lodging</td><td style="padding:6px 0">${esc(travelLabel(translated.hubTravel, 'en'))}</td></tr>
       <tr><td style="padding:6px 0;color:#777;vertical-align:top">Dietary / access</td><td style="padding:6px 0">${esc(translated.hubAccess || '—')}</td></tr>
       <tr><td style="padding:6px 0;color:#777;vertical-align:top">Anything else</td><td style="padding:6px 0">${esc(translated.hubExtra || '—')}</td></tr>
     </tbody>
@@ -266,7 +266,7 @@ export async function sendHubNotification(translated: ApplyPayload, original: Ap
   <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:16px">
     <tbody>
       <tr><td style="padding:6px 0;color:#777;width:160px">Track</td><td style="padding:6px 0">${esc(trackLabel(translated.hubTrack, 'es'))}</td></tr>
-      <tr><td style="padding:6px 0;color:#777">3 días</td><td style="padding:6px 0">${esc(daysLabel(translated.hubDays, 'es'))}</td></tr>
+      <tr><td style="padding:6px 0;color:#777">Viaje / hospedaje</td><td style="padding:6px 0">${esc(travelLabel(translated.hubTravel, 'es'))}</td></tr>
       <tr><td style="padding:6px 0;color:#777">LinkedIn</td><td style="padding:6px 0">${original.linkedin ? `<a href="${esc(original.linkedin)}">${esc(original.linkedin)}</a>` : '—'}</td></tr>
       <tr><td style="padding:6px 0;color:#777">Scholar</td><td style="padding:6px 0">${original.scholar ? `<a href="${esc(original.scholar)}">${esc(original.scholar)}</a>` : '—'}</td></tr>
     </tbody>

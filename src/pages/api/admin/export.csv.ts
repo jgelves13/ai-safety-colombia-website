@@ -18,7 +18,7 @@ const CSV_COLUMNS = [
   'hub_problem_es',
   'hub_problem_en',
   'hub_track',
-  'hub_days',
+  'hub_travel',
   'hub_access_es',
   'hub_access_en',
   'hub_extra_es',

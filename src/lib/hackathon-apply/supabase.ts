@@ -13,7 +13,7 @@ interface InsertRow {
   reason_es: string;
   hub_problem_es: string;
   hub_track: string;
-  hub_days: string;
+  hub_travel: string;
   hub_access_es: string | null;
   hub_extra_es: string | null;
   career_en: string | null;
@@ -43,7 +43,7 @@ export async function insertApplication(original: ApplyPayload, translated: Appl
     reason_es: original.reason,
     hub_problem_es: original.hubProblem,
     hub_track: original.hubTrack,
-    hub_days: original.hubDays,
+    hub_travel: original.hubTravel,
     hub_access_es: original.hubAccess || null,
     hub_extra_es: original.hubExtra || null,
     career_en: original.locale === 'es' && translated.career !== original.career ? translated.career : original.locale === 'en' ? original.career : null,
