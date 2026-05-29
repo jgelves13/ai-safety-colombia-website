@@ -1,6 +1,5 @@
 ---
 import type { Locale } from '../i18n/ui';
-import PageHero from './PageHero.astro';
 import data from '../data/hackathon.json';
 
 interface Props {
@@ -13,9 +12,9 @@ const es = locale === 'es';
 const copy = {
   heroTitle: es ? 'Aplica al hub Bogotá' : 'Apply to the Bogotá hub',
   heroDesc: es
-    ? 'Hackathon presencial del 19 al 21 de junio de 2026. Aplica antes del 12 de junio a las 23:59 (hora Colombia). Si vas a participar en línea desde fuera de Colombia, registrate directamente en Apart Research.'
-    : 'In-person hackathon June 19–21, 2026. Apply by June 12 at 23:59 (Colombia time). If you will join online from outside Colombia, register directly with Apart Research.',
-  onlineNote: es ? '¿Vas a participar en línea desde fuera de Colombia?' : 'Joining online from outside Colombia?',
+    ? 'Hackathon presencial en Bogotá del 19 al 21 de junio de 2026. Aplica antes del 12 de junio a las 23:59 (hora Colombia).'
+    : 'In-person hackathon in Bogotá, June 19–21, 2026. Apply by June 12 at 23:59 (Colombia time).',
+  onlineNote: es ? '¿Vas a participar en línea?' : 'Joining online?',
   onlineLink: es ? 'Aplica directamente con Apart Research →' : 'Apply directly with Apart Research →',
   sectionBasics: es ? 'Datos básicos' : 'Basic information',
   sectionTrajectory: es ? 'Tu trayectoria' : 'Your background',
@@ -65,10 +64,13 @@ const copy = {
 };
 ---
 
-<PageHero title={copy.heroTitle} desc={copy.heroDesc} />
-
 <section class="apply-section">
   <div class="apply-shell">
+    <header class="apply-hero">
+      <h1 class="apply-hero-title">{copy.heroTitle}</h1>
+      <p class="apply-hero-desc">{copy.heroDesc}</p>
+    </header>
+
     <p class="apply-online-note">
       {copy.onlineNote}{' '}
       <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer">{copy.onlineLink}</a>
@@ -287,13 +289,38 @@ const copy = {
 
 <style>
   .apply-section {
-    padding: 3rem 1.25rem 6rem;
+    padding: 4rem 1.25rem 6rem;
     background: var(--bg-cream, #FBF6EC);
   }
 
   .apply-shell {
     max-width: 640px;
     margin: 0 auto;
+  }
+
+  /* Inline editorial hero — proportional to the form */
+  .apply-hero {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #E6DCC8;
+  }
+
+  .apply-hero-title {
+    font-family: var(--font-display, 'Bricolage Grotesque', serif);
+    font-weight: 700;
+    font-size: clamp(2rem, 4.8vw, 2.75rem); /* 32–44px */
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--text-primary, #211A12);
+    margin: 0 0 0.75rem;
+  }
+
+  .apply-hero-desc {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--text-secondary, #4A4030);
+    margin: 0;
+    max-width: 38ch;
   }
 
   /* Subtle inline note, not a boxed alert */
@@ -562,7 +589,11 @@ const copy = {
 
   @media (max-width: 600px) {
     .apply-section {
-      padding: 2rem 1.25rem 4rem;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+    .apply-hero {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
     }
     .apply-form {
       gap: 4rem;
