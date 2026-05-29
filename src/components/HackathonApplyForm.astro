@@ -1,0 +1,535 @@
+---
+import type { Locale } from '../i18n/ui';
+import PageHero from './PageHero.astro';
+import data from '../data/hackathon.json';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const es = locale === 'es';
+
+const copy = {
+  heroTitle: es ? 'Aplica al hub Bogotá' : 'Apply to the Bogotá hub',
+  heroDesc: es
+    ? 'Hackathon presencial del 19 al 21 de junio de 2026. Aplica antes del 12 de junio a las 23:59 (hora Colombia). Si vas a participar en línea desde fuera de Colombia, registrate directamente en Apart Research.'
+    : 'In-person hackathon June 19–21, 2026. Apply by June 12 at 23:59 (Colombia time). If you will join online from outside Colombia, register directly with Apart Research.',
+  onlineNote: es ? '¿Vas a participar en línea desde fuera de Colombia?' : 'Joining online from outside Colombia?',
+  onlineLink: es ? 'Aplica directamente con Apart Research →' : 'Apply directly with Apart Research →',
+  sectionBasics: es ? 'Datos básicos' : 'Basic information',
+  sectionTrajectory: es ? 'Tu trayectoria' : 'Your background',
+  sectionHub: es ? 'Para la selección del hub' : 'For hub selection',
+  fieldFirstName: es ? 'Nombre' : 'First name',
+  fieldLastName: es ? 'Apellido' : 'Last name',
+  fieldEmail: 'Email',
+  fieldLocation: es ? 'Ubicación (ciudad, país)' : 'Location (city, country)',
+  fieldLinkedIn: es ? 'LinkedIn (URL)' : 'LinkedIn (URL)',
+  fieldLinkedInHelp: es ? 'Opcional' : 'Optional',
+  fieldScholar: es ? 'Google Scholar (URL)' : 'Google Scholar (URL)',
+  fieldScholarHelp: es ? 'Opcional, si tienes perfil de investigación' : 'Optional, if you have a research profile',
+  fieldCareer: es ? 'Ocupación actual' : 'Current occupation',
+  fieldCareerHelp: es ? 'Estudias, trabajas, investigas? Cuéntanos en una o dos frases.' : 'Are you studying, working, researching? Tell us in one or two sentences.',
+  fieldReason: es ? '¿Por qué quieres participar?' : 'Why do you want to participate?',
+  fieldReasonHelp: es ? 'Una o dos frases bastan.' : 'One or two sentences is enough.',
+  fieldProblem: es ? '¿Qué problema específico de seguridad o gobernanza de IA te gustaría abordar en el hackathon, y cuál sería tu enfoque inicial?' : 'What specific AI safety or governance problem would you like to tackle at the hackathon, and what would be your initial approach?',
+  fieldProblemHelp: es ? 'Hasta ~200 palabras. No buscamos una propuesta cerrada, sí ver si te imaginas algo concreto y abordable en un fin de semana.' : 'Up to ~200 words. We do not need a closed proposal, but we want to see if you can imagine something concrete and tractable for a weekend.',
+  fieldTrack: es ? 'Track preferido' : 'Preferred track',
+  trackTechnical: es ? 'Technical AI Safety (investigación técnica)' : 'Technical AI Safety (technical research)',
+  trackSecurity: es ? 'AI Security (red-teaming, evaluaciones, ataques)' : 'AI Security (red-teaming, evals, attacks)',
+  trackEither: es ? 'Sin preferencia' : 'No preference',
+  fieldDays: es ? '¿Asistirás presencialmente los 3 días?' : 'Will you attend in person all 3 days?',
+  daysAll: es ? 'Sí, los 3 días completos' : 'Yes, all 3 full days',
+  daysSome: es ? 'Solo algunos bloques' : 'Only some blocks',
+  daysUnsure: es ? 'No estoy seguro/a aún' : 'Not sure yet',
+  fieldDiet: es ? 'Restricciones alimentarias o de accesibilidad' : 'Dietary or accessibility needs',
+  fieldDietHelp: es ? 'Opcional. Nos ayuda a planear las comidas y el espacio.' : 'Optional. Helps us plan meals and the venue.',
+  fieldExtra: es ? 'Algo más que quieras compartir' : 'Anything else you would like to share',
+  fieldExtraHelp: es ? 'Opcional.' : 'Optional.',
+  required: es ? 'Obligatorio' : 'Required',
+  submit: es ? 'Enviar aplicación' : 'Submit application',
+  submitting: es ? 'Enviando…' : 'Submitting…',
+  successTitle: es ? '¡Recibimos tu aplicación!' : 'We received your application',
+  successBody: es
+    ? 'Te enviamos una copia de confirmación al email que registraste. La selección del hub se anuncia antes del 15 de junio. Mientras tanto, te invitamos a unirte al grupo de WhatsApp de la comunidad.'
+    : 'We sent a confirmation copy to the email you provided. Hub selection is announced before June 15. Meanwhile, you are welcome to join the community WhatsApp group.',
+  successCtaWhatsApp: es ? 'Unirme al WhatsApp' : 'Join the WhatsApp',
+  successCtaHome: es ? 'Volver al hackathon' : 'Back to the hackathon',
+  errorTitle: es ? 'Hubo un problema al enviar' : 'There was a problem submitting',
+  errorBody: es
+    ? 'Tu aplicación no se envió. Por favor, intenta de nuevo en unos minutos o escríbenos directamente.'
+    : 'Your application did not go through. Please try again in a few minutes or write to us directly.',
+  errorRetry: es ? 'Intentar de nuevo' : 'Try again',
+  errorEmailCta: es ? 'Escribir a contacto' : 'Email us',
+};
+---
+
+<PageHero title={copy.heroTitle} desc={copy.heroDesc} />
+
+<section class="section apply-section">
+  <div class="container apply-container">
+    <p class="apply-online-note">
+      {copy.onlineNote}{' '}
+      <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer">{copy.onlineLink}</a>
+    </p>
+
+    <form id="apply-form" class="apply-form" novalidate>
+      <input type="hidden" name="locale" value={locale} />
+
+      <fieldset class="apply-fs">
+        <legend class="apply-legend">{copy.sectionBasics}</legend>
+
+        <div class="apply-row apply-row-2">
+          <label class="apply-field">
+            <span class="apply-label">{copy.fieldFirstName} <em>*</em></span>
+            <input type="text" name="firstName" required autocomplete="given-name" />
+          </label>
+          <label class="apply-field">
+            <span class="apply-label">{copy.fieldLastName} <em>*</em></span>
+            <input type="text" name="lastName" required autocomplete="family-name" />
+          </label>
+        </div>
+
+        <label class="apply-field">
+          <span class="apply-label">{copy.fieldEmail} <em>*</em></span>
+          <input type="email" name="email" required autocomplete="email" />
+        </label>
+
+        <label class="apply-field">
+          <span class="apply-label">{copy.fieldLocation} <em>*</em></span>
+          <input type="text" name="location" required autocomplete="address-level2" placeholder={es ? 'Ej: Bogotá, Colombia' : 'Eg: Bogotá, Colombia'} />
+        </label>
+
+        <div class="apply-row apply-row-2">
+          <label class="apply-field">
+            <span class="apply-label">{copy.fieldLinkedIn} <small>· {copy.fieldLinkedInHelp}</small></span>
+            <input type="url" name="linkedin" inputmode="url" placeholder="https://linkedin.com/in/…" />
+          </label>
+          <label class="apply-field">
+            <span class="apply-label">{copy.fieldScholar} <small>· {copy.fieldScholarHelp}</small></span>
+            <input type="url" name="scholar" inputmode="url" placeholder="https://scholar.google.com/…" />
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="apply-fs">
+        <legend class="apply-legend">{copy.sectionTrajectory}</legend>
+
+        <label class="apply-field">
+          <span class="apply-label">{copy.fieldCareer} <em>*</em></span>
+          <small class="apply-help">{copy.fieldCareerHelp}</small>
+          <textarea name="career" required rows="2" maxlength="500"></textarea>
+        </label>
+
+        <label class="apply-field">
+          <span class="apply-label">{copy.fieldReason} <em>*</em></span>
+          <small class="apply-help">{copy.fieldReasonHelp}</small>
+          <textarea name="reason" required rows="3" maxlength="800"></textarea>
+        </label>
+      </fieldset>
+
+      <fieldset class="apply-fs apply-fs-hub">
+        <legend class="apply-legend">{copy.sectionHub}</legend>
+
+        <label class="apply-field">
+          <span class="apply-label">{copy.fieldProblem} <em>*</em></span>
+          <small class="apply-help">{copy.fieldProblemHelp}</small>
+          <textarea name="hubProblem" required rows="6" maxlength="1500"></textarea>
+        </label>
+
+        <div class="apply-field">
+          <span class="apply-label">{copy.fieldTrack} <em>*</em></span>
+          <div class="apply-radio-group">
+            <label class="apply-radio">
+              <input type="radio" name="hubTrack" value="technical" required />
+              <span>{copy.trackTechnical}</span>
+            </label>
+            <label class="apply-radio">
+              <input type="radio" name="hubTrack" value="security" />
+              <span>{copy.trackSecurity}</span>
+            </label>
+            <label class="apply-radio">
+              <input type="radio" name="hubTrack" value="either" />
+              <span>{copy.trackEither}</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="apply-field">
+          <span class="apply-label">{copy.fieldDays} <em>*</em></span>
+          <div class="apply-radio-group">
+            <label class="apply-radio">
+              <input type="radio" name="hubDays" value="all" required />
+              <span>{copy.daysAll}</span>
+            </label>
+            <label class="apply-radio">
+              <input type="radio" name="hubDays" value="some" />
+              <span>{copy.daysSome}</span>
+            </label>
+            <label class="apply-radio">
+              <input type="radio" name="hubDays" value="unsure" />
+              <span>{copy.daysUnsure}</span>
+            </label>
+          </div>
+        </div>
+
+        <label class="apply-field">
+          <span class="apply-label">{copy.fieldDiet}</span>
+          <small class="apply-help">{copy.fieldDietHelp}</small>
+          <textarea name="hubAccess" rows="2" maxlength="400"></textarea>
+        </label>
+
+        <label class="apply-field">
+          <span class="apply-label">{copy.fieldExtra}</span>
+          <small class="apply-help">{copy.fieldExtraHelp}</small>
+          <textarea name="hubExtra" rows="2" maxlength="400"></textarea>
+        </label>
+      </fieldset>
+
+      <div class="apply-actions">
+        <button type="submit" class="apply-submit">
+          <span class="apply-submit-default">{copy.submit}</span>
+          <span class="apply-submit-loading" aria-hidden="true">{copy.submitting}</span>
+        </button>
+      </div>
+
+      <p class="apply-error" role="alert" hidden></p>
+    </form>
+
+    <div class="apply-success" id="apply-success" hidden>
+      <h2>{copy.successTitle}</h2>
+      <p>{copy.successBody}</p>
+      <div class="apply-success-actions">
+        <a class="btn btn-primary" href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ" target="_blank" rel="noopener noreferrer">{copy.successCtaWhatsApp}</a>
+        <a class="btn btn-outline" href={es ? '/hackathon/' : '/en/hackathon/'}>{copy.successCtaHome}</a>
+      </div>
+    </div>
+
+    <div class="apply-error-box" id="apply-error-box" hidden>
+      <h2>{copy.errorTitle}</h2>
+      <p>{copy.errorBody}</p>
+      <div class="apply-success-actions">
+        <button type="button" class="btn btn-primary" id="apply-retry">{copy.errorRetry}</button>
+        <a class="btn btn-outline" href="mailto:aisafetycolombia@gmail.com">{copy.errorEmailCta}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ locale }}>
+  (function () {
+    const form = document.getElementById('apply-form');
+    const successBox = document.getElementById('apply-success');
+    const errorBox = document.getElementById('apply-error-box');
+    const errorInline = form.querySelector('.apply-error');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const retryBtn = document.getElementById('apply-retry');
+
+    function showError(msg) {
+      errorInline.textContent = msg;
+      errorInline.hidden = false;
+    }
+    function clearError() {
+      errorInline.textContent = '';
+      errorInline.hidden = true;
+    }
+    function setLoading(loading) {
+      submitBtn.disabled = loading;
+      submitBtn.classList.toggle('is-loading', loading);
+    }
+    function showSuccess() {
+      form.hidden = true;
+      errorBox.hidden = true;
+      successBox.hidden = false;
+      successBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function showErrorBox() {
+      form.hidden = true;
+      successBox.hidden = true;
+      errorBox.hidden = false;
+      errorBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    retryBtn.addEventListener('click', function () {
+      errorBox.hidden = true;
+      form.hidden = false;
+      setLoading(false);
+    });
+
+    form.addEventListener('submit', async function (ev) {
+      ev.preventDefault();
+      clearError();
+      if (!form.reportValidity()) return;
+      setLoading(true);
+
+      const fd = new FormData(form);
+      const payload = Object.fromEntries(fd.entries());
+
+      try {
+        const res = await fetch('/api/aplicar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) {
+          let detail = '';
+          try { detail = (await res.json()).error || ''; } catch (_) {}
+          throw new Error(detail || 'Request failed with status ' + res.status);
+        }
+        showSuccess();
+      } catch (err) {
+        console.error('apply submit failed', err);
+        showErrorBox();
+      } finally {
+        setLoading(false);
+      }
+    });
+  })();
+</script>
+
+<style>
+  .apply-section {
+    padding: 2.5rem 0 5rem;
+    background: var(--bg-cream);
+  }
+
+  .apply-container {
+    max-width: 760px;
+  }
+
+  .apply-online-note {
+    background: var(--bg-cream-deep, #f3ecdb);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: 0.875rem 1.125rem;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+
+  .apply-online-note a {
+    color: var(--text-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .apply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .apply-fs {
+    border: 1px solid var(--hairline);
+    border-radius: 18px;
+    padding: 1.75rem 1.5rem 1.5rem;
+    background: #fff;
+    margin: 0;
+  }
+
+  .apply-fs-hub {
+    background: linear-gradient(180deg, #fff 0%, #fdf6eb 100%);
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+
+  .apply-legend {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.125rem;
+    letter-spacing: -0.01em;
+    padding: 0 0.5rem;
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    line-height: 1;
+    padding: 0.45rem 0.85rem;
+    margin-left: -0.25rem;
+  }
+
+  .apply-fs-hub .apply-legend {
+    background: var(--accent-yellow, #ffd84d);
+    border-color: rgba(0, 0, 0, 0.15);
+    color: var(--text-primary);
+  }
+
+  .apply-fs > * + * {
+    margin-top: 1.25rem;
+  }
+
+  .apply-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .apply-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .apply-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    line-height: 1.35;
+  }
+
+  .apply-label em {
+    color: #c83e3e;
+    font-style: normal;
+    margin-left: 0.15rem;
+  }
+
+  .apply-label small {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.825rem;
+  }
+
+  .apply-help {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.45;
+    margin: -0.1rem 0 0.15rem;
+  }
+
+  .apply-field input,
+  .apply-field textarea {
+    font: inherit;
+    color: var(--text-primary);
+    padding: 0.7rem 0.85rem;
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    background: #fff;
+    width: 100%;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .apply-field textarea {
+    resize: vertical;
+    min-height: 4.5rem;
+    line-height: 1.5;
+  }
+
+  .apply-field input:focus,
+  .apply-field textarea:focus {
+    outline: none;
+    border-color: var(--text-primary);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .apply-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
+  .apply-radio {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    cursor: pointer;
+    background: #fff;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .apply-radio:hover {
+    border-color: var(--text-secondary);
+  }
+
+  .apply-radio input {
+    margin-top: 0.2rem;
+    accent-color: var(--text-primary);
+  }
+
+  .apply-radio span {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+
+  .apply-radio:has(input:checked) {
+    border-color: var(--text-primary);
+    background: var(--bg-cream-deep, #f3ecdb);
+  }
+
+  .apply-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .apply-submit {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    color: #fff;
+    background: var(--text-primary, #101010);
+    border: none;
+    border-radius: 999px;
+    padding: 0.9rem 1.75rem;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+    position: relative;
+  }
+
+  .apply-submit:hover { background: #000; transform: translateY(-1px); }
+  .apply-submit:disabled { opacity: 0.7; cursor: progress; transform: none; }
+
+  .apply-submit-loading { display: none; }
+  .apply-submit.is-loading .apply-submit-default { display: none; }
+  .apply-submit.is-loading .apply-submit-loading { display: inline; }
+
+  .apply-error {
+    color: #c83e3e;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .apply-success,
+  .apply-error-box {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    border: 1px solid var(--hairline);
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .apply-error-box {
+    background: #fff5f5;
+    border-color: #f1c5c5;
+  }
+
+  .apply-success h2,
+  .apply-error-box h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .apply-success p,
+  .apply-error-box p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.55;
+  }
+
+  .apply-success-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 600px) {
+    .apply-row-2 { grid-template-columns: 1fr; }
+    .apply-fs { padding: 1.5rem 1.125rem 1.25rem; }
+  }
+</style>

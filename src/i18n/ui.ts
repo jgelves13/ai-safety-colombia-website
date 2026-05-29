@@ -549,6 +549,7 @@ const esEnPaths: Record<string, string> = {
   '/involucrate/': '/get-involved/',
   '/contacto/': '/contact/',
   '/eventos/': '/events/',
+  '/aplicar/': '/apply/',
 };
 
 const enEsPaths: Record<string, string> = Object.fromEntries(

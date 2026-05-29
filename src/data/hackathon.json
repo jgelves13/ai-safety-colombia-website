@@ -153,8 +153,8 @@
     "venueNoteEn": ""
   },
   "inPerson": {
-    "para1Es": "Al registrarte en Apart Research indicando que participarás desde Colombia, te enviaremos unas breves preguntas de selección para el hub presencial. La fecha límite para postularte es el 12 de junio a las 23:59 (hora Colombia).",
-    "para1En": "When you register with Apart Research indicating that you will be participating from Colombia, we will send you a few brief selection questions for the in-person hub. The application deadline is June 12 at 23:59 (Colombia time).",
+    "para1Es": "La postulación al hub presencial de Bogotá se hace desde este sitio: completas un formulario corto y nuestro equipo de selección la revisa. La fecha límite es el 12 de junio a las 23:59 (hora Colombia).",
+    "para1En": "Bogotá hub applications are made from this site: you fill out a short form and our selection team reviews it. The deadline is June 12 at 23:59 (Colombia time).",
     "modeInpersonLabelEs": "Presencial",
     "modeInpersonLabelEn": "In-person",
     "modeOnlineLabelEs": "En línea",
@@ -165,8 +165,8 @@
     "onlineTitleEn": "Global South",
     "bogotaTagEs": "Hub Bogotá · postulaciones hasta el 12 de junio",
     "bogotaTagEn": "Bogotá Hub · applications open until June 12",
-    "bogotaApplyEs": "Al registrarte en Apart Research indicando que participarás desde Colombia, te enviaremos unas breves preguntas de selección para el hub presencial. La fecha límite para postularte es el <strong>12 de junio a las 23:59</strong> (hora Colombia).",
-    "bogotaApplyEn": "When you register with Apart Research indicating that you will be participating from Colombia, we will send you a few brief selection questions for the in-person hub. The application deadline is <strong>June 12 at 23:59</strong> (Colombia time).",
+    "bogotaApplyEs": "La postulación se hace en este sitio con un formulario corto. Fecha límite: <strong>12 de junio a las 23:59</strong> (hora Colombia).",
+    "bogotaApplyEn": "Applications are made on this site through a short form. Deadline: <strong>June 12 at 23:59</strong> (Colombia time).",
     "virtualTagEs": "Abierto a participantes del Sur Global.",
     "virtualTagEn": "Open to participants from the Global South.",
     "items": [

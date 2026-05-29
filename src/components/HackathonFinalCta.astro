@@ -1,12 +1,13 @@
 ---
 import { t, type Locale } from '../i18n/ui';
-import data from '../data/hackathon.json';
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
+const es = locale === 'es';
+const applyHref = es ? '/aplicar/' : '/en/apply/';
 ---
 
 <section class="alt-cta">
@@ -15,12 +16,7 @@ const { locale } = Astro.props;
       <p class="alt-eyebrow">{t(locale, 'hackathon.altFinalCtaKicker')}</p>
       <h2>{t(locale, 'hackathon.altFinalCtaTitle')}</h2>
     </div>
-    <a
-      class="btn btn-vermillion"
-      href={data.registrationUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <a class="btn btn-vermillion" href={applyHref}>
       {t(locale, 'hackathon.altPrimaryCta')}
     </a>
   </div>

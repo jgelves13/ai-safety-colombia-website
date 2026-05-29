@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HackathonApplyForm from '../components/HackathonApplyForm.astro';
+
+const locale = 'es';
+---
+
+<BaseLayout
+  locale={locale}
+  currentPage="hackathon"
+  title="Aplicar al hub Bogotá | AI Safety Colombia"
+  description="Postúlate al hub presencial de Bogotá del Global South AI Safety Hackathon (19-21 de junio de 2026). Aplica antes del 12 de junio."
+>
+  <HackathonApplyForm locale={locale} />
+</BaseLayout>

@@ -10,6 +10,7 @@ const { locale } = Astro.props;
 const es = locale === 'es';
 
 const facts = (es ? data.panelFactsEs : data.panelFactsEn) as string[];
+const applyHref = es ? '/aplicar/' : '/en/apply/';
 ---
 
 <section class="alt-hero">
@@ -23,12 +24,7 @@ const facts = (es ? data.panelFactsEs : data.panelFactsEn) as string[];
       <p class="alt-meta">{t(locale, 'hackathon.altMeta')}</p>
       <p class="alt-lead">{t(locale, 'hackathon.altLead')}</p>
       <div class="alt-actions">
-        <a
-          class="btn btn-primary"
-          href={data.registrationUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="btn btn-primary" href={applyHref}>
           {t(locale, 'hackathon.altPrimaryCta')}
         </a>
       </div>
