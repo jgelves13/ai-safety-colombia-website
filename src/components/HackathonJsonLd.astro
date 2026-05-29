@@ -10,6 +10,9 @@ const { locale } = Astro.props;
 const es = locale === 'es';
 const site = Astro.site ?? new URL('https://aisafetycolombia.org/');
 
+const hackathonUrl = new URL(es ? 'hackathon/' : 'en/hackathon/', site).href;
+const applyUrl = new URL(es ? 'aplicar/' : 'en/apply/', site).href;
+
 const event = {
   '@context': 'https://schema.org',
   '@type': 'Event',
@@ -36,13 +39,13 @@ const event = {
     name: data.organizer,
     url: 'https://apartresearch.com',
   },
-  url: data.registrationUrl,
+  url: hackathonUrl,
   image: new URL('og-image.png', site).href,
   offers: {
     '@type': 'Offer',
     price: '0',
     priceCurrency: 'USD',
-    url: data.registrationUrl,
+    url: applyUrl,
     availability: 'https://schema.org/InStock',
   },
 };
