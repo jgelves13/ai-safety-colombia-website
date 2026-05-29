@@ -110,42 +110,145 @@ export async function sendApartEmail(translated: ApplyPayload, original: ApplyPa
   return send({ from, to, subject, html, replyTo: translated.email });
 }
 
+export function renderApplicantConfirmation(
+  original: ApplyPayload,
+  opts?: { contact?: string }
+): { subject: string; html: string } {
+  const contact = opts?.contact || env('HUB_CONTACT_EMAIL', 'contacto@aisafetycolombia.org');
+  const es = original.locale === 'es';
+  const wa = 'https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ';
+
+  const t = es
+    ? {
+        subject: 'Recibimos tu postulación al hub Bogotá · Global South AI Safety Hackathon',
+        preheader: 'Tu postulación al hub Bogotá entró a selección. Resultados antes del 15 de junio.',
+        eyebrow: 'AI Safety Colombia · Hub Bogotá',
+        greeting: `Hola ${esc(original.firstName)},`,
+        intro: 'Gracias por postular al hub presencial de Bogotá del Global South AI Safety Hackathon. El evento se realizará del 19 al 21 de junio de 2026.',
+        nextTitle: 'Qué sigue',
+        step1Title: 'Revisión',
+        step1: 'Tu postulación entra a la ronda de selección del hub. Evaluamos claridad sobre el problema que quieres abordar, ajuste con los tracks del hackathon (Technical AI Safety y AI Security) y disponibilidad para los tres días completos.',
+        step2Title: 'Resultados',
+        step2: 'Anunciamos la selección antes del 15 de junio. Vas a recibir un correo a esta misma dirección con la decisión.',
+        step3Title: 'Detalles del evento',
+        step3: 'Si quedas seleccionado, te enviaremos venue, horario, logística y agenda en un segundo correo.',
+        whatsappBlurb: 'Mientras tanto, en el grupo de WhatsApp de la comunidad publicamos anuncios sobre el hackathon y otras actividades de AI Safety Colombia.',
+        cta: 'Unirse al grupo en WhatsApp',
+        closing: `Si tienes dudas, responde a este correo o escríbenos a <a href="mailto:${esc(contact)}" style="color:#1F4D32;text-decoration:underline">${esc(contact)}</a>.`,
+        signOff: 'Equipo de AI Safety Colombia',
+        footerOrg: 'AI Safety Colombia · Bogotá, Colombia',
+        footerDisclaimer: 'Recibes este correo porque postulaste al hub Bogotá del Global South AI Safety Hackathon.',
+      }
+    : {
+        subject: 'We received your Bogotá hub application · Global South AI Safety Hackathon',
+        preheader: 'Your Bogotá hub application is under review. Results before June 15.',
+        eyebrow: 'AI Safety Colombia · Bogotá Hub',
+        greeting: `Hi ${esc(original.firstName)},`,
+        intro: 'Thank you for applying to the in-person Bogotá hub of the Global South AI Safety Hackathon. The event runs from June 19 to 21, 2026.',
+        nextTitle: 'What happens next',
+        step1Title: 'Review',
+        step1: 'Your application enters the hub selection round. We look at how clearly you describe the problem you want to tackle, the fit with the hackathon tracks (Technical AI Safety and AI Security), and your availability for the three full days.',
+        step2Title: 'Results',
+        step2: 'We announce the selection before June 15. You will receive an email at this same address with the decision.',
+        step3Title: 'Event details',
+        step3: 'If your application is accepted, we will send venue, schedule, logistics and program details in a follow-up email.',
+        whatsappBlurb: 'In the meantime, the community WhatsApp group is where we post hackathon updates and announcements from AI Safety Colombia.',
+        cta: 'Join the WhatsApp group',
+        closing: `If you have questions, reply to this email or write to <a href="mailto:${esc(contact)}" style="color:#1F4D32;text-decoration:underline">${esc(contact)}</a>.`,
+        signOff: 'AI Safety Colombia team',
+        footerOrg: 'AI Safety Colombia · Bogotá, Colombia',
+        footerDisclaimer: 'You are receiving this because you applied to the Bogotá hub of the Global South AI Safety Hackathon.',
+      };
+
+  const step = (n: string, title: string, body: string) => `
+          <tr>
+            <td style="padding:0 32px 18px">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td valign="top" width="40" style="width:40px;padding-right:14px">
+                    <div style="width:28px;height:28px;line-height:28px;text-align:center;background:#1F4D32;color:#FBF6EC;border-radius:50%;font-size:13px;font-weight:700">${n}</div>
+                  </td>
+                  <td valign="top">
+                    <p style="margin:0 0 4px;font-size:14px;font-weight:700;color:#1F4D32">${title}</p>
+                    <p style="margin:0;font-size:14px;line-height:1.6;color:#211A12">${body}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>`;
+
+  const html = `<!DOCTYPE html>
+<html lang="${es ? 'es' : 'en'}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${esc(t.subject)}</title>
+</head>
+<body style="margin:0;padding:0;background:#FBF6EC;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#211A12">
+  <div style="display:none;overflow:hidden;line-height:1px;opacity:0;max-height:0;max-width:0">${esc(t.preheader)}</div>
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#FBF6EC">
+    <tr>
+      <td align="center" style="padding:32px 16px">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="560" style="max-width:560px;width:100%;background:#FFFFFF;border:1px solid #E6DCC8;border-radius:6px">
+
+          <tr>
+            <td style="padding:18px 32px;background:#1F4D32;color:#FBF6EC;border-radius:6px 6px 0 0">
+              <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700">${t.eyebrow}</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:36px 32px 4px">
+              <p style="margin:0 0 18px;font-size:18px;font-weight:600;color:#1F4D32">${t.greeting}</p>
+              <p style="margin:0 0 28px;font-size:15px;line-height:1.6;color:#211A12">${t.intro}</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:0 32px">
+              <div style="border-top:1px solid #E6DCC8;margin:0 0 22px"></div>
+              <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;color:#4A4030;margin:0 0 18px">${t.nextTitle}</div>
+            </td>
+          </tr>
+
+          ${step('1', t.step1Title, t.step1)}
+          ${step('2', t.step2Title, t.step2)}
+          ${step('3', t.step3Title, t.step3)}
+
+          <tr>
+            <td style="padding:4px 32px 0">
+              <div style="border-top:1px solid #E6DCC8;margin:18px 0 24px"></div>
+              <p style="margin:0 0 22px;font-size:15px;line-height:1.6;color:#211A12">${t.whatsappBlurb}</p>
+              <p style="margin:0 0 30px">
+                <a href="${wa}" style="display:inline-block;background:#1F4D32;color:#FBF6EC;text-decoration:none;padding:13px 24px;border-radius:999px;font-size:14px;font-weight:600">${t.cta}</a>
+              </p>
+              <p style="margin:0 0 24px;font-size:14px;line-height:1.6;color:#4A4030">${t.closing}</p>
+              <p style="margin:0;font-size:14px;color:#4A4030;font-weight:600">${t.signOff}</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:28px 32px 28px">
+              <div style="border-top:1px solid #E6DCC8;margin:8px 0 16px"></div>
+              <p style="margin:0 0 6px;font-size:12px;color:#4A4030">${t.footerOrg} · <a href="https://aisafetycolombia.org" style="color:#1F4D32;text-decoration:none">aisafetycolombia.org</a></p>
+              <p style="margin:0;font-size:11px;color:#8a8170;line-height:1.5">${t.footerDisclaimer}</p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+
+  return { subject: t.subject, html };
+}
+
 export async function sendApplicantConfirmation(original: ApplyPayload) {
   const from = env('APPLICANT_FROM_EMAIL', 'hackathon@aisafetycolombia.org');
-  const contact = env('HUB_CONTACT_EMAIL', 'aisafetycolombia@gmail.com');
-  const es = original.locale === 'es';
-
-  const subject = es
-    ? '¡Recibimos tu aplicación al hub Bogotá!'
-    : 'We received your Bogotá hub application';
-
-  const intro = es
-    ? `Hola ${esc(original.firstName)}, recibimos tu aplicación al hub presencial de Bogotá del Global South AI Safety Hackathon (19-21 de junio de 2026).`
-    : `Hi ${esc(original.firstName)}, we received your application to the in-person Bogotá hub of the Global South AI Safety Hackathon (June 19-21, 2026).`;
-
-  const next = es
-    ? 'La selección del hub se anuncia antes del 15 de junio. Si tu aplicación es seleccionada, te enviaremos los detalles de venue y logística por este mismo correo.'
-    : 'Hub selection is announced before June 15. If your application is accepted, we will send you venue and logistics details to this same email.';
-
-  const meanwhile = es
-    ? `Mientras tanto, te invitamos al grupo de WhatsApp de la comunidad para seguir el ritmo de los anuncios. Si tienes cualquier pregunta, respondé a este correo o escríbenos a <a href="mailto:${esc(contact)}">${esc(contact)}</a>.`
-    : `In the meantime, we invite you to the community WhatsApp group to keep up with announcements. Any questions, reply to this email or write to <a href="mailto:${esc(contact)}">${esc(contact)}</a>.`;
-
-  const wa = 'https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ';
-  const cta = es ? 'Unirme al WhatsApp' : 'Join the WhatsApp';
-  const sig = es ? 'Equipo de AI Safety Colombia' : 'AI Safety Colombia team';
-
-  const html = `
-<div style="font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;max-width:560px;margin:0 auto;color:#101010">
-  <p style="font-size:16px;line-height:1.55;margin:0 0 16px">${intro}</p>
-  <p style="font-size:15px;line-height:1.55;color:#444;margin:0 0 16px">${next}</p>
-  <p style="font-size:15px;line-height:1.55;color:#444;margin:0 0 24px">${meanwhile}</p>
-  <p style="margin:0 0 28px">
-    <a href="${wa}" style="display:inline-block;background:#101010;color:#fff;text-decoration:none;padding:12px 22px;border-radius:999px;font-weight:600">${cta}</a>
-  </p>
-  <p style="font-size:14px;color:#777;margin:0">${sig}</p>
-</div>`.trim();
-
+  const contact = env('HUB_CONTACT_EMAIL', 'contacto@aisafetycolombia.org');
+  const { subject, html } = renderApplicantConfirmation(original, { contact });
   return send({ from, to: original.email, subject, html, replyTo: contact });
 }
 

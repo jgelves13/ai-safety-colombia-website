@@ -46,6 +46,7 @@ const copy = {
   fieldDietHelp: es ? 'Opcional. Nos ayuda a planear las comidas y el espacio.' : 'Optional. Helps us plan meals and the venue.',
   fieldExtra: es ? 'Algo más que quieras compartir' : 'Anything else you would like to share',
   fieldExtraHelp: es ? 'Opcional.' : 'Optional.',
+  optional: es ? 'Opcional' : 'Optional',
   required: es ? 'Obligatorio' : 'Required',
   submit: es ? 'Enviar aplicación' : 'Submit application',
   submitting: es ? 'Enviando…' : 'Submitting…',
@@ -66,8 +67,8 @@ const copy = {
 
 <PageHero title={copy.heroTitle} desc={copy.heroDesc} />
 
-<section class="section apply-section">
-  <div class="container apply-container">
+<section class="apply-section">
+  <div class="apply-shell">
     <p class="apply-online-note">
       {copy.onlineNote}{' '}
       <a href={data.registrationUrl} target="_blank" rel="noopener noreferrer">{copy.onlineLink}</a>
@@ -76,69 +77,67 @@ const copy = {
     <form id="apply-form" class="apply-form" novalidate>
       <input type="hidden" name="locale" value={locale} />
 
-      <fieldset class="apply-fs">
-        <legend class="apply-legend">{copy.sectionBasics}</legend>
-
-        <div class="apply-row apply-row-2">
-          <label class="apply-field">
-            <span class="apply-label">{copy.fieldFirstName} <em>*</em></span>
-            <input type="text" name="firstName" required autocomplete="given-name" />
-          </label>
-          <label class="apply-field">
-            <span class="apply-label">{copy.fieldLastName} <em>*</em></span>
-            <input type="text" name="lastName" required autocomplete="family-name" />
-          </label>
-        </div>
+      <section class="apply-block">
+        <h2 class="apply-h2">{copy.sectionBasics}</h2>
 
         <label class="apply-field">
-          <span class="apply-label">{copy.fieldEmail} <em>*</em></span>
+          <span class="apply-label">{copy.fieldFirstName}<em>*</em></span>
+          <input type="text" name="firstName" required autocomplete="given-name" />
+        </label>
+
+        <label class="apply-field">
+          <span class="apply-label">{copy.fieldLastName}<em>*</em></span>
+          <input type="text" name="lastName" required autocomplete="family-name" />
+        </label>
+
+        <label class="apply-field">
+          <span class="apply-label">{copy.fieldEmail}<em>*</em></span>
           <input type="email" name="email" required autocomplete="email" />
         </label>
 
         <label class="apply-field">
-          <span class="apply-label">{copy.fieldLocation} <em>*</em></span>
+          <span class="apply-label">{copy.fieldLocation}<em>*</em></span>
           <input type="text" name="location" required autocomplete="address-level2" placeholder={es ? 'Ej: Bogotá, Colombia' : 'Eg: Bogotá, Colombia'} />
         </label>
 
-        <div class="apply-row apply-row-2">
-          <label class="apply-field">
-            <span class="apply-label">{copy.fieldLinkedIn} <small>· {copy.fieldLinkedInHelp}</small></span>
-            <input type="url" name="linkedin" inputmode="url" placeholder="https://linkedin.com/in/…" />
-          </label>
-          <label class="apply-field">
-            <span class="apply-label">{copy.fieldScholar} <small>· {copy.fieldScholarHelp}</small></span>
-            <input type="url" name="scholar" inputmode="url" placeholder="https://scholar.google.com/…" />
-          </label>
-        </div>
-      </fieldset>
-
-      <fieldset class="apply-fs">
-        <legend class="apply-legend">{copy.sectionTrajectory}</legend>
+        <label class="apply-field">
+          <span class="apply-label">{copy.fieldLinkedIn} <small>· {copy.optional}</small></span>
+          <input type="url" name="linkedin" inputmode="url" placeholder="https://linkedin.com/in/…" />
+        </label>
 
         <label class="apply-field">
-          <span class="apply-label">{copy.fieldCareer} <em>*</em></span>
+          <span class="apply-label">{copy.fieldScholar} <small>· {copy.fieldScholarHelp}</small></span>
+          <input type="url" name="scholar" inputmode="url" placeholder="https://scholar.google.com/…" />
+        </label>
+      </section>
+
+      <section class="apply-block">
+        <h2 class="apply-h2">{copy.sectionTrajectory}</h2>
+
+        <label class="apply-field">
+          <span class="apply-label">{copy.fieldCareer}<em>*</em></span>
           <small class="apply-help">{copy.fieldCareerHelp}</small>
           <textarea name="career" required rows="2" maxlength="500"></textarea>
         </label>
 
         <label class="apply-field">
-          <span class="apply-label">{copy.fieldReason} <em>*</em></span>
+          <span class="apply-label">{copy.fieldReason}<em>*</em></span>
           <small class="apply-help">{copy.fieldReasonHelp}</small>
           <textarea name="reason" required rows="3" maxlength="800"></textarea>
         </label>
-      </fieldset>
+      </section>
 
-      <fieldset class="apply-fs apply-fs-hub">
-        <legend class="apply-legend">{copy.sectionHub}</legend>
+      <section class="apply-block">
+        <h2 class="apply-h2">{copy.sectionHub}</h2>
 
         <label class="apply-field">
-          <span class="apply-label">{copy.fieldProblem} <em>*</em></span>
+          <span class="apply-label">{copy.fieldProblem}<em>*</em></span>
           <small class="apply-help">{copy.fieldProblemHelp}</small>
           <textarea name="hubProblem" required rows="6" maxlength="1500"></textarea>
         </label>
 
         <div class="apply-field">
-          <span class="apply-label">{copy.fieldTrack} <em>*</em></span>
+          <span class="apply-label">{copy.fieldTrack}<em>*</em></span>
           <div class="apply-radio-group">
             <label class="apply-radio">
               <input type="radio" name="hubTrack" value="technical" required />
@@ -156,7 +155,7 @@ const copy = {
         </div>
 
         <div class="apply-field">
-          <span class="apply-label">{copy.fieldDays} <em>*</em></span>
+          <span class="apply-label">{copy.fieldDays}<em>*</em></span>
           <div class="apply-radio-group">
             <label class="apply-radio">
               <input type="radio" name="hubDays" value="all" required />
@@ -174,17 +173,17 @@ const copy = {
         </div>
 
         <label class="apply-field">
-          <span class="apply-label">{copy.fieldDiet}</span>
+          <span class="apply-label">{copy.fieldDiet} <small>· {copy.optional}</small></span>
           <small class="apply-help">{copy.fieldDietHelp}</small>
           <textarea name="hubAccess" rows="2" maxlength="400"></textarea>
         </label>
 
         <label class="apply-field">
-          <span class="apply-label">{copy.fieldExtra}</span>
+          <span class="apply-label">{copy.fieldExtra} <small>· {copy.optional}</small></span>
           <small class="apply-help">{copy.fieldExtraHelp}</small>
           <textarea name="hubExtra" rows="2" maxlength="400"></textarea>
         </label>
-      </fieldset>
+      </section>
 
       <div class="apply-actions">
         <button type="submit" class="apply-submit">
@@ -288,248 +287,295 @@ const copy = {
 
 <style>
   .apply-section {
-    padding: 2.5rem 0 5rem;
-    background: var(--bg-cream);
+    padding: 3rem 1.25rem 6rem;
+    background: var(--bg-cream, #FBF6EC);
   }
 
-  .apply-container {
-    max-width: 760px;
+  .apply-shell {
+    max-width: 640px;
+    margin: 0 auto;
   }
 
+  /* Subtle inline note, not a boxed alert */
   .apply-online-note {
-    background: var(--bg-cream-deep, #f3ecdb);
-    border: 1px solid var(--hairline);
-    border-radius: 14px;
-    padding: 0.875rem 1.125rem;
-    margin-bottom: 2rem;
-    font-size: 0.95rem;
-    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--text-secondary, #4A4030);
+    margin: 0 0 3.5rem;
+    padding: 0;
+    border: none;
+    background: none;
   }
 
   .apply-online-note a {
-    color: var(--text-primary);
-    font-weight: 600;
+    color: #E5604D;
     text-decoration: underline;
-    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    font-weight: 500;
+    transition: color 0.15s ease;
   }
 
+  .apply-online-note a:hover {
+    color: #C84B38;
+  }
+
+  /* Form layout — single editorial column */
   .apply-form {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 5rem; /* 80px between sections */
   }
 
-  .apply-fs {
-    border: 1px solid var(--hairline);
-    border-radius: 18px;
-    padding: 1.75rem 1.5rem 1.5rem;
-    background: #fff;
-    margin: 0;
+  .apply-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* 32px between fields */
   }
 
-  .apply-fs-hub {
-    background: linear-gradient(180deg, #fff 0%, #fdf6eb 100%);
-    border-color: rgba(0, 0, 0, 0.12);
-  }
-
-  .apply-legend {
-    font-family: var(--font-display);
+  /* Section header: H2 + hairline rule */
+  .apply-h2 {
+    font-family: var(--font-display, 'Bricolage Grotesque', serif);
     font-weight: 700;
-    font-size: 1.125rem;
-    letter-spacing: -0.01em;
-    padding: 0 0.5rem;
-    background: #fff;
-    border: 1px solid var(--hairline);
-    border-radius: 999px;
-    line-height: 1;
-    padding: 0.45rem 0.85rem;
-    margin-left: -0.25rem;
+    font-size: clamp(1.625rem, 3.2vw, 2rem); /* 26–32px */
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    color: var(--text-primary, #211A12);
+    margin: 0 0 0.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #E6DCC8;
   }
 
-  .apply-fs-hub .apply-legend {
-    background: var(--accent-yellow, #ffd84d);
-    border-color: rgba(0, 0, 0, 0.15);
-    color: var(--text-primary);
-  }
-
-  .apply-fs > * + * {
-    margin-top: 1.25rem;
-  }
-
-  .apply-row-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
+  /* Fields */
   .apply-field {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.5rem;
   }
 
   .apply-label {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--text-primary);
-    line-height: 1.35;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-weight: 500;
+    font-size: 0.875rem; /* 14px */
+    color: var(--text-primary, #211A12);
+    line-height: 1.4;
+    letter-spacing: 0.005em;
   }
 
   .apply-label em {
-    color: #c83e3e;
+    color: #E5604D;
     font-style: normal;
-    margin-left: 0.15rem;
+    font-weight: 500;
+    margin-left: 0.2rem;
   }
 
   .apply-label small {
-    color: var(--text-secondary);
-    font-weight: 500;
-    font-size: 0.825rem;
+    color: #8A7F6E;
+    font-weight: 400;
+    font-size: 0.8125rem; /* 13px */
+    letter-spacing: 0;
   }
 
   .apply-help {
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    line-height: 1.45;
-    margin: -0.1rem 0 0.15rem;
+    color: #6B6253;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    margin: 0;
   }
 
+  /* Underline-only inputs */
   .apply-field input,
   .apply-field textarea {
-    font: inherit;
-    color: var(--text-primary);
-    padding: 0.7rem 0.85rem;
-    border: 1px solid var(--hairline);
-    border-radius: 10px;
-    background: #fff;
+    font-family: inherit;
+    font-size: 1rem; /* 16px */
+    color: var(--text-primary, #211A12);
+    padding: 0.5rem 0;
+    border: none;
+    border-bottom: 1px solid #D8C9A8;
+    border-radius: 0;
+    background: transparent;
     width: 100%;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    line-height: 1.5;
+    transition: border-bottom-color 0.15s ease, border-bottom-width 0.15s ease;
+    -webkit-appearance: none;
+    appearance: none;
   }
 
   .apply-field textarea {
     resize: vertical;
-    min-height: 4.5rem;
-    line-height: 1.5;
+    min-height: 5rem;
+    padding-top: 0.625rem;
+  }
+
+  .apply-field input::placeholder,
+  .apply-field textarea::placeholder {
+    color: #B5A88F;
+    font-weight: 400;
+  }
+
+  .apply-field input:hover,
+  .apply-field textarea:hover {
+    border-bottom-color: #A8956F;
   }
 
   .apply-field input:focus,
   .apply-field textarea:focus {
     outline: none;
-    border-color: var(--text-primary);
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+    border-bottom: 2px solid #E5604D;
+    padding-bottom: calc(0.5rem - 1px);
   }
 
+  .apply-field textarea:focus {
+    padding-bottom: calc(0.5rem - 1px);
+  }
+
+  /* Minimal radio buttons — no cards */
   .apply-radio-group {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.875rem;
     margin-top: 0.25rem;
   }
 
   .apply-radio {
     display: flex;
     align-items: flex-start;
-    gap: 0.6rem;
-    padding: 0.65rem 0.85rem;
-    border: 1px solid var(--hairline);
-    border-radius: 10px;
+    gap: 0.75rem;
+    padding: 0;
+    border: none;
+    background: none;
     cursor: pointer;
-    background: #fff;
-    transition: border-color 0.15s ease, background 0.15s ease;
+    border-radius: 0;
   }
 
-  .apply-radio:hover {
-    border-color: var(--text-secondary);
-  }
-
-  .apply-radio input {
-    margin-top: 0.2rem;
-    accent-color: var(--text-primary);
+  .apply-radio input[type='radio'] {
+    margin-top: 0.25rem;
+    width: 1.05rem;
+    height: 1.05rem;
+    accent-color: #E5604D;
+    cursor: pointer;
+    flex-shrink: 0;
   }
 
   .apply-radio span {
-    font-size: 0.95rem;
-    color: var(--text-primary);
-    line-height: 1.4;
+    font-size: 0.9375rem; /* 15px */
+    color: var(--text-primary, #211A12);
+    line-height: 1.45;
   }
 
-  .apply-radio:has(input:checked) {
-    border-color: var(--text-primary);
-    background: var(--bg-cream-deep, #f3ecdb);
+  .apply-radio:hover span {
+    color: #1F4D32;
   }
 
+  /* Submit button — forest green rectangle, left-aligned */
   .apply-actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
-    gap: 1rem;
+    margin-top: 1.5rem; /* 24px above submit (within form gap) */
+    padding-top: 0.5rem;
   }
 
   .apply-submit {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: -0.01em;
-    color: #fff;
-    background: var(--text-primary, #101010);
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    letter-spacing: 0.01em;
+    color: #FBF6EC;
+    background: #1F4D32;
     border: none;
-    border-radius: 999px;
-    padding: 0.9rem 1.75rem;
+    border-radius: 4px;
+    padding: 0.875rem 2rem;
+    min-width: 180px;
     cursor: pointer;
-    transition: background 0.15s ease, transform 0.15s ease;
+    transition: background 0.18s ease, transform 0.18s ease;
     position: relative;
   }
 
-  .apply-submit:hover { background: #000; transform: translateY(-1px); }
-  .apply-submit:disabled { opacity: 0.7; cursor: progress; transform: none; }
+  .apply-submit:hover {
+    background: #163A26;
+  }
+
+  .apply-submit:active {
+    transform: translateY(1px);
+  }
+
+  .apply-submit:focus-visible {
+    outline: 2px solid #E5604D;
+    outline-offset: 3px;
+  }
+
+  .apply-submit:disabled {
+    opacity: 0.6;
+    cursor: progress;
+    transform: none;
+  }
 
   .apply-submit-loading { display: none; }
   .apply-submit.is-loading .apply-submit-default { display: none; }
   .apply-submit.is-loading .apply-submit-loading { display: inline; }
 
   .apply-error {
-    color: #c83e3e;
-    font-size: 0.95rem;
-    margin: 0;
+    color: #C84B38;
+    font-size: 0.9375rem;
+    margin: 1rem 0 0;
   }
 
+  /* Success / error states */
   .apply-success,
   .apply-error-box {
-    text-align: center;
-    padding: 3rem 1.5rem;
-    border: 1px solid var(--hairline);
-    border-radius: 18px;
-    background: #fff;
-  }
-
-  .apply-error-box {
-    background: #fff5f5;
-    border-color: #f1c5c5;
+    text-align: left;
+    padding: 0;
+    border: none;
+    background: none;
   }
 
   .apply-success h2,
   .apply-error-box h2 {
-    font-family: var(--font-display);
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    margin-bottom: 0.75rem;
+    font-family: var(--font-display, 'Bricolage Grotesque', serif);
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text-primary, #211A12);
+    margin: 0 0 1.25rem;
+  }
+
+  .apply-error-box h2 {
+    color: #C84B38;
   }
 
   .apply-success p,
   .apply-error-box p {
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
+    color: var(--text-secondary, #4A4030);
+    font-size: 1.0625rem;
     line-height: 1.55;
+    margin: 0 0 2rem;
   }
 
   .apply-success-actions {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0.75rem;
     flex-wrap: wrap;
   }
 
   @media (max-width: 600px) {
-    .apply-row-2 { grid-template-columns: 1fr; }
-    .apply-fs { padding: 1.5rem 1.125rem 1.25rem; }
+    .apply-section {
+      padding: 2rem 1.25rem 4rem;
+    }
+    .apply-form {
+      gap: 4rem;
+    }
+    .apply-block {
+      gap: 1.75rem;
+    }
+    .apply-online-note {
+      margin-bottom: 2.5rem;
+    }
+    .apply-submit {
+      width: 100%;
+      min-width: 0;
+    }
   }
 </style>
