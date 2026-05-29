@@ -126,12 +126,10 @@ export function renderApplicantConfirmation(
         greeting: `Hola ${esc(original.firstName)},`,
         intro: 'Gracias por postular al hub presencial de Bogotá del Global South AI Safety Hackathon. El evento se realizará del 19 al 21 de junio de 2026.',
         nextTitle: 'Qué sigue',
-        step1Title: 'Revisión',
-        step1: 'Tu postulación entra a la ronda de selección del hub. La única pregunta de selección es cómo describes el problema que quieres abordar y tu enfoque inicial: buscamos pensamiento concreto y propio, no credenciales.',
-        step2Title: 'Resultados',
-        step2: 'Anunciamos la selección el 15 de junio. Vas a recibir un correo a esta misma dirección con la decisión.',
-        step3Title: 'Detalles del evento',
-        step3: 'Si quedas seleccionado, te enviaremos venue, horario, logística y agenda en un segundo correo.',
+        step1Title: 'Resultados',
+        step1: 'Anunciamos la selección el 15 de junio. Vas a recibir un correo a esta misma dirección con la decisión.',
+        step2Title: 'Detalles del evento',
+        step2: 'Si quedas seleccionado, te enviaremos venue, horario, logística y agenda en un segundo correo.',
         whatsappBlurb: 'Mientras tanto, en el grupo de WhatsApp de la comunidad publicamos anuncios sobre el hackathon y otras actividades de AI Safety Colombia.',
         cta: 'Unirse al grupo en WhatsApp',
         closing: `Si tienes dudas, responde a este correo o escríbenos a <a href="mailto:${esc(contact)}" style="color:#1F4D32;text-decoration:underline">${esc(contact)}</a>.`,
@@ -146,12 +144,10 @@ export function renderApplicantConfirmation(
         greeting: `Hi ${esc(original.firstName)},`,
         intro: 'Thank you for applying to the in-person Bogotá hub of the Global South AI Safety Hackathon. The event runs from June 19 to 21, 2026.',
         nextTitle: 'What happens next',
-        step1Title: 'Review',
-        step1: 'Your application enters the hub selection round. The only selection question is how you describe the problem you want to tackle and your initial approach: we look for concrete thinking in your own words, not credentials.',
-        step2Title: 'Results',
-        step2: 'We announce the selection on June 15. You will receive an email at this same address with the decision.',
-        step3Title: 'Event details',
-        step3: 'If your application is accepted, we will send venue, schedule, logistics and program details in a follow-up email.',
+        step1Title: 'Results',
+        step1: 'We announce the selection on June 15. You will receive an email at this same address with the decision.',
+        step2Title: 'Event details',
+        step2: 'If your application is accepted, we will send venue, schedule, logistics and program details in a follow-up email.',
         whatsappBlurb: 'In the meantime, the community WhatsApp group is where we post hackathon updates and announcements from AI Safety Colombia.',
         cta: 'Join the WhatsApp group',
         closing: `If you have questions, reply to this email or write to <a href="mailto:${esc(contact)}" style="color:#1F4D32;text-decoration:underline">${esc(contact)}</a>.`,
@@ -237,7 +233,6 @@ export function renderApplicantConfirmation(
 
           ${step('1', t.step1Title, t.step1)}
           ${step('2', t.step2Title, t.step2)}
-          ${step('3', t.step3Title, t.step3)}
 
           <tr>
             <td style="padding:4px 36px 0">
