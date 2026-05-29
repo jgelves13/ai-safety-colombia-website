@@ -48,6 +48,13 @@ const ogImageUrl = new URL(ogImage || '/og/default.png', Astro.site).href;
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-26KVQYCX3E"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-26KVQYCX3E', { anonymize_ip: true });
+  </script>
   <slot name="head" />
 </head>
 <body>

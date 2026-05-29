@@ -295,6 +295,9 @@ const copy = {
         if (typeof window !== 'undefined' && typeof window.va === 'function') {
           window.va('event', { name: name, ...(props || {}) });
         }
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+          window.gtag('event', name, props || {});
+        }
       } catch (_) {}
     }
 
