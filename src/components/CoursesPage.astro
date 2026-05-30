@@ -80,7 +80,7 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
               </p>
               <p class="course-desc">{es ? c.descEs : c.descEn}</p>
               <div class="course-actions">
-                <a class="course-interest" href={interestHref(c.slug)}>
+                <a class="course-interest" href={interestHref(c.slug)} target="_blank" rel="noopener noreferrer">
                   {t(locale, 'programs.interestOne')}
                 </a>
                 <a class="course-details" href={c.url} target="_blank" rel="noopener noreferrer">
@@ -97,7 +97,7 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
       <div class="courses-any">
         <h2 class="courses-any-title">{t(locale, 'programs.anyTitle')}</h2>
         <p class="courses-any-sub">{t(locale, 'programs.anySub')}</p>
-        <a class="btn btn-primary courses-any-cta" href={interestHref()}>
+        <a class="btn btn-primary courses-any-cta" href={interestHref()} target="_blank" rel="noopener noreferrer">
           {t(locale, 'programs.interestAny')}
         </a>
       </div>

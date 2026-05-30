@@ -30,8 +30,8 @@ const copy = {
     ? 'Los grupos son gratuitos, sin requisitos previos, y se basan en las lecturas de BlueDot Impact.'
     : 'Groups are free, with no prior requirements, and built on the BlueDot Impact reading lists.',
   introP2: es
-    ? 'Puedes tomar los cursos directamente con BlueDot en cualquier momento. Con nosotros la diferencia es que los facilitamos en español y, cuando hay demanda suficiente, en persona en Bogotá.'
-    : 'You can take the courses directly with BlueDot at any time. With us the difference is that we facilitate them in Spanish and, when there is enough demand, in person in Bogotá.',
+    ? 'Puedes tomar los cursos directamente con BlueDot en cualquier momento. Con nosotros la diferencia es que los grupos son en español y, si hay suficiente interés, presenciales en Bogotá.'
+    : 'You can take the courses directly with BlueDot at any time. With us the difference is that the groups are in Spanish and, if there is enough interest, in person in Bogotá.',
   introP3: es
     ? 'Marca los temas que te interesen. Si llegaste desde una tarjeta de tema, ya quedó preseleccionado.'
     : 'Tick the topics that interest you. If you arrived from a topic card, that topic is already pre-selected.',
@@ -91,32 +91,6 @@ const copy = {
       <input type="hidden" name="locale" value={locale} />
 
       <section class="apply-block">
-        <h2 class="apply-h2">{copy.sectionInterest}</h2>
-
-        <div class="apply-field">
-          <span class="apply-label">{copy.fieldAreas}<em>*</em></span>
-          <small class="apply-help">{copy.fieldAreasHelp}</small>
-          <div class="apply-check-group" id="areas-group">
-            {areaOptions.map((a) => (
-              <label class="apply-check">
-                <input type="checkbox" name="areas" value={a.slug} data-area={a.slug} />
-                <span class="apply-check-body">
-                  <span class="apply-check-title">{a.label}</span>
-                  {a.audience && <span class="apply-check-aud">{a.audience}</span>}
-                </span>
-              </label>
-            ))}
-          </div>
-        </div>
-
-        <label class="apply-field">
-          <span class="apply-label">{copy.fieldAbout}<em>*</em></span>
-          <small class="apply-help">{copy.fieldAboutHelp}</small>
-          <textarea name="about" required rows="3" maxlength="1200"></textarea>
-        </label>
-      </section>
-
-      <section class="apply-block">
         <h2 class="apply-h2">{copy.sectionBasics}</h2>
 
         <label class="apply-field">
@@ -142,6 +116,32 @@ const copy = {
         <label class="apply-field">
           <span class="apply-label">{copy.fieldLinkedIn} <small>· {copy.optional}</small></span>
           <input type="url" name="linkedin" inputmode="url" placeholder="https://linkedin.com/in/…" />
+        </label>
+      </section>
+
+      <section class="apply-block">
+        <h2 class="apply-h2">{copy.sectionInterest}</h2>
+
+        <div class="apply-field">
+          <span class="apply-label">{copy.fieldAreas}<em>*</em></span>
+          <small class="apply-help">{copy.fieldAreasHelp}</small>
+          <div class="apply-check-group" id="areas-group">
+            {areaOptions.map((a) => (
+              <label class="apply-check">
+                <input type="checkbox" name="areas" value={a.slug} data-area={a.slug} />
+                <span class="apply-check-body">
+                  <span class="apply-check-title">{a.label}</span>
+                  {a.audience && <span class="apply-check-aud">{a.audience}</span>}
+                </span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <label class="apply-field">
+          <span class="apply-label">{copy.fieldAbout}<em>*</em></span>
+          <small class="apply-help">{copy.fieldAboutHelp}</small>
+          <textarea name="about" required rows="3" maxlength="1200"></textarea>
         </label>
 
         <label class="apply-field">
