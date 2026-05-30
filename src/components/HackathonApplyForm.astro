@@ -466,6 +466,9 @@ const copy = {
     gap: 4.5rem; /* 72px between sections */
   }
 
+  /* [hidden] must beat the flex/grid display rules above */
+  [hidden] { display: none !important; }
+
   .apply-block {
     display: flex;
     flex-direction: column;
