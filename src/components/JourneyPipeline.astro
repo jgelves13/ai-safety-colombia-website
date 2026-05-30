@@ -10,7 +10,7 @@ const { locale } = Astro.props;
 
 const steps = [
   { label: t(locale, 'programs.curious'), sub: t(locale, 'journey.curious.sub'), href: localePath(locale, '/recursos/') },
-  { label: t(locale, 'programs.learning'), sub: t(locale, 'journey.learning.sub'), href: `${localePath(locale, '/involucrate/')}#grupos` },
+  { label: t(locale, 'programs.learning'), sub: t(locale, 'journey.learning.sub'), href: `${localePath(locale, '/grupos/')}#grupos` },
   { label: t(locale, 'programs.participating'), sub: t(locale, 'journey.participating.sub'), href: localePath(locale, '/eventos/') },
   { label: t(locale, 'programs.contributing'), sub: t(locale, 'journey.contributing.sub'), href: localePath(locale, '/hackathon/') },
 ];

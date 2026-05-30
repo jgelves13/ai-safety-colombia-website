@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import GetInvolvedPage from '../../components/GetInvolvedPage.astro';
+import GroupsInterestForm from '../../components/GroupsInterestForm.astro';
 
 const locale = 'en';
 ---
@@ -9,7 +10,8 @@ const locale = 'en';
   locale={locale}
   currentPage="get-involved"
   title="Discussion groups | AI Safety Colombia"
-  description="Peer-led reading on AI safety, from fundamentals to technical and governance topics."
+  description="Five reading groups on AI safety based on BlueDot Impact. We run them in Spanish and, with enough demand, in person in Bogotá. Express interest to help open the next cohort."
 >
   <GetInvolvedPage locale={locale} />
+  <GroupsInterestForm locale={locale} />
 </BaseLayout>

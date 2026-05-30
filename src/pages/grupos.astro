@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GetInvolvedPage from '../components/GetInvolvedPage.astro';
+import GroupsInterestForm from '../components/GroupsInterestForm.astro';
+
+const locale = 'es';
+---
+
+<BaseLayout
+  locale={locale}
+  currentPage="get-involved"
+  title="Grupos de discusión | AI Safety Colombia"
+  description="Cinco grupos de lectura sobre seguridad de IA basados en BlueDot Impact. Lecturas en español y, con demanda suficiente, en persona en Bogotá. Expresa tu interés para abrir el siguiente grupo."
+>
+  <GetInvolvedPage locale={locale} />
+  <GroupsInterestForm locale={locale} />
+</BaseLayout>

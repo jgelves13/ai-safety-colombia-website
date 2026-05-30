@@ -1,6 +1,6 @@
 ---
 import type { Locale } from '../i18n/ui';
-import { t } from '../i18n/ui';
+import { t, localePath } from '../i18n/ui';
 import PageHero from './PageHero.astro';
 import data from '../data/courses.json';
 
@@ -14,23 +14,9 @@ interface Props {
 const { locale, embedded = false } = Astro.props;
 const es = locale === 'es';
 
-// Where the "express interest" links submit. When set to an external
-// interest-form URL the links open it directly; until then they fall back
-// to a prefilled email so the CTA stays functional on the static site.
-const INTEREST_FORM_URL = '';
-const ORG_EMAIL = 'aisafetycolombia@gmail.com';
-const usesForm = INTEREST_FORM_URL.length > 0;
-
-const interestHref = (course?: string) => {
-  if (usesForm) return INTEREST_FORM_URL;
-  const subject = es
-    ? `Interés en un grupo de discusión${course ? `: ${course}` : ''} (web AI Safety Colombia)`
-    : `Interest in a discussion group${course ? `: ${course}` : ''} (AI Safety Colombia site)`;
-  const body = es
-    ? `Hola, me interesa ${course ? `el grupo de discusión "${course}"` : 'la formación de AI Safety Colombia'}.\n\nNombre:\nCorreo:\nUn poco sobre mí:`
-    : `Hi, I'm interested in ${course ? `the "${course}" discussion group` : 'AI Safety Colombia training'}.\n\nName:\nEmail:\nA bit about me:`;
-  return `mailto:${ORG_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-};
+const formBase = localePath(locale, '/grupos/');
+const interestHref = (slug?: string) =>
+  slug ? `${formBase}?area=${slug}#form-grupos` : `${formBase}#form-grupos`;
 
 // Original line-art glyphs per group (no third-party assets). Stroke is
 // inherited via currentColor; each cover animates the glyph and an orbit.
@@ -94,12 +80,9 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
               </p>
               <p class="course-desc">{es ? c.descEs : c.descEn}</p>
               <div class="course-actions">
-                <a
-                  class="course-interest"
-                  href={interestHref(title)}
-                  target={usesForm ? '_blank' : undefined}
-                  rel={usesForm ? 'noopener noreferrer' : undefined}
-                >{t(locale, 'programs.interestOne')}</a>
+                <a class="course-interest" href={interestHref(c.slug)}>
+                  {t(locale, 'programs.interestOne')}
+                </a>
                 <a class="course-details" href={c.url} target="_blank" rel="noopener noreferrer">
                   {t(locale, 'programs.details')}
                 </a>
@@ -114,12 +97,9 @@ const glyph = (slug: string) => GLYPHS[slug] ?? GLYPHS['future-of-ai'];
       <div class="courses-any">
         <h2 class="courses-any-title">{t(locale, 'programs.anyTitle')}</h2>
         <p class="courses-any-sub">{t(locale, 'programs.anySub')}</p>
-        <a
-          class="btn btn-primary courses-any-cta"
-          href={interestHref()}
-          target={usesForm ? '_blank' : undefined}
-          rel={usesForm ? 'noopener noreferrer' : undefined}
-        >{t(locale, 'programs.interestAny')}</a>
+        <a class="btn btn-primary courses-any-cta" href={interestHref()}>
+          {t(locale, 'programs.interestAny')}
+        </a>
       </div>
     )}
   </div>

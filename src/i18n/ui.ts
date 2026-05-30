@@ -136,7 +136,7 @@ export const ui = {
       'Lectura guiada entre pares sobre seguridad de IA, desde los fundamentos hasta temas técnicos y de gobernanza.',
     'groups.kicker': 'Formación · Por interés · Cinco grupos',
     'groups.lead':
-      'Lectura y conversación abierta sobre seguridad de IA: fundamentos, investigación técnica y gobernanza. Sin costo, sin requisitos previos.',
+      'Lectura y conversación abierta sobre seguridad de IA: fundamentos, investigación técnica y gobernanza. Puedes tomar los cursos directamente con BlueDot Impact; con nosotros la diferencia es que los hacemos en español y, si hay suficiente demanda, en persona.',
     'groups.sourceLabel': 'Materiales',
     'groups.sourceBody': 'Lecturas de BlueDot Impact, debatidas en grupo.',
     'groups.viewGroups': 'Ver los cinco grupos',
@@ -404,7 +404,7 @@ export const ui = {
       'Peer-led reading on AI safety, from fundamentals to technical and governance topics.',
     'groups.kicker': 'Reading groups · Interest-based · Five topics',
     'groups.lead':
-      'Open reading and conversation on AI safety: fundamentals, technical research, and governance. Free, with no prior requirements.',
+      'Open reading and conversation on AI safety: fundamentals, technical research, and governance. You can take the courses directly with BlueDot Impact; with us the difference is that we run them in Spanish and, if there is enough demand, in person.',
     'groups.sourceLabel': 'Materials',
     'groups.sourceBody': 'BlueDot Impact readings, discussed as a group.',
     'groups.viewGroups': 'See the five groups',
@@ -546,7 +546,7 @@ export function t(locale: Locale, key: keyof typeof ui.es): string {
 const esEnPaths: Record<string, string> = {
   '/sobre/': '/about/',
   '/recursos/': '/resources/',
-  '/involucrate/': '/get-involved/',
+  '/grupos/': '/groups/',
   '/contacto/': '/contact/',
   '/eventos/': '/events/',
   '/aplicar/': '/apply/',

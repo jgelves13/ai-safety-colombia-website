@@ -19,7 +19,7 @@ const links = [
   { page: 'hackathon', href: localePath(locale, '/hackathon/'), label: t(locale, 'nav.hackathon') },
   { page: 'events', href: localePath(locale, '/eventos/'), label: t(locale, 'nav.events') },
   { page: 'resources', href: localePath(locale, '/recursos/'), label: t(locale, 'nav.resources') },
-  { page: 'get-involved', href: localePath(locale, '/involucrate/'), label: t(locale, 'nav.get-involved') },
+  { page: 'get-involved', href: localePath(locale, '/grupos/'), label: t(locale, 'nav.get-involved') },
 ];
 ---
 
@@ -41,7 +41,7 @@ const links = [
         <span class="lang-sep" aria-hidden="true">·</span>
         <a href={locale === 'en' ? Astro.url.pathname : langSwitchHref} class={locale === 'en' ? 'active' : ''}>EN</a>
       </div>
-      <a href={localePath(locale, '/involucrate/')} class="btn btn-primary nav-cta">
+      <a href={localePath(locale, '/grupos/')} class="btn btn-primary nav-cta">
         {t(locale, 'nav.cta')}
       </a>
       <button class="hamburger" aria-label="Menu">
