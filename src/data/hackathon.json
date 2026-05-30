@@ -125,10 +125,10 @@
       ]},
     { "nameEs": "África", "nameEn": "Africa", "accent": "is-coral",
       "teamsEs": "1 equipo ganador", "teamsEn": "1 winning team", "prizeEs": "USD 1.000", "prizeEn": "US$1,000",
-      "cities": [ { "name": "Cape Town", "nameEs": "Ciudad del Cabo" }, { "name": "Tanzania" }, { "name": "Lusaka" } ]},
+      "cities": [ { "name": "Cape Town", "nameEs": "Ciudad del Cabo" }, { "name": "Dodoma" }, { "name": "Lusaka" } ]},
     { "nameEs": "Asia", "nameEn": "Asia", "accent": "is-blue",
       "teamsEs": "2 equipos ganadores", "teamsEn": "2 winning teams", "prizeEs": "USD 2.000", "prizeEn": "US$2,000",
-      "cities": [ { "name": "Bengaluru", "nameEs": "Bangalore" }, { "name": "New Delhi", "nameEs": "Nueva Delhi" }, { "name": "Hanoi", "nameEs": "Hanói" }, { "name": "Ho Chi Minh City", "nameEs": "Ciudad Ho Chi Minh" } ]}
+      "cities": [ { "name": "Bengaluru", "nameEs": "Bangalore" }, { "name": "Delhi" }, { "name": "Hanoi", "nameEs": "Hanói" }, { "name": "Ho Chi Minh City", "nameEs": "Ciudad Ho Chi Minh" } ]}
   ],
   "prizesDetail": {
     "amountEs": "USD 3.000",
