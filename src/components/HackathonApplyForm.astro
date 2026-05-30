@@ -110,32 +110,32 @@ const copy = {
 
         <label class="apply-field">
           <span class="apply-label">{copy.fieldFirstName}<em>*</em></span>
-          <input type="text" name="firstName" required autocomplete="given-name" />
+          <input type="text" name="firstName" required autocomplete="given-name" maxlength="100" />
         </label>
 
         <label class="apply-field">
           <span class="apply-label">{copy.fieldLastName}<em>*</em></span>
-          <input type="text" name="lastName" required autocomplete="family-name" />
+          <input type="text" name="lastName" required autocomplete="family-name" maxlength="100" />
         </label>
 
         <label class="apply-field">
           <span class="apply-label">{copy.fieldEmail}<em>*</em></span>
-          <input type="email" name="email" required autocomplete="email" />
+          <input type="email" name="email" required autocomplete="email" maxlength="200" />
         </label>
 
         <label class="apply-field">
           <span class="apply-label">{copy.fieldLocation}<em>*</em></span>
-          <input type="text" name="location" required autocomplete="address-level2" placeholder={es ? 'Ej: Bogotá, Colombia' : 'Eg: Bogotá, Colombia'} />
+          <input type="text" name="location" required autocomplete="address-level2" maxlength="200" placeholder={es ? 'Ej: Bogotá, Colombia' : 'Eg: Bogotá, Colombia'} />
         </label>
 
         <label class="apply-field">
           <span class="apply-label">{copy.fieldLinkedIn} <small>· {copy.optional}</small></span>
-          <input type="url" name="linkedin" inputmode="url" placeholder="https://linkedin.com/in/…" />
+          <input type="url" name="linkedin" inputmode="url" maxlength="300" placeholder="https://linkedin.com/in/…" />
         </label>
 
         <label class="apply-field">
           <span class="apply-label">{copy.fieldScholar} <small>· {copy.fieldScholarHelp}</small></span>
-          <input type="url" name="scholar" inputmode="url" placeholder="https://scholar.google.com/…" />
+          <input type="url" name="scholar" inputmode="url" maxlength="300" placeholder="https://scholar.google.com/…" />
         </label>
       </section>
 
@@ -145,13 +145,13 @@ const copy = {
         <label class="apply-field">
           <span class="apply-label">{copy.fieldCareer}<em>*</em></span>
           <small class="apply-help">{copy.fieldCareerHelp}</small>
-          <textarea name="career" required rows="2" maxlength="500"></textarea>
+          <textarea name="career" required rows="2" maxlength="800"></textarea>
         </label>
 
         <label class="apply-field">
           <span class="apply-label">{copy.fieldReason}<em>*</em></span>
           <small class="apply-help">{copy.fieldReasonHelp}</small>
-          <textarea name="reason" required rows="3" maxlength="800"></textarea>
+          <textarea name="reason" required rows="3" maxlength="1500"></textarea>
         </label>
       </section>
 
@@ -217,13 +217,13 @@ const copy = {
         <label class="apply-field">
           <span class="apply-label">{copy.fieldDiet} <small>· {copy.optional}</small></span>
           <small class="apply-help">{copy.fieldDietHelp}</small>
-          <textarea name="hubAccess" rows="2" maxlength="400"></textarea>
+          <textarea name="hubAccess" rows="2" maxlength="800"></textarea>
         </label>
 
         <label class="apply-field">
           <span class="apply-label">{copy.fieldExtra} <small>· {copy.optional}</small></span>
           <small class="apply-help">{copy.fieldExtraHelp}</small>
-          <textarea name="hubExtra" rows="2" maxlength="400"></textarea>
+          <textarea name="hubExtra" rows="2" maxlength="800"></textarea>
         </label>
       </section>
 
@@ -317,6 +317,23 @@ const copy = {
       form.hidden = false;
       setLoading(false);
       va('apply_retry', { locale: locale });
+    });
+
+    form.querySelectorAll('textarea[maxlength]').forEach(function (ta) {
+      const max = parseInt(ta.getAttribute('maxlength') || '0', 10);
+      if (!max) return;
+      const counter = document.createElement('small');
+      counter.className = 'apply-counter';
+      counter.setAttribute('aria-live', 'polite');
+      ta.insertAdjacentElement('afterend', counter);
+      const update = function () {
+        const n = ta.value.length;
+        counter.textContent = n + ' / ' + max;
+        counter.classList.toggle('is-near', n / max >= 0.9 && n < max);
+        counter.classList.toggle('is-at', n >= max);
+      };
+      ta.addEventListener('input', update);
+      update();
     });
 
     form.addEventListener('submit', async function (ev) {
@@ -653,6 +670,21 @@ const copy = {
     font-size: 1rem;
     margin: 1rem 0 0;
     text-align: center;
+  }
+
+  .apply-counter {
+    align-self: flex-end;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1;
+    margin-top: 0.375rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .apply-counter.is-near { color: var(--accent-vermillion); }
+  .apply-counter.is-at {
+    color: var(--accent-vermillion-dark);
+    font-weight: 600;
   }
 
   /* Success / error states */
