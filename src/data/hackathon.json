@@ -183,7 +183,7 @@
   },
   "schedule": [
     { "day": "Viernes 19", "dayEn": "Friday 19", "accent": "is-green", "events": [
-      { "time": "~5:00 PM", "timeEn": "~5:00 PM",
+      { "time": "~4:00 PM", "timeEn": "~4:00 PM",
         "title": "Dos charlas de apertura y presentación de los retos",
         "titleEn": "Two opening talks and challenge briefing",
         "note": "Con Juan Felipe Cerón (OpenAI) y Alejandro Toro (Congreso de Colombia)",
