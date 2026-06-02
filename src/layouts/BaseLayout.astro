@@ -23,6 +23,54 @@ const esPath = locale === 'es' ? Astro.url.pathname : switchHref;
 const enPath = locale === 'en' ? Astro.url.pathname : switchHref;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const ogImageUrl = new URL(ogImage || '/og/default.png', Astro.site).href;
+const ogLocale = locale === 'es' ? 'es_CO' : 'en_US';
+const ogLocaleAlt = locale === 'es' ? 'en_US' : 'es_CO';
+const xDefaultPath = esPath;
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${Astro.site?.href ?? 'https://aisafetycolombia.org/'}#organization`,
+  name: 'AI Safety Colombia',
+  alternateName: 'AISC',
+  url: Astro.site?.href ?? 'https://aisafetycolombia.org/',
+  logo: {
+    '@type': 'ImageObject',
+    url: new URL('/logo.png', Astro.site).href,
+    width: 512,
+    height: 512,
+  },
+  email: 'contacto@aisafetycolombia.org',
+  foundingDate: '2024',
+  areaServed: ['CO', 'LATAM', 'Global South'],
+  description: locale === 'es'
+    ? 'Comunidad de AI Safety en Colombia y el Global South: investigación, formación y eventos sobre alineación y seguridad de IA.'
+    : 'AI Safety community in Colombia and the Global South: research, training and events on AI alignment and safety.',
+  sameAs: [
+    'https://www.linkedin.com/company/ai-safety-colombia/',
+    'https://www.instagram.com/aisafetycolombia/',
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'contacto@aisafetycolombia.org',
+    contactType: 'general',
+    availableLanguage: ['Spanish', 'English'],
+  },
+};
+const orgJson = JSON.stringify(organizationJsonLd).replace(/</g, '\\u003c');
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${Astro.site?.href ?? 'https://aisafetycolombia.org/'}#website`,
+  url: Astro.site?.href ?? 'https://aisafetycolombia.org/',
+  name: 'AI Safety Colombia',
+  inLanguage: ['es-CO', 'en-US'],
+  publisher: { '@id': `${Astro.site?.href ?? 'https://aisafetycolombia.org/'}#organization` },
+};
+const websiteJson = JSON.stringify(websiteJsonLd).replace(/</g, '\\u003c');
+
+const isHackathonPage = currentPage === 'hackathon';
 ---
 
 <!DOCTYPE html>
@@ -38,11 +86,29 @@ const ogImageUrl = new URL(ogImage || '/og/default.png', Astro.site).href;
   <meta property="og:type" content="website">
   <meta property="og:image" content={ogImageUrl}>
   <meta property="og:url" content={canonicalUrl.href}>
+  <meta property="og:site_name" content="AI Safety Colombia">
+  <meta property="og:locale" content={ogLocale}>
+  <meta property="og:locale:alternate" content={ogLocaleAlt}>
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={pageTitle}>
+  <meta name="twitter:description" content={pageDesc}>
   <meta name="twitter:image" content={ogImageUrl}>
   <link rel="canonical" href={canonicalUrl.href}>
   <link rel="alternate" hreflang="es" href={`${Astro.site}${esPath.replace(/^\//, '')}`}>
   <link rel="alternate" hreflang="en" href={`${Astro.site}${enPath.replace(/^\//, '')}`}>
+  <link rel="alternate" hreflang="x-default" href={`${Astro.site}${xDefaultPath.replace(/^\//, '')}`}>
+  {isHackathonPage && (
+    <>
+      <meta name="geo.region" content="CO-DC">
+      <meta name="geo.placename" content="Bogotá">
+      <meta name="geo.position" content="4.7110;-74.0721">
+      <meta name="ICBM" content="4.7110, -74.0721">
+      <link rel="preconnect" href="https://apartresearch.com">
+      <link rel="dns-prefetch" href="https://apartresearch.com">
+    </>
+  )}
+  <script type="application/ld+json" is:inline set:html={orgJson} />
+  <script type="application/ld+json" is:inline set:html={websiteJson} />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -55,9 +121,27 @@ const ogImageUrl = new URL(ogImage || '/og/default.png', Astro.site).href;
     gtag('js', new Date());
     gtag('config', 'G-26KVQYCX3E', { anonymize_ip: true });
   </script>
+  <script is:inline>
+    _linkedin_partner_id = "10274057";
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script>
+  <script is:inline>
+    (function(l) {
+    if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+    window.lintrk.q=[]}
+    var s = document.getElementsByTagName("script")[0];
+    var b = document.createElement("script");
+    b.type = "text/javascript";b.async = true;
+    b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+    s.parentNode.insertBefore(b, s);})(window.lintrk);
+  </script>
   <slot name="head" />
 </head>
 <body>
+  <noscript>
+    <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=10274057&fmt=gif" />
+  </noscript>
   <Navbar locale={locale} currentPage={currentPage} />
   <main>
     <slot />

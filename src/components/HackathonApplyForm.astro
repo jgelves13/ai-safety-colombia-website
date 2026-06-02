@@ -401,6 +401,11 @@ const copy = {
           hub_track: String(payload.hubTrack || ''),
           hub_travel: String(payload.hubTravel || ''),
         });
+        try {
+          if (typeof window !== 'undefined' && typeof window.lintrk === 'function') {
+            window.lintrk('track');
+          }
+        } catch (_) {}
         showSuccess();
       } catch (err) {
         console.error('apply submit failed', err);
