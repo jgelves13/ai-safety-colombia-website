@@ -1,5 +1,11 @@
 {
   "installCommand": "pnpm install --no-frozen-lockfile",
+  "crons": [
+    {
+      "path": "/api/aplicar/draft-reminder",
+      "schedule": "0 * * * *"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

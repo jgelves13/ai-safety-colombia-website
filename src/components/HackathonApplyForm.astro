@@ -336,6 +336,46 @@ const copy = {
       update();
     });
 
+    (function setupDraftCapture() {
+      const firstNameInput = form.querySelector('input[name="firstName"]');
+      const lastNameInput = form.querySelector('input[name="lastName"]');
+      const emailInput = form.querySelector('input[name="email"]');
+      if (!firstNameInput || !lastNameInput || !emailInput) return;
+
+      const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const SESSION_KEY = 'aisc-draft-saved';
+
+      function alreadySavedFor(email) {
+        try { return sessionStorage.getItem(SESSION_KEY) === email; } catch (_) { return false; }
+      }
+      function markSaved(email) {
+        try { sessionStorage.setItem(SESSION_KEY, email); } catch (_) {}
+      }
+
+      function tryCapture() {
+        const firstName = (firstNameInput.value || '').trim();
+        const lastName = (lastNameInput.value || '').trim();
+        const email = (emailInput.value || '').trim().toLowerCase();
+        if (!firstName || !lastName || !email) return;
+        if (!EMAIL_RE.test(email)) return;
+        if (alreadySavedFor(email)) return;
+        markSaved(email);
+
+        fetch('/api/aplicar/draft', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ locale: locale, firstName: firstName, lastName: lastName, email: email }),
+          keepalive: true,
+        }).catch(function () {});
+
+        va('apply_draft_saved', { locale: locale });
+      }
+
+      emailInput.addEventListener('blur', tryCapture);
+      form.addEventListener('submit', tryCapture, true);
+      window.addEventListener('pagehide', tryCapture);
+    })();
+
     form.addEventListener('submit', async function (ev) {
       ev.preventDefault();
       clearError();

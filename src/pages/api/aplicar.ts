@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { validate } from '../../lib/hackathon-apply/schema';
 import { translateToEnglish } from '../../lib/hackathon-apply/translate';
 import { insertApplication } from '../../lib/hackathon-apply/supabase';
+import { markDraftComplete } from '../../lib/hackathon-apply/draftSupabase';
 import {
   sendApartEmail,
   sendApplicantConfirmation,
@@ -53,6 +54,8 @@ export const POST: APIRoute = async ({ request }) => {
   if (!userVisibleOk) {
     return json({ error: 'submission_failed' }, 502);
   }
+
+  markDraftComplete(original.email).catch(() => undefined);
 
   return json({ ok: true, partial: failures.length > 0 });
 };
