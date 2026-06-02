@@ -13,6 +13,5 @@ jobs:
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
-          curl -fsS -X POST \
-            -H "Authorization: Bearer $CRON_SECRET" \
-            https://aisafetycolombia.org/api/aplicar/draft-reminder
+          curl -fsS \
+            "https://aisafetycolombia.org/api/aplicar/draft-reminder?secret=$CRON_SECRET"
