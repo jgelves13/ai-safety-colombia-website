@@ -22,24 +22,6 @@ const areaOptions = AREA_VALUES.map((slug) => {
 });
 
 const copy = {
-  heroTitle: es ? 'Expresar interés' : 'Express interest',
-  heroDesc: es
-    ? 'Cuéntanos qué grupo te interesa y abrimos cohortes cuando hay suficientes personas.'
-    : 'Tell us which group interests you and we open cohorts when enough people share the topic.',
-  introP1: es
-    ? 'Los grupos son gratuitos, sin requisitos previos, y se basan en las lecturas de BlueDot Impact.'
-    : 'Groups are free, with no prior requirements, and built on the BlueDot Impact reading lists.',
-  introP2: es
-    ? 'Puedes tomar los cursos directamente con BlueDot en cualquier momento. Con nosotros la diferencia es que los grupos son en español y, si hay suficiente interés, presenciales en Bogotá.'
-    : 'You can take the courses directly with BlueDot at any time. With us the difference is that the groups are in Spanish and, if there is enough interest, in person in Bogotá.',
-  introP3: es
-    ? 'Marca los temas que te interesen. Si llegaste desde una tarjeta de tema, ya quedó preseleccionado.'
-    : 'Tick the topics that interest you. If you arrived from a topic card, that topic is already pre-selected.',
-  landingCta: es ? 'Expresar interés' : 'Express interest',
-  landingCtaUnsure: es ? 'Aún no sé a cuál aplicar' : 'Not sure which one yet',
-  unsureNote: es
-    ? 'Marcamos los cinco temas por ti. Desmarca los que claramente no te interesan.'
-    : 'We pre-ticked all five topics for you. Untick the ones you are clearly not interested in.',
   sectionBasics: es ? 'Datos básicos' : 'Basic information',
   sectionInterest: es ? 'Tu interés' : 'Your interest',
   fieldFirstName: es ? 'Nombre' : 'First name',
@@ -78,25 +60,7 @@ const copy = {
   <span class="apply-shape apply-shape-ring" aria-hidden="true"></span>
 
   <div class="apply-shell">
-    <header class="apply-hero">
-      <h1 class="apply-hero-title">{copy.heroTitle}</h1>
-      <p class="apply-hero-desc">{copy.heroDesc}</p>
-    </header>
-
-    <div class="apply-intro">
-      <p>{copy.introP1}</p>
-      <p>{copy.introP2}</p>
-      <p>{copy.introP3}</p>
-    </div>
-
-    <div class="apply-landing" id="interest-landing">
-      <button type="button" class="btn btn-primary apply-landing-cta" id="interest-open">{copy.landingCta}</button>
-      <button type="button" class="btn btn-secondary apply-landing-cta" id="interest-open-unsure">{copy.landingCtaUnsure}</button>
-    </div>
-
-    <p class="apply-unsure-note" id="interest-unsure-note" hidden>{copy.unsureNote}</p>
-
-    <form id="interest-form" class="apply-form" novalidate hidden>
+    <form id="interest-form" class="apply-form" novalidate>
       <input type="hidden" name="locale" value={locale} />
 
       <section class="apply-block">
@@ -195,31 +159,8 @@ const copy = {
     const retryBtn = document.getElementById('interest-retry');
     const areasGroup = document.getElementById('areas-group');
     const areaInputs = areasGroup.querySelectorAll('input[type="checkbox"][name="areas"]');
-    const landing = document.getElementById('interest-landing');
-    const openBtn = document.getElementById('interest-open');
-    const openUnsureBtn = document.getElementById('interest-open-unsure');
-    const unsureNote = document.getElementById('interest-unsure-note');
 
-    function openForm(opts) {
-      const mode = (opts && opts.mode) || 'normal';
-      landing.hidden = true;
-      form.hidden = false;
-      unsureNote.hidden = mode !== 'unsure';
-      if (mode === 'unsure') {
-        areaInputs.forEach((input) => { input.checked = true; });
-      }
-      va('interest_opened', { locale: locale, mode: mode });
-      requestAnimationFrame(() => {
-        document.getElementById('form-grupos')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        const firstField = form.querySelector('input[name="firstName"]');
-        if (firstField) firstField.focus({ preventScroll: true });
-      });
-    }
-
-    openBtn.addEventListener('click', () => openForm({ mode: 'normal' }));
-    openUnsureBtn.addEventListener('click', () => openForm({ mode: 'unsure' }));
-
-    // Pre-check area from ?area=<slug> query param and auto-open the form.
+    // Pre-check area from ?area=<slug> query param.
     try {
       const params = new URLSearchParams(window.location.search);
       const wanted = params.getAll('area').flatMap((v) => v.split(','));
@@ -232,8 +173,6 @@ const copy = {
           }
         });
         if (matched) {
-          landing.hidden = true;
-          form.hidden = false;
           requestAnimationFrame(() => {
             document.getElementById('form-grupos')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
           });
@@ -402,46 +341,6 @@ const copy = {
     margin: 0 auto;
   }
 
-  .apply-hero {
-    margin-bottom: 2.5rem;
-  }
-
-  .apply-hero-title {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(2.5rem, 6vw, 3.75rem);
-    line-height: 1.02;
-    letter-spacing: -0.035em;
-    color: var(--text-primary);
-    margin: 0 0 1rem;
-    max-width: 18ch;
-  }
-
-  .apply-hero-desc {
-    font-family: var(--font-body);
-    font-size: 1.0625rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  .apply-intro {
-    border-top: 1px solid var(--hairline);
-    padding-top: 2.5rem;
-    margin-bottom: 4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .apply-intro p {
-    font-family: var(--font-body);
-    font-size: 1.0625rem;
-    line-height: 1.65;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
   .apply-form {
     display: flex;
     flex-direction: column;
@@ -450,29 +349,6 @@ const copy = {
 
   /* [hidden] must beat the flex/grid display rules above */
   [hidden] { display: none !important; }
-
-  .apply-landing {
-    display: flex;
-    gap: 0.875rem;
-    flex-wrap: wrap;
-  }
-
-  .apply-landing-cta {
-    padding: 1rem 2rem;
-    font-size: 1rem;
-  }
-
-  .apply-unsure-note {
-    font-family: var(--font-body);
-    font-size: 0.9375rem;
-    line-height: 1.55;
-    color: var(--text-secondary);
-    background: rgba(20, 54, 32, 0.04);
-    border-left: 3px solid var(--accent-forest);
-    padding: 0.875rem 1.125rem;
-    margin: 0 0 1.5rem;
-    border-radius: 0 8px 8px 0;
-  }
 
   .apply-block {
     display: flex;
@@ -752,8 +628,6 @@ const copy = {
       right: -50px;
     }
     .apply-shape-ring { display: none; }
-    .apply-hero { margin-bottom: 2rem; }
-    .apply-intro { padding-top: 2rem; margin-bottom: 3rem; }
     .apply-form { gap: 3.5rem; }
     .apply-block { gap: 1.75rem; }
     .apply-submit { width: 100%; justify-content: center; }
