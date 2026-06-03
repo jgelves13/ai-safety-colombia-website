@@ -1,0 +1,34 @@
+---
+import type { Locale } from '../i18n/ui';
+
+interface Crumb {
+  name: string;
+  href: string;
+}
+
+interface Props {
+  locale: Locale;
+  items: Crumb[];
+}
+
+const { locale, items } = Astro.props;
+const site = Astro.site ?? new URL('https://aisafetycolombia.org/');
+
+const homeName = locale === 'es' ? 'Inicio' : 'Home';
+const homeHref = locale === 'es' ? '/' : '/en/';
+const allItems: Crumb[] = [{ name: homeName, href: homeHref }, ...items];
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: allItems.map((c, idx) => ({
+    '@type': 'ListItem',
+    position: idx + 1,
+    name: c.name,
+    item: new URL(c.href.replace(/^\//, ''), site).href,
+  })),
+};
+const json = JSON.stringify(breadcrumbJsonLd).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" is:inline set:html={json} />

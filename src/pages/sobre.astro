@@ -6,7 +6,12 @@ import AboutContent from '../components/AboutContent.astro';
 const locale = 'es';
 ---
 
-<BaseLayout locale={locale} currentPage="about" title="Sobre nosotros | AI Safety Colombia">
+<BaseLayout
+  locale={locale}
+  currentPage="about"
+  title="Sobre AI Safety Colombia · Comunidad de AI Safety en LATAM"
+  description="Capítulo colombiano dedicado a estudiar los riesgos de los sistemas de IA avanzados. Comunidad, formación con grupos BlueDot y eventos sobre alineación y gobernanza de IA."
+>
   <PageHero
     title="Sobre nosotros"
     desc="Capítulo colombiano dedicado a estudiar los riesgos de los sistemas de IA avanzados. Aquí contamos quiénes somos, cómo nació el grupo y las tres palancas que articulan nuestro trabajo: comunidad, formación y eventos."

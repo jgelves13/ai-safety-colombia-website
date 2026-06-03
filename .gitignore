@@ -23,3 +23,5 @@ scripts/flyers/dist/
 
 # Flyer marketing research scratch (Exa exports, regenerable)
 scripts/flyers/.research/
+
+.vercel

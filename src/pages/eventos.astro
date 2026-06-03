@@ -9,7 +9,12 @@ const locale = 'es';
 const events = eventsData as AisEvent[];
 ---
 
-<BaseLayout locale={locale} currentPage="events" title="Eventos | AI Safety Colombia" description="Charlas, paneles y talleres de seguridad de IA organizados por AI Safety Colombia.">
+<BaseLayout
+  locale={locale}
+  currentPage="events"
+  title="Eventos de AI Safety en Bogotá | AI Safety Colombia"
+  description="Charlas, paneles y talleres sobre seguridad y alineación de IA en Bogotá. Eventos públicos de AI Safety Colombia para investigadores, ingenieros y estudiantes en LATAM."
+>
   <EventJsonLd slot="head" events={events} locale={locale} />
   <EventsPage locale={locale} />
 </BaseLayout>

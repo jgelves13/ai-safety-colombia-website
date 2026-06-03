@@ -5,6 +5,7 @@ import data from '../data/hackathon.json';
 import HackathonHeroBlock from './HackathonHeroBlock.astro';
 import HackathonDetails from './HackathonDetails.astro';
 import HackathonFinalCta from './HackathonFinalCta.astro';
+import HackathonFaq from './HackathonFaq.astro';
 
 interface Props {
   locale: Locale;
@@ -14,6 +15,7 @@ const { locale } = Astro.props;
 const es = locale === 'es';
 
 const whatBody = es ? data.whatIsEs : data.whatIsEn;
+const primer = es ? data.primerEs : data.primerEn;
 const submission = es ? data.submissionEs : data.submissionEn;
 
 type Person = {
@@ -114,6 +116,7 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
 <section class="section hk-intro">
   <div class="container">
     <h2 class="section-title">{t(locale, 'hackathon.whatTitle')}</h2>
+    <div class="hk-primer" set:html={primer} />
     <div class="hk-lead" set:html={whatBody} />
 
     <div class="hk-modes">
@@ -402,7 +405,7 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
       {speakers.map((sp, i) => (
         <article class={`hk-person ${['is-green','is-coral','is-blue','is-yellow'][i % 4]}`}>
           {sp.photo
-            ? <img class="hk-person-av" src={`/people/${sp.photo}`} alt="" width="104" height="104" />
+            ? <img class="hk-person-av" src={`/people/${sp.photo}`} alt={`${sp.name} — ${es ? (sp.affiliationEs || sp.affiliationEn || '') : (sp.affiliationEn || sp.affiliationEs || '')}`.replace(/<[^>]*>/g, '')} width="104" height="104" loading="lazy" decoding="async" />
             : <div class="hk-person-av" aria-hidden="true">{initials(sp.name)}</div>}
           <div class="hk-person-tx">
             <h3>{sp.name}</h3>
@@ -460,7 +463,7 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
         {judges.map((j, i) => (
           <article class={`hk-person ${['is-green','is-coral','is-blue','is-yellow'][i % 4]}`}>
             {j.photo
-              ? <img class="hk-person-av" src={`/people/${j.photo}`} alt="" width="104" height="104" />
+              ? <img class="hk-person-av" src={`/people/${j.photo}`} alt={`${j.name} — ${es ? (j.affiliationEs || j.affiliationEn || '') : (j.affiliationEn || j.affiliationEs || '')}`.replace(/<[^>]*>/g, '')} width="104" height="104" loading="lazy" decoding="async" />
               : <div class="hk-person-av" aria-hidden="true">{initials(j.name)}</div>}
             <div class="hk-person-tx">
               <h3>{j.name}</h3>
@@ -520,6 +523,8 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
     )}
   </div>
 </section>
+
+<HackathonFaq locale={locale} />
 
 <HackathonFinalCta locale={locale} />
 
@@ -930,6 +935,29 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
 
   .hk-intro .section-title {
     margin-bottom: 1.25rem;
+  }
+
+  .hk-primer {
+    border-left: 3px solid var(--accent-forest);
+    margin-bottom: 1.75rem;
+    padding-left: 1rem;
+  }
+
+  .hk-primer p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .hk-primer em {
+    color: var(--text-primary);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .hk-primer strong {
+    color: var(--text-primary);
   }
 
   .hk-intro p,

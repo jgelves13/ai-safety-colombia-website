@@ -1,0 +1,138 @@
+---
+import type { Locale } from '../i18n/ui';
+import data from '../data/hackathon.json';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const es = locale === 'es';
+
+type Faq = { q: string; a: string };
+const faqs = (es ? data.faqs.es : data.faqs.en) as Faq[];
+const heading = es ? 'Preguntas frecuentes' : 'Frequently asked questions';
+const lead = es
+  ? 'Aclaraciones sobre formato, postulación, perfiles aceptados y mentoría durante el hackathon.'
+  : 'Clarifications about format, applications, accepted profiles, and mentoring during the hackathon.';
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+const faqJson = JSON.stringify(faqJsonLd).replace(/</g, '\\u003c');
+---
+
+<section class="section hk-faq-section" id="faq">
+  <div class="container">
+    <h2 class="section-title">{heading}</h2>
+    <p class="hk-faq-lead">{lead}</p>
+    <ul class="hk-faq-list">
+      {faqs.map((f, i) => (
+        <li>
+          <details open={i === 0}>
+            <summary>
+              <span class="hk-faq-q">{f.q}</span>
+              <span class="hk-faq-chev" aria-hidden="true">+</span>
+            </summary>
+            <div class="hk-faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<script type="application/ld+json" is:inline set:html={faqJson} />
+
+<style>
+  .hk-faq-section {
+    background: var(--bg-primary);
+  }
+
+  .hk-faq-lead {
+    color: var(--text-secondary);
+    font-size: clamp(1rem, 1.4vw, 1.1rem);
+    line-height: 1.55;
+    margin: 0 auto 2rem;
+    max-width: 720px;
+    text-align: center;
+  }
+
+  .hk-faq-list {
+    display: grid;
+    gap: 0.85rem;
+    list-style: none;
+    margin: 0 auto;
+    max-width: 820px;
+    padding: 0;
+  }
+
+  .hk-faq-list details {
+    background: var(--bg-elevated);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: 0;
+    transition: border-color 0.2s ease;
+  }
+
+  .hk-faq-list details[open] {
+    border-color: var(--accent-forest);
+  }
+
+  .hk-faq-list summary {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    list-style: none;
+    padding: 1.1rem 1.3rem;
+  }
+
+  .hk-faq-list summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .hk-faq-q {
+    color: var(--text-primary);
+    font-size: clamp(1rem, 1.35vw, 1.1rem);
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .hk-faq-chev {
+    color: var(--accent-forest);
+    flex-shrink: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+
+  .hk-faq-list details[open] .hk-faq-chev {
+    transform: rotate(45deg);
+  }
+
+  .hk-faq-a {
+    border-top: 1px solid var(--hairline);
+    padding: 1rem 1.3rem 1.2rem;
+  }
+
+  .hk-faq-a p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>

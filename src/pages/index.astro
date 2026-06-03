@@ -12,7 +12,12 @@ import { t } from "../i18n/ui";
 const locale = "es";
 ---
 
-<BaseLayout locale={locale} currentPage="index">
+<BaseLayout
+  locale={locale}
+  currentPage="index"
+  title="AI Safety Colombia · Comunidad de seguridad y alineación de IA en LATAM"
+  description="Capítulo colombiano de AI safety y alineación de IA. Grupos de lectura BlueDot, charlas, hackathons con Apart Research y recursos en español para LATAM y el Global South."
+>
   <div class="hero-wrapper">
     <span class="hero-yellow-shape" aria-hidden="true"></span>
     <HackathonBanner locale={locale} />

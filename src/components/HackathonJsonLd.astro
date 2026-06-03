@@ -13,15 +13,71 @@ const site = Astro.site ?? new URL('https://aisafetycolombia.org/');
 const hackathonUrl = new URL(es ? 'hackathon/' : 'en/hackathon/', site).href;
 const applyUrl = new URL(es ? 'aplicar/' : 'en/apply/', site).href;
 
+const stripHtml = (s: string) => (s || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+
+const buildPerson = (p: any) => {
+  const affiliation = stripHtml(es ? (p.affiliationEs || p.affiliationEn) : (p.affiliationEn || p.affiliationEs));
+  const person: any = {
+    '@type': 'Person',
+    name: p.name,
+  };
+  if (affiliation) {
+    person.affiliation = { '@type': 'Organization', name: affiliation };
+  }
+  if (p.linkedin) {
+    person.sameAs = [p.linkedin];
+  }
+  return person;
+};
+
+const performers = [
+  ...(data.speakers || []).map(buildPerson),
+  ...(data.judges || []).map(buildPerson),
+];
+
+const eligibilityEs = 'Estudiantes, investigadores, ingenieros de ML/IA, desarrolladores, profesionales de política pública, ciberseguridad y disciplinas afines. Sin requisitos previos de experiencia en AI safety. Abierto al Global South con énfasis en LATAM.';
+const eligibilityEn = 'Students, researchers, ML/AI engineers, developers, public policy professionals, cybersecurity practitioners, and adjacent fields. No prior AI safety experience required. Open to the Global South with a focus on LATAM.';
+
+const keywordsList = [
+  'AI safety',
+  'AI alignment',
+  'hackathon',
+  'AI governance',
+  'AI security',
+  'Apart Research',
+  'Global South',
+  'AI Safety Colombia',
+  'Bogotá',
+  'LATAM',
+  es ? 'alineación de IA' : 'AI alignment',
+  es ? 'seguridad de IA' : 'AI safety',
+  es ? 'hackathon Colombia' : 'AI hackathon Colombia',
+];
+
 const event = {
   '@context': 'https://schema.org',
-  '@type': 'Event',
+  '@type': 'Hackathon',
+  '@id': `${hackathonUrl}#event`,
+  mainEntityOfPage: hackathonUrl,
+  dateModified: new Date().toISOString(),
   name: 'Global South AI Safety Hackathon',
-  description: es ? data.whatIsEs : data.whatIsEn,
-  startDate: `${data.date}T00:00:00-05:00`,
-  endDate: `${data.endDate}T23:59:59-05:00`,
+  alternateName: es ? 'Hackathon de AI Safety del Global South' : 'Global South AI Safety Hackathon 2026',
+  description: stripHtml(es ? data.whatIsEs : data.whatIsEn),
+  startDate: `${data.date}T09:00:00-05:00`,
+  endDate: `${data.endDate}T20:00:00-05:00`,
+  duration: 'PT60H',
   eventStatus: 'https://schema.org/EventScheduled',
   eventAttendanceMode: 'https://schema.org/MixedEventAttendanceMode',
+  inLanguage: ['es', 'en'],
+  isAccessibleForFree: true,
+  keywords: keywordsList.join(', '),
+  eligibilityRequirements: es ? eligibilityEs : eligibilityEn,
+  audience: {
+    '@type': 'Audience',
+    audienceType: es
+      ? 'Estudiantes, investigadores, ingenieros de ML, desarrolladores, profesionales de política y ciberseguridad'
+      : 'Students, researchers, ML engineers, developers, policy professionals, cybersecurity practitioners',
+  },
   location: [
     {
       '@type': 'Place',
@@ -29,24 +85,54 @@ const event = {
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Bogotá',
+        addressRegion: 'Cundinamarca',
         addressCountry: 'CO',
       },
     },
-    { '@type': 'VirtualLocation', url: data.registrationUrl },
+    {
+      '@type': 'VirtualLocation',
+      url: data.registrationUrl,
+      name: 'Online (Apart Research sprint platform)',
+    },
   ],
-  organizer: {
-    '@type': 'Organization',
-    name: data.organizer,
-    url: 'https://apartresearch.com',
-  },
+  organizer: [
+    {
+      '@type': 'Organization',
+      name: data.organizer,
+      url: 'https://apartresearch.com',
+    },
+    {
+      '@type': 'Organization',
+      name: data.hubOrganizer,
+      url: site.href,
+    },
+  ],
+  sponsor: [
+    {
+      '@type': 'Organization',
+      name: data.support,
+      url: 'https://www.schmidtsciences.org/',
+    },
+  ],
+  performer: performers,
   url: hackathonUrl,
-  image: new URL('og-image.png', site).href,
+  image: [
+    new URL('og-image.png', site).href,
+    new URL('/og/hackathon.png', site).href,
+  ],
   offers: {
     '@type': 'Offer',
     price: '0',
     priceCurrency: 'USD',
     url: applyUrl,
     availability: 'https://schema.org/InStock',
+    validFrom: '2026-04-01T00:00:00-05:00',
+    validThrough: `${data.deadlineDate}T23:59:59-05:00`,
+    category: 'Free',
+  },
+  workPerformed: {
+    '@type': 'CreativeWork',
+    name: es ? 'Reportes de investigación en AI safety' : 'AI safety research reports',
   },
 };
 

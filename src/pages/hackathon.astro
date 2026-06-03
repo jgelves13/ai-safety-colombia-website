@@ -3,12 +3,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HackathonContent from '../components/HackathonContent.astro';
 import HackathonJsonLd from '../components/HackathonJsonLd.astro';
 import PartnerStrip from '../components/PartnerStrip.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 const locale = 'es';
 ---
 
-<BaseLayout locale={locale} currentPage="hackathon" title="Hackathon | AI Safety Colombia" description="Global South AI Safety Hackathon: 19-21 de junio de 2026, online y hub Bogotá. Organiza Apart Research; hub local AI Safety Colombia." ogImage="/og/hackathon.png">
+<BaseLayout locale={locale} currentPage="hackathon" title="Hackathon AI Safety 2026 · Bogotá + Online | Apart Research" description="Hackathon de AI Safety del Global South, 19-21 junio 2026. Hub presencial en Bogotá u online. Investigación técnica, gobernanza y seguridad. Co-organiza Apart Research." ogImage="/og/hackathon.png">
   <HackathonJsonLd slot="head" locale={locale} />
+  <Breadcrumbs locale={locale} items={[{ name: 'Hackathon AI Safety', href: '/hackathon/' }]} />
   <HackathonContent locale={locale} />
   <PartnerStrip locale="es" />
 </BaseLayout>

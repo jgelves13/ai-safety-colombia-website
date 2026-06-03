@@ -83,13 +83,23 @@ export async function qrPngDataUrl(url: string, size: number): Promise<string> {
   });
 }
 
+export async function squarePhotoDataUrl(relPath: string, size = 400): Promise<string> {
+  const { default: sharp } = await import('sharp');
+  const abs = path.join(projectRoot, relPath);
+  const buf = await sharp(abs)
+    .resize(size, size, { fit: 'cover', position: 'centre' })
+    .jpeg({ quality: 86 })
+    .toBuffer();
+  return `data:image/jpeg;base64,${buf.toString('base64')}`;
+}
+
 let cachedLogos: { apartLogo: string; apartRatio: number; aiscLogo: string; aiscRatio: number } | null = null;
 
 export async function getLogos() {
   if (cachedLogos) return cachedLogos;
   const [apartBuf, aiscBuf] = await Promise.all([
     readFile(path.join(projectRoot, 'public', 'images', 'apart-logo.png')),
-    readFile(path.join(projectRoot, 'public', 'images', 'aisc-lockup.png')),
+    readFile(path.join(projectRoot, 'public', 'images', 'aisc-lockup-black.png')),
   ]);
   cachedLogos = {
     apartLogo: `data:image/png;base64,${apartBuf.toString('base64')}`,

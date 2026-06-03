@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /preview-linkedin/
+Disallow: /preview/
+Disallow: /api/
+
+Sitemap: https://aisafetycolombia.org/sitemap-index.xml
+
+# Content signals (EU Directive 2019/790, Article 4)
+# Per TDM opt-out, mining of this site's content for purposes other than search
+# indexing requires prior authorization from AI Safety Colombia.
+# Contact: contacto@aisafetycolombia.org
+#
+# Content-Usage: tdm=n
+# Content-Usage: ai-train=n
