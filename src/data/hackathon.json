@@ -50,6 +50,8 @@
       ]
     }
   ],
+  "primerEs": "<p><strong>AI safety</strong> (seguridad y alineación de inteligencia artificial) es el campo que estudia cómo construir sistemas de IA que sean robustos, comprensibles y que persigan los objetivos que las personas realmente queremos, incluso a medida que se vuelven más capaces. Sus líneas activas incluyen <em>mechanistic interpretability</em> (cómo razonan los modelos por dentro), <em>red-teaming</em> y evaluaciones (<em>evals</em>) para detectar fallos de seguridad, y gobernanza de IA (política pública, regulación y estándares). Organizaciones como <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, <a href=\"https://bluedot.org\" target=\"_blank\" rel=\"noopener noreferrer\">BlueDot Impact</a> y <a href=\"https://www.aisafety.camp\" target=\"_blank\" rel=\"noopener noreferrer\">AI Safety Camp</a> forman talento en estos temas en todo el mundo; este hackathon es la puerta de entrada para investigadores y profesionales del Global South.</p>",
+  "primerEn": "<p><strong>AI safety</strong> is the field studying how to build AI systems that are robust, understandable, and that pursue the goals people actually want, even as they grow more capable. Active research areas include <em>mechanistic interpretability</em> (how models reason internally), <em>red-teaming</em> and evaluations (<em>evals</em>) to surface safety failures, and AI governance (public policy, regulation, and standards). Organizations such as <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, <a href=\"https://bluedot.org\" target=\"_blank\" rel=\"noopener noreferrer\">BlueDot Impact</a>, and <a href=\"https://www.aisafety.camp\" target=\"_blank\" rel=\"noopener noreferrer\">AI Safety Camp</a> train talent on these topics worldwide; this hackathon is the entry point for researchers and practitioners from the Global South.</p>",
   "whatIsEs": "<p>Hoy, gran parte de la investigación en seguridad de IA se concentra en un número reducido de países. Sin embargo, estos sistemas ya están siendo desplegados en nuestra región, muchas veces con riesgos poco evaluados: sesgos no auditados, vulnerabilidades sin documentar y decisiones automatizadas sin mecanismos claros de rendición de cuentas. La capacidad de analizar, verificar y cuestionar estos sistemas desde contextos locales sigue siendo muy limitada.</p><p>El <a href=\"https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21?utm_source=hub-bogota\" target=\"_blank\" rel=\"noopener noreferrer\">Global South AIS Hackathon</a> es un sprint internacional de investigación de tres días diseñado para cerrar esa brecha. Los participantes forman equipos pequeños y trabajan en retos definidos por expertos en seguridad y gobernanza de IA, con mentoría en vivo durante todo el evento. Los equipos ganadores reciben una invitación al <a href=\"https://apartresearch.com/fellowships\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Lab Fellowship</a>, donde continúan desarrollando sus proyectos junto al equipo de investigación de <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, con oportunidades de publicación y vinculación a organizaciones dedicadas a la seguridad de la IA.</p>",
   "whatIsEn": "<p>Today, most AI safety research is concentrated in a small number of countries. Yet these systems are already being deployed across our region, often with risks that remain poorly evaluated: unaudited biases, undocumented vulnerabilities, and automated decisions with no clear accountability mechanisms. The capacity to analyze, verify, and challenge these systems from local contexts remains very limited.</p><p>The <a href=\"https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21?utm_source=hub-bogota\" target=\"_blank\" rel=\"noopener noreferrer\">Global South AIS Hackathon</a> is a three-day international research sprint designed to close that gap. Participants form small teams and work on challenges defined by AI safety and governance experts, with live mentoring throughout the event. Winning teams receive an invitation to the <a href=\"https://apartresearch.com/fellowships\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Lab Fellowship</a>, where they continue developing their projects alongside the <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a> team, with opportunities for publication and placement at organizations dedicated to AI safety.</p>",
   "organizerNoteEs": "El evento es organizado por <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, y el hub de Bogotá es coordinado por AI Safety Colombia.",
@@ -233,11 +235,97 @@
     { "name": "Juan Liévano-Karim", "affiliationEs": "<a href=\"https://www.berkeley.edu/\" target=\"_blank\" rel=\"noopener noreferrer\">UC Berkeley</a>", "affiliationEn": "<a href=\"https://www.berkeley.edu/\" target=\"_blank\" rel=\"noopener noreferrer\">UC Berkeley</a>", "attendance": "remote", "evalTopicEs": "Control de IA · Evaluaciones para sistemas agénticos", "evalTopicEn": "AI control · Evaluations for agentic systems", "bioEs": "Coautor con Stuart Russell de un <a href=\"https://arxiv.org/abs/2502.14043\" target=\"_blank\" rel=\"noopener noreferrer\">marco de RL con consulta a mentor</a> para reducir el riesgo catastrófico de sistemas de IA.", "bioEn": "Co-author with Stuart Russell of an <a href=\"https://arxiv.org/abs/2502.14043\" target=\"_blank\" rel=\"noopener noreferrer\">RL framework with mentor queries</a> to reduce catastrophic risk from AI systems.", "openreview": "https://openreview.net/profile?id=~Juan_Liévano-Karim1", "photo": "juan-lievano.jpg" },
     { "name": "Steve Hege", "affiliationEs": "<a href=\"https://www.linkedin.com/company/instituto-latinoamericano-para-la-paz-y-la-seguridad\" target=\"_blank\" rel=\"noopener noreferrer\">ILAPS</a>", "affiliationEn": "<a href=\"https://www.linkedin.com/company/instituto-latinoamericano-para-la-paz-y-la-seguridad\" target=\"_blank\" rel=\"noopener noreferrer\">ILAPS</a>", "attendance": "inperson", "evalTopicEs": "Gobernanza de armas autónomas letales (LAWS)", "evalTopicEn": "Lethal autonomous weapons (LAWS) governance", "bioEs": "Cofundador y director de <a href=\"https://www.linkedin.com/company/instituto-latinoamericano-para-la-paz-y-la-seguridad\" target=\"_blank\" rel=\"noopener noreferrer\">ILAPS</a>, donde lidera el trabajo sobre IA, defensa y seguridad; ex investigador de la ONU sobre embargo de armas.", "bioEn": "Cofounder and director of <a href=\"https://www.linkedin.com/company/instituto-latinoamericano-para-la-paz-y-la-seguridad\" target=\"_blank\" rel=\"noopener noreferrer\">ILAPS</a>, where he leads its work on AI, defense, and security; former UN arms-embargo investigator.", "linkedin": "https://www.linkedin.com/in/steve-hege-1a77881/", "photo": "steve.jpg" },
     { "name": "Wanda Muñoz", "affiliationEs": "<a href=\"https://sehlac.org/\" target=\"_blank\" rel=\"noopener noreferrer\">SEHLAC</a> · <a href=\"https://www.stopkillerrobots.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Campaign to Stop Killer Robots</a>", "affiliationEn": "<a href=\"https://sehlac.org/\" target=\"_blank\" rel=\"noopener noreferrer\">SEHLAC</a> · <a href=\"https://www.stopkillerrobots.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Campaign to Stop Killer Robots</a>", "attendance": "remote", "evalTopicEs": "Gobernanza de armas autónomas letales (LAWS)", "evalTopicEn": "Lethal autonomous weapons (LAWS) governance", "bioEs": "Coautora de un <a href=\"https://www.cambridge.org/core/journals/international-review-of-the-red-cross/article/abs/risks-of-autonomous-weapons-an-analysis-centred-on-the-rights-of-persons-with-disabilities/54872E40DBC09DC95D5F1DFD6DB89F51\" target=\"_blank\" rel=\"noopener noreferrer\">análisis del CICR</a> sobre armas autónomas y discapacidad, y de un <a href=\"https://unesdoc.unesco.org/ark:/48223/pf0000384787/PDF/384787eng.pdf.multi#page=323\" target=\"_blank\" rel=\"noopener noreferrer\">capítulo de UNESCO y Mila</a> sobre deepfakes y armamentización de la IA.", "bioEn": "Co-author of an <a href=\"https://www.cambridge.org/core/journals/international-review-of-the-red-cross/article/abs/risks-of-autonomous-weapons-an-analysis-centred-on-the-rights-of-persons-with-disabilities/54872E40DBC09DC95D5F1DFD6DB89F51\" target=\"_blank\" rel=\"noopener noreferrer\">ICRC analysis</a> of autonomous weapons and disability, and a <a href=\"https://unesdoc.unesco.org/ark:/48223/pf0000384787/PDF/384787eng.pdf.multi#page=323\" target=\"_blank\" rel=\"noopener noreferrer\">UNESCO/Mila chapter</a> on deepfakes and AI weaponization.", "linkedin": "https://www.linkedin.com/in/wandamunoz/", "photo": "wanda.jpg" },
-    { "name": "Alejandro Acelas", "affiliationEs": "<a href=\"https://cliver.bio/\" target=\"_blank\" rel=\"noopener noreferrer\">Cliver</a> · <a href=\"https://80000hours.org/\" target=\"_blank\" rel=\"noopener noreferrer\">80,000 Hours</a>", "affiliationEn": "<a href=\"https://cliver.bio/\" target=\"_blank\" rel=\"noopener noreferrer\">Cliver</a> · <a href=\"https://80000hours.org/\" target=\"_blank\" rel=\"noopener noreferrer\">80,000 Hours</a>", "attendance": "inperson", "evalTopicEs": "Análisis de política y regulación de IA", "evalTopicEn": "AI policy and regulation analysis", "bioEs": "Coautor en <a href=\"https://orcg.info/alejandroacelas\" target=\"_blank\" rel=\"noopener noreferrer\">ORCG</a> del informe <a href=\"http://orcg.info/s/V1_Informe-Computo-para-el-bien.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Cómputo para el bien</a> sobre supercomputadoras europeas para IA, y contribuyó al EU GPAI Code of Practice.", "bioEn": "Co-author at <a href=\"https://orcg.info/alejandroacelas\" target=\"_blank\" rel=\"noopener noreferrer\">ORCG</a> of the <a href=\"http://orcg.info/s/V1_Report-Compute-for-Good.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Computing for Good</a> report on European supercomputers for AI, and contributed to the EU GPAI Code of Practice.", "linkedin": "https://www.linkedin.com/in/alejandro-acelas/", "photo": "alejo-acelas.jpg" },
+    { "name": "Alejandro Acelas", "affiliationEs": "<a href=\"https://cliver.bio/\" target=\"_blank\" rel=\"noopener noreferrer\">Cliver</a> · <a href=\"https://80000hours.org/\" target=\"_blank\" rel=\"noopener noreferrer\">80,000 Hours</a>", "affiliationEn": "<a href=\"https://cliver.bio/\" target=\"_blank\" rel=\"noopener noreferrer\">Cliver</a> · <a href=\"https://80000hours.org/\" target=\"_blank\" rel=\"noopener noreferrer\">80,000 Hours</a>", "attendance": "remote", "evalTopicEs": "Análisis de política y regulación de IA", "evalTopicEn": "AI policy and regulation analysis", "bioEs": "Coautor en <a href=\"https://orcg.info/alejandroacelas\" target=\"_blank\" rel=\"noopener noreferrer\">ORCG</a> del informe <a href=\"http://orcg.info/s/V1_Informe-Computo-para-el-bien.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Cómputo para el bien</a> sobre supercomputadoras europeas para IA, y contribuyó al EU GPAI Code of Practice.", "bioEn": "Co-author at <a href=\"https://orcg.info/alejandroacelas\" target=\"_blank\" rel=\"noopener noreferrer\">ORCG</a> of the <a href=\"http://orcg.info/s/V1_Report-Compute-for-Good.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Computing for Good</a> report on European supercomputers for AI, and contributed to the EU GPAI Code of Practice.", "linkedin": "https://www.linkedin.com/in/alejandro-acelas/", "photo": "alejo-acelas.jpg" },
     { "name": "Mónica Ulloa", "affiliationEs": "<a href=\"https://fairlac.iadb.org/\" target=\"_blank\" rel=\"noopener noreferrer\">BID Lab</a> · <a href=\"https://carrerasconimpacto.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Carreras con Impacto</a>", "affiliationEn": "<a href=\"https://fairlac.iadb.org/en\" target=\"_blank\" rel=\"noopener noreferrer\">IDB Lab</a> · <a href=\"https://carrerasconimpacto.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Carreras con Impacto</a>", "attendance": "inperson", "evalTopicEs": "Análisis de política y regulación de IA", "evalTopicEn": "AI policy and regulation analysis", "bioEs": "Coautora en <a href=\"https://orcg.info/monicaulloa\" target=\"_blank\" rel=\"noopener noreferrer\">ORCG</a> de <a href=\"https://journals.openedition.org/revestudsoc/59380\" target=\"_blank\" rel=\"noopener noreferrer\">La securitización de la inteligencia artificial</a>, sobre cómo enmarcarla como amenaza o como riesgo lleva a regulaciones muy distintas.", "bioEn": "Co-author at <a href=\"https://orcg.info/monicaulloa\" target=\"_blank\" rel=\"noopener noreferrer\">ORCG</a> of <a href=\"https://journals.openedition.org/revestudsoc/59380\" target=\"_blank\" rel=\"noopener noreferrer\">The Securitization of Artificial Intelligence</a>, on how framing AI as a threat or as a risk leads to very different regulation.", "linkedin": "https://www.linkedin.com/in/monicaulloa/", "photo": "monica-ulloa.jpg" }
   ],
   "prizes": {
     "regional": "US$3,000 across 3 winning teams in LATAM",
     "regionalEs": "USD 3.000 entre 3 equipos ganadores en LATAM"
+  },
+  "faqs": {
+    "es": [
+      {
+        "q": "¿Es gratuito participar en el hackathon?",
+        "a": "Sí. La participación es totalmente gratuita, tanto en línea como en el hub presencial de Bogotá. Los participantes del hub reciben alimentación y bebidas durante los tres días, hasta un monto definido."
+      },
+      {
+        "q": "¿Necesito experiencia previa en AI safety o alineación de IA?",
+        "a": "No. El hackathon recibe a personas sin background previo en AI safety. Apart Research publica materiales introductorios antes del evento, y durante los tres días hay mentorías en vivo para aterrizar conceptos y herramientas."
+      },
+      {
+        "q": "¿Puedo participar de forma remota o solo desde Bogotá?",
+        "a": "Ambas modalidades están abiertas. Puedes unirte de forma remota desde cualquier país a través de la plataforma de sprints de Apart Research, o registrarte para el hub presencial en Bogotá organizado por AI Safety Colombia."
+      },
+      {
+        "q": "¿Cuándo es el hackathon y hasta cuándo puedo postular?",
+        "a": "El hackathon es del 19 al 21 de junio de 2026. La fecha límite para postular al hub presencial en Bogotá es el 12 de junio de 2026. El registro al evento en línea con Apart Research permanece abierto hasta el inicio del evento."
+      },
+      {
+        "q": "¿Qué tipo de proyectos puedo presentar?",
+        "a": "Los proyectos se enmarcan en cuatro tracks: Technical AI Safety (alineación, interpretabilidad, evaluaciones), AI Security (red-teaming, jailbreaks, adversarial robustness), AI Governance (política, regulación, estándares) y Behavioral Audit con foco multilingüe e intercultural. Cada equipo entrega un reporte de investigación al cierre."
+      },
+      {
+        "q": "¿Cuáles son los premios?",
+        "a": "USD 3.000 repartidos entre los tres mejores equipos de LATAM. Adicionalmente, los equipos ganadores reciben una invitación al Apart Lab Fellowship, donde algunos fellows han publicado en conferencias como ICLR, NeurIPS y ACL."
+      },
+      {
+        "q": "¿Puedo participar en solitario o necesito un equipo?",
+        "a": "Ambas opciones son válidas. Puedes postular en solitario y los organizadores facilitan formación de equipos antes del evento, o registrarte con un equipo de hasta cuatro personas que tú mismo armes."
+      },
+      {
+        "q": "¿Quién puede participar y hay restricciones geográficas o de perfil?",
+        "a": "El hackathon está abierto al Global South con énfasis en LATAM. Pueden participar estudiantes, investigadores, ingenieros de ML, desarrolladores, profesionales de política pública y ciberseguridad, así como personas de otras disciplinas interesadas en seguridad de IA. No hay restricciones por edad."
+      },
+      {
+        "q": "¿Qué es la alineación de IA y por qué importa?",
+        "a": "La alineación de IA estudia cómo construir sistemas de IA que persigan los objetivos que los humanos realmente queremos, incluso a medida que se vuelven más capaces. Áreas activas incluyen interpretabilidad mecanística, red-teaming, evaluaciones (evals) y gobernanza. Organizaciones como Apart Research, BlueDot Impact y AI Safety Camp están formando talento en estos temas en todo el mundo."
+      },
+      {
+        "q": "¿Habrá mentoría durante el evento?",
+        "a": "Sí. Durante los tres días hay mentorías, charlas y sesiones de Q&A en vivo con investigadores, jueces y expertos de organizaciones como OpenAI, UC Berkeley, BID Lab e ILAPS, entre otros."
+      }
+    ],
+    "en": [
+      {
+        "q": "Is participation free?",
+        "a": "Yes. Participation is fully free, both online and at the Bogotá in-person hub. Hub participants receive food and drinks during the three days, up to a defined amount."
+      },
+      {
+        "q": "Do I need prior AI safety or alignment experience?",
+        "a": "No. The hackathon welcomes participants without prior AI safety background. Apart Research publishes introductory materials before the event, and live mentoring throughout the three days helps participants ground concepts and tooling."
+      },
+      {
+        "q": "Can I participate remotely, or only from Bogotá?",
+        "a": "Both formats are open. You can join remotely from any country through the Apart Research sprint platform, or apply to attend the in-person hub in Bogotá organized by AI Safety Colombia."
+      },
+      {
+        "q": "When does the hackathon take place and when does applications close?",
+        "a": "The hackathon runs June 19–21, 2026. Applications to the Bogotá in-person hub close on June 12, 2026. Online registration with Apart Research stays open until the event start."
+      },
+      {
+        "q": "What kind of projects can I submit?",
+        "a": "Projects fit four tracks: Technical AI Safety (alignment, interpretability, evaluations), AI Security (red-teaming, jailbreaks, adversarial robustness), AI Governance (policy, regulation, standards), and Behavioral Audit with a multilingual and cross-cultural focus. Each team submits a research report at the end."
+      },
+      {
+        "q": "What are the prizes?",
+        "a": "US$3,000 split across the top three LATAM teams. In addition, winning teams receive an invitation to the Apart Lab Fellowship, where some fellows have published at venues like ICLR, NeurIPS, and ACL."
+      },
+      {
+        "q": "Can I participate solo or do I need a team?",
+        "a": "Both options are valid. You can apply solo and organizers facilitate team formation before the event, or register with a team of up to four people you bring yourself."
+      },
+      {
+        "q": "Who can participate, and are there geographic or background restrictions?",
+        "a": "The hackathon is open to the Global South with a focus on LATAM. Students, researchers, ML engineers, developers, public policy and cybersecurity professionals, and people from adjacent disciplines interested in AI safety can all participate. There are no age restrictions."
+      },
+      {
+        "q": "What is AI alignment and why does it matter?",
+        "a": "AI alignment studies how to build AI systems that pursue the goals humans actually want, even as those systems grow more capable. Active areas include mechanistic interpretability, red-teaming, evaluations (evals), and governance. Organizations such as Apart Research, BlueDot Impact, and AI Safety Camp are training talent on these topics worldwide."
+      },
+      {
+        "q": "Will there be mentoring during the event?",
+        "a": "Yes. Throughout the three days there are mentoring sessions, talks, and live Q&A with researchers, judges, and experts from organizations such as OpenAI, UC Berkeley, IDB Lab, and ILAPS, among others."
+      }
+    ]
   }
 }
