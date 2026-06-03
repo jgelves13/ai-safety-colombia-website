@@ -35,6 +35,11 @@ const copy = {
   introP3: es
     ? 'Marca los temas que te interesen. Si llegaste desde una tarjeta de tema, ya quedó preseleccionado.'
     : 'Tick the topics that interest you. If you arrived from a topic card, that topic is already pre-selected.',
+  landingCta: es ? 'Expresar interés' : 'Express interest',
+  landingCtaUnsure: es ? 'Aún no sé a cuál aplicar' : 'Not sure which one yet',
+  unsureNote: es
+    ? 'Marcamos los cinco temas por ti. Desmarca los que claramente no te interesan.'
+    : 'We pre-ticked all five topics for you. Untick the ones you are clearly not interested in.',
   sectionBasics: es ? 'Datos básicos' : 'Basic information',
   sectionInterest: es ? 'Tu interés' : 'Your interest',
   fieldFirstName: es ? 'Nombre' : 'First name',
@@ -55,12 +60,9 @@ const copy = {
   optional: es ? 'Opcional' : 'Optional',
   submit: es ? 'Enviar interés' : 'Send interest',
   submitting: es ? 'Enviando…' : 'Submitting…',
-  successTitle: es ? '¡Recibimos tu interés!' : 'We received your interest',
   successBody: es
-    ? 'Te enviamos una copia de confirmación al email que registraste. Te avisaremos a la misma dirección en cuanto abramos un grupo del tema que elegiste.'
-    : 'We sent a confirmation copy to the email you provided. We will write to the same address as soon as we open a group on the topic you picked.',
-  successCtaWhatsApp: es ? 'Unirme al WhatsApp' : 'Join the WhatsApp',
-  successCtaHome: es ? 'Volver al inicio' : 'Back home',
+    ? '¡Listo! Recibimos tu interés. Te enviamos una confirmación al email.'
+    : 'Done. We received your interest. A confirmation is on the way to your inbox.',
   errorTitle: es ? 'Hubo un problema al enviar' : 'There was a problem submitting',
   errorBody: es
     ? 'Tu interés no se envió. Por favor, intenta de nuevo en unos minutos o escríbenos directamente.'
@@ -87,7 +89,14 @@ const copy = {
       <p>{copy.introP3}</p>
     </div>
 
-    <form id="interest-form" class="apply-form" novalidate>
+    <div class="apply-landing" id="interest-landing">
+      <button type="button" class="btn btn-primary apply-landing-cta" id="interest-open">{copy.landingCta}</button>
+      <button type="button" class="btn btn-secondary apply-landing-cta" id="interest-open-unsure">{copy.landingCtaUnsure}</button>
+    </div>
+
+    <p class="apply-unsure-note" id="interest-unsure-note" hidden>{copy.unsureNote}</p>
+
+    <form id="interest-form" class="apply-form" novalidate hidden>
       <input type="hidden" name="locale" value={locale} />
 
       <section class="apply-block">
@@ -162,12 +171,7 @@ const copy = {
     </form>
 
     <div class="apply-success" id="interest-success" hidden>
-      <h2>{copy.successTitle}</h2>
       <p>{copy.successBody}</p>
-      <div class="apply-success-actions">
-        <a class="btn btn-primary" href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ" target="_blank" rel="noopener noreferrer">{copy.successCtaWhatsApp}</a>
-        <a class="btn btn-secondary" href={es ? '/' : '/en/'}>{copy.successCtaHome}</a>
-      </div>
     </div>
 
     <div class="apply-error-box" id="interest-error-box" hidden>
@@ -191,8 +195,31 @@ const copy = {
     const retryBtn = document.getElementById('interest-retry');
     const areasGroup = document.getElementById('areas-group');
     const areaInputs = areasGroup.querySelectorAll('input[type="checkbox"][name="areas"]');
+    const landing = document.getElementById('interest-landing');
+    const openBtn = document.getElementById('interest-open');
+    const openUnsureBtn = document.getElementById('interest-open-unsure');
+    const unsureNote = document.getElementById('interest-unsure-note');
 
-    // Pre-check area from ?area=<slug> query param.
+    function openForm(opts) {
+      const mode = (opts && opts.mode) || 'normal';
+      landing.hidden = true;
+      form.hidden = false;
+      unsureNote.hidden = mode !== 'unsure';
+      if (mode === 'unsure') {
+        areaInputs.forEach((input) => { input.checked = true; });
+      }
+      va('interest_opened', { locale: locale, mode: mode });
+      requestAnimationFrame(() => {
+        document.getElementById('form-grupos')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const firstField = form.querySelector('input[name="firstName"]');
+        if (firstField) firstField.focus({ preventScroll: true });
+      });
+    }
+
+    openBtn.addEventListener('click', () => openForm({ mode: 'normal' }));
+    openUnsureBtn.addEventListener('click', () => openForm({ mode: 'unsure' }));
+
+    // Pre-check area from ?area=<slug> query param and auto-open the form.
     try {
       const params = new URLSearchParams(window.location.search);
       const wanted = params.getAll('area').flatMap((v) => v.split(','));
@@ -205,7 +232,8 @@ const copy = {
           }
         });
         if (matched) {
-          // Scroll the form into view so the precheck is visible on landing.
+          landing.hidden = true;
+          form.hidden = false;
           requestAnimationFrame(() => {
             document.getElementById('form-grupos')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
           });
@@ -422,6 +450,29 @@ const copy = {
 
   /* [hidden] must beat the flex/grid display rules above */
   [hidden] { display: none !important; }
+
+  .apply-landing {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+  }
+
+  .apply-landing-cta {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+
+  .apply-unsure-note {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    background: rgba(20, 54, 32, 0.04);
+    border-left: 3px solid var(--accent-forest);
+    padding: 0.875rem 1.125rem;
+    margin: 0 0 1.5rem;
+    border-radius: 0 8px 8px 0;
+  }
 
   .apply-block {
     display: flex;
@@ -658,22 +709,26 @@ const copy = {
     background: none;
   }
 
-  .apply-success h2,
   .apply-error-box h2 {
     font-family: var(--font-display);
     font-weight: 800;
     font-size: clamp(2rem, 5vw, 3rem);
     line-height: 1.05;
     letter-spacing: -0.03em;
-    color: var(--text-primary);
     margin: 0 0 1.25rem;
-  }
-
-  .apply-error-box h2 {
     color: var(--accent-vermillion-dark);
   }
 
-  .apply-success p,
+  .apply-success p {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
   .apply-error-box p {
     color: var(--text-secondary);
     font-size: 1.0625rem;
