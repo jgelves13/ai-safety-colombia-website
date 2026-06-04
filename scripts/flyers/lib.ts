@@ -110,6 +110,62 @@ export async function getLogos() {
   return cachedLogos;
 }
 
+const recolorCache = new Map<string, string>();
+
+async function recolorBlackPixels(absPath: string, hex: string, targetHeight?: number): Promise<string> {
+  const key = absPath + '|' + hex + '|' + (targetHeight ?? 'src');
+  const cached = recolorCache.get(key);
+  if (cached) return cached;
+  const { default: sharp } = await import('sharp');
+  const { data, info } = await sharp(absPath).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  const out = Buffer.from(data);
+  for (let i = 0; i < out.length; i += 4) {
+    const R = out[i], G = out[i + 1], B = out[i + 2], A = out[i + 3];
+    if (A === 0) continue;
+    const maxC = Math.max(R, G, B);
+    const minC = Math.min(R, G, B);
+    if (maxC - minC < 24) {
+      const darkness = 1 - maxC / 255;
+      out[i] = r;
+      out[i + 1] = g;
+      out[i + 2] = b;
+      out[i + 3] = Math.round(A * darkness);
+    }
+  }
+  let pipeline = sharp(out, { raw: { width: info.width, height: info.height, channels: 4 } });
+  if (targetHeight && targetHeight < info.height) {
+    pipeline = pipeline.resize({ height: targetHeight, kernel: 'lanczos3', fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } });
+  }
+  const png = await pipeline.png({ compressionLevel: 9 }).toBuffer();
+  const url = `data:image/png;base64,${png.toString('base64')}`;
+  recolorCache.set(key, url);
+  return url;
+}
+
+export async function getLogosRecolored(hex: string) {
+  const [apartLogo, aiscLogo] = await Promise.all([
+    recolorBlackPixels(path.join(projectRoot, 'public', 'images', 'apart-logo.png'), hex),
+    recolorBlackPixels(path.join(projectRoot, 'public', 'images', 'aisc-lockup-black.png'), hex),
+  ]);
+  return { apartLogo, apartRatio: 1004 / 427, aiscLogo, aiscRatio: 1400 / 420 };
+}
+
+export const OPENAI_LOGO_RATIO = 1180 / 320;
+let cachedOpenAILogo: string | null = null;
+export async function getOpenAILogo(): Promise<string> {
+  if (cachedOpenAILogo) return cachedOpenAILogo;
+  const buf = await readFile(path.join(projectRoot, 'public', 'images', 'openai-logo.png'));
+  cachedOpenAILogo = `data:image/png;base64,${buf.toString('base64')}`;
+  return cachedOpenAILogo;
+}
+
+export async function getOpenAILogoRecolored(hex: string, targetHeight = 192): Promise<string> {
+  return recolorBlackPixels(path.join(projectRoot, 'public', 'images', 'openai-logo.png'), hex, targetHeight);
+}
+
 export { html };
 export const PROJECT_ROOT = projectRoot;
 
