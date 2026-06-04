@@ -37,12 +37,9 @@ export async function buildV11(p: {
 
       <!-- Top header -->
       <div style="display:flex;position:absolute;top:50px;left:60px;align-items:center">
-        <div style="display:flex;font-family:Bricolage Grotesque;font-weight:800;font-size:38px;letter-spacing:-0.03em;color:${p.text}">Global South AI Safety Hackathon</div>
+        <div style="display:flex;font-family:Bricolage Grotesque;font-weight:800;font-size:46px;letter-spacing:-0.03em;color:${p.text}">Global South AI Safety Hackathon</div>
       </div>
-      <div style="display:flex;position:absolute;top:64px;right:60px;font-family:JetBrains Mono;font-weight:500;font-size:17px;letter-spacing:0.26em;color:${p.kicker};text-transform:uppercase">Ponente</div>
-
-      <!-- Top hairline -->
-      <div style="display:flex;position:absolute;top:120px;left:60px;right:60px;height:1px;background:${p.text};opacity:${p.hairlineOpacity}"></div>
+      <div style="display:flex;position:absolute;top:68px;right:60px;font-family:JetBrains Mono;font-weight:500;font-size:17px;letter-spacing:0.26em;color:${p.kicker};text-transform:uppercase">Ponente</div>
 
       <!-- Circular portrait with ring -->
       <div style="display:flex;position:absolute;top:185px;left:370px;width:340px;height:340px;border-radius:9999px;background:${p.ring};align-items:center;justify-content:center">
@@ -53,10 +50,10 @@ export async function buildV11(p: {
 
       <!-- Name block -->
       <div style="display:flex;flex-direction:column;position:absolute;top:555px;left:60px;right:60px;align-items:center">
-        <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:24px;letter-spacing:0.28em;color:${p.kicker};text-transform:uppercase;margin-bottom:18px">Charla de apertura</div>
+        <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:24px;letter-spacing:0.24em;color:${p.kicker};text-transform:uppercase;margin-bottom:18px">Charla de apertura</div>
         <div style="display:flex;font-family:Bricolage Grotesque;font-weight:800;font-size:68px;line-height:0.96;letter-spacing:-0.03em;color:${p.text}">Juan Felipe Cerón Uribe</div>
-        <div style="display:flex;width:64px;height:4px;background:${p.underscore};margin-top:18px;margin-bottom:18px"></div>
-        <div style="display:flex;font-family:Inter;font-weight:700;font-size:22px;color:${p.text}">AI Alignment Research Engineer</div>
+        <div style="display:flex;width:96px;height:8px;background:${p.underscore};margin-top:18px;margin-bottom:18px"></div>
+        <div style="display:flex;font-family:Inter;font-weight:700;font-size:26px;color:${p.text}">AI Alignment Research Engineer</div>
         <img src="${openaiLogo}" style="display:flex;height:${openaiLogoH}px;width:${openaiLogoW}px;margin-top:20px"/>
       </div>
 
@@ -66,7 +63,7 @@ export async function buildV11(p: {
       <!-- Bottom event row: date left, logos right -->
       <div style="display:flex;position:absolute;bottom:36px;left:60px;right:60px;align-items:center;justify-content:space-between">
         <div style="display:flex;flex-direction:column">
-          <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:16px;letter-spacing:0.22em;color:${p.text};text-transform:uppercase;opacity:0.95">Viernes 19 · jun 2026</div>
+          <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:16px;letter-spacing:0.22em;color:${p.text};text-transform:uppercase;opacity:0.95">Viernes 19 de junio 2026</div>
           <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:16px;letter-spacing:0.22em;color:${p.text};text-transform:uppercase;opacity:0.8;margin-top:6px">Bogotá · remoto</div>
         </div>
         <div style="display:flex;align-items:center;gap:24px">
