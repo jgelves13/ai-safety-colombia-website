@@ -21,7 +21,7 @@ export async function buildV11(p: {
 }) {
   const W = 1080;
   const H = 1080;
-  const photo = await squarePhotoDataUrl('public/people/juan-felipe.jpg', 600);
+  const photo = await squarePhotoDataUrl('public/people/juan-felipe.jpg', 800);
   const logos = p.logoColor ? await getLogosRecolored(p.logoColor) : await getLogos();
   const logoH = 60;
   const openaiLogoH = 48;

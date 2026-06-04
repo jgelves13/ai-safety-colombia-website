@@ -87,8 +87,8 @@ export async function squarePhotoDataUrl(relPath: string, size = 400): Promise<s
   const { default: sharp } = await import('sharp');
   const abs = path.join(projectRoot, relPath);
   const buf = await sharp(abs)
-    .resize(size, size, { fit: 'cover', position: 'centre' })
-    .jpeg({ quality: 86 })
+    .resize(size, size, { fit: 'cover', position: 'centre', kernel: 'lanczos3' })
+    .jpeg({ quality: 92, mozjpeg: true })
     .toBuffer();
   return `data:image/jpeg;base64,${buf.toString('base64')}`;
 }
