@@ -5,33 +5,56 @@ import { createRequire } from 'node:module';
 import { BRAND } from './lib';
 
 const require = createRequire(import.meta.url);
-const worldTopo: any = require('world-atlas/land-110m.json');
+const landTopo: any = require('world-atlas/land-110m.json');
+const countriesTopo: any = require('world-atlas/countries-110m.json');
 
 export type GlobeVariant = 'A' | 'B' | 'C' | 'D';
 
 const SIZE = 460;
 
-// Orthographic projection centered on Bogotá (~74°W, ~5°N) so LATAM is front
-// and center, with NA, the Atlantic, Greenland, West Europe and West Africa
-// visible on the front face of the sphere.
-function continentsPath(): string {
+// UN M49 numeric IDs (matching world-atlas country.id) for LATAM:
+// Mexico, Central America, Caribbean Hispanic + French Antilles, all South America.
+const LATAM_IDS = new Set<number>([
+  484, 320,  84, 222, 340, 558, 188, 591,                  // MX + Central Am
+  192, 214, 332, 388, 630,                                  // Caribbean (CU/DO/HT/JM/PR)
+  170, 862, 328, 740, 254,                                  // CO/VE/GUY/SR/GF
+  76,  218, 604,  68, 600, 858,  32, 152,                   // BR/EC/PE/BO/PY/UY/AR/CL
+]);
+
+function projection() {
   const cx = SIZE / 2, cy = SIZE / 2, r = SIZE / 2 - 3;
-  const projection = geoOrthographic()
+  return geoOrthographic()
     .scale(r)
     .translate([cx, cy])
     .rotate([74, -10, 0])
     .clipAngle(90);
-  const path = geoPath(projection);
-  const land = feature(worldTopo, worldTopo.objects.land);
-  return path(land as any) || '';
 }
 
-const CONTINENTS_D = continentsPath();
+const PATH_GEN = geoPath(projection());
+
+const ALL_LAND_D = (() => {
+  const land = feature(landTopo, landTopo.objects.land);
+  return PATH_GEN(land as any) || '';
+})();
+
+const LATAM_D = (() => {
+  const countries: any = feature(countriesTopo, countriesTopo.objects.countries);
+  const parts: string[] = [];
+  for (const f of countries.features) {
+    const id = Number(f.id);
+    if (LATAM_IDS.has(id)) {
+      const d = PATH_GEN(f);
+      if (d) parts.push(d);
+    }
+  }
+  return parts.join(' ');
+})();
 
 function classicGlobe(): string {
-  // Sphere bg cream/beige, 3 parallels + 3 meridians in soft tan, continents filled forest
+  // Cream/beige sphere, tan grid; rest of world as soft tan outline ghost; LATAM filled forest.
   const cx = SIZE / 2, cy = SIZE / 2, r = SIZE / 2 - 3;
   const grid = '#C9B98F';
+  const ghost = '#B0A47C';
   return `<svg width="${SIZE}" height="${SIZE}" viewBox="0 0 ${SIZE} ${SIZE}" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <clipPath id="sphere"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath>
@@ -46,14 +69,15 @@ function classicGlobe(): string {
       <ellipse cx="${cx}" cy="${cy}" rx="${Math.round(r * 0.82)}" ry="${r}"/>
     </g>
     <g clip-path="url(#sphere)">
-      <path d="${CONTINENTS_D}" fill="${BRAND.forest}" stroke="${BRAND.forest}" stroke-width="0.6" stroke-linejoin="round"/>
+      <path d="${ALL_LAND_D}" fill="none" stroke="${ghost}" stroke-width="1.2" stroke-linejoin="round"/>
+      <path d="${LATAM_D}" fill="${BRAND.forest}" stroke="${BRAND.forest}" stroke-width="0.6" stroke-linejoin="round"/>
     </g>
     <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${BRAND.forest}" stroke-width="2.5"/>
   </svg>`;
 }
 
 function minimalGlobe(): string {
-  // Just sphere outline + continents filled, no grid
+  // Sphere outline only; rest of world thin sage ghost; LATAM filled forest.
   const cx = SIZE / 2, cy = SIZE / 2, r = SIZE / 2 - 3;
   return `<svg width="${SIZE}" height="${SIZE}" viewBox="0 0 ${SIZE} ${SIZE}" xmlns="http://www.w3.org/2000/svg">
     <defs>
@@ -61,13 +85,14 @@ function minimalGlobe(): string {
     </defs>
     <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${BRAND.forest}" stroke-width="2.5"/>
     <g clip-path="url(#sphereB)">
-      <path d="${CONTINENTS_D}" fill="${BRAND.forest}" stroke="${BRAND.forest}" stroke-width="0.6" stroke-linejoin="round"/>
+      <path d="${ALL_LAND_D}" fill="none" stroke="${BRAND.sage}" stroke-width="1.1" stroke-linejoin="round" opacity="0.55"/>
+      <path d="${LATAM_D}" fill="${BRAND.forest}" stroke="${BRAND.forest}" stroke-width="0.6" stroke-linejoin="round"/>
     </g>
   </svg>`;
 }
 
 function wireframeGlobe(): string {
-  // Dense grid (4+4 ellipses) in sage, continents filled forest, no bg fill
+  // Dense grid in sage, rest of world sage outline ghost, LATAM filled forest (or coral for contrast).
   const cx = SIZE / 2, cy = SIZE / 2, r = SIZE / 2 - 3;
   const grid = BRAND.sage;
   const ratios = [0.92, 0.7, 0.4, 0.15];
@@ -77,23 +102,25 @@ function wireframeGlobe(): string {
     <defs>
       <clipPath id="sphereC"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath>
     </defs>
-    <g clip-path="url(#sphereC)" stroke="${grid}" stroke-width="1.3" fill="none" opacity="0.6">
+    <g clip-path="url(#sphereC)" stroke="${grid}" stroke-width="1.3" fill="none" opacity="0.55">
       ${parallels}
       ${meridians}
       <line x1="${cx}" y1="${cy - r}" x2="${cx}" y2="${cy + r}"/>
       <line x1="${cx - r}" y1="${cy}" x2="${cx + r}" y2="${cy}"/>
     </g>
     <g clip-path="url(#sphereC)">
-      <path d="${CONTINENTS_D}" fill="${BRAND.forest}" stroke="${BRAND.forest}" stroke-width="0.6" stroke-linejoin="round"/>
+      <path d="${ALL_LAND_D}" fill="none" stroke="${BRAND.sage}" stroke-width="1" stroke-linejoin="round" opacity="0.7"/>
+      <path d="${LATAM_D}" fill="${BRAND.coral}" stroke="${BRAND.coral}" stroke-width="0.6" stroke-linejoin="round"/>
     </g>
     <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${BRAND.forest}" stroke-width="2.5"/>
   </svg>`;
 }
 
 function forestOrbGlobe(): string {
-  // Sphere filled forest, continents punched as cream, cream grid
+  // Forest sphere; rest of world darker forest ghost; LATAM punched as cream.
   const cx = SIZE / 2, cy = SIZE / 2, r = SIZE / 2 - 3;
   const grid = '#3F6E54';
+  const ghost = '#3F6E54';
   return `<svg width="${SIZE}" height="${SIZE}" viewBox="0 0 ${SIZE} ${SIZE}" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <clipPath id="sphereD"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath>
@@ -108,7 +135,8 @@ function forestOrbGlobe(): string {
       <ellipse cx="${cx}" cy="${cy}" rx="${Math.round(r * 0.82)}" ry="${r}"/>
     </g>
     <g clip-path="url(#sphereD)">
-      <path d="${CONTINENTS_D}" fill="${BRAND.cream}" stroke="${BRAND.cream}" stroke-width="0.6" stroke-linejoin="round"/>
+      <path d="${ALL_LAND_D}" fill="none" stroke="${ghost}" stroke-width="1.3" stroke-linejoin="round"/>
+      <path d="${LATAM_D}" fill="${BRAND.cream}" stroke="${BRAND.cream}" stroke-width="0.6" stroke-linejoin="round"/>
     </g>
   </svg>`;
 }
@@ -123,7 +151,7 @@ const BUILDERS: Record<GlobeVariant, () => string> = {
 export const GLOBE_LABELS: Record<GlobeVariant, string> = {
   A: 'Classic',
   B: 'Minimal',
-  C: 'Wireframe',
+  C: 'Wireframe (coral LATAM)',
   D: 'Forest orb',
 };
 

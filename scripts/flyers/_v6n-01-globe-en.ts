@@ -24,7 +24,7 @@ export default async function (variant: GlobeVariant = 'A') {
   const source = `
     <div style="display:flex;width:${W}px;height:${H}px;background:${BRAND.cream};font-family:Inter;position:relative;overflow:hidden">
 
-      <div style="display:flex;position:absolute;top:70px;right:-110px;width:380px;height:380px">
+      <div style="display:flex;position:absolute;top:85px;right:-110px;width:380px;height:380px">
         <img src="${globe}" style="display:flex;width:380px;height:380px"/>
       </div>
 
