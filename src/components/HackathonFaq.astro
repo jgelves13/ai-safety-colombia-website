@@ -12,9 +12,6 @@ const es = locale === 'es';
 type Faq = { q: string; a: string };
 const faqs = (es ? data.faqs.es : data.faqs.en) as Faq[];
 const heading = es ? 'Preguntas frecuentes' : 'Frequently asked questions';
-const lead = es
-  ? 'Aclaraciones sobre formato, postulación, perfiles aceptados y mentoría durante el hackathon.'
-  : 'Clarifications about format, applications, accepted profiles, and mentoring during the hackathon.';
 
 const faqJsonLd = {
   '@context': 'https://schema.org',
@@ -34,7 +31,6 @@ const faqJson = JSON.stringify(faqJsonLd).replace(/</g, '\\u003c');
 <section class="section hk-faq-section" id="faq">
   <div class="container">
     <h2 class="section-title">{heading}</h2>
-    <p class="hk-faq-lead">{lead}</p>
     <ul class="hk-faq-list">
       {faqs.map((f, i) => (
         <li>
