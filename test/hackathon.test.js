@@ -114,7 +114,6 @@ test('attendance mapping matches the confirmed roster', () => {
   const byName = Object.fromEntries(
     [...data.speakers, ...data.judges].map((p) => [p.name, p.attendance])
   );
-  assert.equal(byName['Juan Felipe Cerón'], 'remote');
   assert.equal(byName['Alejandro Toro'], 'inperson');
   assert.equal(byName['Melissa Robles'], 'inperson');
   assert.equal(byName['Catalina Bernal'], 'tbc');

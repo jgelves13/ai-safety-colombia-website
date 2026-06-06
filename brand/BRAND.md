@@ -14,7 +14,7 @@ The visuals must communicate three things at once:
 
 - **Intellectual seriousness.** This is a research field, not a tech meetup. Display type is generous; body copy is precise; mono labels frame everything as ordered, considered work.
 - **Warmth and locality.** Cream paper instead of clinical white. Forest green instead of corporate blue. Hand-feel motifs (orbits, glows, line-art glyphs) instead of polished gradients.
-- **Equal footing.** We collaborate with Apart Research, BlueDot Impact, OpenAI alumni, and the IDB — but we never visually frame ourselves as their junior partner. Layouts give Colombian voices the same weight as international ones.
+- **Equal footing.** We collaborate with Apart Research, BlueDot Impact, and the IDB — but we never visually frame ourselves as their junior partner. Layouts give Colombian voices the same weight as international ones.
 
 What we **never** communicate visually: rescue narratives, generic AI imagery (glowing brains, robot hands), corporate optimism, or anything that would look at home on a SaaS landing page.
 

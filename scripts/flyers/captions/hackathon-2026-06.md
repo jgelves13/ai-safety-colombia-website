@@ -27,7 +27,7 @@ La investigación que hace seguros a los sistemas de IA se concentra en un puña
 · USD 3.000 entre tres equipos ganadores de LATAM (parte de un pool global de USD 6.000),
 · invitación al Apart Lab Fellowship para los equipos ganadores.
 
-Charla de apertura remota: Juan Felipe Cerón (OpenAI). Charla presencial: Alejandro Toro, representante a la Cámara y coautor del proyecto de ley de armas autónomas.
+Charla de apertura presencial: Alejandro Toro, representante a la Cámara y coautor del proyecto de ley de armas autónomas.
 
 Inscripciones abiertas · [link]
 
@@ -47,7 +47,7 @@ The research that makes AI systems safe is concentrated in a handful of countrie
 · US$3,000 across three LATAM winning teams (part of a US$6,000 Global South pool),
 · Apart Lab Fellowship invitation for winning teams.
 
-Remote opening keynote: Juan Felipe Cerón (OpenAI). In-person talk: Alejandro Toro, member of Colombia's House of Representatives and co-author of the autonomous-weapons bill.
+In-person opening talk: Alejandro Toro, member of Colombia's House of Representatives and co-author of the autonomous-weapons bill.
 
 Registration open · [link]
 
@@ -154,7 +154,7 @@ La investigación que hace seguros a los sistemas de IA se concentra en un puña
 
 **Jueces confirmados.** Melissa Robles (IDB Lab y Quantil), Catalina Bernal (BIP Colombia), Juan Liévano-Karim (UC Berkeley), Steve Hege (ILAPS), Wanda Muñoz (SEHLAC).
 
-**Charla de apertura remota:** Juan Felipe Cerón, ingeniero de investigación en alineación de IA en OpenAI. **Charla presencial:** Alejandro Toro, representante a la Cámara y coautor del proyecto de ley para prohibir armas autónomas letales.
+**Charla de apertura presencial:** Alejandro Toro, representante a la Cámara y coautor del proyecto de ley para prohibir armas autónomas letales.
 
 Apart reporta más de 3.000 participantes y 36 nuevos fellows en los últimos tres meses.
 
@@ -176,7 +176,7 @@ Or, in Apart Research's own words: this hackathon is not about bringing AI safet
 
 **Confirmed judges.** Melissa Robles (IDB Lab & Quantil), Catalina Bernal (BIP Colombia), Juan Liévano-Karim (UC Berkeley), Steve Hege (ILAPS), Wanda Muñoz (SEHLAC).
 
-**Remote opening keynote:** Juan Felipe Cerón, AI Alignment Research Engineer at OpenAI. **In-person talk:** Alejandro Toro, member of Colombia's House of Representatives and co-author of the bill to prohibit lethal autonomous weapons.
+**In-person opening talk:** Alejandro Toro, member of Colombia's House of Representatives and co-author of the bill to prohibit lethal autonomous weapons.
 
 Apart reports over 3,000 participants and 36 new fellows in the last three months.
 
@@ -215,7 +215,7 @@ Substance sources (all in `src/data/hackathon.json`):
 - whyCases — concrete Colombia examples (Apollo Research deceptive agents, prompt injection on real apps, Cartagena ChatGPT tutela, CIAC Dragom drone + LAWS bill).
 - judges — five confirmed evaluators with topic + affiliation.
 - prizesDetail.successExamples — 3,000 participants and 36 new fellows last three months (sourced to apartresearch.com/impact).
-- speakers — Juan Felipe Cerón (OpenAI, remote), Alejandro Toro (Congreso, in-person).
+- speakers — Alejandro Toro (Congreso, in-person).
 
 Pattern source (see `scripts/flyers/.research/PATTERNS.md`):
 - Hook: lead with concentration-of-research problem, then "this is for that". 1–2 sentences max.

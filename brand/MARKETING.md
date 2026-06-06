@@ -102,7 +102,7 @@ Today is 25 may 2026 → exactly **W-4**.
 | Week | Window | IG feed | IG stories | LinkedIn | WhatsApp | Print |
 |---|---|---|---|---|---|---|
 | **W-4** | 25 may – 1 jun | Announce (1080×1080) + tracks card | Save-the-date | Single: announce + register link | Status: announce + WhatsApp invite reminder | Send A4 PDF to Uniandes + UNAL boards |
-| **W-3** | 2 jun – 8 jun | Track deep-dive 1: **Technical AI Safety** | Speaker reveal: Juan Felipe Cerón (OpenAI, remote keynote) | Carousel: "Hackathon brief" (overview / tracks / prizes / judges / register) | Status: register reminder | — |
+| **W-3** | 2 jun – 8 jun | Track deep-dive 1: **Technical AI Safety** | Speaker reveal: Alejandro Toro (Congreso, in-person opening) | Carousel: "Hackathon brief" (overview / tracks / prizes / judges / register) | Status: register reminder | — |
 | **W-2** | 9 jun – 15 jun | Track deep-dive 2: **AI Governance / LAWS** + judges reveal post | Countdown sticker (10 days) | Single: judges panel (Hege, Robles, Bernal, Liévano-Karim, Muñoz) | Status: 1 week to go | A3 cork-board variant goes up |
 | **W-1** | 16 jun – 18 jun | Final-call post + Bogotá hub spotlight | Countdown stickers: 5d / 3d / 1d | Single: last call + hub list | Status: doors close X | — |
 | **Event** | 19 – 21 jun | Day-of opening • Sat momentum • Sun submission-deadline reminder | Live BTS, team photos, mentorship moments, snacks | Single: day-1 kickoff with Toro keynote | Status: live updates | — |
@@ -119,7 +119,6 @@ Today is 25 may 2026 → exactly **W-4**.
 ### 6.3 People
 
 Speaker / judge cards use verified canonical bios. References live in `~/.claude/projects/C--Users-joseg/memory/`:
-- Juan Felipe Cerón — [reference_juan_felipe_ceron_linkedin](../../../../../.claude/projects/C--Users-joseg/memory/reference_juan_felipe_ceron_linkedin.md)
 - Melissa Robles — `reference_melissa_robles_linkedin`
 - Catalina Bernal — `reference_catalina_bernal_linkedin`
 - Juan Liévano-Karim — `reference_juan_lievano_karim_openreview`
