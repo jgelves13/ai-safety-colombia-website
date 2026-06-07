@@ -9,14 +9,14 @@
   "contactEmail": "sprints@apartresearch.com",
   "support": "Schmidt Sciences",
   "panelFactsEs": [
-    "Charla inaugural de Alejandro Toro (Congreso de Colombia)",
-    "Jurado con expertos de Google, UC Berkeley, PNUD, BID Lab y la Campaña para Detener a los Robots Asesinos, entre otros",
+    "Charlas inaugurales de Juan Felipe Cerón (OpenAI) y Alejandro Toro (Congreso de Colombia)",
+    "Jurado con expertos de OpenAI, Google, UC Berkeley, PNUD, BID Lab, entre otros",
     "USD 3.000 en premios para los tres mejores equipos de LATAM",
     "Los ganadores reciben invitación al Apart Lab Fellowship, donde algunos fellows han publicado en ICLR, NeurIPS y ACL"
   ],
   "panelFactsEn": [
-    "Opening talk by Alejandro Toro (Congress of Colombia)",
-    "Judges from Google, UC Berkeley, UNDP, IDB Lab, and the Campaign to Stop Killer Robots, among others",
+    "Opening talks by Juan Felipe Cerón (OpenAI) and Alejandro Toro (Congress of Colombia)",
+    "Judges from OpenAI, Google, UC Berkeley, UNDP, IDB Lab, among others",
     "US$3,000 in prizes for the top three LATAM teams",
     "Winners are invited to the Apart Lab Fellowship, where some fellows have published at ICLR, NeurIPS, and ACL"
   ],
@@ -186,10 +186,10 @@
   "schedule": [
     { "day": "Viernes 19", "dayEn": "Friday 19", "accent": "is-green", "events": [
       { "time": "~4:00 PM", "timeEn": "~4:00 PM",
-        "title": "Charla de apertura y presentación de los retos",
-        "titleEn": "Opening talk and challenge briefing",
-        "note": "Con Alejandro Toro (Congreso de Colombia)",
-        "noteEn": "With Alejandro Toro (Congress of Colombia)" },
+        "title": "Dos charlas de apertura y presentación de los retos",
+        "titleEn": "Two opening talks and challenge briefing",
+        "note": "Con Juan Felipe Cerón (OpenAI) y Alejandro Toro (Congreso de Colombia)",
+        "noteEn": "With Juan Felipe Cerón (OpenAI) and Alejandro Toro (Congress of Colombia)" },
       { "time": "Noche", "timeEn": "Evening",
         "title": "Formación de equipos e inicio del desarrollo",
         "titleEn": "Team formation and start of building",
@@ -226,6 +226,7 @@
     ]}
   ],
   "speakers": [
+    { "name": "Juan Felipe Cerón", "affiliationEs": "<a href=\"https://openai.com/\" target=\"_blank\" rel=\"noopener noreferrer\">OpenAI</a>", "affiliationEn": "<a href=\"https://openai.com/\" target=\"_blank\" rel=\"noopener noreferrer\">OpenAI</a>", "attendance": "remote", "bioEs": "Ingeniero de investigación en alineación de IA en OpenAI. Coautor de <a href=\"https://arxiv.org/abs/2603.10521\" target=\"_blank\" rel=\"noopener noreferrer\">IH-Challenge</a> (RL para resistir inyección de prompts), y de <a href=\"https://arxiv.org/abs/2407.00215\" target=\"_blank\" rel=\"noopener noreferrer\">LLM Critics</a> (modelos de crítica para evaluar salidas de LLMs).", "bioEn": "AI Alignment Research Engineer at OpenAI. Co-author of <a href=\"https://arxiv.org/abs/2603.10521\" target=\"_blank\" rel=\"noopener noreferrer\">IH-Challenge</a> (RL to resist prompt injection), and <a href=\"https://arxiv.org/abs/2407.00215\" target=\"_blank\" rel=\"noopener noreferrer\">LLM Critics</a> (critic models for evaluating LLM outputs).", "linkedin": "https://www.linkedin.com/in/juan-felipe-ceron-uribe/", "photo": "juan-felipe.jpg" },
     { "name": "Alejandro Toro", "affiliationEs": "<a href=\"https://www.camara.gov.co/\" target=\"_blank\" rel=\"noopener noreferrer\">Congreso de la República de Colombia</a>", "affiliationEn": "<a href=\"https://www.camara.gov.co/\" target=\"_blank\" rel=\"noopener noreferrer\">Congress of the Republic of Colombia</a>", "attendance": "inperson", "bioEs": "Representante a la Cámara. Coautor y coordinador para primer debate del <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017/\" target=\"_blank\" rel=\"noopener noreferrer\">Proyecto de Ley 368/2025</a>, que prohíbe los sistemas de armas autónomas letales y regula los semiautónomos.", "bioEn": "Member of the House of Representatives. Co-author and First-Debate Coordinator of <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017/\" target=\"_blank\" rel=\"noopener noreferrer\">House Bill 368/2025</a>, which prohibits lethal autonomous weapons systems and regulates semi-autonomous ones.", "camara": "https://www.camara.gov.co/representantes/david-alejandro-toro-ramirez/", "photo": "alejandro.jpg" }
   ],
   "judges": [
@@ -287,7 +288,7 @@
       },
       {
         "q": "¿Habrá mentoría durante el evento?",
-        "a": "Sí. Durante los tres días hay mentorías, charlas y sesiones de Q&A en vivo con investigadores, jueces y expertos de organizaciones como Google, UC Berkeley, PNUD, BID Lab y la Campaña para Detener a los Robots Asesinos, entre otros."
+        "a": "Sí. Durante los tres días hay mentorías, charlas y sesiones de Q&A en vivo con investigadores, jueces y expertos de organizaciones como OpenAI, Google, UC Berkeley, PNUD y BID Lab, entre otros."
       }
     ],
     "en": [
@@ -329,7 +330,7 @@
       },
       {
         "q": "Will there be mentoring during the event?",
-        "a": "Yes. Throughout the three days there are mentoring sessions, talks, and live Q&A with researchers, judges, and experts from organizations such as Google, UC Berkeley, UNDP, IDB Lab, and the Campaign to Stop Killer Robots, among others."
+        "a": "Yes. Throughout the three days there are mentoring sessions, talks, and live Q&A with researchers, judges, and experts from organizations such as OpenAI, Google, UC Berkeley, UNDP, and IDB Lab, among others."
       }
     ]
   }
