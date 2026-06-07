@@ -40,9 +40,12 @@
 }
 
 html {
-  scroll-behavior: smooth;
   /* keep in-page anchor targets clear of the sticky navbar */
   scroll-padding-top: 5rem;
+  /* scroll-behavior: smooth was removed — it silently broke hash
+     navigation in Chrome when combined with body { overflow-x: hidden }
+     (which implicitly sets overflow-y: auto and turns body into a
+     scroll container). Clicks on #anchor links left scrollY at 0. */
 }
 
 body {
