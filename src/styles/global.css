@@ -54,11 +54,10 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
-  /* scroll-behavior lives on body, not html: body becomes the scroll
-     container in Chrome because overflow-x: hidden expands to
-     overflow: hidden auto. Setting smooth on html silently no-ops the
-     anchor jump entirely. */
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth is NOT set in CSS. On html it silently
+     no-ops the anchor jump in Chrome; on body it's ignored because
+     html is the scrolling element. The smooth scroll for in-page
+     #anchor links is done via a small JS handler in BaseLayout. */
 }
 
 /* Risograph grain overlay — sits above content, inert to pointer input */

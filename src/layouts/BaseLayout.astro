@@ -149,5 +149,21 @@ const isHackathonPage = currentPage === 'hackathon';
   <Footer locale={locale} />
   <Analytics />
   <SpeedInsights />
+  <script is:inline>
+    // Smooth scroll for in-page hash links. CSS scroll-behavior: smooth
+    // can't be used here — on html it no-ops the jump entirely in Chrome,
+    // and on body it's ignored since html is the scrolling element.
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const href = a.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.getElementById(href.slice(1));
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.pushState(null, '', href);
+    });
+  </script>
 </body>
 </html>
