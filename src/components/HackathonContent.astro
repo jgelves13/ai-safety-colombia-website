@@ -200,9 +200,9 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
   </div>
 </section>
 
-<section id="retos" class="section alt">
+<section class="section alt">
   <div class="container">
-    <h2 class="section-title">{t(locale, 'hackathon.tracksTitle')}</h2>
+    <h2 id="retos" class="section-title section-title-anchor">{t(locale, 'hackathon.tracksTitle')}</h2>
     <div class="hk-tracks">
       {data.tracks.map(track => (
         <div class={`hk-track ${track.accent}`}>
@@ -690,6 +690,10 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
 
   .hk-lead :global(p:last-child) {
     margin-bottom: 0;
+  }
+
+  .section-title-anchor {
+    scroll-margin-top: 4.5rem;
   }
 
   .hk-tracks {
