@@ -42,10 +42,6 @@
 html {
   /* keep in-page anchor targets clear of the sticky navbar */
   scroll-padding-top: 5rem;
-  /* scroll-behavior: smooth was removed — it silently broke hash
-     navigation in Chrome when combined with body { overflow-x: hidden }
-     (which implicitly sets overflow-y: auto and turns body into a
-     scroll container). Clicks on #anchor links left scrollY at 0. */
 }
 
 body {
@@ -58,6 +54,11 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  /* scroll-behavior lives on body, not html: body becomes the scroll
+     container in Chrome because overflow-x: hidden expands to
+     overflow: hidden auto. Setting smooth on html silently no-ops the
+     anchor jump entirely. */
+  scroll-behavior: smooth;
 }
 
 /* Risograph grain overlay — sits above content, inert to pointer input */
