@@ -266,10 +266,6 @@
         "a": "No. El hackathon recibe a personas sin background previo en AI safety. Apart Research publica materiales introductorios antes del evento, y durante los tres días hay mentorías en vivo para aterrizar conceptos y herramientas."
       },
       {
-        "q": "¿Puedo participar de forma remota o solo desde Bogotá?",
-        "a": "Ambas modalidades están abiertas. Puedes unirte de forma remota desde cualquier país a través de la plataforma de sprints de Apart Research, o registrarte para el hub presencial en Bogotá organizado por AI Safety Colombia."
-      },
-      {
         "q": "¿Cuándo es el hackathon y hasta cuándo puedo postular?",
         "a": "El hackathon es del 19 al 21 de junio de 2026. La fecha límite para postular al hub presencial en Bogotá es el 12 de junio de 2026. El registro al evento en línea con Apart Research permanece abierto hasta el inicio del evento."
       },
@@ -287,7 +283,7 @@
       },
       {
         "q": "¿Quién puede participar y hay restricciones geográficas o de perfil?",
-        "a": "El hackathon está abierto al Global South con énfasis en LATAM. Pueden participar estudiantes, investigadores, ingenieros de ML, desarrolladores, profesionales de política pública y ciberseguridad, así como personas de otras disciplinas interesadas en seguridad de IA. No hay restricciones por edad."
+        "a": "El hackathon está abierto al Global South con énfasis en LATAM. Pueden participar estudiantes, investigadores, ingenieros de ML, desarrolladores, profesionales de política pública y ciberseguridad, así como personas de otras disciplinas interesadas en seguridad de IA. No hay restricciones por edad. Puedes unirte de forma remota desde cualquier país o presencialmente desde el hub de Bogotá."
       },
       {
         "q": "¿Qué es la alineación de IA y por qué importa?",
@@ -295,7 +291,7 @@
       },
       {
         "q": "¿Habrá mentoría durante el evento?",
-        "a": "Sí. Durante los tres días hay mentorías, charlas y sesiones de Q&A en vivo con investigadores, jueces y expertos de organizaciones como OpenAI, Google, UC Berkeley, PNUD y BID Lab, entre otros."
+        "a": "Sí. Durante los tres días hay mentorías, charlas y sesiones de Q&A en vivo con investigadores, jueces y expertos de YouTube (Google), PNUD, BID Lab, ILAPS, BIP Colombia, 80,000 Hours, Carreras con Impacto y CCIT."
       }
     ],
     "en": [
@@ -306,10 +302,6 @@
       {
         "q": "Do I need prior AI safety or alignment experience?",
         "a": "No. The hackathon welcomes participants without prior AI safety background. Apart Research publishes introductory materials before the event, and live mentoring throughout the three days helps participants ground concepts and tooling."
-      },
-      {
-        "q": "Can I participate remotely, or only from Bogotá?",
-        "a": "Both formats are open. You can join remotely from any country through the Apart Research sprint platform, or apply to attend the in-person hub in Bogotá organized by AI Safety Colombia."
       },
       {
         "q": "When does the hackathon take place and when does applications close?",
@@ -329,7 +321,7 @@
       },
       {
         "q": "Who can participate, and are there geographic or background restrictions?",
-        "a": "The hackathon is open to the Global South with a focus on LATAM. Students, researchers, ML engineers, developers, public policy and cybersecurity professionals, and people from adjacent disciplines interested in AI safety can all participate. There are no age restrictions."
+        "a": "The hackathon is open to the Global South with a focus on LATAM. Students, researchers, ML engineers, developers, public policy and cybersecurity professionals, and people from adjacent disciplines interested in AI safety can all participate. There are no age restrictions. You can join remotely from any country or in person at the Bogotá hub."
       },
       {
         "q": "What is AI alignment and why does it matter?",
@@ -337,7 +329,7 @@
       },
       {
         "q": "Will there be mentoring during the event?",
-        "a": "Yes. Throughout the three days there are mentoring sessions, talks, and live Q&A with researchers, judges, and experts from organizations such as OpenAI, Google, UC Berkeley, UNDP, and IDB Lab, among others."
+        "a": "Yes. Throughout the three days there are mentoring sessions, talks, and live Q&A with researchers, judges, and experts from YouTube (Google), UNDP, IDB Lab, ILAPS, BIP Colombia, 80,000 Hours, Carreras con Impacto, and CCIT."
       }
     ]
   }
