@@ -50,7 +50,7 @@ export async function buildV11(p: {
 
       <!-- Name block -->
       <div style="display:flex;flex-direction:column;position:absolute;top:555px;left:60px;right:60px;align-items:center">
-        <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:24px;letter-spacing:0.24em;color:${p.kicker};text-transform:uppercase;margin-bottom:18px">Charla de apertura</div>
+        <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:24px;letter-spacing:0.24em;color:${p.kicker};text-transform:uppercase;margin-bottom:18px">Charla de cierre</div>
         <div style="display:flex;font-family:Bricolage Grotesque;font-weight:800;font-size:68px;line-height:0.96;letter-spacing:-0.03em;color:${p.text}">Juan Felipe Cerón Uribe</div>
         <div style="display:flex;width:96px;height:8px;background:${p.underscore};margin-top:18px;margin-bottom:18px"></div>
         <div style="display:flex;font-family:Inter;font-weight:700;font-size:26px;color:${p.text}">AI Alignment Research Engineer</div>
@@ -63,7 +63,7 @@ export async function buildV11(p: {
       <!-- Bottom event row: date left, logos right -->
       <div style="display:flex;position:absolute;bottom:36px;left:60px;right:60px;align-items:center;justify-content:space-between">
         <div style="display:flex;flex-direction:column">
-          <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:16px;letter-spacing:0.22em;color:${p.text};text-transform:uppercase;opacity:0.95">Viernes 19 de junio 2026</div>
+          <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:16px;letter-spacing:0.22em;color:${p.text};text-transform:uppercase;opacity:0.95">Domingo 21 de junio 2026</div>
           <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:16px;letter-spacing:0.22em;color:${p.text};text-transform:uppercase;opacity:0.8;margin-top:6px">Bogotá · remoto</div>
         </div>
         <div style="display:flex;align-items:center;gap:24px">
