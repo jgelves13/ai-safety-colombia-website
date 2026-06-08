@@ -36,8 +36,14 @@
     "world-atlas": "^2.0.2"
   },
   "devDependencies": {
+    "@types/d3-geo": "^3.1.0",
     "@types/qrcode": "^1.5.5",
+    "@types/topojson-client": "^3.1.5",
+    "d3-geo": "^3.1.1",
+    "gifenc": "^1.0.3",
     "qrcode": "^1.5.4",
-    "tsx": "^4.20.3"
+    "topojson-client": "^3.1.0",
+    "tsx": "^4.20.3",
+    "world-atlas": "^2.0.2"
   }
 }

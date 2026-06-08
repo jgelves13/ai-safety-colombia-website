@@ -9,13 +9,13 @@
   "contactEmail": "sprints@apartresearch.com",
   "support": "Schmidt Sciences",
   "panelFactsEs": [
-    "Charlas inaugurales de Juan Felipe Cerón (OpenAI) y Alejandro Toro (Congreso de Colombia)",
+    "Charlas con Juan Felipe Cerón (OpenAI) y Alejandro Toro (Congreso de Colombia)",
     "Jurado con expertos de OpenAI, Google, UC Berkeley, PNUD, BID Lab, entre otros",
     "USD 3.000 en premios para los tres mejores equipos de LATAM",
     "Los ganadores reciben invitación al Apart Lab Fellowship, donde algunos fellows han publicado en ICLR, NeurIPS y ACL"
   ],
   "panelFactsEn": [
-    "Opening talks by Juan Felipe Cerón (OpenAI) and Alejandro Toro (Congress of Colombia)",
+    "Talks by Juan Felipe Cerón (OpenAI) and Alejandro Toro (Congress of Colombia)",
     "Judges from OpenAI, Google, UC Berkeley, UNDP, IDB Lab, among others",
     "US$3,000 in prizes for the top three LATAM teams",
     "Winners are invited to the Apart Lab Fellowship, where some fellows have published at ICLR, NeurIPS, and ACL"
@@ -186,10 +186,10 @@
   "schedule": [
     { "day": "Viernes 19", "dayEn": "Friday 19", "accent": "is-green", "events": [
       { "time": "~4:00 PM", "timeEn": "~4:00 PM",
-        "title": "Dos charlas de apertura y presentación de los retos",
-        "titleEn": "Two opening talks and challenge briefing",
-        "note": "Con Juan Felipe Cerón (OpenAI) y Alejandro Toro (Congreso de Colombia)",
-        "noteEn": "With Juan Felipe Cerón (OpenAI) and Alejandro Toro (Congress of Colombia)" },
+        "title": "Charla de apertura y presentación de los retos",
+        "titleEn": "Opening talk and challenge briefing",
+        "note": "Con Alejandro Toro (Congreso de Colombia)",
+        "noteEn": "With Alejandro Toro (Congress of Colombia)" },
       { "time": "Noche", "timeEn": "Evening",
         "title": "Formación de equipos e inicio del desarrollo",
         "titleEn": "Team formation and start of building",
@@ -218,6 +218,11 @@
         "title": "Escritura del reporte de investigación",
         "titleEn": "Writing the research report",
         "note": "", "noteEn": "" },
+      { "time": "Tarde", "timeEn": "Afternoon",
+        "title": "Charla de cierre",
+        "titleEn": "Closing talk",
+        "note": "Con Juan Felipe Cerón (OpenAI)",
+        "noteEn": "With Juan Felipe Cerón (OpenAI)" },
       { "time": "Noche", "timeEn": "Evening",
         "title": "Entrega del reporte de investigación",
         "titleEn": "Research report submission",

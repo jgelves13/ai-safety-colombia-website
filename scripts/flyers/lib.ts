@@ -5,6 +5,7 @@ import satori from 'satori';
 import { html } from 'satori-html';
 import { Resvg } from '@resvg/resvg-js';
 import QRCode from 'qrcode';
+import sharp from 'sharp';
 
 const moduleDir = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(moduleDir, '..', '..');
@@ -91,6 +92,48 @@ export async function squarePhotoDataUrl(relPath: string, size = 400): Promise<s
     .jpeg({ quality: 92, mozjpeg: true })
     .toBuffer();
   return `data:image/jpeg;base64,${buf.toString('base64')}`;
+}
+
+let cachedLogosHD: { apartLogo: string; apartRatio: number; aiscLogo: string; aiscRatio: number } | null = null;
+
+export async function getHostsLogosHD(fontSize?: number, _opts?: { aiscBlack?: boolean }) {
+  if (cachedLogosHD) return cachedLogosHD;
+  const targetHeight = Math.max(160, Math.round((fontSize ?? 22) * 2.4 * 3));
+  const apartRatio = 1004 / 427;
+  const aiscRatio = 1400 / 420;
+  const [apartBuf, aiscBuf] = await Promise.all([
+    readFile(path.join(projectRoot, 'public', 'images', 'apart-logo.png')),
+    readFile(path.join(projectRoot, 'public', 'images', 'aisc-lockup-black.png')),
+  ]);
+  const [apartOut, aiscOut] = await Promise.all([
+    sharp(apartBuf).resize({ height: targetHeight, kernel: 'lanczos3' }).png({ compressionLevel: 9 }).toBuffer(),
+    sharp(aiscBuf).resize({ height: targetHeight, kernel: 'lanczos3' }).png({ compressionLevel: 9 }).toBuffer(),
+  ]);
+  cachedLogosHD = {
+    apartLogo: `data:image/png;base64,${apartOut.toString('base64')}`,
+    apartRatio,
+    aiscLogo: `data:image/png;base64,${aiscOut.toString('base64')}`,
+    aiscRatio,
+  };
+  return cachedLogosHD;
+}
+
+export function globeGlobalSouth(opts: { size: number; landFill: string; oceanFill?: string }): string {
+  const s = opts.size;
+  const ocean = opts.oceanFill ?? 'transparent';
+  const land = opts.landFill;
+  return `<svg width="${s}" height="${s}" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="display:flex">
+    <circle cx="100" cy="100" r="98" fill="${ocean}" stroke="${land}" stroke-width="2"/>
+    <g clip-path="inset(0 round 100px)">
+      <g transform="translate(48, 70) scale(0.10)">
+        <path d="${LATAM_PATH}" fill="${land}"/>
+      </g>
+    </g>
+    <circle cx="100" cy="100" r="98" fill="none" stroke="${land}" stroke-width="2"/>
+    <line x1="2" y1="100" x2="198" y2="100" stroke="${land}" stroke-width="1" stroke-opacity="0.25"/>
+    <ellipse cx="100" cy="100" rx="98" ry="36" fill="none" stroke="${land}" stroke-width="1" stroke-opacity="0.25"/>
+    <ellipse cx="100" cy="100" rx="36" ry="98" fill="none" stroke="${land}" stroke-width="1" stroke-opacity="0.25"/>
+  </svg>`;
 }
 
 let cachedLogos: { apartLogo: string; apartRatio: number; aiscLogo: string; aiscRatio: number } | null = null;

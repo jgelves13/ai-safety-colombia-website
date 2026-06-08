@@ -21,31 +21,36 @@ async function main() {
   const W = 1400;
   const H = 420;
 
-  const source = `
-    <div style="display:flex;width:${W}px;height:${H}px;background:transparent;align-items:center;padding:0 60px">
-      <div style="display:flex;align-items:center;width:240px;height:${H}px;justify-content:flex-start">
-        <img src="${triangleDataUrl}" style="display:flex;height:240px;width:296px"/>
+  async function buildLockup(wordmarkColor: string, outFile: string) {
+    const source = `
+      <div style="display:flex;width:${W}px;height:${H}px;background:transparent;align-items:center;padding:0 60px">
+        <div style="display:flex;align-items:center;width:240px;height:${H}px;justify-content:flex-start">
+          <img src="${triangleDataUrl}" style="display:flex;height:240px;width:296px"/>
+        </div>
+        <div style="display:flex;width:60px;height:${H}px"></div>
+        <div style="display:flex;flex-direction:column;font-family:Inter;font-weight:800;font-size:180px;line-height:0.94;letter-spacing:-5px;color:${wordmarkColor}">
+          <div style="display:flex">AI Safety</div>
+          <div style="display:flex">Colombia</div>
+        </div>
       </div>
-      <div style="display:flex;width:60px;height:${H}px"></div>
-      <div style="display:flex;flex-direction:column;font-family:Inter;font-weight:800;font-size:180px;line-height:0.92;letter-spacing:-3px;color:#000">
-        <div style="display:flex">AI SAFETY</div>
-        <div style="display:flex">COLOMBIA</div>
-      </div>
-    </div>
-  `;
+    `;
 
-  const svg = await satori(html(source) as any, {
-    width: W,
-    height: H,
-    fonts: [
-      { name: 'Inter', data: inter800, weight: 800, style: 'normal' },
-    ],
-  });
+    const svg = await satori(html(source) as any, {
+      width: W,
+      height: H,
+      fonts: [
+        { name: 'Inter', data: inter800, weight: 800, style: 'normal' },
+      ],
+    });
 
-  const png = new Resvg(svg, { fitTo: { mode: 'width', value: W } }).render().asPng();
-  const outPath = path.join(PROJECT_ROOT, 'public', 'images', 'aisc-lockup.png');
-  await writeFile(outPath, png);
-  console.log(`wrote ${outPath} (${W}x${H})`);
+    const png = new Resvg(svg, { fitTo: { mode: 'width', value: W } }).render().asPng();
+    const outPath = path.join(PROJECT_ROOT, 'public', 'images', outFile);
+    await writeFile(outPath, png);
+    console.log(`wrote ${outPath} (${W}x${H})`);
+  }
+
+  await buildLockup('#1F4D32', 'aisc-lockup.png');
+  await buildLockup('#0C0C0C', 'aisc-lockup-black.png');
 }
 
 main().catch((e) => {
