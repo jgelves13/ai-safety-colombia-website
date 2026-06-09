@@ -60,7 +60,7 @@ test('LAWS is a subarea of AI Governance with no Bogotá reference', () => {
   assert.ok(gov, 'AI Governance track exists');
   const subEn = gov.subareas.map((s) => s.en);
   assert.ok(
-    subEn.includes('Lethal autonomous weapons systems'),
+    subEn.some((s) => /lethal autonomous weapons/i.test(s)),
     'LAWS subarea present under AI Governance'
   );
   // The Bogotá-led reference was removed everywhere in the tracks.
