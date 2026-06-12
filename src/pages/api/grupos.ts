@@ -3,7 +3,6 @@ import { validate } from '../../lib/groups-interest/schema';
 import { insertInterest } from '../../lib/groups-interest/supabase';
 import {
   sendInterestConfirmation,
-  sendInterestNotification,
   sendInterestFailureAlert,
 } from '../../lib/groups-interest/emails';
 import { clientIp, rateLimit, isHoneypot } from '../../lib/antiAbuse';
@@ -38,26 +37,17 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   if (!parsed.ok) return json({ error: parsed.error }, 400);
   const payload = parsed.data;
 
+  // Success is gated on the Supabase insert ONLY. Email is best-effort so a
+  // drained Resend daily quota never shows the user an error or loses data
+  // (everything is in Supabase + the synced Sheet). Same fix as aplicar.ts.
   const dbResult = await insertInterest(payload);
-  const applicantResult = await sendInterestConfirmation(payload);
-  const notifyResult = await sendInterestNotification(payload);
 
-  const failures: string[] = [];
-  if (!dbResult.ok) failures.push(`supabase: ${dbResult.error}`);
-  if (!applicantResult.ok) failures.push(`applicant-email: ${applicantResult.error}`);
-  if (!notifyResult.ok) failures.push(`notify-email: ${notifyResult.error}`);
-
-  if (failures.length > 0) {
-    sendInterestFailureAlert({
-      stage: failures.join(' | '),
-      error: failures.join('\n'),
-      payload,
-    }).catch(() => undefined);
-  }
-
-  if (!applicantResult.ok) {
+  if (!dbResult.ok) {
+    sendInterestFailureAlert({ stage: 'supabase', error: dbResult.error, payload }).catch(() => undefined);
     return json({ error: 'submission_failed' }, 502);
   }
 
-  return json({ ok: true, partial: failures.length > 0 });
+  const applicantResult = await sendInterestConfirmation(payload);
+
+  return json({ ok: true, partial: !applicantResult.ok });
 };
