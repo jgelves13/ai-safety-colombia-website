@@ -63,6 +63,13 @@ const copy = {
     <form id="interest-form" class="apply-form" novalidate>
       <input type="hidden" name="locale" value={locale} />
 
+      {/* Honeypot — invisible to humans, only bots fill it. Do not remove. */}
+      <div class="apply-hp" aria-hidden="true">
+        <label>Website
+          <input type="text" name="website" tabindex="-1" autocomplete="off" />
+        </label>
+      </div>
+
       <section class="apply-block">
         <h2 class="apply-h2">{copy.sectionBasics}</h2>
 
@@ -349,6 +356,16 @@ const copy = {
 
   /* [hidden] must beat the flex/grid display rules above */
   [hidden] { display: none !important; }
+
+  /* Honeypot — pushed off-screen rather than display:none so naive bots
+     still see and fill it, but no human ever can. */
+  .apply-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
 
   .apply-block {
     display: flex;

@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { upsertDraft } from '../../../lib/hackathon-apply/draftSupabase';
+import { clientIp, rateLimit, isHoneypot } from '../../../lib/antiAbuse';
 
 export const prerender = false;
 
@@ -22,6 +23,12 @@ async function hashIp(ip: string | null | undefined): Promise<string | null> {
 const noContent = () => new Response(null, { status: 204 });
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
+  // Drafts fire on blur/submit/pagehide but are deduped client-side per email,
+  // so a generous cap still never trips for a real user.
+  if (!rateLimit(clientIp(request, clientAddress), 30, 10 * 60 * 1000).ok) {
+    return noContent();
+  }
+
   let raw: any;
   try {
     raw = await request.json();
@@ -29,6 +36,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return noContent();
   }
   if (!raw || typeof raw !== 'object') return noContent();
+  if (isHoneypot(raw)) return noContent();
 
   const locale = raw.locale === 'en' ? 'en' : 'es';
   const firstName = typeof raw.firstName === 'string' ? raw.firstName.trim().slice(0, 100) : '';

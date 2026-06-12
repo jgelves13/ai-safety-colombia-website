@@ -9,21 +9,34 @@ import {
   sendHubNotification,
   sendFailureAlert,
 } from '../../lib/hackathon-apply/emails';
+import { clientIp, rateLimit, isHoneypot } from '../../lib/antiAbuse';
 
 export const prerender = false;
 
-const json = (body: unknown, status = 200) =>
+const json = (body: unknown, status = 200, headers: Record<string, string> = {}) =>
   new Response(JSON.stringify(body), {
     status,
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', ...headers },
   });
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, clientAddress }) => {
+  // Flood backstop: a real applicant submits once (maybe a couple retries).
+  const rl = rateLimit(clientIp(request, clientAddress), 8, 10 * 60 * 1000);
+  if (!rl.ok) {
+    return json({ error: 'rate_limited' }, 429, { 'Retry-After': String(rl.retryAfter) });
+  }
+
   let raw: unknown;
   try {
     raw = await request.json();
   } catch {
     return json({ error: 'Invalid JSON' }, 400);
+  }
+
+  // Honeypot: bots fill the hidden `website` field. Fake success, do nothing —
+  // never touches Supabase/Resend, so it can't drain the free-tier quotas.
+  if (isHoneypot(raw)) {
+    return json({ ok: true });
   }
 
   const parsed = validate(raw);
