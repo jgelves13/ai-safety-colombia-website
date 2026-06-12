@@ -49,30 +49,26 @@ const milestones = [
     <h2 class="section-label" id="mission-title">{t(locale, 'about.mission.title')}</h2>
     <p class="mission-statement">{t(locale, 'about.mission.body')}</p>
     <p class="mission-support">{t(locale, 'about.mission.support')}</p>
-  </div>
-</section>
 
-<section class="section alt about-why" aria-labelledby="why-title">
-  <div class="container">
-    <p class="section-label">{t(locale, 'about.why.kicker')}</p>
-    <h2 class="section-title" id="why-title">{t(locale, 'about.why.title')}</h2>
-    <p class="section-subtitle why-intro">{t(locale, 'about.why.intro')}</p>
+    <div class="why-block">
+      <p class="section-label">{t(locale, 'about.why.kicker')}</p>
+      <h3 class="section-title why-title" id="why-title">{t(locale, 'about.why.title')}</h3>
+      <p class="section-subtitle why-intro">{t(locale, 'about.why.intro')}</p>
 
-    <ol class="beliefs">
-      {beliefs.map((b) => (
-        <li class="belief">
-          <span class="belief-num" aria-hidden="true">{b.num}</span>
-          <div class="belief-text">
-            <h3>{b.title}</h3>
+      <ol class="beliefs">
+        {beliefs.map((b) => (
+          <li class="belief">
+            <span class="belief-num" aria-hidden="true">{b.num}</span>
+            <h4>{b.title}</h4>
             <p>{b.body}</p>
-          </div>
-        </li>
-      ))}
-    </ol>
+          </li>
+        ))}
+      </ol>
+    </div>
   </div>
 </section>
 
-<section class="section about-origin" aria-labelledby="origin-title">
+<section class="section alt about-origin" aria-labelledby="origin-title">
   <div class="container">
     <p class="section-label">{t(locale, 'about.origin.kicker')}</p>
     <h2 class="section-title" id="origin-title">{t(locale, 'about.origin.title')}</h2>
@@ -95,7 +91,7 @@ const milestones = [
   </div>
 </section>
 
-<section class="section alt" aria-labelledby="toc-title">
+<section class="section" aria-labelledby="toc-title">
   <div class="container">
     <h2 class="section-title" id="toc-title">{t(locale, 'about.toc.title')}</h2>
     <p class="section-subtitle">{t(locale, 'about.toc.subtitle')}</p>
@@ -183,9 +179,8 @@ const milestones = [
     position: absolute;
     width: 240px;
     height: 240px;
-    top: 50%;
+    top: 3.5rem;
     right: -80px;
-    transform: translateY(-50%);
     border: 22px solid var(--accent-yellow);
     border-radius: 50%;
     z-index: 0;
@@ -209,11 +204,25 @@ const milestones = [
     line-height: 1.7;
   }
 
-  /* "Why now" — the case for the work as three numbered editorial
-     beliefs: a large display numeral in a rotating Trópico accent,
-     then a bold claim and a supporting paragraph. */
+  /* "Why now" lives inside the mission section, separated by a hairline.
+     The three beliefs read left to right across one row, each a vertical
+     stack: an accent numeral, the claim, and a supporting line. */
+  .why-block {
+    margin-top: 3.25rem;
+    padding-top: 2.75rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .why-block .section-label {
+    margin-bottom: 0.7rem;
+  }
+
+  .why-title {
+    margin-bottom: 0.9rem;
+  }
+
   .why-intro {
-    max-width: 52ch;
+    max-width: 60ch;
   }
 
   .beliefs {
@@ -221,42 +230,41 @@ const milestones = [
     padding: 0;
     margin: 0;
     display: grid;
-    gap: 2.25rem;
-    max-width: 760px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 
   .belief {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1.5rem;
-    align-items: start;
+    text-align: left;
   }
 
   .belief-num {
+    display: block;
     font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-size: 2rem;
     font-weight: 800;
     line-height: 1;
     letter-spacing: -0.04em;
     color: var(--accent-vermillion);
+    margin-bottom: 0.7rem;
   }
 
   .belief:nth-child(2) .belief-num { color: var(--accent-forest); }
   .belief:nth-child(3) .belief-num { color: var(--accent-sage); }
 
-  .belief-text h3 {
-    font-size: 1.375rem;
+  .belief h4 {
+    font-size: 1.1875rem;
     font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.2;
+    line-height: 1.25;
     color: var(--text-primary);
-    margin-bottom: 0.55rem;
+    margin-bottom: 0.5rem;
   }
 
-  .belief-text p {
-    font-size: 1.0625rem;
+  .belief p {
+    font-size: 0.9375rem;
     color: var(--text-secondary);
-    line-height: 1.7;
+    line-height: 1.65;
   }
 
   /* The origin story pairs a narrative column with a compact
@@ -525,12 +533,9 @@ const milestones = [
       grid-template-columns: 1fr;
       gap: 2.25rem;
     }
-  }
-
-  @media (max-width: 600px) {
-    .belief {
+    .beliefs {
       grid-template-columns: 1fr;
-      gap: 0.35rem;
+      gap: 1.75rem;
     }
   }
 
