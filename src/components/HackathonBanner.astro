@@ -2,14 +2,27 @@
 import type { Locale } from '../i18n/ui';
 import { t } from '../i18n/ui';
 import data from '../data/hackathon.json';
-import { daysUntil } from '../utils/countdown.js';
+import { daysUntil, deadlineState } from '../utils/countdown.js';
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
-const daysLeft = daysUntil(data.date);
+
+// The countdown sits next to the "Regístrate" CTA, so it must reflect the time
+// left to APPLY (deadline), not the event start — otherwise it reads "7 días
+// restantes" on the very day applications close. Once the deadline passes we
+// fall back to counting down to the event itself.
+const ds = deadlineState(data.deadlineDate);
+const eventDays = daysUntil(data.date);
+
+const labelOpen = t(locale, 'hackathon.banner.countdown');
+const labelToday = t(locale, 'hackathon.banner.closesToday');
+const labelEvent = t(locale, 'hackathon.banner.toEvent');
+
+const countNumber = ds.state === 'open' ? ds.days : eventDays;
+const countLabel = ds.state === 'open' ? labelOpen : labelEvent;
 ---
 
 <section class="hackathon-banner">
@@ -23,9 +36,23 @@ const daysLeft = daysUntil(data.date);
           <a href={locale === 'es' ? '/hackathon/' : '/en/hackathon/'} class="btn btn-vermillion">
             {t(locale, 'hackathon.banner.cta')}
           </a>
-          <div class="countdown">
-            <span class="countdown-number" data-hackathon-date={data.date} aria-live="polite">{daysLeft}</span>
-            <span class="countdown-label">{t(locale, 'hackathon.banner.countdown')}</span>
+          <div
+            class="countdown"
+            aria-live="polite"
+            data-deadline={data.deadlineDate}
+            data-event={data.date}
+            data-label-open={labelOpen}
+            data-label-today={labelToday}
+            data-label-event={labelEvent}
+          >
+            {ds.state === 'today' ? (
+              <span class="countdown-today">{labelToday}</span>
+            ) : (
+              <>
+                <span class="countdown-number">{countNumber}</span>
+                <span class="countdown-label">{countLabel}</span>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -137,13 +164,36 @@ const daysLeft = daysUntil(data.date);
     font-size: 0.75rem;
     letter-spacing: 0.04em;
   }
+
+  .countdown-today {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--accent-vermillion);
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
 </style>
 
 <script>
-  import { daysUntil } from '../utils/countdown.js';
-  const el = document.querySelector('[data-hackathon-date]');
-  const date = el && el.getAttribute('data-hackathon-date');
-  if (el && date) {
-    el.textContent = String(daysUntil(date));
+  import { daysUntil, deadlineState } from '../utils/countdown.js';
+  const box = document.querySelector('.countdown[data-deadline]');
+  if (box) {
+    const deadline = box.getAttribute('data-deadline');
+    const event = box.getAttribute('data-event');
+    const labelOpen = box.getAttribute('data-label-open') || '';
+    const labelToday = box.getAttribute('data-label-today') || '';
+    const labelEvent = box.getAttribute('data-label-event') || '';
+    const ds = deadlineState(deadline);
+    if (ds.state === 'today') {
+      box.innerHTML = `<span class="countdown-today"></span>`;
+      box.querySelector('.countdown-today').textContent = labelToday;
+    } else {
+      const n = ds.state === 'open' ? ds.days : daysUntil(event);
+      const label = ds.state === 'open' ? labelOpen : labelEvent;
+      box.innerHTML = `<span class="countdown-number"></span> <span class="countdown-label"></span>`;
+      box.querySelector('.countdown-number').textContent = String(n);
+      box.querySelector('.countdown-label').textContent = label;
+    }
   }
 </script>
