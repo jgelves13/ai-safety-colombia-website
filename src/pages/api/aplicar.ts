@@ -4,9 +4,7 @@ import { translateToEnglish } from '../../lib/hackathon-apply/translate';
 import { insertApplication } from '../../lib/hackathon-apply/supabase';
 import { markDraftComplete } from '../../lib/hackathon-apply/draftSupabase';
 import {
-  sendApartEmail,
   sendApplicantConfirmation,
-  sendHubNotification,
   sendFailureAlert,
 } from '../../lib/hackathon-apply/emails';
 import { clientIp, rateLimit, isHoneypot } from '../../lib/antiAbuse';
@@ -45,30 +43,24 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   const translated = await translateToEnglish(original);
 
+  // The ONLY thing a submission needs to succeed is the data landing in
+  // Supabase. Save it first and gate the whole response on that.
   const dbResult = await insertApplication(original, translated);
-  const apartResult = await sendApartEmail(translated, original);
-  const applicantResult = await sendApplicantConfirmation(original);
-  const hubResult = await sendHubNotification(translated, original);
 
-  const failures: string[] = [];
-  if (!dbResult.ok) failures.push(`supabase: ${dbResult.error}`);
-  if (!apartResult.ok) failures.push(`apart-email: ${apartResult.error}`);
-  if (!applicantResult.ok) failures.push(`applicant-email: ${applicantResult.error}`);
-  if (!hubResult.ok) failures.push(`hub-notify: ${hubResult.error}`);
-
-  const applicantOk = applicantResult.ok;
-  const apartOk = apartResult.ok;
-  const userVisibleOk = applicantOk && apartOk;
-
-  if (failures.length > 0) {
-    sendFailureAlert({ stage: failures.join(' | '), error: failures.join('\n'), payload: original }).catch(() => undefined);
-  }
-
-  if (!userVisibleOk) {
+  // A real failure is the data not saving. That, and only that, blocks the
+  // applicant and is worth an alert. (Alerting on email failures would burn
+  // the same Resend quota that just ran out — a death spiral on deadline day.)
+  if (!dbResult.ok) {
+    sendFailureAlert({ stage: 'supabase', error: dbResult.error, payload: original }).catch(() => undefined);
     return json({ error: 'submission_failed' }, 502);
   }
 
+  // Confirmation email is best-effort. If Resend's daily quota is exhausted
+  // this silently no-ops: the applicant still sees success, no data is lost,
+  // and the application is in Supabase + the synced Sheet regardless.
+  const applicantResult = await sendApplicantConfirmation(original);
+
   markDraftComplete(original.email).catch(() => undefined);
 
-  return json({ ok: true, partial: failures.length > 0 });
+  return json({ ok: true, partial: !applicantResult.ok });
 };
