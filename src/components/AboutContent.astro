@@ -142,6 +142,17 @@ const milestones = [
         </div>
         <p class="person-bio">{t(locale, 'about.team.bio')}</p>
       </article>
+      <article class="person-card">
+        <div class="person-head">
+          <img class="person-photo" src="/people/leonardo.jpg" alt={t(locale, 'about.team2.name')} width="120" height="150" loading="lazy" />
+          <div class="person-id">
+            <h3 class="person-name">{t(locale, 'about.team2.name')}</h3>
+            <p class="person-role">{t(locale, 'about.team2.role')}</p>
+            <p class="person-affil">{t(locale, 'about.team2.affiliation')}</p>
+          </div>
+        </div>
+        <p class="person-bio">{t(locale, 'about.team2.bio')}</p>
+      </article>
     </div>
   </div>
 </section>
@@ -222,7 +233,7 @@ const milestones = [
   }
 
   .why-intro {
-    max-width: 60ch;
+    max-width: none;
   }
 
   .beliefs {
@@ -420,10 +431,10 @@ const milestones = [
      then bio, then remembrance. */
   .people {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
     align-items: start;
-    max-width: 920px;
+    max-width: 1120px;
   }
 
   .person-card {
