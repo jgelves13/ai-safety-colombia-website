@@ -224,7 +224,7 @@ export const ui = {
     'about.team.name': 'Jose Gelves',
     'about.team.role': 'Cofundador y organizador',
     'about.team.affiliation': 'Investigador en política de IA y gobierno digital',
-    'about.team.bio': 'Politólogo de la Universidad de los Andes, interesado en cómo se gobierna la tecnología. Investiga la IA en elecciones y el mercado laboral, evaluó la transformación digital del Estado colombiano (2022-2026) y lidera Altruismo Eficaz Bogotá.',
+    'about.team.bio': 'Politólogo de la Universidad de los Andes, interesado en cómo se gobierna la tecnología. Investiga la IA en elecciones y el empleo, evaluó la transformación digital del Estado colombiano (2022-2026) y lidera Altruismo Eficaz Bogotá.',
     'about.team2.name': 'Leonardo Párraga',
     'about.team2.role': 'Organizador',
     'about.team2.affiliation': 'Constructor de coaliciones en sociedad civil, filantropía y gobernanza de IA',
