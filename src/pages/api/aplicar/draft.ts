@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { upsertDraft } from '../../../lib/hackathon-apply/draftSupabase';
 import { clientIp, rateLimit, isHoneypot } from '../../../lib/antiAbuse';
+import { isPastDeadline } from '../../../lib/hackathon-apply/deadline';
 
 export const prerender = false;
 
@@ -23,6 +24,8 @@ async function hashIp(ip: string | null | undefined): Promise<string | null> {
 const noContent = () => new Response(null, { status: 204 });
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
+  if (isPastDeadline()) return noContent();
+
   // Drafts fire on blur/submit/pagehide but are deduped client-side per email,
   // so a generous cap still never trips for a real user.
   if (!rateLimit(clientIp(request, clientAddress), 30, 10 * 60 * 1000).ok) {

@@ -7,10 +7,9 @@ import {
   isEmailAlreadySubmitted,
 } from '../../../lib/hackathon-apply/draftSupabase';
 import { sendDraftReminder } from '../../../lib/hackathon-apply/draftEmails';
+import { isPastDeadline } from '../../../lib/hackathon-apply/deadline';
 
 export const prerender = false;
-
-const HARD_DEADLINE_UTC = Date.parse('2026-06-13T04:59:59Z');
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -53,7 +52,7 @@ async function handler(request: Request): Promise<Response> {
     return json({ error: 'unauthorized' }, 401);
   }
 
-  if (Date.now() > HARD_DEADLINE_UTC) {
+  if (isPastDeadline()) {
     return json({ ok: true, skipped: 'past_deadline' });
   }
 
