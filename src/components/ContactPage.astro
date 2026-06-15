@@ -354,6 +354,12 @@ const LINKEDIN = 'https://www.linkedin.com/company/ai-safety-col/';
     padding: 1.25rem 0 0.5rem;
   }
 
+  /* Author display:flex above overrides the UA [hidden] rule, so the success
+     box would show on load — re-assert hidden with higher specificity. */
+  .cf-success[hidden] {
+    display: none;
+  }
+
   .cf-success-ic {
     width: 56px;
     height: 56px;

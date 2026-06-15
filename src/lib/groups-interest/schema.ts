@@ -8,27 +8,46 @@ export const AREA_VALUES = [
 
 export type AreaSlug = (typeof AREA_VALUES)[number];
 
+export const AVAILABILITY_VALUES = [
+  'Entre semana en la mañana',
+  'Entre semana en la tarde',
+  'Entre semana en la noche',
+  'Sábado en la mañana',
+  'Sábado en la tarde',
+  'Sábado en la noche',
+  'Domingo en la mañana',
+  'Domingo en la tarde',
+  'Domingo en la noche',
+] as const;
+
+export type AvailabilitySlot = (typeof AVAILABILITY_VALUES)[number];
+
 export interface InterestPayload {
   locale: 'es' | 'en';
   firstName: string;
   lastName: string;
   email: string;
   location: string;
+  preferredStart: string;
+  availability: AvailabilitySlot[];
   linkedin?: string;
-  about: string;
+  about?: string;
   areas: AreaSlug[];
   extra?: string;
 }
 
+// `about` is intentionally NOT required: the public /grupos form asks for it
+// (enforced client-side), but the invite-only link for people we already know
+// (/grupos/invitacion) omits it. The server accepts a submission without it.
 const REQUIRED_STRING_FIELDS: (keyof InterestPayload)[] = [
   'firstName',
   'lastName',
   'email',
   'location',
-  'about',
 ];
 
 const AREA_SET = new Set<string>(AREA_VALUES);
+const AVAILABILITY_SET = new Set<string>(AVAILABILITY_VALUES);
 
 export function validate(
   raw: unknown,
@@ -59,6 +78,23 @@ export function validate(
     if (!areas.includes(a as AreaSlug)) areas.push(a as AreaSlug);
   }
 
+  // Preferred start: a calendar date (YYYY-MM-DD). Required.
+  const preferredStart = typeof r.preferred_start === 'string' ? r.preferred_start.trim() : '';
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(preferredStart)) {
+    return { ok: false, error: 'Invalid start date' };
+  }
+
+  if (!Array.isArray(r.availability) || r.availability.length === 0) {
+    return { ok: false, error: 'Pick at least one time slot' };
+  }
+  const availability: AvailabilitySlot[] = [];
+  for (const s of r.availability) {
+    if (typeof s !== 'string' || !AVAILABILITY_SET.has(s)) {
+      return { ok: false, error: `Invalid time slot: ${String(s)}` };
+    }
+    if (!availability.includes(s as AvailabilitySlot)) availability.push(s as AvailabilitySlot);
+  }
+
   const locale = r.locale === 'en' ? 'en' : 'es';
 
   return {
@@ -69,8 +105,10 @@ export function validate(
       lastName: String(r.lastName).trim().slice(0, 100),
       email: email.slice(0, 200),
       location: String(r.location).trim().slice(0, 200),
+      preferredStart,
+      availability,
       linkedin: typeof r.linkedin === 'string' && r.linkedin.trim() ? r.linkedin.trim().slice(0, 300) : undefined,
-      about: String(r.about).trim().slice(0, 1500),
+      about: typeof r.about === 'string' && r.about.trim() ? String(r.about).trim().slice(0, 1500) : undefined,
       areas,
       extra: typeof r.extra === 'string' && r.extra.trim() ? r.extra.trim().slice(0, 1000) : undefined,
     },

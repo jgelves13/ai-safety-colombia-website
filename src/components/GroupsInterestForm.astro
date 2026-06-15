@@ -5,9 +5,12 @@ import { AREA_VALUES } from '../lib/groups-interest/schema';
 
 interface Props {
   locale: Locale;
+  // The public /grupos form asks "Cuéntanos sobre ti"; the invite-only link
+  // (/grupos/invitacion) for people we already know hides it.
+  showAbout?: boolean;
 }
 
-const { locale } = Astro.props;
+const { locale, showAbout = true } = Astro.props;
 const es = locale === 'es';
 
 // Build the list of areas from the canonical courses.json so the form
@@ -24,10 +27,22 @@ const areaOptions = AREA_VALUES.map((slug) => {
 const copy = {
   sectionBasics: es ? 'Datos básicos' : 'Basic information',
   sectionInterest: es ? 'Tu interés' : 'Your interest',
+  sectionLogistics: es ? 'Modalidad y horarios' : 'Format & schedule',
   fieldFirstName: es ? 'Nombre' : 'First name',
   fieldLastName: es ? 'Apellido' : 'Last name',
   fieldEmail: 'Email',
-  fieldLocation: es ? 'Ubicación (ciudad, país)' : 'Location (city, country)',
+  fieldFormat: es ? '¿Qué formato te queda mejor?' : 'Which format suits you best?',
+  fieldFormatHelp: es
+    ? 'Los grupos pueden ser virtuales o presenciales en Bogotá.'
+    : 'Groups can run online or in person in Bogotá.',
+  fieldStart: es ? '¿Cuándo te gustaría empezar?' : 'When would you like to start?',
+  fieldStartHelp: es
+    ? 'Elige una fecha aproximada. Es solo una guía para organizar los grupos.'
+    : 'Pick an approximate date. It is just a guide to organise the groups.',
+  fieldAvailability: es ? '¿Qué horarios te quedan mejor?' : 'Which times suit you best?',
+  fieldAvailabilityHelp: es
+    ? 'Toca las franjas en las que podrías participar. Toca un día o una franja para marcar toda la fila o columna.'
+    : 'Tap every slot when you could join. Tap a day or a time to toggle the whole row or column.',
   fieldLinkedIn: es ? 'LinkedIn (URL)' : 'LinkedIn (URL)',
   fieldAbout: es ? 'Cuéntanos un poco sobre ti' : 'Tell us a bit about you',
   fieldAboutHelp: es
@@ -42,6 +57,9 @@ const copy = {
   optional: es ? 'Opcional' : 'Optional',
   submit: es ? 'Enviar interés' : 'Send interest',
   submitting: es ? 'Enviando…' : 'Submitting…',
+  privacyNote: es
+    ? 'Usamos tus datos solo para contactarte sobre los grupos. Guardamos tu ubicación aproximada (ciudad y país) a partir de tu IP con fines estadísticos. Puedes pedir que los eliminemos escribiendo a contacto@aisafetycolombia.org.'
+    : 'We use your data only to contact you about the groups. We also store your approximate location (city and country) derived from your IP for statistics. You can ask us to delete it by writing to contacto@aisafetycolombia.org.',
   successBody: es
     ? '¡Listo! Recibimos tu interés. Te enviamos una confirmación al email.'
     : 'Done. We received your interest. A confirmation is on the way to your inbox.',
@@ -52,7 +70,22 @@ const copy = {
   errorRetry: es ? 'Intentar de nuevo' : 'Try again',
   errorEmailCta: es ? 'Escribir a contacto' : 'Email us',
   areasMinError: es ? 'Marca al menos un tema.' : 'Pick at least one topic.',
+  availabilityMinError: es ? 'Marca al menos un horario.' : 'Pick at least one time slot.',
 };
+
+// Availability rendered as a compact 3×3 matrix (when2meet-style): columns are
+// day groups, rows are time-of-day. Each cell's value = `${day} en la ${time}`,
+// which exactly matches AVAILABILITY_VALUES in schema.ts (no DB/schema change).
+const availDays = [
+  { key: 'Entre semana', es: 'Entre semana', en: 'Weekdays', short: es ? 'L–V' : 'Mon–Fri' },
+  { key: 'Sábado', es: 'Sábado', en: 'Saturday', short: es ? 'Sáb' : 'Sat' },
+  { key: 'Domingo', es: 'Domingo', en: 'Sunday', short: es ? 'Dom' : 'Sun' },
+];
+const availTimes = [
+  { key: 'mañana', es: 'Mañana', en: 'Morning' },
+  { key: 'tarde', es: 'Tarde', en: 'Afternoon' },
+  { key: 'noche', es: 'Noche', en: 'Evening' },
+];
 ---
 
 <section class="apply-section" id="form-grupos">
@@ -89,11 +122,6 @@ const copy = {
         </label>
 
         <label class="apply-field">
-          <span class="apply-label">{copy.fieldLocation}<em>*</em></span>
-          <input type="text" name="location" required autocomplete="address-level2" maxlength="200" placeholder={es ? 'Ej: Bogotá, Colombia' : 'Eg: Bogotá, Colombia'} />
-        </label>
-
-        <label class="apply-field">
           <span class="apply-label">{copy.fieldLinkedIn} <small>· {copy.optional}</small></span>
           <input type="url" name="linkedin" inputmode="url" maxlength="300" placeholder="https://linkedin.com/in/…" />
         </label>
@@ -118,11 +146,78 @@ const copy = {
           </div>
         </div>
 
+        {showAbout && (
+          <label class="apply-field">
+            <span class="apply-label">{copy.fieldAbout}<em>*</em></span>
+            <small class="apply-help">{copy.fieldAboutHelp}</small>
+            <textarea name="about" required rows="3" maxlength="1500"></textarea>
+          </label>
+        )}
+      </section>
+
+      <section class="apply-block">
+        <h2 class="apply-h2">{copy.sectionLogistics}</h2>
+
+        <div class="apply-field">
+          <span class="apply-label">{copy.fieldFormat}<em>*</em></span>
+          <small class="apply-help">{copy.fieldFormatHelp}</small>
+          <div class="apply-radio-group">
+            <label class="apply-check apply-radio">
+              <input type="radio" name="location" value="Virtual" required />
+              <span class="apply-check-body">
+                <span class="apply-check-title">{es ? 'Virtual' : 'Online'}</span>
+              </span>
+            </label>
+            <label class="apply-check apply-radio">
+              <input type="radio" name="location" value="Presencial en Bogotá" required />
+              <span class="apply-check-body">
+                <span class="apply-check-title">{es ? 'Presencial en Bogotá' : 'In person in Bogotá'}</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
         <label class="apply-field">
-          <span class="apply-label">{copy.fieldAbout}<em>*</em></span>
-          <small class="apply-help">{copy.fieldAboutHelp}</small>
-          <textarea name="about" required rows="3" maxlength="1500"></textarea>
+          <span class="apply-label">{copy.fieldStart}<em>*</em></span>
+          <small class="apply-help">{copy.fieldStartHelp}</small>
+          <input type="date" name="preferred_start" id="preferred-start" required class="apply-date" />
         </label>
+
+        <div class="apply-field">
+          <span class="apply-label">{copy.fieldAvailability}<em>*</em></span>
+          <small class="apply-help">{copy.fieldAvailabilityHelp}</small>
+          <div class="apply-avail" id="availability-group">
+            <div class="apply-avail-grid" role="group" aria-label={copy.fieldAvailability}>
+              <span class="apply-avail-corner" aria-hidden="true"></span>
+              {availDays.map((d) => (
+                <button type="button" class="apply-avail-head apply-avail-col" data-col={d.key}>
+                  <span class="apply-avail-col-full">{es ? d.es : d.en}</span>
+                  <span class="apply-avail-col-short">{d.short}</span>
+                </button>
+              ))}
+              {availTimes.map((t) => (
+                <Fragment>
+                  <button type="button" class="apply-avail-head apply-avail-row" data-row={t.key}>
+                    {es ? t.es : t.en}
+                  </button>
+                  {availDays.map((d) => (
+                    <label class="apply-avail-cell">
+                      <input
+                        type="checkbox"
+                        name="availability"
+                        value={`${d.key} en la ${t.key}`}
+                        data-col={d.key}
+                        data-row={t.key}
+                      />
+                      <span class="apply-avail-mark" aria-hidden="true"></span>
+                      <span class="apply-avail-sr">{`${es ? d.es : d.en} · ${es ? t.es : t.en}`}</span>
+                    </label>
+                  ))}
+                </Fragment>
+              ))}
+            </div>
+          </div>
+        </div>
 
         <label class="apply-field">
           <span class="apply-label">{copy.fieldExtra} <small>· {copy.optional}</small></span>
@@ -139,6 +234,8 @@ const copy = {
       </div>
 
       <p class="apply-error" role="alert" hidden></p>
+
+      <p class="apply-privacy">{copy.privacyNote}</p>
     </form>
 
     <div class="apply-success" id="interest-success" hidden>
@@ -156,7 +253,7 @@ const copy = {
   </div>
 </section>
 
-<script is:inline define:vars={{ locale, areasMinError: copy.areasMinError }}>
+<script is:inline define:vars={{ locale, areasMinError: copy.areasMinError, availabilityMinError: copy.availabilityMinError }}>
   (function () {
     const form = document.getElementById('interest-form');
     const successBox = document.getElementById('interest-success');
@@ -166,6 +263,38 @@ const copy = {
     const retryBtn = document.getElementById('interest-retry');
     const areasGroup = document.getElementById('areas-group');
     const areaInputs = areasGroup.querySelectorAll('input[type="checkbox"][name="areas"]');
+    const availabilityGroup = document.getElementById('availability-group');
+    const availabilityInputs = availabilityGroup.querySelectorAll('input[type="checkbox"][name="availability"]');
+
+    // when2meet-style shortcut: tapping a column (day) or row (time) header
+    // toggles every cell in that line. If any cell in the line is unchecked we
+    // check the whole line; otherwise we clear it.
+    function toggleLine(selector) {
+      const cells = availabilityGroup.querySelectorAll(selector);
+      if (cells.length === 0) return;
+      const anyUnchecked = Array.from(cells).some((c) => !c.checked);
+      cells.forEach((c) => { c.checked = anyUnchecked; });
+    }
+    availabilityGroup.querySelectorAll('.apply-avail-col').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        toggleLine('input[data-col="' + btn.getAttribute('data-col') + '"]');
+      });
+    });
+    availabilityGroup.querySelectorAll('.apply-avail-row').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        toggleLine('input[data-row="' + btn.getAttribute('data-row') + '"]');
+      });
+    });
+
+    // Start date: clamp the calendar so visitors can't pick a past day.
+    const startInput = document.getElementById('preferred-start');
+    if (startInput) {
+      try {
+        const today = new Date();
+        const tzOffset = today.getTimezoneOffset() * 60000;
+        startInput.min = new Date(today.getTime() - tzOffset).toISOString().slice(0, 10);
+      } catch (_) {}
+    }
 
     // Pre-check area from ?area=<slug> query param.
     try {
@@ -269,14 +398,22 @@ const copy = {
         return;
       }
 
+      const checkedAvailability = Array.from(availabilityInputs).filter((i) => i.checked).map((i) => i.value);
+      if (checkedAvailability.length === 0) {
+        showError(availabilityMinError);
+        availabilityGroup.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
       setLoading(true);
 
       const fd = new FormData(form);
       const payload = {};
       for (const [k, v] of fd.entries()) {
-        if (k !== 'areas') payload[k] = v;
+        if (k !== 'areas' && k !== 'availability') payload[k] = v;
       }
       payload.areas = checkedAreas;
+      payload.availability = checkedAvailability;
 
       try {
         const res = await fetch('/api/grupos', {
@@ -448,6 +585,23 @@ const copy = {
     font-weight: 400;
   }
 
+  /* Date input: keep the native calendar picker reachable despite appearance:none. */
+  .apply-date {
+    -webkit-appearance: auto;
+    appearance: auto;
+    max-width: 16rem;
+    cursor: pointer;
+  }
+
+  .apply-date::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+
+  .apply-date::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+  }
+
   .apply-field input:hover,
   .apply-field textarea:hover {
     border-bottom-color: var(--text-secondary);
@@ -501,19 +655,13 @@ const copy = {
 
   .apply-check input[type='checkbox']:checked {
     border-color: var(--accent-forest);
-    background: var(--accent-forest);
-  }
-
-  .apply-check input[type='checkbox']:checked::after {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 5px;
-    width: 5px;
-    height: 9px;
-    border-right: 2px solid var(--bg-elevated);
-    border-bottom: 2px solid var(--bg-elevated);
-    transform: rotate(45deg);
+    background-color: var(--accent-forest);
+    /* Crisp, perfectly centred SVG tick (the old rotated-border check sat
+       off-centre in the box). */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FBF6EC' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0.74rem;
   }
 
   .apply-check input[type='checkbox']:focus-visible {
@@ -524,6 +672,206 @@ const copy = {
   .apply-check:has(input[type='checkbox']:checked) {
     border-color: var(--accent-forest);
     background: rgba(20, 54, 32, 0.04);
+  }
+
+  /* Format choice (Virtual / Presencial) — radio variant of .apply-check */
+  .apply-radio-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 0.375rem;
+  }
+
+  @media (max-width: 480px) {
+    .apply-radio-group {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .apply-radio {
+    align-items: center;
+  }
+
+  .apply-check input[type='radio'] {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    width: 1.15rem;
+    height: 1.15rem;
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    background: var(--bg-elevated);
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .apply-check input[type='radio']:checked {
+    border-color: var(--accent-forest);
+  }
+
+  .apply-check input[type='radio']:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--accent-forest);
+    transform: translate(-50%, -50%);
+  }
+
+  .apply-check input[type='radio']:focus-visible {
+    outline: 2px solid var(--accent-forest);
+    outline-offset: 2px;
+  }
+
+  .apply-check:has(input[type='radio']:checked) {
+    border-color: var(--accent-forest);
+    background: rgba(20, 54, 32, 0.04);
+  }
+
+  /* Availability matrix (when2meet-style 3×3 grid) */
+  .apply-avail {
+    margin-top: 0.5rem;
+  }
+
+  .apply-avail-grid {
+    display: grid;
+    grid-template-columns: minmax(58px, 0.85fr) repeat(3, 1fr);
+    gap: 0.4rem;
+    align-items: stretch;
+  }
+
+  .apply-avail-head {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    padding: 0.4rem 0.25rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .apply-avail-head:hover {
+    color: var(--accent-forest);
+    background: rgba(20, 54, 32, 0.05);
+  }
+
+  .apply-avail-col {
+    text-align: center;
+  }
+
+  .apply-avail-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: right;
+    padding-right: 0.5rem;
+  }
+
+  .apply-avail-col-short {
+    display: none;
+  }
+
+  .apply-avail-cell {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg-elevated);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .apply-avail-cell input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .apply-avail-cell:hover {
+    border-color: var(--accent-forest);
+  }
+
+  .apply-avail-cell:has(input:checked) {
+    border-color: var(--accent-forest);
+    background: var(--accent-forest);
+  }
+
+  .apply-avail-mark {
+    width: 1.1rem;
+    height: 1.1rem;
+    position: relative;
+  }
+
+  .apply-avail-cell:has(input:checked) .apply-avail-mark::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 7px;
+    width: 6px;
+    height: 12px;
+    border-right: 2.5px solid var(--bg-elevated);
+    border-bottom: 2.5px solid var(--bg-elevated);
+    transform: rotate(45deg);
+  }
+
+  .apply-avail-cell:has(input:focus-visible) {
+    outline: 2px solid var(--accent-forest);
+    outline-offset: 2px;
+  }
+
+  .apply-avail-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 480px) {
+    .apply-avail-grid {
+      grid-template-columns: minmax(40px, 0.6fr) repeat(3, 1fr);
+      gap: 0.3rem;
+    }
+
+    .apply-avail-col-full {
+      display: none;
+    }
+
+    .apply-avail-col-short {
+      display: inline;
+    }
+
+    .apply-avail-head {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.15rem;
+    }
+
+    .apply-avail-row {
+      padding-right: 0.25rem;
+    }
+
+    .apply-avail-cell {
+      min-height: 2.75rem;
+    }
   }
 
   .apply-check-body {
@@ -576,6 +924,15 @@ const copy = {
     color: var(--accent-vermillion-dark);
     font-size: 1rem;
     margin: 1rem 0 0;
+    text-align: center;
+  }
+
+  .apply-privacy {
+    margin: 1.25rem auto 0;
+    max-width: 52ch;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--text-muted, #6b7280);
     text-align: center;
   }
 

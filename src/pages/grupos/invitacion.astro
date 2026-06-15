@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GroupsInterestForm from '../../components/GroupsInterestForm.astro';
+
+const locale = 'es';
+---
+
+<BaseLayout
+  locale={locale}
+  currentPage="get-involved"
+  title="Únete a un grupo de discusión | AI Safety Colombia"
+  description="Invitación a sumarte a los grupos de discusión de AI Safety Colombia."
+  noindex={true}
+>
+  <section class="invite-intro">
+    <div class="invite-shell">
+      <h1 class="invite-title">Nos encantaría tenerte en un grupo de discusión</h1>
+      <p class="invite-lead">
+        El hackathon fue solo el comienzo. Estamos creando grupos de discusión para seguir aprendiendo y construyendo comunidad en seguridad y gobernanza de IA. Cuéntanos qué temas te interesan, qué horarios te funcionan y comparte este formulario con amigos que también quieran sumarse.
+      </p>
+    </div>
+  </section>
+
+  <GroupsInterestForm locale={locale} showAbout={false} />
+</BaseLayout>
+
+<style>
+  .invite-intro {
+    padding: 4.5rem 1.5rem 0.5rem;
+  }
+
+  .invite-shell {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .invite-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: var(--accent-forest);
+    margin: 0 0 1rem;
+  }
+
+  .invite-lead {
+    font-family: var(--font-body);
+    font-size: 1.08rem;
+    line-height: 1.6;
+    color: var(--text-body, #211a12);
+    max-width: 64ch;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  @media (max-width: 600px) {
+    .invite-intro {
+      padding-top: 3rem;
+    }
+  }
+</style>

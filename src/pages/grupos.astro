@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GetInvolvedPage from '../components/GetInvolvedPage.astro';
 import GroupsInterestForm from '../components/GroupsInterestForm.astro';
+import GroupsFlow from '../components/GroupsFlow.astro';
 
 const locale = 'es';
 ---
@@ -12,6 +13,8 @@ const locale = 'es';
   title="Grupos de lectura de AI Safety en Bogotá | AI Safety Colombia"
   description="Cinco grupos de lectura sobre AI safety y alineación de IA basados en BlueDot Impact. Lecturas en español y, con demanda suficiente, encuentros presenciales en Bogotá. Expresa tu interés para abrir el siguiente grupo."
 >
-  <GetInvolvedPage locale={locale} />
-  <GroupsInterestForm locale={locale} />
+  <GroupsFlow locale={locale}>
+    <GetInvolvedPage slot="browse" locale={locale} />
+    <GroupsInterestForm slot="form" locale={locale} />
+  </GroupsFlow>
 </BaseLayout>

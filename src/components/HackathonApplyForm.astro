@@ -1,7 +1,7 @@
 ---
 import type { Locale } from '../i18n/ui';
 import data from '../data/hackathon.json';
-import { HARD_DEADLINE_UTC_MS } from '../lib/hackathon-apply/deadline';
+import { HARD_DEADLINE_UTC_MS, BYPASS_PARAM } from '../lib/hackathon-apply/deadline';
 
 interface Props {
   locale: Locale;
@@ -266,7 +266,7 @@ const copy = {
       <p>{copy.errorBody}</p>
       <div class="apply-success-actions">
         <button type="button" class="btn btn-primary" id="apply-retry">{copy.errorRetry}</button>
-        <a class="btn btn-secondary" href="mailto:aisafetycolombia@gmail.com">{copy.errorEmailCta}</a>
+        <a class="btn btn-secondary" href="mailto:contacto@aisafetycolombia.org">{copy.errorEmailCta}</a>
       </div>
     </div>
 
@@ -281,7 +281,7 @@ const copy = {
   </div>
 </section>
 
-<script is:inline define:vars={{ locale, deadlineMs }}>
+<script is:inline define:vars={{ locale, deadlineMs, bypassParam: BYPASS_PARAM }}>
   (function () {
     const form = document.getElementById('apply-form');
     const successBox = document.getElementById('apply-success');
@@ -300,12 +300,37 @@ const copy = {
       if (errorBox) errorBox.hidden = true;
       if (closedBox) closedBox.hidden = false;
     }
+    function showOpen() {
+      if (closedBox) closedBox.hidden = true;
+      if (intro) intro.hidden = false;
+      form.hidden = false;
+    }
 
-    // Cosmetic only: server is authoritative. A client with a wrong clock
-    // can still submit but will be rejected by /api/aplicar with 403.
+    // Private bypass link: ?<bypassParam>=<secret>. The secret is never compared
+    // here — the page only forwards it; /api/aplicar/access validates it, and
+    // /api/aplicar enforces it again on submit. Without a valid code, a past-
+    // deadline visit shows the closed banner like everyone else.
+    var accessCode = '';
+    try {
+      accessCode = new URLSearchParams(window.location.search).get(bypassParam) || '';
+    } catch (_) {}
+
+    // Cosmetic only: server is authoritative. A client with a wrong clock can
+    // still submit but will be rejected by /api/aplicar with 403.
     if (typeof deadlineMs === 'number' && Date.now() > deadlineMs) {
-      showClosed();
-      return;
+      if (!accessCode) {
+        showClosed();
+        return;
+      }
+      // Hide everything until the code is verified, so a bad code never flashes
+      // the live form. The rest of the handlers below still wire up so the form
+      // works the instant we reveal it.
+      form.hidden = true;
+      if (intro) intro.hidden = true;
+      fetch('/api/aplicar/access?' + bypassParam + '=' + encodeURIComponent(accessCode))
+        .then(function (r) { return r.ok ? r.json() : { ok: false }; })
+        .then(function (j) { if (j && j.ok) { showOpen(); } else { accessCode = ''; showClosed(); } })
+        .catch(function () { accessCode = ''; showClosed(); });
     }
 
     function showError(msg) {
@@ -430,9 +455,11 @@ const copy = {
       const payload = Object.fromEntries(fd.entries());
 
       try {
+        const headers = { 'Content-Type': 'application/json' };
+        if (accessCode) headers['x-apply-access'] = accessCode;
         const res = await fetch('/api/aplicar', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: headers,
           body: JSON.stringify(payload),
         });
         if (res.status === 403) {

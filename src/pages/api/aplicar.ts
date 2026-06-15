@@ -3,7 +3,7 @@ import { validate } from '../../lib/hackathon-apply/schema';
 import { translateToEnglish } from '../../lib/hackathon-apply/translate';
 import { insertApplication } from '../../lib/hackathon-apply/supabase';
 import { markDraftComplete } from '../../lib/hackathon-apply/draftSupabase';
-import { isPastDeadline, HARD_DEADLINE_ISO } from '../../lib/hackathon-apply/deadline';
+import { isPastDeadline, HARD_DEADLINE_ISO, bypassGranted, BYPASS_HEADER } from '../../lib/hackathon-apply/deadline';
 import {
   sendApplicantConfirmation,
   sendFailureAlert,
@@ -20,7 +20,9 @@ const json = (body: unknown, status = 200, headers: Record<string, string> = {})
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
   // Hard deadline first — cheapest gate, denies before we touch state.
-  if (isPastDeadline()) {
+  // Exception: a private bypass link carries a secret code in the BYPASS_HEADER
+  // that, when valid, lets a hand-picked applicant submit after close.
+  if (isPastDeadline() && !bypassGranted(request.headers.get(BYPASS_HEADER))) {
     return json({ error: 'deadline_passed', deadline: HARD_DEADLINE_ISO }, 403);
   }
 

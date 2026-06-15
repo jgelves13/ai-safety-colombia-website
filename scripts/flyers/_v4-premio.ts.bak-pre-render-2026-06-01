@@ -1,0 +1,74 @@
+import { render, html, BRAND, hostsRow, getHostsLogosHD } from './lib';
+import type { FlyerFormat } from './_v3-apart';
+
+export default async function (format: FlyerFormat = 'portrait') {
+  const isPort = format === 'portrait';
+  const W = 1080;
+  const H = isPort ? 1350 : 1080;
+
+  const padT = isPort ? 113 : 90;
+  const padB = isPort ? 103 : 82;
+  const padX = isPort ? 104 : 88;
+  const blockGap = isPort ? 34 : 28;
+  const labelSz = isPort ? 19 : 17;
+  const heroSz = isPort ? 148 : 124;
+  const heroSubSz = isPort ? 26 : 23;
+  const midSz = isPort ? 50 : 42;
+  const stepPadV = isPort ? 36 : 28;
+  const stepPadH = isPort ? 28 : 24;
+  const stepBorder = isPort ? 5 : 4;
+  const stepTitleSz = isPort ? 34 : 30;
+  const stepDescSz = isPort ? 19 : 17;
+  const urlSz = isPort ? 16 : 14;
+  const hostsFs = 22;
+
+  const hostsLogos = await getHostsLogosHD(hostsFs, { aiscBlack: true });
+  const FOREST = BRAND.forest;
+  const CORAL = BRAND.coral;
+  const YELLOW = BRAND.yellow;
+
+  const step = (num: string, title: string, desc: string, numColor: string) => `
+    <div style="display:flex;flex-direction:column;flex:1;gap:14px;padding:${stepPadV}px ${stepPadH}px;border-top:${stepBorder}px solid ${FOREST}">
+      <div style="display:flex;font-family:JetBrains Mono;font-size:${labelSz}px;letter-spacing:0.18em;color:${numColor}">${num}</div>
+      <div style="display:flex;font-family:Bricolage Grotesque;font-weight:700;font-size:${stepTitleSz}px;line-height:1.1;letter-spacing:-0.015em;color:${FOREST}">${title}</div>
+      <div style="display:flex;font-family:Inter;font-weight:500;font-size:${stepDescSz}px;line-height:1.4;color:${BRAND.ink}">${desc}</div>
+    </div>`;
+
+  const source = `
+    <div style="display:flex;width:${W}px;height:${H}px;background:${BRAND.cream};font-family:Inter;position:relative;overflow:hidden">
+
+      <div style="display:flex;flex-direction:column;width:${W}px;height:${H}px;padding:${padT}px ${padX}px ${padB}px ${padX}px;justify-content:space-between">
+
+        <div style="display:flex;flex-direction:column;gap:${blockGap}px;max-width:940px">
+
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:${labelSz}px;letter-spacing:0.2em;color:${CORAL};text-transform:uppercase">Premio</div>
+            <div style="display:flex;font-family:Bricolage Grotesque;font-weight:800;font-size:${heroSz}px;line-height:0.95;letter-spacing:-0.035em;color:${FOREST}">USD 3.000</div>
+            <div style="display:flex;font-family:Inter;font-weight:500;font-size:${heroSubSz}px;line-height:1.4;color:${BRAND.ink};max-width:680px;margin-top:10px">entre 3 equipos ganadores en América Latina</div>
+          </div>
+
+          <div style="display:flex;font-family:Bricolage Grotesque;font-weight:700;font-size:${midSz}px;line-height:1.12;letter-spacing:-0.018em;color:${FOREST};max-width:920px">Pero el premio es solo la puerta a la siguiente etapa.</div>
+
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div style="display:flex;align-items:stretch;gap:20px">
+            ${step('01', 'Hackathon', 'Tres días de trabajo en equipo sobre un reto definido por expertos.', CORAL)}
+            ${step('02', 'Apart Lab Fellowship', 'Los equipos ganadores reciben invitación; algunos fellows han publicado en ICLR, NeurIPS, ACL.', YELLOW)}
+            ${step('03', 'Vinculación', 'Publicación en conferencias y roles en organizaciones de seguridad de IA.', CORAL)}
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:${urlSz}px;letter-spacing:0.04em;color:${BRAND.ink2}">aisafetycolombia.org/hackathon</div>
+          ${hostsRow({ color: BRAND.ink2, fontSize: hostsFs, ...hostsLogos })}
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  const png = await render(html(source), W, H);
+  return { filename: `_v4-06-premio-${format}.png`, png };
+}

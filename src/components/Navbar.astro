@@ -20,6 +20,7 @@ const links = [
   { page: 'events', href: localePath(locale, '/eventos/'), label: t(locale, 'nav.events') },
   { page: 'resources', href: localePath(locale, '/recursos/'), label: t(locale, 'nav.resources') },
   { page: 'get-involved', href: localePath(locale, '/grupos/'), label: t(locale, 'nav.get-involved') },
+  { page: 'contact', href: localePath(locale, '/contacto/'), label: t(locale, 'nav.contact') },
 ];
 ---
 
@@ -56,7 +57,6 @@ const links = [
   {links.map(link => (
     <a href={link.href} class={isActive(link.page) ? 'active' : ''}>{link.label}</a>
   ))}
-  <a href={localePath(locale, '/contacto/')} class={isActive('contact') ? 'active' : ''}>{t(locale, 'nav.contact')}</a>
 </div>
 </header>
 

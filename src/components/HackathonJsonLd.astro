@@ -11,7 +11,9 @@ const es = locale === 'es';
 const site = Astro.site ?? new URL('https://aisafetycolombia.org/');
 
 const hackathonUrl = new URL(es ? 'hackathon/' : 'en/hackathon/', site).href;
-const applyUrl = new URL(es ? 'aplicar/' : 'en/apply/', site).href;
+// In-person hub applications closed (12 Jun); the live registration path is
+// Apart's online sprint page, open until the event starts.
+const applyUrl = data.registrationUrl;
 
 const stripHtml = (s: string) => (s || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
 
@@ -127,7 +129,7 @@ const event = {
     url: applyUrl,
     availability: 'https://schema.org/InStock',
     validFrom: '2026-04-01T00:00:00-05:00',
-    validThrough: `${data.deadlineDate}T23:59:59-05:00`,
+    validThrough: `${data.date}T23:59:59-05:00`,
     category: 'Free',
   },
   workPerformed: {

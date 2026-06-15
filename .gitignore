@@ -25,3 +25,32 @@ scripts/flyers/dist/
 scripts/flyers/.research/
 
 .vercel
+.env*.local
+
+# Local scratch / build artifacts (public renders, send logs, dev server log)
+tmp/
+
+# Applicant/recipient data — PII, never commit (keep the @example.com template)
+scripts/*.csv
+!scripts/acceptances.sample.csv
+
+# Email-sending tooling: embeds real applicant emails (TRAVEL_AID_BY_EMAIL) and
+# handles PII CSVs. Public repo → keep this PII out of git. Not part of the site
+# build (nothing under src/pages or src/components imports acceptanceEmail.ts).
+src/lib/hackathon-confirm/acceptanceEmail.ts
+scripts/send-acceptance-emails.ts
+scripts/preview-acceptance-email.ts
+scripts/preview-three-emails.ts
+
+# Local email/preview renders (contain personalized confirm tokens/links)
+public/_*.html
+
+# Scraped research scratch (regenerable, bulk personal data)
+scripts/flyers/judges_linkedin_*
+
+# LinkedIn scraper holds a hardcoded Apify API token — never commit
+scripts/flyers/_scrape_judges_linkedin.py
+
+# Local image backups
+*.before-spacing
+public/people/*.orig

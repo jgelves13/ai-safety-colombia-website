@@ -13,9 +13,10 @@ interface Props {
   description?: string;
   currentPage?: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
-const { locale, title, description, currentPage = '', ogImage } = Astro.props;
+const { locale, title, description, currentPage = '', ogImage, noindex = false } = Astro.props;
 const pageTitle = title || t(locale, 'site.title');
 const pageDesc = description || t(locale, 'site.description');
 const switchHref = getAltHref(locale, Astro.url.pathname);
@@ -81,6 +82,7 @@ const isHackathonPage = currentPage === 'hackathon';
   <meta name="theme-color" content="#FBF6EC">
   <title>{pageTitle}</title>
   <meta name="description" content={pageDesc}>
+  {noindex && <meta name="robots" content="noindex, nofollow">}
   <meta property="og:title" content={pageTitle}>
   <meta property="og:description" content={pageDesc}>
   <meta property="og:type" content="website">

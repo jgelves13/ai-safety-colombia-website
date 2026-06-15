@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HackathonConfirmForm from '../components/HackathonConfirmForm.astro';
+
+const locale = 'es';
+---
+
+<BaseLayout
+  locale={locale}
+  currentPage="hackathon"
+  title="Confirma tu cupo | AI Safety Colombia"
+  description="Confirma tu participación en el hackathon presencial de Bogotá del Global South AI Safety Hackathon (19-21 de junio de 2026)."
+  noindex={true}
+>
+  <HackathonConfirmForm locale={locale} />
+</BaseLayout>

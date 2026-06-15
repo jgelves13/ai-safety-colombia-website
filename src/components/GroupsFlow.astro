@@ -1,0 +1,120 @@
+---
+import type { Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const es = locale === 'es';
+const backLabel = es ? '← Volver a los grupos' : '← Back to the groups';
+---
+
+<div id="groups-browse">
+  <slot name="browse" />
+</div>
+
+<div id="groups-form-view" hidden>
+  <div class="gform-topbar">
+    <button type="button" id="groups-back" class="gform-back">{backLabel}</button>
+  </div>
+  <slot name="form" />
+</div>
+
+<script is:inline>
+  (function () {
+    var browse = document.getElementById('groups-browse');
+    var formView = document.getElementById('groups-form-view');
+    var topbar = formView ? formView.querySelector('.gform-topbar') : null;
+    var backBtn = document.getElementById('groups-back');
+    var form = document.getElementById('interest-form');
+    var successBox = document.getElementById('interest-success');
+    if (!browse || !formView) return;
+
+    function checkArea(slug) {
+      if (!slug || !form) return;
+      var cb = form.querySelector('input[name="areas"][value="' + slug + '"]');
+      if (cb && !cb.checked) cb.checked = true;
+    }
+
+    function reveal(slug) {
+      checkArea(slug);
+      browse.hidden = true;
+      formView.hidden = false;
+      requestAnimationFrame(function () {
+        var top = formView.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: Math.max(0, top - 8), behavior: 'smooth' });
+      });
+    }
+
+    function back() {
+      formView.hidden = true;
+      browse.hidden = false;
+    }
+
+    // "Expresar interés" buttons (rendered by CoursesPage). On this page the
+    // form lives below, so intercept the click and swap views instead of
+    // following the href / opening a new tab.
+    document.querySelectorAll('.course-interest').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var slug = null;
+        try {
+          slug = new URL(a.href, window.location.origin).searchParams.get('area');
+        } catch (_) {}
+        reveal(slug);
+      });
+    });
+
+    if (backBtn) backBtn.addEventListener('click', back);
+
+    // Once the interest is sent, the form hides itself and reveals the
+    // thank-you message — drop the "back" bar so only the message remains.
+    if (successBox && topbar) {
+      new MutationObserver(function () {
+        if (!successBox.hidden) topbar.hidden = true;
+      }).observe(successBox, { attributes: true, attributeFilter: ['hidden'] });
+    }
+
+    // Deep link: arriving with ?area=… (e.g. from the Courses page) opens
+    // straight into the form. The form's own script pre-checks the boxes.
+    try {
+      if (new URLSearchParams(window.location.search).has('area')) {
+        browse.hidden = true;
+        formView.hidden = false;
+      }
+    } catch (_) {}
+  })();
+</script>
+
+<style>
+  #groups-browse[hidden],
+  #groups-form-view[hidden] {
+    display: none;
+  }
+
+  .gform-topbar {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 0;
+  }
+
+  .gform-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-forest);
+    padding: 0.4rem 0;
+    transition: color 0.15s ease;
+  }
+
+  .gform-back:hover {
+    color: var(--accent-vermillion);
+  }
+</style>

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import GetInvolvedPage from '../../components/GetInvolvedPage.astro';
 import GroupsInterestForm from '../../components/GroupsInterestForm.astro';
+import GroupsFlow from '../../components/GroupsFlow.astro';
 
 const locale = 'en';
 ---
@@ -12,6 +13,8 @@ const locale = 'en';
   title="AI Safety Reading Groups in Bogotá | AI Safety Colombia"
   description="Five reading groups on AI safety and alignment based on BlueDot Impact. We run them in Spanish and, with enough demand, in person in Bogotá. Express interest to help open the next cohort."
 >
-  <GetInvolvedPage locale={locale} />
-  <GroupsInterestForm locale={locale} />
+  <GroupsFlow locale={locale}>
+    <GetInvolvedPage slot="browse" locale={locale} />
+    <GroupsInterestForm slot="form" locale={locale} />
+  </GroupsFlow>
 </BaseLayout>

@@ -1,0 +1,114 @@
+import { render, html, BRAND, hostsRow, getHostsLogosHD, squarePhotoDataUrl } from './lib';
+import type { FlyerFormat } from './_v3-apart';
+
+export default async function (format: FlyerFormat = 'portrait') {
+  const isPort = format === 'portrait';
+  const W = 1080;
+  const H = isPort ? 1350 : 1080;
+
+  const PHOTO = isPort ? 320 : 280;
+  const RING = isPort ? 7 : 6;
+  const padT = isPort ? 113 : 90;
+  const padB = isPort ? 103 : 82;
+  const padX = isPort ? 104 : 88;
+  const headerGap = isPort ? 34 : 26;
+  const kickerSz = isPort ? 18 : 16;
+  const headingSz = isPort ? 72 : 62;
+  const rowsGap = isPort ? 28 : 22;
+  const rowGap = isPort ? 38 : 30;
+  const contentGap = isPort ? 14 : 12;
+  const modeSz = isPort ? 17 : 15;
+  const nameSz = isPort ? 56 : 48;
+  const affSz = isPort ? 22 : 18;
+  const dividerW = isPort ? 60 : 50;
+  const dividerH = isPort ? 5 : 4;
+  const topicSz = isPort ? 28 : 24;
+  const bioSz = isPort ? 19 : 16;
+
+  const hostsFs = 22;
+  const urlSz = isPort ? 16 : 14;
+  const hostsLogos = await getHostsLogosHD(hostsFs, { aiscBlack: true });
+  const FOREST = BRAND.forest;
+  const CORAL = BRAND.coral;
+
+  const [ceronPhoto, toroPhoto] = await Promise.all([
+    squarePhotoDataUrl('public/people/juan-felipe.jpg', 600),
+    squarePhotoDataUrl('public/people/alejandro.jpg', 600),
+  ]);
+
+  const speakers = [
+    {
+      accent: FOREST,
+      photo: ceronPhoto,
+      name: 'Juan Felipe Cerón',
+      aff: 'OpenAI',
+      mode: 'Remoto',
+      topic: 'Adversarial robustness: defensas contra ataques a sistemas de IA.',
+      bio: 'Ingeniero de investigación en alineación de IA en OpenAI. Coautor de IH-Challenge (RL para resistir inyección de prompts) y LLM Critics (modelos de crítica para evaluar salidas de LLMs).',
+    },
+    {
+      accent: CORAL,
+      photo: toroPhoto,
+      name: 'Alejandro Toro',
+      aff: 'Congreso de la República',
+      mode: 'Presencial',
+      topic: 'Proyecto de Ley 368/2025: regulación de armas autónomas letales.',
+      bio: 'Representante a la Cámara. Coautor y coordinador para primer debate del proyecto que prohíbe los sistemas de armas autónomas letales y regula los semiautónomos.',
+    },
+  ];
+
+  const photoBlock = (s: typeof speakers[number], _mirrored: boolean) => `
+    <div style="display:flex;width:${PHOTO}px;height:${PHOTO}px;flex-shrink:0;border-radius:50%;border:${RING}px solid ${s.accent};box-sizing:border-box;overflow:hidden">
+      <img src="${s.photo}" style="display:flex;width:${PHOTO - RING * 2}px;height:${PHOTO - RING * 2}px;object-fit:cover;border-radius:50%"/>
+    </div>`;
+
+  const content = (s: typeof speakers[number], mirrored: boolean) => `
+    <div style="display:flex;flex-direction:column;flex:1;gap:${contentGap}px;padding:6px ${mirrored ? '0' : '24px'} 6px ${mirrored ? '24px' : '0'}">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="display:flex;width:10px;height:10px;border-radius:50%;background:${s.accent}"></div>
+        <div style="display:flex;font-family:JetBrains Mono;font-size:${modeSz}px;letter-spacing:0.22em;color:${FOREST};text-transform:uppercase">${s.mode}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <div style="display:flex;font-family:Bricolage Grotesque;font-weight:800;font-size:${nameSz}px;line-height:0.98;letter-spacing:-0.026em;color:${FOREST}">${s.name}</div>
+        <div style="display:flex;font-family:Inter;font-weight:600;font-size:${affSz}px;line-height:1.3;color:${s.accent}">${s.aff}</div>
+      </div>
+      <div style="display:flex;width:${dividerW}px;height:${dividerH}px;background:${s.accent}"></div>
+      <div style="display:flex;font-family:Bricolage Grotesque;font-weight:700;font-size:${topicSz}px;line-height:1.2;letter-spacing:-0.012em;color:${FOREST}">${s.topic}</div>
+      <div style="display:flex;font-family:Inter;font-weight:500;font-size:${bioSz}px;line-height:1.45;color:#0C0C0C">${s.bio}</div>
+    </div>`;
+
+  const row = (s: typeof speakers[number], mirrored: boolean) => `
+    <div style="display:flex;flex-direction:${mirrored ? 'row-reverse' : 'row'};gap:${rowGap}px;align-items:center">
+      ${photoBlock(s, mirrored)}${content(s, mirrored)}
+    </div>`;
+
+  const source = `
+    <div style="display:flex;width:${W}px;height:${H}px;background:${BRAND.cream};font-family:Inter;position:relative;overflow:hidden">
+
+      <div style="display:flex;flex-direction:column;width:${W}px;height:${H}px;padding:${padT}px ${padX}px ${padB}px ${padX}px;justify-content:space-between">
+
+        <div style="display:flex;flex-direction:column;gap:${headerGap}px">
+          <div style="display:flex;flex-direction:column;gap:12px;max-width:820px">
+            <div style="display:flex;font-family:JetBrains Mono;font-size:${kickerSz}px;letter-spacing:0.22em;color:${FOREST};text-transform:uppercase">Kickoff del hackathon</div>
+            <div style="display:flex;font-family:Bricolage Grotesque;font-weight:700;font-size:${headingSz}px;line-height:1.0;letter-spacing:-0.024em;color:${FOREST}">Dos ponencias para abrir el sprint.</div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:${rowsGap}px">
+            ${row(speakers[0], false)}
+            ${row(speakers[1], true)}
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:${urlSz}px;letter-spacing:0.04em;color:${BRAND.ink2}">aisafetycolombia.org/hackathon</div>
+          ${hostsRow({ color: BRAND.ink2, fontSize: hostsFs, ...hostsLogos })}
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  const png = await render(html(source), W, H);
+  return { filename: `_v4-04-ponentes-${format}.png`, png };
+}

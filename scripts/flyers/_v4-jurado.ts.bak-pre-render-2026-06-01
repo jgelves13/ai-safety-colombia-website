@@ -1,0 +1,99 @@
+import { render, html, BRAND, hostsRow, getHostsLogosHD, squarePhotoDataUrl } from './lib';
+import type { FlyerFormat } from './_v3-apart';
+
+export default async function (format: FlyerFormat = 'portrait') {
+  const isPort = format === 'portrait';
+  const W = 1080;
+  const H = isPort ? 1350 : 1080;
+
+  const padT = isPort ? 113 : 90;
+  const padB = isPort ? 103 : 82;
+  const padX = isPort ? 88 : 72;
+  const kickerSz = isPort ? 22 : 19;
+  const headerGap = isPort ? 22 : 18;
+  const headingSz = isPort ? 78 : 66;
+  const subSz = isPort ? 23 : 20;
+  const colGap = isPort ? 28 : 22;
+  const rowGap = isPort ? 26 : 20;
+  const photoSz = isPort ? 132 : 108;
+  const photoNameGap = isPort ? 20 : 16;
+  const nameSz = isPort ? 24 : 21;
+  const affSz = isPort ? 16 : 14;
+  const topicSz = isPort ? 15 : 13;
+  const headerToGridGap = isPort ? 42 : 32;
+  const urlSz = isPort ? 16 : 14;
+  const hostsFs = 22;
+  const ringW = isPort ? 4 : 3;
+
+  const hostsLogos = await getHostsLogosHD(hostsFs, { aiscBlack: true });
+  const FOREST = BRAND.forest;
+  const CORAL = BRAND.coral;
+
+  const photos = await Promise.all([
+    squarePhotoDataUrl('public/people/juan-felipe.jpg', 400),
+    squarePhotoDataUrl('public/people/melissa.jpg', 400),
+    squarePhotoDataUrl('public/people/catalina.jpg', 400),
+    squarePhotoDataUrl('public/people/juan-lievano.jpg', 400),
+    squarePhotoDataUrl('public/people/steve.jpg', 400),
+    squarePhotoDataUrl('public/people/wanda.jpg', 400),
+    squarePhotoDataUrl('public/people/alejo-acelas.jpg', 400),
+    squarePhotoDataUrl('public/people/monica-ulloa.jpg', 400),
+  ]);
+
+  const judges = [
+    { photo: photos[0], name: 'Juan Felipe Cerón',   aff: 'OpenAI',                                          topic: 'Inyección de prompts · Evaluación de LLMs' },
+    { photo: photos[1], name: 'Melissa Robles',      aff: 'BID Lab · Quantil',                               topic: 'Auditoría de comportamiento multilingüe' },
+    { photo: photos[2], name: 'Catalina Bernal',     aff: 'BIP Colombia',                                    topic: 'Auditoría de comportamiento multilingüe' },
+    { photo: photos[3], name: 'Juan Liévano-Karim',  aff: 'UC Berkeley',                                     topic: 'Control de IA · Sistemas agénticos' },
+    { photo: photos[4], name: 'Steve Hege',          aff: 'ILAPS',                                           topic: 'Gobernanza de armas autónomas letales' },
+    { photo: photos[5], name: 'Wanda Muñoz',         aff: 'SEHLAC · Stop Killer Robots',                     topic: 'Gobernanza de armas autónomas letales' },
+    { photo: photos[6], name: 'Alejandro Acelas',    aff: 'Cliver · 80,000 Hours',                           topic: 'Política y regulación de IA' },
+    { photo: photos[7], name: 'Mónica Ulloa',        aff: 'BID Lab · Carreras con Impacto',                  topic: 'Política y regulación de IA' },
+  ];
+
+  const cell = (j: typeof judges[number]) => `
+    <div style="display:flex;align-items:flex-start;gap:${photoNameGap}px;flex:1">
+      <div style="display:flex;width:${photoSz}px;height:${photoSz}px;flex-shrink:0;border-radius:50%;border:${ringW}px solid ${FOREST};box-sizing:border-box;overflow:hidden">
+        <img src="${j.photo}" style="display:flex;width:${photoSz - ringW * 2}px;height:${photoSz - ringW * 2}px;object-fit:cover;border-radius:50%"/>
+      </div>
+      <div style="display:flex;flex-direction:column;flex:1;gap:6px;padding-top:2px">
+        <div style="display:flex;font-family:Bricolage Grotesque;font-weight:700;font-size:${nameSz}px;line-height:1.1;letter-spacing:-0.015em;color:${FOREST}">${j.name}</div>
+        <div style="display:flex;font-family:Inter;font-weight:600;font-size:${affSz}px;line-height:1.3;color:${CORAL}">${j.aff}</div>
+        <div style="display:flex;font-family:Inter;font-weight:500;font-size:${topicSz}px;line-height:1.35;color:${BRAND.ink}">${j.topic}</div>
+      </div>
+    </div>`;
+
+  const rowOf = (a: typeof judges[number], b: typeof judges[number]) => `
+    <div style="display:flex;gap:${colGap}px">${cell(a)}${cell(b)}</div>`;
+
+  const source = `
+    <div style="display:flex;width:${W}px;height:${H}px;background:${BRAND.cream};font-family:Inter;position:relative;overflow:hidden">
+
+      <div style="display:flex;flex-direction:column;width:${W}px;height:${H}px;padding:${padT}px ${padX}px ${padB}px ${padX}px">
+
+        <div style="display:flex;flex-direction:column;gap:${headerGap}px;max-width:880px">
+          <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:${kickerSz}px;letter-spacing:0.2em;color:${CORAL};text-transform:uppercase">Jurado</div>
+          <div style="display:flex;font-family:Bricolage Grotesque;font-weight:700;font-size:${headingSz}px;line-height:1.0;letter-spacing:-0.024em;color:${FOREST}">¿Quién evalúa?</div>
+          <div style="display:flex;font-family:Inter;font-weight:500;font-size:${subSz}px;line-height:1.4;color:${BRAND.ink};max-width:820px">Investigadoras, investigadores y especialistas trabajando en seguridad y gobernanza de IA en la región.</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:${rowGap}px;margin-top:${headerToGridGap}px">
+          ${rowOf(judges[0], judges[1])}
+          ${rowOf(judges[2], judges[3])}
+          ${rowOf(judges[4], judges[5])}
+          ${rowOf(judges[6], judges[7])}
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto">
+          <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:${urlSz}px;letter-spacing:0.04em;color:${BRAND.ink2}">aisafetycolombia.org/hackathon</div>
+          ${hostsRow({ color: BRAND.ink2, fontSize: hostsFs, ...hostsLogos })}
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  const png = await render(html(source), W, H);
+  return { filename: `_v4-05-jurado-${format}.png`, png };
+}

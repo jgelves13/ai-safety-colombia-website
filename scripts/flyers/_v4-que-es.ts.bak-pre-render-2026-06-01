@@ -1,0 +1,161 @@
+import { render, html, BRAND, hostsRow, getHostsLogosHD } from './lib';
+import type { FlyerFormat } from './_v3-apart';
+
+const LATAM_PATH = [
+  'M 7 0',
+  'L 121 23',
+  'C 130 40, 140 70, 143 100',
+  'L 143 114',
+  'C 162 118, 180 122, 200 125',
+  'L 221 119',
+  'C 220 135, 217 150, 214 159',
+  'C 209 170, 207 178, 207 182',
+  'C 213 195, 218 210, 221 216',
+  'L 250 216',
+  'C 270 225, 280 245, 293 261',
+  'C 305 255, 318 245, 321 239',
+  'L 336 227',
+  'C 360 233, 385 247, 400 250',
+  'C 415 260, 430 275, 436 284',
+  'C 455 295, 468 304, 471 307',
+  'C 478 325, 484 345, 486 364',
+  'C 520 380, 560 400, 593 420',
+  'L 593 455',
+  'C 585 480, 575 500, 571 511',
+  'C 565 545, 555 590, 543 625',
+  'L 536 625',
+  'L 514 636',
+  'C 500 665, 490 695, 486 705',
+  'C 470 730, 450 750, 436 761',
+  'C 420 780, 405 800, 400 807',
+  'C 385 830, 375 860, 364 886',
+  'L 364 988',
+  'C 352 980, 340 974, 336 966',
+  'C 325 940, 322 900, 321 830',
+  'C 322 800, 325 770, 329 739',
+  'C 333 700, 340 660, 343 625',
+  'L 343 568',
+  'C 320 540, 305 520, 293 500',
+  'C 285 475, 281 460, 279 455',
+  'L 271 420',
+  'L 271 386',
+  'C 274 370, 277 360, 279 352',
+  'L 286 343',
+  'L 293 318',
+  'L 293 295',
+  'L 293 273',
+  'L 279 261',
+  'C 260 256, 245 252, 236 250',
+  'L 221 227',
+  'L 207 216',
+  'L 193 205',
+  'L 164 182',
+  'L 129 170',
+  'L 100 148',
+  'L 86 102',
+  'L 50 45',
+  'L 43 57',
+  'L 57 91',
+  'L 57 103',
+  'C 50 95, 45 80, 40 60',
+  'L 35 35',
+  'L 7 0',
+  'Z',
+].join(' ');
+const BOGOTA = { cx: 326, cy: 284 };
+
+function latamIllustrated(opts: { width: number; height: number; coral: string; forest: string; sand: string; ink: string }): string {
+  const { width: w, height: h, coral, forest, sand, ink } = opts;
+  const tropics = [
+    `<line x1="0" y1="160" x2="600" y2="160" stroke="${forest}" stroke-width="1.5" stroke-dasharray="4 8" opacity="0.35"/>`,
+    `<line x1="0" y1="335" x2="600" y2="335" stroke="${coral}" stroke-width="1.8" stroke-dasharray="6 6" opacity="0.45"/>`,
+    `<line x1="0" y1="580" x2="600" y2="580" stroke="${forest}" stroke-width="1.5" stroke-dasharray="4 8" opacity="0.35"/>`,
+  ].join('');
+  const meridian = `<line x1="${BOGOTA.cx}" y1="0" x2="${BOGOTA.cx}" y2="1000" stroke="${forest}" stroke-width="1.2" stroke-dasharray="3 9" opacity="0.28"/>`;
+  const land = `<path d="${LATAM_PATH}" fill="${sand}" stroke="${coral}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>`;
+  const shadow = `<path d="${LATAM_PATH}" fill="${ink}" fill-opacity="0.08" transform="translate(6 8)"/>`;
+  const bogota = [
+    `<circle cx="${BOGOTA.cx}" cy="${BOGOTA.cy}" r="32" fill="${coral}" fill-opacity="0.18"/>`,
+    `<circle cx="${BOGOTA.cx}" cy="${BOGOTA.cy}" r="18" fill="${coral}" fill-opacity="0.32"/>`,
+    `<circle cx="${BOGOTA.cx}" cy="${BOGOTA.cy}" r="10" fill="${forest}"/>`,
+    `<circle cx="${BOGOTA.cx}" cy="${BOGOTA.cy}" r="4" fill="${sand}"/>`,
+  ].join('');
+  return `<svg width="${w}" height="${h}" viewBox="0 0 600 1000" xmlns="http://www.w3.org/2000/svg" style="display:flex">${tropics}${meridian}${shadow}${land}${bogota}</svg>`;
+}
+
+export default async function (format: FlyerFormat = 'portrait') {
+  const isPort = format === 'portrait';
+  const W = 1080;
+  const H = isPort ? 1350 : 1080;
+
+  const padT = isPort ? 113 : 90;
+  const padB = isPort ? 103 : 82;
+  const padX = isPort ? 104 : 88;
+  const kickerSz = isPort ? 22 : 19;
+  const lead = isPort ? 28 : 26;
+  const headlineSz = isPort ? 96 : 80;
+  const body1 = isPort ? 27 : 25;
+  const midSz = isPort ? 58 : 48;
+  const body23 = isPort ? 26 : 24;
+  const urlSz = isPort ? 16 : 14;
+  const hostsFs = 22;
+  const accentW = isPort ? 6 : 5;
+
+  const hostsLogos = await getHostsLogosHD(hostsFs, { aiscBlack: true });
+
+  const motifW = isPort ? 360 : 290;
+  const motifH = Math.round(motifW * 1000 / 600);
+  const motifTop = isPort ? 240 : 190;
+  const motifRight = isPort ? -90 : -70;
+  const motif = latamIllustrated({
+    width: motifW,
+    height: motifH,
+    coral: BRAND.coral,
+    forest: BRAND.forest,
+    sand: '#F3E8D0',
+    ink: BRAND.ink,
+  });
+
+  const source = `
+    <div style="display:flex;width:${W}px;height:${H}px;background:${BRAND.cream};font-family:Inter;position:relative;overflow:hidden">
+
+      <div style="display:flex;position:absolute;top:${motifTop}px;right:${motifRight}px;opacity:0.55">${motif}</div>
+
+      <div style="display:flex;flex-direction:column;width:${W}px;height:${H}px;padding:${padT}px ${padX}px ${padB}px ${padX}px;justify-content:space-between;position:relative">
+
+        <div style="display:flex;flex-direction:column;gap:34px;max-width:820px">
+
+          <div style="display:flex;align-items:center;gap:14px">
+            <div style="display:flex;width:${accentW}px;height:28px;background:${BRAND.coral}"></div>
+            <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:${kickerSz}px;letter-spacing:0.2em;color:${BRAND.forest};text-transform:uppercase">El contexto</div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <div style="display:flex;font-family:Inter;font-weight:500;font-size:${lead}px;line-height:1.4;color:${BRAND.ink};max-width:820px">La investigación en seguridad de IA se concentra en un puñado de países.</div>
+
+            <div style="display:flex;font-family:Bricolage Grotesque;font-weight:700;font-size:${headlineSz}px;line-height:0.96;letter-spacing:-0.03em;color:${BRAND.forest}">Pero estos sistemas ya están en nuestra región.</div>
+
+            <div style="display:flex;font-family:Inter;font-weight:500;font-size:${body1}px;line-height:1.45;color:${BRAND.ink};max-width:820px">Sesgos sin auditar, vulnerabilidades sin documentar, decisiones automatizadas sin rendición de cuentas local.</div>
+          </div>
+
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:22px;max-width:840px;position:relative">
+          <div style="display:flex;width:80px;height:4px;background:${BRAND.coral}"></div>
+          <div style="display:flex;font-family:Bricolage Grotesque;font-weight:700;font-size:${midSz}px;line-height:1.08;letter-spacing:-0.022em;color:${BRAND.coral};max-width:840px">Un sprint internacional de tres días para cerrar esa brecha.</div>
+          <div style="display:flex;font-family:Inter;font-weight:500;font-size:${body23}px;line-height:1.5;color:${BRAND.ink};max-width:840px">Equipos pequeños, expertos en vivo, reporte de investigación al cierre.</div>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;font-family:JetBrains Mono;font-weight:500;font-size:${urlSz}px;letter-spacing:0.04em;color:${BRAND.ink2}">aisafetycolombia.org/hackathon</div>
+          ${hostsRow({ color: BRAND.ink2, fontSize: hostsFs, ...hostsLogos })}
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  const png = await render(html(source), W, H);
+  return { filename: `_v4-02-que-es-${format}.png`, png };
+}

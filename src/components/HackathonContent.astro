@@ -135,9 +135,9 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
           ))}
         </ul>
         <p class="hk-mode-footer" set:html={es ? data.inPerson.bogotaApplyEs : data.inPerson.bogotaApplyEn} />
-        <a class="hk-mode-cta hk-mode-cta-inperson" href={es ? '/aplicar/' : '/en/apply/'}>
-          {es ? 'Aplicar al hub Bogotá' : 'Apply to the Bogotá hub'}
-        </a>
+        <span class="hk-mode-cta hk-mode-cta-closed" aria-disabled="true">
+          {es ? 'Postulaciones cerradas · 12 jun' : 'Applications closed · Jun 12'}
+        </span>
       </article>
 
       <article class="hk-mode is-blue">
@@ -1356,15 +1356,23 @@ const infoIcon = ic('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/
     transform: translateY(-1px);
   }
 
-  .hk-mode .hk-mode-cta-online {
+  .hk-mode .hk-mode-cta-closed {
     background: transparent;
-    color: var(--accent-sage);
-    border-color: var(--accent-sage);
+    color: var(--text-secondary);
+    border-color: var(--border);
+    cursor: not-allowed;
+    opacity: 0.85;
+  }
+
+  .hk-mode .hk-mode-cta-online {
+    background: var(--accent-vermillion);
+    color: var(--bg-elevated);
+    border-color: var(--accent-vermillion);
   }
 
   .hk-mode .hk-mode-cta-online:hover {
-    background: var(--accent-sage);
-    color: var(--bg-elevated);
+    background: transparent;
+    color: var(--accent-vermillion);
     transform: translateY(-1px);
   }
 

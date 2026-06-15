@@ -1,0 +1,2 @@
+export type FlyerFormat = 'portrait' | 'square';
+export { default } from './_v5a-01-latam-pin';

@@ -251,13 +251,15 @@ export async function sendInterestNotification(payload: InterestPayload) {
   <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:16px">
     <tbody>
       <tr><td style="padding:6px 0;color:#777;width:160px">Temas</td><td style="padding:6px 0">${esc(areasList)}</td></tr>
+      <tr><td style="padding:6px 0;color:#777">Fecha de inicio</td><td style="padding:6px 0">${esc(payload.preferredStart)}</td></tr>
+      <tr><td style="padding:6px 0;color:#777">Horarios</td><td style="padding:6px 0">${esc(payload.availability.join(', '))}</td></tr>
       <tr><td style="padding:6px 0;color:#777">Idioma del form</td><td style="padding:6px 0">${esc(payload.locale.toUpperCase())}</td></tr>
       <tr><td style="padding:6px 0;color:#777">LinkedIn</td><td style="padding:6px 0">${payload.linkedin ? `<a href="${esc(payload.linkedin)}">${esc(payload.linkedin)}</a>` : '—'}</td></tr>
     </tbody>
   </table>
 
-  <h3 style="font-size:14px;margin:18px 0 6px;color:#101010">Sobre la persona</h3>
-  ${nl2p(payload.about)}
+  ${payload.about ? `<h3 style="font-size:14px;margin:18px 0 6px;color:#101010">Sobre la persona</h3>
+  ${nl2p(payload.about)}` : ''}
 
   <h3 style="font-size:14px;margin:18px 0 6px;color:#101010">Algo más</h3>
   ${nl2p(payload.extra) || '<p style="margin:0;color:#999">—</p>'}
