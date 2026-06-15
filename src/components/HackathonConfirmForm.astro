@@ -1,0 +1,1030 @@
+---
+import type { Locale } from '../i18n/ui';
+import { CONFIRM_DEADLINE_UTC_MS } from '../lib/hackathon-confirm/deadline';
+import { INVITE_EMAILS } from '../lib/hackathon-confirm/inviteAllowlist';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const es = locale === 'es';
+const deadlineMs = CONFIRM_DEADLINE_UTC_MS;
+// Emails granted the invite-a-friend perk by allowlist (their link may predate
+// the invite flag). Lowercased for case-insensitive match in the inline script.
+const inviteEmails = INVITE_EMAILS.map((e) => e.toLowerCase());
+
+// Mandatory WhatsApp group for the selected cohort (dedicated, not the public community group).
+const whatsappUrl = 'https://chat.whatsapp.com/DMiQvdoBaNg0shsHBRiayo';
+
+// Direct line to Jose for any doubts. Linked from the participant's name only;
+// we don't name the channel here so it doesn't get confused with the group above.
+const joseWhatsappUrl = 'https://wa.me/573028405507';
+
+const copy = {
+  heroTitle: es ? 'Confirma tu cupo' : 'Confirm your spot',
+  // Split so the inline script can swap "seleccionado/a" for the gendered word
+  // (seleccionado / seleccionada) once it reads the name from the signed token.
+  heroDescPre: es ? 'Fuiste ' : 'You were ',
+  heroSelected: es ? 'seleccionado/a' : 'selected',
+  heroDescPost: es
+    ? ' para el hackathon presencial en Bogotá. Confirma tu disponibilidad y únete al grupo de WhatsApp. Toma menos de un minuto.'
+    : ' for the in-person hackathon in Bogotá. Confirm your availability and join the WhatsApp group. It takes less than a minute.',
+  whenLabel: es ? 'Cuándo' : 'When',
+  whenValue: es ? 'Viernes 19 a domingo 21 de junio de 2026' : 'Friday the 19th to Sunday the 21st, June 2026',
+  whereLabel: es ? 'Dónde' : 'Where',
+  whereValue: 'Calle 114 # 47A-09, barrio La Alhambra, Bogotá',
+  contactPre: es ? 'Si tienes alguna duda, escríbenos por ' : 'If you have any questions, message us on ',
+  contactName: 'WhatsApp',
+  contactPost: es ? '.' : '.',
+  sectionWho: es ? 'Tus datos' : 'Your details',
+  identityPrefix: es ? 'Confirmando como' : 'Confirming as',
+  sectionAvail: es ? 'Tu disponibilidad' : 'Your availability',
+  sectionWhatsApp: es ? 'Grupo de WhatsApp' : 'WhatsApp group',
+
+  fieldFirstName: es ? 'Nombre' : 'First name',
+  fieldLastName: es ? 'Apellido' : 'Last name',
+  fieldEmail: 'Email',
+  fieldEmailHelp: es ? 'El mismo con el que aplicaste.' : 'The same one you applied with.',
+
+  availHelp: es
+    ? 'Te necesitamos los tres días completos: el hackathon es intensivo y cada equipo trabaja junto de principio a fin. Cubrimos tu alimentación durante todo el evento.'
+    : 'We need you all three full days: the hackathon is intensive and each team works together from start to finish. We cover your meals throughout the event.',
+  availLabel: es
+    ? 'Estaré presente el viernes 19 de 4:00 PM a 9:00 PM, y el sábado 20 y domingo 21 todo el día.'
+    : 'I will attend Friday the 19th from 4:00 PM to 9:00 PM, and Saturday the 20th and Sunday the 21st all day.',
+
+  whatsappLead: es
+    ? 'Todo el hackathon lo coordinamos por WhatsApp. Abre el grupo y únete antes de confirmar.'
+    : 'We coordinate the whole hackathon over WhatsApp. Open the group and join before confirming.',
+  whatsappOpenedNote: es
+    ? 'Abriste el grupo. Únete y vuelve a confirmar tu cupo.'
+    : 'You opened the group. Join it and come back to confirm your spot.',
+  whatsappCta: es ? 'Unirme al grupo de WhatsApp' : 'Join the WhatsApp group',
+  whatsappJoinedLabel: es ? 'Ya me uní al grupo de WhatsApp.' : 'I joined the WhatsApp group.',
+
+  sectionInvite: es ? 'Invita a alguien' : 'Invite someone',
+  inviteLead: es
+    ? 'Quedamos muy impresionados con tu perfil, así que tienes un cupo adicional. Si conoces a alguien que encajaría muy bien en el hackathon, déjanos sus datos y nosotros le escribiremos para confirmarle su lugar.'
+    : 'We were really impressed with your profile, so you have an extra spot. If you know someone who would be a great fit for the hackathon, leave us their details and we will reach out to confirm their place.',
+  inviteToggle: es ? 'Quiero invitar a alguien al hackathon.' : 'I want to invite someone to the hackathon.',
+  friendName: es ? 'Nombre del invitado' : "Guest's name",
+  friendEmail: es ? 'Correo del invitado' : "Guest's email",
+  friendWhatsapp: es ? 'WhatsApp del invitado' : "Guest's WhatsApp",
+  friendLinkedin: es ? 'LinkedIn del invitado' : "Guest's LinkedIn",
+  errFriend: es
+    ? 'Completa todos los datos de tu invitado, o desmarca la casilla.'
+    : "Fill in all of your guest's details, or uncheck the box.",
+
+  fieldNotes: es ? '¿Algo que debamos saber?' : 'Anything we should know?',
+  fieldNotesHelp: es
+    ? 'Opcional: restricciones de horario, alimentación, accesibilidad, etc.'
+    : 'Optional: schedule, dietary or accessibility needs, etc.',
+
+  optional: es ? 'Opcional' : 'Optional',
+  submit: es ? 'Confirmar mi cupo' : 'Confirm my spot',
+  submitting: es ? 'Enviando…' : 'Submitting…',
+
+  errAvail: es ? 'Confirma tu disponibilidad para continuar.' : 'Confirm your availability to continue.',
+  errWhatsApp: es ? 'Únete al grupo de WhatsApp para confirmar.' : 'Join the WhatsApp group to confirm.',
+  errWhatsAppCheck: es ? 'Marca la casilla para confirmar que te uniste al grupo.' : 'Check the box to confirm you joined the group.',
+
+  successTitle: es ? '¡Listo! Tu cupo está confirmado.' : 'Done! Your spot is confirmed.',
+  successBody: es
+    ? 'Pronto te compartiremos más detalles de la logística del evento y la agenda.'
+    : 'We\'ll share more details about the event logistics and agenda soon.',
+  successSee: es ? 'Nos vemos el viernes 19, 4:00 PM.' : 'See you Friday the 19th, 4:00 PM.',
+  successInvite: es
+    ? 'Recibimos los datos de tu invitado. Le escribiremos directamente para confirmarle su cupo.'
+    : 'We received your guest\'s details. We will write to them directly to confirm their spot.',
+  successCtaWhatsApp: es ? 'Unirme al grupo de WhatsApp' : 'Join the WhatsApp group',
+
+  errorTitle: es ? 'Hubo un problema al confirmar' : 'There was a problem confirming',
+  errorBody: es
+    ? 'Tu confirmación no se envió. Intenta de nuevo en unos minutos o escríbenos directamente.'
+    : 'Your confirmation did not go through. Please try again in a few minutes or write to us directly.',
+  errorRetry: es ? 'Intentar de nuevo' : 'Try again',
+  errorEmailCta: es ? 'Escribir a contacto' : 'Email us',
+
+  closedTitle: es ? 'El plazo de confirmación ya cerró' : 'The confirmation window is closed',
+  closedBody: es
+    ? 'El plazo para confirmar tu cupo cerró el lunes 15 de junio a las 6:00 PM (hora Colombia). Si aún quieres asistir, escríbenos lo antes posible.'
+    : 'The window to confirm your spot closed on Monday June 15 at 6:00 PM (Colombia time). If you still want to attend, write to us as soon as possible.',
+  closedCtaEmail: es ? 'Escribir a contacto' : 'Email us',
+};
+---
+
+<section class="apply-section">
+  <span class="apply-shape apply-shape-yellow" aria-hidden="true"></span>
+  <span class="apply-shape apply-shape-ring" aria-hidden="true"></span>
+
+  <div class="apply-shell">
+    <header class="apply-hero">
+      <h1 class="apply-hero-title">{copy.heroTitle}</h1>
+      <p class="apply-hero-desc">{copy.heroDescPre}<span id="hero-selected">{copy.heroSelected}</span>{copy.heroDescPost}</p>
+      <dl class="apply-hero-meta">
+        <div>
+          <dt>{copy.whenLabel}</dt>
+          <dd>{copy.whenValue}</dd>
+        </div>
+        <div>
+          <dt>{copy.whereLabel}</dt>
+          <dd>{copy.whereValue}</dd>
+        </div>
+      </dl>
+      <p class="apply-hero-contact">{copy.contactPre}<a href={joseWhatsappUrl} target="_blank" rel="noopener noreferrer">{copy.contactName}</a>{copy.contactPost}</p>
+    </header>
+
+    <form id="confirm-form" class="apply-form" novalidate>
+      <input type="hidden" name="locale" value={locale} />
+      {/* Set by JS when the link carries a signed identity token (?t=...). */}
+      <input type="hidden" name="token" value="" />
+
+      {/* Honeypot — invisible to humans, only bots fill it. Do not remove. */}
+      <div class="apply-hp" aria-hidden="true">
+        <label>Website
+          <input type="text" name="website" tabindex="-1" autocomplete="off" />
+        </label>
+      </div>
+
+      <section class="apply-block">
+        <h2 class="apply-h2">{copy.sectionWho}</h2>
+
+        {/* Shown only in token mode: identity comes from the signed link, so we
+            skip the name/email inputs entirely and just confirm who they are. */}
+        <p class="confirm-identity" id="confirm-identity" hidden>
+          {copy.identityPrefix} <strong id="confirm-identity-name"></strong>
+          <span class="confirm-identity-email" id="confirm-identity-email"></span>
+        </p>
+
+        <label class="apply-field confirm-identity-field">
+          <span class="apply-label">{copy.fieldFirstName}<em>*</em></span>
+          <input type="text" name="firstName" required autocomplete="given-name" maxlength="100" />
+        </label>
+
+        <label class="apply-field confirm-identity-field">
+          <span class="apply-label">{copy.fieldLastName} <small>· {copy.optional}</small></span>
+          <input type="text" name="lastName" autocomplete="family-name" maxlength="100" />
+        </label>
+
+        <label class="apply-field confirm-identity-field">
+          <span class="apply-label">{copy.fieldEmail}<em>*</em></span>
+          <small class="apply-help">{copy.fieldEmailHelp}</small>
+          <input type="email" name="email" required autocomplete="email" maxlength="200" />
+        </label>
+      </section>
+
+      <section class="apply-block">
+        <h2 class="apply-h2">{copy.sectionAvail}</h2>
+        <small class="apply-help">{copy.availHelp}</small>
+
+        <label class="confirm-check confirm-check-solo">
+          <input type="checkbox" name="available" value="true" required />
+          <span>{copy.availLabel}</span>
+        </label>
+      </section>
+
+      <section class="apply-block">
+        <h2 class="apply-h2">{copy.sectionWhatsApp}</h2>
+        <small class="apply-help">{copy.whatsappLead}</small>
+        <div class="confirm-wa-cta">
+          <a id="confirm-wa-link" class="btn btn-secondary" href={whatsappUrl} target="_blank" rel="noopener noreferrer">{copy.whatsappCta}</a>
+        </div>
+        <p class="confirm-wa-note" id="confirm-wa-note" hidden>{copy.whatsappOpenedNote}</p>
+        <label class="confirm-check confirm-check-solo">
+          <input type="checkbox" name="whatsappJoined" value="true" />
+          <span>{copy.whatsappJoinedLabel}</span>
+        </label>
+      </section>
+
+      {/* Invite-a-friend — only revealed when the signed link grants the perk. */}
+      <section class="apply-block" id="confirm-invite" hidden>
+        <h2 class="apply-h2">{copy.sectionInvite}</h2>
+        <small class="apply-help">{copy.inviteLead}</small>
+
+        <label class="confirm-check confirm-check-solo">
+          <input type="checkbox" name="friendInvite" value="true" />
+          <span>{copy.inviteToggle}</span>
+        </label>
+
+        <div class="confirm-friend-fields" id="confirm-friend-fields" hidden>
+          <label class="apply-field">
+            <span class="apply-label">{copy.friendName}<em>*</em></span>
+            <input type="text" name="friendName" disabled maxlength="100" autocomplete="off" />
+          </label>
+          <label class="apply-field">
+            <span class="apply-label">{copy.friendEmail}<em>*</em></span>
+            <input type="email" name="friendEmail" disabled maxlength="200" autocomplete="off" />
+          </label>
+          <label class="apply-field">
+            <span class="apply-label">{copy.friendWhatsapp}<em>*</em></span>
+            <input type="text" name="friendWhatsapp" disabled maxlength="50" inputmode="tel" autocomplete="off" />
+          </label>
+          <label class="apply-field">
+            <span class="apply-label">{copy.friendLinkedin}<em>*</em></span>
+            <input type="text" name="friendLinkedin" disabled maxlength="300" inputmode="url" autocomplete="off" placeholder="linkedin.com/in/..." />
+          </label>
+        </div>
+      </section>
+
+      <section class="apply-block">
+        <label class="apply-field">
+          <span class="apply-label">{copy.fieldNotes} <small>· {copy.optional}</small></span>
+          <small class="apply-help">{copy.fieldNotesHelp}</small>
+          <textarea name="notes" rows="2" maxlength="1000"></textarea>
+        </label>
+      </section>
+
+      <div class="apply-actions">
+        <button type="submit" class="btn btn-primary apply-submit">
+          <span class="apply-submit-default">{copy.submit}</span>
+          <span class="apply-submit-loading" aria-hidden="true">{copy.submitting}</span>
+        </button>
+      </div>
+
+      <p class="apply-error" role="alert" hidden></p>
+    </form>
+
+    <div class="apply-success" id="confirm-success" hidden>
+      <h2>{copy.successTitle}</h2>
+      <p>{copy.successBody}</p>
+      <p class="confirm-invite-note" id="confirm-invite-note" hidden>{copy.successInvite}</p>
+    </div>
+
+    <div class="apply-error-box" id="confirm-error-box" hidden>
+      <h2>{copy.errorTitle}</h2>
+      <p>{copy.errorBody}</p>
+      <div class="apply-success-actions">
+        <button type="button" class="btn btn-primary" id="confirm-retry">{copy.errorRetry}</button>
+        <a class="btn btn-secondary" href="mailto:contacto@aisafetycolombia.org">{copy.errorEmailCta}</a>
+      </div>
+    </div>
+
+    <div class="apply-closed" id="confirm-closed" hidden>
+      <h2>{copy.closedTitle}</h2>
+      <p>{copy.closedBody}</p>
+      <div class="apply-success-actions">
+        <a class="btn btn-primary" href="mailto:contacto@aisafetycolombia.org">{copy.closedCtaEmail}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ locale, deadlineMs, copy, inviteEmails }}>
+  (function () {
+    const form = document.getElementById('confirm-form');
+    const successBox = document.getElementById('confirm-success');
+    const errorBox = document.getElementById('confirm-error-box');
+    const closedBox = document.getElementById('confirm-closed');
+    const intro = document.querySelector('.apply-hero');
+    const errorInline = form.querySelector('.apply-error');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const retryBtn = document.getElementById('confirm-retry');
+
+    // Identity from the personalized acceptance link. Two link shapes:
+    //  - Signed token:  /confirmar/?t=<payload>.<sig>  (preferred)
+    //  - Legacy prefill: /confirmar/?email=foo@bar.com&nombre=Jose
+    // With a token we know who they are, so we hide the name/email inputs and
+    // just show "Confirmando como X". The token's payload is readable here only
+    // to display the name; the server alone verifies the signature and treats
+    // the token as authoritative on submit.
+    function b64urlToStr(s) {
+      s = String(s).replace(/-/g, '+').replace(/_/g, '/');
+      while (s.length % 4) s += '=';
+      // atob -> binary; the escape/decodeURIComponent dance recovers UTF-8 (accents).
+      return decodeURIComponent(escape(atob(s)));
+    }
+    function decodeToken(t) {
+      try {
+        const dot = String(t).indexOf('.');
+        if (dot <= 0) return null;
+        const obj = JSON.parse(b64urlToStr(String(t).slice(0, dot)));
+        const email = typeof obj.e === 'string' ? obj.e : '';
+        const firstName = typeof obj.n === 'string' ? obj.n : '';
+        if (!email || !firstName) return null;
+        const invite = obj.i === 1 || obj.i === '1' || obj.i === true;
+        return { email: email, firstName: firstName, invite: invite };
+      } catch (_) { return null; }
+    }
+
+    // Best-effort gender from a first name → swap "seleccionado/a" for the
+    // gendered word. Mirrors src/lib/hackathon-confirm/gender.ts. Falls back to
+    // the neutral form when unsure, so a wrong guess never shows.
+    var GENDER_F = ['sofia','maria','valentina','isabella','camila','daniela','valeria','mariana','gabriela','luciana','sara','paula','andrea','laura','natalia','carolina','diana','catalina','juliana','alejandra','ana','adriana','angela','patricia','claudia','sandra','monica','lina','manuela','antonia','salome','ximena','tatiana','carmen','luisa','elena','rosa','martha','marcela','viviana','johana','yuliana','wendy','karen','jessica','paola','liliana','luz','esperanza','beatriz','clara','veronica','melissa','michelle','nicole','emily','estefania','fernanda','guadalupe','mercedes','pilar','dolores','consuelo','amparo','rocio','soledad','milena','yesica','leidy','angie','brigitte','geraldine','maritza','yenny','jenny','kelly','ingrid','lucia','julia','silvia'];
+    var GENDER_M = ['juan','carlos','andres','santiago','sebastian','david','daniel','jose','luis','diego','alejandro','mateo','samuel','nicolas','felipe','miguel','manuel','fernando','jorge','ricardo','javier','oscar','cristian','julian','camilo','esteban','gabriel','tomas','emanuel','victor','hector','raul','pedro','pablo','jhon','john','brayan','kevin','anderson','edwin','wilson','german','alberto','mario','ivan','gustavo','rafael','sergio','hernan','cesar','alvaro','jaime','gonzalo','ramiro','arturo','enrique','rodrigo','marcos','adrian','angel','bryan','jean','jhonatan','jonathan','leonardo','leandro','martin','simon','joaquin','benjamin','emiliano','maximiliano','dylan','damian','matias','tobias','elias','jonas','lucas','josue','jesus','francisco','antonio','ramon','fabian','mauricio','wilmer','duvan','yeison','maicol','harold'];
+    function guessGender(name) {
+      if (!name) return null;
+      var n = String(name).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim().split(/\s+/)[0] || '';
+      if (!n) return null;
+      if (GENDER_F.indexOf(n) >= 0) return 'f';
+      if (GENDER_M.indexOf(n) >= 0) return 'm';
+      if (/(a|ela|ina|ana|ia)$/.test(n)) return 'f';
+      if (/(o|os|el|in|or|ar|er|on|us)$/.test(n)) return 'm';
+      return null;
+    }
+    function applyGender(firstName) {
+      if (locale !== 'es') return;
+      var g = guessGender(firstName);
+      if (!g) return;
+      var el = document.getElementById('hero-selected');
+      if (el) el.textContent = g === 'm' ? 'seleccionado' : 'seleccionada';
+    }
+
+    // Reveal the invite-a-friend section. Granted either by the signed token's
+    // invite flag OR by an email allowlist (for links sent before the flag
+    // existed / a non-invite resend). The server independently re-checks both.
+    var ALLOW = Array.isArray(inviteEmails) ? inviteEmails : [];
+    function emailIsAllowed(email) {
+      return !!email && ALLOW.indexOf(String(email).trim().toLowerCase()) >= 0;
+    }
+    function revealInvite() {
+      const inviteSection = document.getElementById('confirm-invite');
+      if (inviteSection) inviteSection.hidden = false;
+    }
+
+    try {
+      const qs = new URLSearchParams(window.location.search);
+      const token = qs.get('t');
+      const decoded = token ? decodeToken(token) : null;
+
+      if (token && decoded) {
+        // Token mode: identity is locked to the signed link.
+        const tokenInput = form.querySelector('input[name="token"]');
+        if (tokenInput) tokenInput.value = token;
+
+        // Drop the identity inputs from validation + payload entirely.
+        ['firstName', 'lastName', 'email'].forEach(function (n) {
+          const el = form.querySelector('[name="' + n + '"]');
+          if (el) { el.required = false; el.disabled = true; }
+        });
+        form.querySelectorAll('.confirm-identity-field').forEach(function (el) {
+          el.hidden = true;
+        });
+
+        const banner = document.getElementById('confirm-identity');
+        const nameEl = document.getElementById('confirm-identity-name');
+        const emailEl = document.getElementById('confirm-identity-email');
+        if (nameEl) nameEl.textContent = decoded.firstName;
+        if (emailEl) emailEl.textContent = decoded.email;
+        if (banner) banner.hidden = false;
+        applyGender(decoded.firstName);
+
+        // Invite-a-friend perk: token flag, or email on the allowlist.
+        if (decoded.invite || emailIsAllowed(decoded.email)) {
+          revealInvite();
+        }
+      } else {
+        // Legacy mode: prefill the inputs, server re-validates.
+        const email = qs.get('email');
+        const nombre = qs.get('nombre') || qs.get('name');
+        if (email) {
+          const el = form.querySelector('input[name="email"]');
+          if (el && !el.value) el.value = email;
+        }
+        if (nombre) {
+          const el = form.querySelector('input[name="firstName"]');
+          if (el && !el.value) el.value = nombre;
+          applyGender(nombre);
+        }
+        // Allowlisted email arriving via legacy prefill also gets the perk.
+        if (emailIsAllowed(email)) revealInvite();
+      }
+    } catch (_) {}
+
+    // Cosmetic only: server is authoritative. A wrong client clock is rejected
+    // by /api/confirmar with 403.
+    if (typeof deadlineMs === 'number' && Date.now() > deadlineMs) {
+      form.hidden = true;
+      if (intro) intro.hidden = true;
+      if (closedBox) closedBox.hidden = false;
+      return;
+    }
+
+    function showError(msg) {
+      errorInline.textContent = msg;
+      errorInline.hidden = false;
+      errorInline.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    function clearError() {
+      errorInline.textContent = '';
+      errorInline.hidden = true;
+    }
+    function setLoading(loading) {
+      submitBtn.disabled = loading;
+      submitBtn.classList.toggle('is-loading', loading);
+    }
+    function showSuccess(invited) {
+      form.hidden = true;
+      if (intro) intro.hidden = true;
+      errorBox.hidden = true;
+      var inviteNote = document.getElementById('confirm-invite-note');
+      if (inviteNote) inviteNote.hidden = !invited;
+      successBox.hidden = false;
+      successBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function showErrorBox() {
+      form.hidden = true;
+      successBox.hidden = true;
+      errorBox.hidden = false;
+      errorBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function showClosed() {
+      form.hidden = true;
+      if (intro) intro.hidden = true;
+      successBox.hidden = true;
+      errorBox.hidden = true;
+      closedBox.hidden = false;
+    }
+    function va(name, props) {
+      try {
+        if (typeof window !== 'undefined' && typeof window.va === 'function') {
+          window.va('event', { name: name, ...(props || {}) });
+        }
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+          window.gtag('event', name, props || {});
+        }
+      } catch (_) {}
+    }
+
+    function checked(name) {
+      const el = form.querySelector('input[name="' + name + '"]');
+      return !!(el && el.checked);
+    }
+
+    // Gate confirmation on actually opening the WhatsApp group link. No checkbox
+    // to self-attest: if they never click it, they can't submit. Clicking opens
+    // the invite in a new tab and reveals a small note so they know it counted.
+    var waOpened = false;
+    var waLink = document.getElementById('confirm-wa-link');
+    var waNote = document.getElementById('confirm-wa-note');
+    if (waLink) {
+      waLink.addEventListener('click', function () {
+        waOpened = true;
+        if (waNote) waNote.hidden = false;
+        clearError();
+      });
+    }
+
+    retryBtn.addEventListener('click', function () {
+      errorBox.hidden = true;
+      form.hidden = false;
+      setLoading(false);
+    });
+
+    form.querySelectorAll('textarea[maxlength]').forEach(function (ta) {
+      const max = parseInt(ta.getAttribute('maxlength') || '0', 10);
+      if (!max) return;
+      const counter = document.createElement('small');
+      counter.className = 'apply-counter';
+      counter.setAttribute('aria-live', 'polite');
+      ta.insertAdjacentElement('afterend', counter);
+      const update = function () {
+        const n = ta.value.length;
+        counter.textContent = n + ' / ' + max;
+        counter.classList.toggle('is-near', n / max >= 0.9 && n < max);
+        counter.classList.toggle('is-at', n >= max);
+      };
+      ta.addEventListener('input', update);
+      update();
+    });
+
+    // Invite-a-friend: the checkbox reveals four required fields. Disabled while
+    // hidden so they stay out of validation and the submitted payload.
+    var inviteCheck = form.querySelector('input[name="friendInvite"]');
+    var friendFields = document.getElementById('confirm-friend-fields');
+    var friendInputs = friendFields ? friendFields.querySelectorAll('input') : [];
+    function toggleFriend() {
+      var on = !!(inviteCheck && inviteCheck.checked);
+      if (friendFields) friendFields.hidden = !on;
+      friendInputs.forEach(function (el) {
+        el.disabled = !on;
+        el.required = on;
+        if (!on) el.value = '';
+      });
+    }
+    if (inviteCheck) inviteCheck.addEventListener('change', toggleFriend);
+
+    form.addEventListener('submit', async function (ev) {
+      ev.preventDefault();
+      clearError();
+      if (!form.reportValidity()) return;
+
+      // Rules native validation can't express.
+      if (!checked('available')) { showError(copy.errAvail); return; }
+      if (!waOpened) { showError(copy.errWhatsApp); return; }
+      if (!checked('whatsappJoined')) { showError(copy.errWhatsAppCheck); return; }
+      // If they opted to invite, all four guest fields are required.
+      if (checked('friendInvite')) {
+        var missing = false;
+        friendInputs.forEach(function (el) { if (!el.value.trim()) missing = true; });
+        if (missing) { showError(copy.errFriend); return; }
+      }
+
+      setLoading(true);
+
+      const fd = new FormData(form);
+      const payload = Object.fromEntries(fd.entries());
+      // Ensure unchecked boxes are explicit false (FormData omits them).
+      ['available', 'whatsappJoined', 'friendInvite'].forEach(function (k) {
+        payload[k] = checked(k);
+      });
+
+      try {
+        const res = await fetch('/api/confirmar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (res.status === 403) {
+          let detail = '';
+          try { detail = (await res.json()).error || ''; } catch (_) {}
+          if (detail === 'deadline_passed') { showClosed(); return; }
+        }
+        if (!res.ok) {
+          let detail = '';
+          try { detail = (await res.json()).error || ''; } catch (_) {}
+          throw new Error(detail || 'Request failed with status ' + res.status);
+        }
+        va('confirm_submitted', { locale: locale, invited: checked('friendInvite') });
+        showSuccess(checked('friendInvite'));
+      } catch (err) {
+        console.error('confirm submit failed', err);
+        va('confirm_failed', { locale: locale, message: String((err && err.message) || 'unknown').slice(0, 120) });
+        showErrorBox();
+      } finally {
+        setLoading(false);
+      }
+    });
+  })();
+</script>
+
+<style>
+  .apply-section {
+    position: relative;
+    overflow: hidden;
+    padding: 3.5rem 1.5rem 5rem;
+    background: var(--bg-primary);
+  }
+
+  .apply-shape {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .apply-shape-yellow {
+    width: 280px;
+    height: 280px;
+    background: var(--accent-yellow);
+    top: -110px;
+    right: -90px;
+  }
+
+  .apply-shape-ring {
+    width: 130px;
+    height: 130px;
+    background: transparent;
+    border: 12px solid var(--accent-forest);
+    bottom: 8rem;
+    left: -55px;
+  }
+
+  .apply-shell {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .apply-hero {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .apply-hero-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2.25rem, 5vw, 3rem);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin: 0 0 0.875rem;
+    max-width: 18ch;
+  }
+
+  .apply-hero-desc {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .apply-hero-meta {
+    margin: 1.5rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .apply-hero-meta > div {
+    display: flex;
+    gap: 0.875rem;
+    align-items: baseline;
+  }
+
+  .apply-hero-meta dt {
+    flex-shrink: 0;
+    width: 4.5rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    line-height: 1.5;
+    color: var(--accent-vermillion);
+  }
+
+  .apply-hero-meta dd {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+  }
+
+  .apply-hero-contact {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 1.5rem 0 0;
+    max-width: 60ch;
+  }
+
+  .apply-hero-contact a {
+    color: var(--text-primary);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .apply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  [hidden] { display: none !important; }
+
+  .apply-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .apply-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .apply-h2 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    line-height: 1.3;
+    color: var(--accent-vermillion);
+    margin: 0;
+  }
+
+  /* No divider rule under section headings — keep help text tight under the
+     label instead of a flex-gap away. */
+  .apply-block .apply-h2 + .apply-help {
+    margin-top: -1.1rem;
+  }
+
+  /* Token mode: "Confirmando como <Nombre>" in place of the name/email inputs. */
+  .confirm-identity {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+  .confirm-identity strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .confirm-identity-email {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+  }
+
+  .apply-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .apply-label {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.45;
+    letter-spacing: 0;
+  }
+
+  .apply-label em {
+    color: var(--accent-vermillion);
+    font-style: normal;
+    font-weight: 500;
+    margin-left: 0.2rem;
+  }
+
+  .apply-label small {
+    color: var(--text-secondary);
+    font-weight: 400;
+    font-size: 0.9375rem;
+    letter-spacing: 0;
+  }
+
+  .apply-help {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .apply-field input,
+  .apply-field textarea {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    color: var(--text-primary);
+    padding: 0.625rem 0;
+    border: none;
+    border-bottom: 1.5px solid var(--border);
+    border-radius: 0;
+    background: transparent;
+    width: 100%;
+    line-height: 1.5;
+    transition: border-bottom-color 0.15s ease, border-bottom-width 0.15s ease;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .apply-field textarea {
+    resize: vertical;
+    min-height: 4rem;
+    padding-top: 0.75rem;
+  }
+
+  .apply-field input::placeholder,
+  .apply-field textarea::placeholder {
+    color: #B5A88F;
+    font-weight: 400;
+  }
+
+  .apply-field input:hover,
+  .apply-field textarea:hover {
+    border-bottom-color: var(--text-secondary);
+  }
+
+  .apply-field input:focus,
+  .apply-field textarea:focus {
+    outline: none;
+    border-bottom: 2px solid var(--accent-vermillion);
+    padding-bottom: calc(0.625rem - 0.5px);
+  }
+
+  /* Square checkboxes — same visual family as the apply radios */
+  .confirm-check-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.375rem;
+  }
+
+  .confirm-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+  }
+
+  .confirm-check-solo {
+    margin-top: 0.25rem;
+  }
+
+  .confirm-check input[type='checkbox'] {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0.2rem 0 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--accent-forest);
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .confirm-check:hover input[type='checkbox'] {
+    border-color: var(--accent-forest);
+  }
+
+  .confirm-check input[type='checkbox']:checked {
+    border-color: var(--accent-forest);
+    background: var(--accent-forest);
+  }
+
+  .confirm-check input[type='checkbox']:checked::after {
+    content: '';
+    position: absolute;
+    left: 0.42rem;
+    top: 0.18rem;
+    width: 0.3rem;
+    height: 0.6rem;
+    border: solid var(--bg-elevated);
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+  }
+
+  .confirm-check input[type='checkbox']:focus-visible {
+    outline: 2px solid var(--accent-forest);
+    outline-offset: 2px;
+  }
+
+  .confirm-check span {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+
+  .confirm-check:hover span {
+    color: var(--accent-forest);
+  }
+
+  .confirm-tag {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--accent-vermillion);
+  }
+
+  /* Invite-a-friend: the four guest fields revealed by the checkbox. */
+  .confirm-friend-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  /* WhatsApp join: link button sits between the lead text and the join checkbox. */
+  .confirm-wa-cta {
+    margin: 0.25rem 0 0.25rem;
+  }
+  .confirm-wa-cta .btn {
+    display: inline-flex;
+    align-items: center;
+  }
+  .confirm-wa-note {
+    margin: 0.5rem 0 0;
+    color: var(--accent, #2f7d4f);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    font-weight: 600;
+  }
+
+  .apply-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+  }
+
+  .apply-submit {
+    padding: 1rem 2.25rem;
+    font-size: 1rem;
+    position: relative;
+  }
+
+  .apply-submit:disabled {
+    opacity: 0.6;
+    cursor: progress;
+    transform: none;
+  }
+
+  .apply-submit-loading { display: none; }
+  .apply-submit.is-loading .apply-submit-default { display: none; }
+  .apply-submit.is-loading .apply-submit-loading { display: inline; }
+
+  .apply-error {
+    color: var(--accent-vermillion-dark);
+    font-size: 1rem;
+    margin: 1rem 0 0;
+    text-align: center;
+  }
+
+  .apply-counter {
+    align-self: flex-end;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1;
+    margin-top: 0.375rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .apply-counter.is-near { color: var(--accent-vermillion); }
+  .apply-counter.is-at {
+    color: var(--accent-vermillion-dark);
+    font-weight: 600;
+  }
+
+  .apply-success,
+  .apply-error-box,
+  .apply-closed {
+    text-align: left;
+    padding: 0;
+    border: none;
+    background: none;
+  }
+
+  .apply-success h2,
+  .apply-error-box h2,
+  .apply-closed h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin: 0 0 1.25rem;
+  }
+
+  .apply-error-box h2 {
+    color: var(--accent-vermillion-dark);
+  }
+
+  .apply-success p,
+  .apply-error-box p,
+  .apply-closed p {
+    color: var(--text-secondary);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+  }
+
+  .confirm-see {
+    font-weight: 600;
+    color: var(--text-primary) !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .apply-success-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .apply-section {
+      padding: 3rem 1.25rem 5rem;
+    }
+    .apply-shape-yellow {
+      width: 180px;
+      height: 180px;
+      top: -70px;
+      right: -50px;
+    }
+    .apply-shape-ring { display: none; }
+    .apply-hero {
+      margin-bottom: 2.25rem;
+      padding-bottom: 1.5rem;
+    }
+    .apply-form {
+      gap: 2.5rem;
+    }
+    .apply-block {
+      gap: 1.5rem;
+    }
+    .apply-submit {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
