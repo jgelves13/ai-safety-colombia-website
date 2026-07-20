@@ -152,6 +152,10 @@ const milestones = [
           </a>
         </div>
       </article>
+    </div>
+
+    <h3 class="section-label people-sub" id="team-organizers">{t(locale, 'about.team.orgTitle')}</h3>
+    <div class="people">
       <article class="person-card">
         <div class="person-head">
           <img class="person-photo" src="/people/leonardo.jpg" alt={t(locale, 'about.team2.name')} width="120" height="150" loading="lazy" />
@@ -576,6 +580,12 @@ const milestones = [
   .person-link:hover,
   .person-link:focus-visible {
     color: var(--accent-vermillion);
+  }
+
+  /* "Organizadores" subheading separates the organizer tier from the
+     founders row above it, without touching the founders' cards. */
+  .people-sub {
+    margin: 3rem 0 1.5rem;
   }
 
   /* The tribute is a remembrance set apart from the factual bio:
