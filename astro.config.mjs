@@ -8,7 +8,7 @@ export default defineConfig({
   adapter: vercel(),
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/preview-linkedin') && !page.includes('/preview/'),
+      filter: (page) => !page.includes('/preview-linkedin') && !page.includes('/preview/') && !page.includes('/metrics'),
       serialize: (item) => ({
         ...item,
         lastmod: new Date().toISOString(),

@@ -167,5 +167,10 @@ const isHackathonPage = currentPage === 'hackathon';
       history.pushState(null, '', href);
     });
   </script>
+  <!-- First-party per-section dwell-time analytics (block-resistant; see
+       src/scripts/sectionAnalytics.ts). Bundled by Astro, runs site-wide. -->
+  <script>
+    import '../scripts/sectionAnalytics.ts';
+  </script>
 </body>
 </html>

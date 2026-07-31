@@ -1,0 +1,289 @@
+---
+// Internal dashboard for per-section dwell-time analytics. SSR (queries
+// Supabase at request time). noindex + no login, by design (Jose's call):
+// reachable by URL but never in search results. Data is aggregate-only, no PII.
+export const prerender = false;
+
+import {
+  fetchSectionReport,
+  fetchSectionOverview,
+  fetchSectionSegments,
+  fetchVisitorStats,
+  type SectionReportRow,
+  type SectionSegmentRow,
+} from '../lib/section-metrics/report';
+
+const url = new URL(Astro.request.url);
+const daysParam = parseInt(url.searchParams.get('days') || '30', 10);
+const days = Number.isFinite(daysParam) && daysParam > 0 ? Math.min(daysParam, 365) : 30;
+
+const [rows, overview, segments, visitors] = await Promise.all([
+  fetchSectionReport(days),
+  fetchSectionOverview(),
+  fetchSectionSegments(days),
+  fetchVisitorStats(),
+]);
+
+// Unique visitors for the selected window (distinct browsers, first-party id).
+const visitorCount: Record<number, number> = {
+  1: visitors.v1,
+  7: visitors.v7,
+  30: visitors.v30,
+  90: visitors.v90,
+};
+const uniqueVisitors =
+  days <= 1 ? visitors.v1 : days <= 7 ? visitors.v7 : days <= 30 ? visitors.v30 : visitors.v90;
+
+// Visit count per range-button, so each window shows how much data backs it.
+const rangeCount: Record<number, number> = {
+  1: overview.d1,
+  7: overview.d7,
+  30: overview.d30,
+  90: overview.d90,
+};
+
+// "Data started gathering" stamp.
+const dataSince = overview.data_since ? new Date(overview.data_since) : null;
+const dataSinceLabel = dataSince
+  ? dataSince.toLocaleString('es-CO', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: 'America/Bogota',
+    })
+  : null;
+
+// Group the segment rows by dimension for the three breakdown tables.
+const SEGMENT_LABELS: Record<string, string> = {
+  idioma: 'Por idioma',
+  dispositivo: 'Por dispositivo',
+  pais: 'Por país',
+};
+const BUCKET_LABELS: Record<string, string> = {
+  es: 'Español',
+  en: 'Inglés',
+  Movil: 'Móvil',
+  '(?)': 'Desconocido',
+};
+const segmentGroups = ['idioma', 'dispositivo', 'pais'].map((dim) => ({
+  dimension: dim,
+  label: SEGMENT_LABELS[dim] || dim,
+  rows: segments
+    .filter((s: SectionSegmentRow) => s.dimension === dim)
+    .sort((a, b) => Number(b.visits) - Number(a.visits)),
+}));
+const labelBucket = (b: string) => BUCKET_LABELS[b] || b || 'Desconocido';
+
+// Group rows by page path, then order pages by total time spent.
+const byPath = new Map<string, SectionReportRow[]>();
+for (const r of rows) {
+  const list = byPath.get(r.path) || [];
+  list.push(r);
+  byPath.set(r.path, list);
+}
+const pages = Array.from(byPath.entries())
+  .map(([path, sections]) => ({
+    path,
+    sections: sections.sort((a, b) => b.total_minutes - a.total_minutes),
+    totalMinutes: sections.reduce((s, x) => s + Number(x.total_minutes), 0),
+    samples: sections.reduce((s, x) => s + Number(x.samples), 0),
+  }))
+  .sort((a, b) => b.totalMinutes - a.totalMinutes);
+
+const totalSamples = rows.reduce((s, x) => s + Number(x.samples), 0);
+
+const fmtSeconds = (s: number) => {
+  const v = Number(s);
+  if (!Number.isFinite(v)) return '—';
+  if (v < 60) return `${v.toFixed(1)} s`;
+  const m = Math.floor(v / 60);
+  const sec = Math.round(v % 60);
+  return `${m}m ${sec}s`;
+};
+const fmtMinutes = (m: number) => {
+  const v = Number(m);
+  if (!Number.isFinite(v)) return '—';
+  if (v < 60) return `${v.toFixed(1)} min`;
+  return `${(v / 60).toFixed(1)} h`;
+};
+// Engagement colour by average dwell per visit (now a meaningful number after
+// the cumulative + MAX-per-visit dedup): skim / normal / sticky.
+const dwellColor = (avgSeconds: number) => {
+  const v = Number(avgSeconds);
+  if (!Number.isFinite(v) || v < 5) return '#c7a23a'; // <5s: skim / amber
+  if (v < 20) return '#4f9c6e'; // 5–20s: normal green
+  return '#2f6b46'; // 20s+: sticky / deep green
+};
+const presets = [1, 7, 30, 90];
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Tiempo por sección · AI Safety Colombia</title>
+  <style>
+    :root {
+      --cream: #fbf6ec;
+      --ink: #143620;
+      --green: #2f6b46;
+      --muted: #6b7c70;
+      --bar: #4f9c6e;
+      --bar-bg: #e6ddc9;
+      --line: #e3dccb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      padding: 32px 20px 80px;
+    }
+    .wrap { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 1.6rem; margin: 0 0 4px; }
+    .sub { color: var(--muted); font-size: 0.92rem; margin: 0 0 24px; }
+    .ranges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+    .ranges a {
+      text-decoration: none; color: var(--ink); border: 1px solid var(--line);
+      background: #fff; padding: 6px 14px; border-radius: 14px; font-size: 0.85rem;
+      display: flex; flex-direction: column; align-items: center; line-height: 1.25;
+    }
+    .ranges a.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+    .ranges .r-label { font-weight: 600; }
+    .ranges .r-count { font-size: 0.7rem; opacity: 0.7; }
+    .since { color: var(--muted); font-size: 0.82rem; margin: -16px 0 26px; }
+    .segments { margin-top: 34px; }
+    .segments h2 { font-size: 1.15rem; margin: 0 0 14px; }
+    .seg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .seg-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+    .seg-card h3 { font-size: 0.95rem; margin: 0 0 10px; }
+    .seg-card table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .seg-card th { text-align: left; color: var(--muted); font-weight: 500; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.03em; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+    .seg-card th:not(:first-child), .seg-card td:not(:first-child) { text-align: right; white-space: nowrap; }
+    .seg-card td { padding: 5px 0; border-bottom: 1px solid #f1ecdf; }
+    .seg-card tr:last-child td { border-bottom: 0; }
+    .seg-empty { color: var(--muted); font-size: 0.85rem; margin: 4px 0 0; }
+    .summary {
+      display: flex; gap: 28px; flex-wrap: wrap; padding: 16px 18px; background: #fff;
+      border: 1px solid var(--line); border-radius: 14px; margin-bottom: 28px;
+    }
+    .summary div span { display: block; }
+    .summary .n { font-size: 1.35rem; font-weight: 700; }
+    .summary .l { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .page {
+      background: #fff; border: 1px solid var(--line); border-radius: 14px;
+      padding: 18px 20px; margin-bottom: 18px;
+    }
+    .page-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 14px; }
+    .page-head .path { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.98rem; font-weight: 600; }
+    .page-head .meta { color: var(--muted); font-size: 0.82rem; white-space: nowrap; }
+    .sec { margin: 10px 0; }
+    .sec-top { display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 4px; }
+    .sec-name { font-weight: 500; }
+    .sec-stats { color: var(--muted); white-space: nowrap; }
+    .sec-stats b { color: var(--ink); font-weight: 600; }
+    .track { background: var(--bar-bg); border-radius: 6px; height: 9px; overflow: hidden; }
+    .fill { background: var(--bar); height: 100%; border-radius: 6px; }
+    .empty { text-align: center; color: var(--muted); padding: 60px 0; }
+    footer { color: var(--muted); font-size: 0.78rem; margin-top: 30px; line-height: 1.5; }
+    code { background: #fff; border: 1px solid var(--line); padding: 1px 5px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Tiempo por sección</h1>
+    <p class="sub">Cuánto tiempo pasan los visitantes en cada sección de cada página. Medición propia, resistente a bloqueadores · sin datos personales.</p>
+
+    <div class="ranges">
+      {presets.map((d) => (
+        <a href={`/metrics/?days=${d}`} class={d === days ? 'active' : ''}>
+          <span class="r-label">{d === 1 ? '24 h' : `${d} días`}</span>
+          <span class="r-count">{(rangeCount[d] ?? 0).toLocaleString('es-CO')} visitas · {(visitorCount[d] ?? 0).toLocaleString('es-CO')} pers.</span>
+        </a>
+      ))}
+    </div>
+
+    {dataSinceLabel && (
+      <p class="since">Datos recopilados desde el <b>{dataSinceLabel}</b> (hora de Bogotá).</p>
+    )}
+
+    <div class="summary">
+      <div><span class="n">{uniqueVisitors.toLocaleString('es-CO')}</span><span class="l">Visitantes únicos</span></div>
+      <div><span class="n">{pages.length}</span><span class="l">Páginas con datos</span></div>
+      <div><span class="n">{rows.length}</span><span class="l">Secciones</span></div>
+      <div><span class="n">{totalSamples.toLocaleString('es-CO')}</span><span class="l">Visitas a secciones</span></div>
+      <div><span class="n">{fmtMinutes(pages.reduce((s, p) => s + p.totalMinutes, 0))}</span><span class="l">Tiempo total</span></div>
+    </div>
+
+    {pages.length === 0 ? (
+      <p class="empty">Aún no hay datos en esta ventana de tiempo.<br />Se irá llenando con el tráfico real.</p>
+    ) : (
+      pages.map((page) => {
+        const max = Math.max(...page.sections.map((s) => Number(s.total_minutes)), 0.0001);
+        return (
+          <div class="page">
+            <div class="page-head">
+              <span class="path">{page.path}</span>
+              <span class="meta">{fmtMinutes(page.totalMinutes)} · {page.samples.toLocaleString('es-CO')} visitas</span>
+            </div>
+            {page.sections.map((s) => (
+              <div class="sec">
+                <div class="sec-top">
+                  <span class="sec-name">{(s.section || '').trim() || '(sin nombre)'}</span>
+                  <span class="sec-stats">
+                    prom. <b>{fmtSeconds(s.avg_seconds)}</b> · {Number(s.samples).toLocaleString('es-CO')} visitas · {fmtMinutes(s.total_minutes)} total
+                  </span>
+                </div>
+                <div class="track"><div class="fill" style={`width:${Math.min(100, Math.max(2, (Number(s.total_minutes) / max) * 100))}%; background:${dwellColor(s.avg_seconds)}`}></div></div>
+              </div>
+            ))}
+          </div>
+        );
+      })
+    )}
+
+    {segments.length > 0 && (
+      <div class="segments">
+        <h2>Desglose por visita</h2>
+        <div class="seg-grid">
+          {segmentGroups.map((g) => (
+            <div class="seg-card">
+              <h3>{g.label}</h3>
+              {g.rows.length === 0 ? (
+                <p class="seg-empty">Sin datos</p>
+              ) : (
+                <table>
+                  <thead>
+                    <tr><th>{g.dimension === 'pais' ? 'País' : g.dimension === 'idioma' ? 'Idioma' : 'Tipo'}</th><th>Visitas</th><th>Prom.</th></tr>
+                  </thead>
+                  <tbody>
+                    {g.rows.map((r) => (
+                      <tr>
+                        <td>{labelBucket(r.bucket)}</td>
+                        <td>{Number(r.visits).toLocaleString('es-CO')}</td>
+                        <td>{fmtSeconds(r.avg_seconds)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <footer>
+      <b>Cómo leerlo:</b> <code>prom.</code> = tiempo promedio que dura una visita en esa sección · <code>visitas</code> = cargas de página distintas (no recargas internas) · <code>total</code> = suma del tiempo de todas las visitas. La barra mide el total de cada sección frente a la sección líder de su página; su color indica el promedio: <span style="color:#c7a23a">ámbar = ojeada (&lt;5s)</span>, <span style="color:#4f9c6e">verde = normal</span>, <span style="color:#2f6b46">verde fuerte = se quedan (20s+)</span>.<br />
+      Los nombres como <code>seccion-3</code> son automáticos; pídeme etiquetas legibles para cualquier bloque (se ponen con <code>data-section="..."</code>).<br />
+      <code>Visitantes únicos</code> = navegadores distintos, medidos con un identificador aleatorio propio guardado en el navegador (sin datos personales); el conteo empieza el 31 jul 2026, las visitas anteriores no se pueden atribuir. Quien borre datos del navegador o entre desde otro dispositivo cuenta de nuevo.<br />
+      Ventana: últimos {days === 1 ? '24 horas' : `${days} días`}. Medición propia, resistente a bloqueadores, sin datos personales.
+    </footer>
+  </div>
+</body>
+</html>
