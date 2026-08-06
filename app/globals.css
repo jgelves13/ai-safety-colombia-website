@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
+/* ------------------------------ SASH palette ------------------------------ */
+/* Read off the original stylesheet; the markup asks for these by name. */
+
+@theme {
+  --color-sash-graphite: #11101a;
+  --color-sash-frost: #f4f2ff;
+  --color-sash-midnight: #0b0469;
+  --color-sash-midnight-deep: #07034f;
+  --color-sash-cobalt: #2920be;
+  --color-sash-bluebell: #6a8afc;
+
+  /* The original display face is OT Jubilee Diamond; this port draws headings
+     with Suisse Works, self-hosted from public/fonts. `font-serif` points at
+     the same face so the footer tagline and the CTA buttons — which ask for it
+     by name — stay on the display face rather than Georgia. */
+  --font-serif: var(--font-display), ui-serif, Georgia, serif;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground: var(--color-sash-graphite);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--color-sash-cobalt);
+  color: #fff;
+}
+
+/* scopes the port's type and colour defaults to the pages that use them */
+.sash-page {
+  --radius: 16px;
+  background: #fff;
+  color: var(--color-sash-graphite);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ------------------------------- typography ------------------------------- */
+
+@utility text-display-1 {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-size: 3.0375rem;
+  line-height: 0.98;
+}
+
+@utility text-display-1-lg {
+  font-size: 4.05rem;
+  line-height: 1;
+}
+
+@utility text-display-2 {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-size: 2.475rem;
+  line-height: 1;
+}
+
+@utility text-display-2-lg {
+  font-size: 3.2rem;
+  line-height: 1;
+}
+
+@utility text-display-3 {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-size: 1.575rem;
+  line-height: 1.05;
+}
+
+@utility text-display-3-lg {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+@utility text-display-4 {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-size: 1.25rem;
+  line-height: 1.1;
+}
+
+@utility text-display-4-lg {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+@utility text-body {
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.48;
+}
+
+@utility text-body-lg {
+  font-size: 1.25rem;
+  line-height: 1.45;
+}
+
+@utility text-body-sm {
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+@utility text-meta {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.08;
+}
+
+@utility text-meta-lg {
+  font-size: 1.1875rem;
+  line-height: 1;
+}
+
+/* --------------------------------- motion -------------------------------- */
+/* the collaborator logo rows on the home page, scrolling on a loop */
+
+.sash-logo-strip {
+  animation: sash-logo-strip-left var(--sash-logo-strip-duration, 45s) linear
+    infinite;
+  will-change: transform;
+}
+
+@keyframes sash-logo-strip-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sash-logo-strip {
+    animation: none !important;
+  }
 }
