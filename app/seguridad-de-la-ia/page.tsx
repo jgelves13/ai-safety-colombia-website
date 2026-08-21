@@ -3,7 +3,7 @@ import Link from "next/link";
 import CtaPanel from "@/components/cta-panel";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
-import { CTA_LINK, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
+import { CTA_LINK, CTA_LINK_PRIMARY, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Qué es la seguridad de la IA | AI Safety Colombia",
@@ -159,9 +159,8 @@ export default function SeguridadDeLaIA() {
       <CtaPanel
         title="¿Y qué hago con esto?"
         body="Lo más útil que puedes hacer al principio es hablar con alguien que ya lleve un tiempo. Después vienen los programas."
-        actionsClassName="flex flex-wrap justify-center gap-y-3 mt-8 items-start gap-x-16"
       >
-        <Link className={CTA_LINK} href="/programas">
+        <Link className={CTA_LINK_PRIMARY} href="/programas">
           Ver los programas
         </Link>
         <a className={CTA_LINK} href="https://cal.com/josegelves/meeting" target="_blank" rel="noopener noreferrer">

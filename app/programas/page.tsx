@@ -3,7 +3,7 @@ import Link from "next/link";
 import CtaPanel from "@/components/cta-panel";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
-import { CARD_LINK_COBALT, CARD_LINK_FROST, CTA_LINK, HERO_CORNER_CLASS, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
+import { CARD_LINK_COBALT, CARD_LINK_FROST, CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Programas | AI Safety Colombia",
@@ -181,9 +181,8 @@ export default function Programas() {
       <CtaPanel
         title="Empieza por una conversación"
         body="Veinte minutos para entender en qué andas y decirte por dónde te conviene entrar. Sin filtro y sin compromiso."
-        actionsClassName="flex flex-wrap justify-center gap-y-3 mt-8 items-start gap-x-16"
       >
-        <a className={CTA_LINK} href="https://cal.com/josegelves/meeting" target="_blank" rel="noopener noreferrer">
+        <a className={CTA_LINK_PRIMARY} href="https://cal.com/josegelves/meeting" target="_blank" rel="noopener noreferrer">
           Agendar 20 minutos
         </a>
         <Link className={CTA_LINK} href="/eventos">

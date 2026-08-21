@@ -3,7 +3,7 @@ import PastEvents from "./past-events";
 import CtaPanel from "@/components/cta-panel";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
-import { CTA_LINK, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
+import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Eventos | AI Safety Colombia",
@@ -111,10 +111,9 @@ export default function Eventos() {
       <CtaPanel
         title="Que te avisemos del próximo"
         body="El grupo de WhatsApp es donde se anuncia todo primero. También puedes escribirnos y te avisamos por correo."
-        actionsClassName="flex flex-wrap justify-center gap-y-3 mt-8 items-start gap-x-16"
       >
         {/* TODO: reemplazar por el enlace permanente del grupo de WhatsApp */}
-        <a className={CTA_LINK} href="https://chat.whatsapp.com/" target="_blank" rel="noopener noreferrer">
+        <a className={CTA_LINK_PRIMARY} href="https://chat.whatsapp.com/" target="_blank" rel="noopener noreferrer">
           Entrar al grupo
         </a>
         <a className={CTA_LINK} href="mailto:jose@aisafetycolombia.org">

@@ -69,7 +69,7 @@ export default function SiteFooter() {
               height={420}
               className="h-12 w-auto md:h-14"
             />
-            <p className="text-display-4 md:text-display-4-lg mt-5 max-w-[270px] text-aisc-sand">
+            <p className="text-body-sm mt-5 max-w-[260px] text-aisc-sand/85">
               Que la inteligencia artificial avance de forma segura, con gente de acá trabajando en ello.
             </p>
           </div>

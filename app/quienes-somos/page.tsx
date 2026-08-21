@@ -3,7 +3,7 @@ import Link from "next/link";
 import CtaPanel from "@/components/cta-panel";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
-import { CTA_LINK, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
+import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Quiénes somos | AI Safety Colombia",
@@ -62,7 +62,7 @@ const ALIADOS = [
   {
     name: "Kairos",
     body: "Su programa Pathfinder acompaña a quienes construyen comunidades de seguridad de la IA.",
-    logo: null,
+    logo: "/aisc/aliados/kairos.png",
     href: "https://kairos-project.org",
   },
 ];
@@ -235,11 +235,7 @@ export default function QuienesSomos() {
                   className="group flex min-h-[190px] flex-col justify-between gap-8 rounded-[12px] border border-aisc-forest-deep bg-transparent p-7 transition-colors hover:bg-aisc-cream lg:p-9"
                 >
                   <div className="flex h-[42px] items-center">
-                    {aliado.logo ? (
-                      <img src={aliado.logo} alt={aliado.name} className="max-h-[42px] w-auto object-contain" />
-                    ) : (
-                      <span className="text-display-3 md:text-display-3-lg text-aisc-forest">{aliado.name}</span>
-                    )}
+                    <img src={aliado.logo} alt={aliado.name} className="max-h-[38px] w-auto object-contain" />
                   </div>
                   <div className="flex flex-col gap-2">
                     <h3 className="text-display-4 md:text-display-4-lg text-balance">{aliado.name}</h3>
@@ -255,9 +251,8 @@ export default function QuienesSomos() {
       <CtaPanel
         title="Se entra trabajando"
         body="No hay membresía ni convocatoria. Se llega a un evento, se entra a un programa o se agenda una conversación."
-        actionsClassName="flex flex-wrap justify-center gap-y-3 mt-8 items-start gap-x-16"
       >
-        <Link className={CTA_LINK} href="/programas">
+        <Link className={CTA_LINK_PRIMARY} href="/programas">
           Ver los programas
         </Link>
         <a className={CTA_LINK} href="https://cal.com/josegelves/meeting" target="_blank" rel="noopener noreferrer">

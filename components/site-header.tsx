@@ -27,7 +27,7 @@ function Nav({ active, className }: { active?: string; className: string }) {
           <Link
             key={item.href}
             aria-current={current ? "page" : undefined}
-            className={`text-meta md:text-meta-lg text-aisc-sand transition-colors hover:text-aisc-sand/70${current ? " underline underline-offset-4" : ""}`}
+            className={`text-body-sm text-aisc-sand transition-colors hover:text-aisc-sand/70${current ? " underline underline-offset-4" : ""}`}
             href={item.href}
           >
             {item.label}
