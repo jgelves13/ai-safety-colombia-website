@@ -1,19 +1,27 @@
 import type { Metadata } from "next";
-import { Instrument_Sans } from "next/font/google";
-import localFont from "next/font/local";
+import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-/** text face of the SASH port */
-const instrumentSans = Instrument_Sans({
-  variable: "--font-body",
+/** titulares: la grotesca de la marca */
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  display: "swap",
 });
 
-/** display face for the big headlines — licensed, self-hosted */
-const suisseWorks = localFont({
-  src: "../public/fonts/suisse-works-regular.woff2",
-  variable: "--font-display",
-  weight: "400",
+/** lectura */
+const inter = Inter({
+  variable: "--font-body",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+/** antetitulos, fechas, cifras */
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -29,8 +37,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
-      className={`${instrumentSans.variable} ${suisseWorks.variable} h-full antialiased`}
+      lang="es"
+      className={`${inter.variable} ${bricolage.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

@@ -30,13 +30,13 @@ export function slugify(text: string): string {
 
 const CLASS = {
   h3: "text-display-3 md:text-display-3-lg mt-12 mb-4 scroll-mt-32 break-words lg:max-w-[760px] xl:max-w-[820px]",
-  p: "text-body md:text-body-lg text-sash-graphite mb-6 whitespace-pre-line [overflow-wrap:anywhere]",
-  a: "decoration-sash-cobalt break-words underline underline-offset-[3px] transition-colors hover:text-sash-cobalt",
+  p: "text-body md:text-body-lg text-aisc-ink mb-6 whitespace-pre-line [overflow-wrap:anywhere]",
+  a: "decoration-aisc-forest break-words underline underline-offset-[3px] transition-colors hover:text-aisc-forest",
   figure: "my-10 select-none lg:max-w-[760px] xl:max-w-[820px]",
   img: "pointer-events-none h-auto w-full select-none",
-  ul: "text-body md:text-body-lg text-sash-graphite mb-6 flex list-disc flex-col gap-2 pl-6",
-  ol: "text-body md:text-body-lg text-sash-graphite mb-6 flex list-decimal flex-col gap-2 pl-6",
-  blockquote: "border-sash-cobalt text-body md:text-body-lg text-sash-graphite mb-6 border-l-2 pl-5 italic",
+  ul: "text-body md:text-body-lg text-aisc-ink mb-6 flex list-disc flex-col gap-2 pl-6",
+  ol: "text-body md:text-body-lg text-aisc-ink mb-6 flex list-decimal flex-col gap-2 pl-6",
+  blockquote: "border-aisc-forest text-body md:text-body-lg text-aisc-ink mb-6 border-l-2 pl-5 italic",
 };
 
 const escapeAttr = (s: string) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");

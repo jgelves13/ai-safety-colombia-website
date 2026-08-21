@@ -1,26 +1,29 @@
 @import "tailwindcss";
 
-/* ------------------------------ SASH palette ------------------------------ */
-/* Read off the original stylesheet; the markup asks for these by name. */
+/* ----------------------------- AI Safety Colombia -----------------------------
+   Paleta de la marca (brand/BRAND.md del sitio actual). Reemplaza la paleta
+   blanco/midnight/frost que traia el port: papel crema, verde bosque, coral.
+   ---------------------------------------------------------------------------- */
 
 @theme {
-  --color-sash-graphite: #11101a;
-  --color-sash-frost: #f4f2ff;
-  --color-sash-midnight: #0b0469;
-  --color-sash-midnight-deep: #07034f;
-  --color-sash-cobalt: #2920be;
-  --color-sash-bluebell: #6a8afc;
+  --color-aisc-ink: #211a12;          /* negro calido, nunca #000 */
+  --color-aisc-cream: #fbf6ec;        /* el papel del sitio */
+  --color-aisc-sand: #f3ead8;         /* tinte sobre el papel; y texto sobre verde */
+  --color-aisc-forest: #1f4d32;       /* primario: filetes, enlaces, bordes */
+  --color-aisc-forest-deep: #143620;  /* bloques oscuros */
+  --color-aisc-night: #0d2617;        /* hover sobre bloques oscuros */
+  --color-aisc-sage: #3e7256;         /* banda del pie, apoyos sobre oscuro */
+  --color-aisc-coral: #e5604d;        /* acento corto: antetitulos, cifras */
+  --color-aisc-line: #e4d9c4;         /* filete suave sobre papel */
+  --color-aisc-muted: #5a5044;        /* texto secundario */
 
-  /* The original display face is OT Jubilee Diamond; this port draws headings
-     with Suisse Works, self-hosted from public/fonts. `font-serif` points at
-     the same face so the footer tagline and the CTA buttons — which ask for it
-     by name — stay on the display face rather than Georgia. */
-  --font-serif: var(--font-display), ui-serif, Georgia, serif;
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: var(--color-sash-graphite);
+  --background: var(--color-aisc-cream);
+  --foreground: var(--color-aisc-ink);
 }
 
 body {
@@ -30,102 +33,127 @@ body {
 }
 
 ::selection {
-  background: var(--color-sash-cobalt);
-  color: #fff;
+  background: var(--color-aisc-forest);
+  color: var(--color-aisc-cream);
 }
 
-/* scopes the port's type and colour defaults to the pages that use them */
-.sash-page {
+.aisc-page {
   --radius: 16px;
-  background: #fff;
-  color: var(--color-sash-graphite);
+  background: var(--color-aisc-cream);
+  color: var(--color-aisc-ink);
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
 }
 
-/* ------------------------------- typography ------------------------------- */
+/* ------------------------------- tipografia -------------------------------
+   Bricolage Grotesque para titulares (la de la marca), Inter para lectura,
+   JetBrains Mono para antetitulos y metadatos. El tracking negativo es lo que
+   hace que Bricolage se lea como titular y no como texto grande.
+   -------------------------------------------------------------------------- */
 
 @utility text-display-1 {
-  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-family: var(--font-display);
+  font-weight: 800;
   font-size: 3.0375rem;
-  line-height: 0.98;
+  line-height: 0.96;
+  letter-spacing: -0.035em;
 }
 
 @utility text-display-1-lg {
   font-size: 4.05rem;
-  line-height: 1;
+  line-height: 0.98;
+  letter-spacing: -0.038em;
 }
 
 @utility text-display-2 {
-  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-family: var(--font-display);
+  font-weight: 800;
   font-size: 2.475rem;
   line-height: 1;
+  letter-spacing: -0.033em;
 }
 
 @utility text-display-2-lg {
   font-size: 3.2rem;
-  line-height: 1;
+  line-height: 0.99;
+  letter-spacing: -0.035em;
 }
 
 @utility text-display-3 {
-  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-family: var(--font-display);
+  font-weight: 700;
   font-size: 1.575rem;
-  line-height: 1.05;
+  line-height: 1.06;
+  letter-spacing: -0.028em;
 }
 
 @utility text-display-3-lg {
   font-size: 1.8rem;
-  line-height: 1;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
 }
 
 @utility text-display-4 {
-  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-family: var(--font-display);
+  font-weight: 700;
   font-size: 1.25rem;
-  line-height: 1.1;
+  line-height: 1.12;
+  letter-spacing: -0.024em;
 }
 
 @utility text-display-4-lg {
   font-size: 1.5rem;
-  line-height: 1;
+  line-height: 1.05;
+  letter-spacing: -0.026em;
 }
 
 @utility text-body {
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-size: 1.125rem;
-  line-height: 1.48;
+  line-height: 1.55;
 }
 
 @utility text-body-lg {
   font-size: 1.25rem;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 @utility text-body-sm {
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-size: 1rem;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
+/* metadatos: fechas, filtros, roles. En mono, no en la serif de display. */
 @utility text-meta {
-  font-family: var(--font-display), ui-serif, Georgia, serif;
-  font-size: 1.0625rem;
-  line-height: 1.08;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
 }
 
 @utility text-meta-lg {
-  font-size: 1.1875rem;
+  font-size: 1rem;
+  line-height: 1.15;
+}
+
+/* antetitulo de seccion: mono, caja alta, coral */
+@utility text-kicker {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
   line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 /* --------------------------------- motion -------------------------------- */
-/* the collaborator logo rows on the home page, scrolling on a loop */
 
-.sash-logo-strip {
-  animation: sash-logo-strip-left var(--sash-logo-strip-duration, 45s) linear
+.aisc-logo-strip {
+  animation: aisc-logo-strip-left var(--aisc-logo-strip-duration, 45s) linear
     infinite;
   will-change: transform;
 }
 
-@keyframes sash-logo-strip-left {
+@keyframes aisc-logo-strip-left {
   from {
     transform: translateX(0);
   }
@@ -135,7 +163,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sash-logo-strip {
+  .aisc-logo-strip {
     animation: none !important;
   }
 }
