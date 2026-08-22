@@ -20,17 +20,14 @@ const CIFRAS = [
 
 const FRENTES = [
   {
-    num: "01",
     title: "Formamos gente",
     body: "Grupos de lectura, hackathons y acompañamiento uno a uno para que alguien pase de tener curiosidad a tener un trabajo hecho. Casi todo el material del campo está en inglés; acá se discute en español.",
   },
   {
-    num: "02",
     title: "Organizamos investigación",
     body: "Somos sede regional de hackathons de investigación y conectamos a quien está empezando con mentores que ya publican en el campo. La salida es trabajo propio, no un certificado.",
   },
   {
-    num: "03",
     title: "Abrimos la conversación",
     body: "Charlas, paneles y cenas donde se juntan investigación, sector público e industria. La regulación de la IA en Colombia se está escribiendo ahora y casi nadie del país está en esa mesa.",
   },
@@ -101,8 +98,9 @@ export default function QuienesSomos() {
             <h2 className="text-display-2 md:text-display-2-lg">Por qué existimos</h2>
             <div className="flex flex-col gap-5 text-body-sm text-aisc-ink md:text-body md:text-body-lg">
               <p>
-                Los sistemas de inteligencia artificial ganan capacidades más rápido de lo que crece nuestra capacidad
-                de revisarlos. Ese hueco se está cerrando en pocos lugares del mundo, y ninguno queda acá.
+                Los sistemas de inteligencia artificial ganan capacidades más rápido de lo que crece nuestra
+                comprensión de ellos. En ese hueco trabaja muy poca gente en el mundo, y hasta hace poco nadie desde
+                acá.
               </p>
               <p>
                 Colombia son 52 millones de personas que van a usar estos sistemas, regularlos y sufrirlos, y hasta 2024
@@ -143,10 +141,10 @@ export default function QuienesSomos() {
           <div className="grid grid-cols-1 gap-[10px] sm:grid-cols-3">
             {FRENTES.map((frente) => (
               <article
-                key={frente.num}
+                key={frente.title}
                 className="flex min-h-[190px] flex-col justify-between gap-8 overflow-hidden rounded-lg border border-aisc-ink bg-aisc-cream p-6 text-aisc-ink md:min-h-[245px] md:p-8 lg:min-h-[300px]"
               >
-                <span className="text-kicker text-aisc-coral">{frente.num}</span>
+                <span aria-hidden="true" className="mb-5 block h-px w-10 flex-none bg-aisc-coral" />
                 <div className="flex flex-col gap-3">
                   <h3 className="text-display-3 md:text-display-3-lg text-balance">{frente.title}</h3>
                   <p className="text-body-sm text-aisc-ink">{frente.body}</p>

@@ -43,17 +43,14 @@ const PROGRAMAS = [
 
 const PILARES = [
   {
-    num: "01",
     title: "Se entra sin credenciales",
     body: "No pedimos posgrado ni experiencia previa en inteligencia artificial. Pedimos que aparezcas y que trabajes.",
   },
   {
-    num: "02",
     title: "Se sale con algo hecho",
     body: "Cada programa termina en un producto concreto: un trabajo, un análisis, una presentación. No en un certificado.",
   },
   {
-    num: "03",
     title: "Se trabaja en español",
     body: "El material del campo está casi todo en inglés. La discusión, la mentoría y el acompañamiento los hacemos acá, en español.",
   },
@@ -141,8 +138,8 @@ export default function Programas() {
                   key={pilar.title}
                   className="flex flex-col rounded-[12px] border border-aisc-forest-deep bg-transparent min-h-[210px] p-7 md:min-h-[245px] lg:p-9 xl:min-h-[270px]"
                 >
-                  <span className="text-kicker text-aisc-coral">{pilar.num}</span>
-                  <div className="flex max-w-[900px] flex-col gap-4 mt-auto pt-10">
+                  <span aria-hidden="true" className="mb-5 block h-px w-10 flex-none bg-aisc-coral" />
+                  <div className="flex max-w-[900px] flex-col gap-4">
                     <h3 className="text-display-4 md:text-display-4-lg break-words text-balance">{pilar.title}</h3>
                     <p className="text-body-sm text-aisc-ink">{pilar.body}</p>
                   </div>

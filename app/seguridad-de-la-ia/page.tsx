@@ -8,7 +8,7 @@ import { CTA_LINK, CTA_LINK_PRIMARY, HERO_INNER, HERO_SECTION, PAGE_SHELL } from
 export const metadata: Metadata = {
   title: "Qué es la seguridad de la IA | AI Safety Colombia",
   description:
-    "Una explicación breve y sin jerga: por qué los sistemas de inteligencia artificial avanzan más rápido de lo que sabemos verificarlos, y qué se hace al respecto.",
+    "Una explicación breve y sin jerga: por qué los sistemas de inteligencia artificial avanzan más rápido de lo que los entendemos, y qué se hace al respecto.",
 };
 
 /** recursos externos reales para empezar, con su idioma marcado */
@@ -33,20 +33,17 @@ const RECURSOS = [
   },
 ];
 
-/** las tres formas de trabajar en el problema */
+/** las tres formas de trabajar en el problema, sin que ninguna pese mas que las otras */
 const FRENTES = [
   {
-    num: "01",
-    title: "Alineación técnica",
-    body: "Cómo lograr que un sistema haga lo que se le pidió y no otra cosa parecida. Interpretabilidad, entrenamiento con supervisión, control de sistemas que actúan de forma autónoma.",
+    title: "Alineación e interpretabilidad",
+    body: "Cómo lograr que un sistema persiga lo que se le pidió y no algo parecido, y cómo mirar por dentro para saber qué está haciendo en realidad. Es el corazón técnico del campo y sigue sin resolverse.",
   },
   {
-    num: "02",
-    title: "Evaluación y auditoría",
-    body: "Cómo medir de qué es capaz un modelo antes de soltarlo, y cómo comprobar que sus salvaguardas aguantan. Es lo más cercano a un peritaje técnico, y hoy hace falta gente que lo sepa hacer.",
+    title: "Evaluación y control",
+    body: "Cómo medir de qué es capaz un modelo antes de soltarlo y cómo mantenerlo bajo supervisión cuando ya actúa por su cuenta. Es lo más cercano a un peritaje técnico, y hoy hace falta gente que lo sepa hacer.",
   },
   {
-    num: "03",
     title: "Gobernanza y política pública",
     body: "Qué se le exige a quien despliega un sistema, con qué evidencia y ante quién responde. En Colombia esto se está definiendo ahora, en compras públicas y en regulación sectorial.",
   },
@@ -77,20 +74,21 @@ export default function SeguridadDeLaIA() {
             <h2 className="text-display-2 md:text-display-2-lg text-balance">El punto de partida</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-5 text-aisc-ink">
               <p>
-                Los sistemas de inteligencia artificial ganan capacidades más rápido de lo que crece nuestra capacidad
-                de revisarlos. En eso coinciden casi todos: quien cree que la IA será lo mejor que nos ha pasado y quien
-                cree que será lo peor.
+                La inteligencia artificial no es una tecnología más. Los sistemas actuales aprenden de ejemplos en vez
+                de seguir instrucciones, y por eso ni quienes los construyen pueden decir con precisión qué van a hacer
+                en una situación nueva.
               </p>
               <p>
-                La seguridad de la IA es el trabajo de cerrar ese hueco. Entender qué hace un modelo por dentro,
-                comprobar de qué es capaz antes de desplegarlo, diseñar las reglas y los incentivos para que quien lo
-                despliega responda por lo que hace. Es un campo técnico con una pata de política pública, no una postura
-                a favor o en contra de la tecnología.
+                La seguridad de la IA es el campo que trabaja para que esos sistemas sean confiables antes de que las
+                apuestas sean altas: entender por dentro cómo funcionan, lograr que persigan lo que de verdad queremos,
+                mantenerlos bajo supervisión aunque nos superen en su tarea y construir las instituciones que respondan
+                cuando algo sale mal. Es un campo técnico con una pata de política pública, no una postura a favor o en
+                contra de la tecnología.
               </p>
               <p>
                 Nada de esto es futurología. Los sistemas que hoy filtran hojas de vida, asignan crédito o priorizan
-                atención en salud ya toman decisiones sobre personas, y muy pocos han sido auditados de verdad. Los
-                sistemas que vienen serán más capaces y más autónomos, y el problema de revisarlos no se resuelve solo.
+                atención en salud ya toman decisiones sobre personas. Los que vienen actuarán con más autonomía y sobre
+                más cosas, y ninguno de estos problemas se resuelve solo.
               </p>
             </div>
           </div>
@@ -113,8 +111,8 @@ export default function SeguridadDeLaIA() {
                 key={frente.title}
                 className="overflow-hidden rounded-lg bg-aisc-cream border border-aisc-ink flex flex-col p-6 text-aisc-ink md:min-h-[270px] md:p-7 lg:min-h-[310px] lg:p-8 xl:min-h-[335px]"
               >
-                <span className="text-kicker text-aisc-coral">{frente.num}</span>
-                <div className="mt-16 flex max-w-[420px] min-w-0 flex-col gap-3 md:mt-20 lg:mt-24">
+                <span aria-hidden="true" className="mb-5 block h-px w-10 flex-none bg-aisc-coral" />
+                <div className="flex max-w-[420px] min-w-0 flex-col gap-3">
                   <h3 className="text-display-3 md:text-display-3-lg break-words text-balance">{frente.title}</h3>
                   <p className="text-body-sm text-aisc-ink">{frente.body}</p>
                 </div>

@@ -13,22 +13,18 @@ export const metadata: Metadata = {
 
 const FORMATOS = [
   {
-    num: "01",
     title: "Charlas abiertas",
     body: "Sesiones públicas con investigadores y profesionales que trabajan en seguridad de la IA. Entrada libre, casi siempre en universidad.",
   },
   {
-    num: "02",
     title: "Cenas de diálogo",
     body: "Mesas pequeñas con alguien que conoce el tema por dentro. Formato de conversación, no de presentación.",
   },
   {
-    num: "03",
     title: "Talleres y grupos de lectura",
     body: "Sesiones de trabajo sobre artículos técnicos y de gobernanza. Se llega habiendo leído; se sale discutiendo.",
   },
   {
-    num: "04",
     title: "Paneles y encuentros",
     body: "Espacios donde se juntan investigación, sector público e industria para hablar del estado del tema en Colombia.",
   },
@@ -94,8 +90,8 @@ export default function Eventos() {
                   key={formato.title}
                   className="flex min-h-[210px] flex-col gap-6 rounded-[12px] border border-aisc-forest-deep bg-transparent p-7 md:min-h-[245px] lg:p-9 xl:min-h-[270px]"
                 >
-                  <span className="text-kicker text-aisc-coral">{formato.num}</span>
-                  <div className="mt-auto flex flex-col gap-4">
+                  <span aria-hidden="true" className="mb-5 block h-px w-10 flex-none bg-aisc-coral" />
+                  <div className="flex flex-col gap-4">
                     <h3 className="text-display-4 md:text-display-4-lg text-balance">{formato.title}</h3>
                     <p className="text-body-sm text-aisc-ink">{formato.body}</p>
                   </div>
