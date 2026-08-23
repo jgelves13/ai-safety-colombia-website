@@ -393,7 +393,7 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
               requerido
               name="aiSafety"
               label="¿Has tenido algún acercamiento a la seguridad de la IA?"
-              ayuda="Un curso, un grupo de lectura, un artículo que te marcó, un proyecto, una charla. Si la respuesta es ninguno, dilo: no descalifica y nos sirve para saber con quién estamos hablando."
+              ayuda="Un curso, un grupo de lectura, un artículo que te marcó, un proyecto, una charla. El sprint está abierto a quien llega al tema por primera vez, así que si es tu caso, escríbelo y cuéntanos qué te trajo hasta acá."
               error={errores.aiSafety}
             >
               <textarea {...areaProps("aiSafety", 4)} />
@@ -500,7 +500,7 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
                 requerido
                 name="hubTeamNames"
                 label="¿Con quiénes aplicas?"
-                ayuda="Nombre y correo de cada persona del equipo. Cada una tiene que llenar este formulario por su lado."
+                ayuda="Los nombres de las personas con las que vienes. Cada una tiene que llenar este formulario por su lado."
                 error={errores.hubTeamNames}
               >
                 <textarea {...areaProps("hubTeamNames", 4)} />
@@ -591,10 +591,10 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
             </span>
           ) : null}
           <p className="text-meta mt-4 text-aisc-muted">
-            Usamos lo que nos cuentas para la selección y para organizar el fin de semana. Si quedas seleccionado,
-            compartimos tu nombre, en qué andas y el frente que escogiste con el resto de participantes, que es como se
-            arman los equipos de quienes aplican solos. Tu correo y lo que nos digas en las dos últimas preguntas no
-            salen de nosotros. Si quieres que borremos tus datos, escríbenos a{" "}
+            Usamos lo que nos cuentas para dos cosas: escoger quiénes participan y organizar bien el fin de semana.
+            Si quedas seleccionado, el resto de participantes verá tu nombre, en qué andas y el frente que escogiste.
+            Así es como quien llega sin equipo encuentra con quién armarlo. Tu correo y tus respuestas a las dos últimas
+            preguntas se quedan con nosotros. Si en algún momento quieres que borremos tus datos, escríbenos a{" "}
             <a className={ENLACE} href="mailto:contacto@aisafetycolombia.org">
               contacto@aisafetycolombia.org
             </a>

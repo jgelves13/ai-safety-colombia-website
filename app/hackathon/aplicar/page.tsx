@@ -36,7 +36,7 @@ export default function Aplicar() {
         <SiteHeader active="/hackathon" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[760px] flex-col gap-5">
-            <span className="text-kicker text-aisc-coral">AI Incident Response Sprint · 11 al 13 de septiembre</span>
+            <span className="text-kicker text-aisc-sand/70">AI Incident Response Sprint · 11 al 13 de septiembre</span>
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">
               Aplica al espacio en Bogotá
             </h1>

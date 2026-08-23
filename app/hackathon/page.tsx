@@ -22,32 +22,30 @@ export const metadata: Metadata = {
 
 const ENLACE = "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
 
-/* Los tres datos que alguien busca antes de leer nada más. Van en tarjetas
-   oscuras pegadas al hero, como en la página de programa de SASH. */
+/* Los tres datos que alguien busca antes de leer nada más. Una cifra grande y
+   una línea de apoyo, sin más: es lo que hace que se lean de un vistazo. */
 const DATOS = [
   {
-    rotulo: "11 al 13 de septiembre de 2026",
-    valor: "Tres días",
-    nota: "Arranca el viernes en la noche y cierra el domingo en la noche.",
+    valor: "11 al 13 de septiembre",
+    nota: "Tres días, de viernes en la noche a domingo en la noche",
   },
   {
-    rotulo: "Bogotá y en línea",
-    valor: "Espacio presencial",
-    nota: "La sede se confirma en los próximos días. El sprint también se puede hacer en remoto con Apart.",
+    valor: "Bogotá y en línea",
+    nota: "Espacio presencial en Bogotá, sede por confirmar",
   },
   {
-    rotulo: "USD 2.000 en premios",
-    valor: "Cinco puestos",
-    nota: "Los reparte Apart entre los mejores proyectos de todo el sprint, no solo de Bogotá.",
+    valor: "USD 2.000 en premios",
+    nota: "Cinco puestos, que Apart reparte entre todo el sprint",
   },
 ];
 
 /* Quién hace qué. La frontera importa: Apart y CeSIA convocan, nosotros
    abrimos la sala. */
-const ORGANIZAN = [
+const ORGANIZAN: { nombre: string; rol: string; url?: string }[] = [
   {
     nombre: "Apart Research",
     rol: "Convoca el sprint, define los cinco retos, pone los premios y recibe los proyectos.",
+    url: "https://apartresearch.com",
   },
   {
     nombre: "CeSIA",
@@ -59,8 +57,7 @@ const ORGANIZAN = [
   },
 ];
 
-/* Lo que se lleva alguien que participa. Van numerados porque son tres cosas
-   distintas, no tres formas de decir lo mismo. */
+/* Lo que se lleva alguien que participa. */
 const PILARES = [
   {
     titulo: "Sales con un artefacto, no con una idea",
@@ -177,12 +174,16 @@ const PERFILES = [
     body: "De banca a salud, la respuesta a incidentes ya es un oficio. Acá se trata de ver qué cambia cuando el que falló es un sistema de IA.",
   },
   {
-    rotulo: "Quien viene leyendo",
-    body: "Si llevas meses leyendo sobre riesgos de la IA y no sabes por dónde entrar, este fin de semana es la forma más corta de pasar de leer a producir algo.",
+    rotulo: "Quien llega al tema por primera vez",
+    body: "No hace falta haber leído nada sobre seguridad de la IA. Se entra por lo que ya sabes hacer y lo que falte se pregunta en la sala. Buena parte de quienes hoy trabajan en el campo entraron por un fin de semana como este.",
   },
 ];
 
 const FAQ = [
+  {
+    q: "¿Puedo aplicar si nunca he trabajado en seguridad de la IA?",
+    a: "Sí, y es el caso de buena parte de quienes participan. Los proyectos que mejor salen suelen mezclar a alguien que conoce el campo con alguien que sabe hacer muy bien otra cosa: escribir, litigar, levantar infraestructura, leerse un expediente. Lo que sí pedimos es que puedas estar los tres días.",
+  },
   {
     q: "¿Necesito saber programar?",
     a: "No para todos los tracks. Los de regulación y comunicación se ganan escribiendo bien y entendiendo el expediente. Los de contención y análisis sí piden manos en el teclado, aunque los equipos suelen mezclar perfiles.",
@@ -241,7 +242,7 @@ export default function Hackathon() {
         <SiteHeader active="/hackathon" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[860px] flex-col gap-5">
-            <span className="text-kicker text-aisc-coral">Apart Research · CeSIA · AI Safety Colombia</span>
+            <span className="text-kicker text-aisc-sand/70">Apart Research · CeSIA · AI Safety Colombia</span>
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">
               AI Incident Response Sprint
             </h1>
@@ -269,12 +270,10 @@ export default function Hackathon() {
             {DATOS.map((d) => (
               <div
                 className="flex min-h-[122px] flex-col justify-start rounded-[8px] bg-aisc-forest-deep px-5 py-5 text-aisc-sand md:min-h-[142px] md:px-7 md:py-7"
-                key={d.rotulo}
+                key={d.valor}
               >
-                <dt className="text-display-4 md:text-display-4-lg text-balance">{d.rotulo}</dt>
-                <dd className="text-body-sm mt-3 text-aisc-sand/80">
-                  <span className="text-aisc-coral">{d.valor}</span> · {d.nota}
-                </dd>
+                <dt className="text-display-4 md:text-display-4-lg break-words">{d.valor}</dt>
+                <dd className="text-body-sm mt-3 text-aisc-sand">{d.nota}</dd>
               </div>
             ))}
           </dl>
@@ -285,32 +284,43 @@ export default function Hackathon() {
             <div className={ENCABEZADO}>
               <h2 className="text-display-2 md:text-display-2-lg break-words">De qué se trata</h2>
               <div className={COLUMNA}>
-                <p className="text-body md:text-body-lg font-serif max-w-[640px]">
-                  Ya hay casos documentados en los que un sistema de IA atacó por su cuenta a un tercero. Cuando eso
-                  pasa, casi nadie tiene a mano el procedimiento.
-                </p>
+                <h3 className="text-body md:text-body-lg font-serif text-aisc-ink">
+                  ¿Qué es el AI Incident Response Sprint?
+                </h3>
                 <div className={PROSA}>
                   <p>
-                    No está escrito cómo se contiene, ni cómo se reconstruye qué falló, ni qué le puede exigir un
-                    regulador al proveedor, ni cómo se cuenta el caso sin exagerar ni minimizar. El sprint existe para
-                    llenar ese vacío con piezas concretas.
+                    Ya hay casos documentados en los que un sistema de IA atacó por su cuenta a un tercero. Cuando eso
+                    pasa, casi nadie tiene a mano el procedimiento: no está escrito cómo se contiene, ni cómo se
+                    reconstruye qué falló, ni qué le puede exigir un regulador al proveedor, ni cómo se cuenta el caso
+                    sin exagerar ni minimizar.
                   </p>
                   <p>
-                    Se trabaja en cinco frentes en paralelo durante tres días. Cada equipo entrega algo que alguien más
-                    pueda usar: un estándar, un banco de pruebas, un cuestionario para un regulador, un ejercicio de
-                    mesa. Los proyectos se califican después del fin de semana y se publican completos.
+                    El sprint existe para llenar ese vacío con piezas concretas. Se trabaja en cinco frentes en paralelo
+                    durante tres días. Cada equipo entrega algo que alguien más pueda usar: un estándar, un banco de
+                    pruebas, un cuestionario para un regulador, un ejercicio de mesa. Los proyectos se califican después
+                    del fin de semana y se publican completos.
                   </p>
                 </div>
-                <div>
+                <div className="flex flex-col">
                   <p className={ROTULO}>Quién organiza qué</p>
-                  <ul>
-                    {ORGANIZAN.map((o) => (
-                      <li className={FILA} key={o.nombre}>
-                        <span className="text-display-4 font-semibold text-aisc-forest">{o.nombre}</span>
-                        <span className="text-body text-aisc-ink">{o.rol}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {ORGANIZAN.map((o) => (
+                    <div className={FILA} key={o.nombre}>
+                      {o.url ? (
+                        <a
+                          className="text-display-4 md:text-display-4-lg font-semibold text-aisc-forest underline-offset-2 hover:underline"
+                          href={o.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {o.nombre}
+                        </a>
+                      ) : (
+                        <p className="text-display-4 md:text-display-4-lg font-semibold text-aisc-forest">{o.nombre}</p>
+                      )}
+                      <p className="text-body text-aisc-ink">{o.rol}</p>
+                    </div>
+                  ))}
+                  <div aria-hidden="true" className="border-t border-aisc-ink/20" />
                 </div>
               </div>
             </div>
@@ -330,12 +340,9 @@ export default function Hackathon() {
             </p>
           </div>
           <ul className="mt-12 grid grid-cols-1 gap-3 md:mt-14 lg:mt-16 lg:grid-cols-3">
-            {PILARES.map((p, i) => (
+            {PILARES.map((p) => (
               <li className="flex" key={p.titulo}>
-                <article className="flex min-h-[180px] w-full flex-col gap-4 rounded-[8px] border border-aisc-forest/55 bg-transparent p-6 md:min-h-[210px] md:p-8 lg:min-h-[256px]">
-                  <span className="text-display-2 tabular-nums text-aisc-forest" aria-hidden="true">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
+                <article className="flex min-h-[180px] w-full flex-col justify-end gap-4 rounded-[8px] border border-aisc-forest/55 bg-transparent p-6 md:min-h-[210px] md:p-8 lg:min-h-[240px]">
                   <h3 className="text-display-4 md:text-display-4-lg text-balance">{p.titulo}</h3>
                   <p className="text-body-sm text-aisc-ink">{p.body}</p>
                 </article>
@@ -629,7 +636,7 @@ export default function Hackathon() {
               src={PATRON}
             />
             <div className="relative z-10 flex w-full max-w-[760px] flex-col items-center gap-6">
-              <span className="text-kicker text-aisc-coral">{CIERRE_TEXTO}</span>
+              <span className="text-kicker text-aisc-sand/70">{CIERRE_TEXTO}</span>
               <h2 className="text-display-2 md:text-display-2-lg text-balance">Aplica al espacio en Bogotá</h2>
               <p className="text-body md:text-body-lg text-aisc-sand/85">
                 Hay una sola pregunta de selección de verdad: qué problema te gustaría abordar y con qué enfoque. No
