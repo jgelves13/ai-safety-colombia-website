@@ -98,7 +98,7 @@ const INDICE = [
   { id: "frentes", label: "Hay tres frentes y no todos exigen formación técnica" },
   {
     id: "colombia",
-    label: "Las preguntas de acá no las va a hacer nadie más",
+    label: "Lo que falta acá no es una agenda propia, es gente",
   },
 ];
 
@@ -819,41 +819,46 @@ export default function SeguridadDeLaIA() {
 
         <div className={ANCHO}>
           {/* ---------------------------------------------------------- */}
-          <H2 id="colombia">Las preguntas de acá no las va a hacer nadie más</H2>
+          <H2 id="colombia">
+            Lo que falta acá no es una agenda propia, es gente
+          </H2>
           <Parrafo>
-            El mapa del campo registra 170 organizaciones y no ubica
-            ninguna en América Latina. Nosotros tampoco aparecemos ahí, y
-            lo que no está en el mapa tampoco está en las listas de
-            quienes financian. De las 187 personas que ese mapa identifica
-            decidiendo a dónde va la plata, 60 se formaron en Oxford,
-            Stanford o Berkeley{" "}
+            El campo cabe hoy en 170 organizaciones, y el mapa que las
+            registra no ubica ninguna en América Latina. Nosotros tampoco
+            aparecemos ahí, y lo que no está en el mapa tampoco está en
+            las listas de quienes reparten la plata. De las 187 personas
+            que ese mapa identifica decidiendo a dónde va, 60 se formaron
+            en Oxford, Stanford o Berkeley{" "}
             <Fuente href="https://harrywaterman.com/fieldmap/">
               (AI Safety Field Map)
             </Fuente>
-            . Un campo con esa forma trabaja en lo que esas organizaciones
-            consideran importante, y ninguna de ellas responde ante
-            alguien de acá.
+            .
           </Parrafo>
           <Parrafo>
-            Eso no vuelve distinto el problema. Sigue siendo el mismo:
-            nadie sabe certificar qué persigue un sistema antes de
-            soltarlo. Lo que cambia es por dónde se entra y a quién le
-            pega. Cerca de esos centros el sistema se construye. Acá se
-            compra, se pone a decidir sobre gente y se responde cuando
-            falla. Qué exigir en el pliego antes de firmar, y ante quién
-            responde el proveedor si dos años después se descubre que el
-            sistema le bajaba el puntaje a la gente de cierto municipio,
-            son preguntas de seguridad de la IA. No son las preguntas de
-            quien construye, y por eso nadie las va a hacer por nosotros.
+            Un campo con esa forma estudia lo que se ve desde donde está
+            parado, y desde ahí lo que se ve es el laboratorio que entrena
+            el modelo. Lo que pasa después, cuando el sistema ya se compró
+            y está decidiendo sobre gente, no le toca a nadie por oficio.
+            No es descuido: ninguna de las organizaciones que fijan la
+            agenda le responde a alguien de acá.
           </Parrafo>
           <Parrafo>
-            Lo que falta para hacerlas no es una agenda aparte, es gente.
-            El campo está limitado por cuánta gente capaz y con ganas
-            alcanza a entrar, y entrar toma más tiempo del necesario
-            cuando no hay con quién hablar. Acortar ese camino es lo que
-            hacemos: un grupo que lee, discute y trabaja en cosas
-            concretas, en el que se entra sin credencial previa. Para
-            empezar por cuenta propia, lo más corto que conocemos es{" "}
+            El problema de fondo no cambia de país. Nadie sabe certificar
+            qué persigue un sistema antes de soltarlo, ni allá ni acá. Lo
+            que cambia es quién tiene que hacer la pregunta. Allá la hace
+            quien construye. Acá le toca a quien firma: qué exigir antes
+            de comprar, y ante quién responde el proveedor si dos años
+            después se descubre que el sistema le bajaba el puntaje a la
+            gente de cierto municipio.
+          </Parrafo>
+          <Parrafo>
+            Para eso no hay que inventar una agenda aparte. Hay que tener
+            gente que pueda trabajar en esto, y ahí está hoy el límite:
+            entra menos gente de la que podría, y la que entra tarda más
+            de lo necesario porque no tiene con quién hablar. Acortar ese
+            camino es lo que hacemos. Un grupo que lee, discute y trabaja
+            en cosas concretas, en el que se entra sin credencial previa.
+            Para empezar por cuenta propia, lo más corto que conocemos es{" "}
             <Fuente href="https://bluedot.org">
               el curso de fundamentos de BlueDot
             </Fuente>
