@@ -88,7 +88,7 @@ const QUE_HAY = [
     href: "/investigacion",
     title: "Investigación",
     cta: "Leer los reportes",
-    body: "Lo que produjo la gente que ya pasó por acá: dieciocho equipos colombianos en la última edición, tres de ellos premiados.",
+    body: "Lo que produjo la gente que ya pasó por acá: publicaciones propias y dieciocho equipos colombianos en la última edición del hackathon.",
   },
 ];
 

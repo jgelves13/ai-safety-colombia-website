@@ -8,8 +8,44 @@ import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION
 export const metadata: Metadata = {
   title: "Investigación",
   description:
-    "Los reportes de los equipos colombianos en el hackathon Global South de Apart Research: tres premios de Latinoamérica, dos menciones de honor y dieciocho equipos en total.",
+    "Lo que publican los miembros de AI Safety Colombia: trabajos propios con instituciones de fuera, y los reportes de los equipos colombianos en el hackathon Global South de Apart Research.",
 };
+
+/* Publicaciones firmadas por miembros de la comunidad, por fuera del hackathon.
+   `miembros` marca en negrilla a quien es de acá dentro de la lista de autores,
+   que se transcribe completa y en el orden en que la publicó el editor. */
+const PUBLICACIONES = [
+  {
+    titulo: "AI Benefit-Sharing Framework: Balancing Access and Safety",
+    tipo: "Documento de trabajo",
+    editor: "Oxford Martin AI Governance Initiative, Universidad de Oxford",
+    fecha: "Diciembre de 2025",
+    autores: [
+      "Sumaya Nur Adan",
+      "Joanna Wiaterek",
+      "Varun Sen Bahl",
+      "Ima Bello",
+      "Camila Beltran",
+      "Tobias Dierks",
+      "Luise Eder",
+      "Liam Epstein",
+      "Abra Ganz",
+      "Natalie Kiilu",
+      "Marianne Lu",
+      "Chinasa T. Okolo",
+      "Sydney Reis",
+      "Said Saillant",
+      "Krishna Sharma",
+      "Marjia Siddik",
+      "Jan Pieter Snoeij",
+      "José Jaime Villalobos",
+      "Anna Yelizarova",
+    ],
+    miembros: ["Camila Beltran"],
+    body: "Propone un marco para repartir los beneficios de la IA sin bajar el estándar de seguridad. Se apoya en tres piezas: redistribuir parte de los retornos económicos, compartir tecnología y capacidad técnica, y contener la difusión de capacidades peligrosas. El argumento de fondo es que la gobernanza actual no resuelve quién accede a esos beneficios, y que los países de la mayoría global son los que quedan por fuera.",
+    href: "https://aigi.ox.ac.uk/publications/ai-benefit-sharing-framework-balancing-access-and-safety/",
+  },
+];
 
 /* Lo premiado. Cada tarjeta enlaza al reporte publico en Apart, que es donde se
    puede comprobar el premio y leer el trabajo completo. */
@@ -172,18 +208,78 @@ export default function Investigacion() {
             <span className="text-kicker text-aisc-sand/70">Lo que sale de acá</span>
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">Investigación</h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              Lo que se investiga desde acá sale de los hackathons que organizamos. Un fin de semana, equipos que se
-              arman en el momento y un reporte publicado y evaluado al final. Estos son los de la última edición.
+              Acá está lo que publica la gente de la comunidad. Una parte son trabajos propios, hechos con
+              instituciones de fuera. La otra sale de los hackathons que abrimos en Bogotá, donde el reporte se
+              produce en un fin de semana.
             </p>
           </div>
         </div>
       </section>
 
-      <section id="la-edicion" className="bg-aisc-cream">
+      <section id="publicaciones" className="bg-aisc-cream">
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pt-14 pb-14 md:pb-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">Cómo se produce esto</h2>
+            <h2 className="text-display-2 md:text-display-2-lg text-balance">Publicaciones de la comunidad</h2>
+            <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
+              <p>
+                Trabajos firmados por miembros de AI Safety Colombia y publicados por fuera del hackathon, con las
+                instituciones donde se hicieron.
+              </p>
+              <p>
+                La lista está abierta. Si eres de la comunidad y publicaste algo,{" "}
+                <a className={ENLACE} href="mailto:jose@aisafetycolombia.org">
+                  escríbenos
+                </a>{" "}
+                y lo agregamos.
+              </p>
+            </div>
+          </div>
+          <ul className="grid grid-cols-1 gap-[10px]">
+            {PUBLICACIONES.map((p) => (
+              <li className="flex" key={p.href}>
+                <a
+                  className="focus-visible:outline-aisc-forest grid w-full grid-cols-1 gap-6 rounded-lg border border-aisc-ink bg-aisc-cream p-6 transition-colors hover:bg-aisc-sand focus-visible:outline-2 focus-visible:outline-offset-[3px] md:p-7 lg:grid-cols-[minmax(0,260px)_minmax(0,1fr)] lg:gap-10 lg:p-8"
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="flex flex-col gap-1">
+                    <span className="text-kicker text-aisc-forest">{p.tipo}</span>
+                    <span className="text-meta text-aisc-muted">{p.editor}</span>
+                    <span className="text-meta text-aisc-muted">{p.fecha}</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <h3 className="text-display-3 md:text-display-3-lg text-balance">{p.titulo}</h3>
+                    <p className="text-meta mt-3 text-aisc-muted">
+                      {p.autores.map((autor, i) => (
+                        <span key={autor}>
+                          {i > 0 ? ", " : ""}
+                          {p.miembros.includes(autor) ? (
+                            <strong className="font-semibold text-aisc-forest">{autor}</strong>
+                          ) : (
+                            autor
+                          )}
+                        </span>
+                      ))}
+                    </p>
+                    <p className="text-body-sm mt-4 text-aisc-ink">{p.body}</p>
+                    <span className="text-display-4 md:text-display-4-lg mt-6 text-aisc-forest underline underline-offset-4">
+                      Leer el documento
+                    </span>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section id="la-edicion" className="bg-aisc-cream">
+        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
+          <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
+          <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
+            <h2 className="text-display-2 md:text-display-2-lg text-balance">Lo que sale de los hackathons</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
                 <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
