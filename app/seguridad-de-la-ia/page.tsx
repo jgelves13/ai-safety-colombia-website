@@ -126,16 +126,17 @@ export default function SeguridadDeLaIA() {
       <section className={HERO_SECTION}>
         <SiteHeader active="/seguridad-de-la-ia" />
         <div className={HERO_INNER}>
-          <div className="flex max-w-[820px] flex-col gap-5">
+          <div className="flex w-full flex-col gap-5">
             <span className="text-kicker text-aisc-sand/70">Empezar por aquí</span>
             <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand text-balance">
               Qué es la seguridad de la IA
             </h1>
-            <p className="text-body md:text-body-lg max-w-[700px] text-aisc-sand/90">
-              A finales de 2023 un grupo de investigadores publicó un examen de preguntas de doctorado hecho a propósito
-              para que ningún sistema de IA pudiera aprobarlo. El mejor de ese año sacó 39 %. Hoy la marca va en 94,8 %.
-              Lo que sigue es un argumento sobre por qué ese ritmo, y no la inteligencia de las máquinas, es lo que
-              convierte a la IA en un problema de seguridad.
+            <p className="text-body md:text-body-lg w-full text-aisc-sand/90">
+              Es el trabajo de lograr que los sistemas de inteligencia artificial hagan lo que se espera de ellos, y de
+              poder comprobarlo antes de ponerlos a decidir sobre cosas que importan. Va desde el sesgo de un modelo que
+              hoy niega un crédito hasta la pérdida de control sobre sistemas que actúan por su cuenta. Lo que sigue
+              explica por qué es difícil, qué tan rápido se está volviendo urgente y por dónde se entra a trabajar en
+              ello.
             </p>
             <p className="text-meta text-aisc-sand/60">
               AI Safety Colombia · actualizado en agosto de 2026 · unos 15 minutos de lectura
