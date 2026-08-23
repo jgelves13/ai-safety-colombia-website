@@ -825,48 +825,44 @@ export default function SeguridadDeLaIA() {
             ninguna en América Latina. Nosotros tampoco aparecemos ahí, y
             lo que no está en el mapa tampoco está en las listas de
             quienes financian. De las 187 personas que ese mapa identifica
-            decidiendo a dónde va la plata, la universidad que más se
-            repite es Oxford, con 22; después Stanford y Berkeley con 19
-            cada una, y Cambridge con 16{" "}
+            decidiendo a dónde va la plata, 60 se formaron en Oxford,
+            Stanford o Berkeley{" "}
             <Fuente href="https://harrywaterman.com/fieldmap/">
               (AI Safety Field Map)
             </Fuente>
-            . Son 60 de 187: no describen a la mayoría, pero sí dicen
-            dónde queda el centro de gravedad del campo.
+            . Ahí queda el centro de gravedad del campo.
           </Parrafo>
           <Parrafo>
-            Eso no quiere decir que acá el problema sea otro. Es el mismo:
-            nadie sabe certificar qué persigue un sistema antes de
-            soltarlo. Lo que cambia es por dónde se llega a él. Cerca de
-            esos centros se llega por el lado de quien construye el
-            sistema. Acá se llega casi siempre por el otro lado, el de
-            quien lo compra, lo pone a decidir sobre gente y responde
-            cuando falla. Nadie más va a hacer esas preguntas por
-            nosotros, porque no son las preguntas de quien construye.
+            Eso no cambia el problema. Sigue siendo el mismo: nadie sabe
+            certificar qué persigue un sistema antes de soltarlo. Cambia
+            por dónde se entra. Cerca de esos centros se entra por el lado
+            de quien construye el sistema. Acá casi siempre por el otro,
+            el de quien lo compra, lo pone a decidir sobre gente y
+            responde cuando falla.
           </Parrafo>
           <Parrafo>
-            Volvamos al pliego del principio. Qué exigir antes de firmar,
-            qué cláusula escribir y ante quién responde el proveedor si en
-            dos años se descubre que el sistema le bajaba el puntaje a la
-            gente de cierto municipio: son las preguntas de este texto en
-            formato administrativo. Para la primera no hacen falta los
-            pesos, hace falta poder correr el modelo contra casos que
-            diseñe la entidad, y eso se pide en el pliego o no se pide
-            nunca.
+            Ese lado tiene una palanca propia. Certificar el modelo no
+            está a su alcance, pero ponerlo a prueba contra casos que
+            diseñe la propia entidad sí, y para eso no hacen falta los
+            pesos. Volvamos al pliego del principio: ahí se escribe esa
+            exigencia, y ahí se escribe ante quién responde el proveedor
+            si en dos años se descubre que el sistema le bajaba el puntaje
+            a la gente de cierto municipio. Se pide en el pliego o no se
+            pide nunca. Nadie más va a hacer esas preguntas, porque no son
+            las preguntas de quien construye.
           </Parrafo>
           <Parrafo>
             Ninguno de los tres frentes está cerrado y a los tres se entra
-            desde acá. Lo que falta es gente que les dedique tiempo, y un
-            lugar donde aprender sin irse del país. Eso es lo que estamos
-            construyendo: un grupo que lee, discute y trabaja en cosas
-            concretas, y en el que se entra sin credencial previa. Para
-            empezar por cuenta propia, el camino más corto que conocemos
-            es{" "}
+            desde acá. Falta gente que les dedique tiempo y un lugar donde
+            aprender sin irse del país. Eso estamos construyendo: un grupo
+            que lee, discute y trabaja en cosas concretas, y en el que se
+            entra sin credencial previa. Para empezar por cuenta propia,
+            el camino más corto que conocemos es{" "}
             <Fuente href="https://bluedot.org">
               el curso de fundamentos de BlueDot
             </Fuente>
-            . Para no quedarse ahí, lo que sirve es trabajar en algo
-            concreto con alguien más, y para eso estamos.
+            . Para no quedarse ahí, sirve trabajar en algo concreto con
+            alguien más, y para eso estamos.
           </Parrafo>
         </div>
       </article>
