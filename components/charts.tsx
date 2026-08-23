@@ -260,7 +260,7 @@ export function GraficaGpqa() {
       {/* linea humana */}
       <line x1={ML} x2={W - MR} y1={py(HUMANO)} y2={py(HUMANO)} stroke={CORAL} strokeWidth={1.5} strokeDasharray="6 5" />
       <text x={W - MR} y={py(HUMANO) - 9} textAnchor="end" fontSize={13} fill={CORAL} fontWeight={600}>
-        Doctores del área: 69,7%
+        Especialistas con doctorado: 69,7%
       </text>
 
       {/* guia vertical del punto seleccionado */}

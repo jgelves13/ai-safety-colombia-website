@@ -177,7 +177,7 @@ export default function SeguridadDeLaIA() {
             </p>
             <p className="text-meta text-aisc-sand/60">
               Escrito por Jose Gelves para AI Safety Colombia · actualizado en
-              agosto de 2026 · DURACION minutos de lectura
+              agosto de 2026 · unos 30 minutos de lectura
             </p>
           </div>
         </div>
