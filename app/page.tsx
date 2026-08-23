@@ -131,7 +131,7 @@ export default function Home() {
           height={1415}
           className={HERO_CORNER_CLASS}
           style={{ color: "transparent" }}
-          src="/aisc/patterns/aisc-corner-lattice.svg"
+          src="/aisc/patterns/aisc-hero-portada.svg"
         />
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 relative z-10 flex min-h-[400px] items-center pt-12 pb-20 md:min-h-[460px] md:pt-16 md:pb-24">
           <div className="flex w-full max-w-[860px] flex-col items-start gap-5 text-left md:gap-6">
@@ -347,7 +347,7 @@ export default function Home() {
         <a className={CTA_LINK} href="https://cal.com/josegelves/meeting" target="_blank" rel="noopener noreferrer">
           Agendar 20 minutos
         </a>
-        <a className={CTA_LINK} href="mailto:jose@aisafetycolombia.org">
+        <a className={CTA_LINK} href="mailto:contacto@aisafetycolombia.org">
           Escribirnos
         </a>
       </CtaPanel>

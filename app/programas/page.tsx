@@ -83,7 +83,7 @@ export default function Programas() {
           height={1415}
           className={HERO_CORNER_CLASS}
           style={{ color: "transparent" }}
-          src="/aisc/patterns/aisc-corner-lattice.svg"
+          src="/aisc/patterns/aisc-hero-programas.svg"
         />
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 relative z-10 flex min-h-[460px] items-center pt-28 pb-16 md:min-h-[520px] md:pt-36 md:pb-20">
           <div className="flex w-full max-w-[760px] flex-col items-start gap-5 text-left md:gap-6">

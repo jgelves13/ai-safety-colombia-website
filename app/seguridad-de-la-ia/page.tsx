@@ -243,7 +243,7 @@ export default function SeguridadDeLaIA() {
             numero={1}
             titulo="Un examen hecho para resistir a Google, superado en veinte meses"
             pie="Cada punto es el mejor resultado publicado hasta esa fecha en GPQA Diamond, el subconjunto de 198 preguntas que los especialistas del estudio original respondieron bien. La línea punteada, 69,7 %, es lo que sacó sobre ese subconjunto un grupo con doctorado que reclutó OpenAI."
-            limite="que un sistema entienda biología. Un examen además se satura: por encima del 95 % deja de distinguir entre sistemas."
+            limite="si un sistema entiende biología, porque son preguntas de opción múltiple y solo se califica la respuesta final. El examen además se satura: cuando los sistemas pasan del 95 % deja de servir para distinguir entre uno y otro."
             fuentes={[
               {
                 texto: "Rein et al. (2023), el examen y sus grupos de control",
@@ -291,7 +291,7 @@ export default function SeguridadDeLaIA() {
             numero={2}
             titulo="De cinco minutos a diecisiete horas, acertando la mitad de las veces"
             pie="Duración de la tarea más larga que el mejor modelo de cada momento completa con 50 % de éxito. Eje logarítmico. METR estima que se duplica cada siete meses."
-            limite="que los modelos reemplacen a un profesional: se mide sobre tareas de software e investigación, y ni METR afirma que eso se traslade a otros oficios."
+            limite="que los modelos vayan a reemplazar a un profesional. Las tareas medidas son de software e investigación, y ni METR afirma que el resultado se traslade a otros oficios."
             fuentes={[
               {
                 texto: "METR, «Measuring AI Ability to Complete Long Tasks»",
@@ -361,7 +361,7 @@ export default function SeguridadDeLaIA() {
             numero={3}
             titulo="El examen estaba midiendo, en parte, si el modelo sabía que era un examen"
             pie="Porcentaje de acciones desalineadas en cien escenarios trampa. Las tres primeras barras son Claude Sonnet 4.5 bajo distintas intervenciones internas; la última es el modelo anterior, sin intervenir."
-            limite="que el modelo sea peligroso ni que fingiera a propósito. El 9 % es el peor de los vectores probados: la mayoría quedó entre 1 y 5 %."
+            limite="que el modelo sea peligroso, ni que estuviera fingiendo a propósito. El 9 % es el peor resultado de todas las intervenciones probadas; con la mayoría de ellas el modelo se quedó entre 1 y 5 %."
             fuentes={[
               {
                 texto: "Anthropic, «System Card: Claude Sonnet 4.5», sección 7.6.4.1 (septiembre de 2025)",
@@ -545,7 +545,7 @@ export default function SeguridadDeLaIA() {
             numero={4}
             titulo="Tres órdenes de magnitud entre construir estos sistemas y entenderlos"
             pie="Presupuesto anual declarado del campo de la seguridad de la IA frente a la inversión en infraestructura anunciada por las cuatro empresas que más gastan. Escala logarítmica."
-            limite="cuánto gastan en seguridad esas cuatro empresas, que no lo desglosan. Una cifra es gasto de operación y la otra inversión de capital: sirve para el orden de magnitud, no para la cifra exacta."
+            limite="cuánto gastan en seguridad esas cuatro empresas, porque no lo desglosan. La comparación tampoco es exacta: una cifra es gasto de operación y la otra inversión de capital, así que sirve para el orden de magnitud y no para la diferencia precisa."
             fuentes={[
               {
                 texto: "AI Safety Field Map (septiembre de 2025), el campo",

@@ -226,7 +226,7 @@ export default function Investigacion() {
           decoding="async"
           className={HERO_CORNER_CLASS}
           style={{ color: "transparent" }}
-          src="/aisc/patterns/aisc-corner-lattice.svg"
+          src="/aisc/patterns/aisc-hero-investigacion.svg"
         />
         <SiteHeader active="/investigacion" />
         <div className={HERO_INNER}>
@@ -247,12 +247,11 @@ export default function Investigacion() {
             <h2 className="text-display-2 md:text-display-2-lg text-balance">Publicaciones de la comunidad</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
-                Trabajos firmados por miembros de AI Safety Colombia, con las instituciones donde se hicieron. En
-                cada lista de autores va resaltado el nombre de quien es de acá.
+                Trabajos firmados por miembros de AI Safety Colombia.
               </p>
               <p>
                 La lista está abierta. Si eres de la comunidad y publicaste algo,{" "}
-                <a className={ENLACE} href="mailto:jose@aisafetycolombia.org">
+                <a className={ENLACE} href="mailto:contacto@aisafetycolombia.org">
                   escríbenos
                 </a>{" "}
                 y lo agregamos.
@@ -305,14 +304,24 @@ export default function Investigacion() {
           <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
             <div className="flex flex-col gap-8 md:gap-10">
               <h2 className="text-display-2 md:text-display-2-lg text-balance">Lo que sale de los hackathons</h2>
-              <dl className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-1">
-                {CIFRAS.map((c) => (
-                  <div key={c.pie} className="rounded-[8px] border border-aisc-forest bg-aisc-sand p-6 md:p-7">
-                    <dt className="text-display-1 md:text-display-1-lg tabular-nums text-aisc-forest">{c.dato}</dt>
-                    <dd className="text-body-sm mt-3 text-aisc-ink">{c.pie}</dd>
-                  </div>
-                ))}
-              </dl>
+              <figure className="bg-aisc-forest-deep max-w-[440px] overflow-hidden rounded-[10px]">
+                <figcaption className="text-kicker border-aisc-sand/20 border-b px-6 py-4 text-aisc-sand/70">
+                  Resultados de nuestro último hackathon, en junio de 2026
+                </figcaption>
+                <dl className="px-6">
+                  {CIFRAS.map((c) => (
+                    <div
+                      key={c.pie}
+                      className="border-aisc-sand/15 flex items-baseline gap-5 border-b py-5 last:border-b-0"
+                    >
+                      <dt className="text-display-2 md:text-display-2-lg w-[96px] flex-none tabular-nums text-aisc-coral">
+                        {c.dato}
+                      </dt>
+                      <dd className="text-body-sm text-aisc-sand/85">{c.pie}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </figure>
             </div>
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
@@ -443,15 +452,24 @@ export default function Investigacion() {
       </section>
 
       <CtaPanel
-        title="El próximo reporte puede ser tuyo"
-        body="Casi todos los que ganaron venían de otra área y se prepararon para el fin de semana. Te contamos cómo."
+        title="Participa en el próximo"
+        body="Del 11 al 13 de septiembre es el AI Incident Response Sprint, que convoca Apart Research. Abrimos el espacio en Bogotá y en el grupo de WhatsApp avisamos cuándo abre la inscripción y qué leer antes."
       >
-        {/* TODO: reemplazar por el enlace permanente del grupo de WhatsApp */}
-        <a className={CTA_LINK_PRIMARY} href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ" target="_blank" rel="noopener noreferrer">
-          Entrar al grupo de WhatsApp
+        <a
+          className={CTA_LINK_PRIMARY}
+          href="https://apartresearch.com/sprints/ai-incident-response-sprint-2026-09-11-to-2026-09-13"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ver el hackathon
         </a>
-        <a className={CTA_LINK} href="https://cal.com/josegelves/meeting" target="_blank" rel="noopener noreferrer">
-          Agendar 20 minutos
+        <a
+          className={CTA_LINK}
+          href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Entrar al grupo de WhatsApp
         </a>
       </CtaPanel>
       <SiteFooter />

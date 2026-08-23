@@ -43,7 +43,7 @@ export default function Eventos() {
           decoding="async"
           className={HERO_CORNER_CLASS}
           style={{ color: "transparent" }}
-          src="/aisc/patterns/aisc-corner-lattice.svg"
+          src="/aisc/patterns/aisc-hero-eventos.svg"
         />
         <SiteHeader active="/eventos" />
         <div className={HERO_INNER}>
@@ -112,7 +112,7 @@ export default function Eventos() {
         <a className={CTA_LINK_PRIMARY} href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ" target="_blank" rel="noopener noreferrer">
           Entrar al grupo
         </a>
-        <a className={CTA_LINK} href="mailto:jose@aisafetycolombia.org">
+        <a className={CTA_LINK} href="mailto:contacto@aisafetycolombia.org">
           Escribirnos
         </a>
       </CtaPanel>

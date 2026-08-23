@@ -3,7 +3,7 @@ import Link from "next/link";
 import CtaPanel from "@/components/cta-panel";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
-import { CTA_LINK, CTA_LINK_PRIMARY, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
+import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Únete",
@@ -25,7 +25,7 @@ const ABIERTO = [
     despues: "Entras y ves lo que viene. Puedes quedarte mirando el tiempo que quieras.",
   },
   {
-    href: "mailto:jose@aisafetycolombia.org",
+    href: "mailto:contacto@aisafetycolombia.org",
     external: true,
     title: "Grupo de lectura: AI Control",
     cuando: "Viernes, 6:30 p. m., virtual, una hora",
@@ -69,6 +69,17 @@ export default function Unete() {
   return (
     <main className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
+        <img
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          width="1697"
+          height="1415"
+          decoding="async"
+          className={HERO_CORNER_CLASS}
+          style={{ color: "transparent" }}
+          src="/aisc/patterns/aisc-hero-unete.svg"
+        />
         <SiteHeader active="/unete" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[760px] flex-col gap-5">

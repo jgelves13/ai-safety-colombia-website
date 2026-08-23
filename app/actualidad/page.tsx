@@ -17,7 +17,7 @@ export default function Blog() {
   return (
     <main className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
-        <img alt="" aria-hidden="true" loading="lazy" width="1697" height="1415" decoding="async" data-nimg="1" className={HERO_CORNER_CLASS} style={{ color: "transparent" }} src="/aisc/patterns/aisc-corner-lattice.svg" />
+        <img alt="" aria-hidden="true" loading="lazy" width="1697" height="1415" decoding="async" data-nimg="1" className={HERO_CORNER_CLASS} style={{ color: "transparent" }} src="/aisc/patterns/aisc-hero-actualidad.svg" />
         <SiteHeader active="/actualidad" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[650px] flex-col gap-5">

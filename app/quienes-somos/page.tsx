@@ -83,7 +83,7 @@ export default function QuienesSomos() {
           decoding="async"
           className={HERO_CORNER_CLASS}
           style={{ color: "transparent" }}
-          src="/aisc/patterns/aisc-corner-lattice.svg"
+          src="/aisc/patterns/aisc-hero-quienes-somos.svg"
         />
         <SiteHeader active="/quienes-somos" />
         <div className={HERO_INNER}>
