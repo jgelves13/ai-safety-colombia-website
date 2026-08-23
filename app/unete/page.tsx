@@ -13,11 +13,10 @@ export const metadata: Metadata = {
 
 /* Las tres cosas que están abiertas ahora mismo, cada una con su ritmo real y
    con lo que pasa después. Nada de formularios: todo apunta a canales que ya
-   existen. Lo demás (agendar, escribir) va abajo, que no son actividades. */
+   existen. */
 const ABIERTO = [
   {
-    // TODO: reemplazar por el enlace permanente del grupo de WhatsApp
-    href: "https://chat.whatsapp.com/",
+    href: "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ",
     external: true,
     title: "El grupo de WhatsApp",
     cuando: "Siempre abierto",
@@ -45,29 +44,6 @@ const ABIERTO = [
   },
 ];
 
-/* Las tres razones por las que alguien escribe en vez de entrar a algo. No son
-   actividades, así que van en una franja delgada y no en tarjetas. */
-const ESCRIBIR = [
-  {
-    title: "No sabes por dónde empezar",
-    body: "Veinte minutos para entender qué te interesa y decirte por dónde entrar. Sin compromiso.",
-    href: "https://cal.com/josegelves/meeting",
-    cta: "Agendar en el calendario",
-  },
-  {
-    title: "Quieres ayudar a organizar",
-    body: "Quienes sostienen esto son voluntarios. Siempre falta gente para eventos, logística y comunicación.",
-    href: "mailto:jose@aisafetycolombia.org",
-    cta: "jose@aisafetycolombia.org",
-  },
-  {
-    title: "Escribes desde una universidad o una organización",
-    body: "Charlas, talleres y colaboraciones, o algo que quieras proponernos.",
-    href: "mailto:jose@aisafetycolombia.org",
-    cta: "jose@aisafetycolombia.org",
-  },
-];
-
 /* Las cuatro objeciones que aparecen siempre. Solo se afirma lo que es verdad. */
 const NO_NECESITAS = [
   {
@@ -76,11 +52,7 @@ const NO_NECESITAS = [
   },
   {
     title: "Experiencia previa en el tema",
-    body: "La mayoría llega sin haber leído nada del campo.",
-  },
-  {
-    title: "Inglés fluido",
-    body: "Casi todo el material del campo está en inglés, pero acá se discute en español.",
+    body: "La mayoría llega desde otra área y se pone al día con las lecturas que compartimos.",
   },
   {
     title: "Dedicarle la carrera entera",
@@ -100,7 +72,6 @@ export default function Unete() {
         <SiteHeader active="/unete" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[760px] flex-col gap-5">
-            <span className="text-kicker text-aisc-sand/70">Se entra trabajando</span>
             <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand text-balance">Únete</h1>
             <p className="text-body md:text-body-lg max-w-[640px] text-aisc-sand/90">
               No hace falta ser investigador ni haber estudiado inteligencia artificial. Estas son las tres cosas
@@ -150,31 +121,6 @@ export default function Unete() {
         </div>
       </section>
 
-      <section id="escribir" className="bg-aisc-cream">
-        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
-          <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-          <div className="grid grid-cols-1 gap-6 pt-5 md:grid-cols-[minmax(0,240px)_minmax(0,1fr)] md:gap-10 md:pt-7">
-            <h2 className="text-display-3 md:text-display-3-lg text-balance">Si prefieres escribir</h2>
-            <ul className="grid grid-cols-1 gap-x-10 gap-y-6 md:grid-cols-3">
-              {ESCRIBIR.map((item) => (
-                <li className="border-aisc-line border-t pt-3" key={item.title}>
-                  <h3 className="text-body-sm font-semibold text-aisc-forest">{item.title}</h3>
-                  <p className="text-body-sm mt-1 text-aisc-muted">{item.body}</p>
-                  <a
-                    className="text-body-sm mt-2 inline-block text-aisc-forest underline underline-offset-4 transition-colors hover:text-aisc-forest-deep"
-                    href={item.href}
-                    target={item.href.startsWith("mailto:") ? undefined : "_blank"}
-                    rel={item.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                  >
-                    {item.cta}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
       <section id="requisitos" className="bg-aisc-cream">
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
@@ -189,6 +135,10 @@ export default function Unete() {
               ))}
             </dl>
           </div>
+          <p className="text-body-sm mt-8 max-w-[760px] text-aisc-muted md:ml-[280px]">
+            Leer en inglés sí hace falta: casi todo el material del campo está en ese idioma y no hay cómo
+            esquivarlo. Las discusiones y las presentaciones son en español.
+          </p>
         </div>
       </section>
 

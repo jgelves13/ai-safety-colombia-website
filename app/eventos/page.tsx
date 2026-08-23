@@ -109,7 +109,7 @@ export default function Eventos() {
         body="En el grupo de WhatsApp se anuncia todo primero. Si prefieres correo, escríbenos."
       >
         {/* TODO: reemplazar por el enlace permanente del grupo de WhatsApp */}
-        <a className={CTA_LINK_PRIMARY} href="https://chat.whatsapp.com/" target="_blank" rel="noopener noreferrer">
+        <a className={CTA_LINK_PRIMARY} href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ" target="_blank" rel="noopener noreferrer">
           Entrar al grupo
         </a>
         <a className={CTA_LINK} href="mailto:jose@aisafetycolombia.org">

@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { CTA_LINK_PRIMARY } from "./ui";
 
-const SITIO = [
+const WHATSAPP = "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ";
+
+const NAVEGACION = [
   { href: "/seguridad-de-la-ia", label: "¿Qué es AI safety?" },
   { href: "/investigacion", label: "Investigación" },
   { href: "/unete", label: "Únete" },
@@ -10,99 +13,113 @@ const SITIO = [
   { href: "/actualidad", label: "Blog" },
 ];
 
-const PARTICIPAR = [
-  { href: "https://chat.whatsapp.com/", label: "Grupo de WhatsApp", external: true },
-  { href: "https://cal.com/josegelves/meeting", label: "Agenda 20 minutos", external: true },
-  { href: "mailto:jose@aisafetycolombia.org", label: "jose@aisafetycolombia.org", external: true },
+/* La columna de comunidad repite el orden de la del sitio actual: primero
+   las formas de participar, después las redes con su marca. */
+const COMUNIDAD = [
+  { href: WHATSAPP, label: "Grupo de WhatsApp" },
+  { href: "https://cal.com/josegelves/meeting", label: "Agenda 20 minutos" },
+  { href: "mailto:jose@aisafetycolombia.org", label: "jose@aisafetycolombia.org" },
 ];
 
-function LinkColumn({
-  title,
-  links,
-  label,
-}: {
-  title: string;
-  links: { href: string; label: string; external?: boolean }[];
-  label: string;
-}) {
-  return (
-    <>
-      <h2 className="text-display-4 md:text-display-4-lg text-aisc-sand">{title}</h2>
-      <nav aria-label={label} className="mt-9">
-        <ul className="flex flex-col">
-          {links.map((link) =>
-            link.external ? (
-              <li key={link.href}>
-                <a
-                  className="text-body md:text-body-lg block py-2.5 transition-colors hover:text-aisc-sand/70"
-                  href={link.href}
-                  target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-                  rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ) : (
-              <li key={link.href}>
-                <Link className="text-body md:text-body-lg block py-2.5 transition-colors hover:text-aisc-sand/70" href={link.href}>
-                  {link.label}
-                </Link>
-              </li>
-            ),
-          )}
-        </ul>
-      </nav>
-    </>
-  );
-}
+const REDES = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/aisafetycolombia/",
+    d: "M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227a3.81 3.81 0 01-.899 1.382 3.744 3.744 0 01-1.38.896c-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421a3.716 3.716 0 01-1.379-.899 3.644 3.644 0 01-.9-1.38c-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm7.846-10.405a1.441 1.441 0 01-2.88 0 1.44 1.44 0 012.88 0z",
+  },
+  {
+    label: "WhatsApp",
+    href: WHATSAPP,
+    d: "M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.582 0 11.941-5.359 11.944-11.893a11.821 11.821 0 00-3.487-8.4z",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/ai-safety-col/",
+    d: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z",
+  },
+];
+
+const TITULO = "text-kicker text-aisc-sand";
+const ENLACE = "text-body-sm block py-1.5 text-aisc-sand/75 transition-colors hover:text-aisc-coral";
 
 export default function SiteFooter() {
   return (
-    <footer className="relative bg-aisc-sage text-aisc-sand">
-      {/* sangra la columna mas oscura hasta el borde izquierdo en pantallas anchas */}
-      <div aria-hidden="true" className="absolute inset-y-0 left-0 hidden bg-aisc-forest-deep lg:block" style={{ right: "calc(50% + 700px)" }} />
-      <div className="mx-auto w-full max-w-[1400px] relative grid min-h-[320px] grid-cols-1 lg:grid-cols-[32fr_36fr_32fr]">
-        <section className="flex flex-col justify-center bg-aisc-forest-deep px-6 py-10 sm:px-12 sm:py-12 md:px-20 lg:px-10 xl:px-20">
-          <div className="max-w-[320px]">
+    <footer className="border-aisc-sand/15 bg-aisc-forest-deep border-t text-aisc-sand">
+      <div className="mx-auto w-full max-w-[1400px] px-6 pt-16 pb-8 md:px-12 md:pt-20 lg:px-16">
+        <div className="grid grid-cols-1 gap-10 md:gap-12 lg:grid-cols-[2fr_1fr_1fr]">
+          <div className="max-w-[360px]">
             <img
               src="/aisc/logo-lockup-crema.png"
               alt="AI Safety Colombia"
               width={1400}
               height={420}
-              className="h-12 w-auto md:h-14"
+              className="h-11 w-auto md:h-12"
             />
-            <p className="text-body-sm mt-5 max-w-[260px] text-aisc-sand/85">
-              Que la inteligencia artificial avance de forma segura, con gente de acá trabajando en ello.
+            <p className="text-body-sm mt-5 text-aisc-sand/75">
+              Hacia una inteligencia artificial segura, desde Colombia.
             </p>
+            <a
+              className={`${CTA_LINK_PRIMARY} mt-7`}
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Únete al WhatsApp
+            </a>
           </div>
-          <div className="text-body-sm mt-8 flex flex-col gap-1 text-aisc-sand/80 sm:mt-10 md:mt-12">
-            <p>© AI Safety Colombia, 2026</p>
-            <p>Bogotá, Colombia</p>
-          </div>
-        </section>
-        <section className="bg-aisc-forest flex flex-col justify-center px-6 py-10 sm:px-12 sm:py-12 md:px-20 lg:px-10 xl:px-20">
-          <div className="w-full max-w-[380px]">
-            <LinkColumn title="El sitio" links={SITIO} label="Secciones del sitio" />
-          </div>
-        </section>
-        <section className="bg-aisc-sage flex flex-col justify-center px-6 py-10 sm:px-12 sm:py-12 md:px-20 lg:px-10 xl:px-20">
-          <div className="w-full max-w-[380px]">
-            <LinkColumn title="Participar" links={PARTICIPAR} label="Formas de participar" />
-            <div className="mt-8 flex items-center gap-3">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="text-aisc-sand hover:text-aisc-sand/70 focus-visible:ring-aisc-sand inline-flex size-8 items-center justify-center transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-aisc-sage"
-                href="https://www.linkedin.com/company/ai-safety-colombia/"
-              >
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" aria-hidden="true" className="size-5">
-                  <path d="M18.3362 18.339H15.6707V14.1622C15.6707 13.1662 15.6505 11.8845 14.2817 11.8845C12.892 11.8845 12.6797 12.9683 12.6797 14.0887V18.339H10.0142V9.75H12.5747V10.9207H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325C17.8375 9.53325 18.337 11.3108 18.337 13.6245V18.339H18.3362ZM7.00373 8.57475C6.14573 8.57475 5.45648 7.88025 5.45648 7.026C5.45648 6.1725 6.14648 5.47875 7.00373 5.47875C7.85873 5.47875 8.55173 6.1725 8.55173 7.026C8.55173 7.88025 7.85798 8.57475 7.00373 8.57475ZM8.34023 18.339H5.66723V9.75H8.34023V18.339ZM19.6697 3H4.32923C3.59498 3 3.00098 3.5805 3.00098 4.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697Z" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </section>
+
+          <nav aria-label="Secciones del sitio">
+            <h2 className={TITULO}>Navegación</h2>
+            <ul className="mt-4 flex flex-col">
+              {NAVEGACION.map((l) => (
+                <li key={l.href}>
+                  <Link className={ENLACE} href={l.href}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label="Comunidad y contacto">
+            <h2 className={TITULO}>Comunidad</h2>
+            <ul className="mt-4 flex flex-col">
+              {COMUNIDAD.map((l) => (
+                <li key={l.label}>
+                  <a
+                    className={ENLACE}
+                    href={l.href}
+                    target={l.href.startsWith("mailto:") ? undefined : "_blank"}
+                    rel={l.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+              {REDES.map((r) => (
+                <li key={r.label}>
+                  <a
+                    className={`${ENLACE} inline-flex items-center gap-2`}
+                    href={r.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-3.5 flex-none">
+                      <path d={r.d} />
+                    </svg>
+                    {r.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+
+        <div className="border-aisc-sand/15 mt-14 border-t pt-6">
+          <p className="text-meta text-aisc-sand/60">
+            © 2026 AI Safety Colombia. Todos los derechos reservados. Bogotá, Colombia.
+          </p>
+        </div>
       </div>
     </footer>
   );

@@ -125,7 +125,7 @@ const PREMIADOS = [
 const OTROS = [
   {
     titulo: "Marco ético para IA aplicada a la lengua guna de Panamá",
-    ciudad: "Colombia",
+    ciudad: "Bogotá",
     href: "https://apartresearch.com/project/marco-tico-para-ia-aplicada-a-la-preservacin-lingstica-guna-de-panam-6uxw",
     equipo: "Ana María González Aldana, Kelvin Alvarado y Mariana Zuluaga Abril",
   },
@@ -157,7 +157,7 @@ const OTROS = [
     titulo: "Comercio agéntico y protección al consumidor",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/agentic-commerce-and-consumer-protection-emerging-risks-and-regulatory-gaps-be7b",
-    equipo: "Francely Carreño y Sofía Botía",
+    equipo: "Francely Carreño, Sofía Botía y Vanessa Reyes",
   },
   {
     titulo: "JurisGuard-LATAM",
@@ -205,7 +205,6 @@ const OTROS = [
 
 /** cifras que se pueden comprobar una por una en el catálogo público de Apart */
 const CIFRAS = [
-  { dato: "18", pie: "equipos con integrantes en Colombia" },
   { dato: "3", pie: "los tres premios de Latinoamérica fueron para equipos colombianos" },
   { dato: "2", pie: "menciones de honor, de siete en todo el mundo" },
   { dato: "216", pie: "proyectos entregados en todo el hackathon" },
@@ -232,7 +231,6 @@ export default function Investigacion() {
         <SiteHeader active="/investigacion" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[760px] flex-col gap-5">
-            <span className="text-kicker text-aisc-sand/70">Lo que sale de acá</span>
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">Investigación</h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
               Acá está lo que publica la gente de la comunidad: artículos revisados por pares, documentos de
@@ -282,7 +280,7 @@ export default function Investigacion() {
                         <span key={autor}>
                           {i > 0 ? ", " : ""}
                           {p.miembros.includes(autor) ? (
-                            <strong className="font-semibold text-aisc-forest underline decoration-aisc-coral decoration-2 underline-offset-[3px]">{autor}</strong>
+                            <strong className="font-semibold text-aisc-forest">{autor}</strong>
                           ) : (
                             autor
                           )}
@@ -305,15 +303,26 @@ export default function Investigacion() {
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">Lo que sale de los hackathons</h2>
+            <div className="flex flex-col gap-8 md:gap-10">
+              <h2 className="text-display-2 md:text-display-2-lg text-balance">Lo que sale de los hackathons</h2>
+              <dl className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-1">
+                {CIFRAS.map((c) => (
+                  <div key={c.pie} className="rounded-[8px] border border-aisc-forest bg-aisc-sand p-6 md:p-7">
+                    <dt className="text-display-1 md:text-display-1-lg tabular-nums text-aisc-forest">{c.dato}</dt>
+                    <dd className="text-body-sm mt-3 text-aisc-ink">{c.pie}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
                 <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
                   Apart Research
                 </a>{" "}
                 convoca estos hackathons a nivel global. Nosotros abrimos el espacio presencial en Bogotá para
-                participar desde acá. Viernes en la noche se arman los equipos, domingo en la noche se entrega un
-                reporte, y la semana siguiente lo califican jurados de fuera.
+                participar desde acá. Es un fin de semana para salir con un trabajo propio: viernes en la noche se
+                arman los equipos, domingo en la noche se entrega un reporte, y la semana siguiente lo califican
+                jurados de fuera.
               </p>
               <p>
                 La mayoría de quienes llegan nunca había trabajado en seguridad de la IA. Salen con un trabajo firmado,
@@ -333,14 +342,6 @@ export default function Investigacion() {
               </p>
             </div>
           </div>
-          <dl className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
-            {CIFRAS.map((c) => (
-              <div key={c.pie} className="rounded-[8px] border border-aisc-forest bg-aisc-sand p-6 md:p-7">
-                <dt className="text-display-1 md:text-display-1-lg tabular-nums text-aisc-forest">{c.dato}</dt>
-                <dd className="text-body-sm mt-3 text-aisc-ink">{c.pie}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </section>
 
@@ -385,8 +386,7 @@ export default function Investigacion() {
           <div className="grid grid-cols-1 gap-8 pt-5 pb-10 md:gap-10 md:pt-7 md:pb-12 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.92fr)] lg:gap-6">
             <h2 className="text-display-2 md:text-display-2-lg text-balance">Los demás equipos colombianos</h2>
             <p className="text-body md:text-body-lg text-aisc-ink">
-              Trece proyectos más de esa misma edición, entre presenciales y remotos. Algunos hoy están buscando quién
-              los continúe.
+              Trece proyectos más de esa misma edición, entre presenciales y remotos.
             </p>
           </div>
           <ul className="grid grid-cols-1 gap-x-10 md:grid-cols-2">
@@ -443,12 +443,11 @@ export default function Investigacion() {
       </section>
 
       <CtaPanel
-        kicker="Se entra trabajando"
         title="El próximo reporte puede ser tuyo"
-        body="Casi todos los que ganaron llegaron sin haber leído nada del campo. Te contamos cómo prepararte."
+        body="Casi todos los que ganaron venían de otra área y se prepararon para el fin de semana. Te contamos cómo."
       >
         {/* TODO: reemplazar por el enlace permanente del grupo de WhatsApp */}
-        <a className={CTA_LINK_PRIMARY} href="https://chat.whatsapp.com/" target="_blank" rel="noopener noreferrer">
+        <a className={CTA_LINK_PRIMARY} href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ" target="_blank" rel="noopener noreferrer">
           Entrar al grupo de WhatsApp
         </a>
         <a className={CTA_LINK} href="https://cal.com/josegelves/meeting" target="_blank" rel="noopener noreferrer">

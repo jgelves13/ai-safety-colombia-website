@@ -52,7 +52,7 @@ const ALIADOS = [
   },
   {
     name: "BlueDot Impact",
-    body: "Su curso de fundamentos es el punto de entrada que más recomendamos a quien empieza.",
+    body: "Sus cursos gratuitos son la entrada estándar al campo. Desde 2022 han pasado más de 7.000 personas, hoy en laboratorios de IA y en gobiernos.",
     logo: "/aisc/aliados/bluedot.png",
     href: "https://bluedot.org",
   },
@@ -64,7 +64,7 @@ const ALIADOS = [
   },
   {
     name: "Coefficient Giving",
-    body: "Financia trabajo sobre riesgos globales. Hasta 2025 se llamó Open Philanthropy.",
+    body: "Solo en 2024 comprometió unos 50 millones de dólares en investigación técnica de seguridad de la IA. Hasta 2025 se llamó Open Philanthropy.",
     logo: "/aisc/aliados/coefficient-giving.svg",
     href: "https://www.coefficientgiving.org",
   },
@@ -254,7 +254,7 @@ export default function QuienesSomos() {
       </section>
 
       <CtaPanel
-        title="Se entra trabajando"
+        title="Cómo se entra"
         body="No hay membresía ni convocatoria: se llega a un evento, a un programa o a una conversación."
       >
         <Link className={CTA_LINK_PRIMARY} href="/programas">

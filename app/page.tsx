@@ -79,7 +79,7 @@ const ALIADOS = [
     name: "BlueDot Impact",
     logo: "/aisc/aliados/bluedot.png",
     href: "https://bluedot.org",
-    body: "Cursos de fundamentos en seguridad y gobernanza de la IA.",
+    body: "Sus cursos gratuitos son la entrada estándar al campo. Desde 2022 han pasado más de 7.000 personas, hoy en laboratorios de IA y en gobiernos.",
   },
   {
     name: "Kairos",
@@ -91,7 +91,7 @@ const ALIADOS = [
     name: "Coefficient Giving",
     logo: "/aisc/aliados/coefficient-giving.svg",
     href: "https://www.coefficientgiving.org",
-    body: "Financia trabajo sobre riesgos globales, entre ellos la seguridad de la IA. Hasta 2025 se llamó Open Philanthropy.",
+    body: "Solo en 2024 comprometió unos 50 millones de dólares en investigación técnica de seguridad de la IA. Hasta 2025 se llamó Open Philanthropy.",
   },
 ];
 
@@ -337,12 +337,11 @@ export default function Home() {
       </section>
 
       <CtaPanel
-        kicker="Se entra trabajando"
         title="¿Quieres entrar?"
         body="No hace falta ser investigador ni haber estudiado inteligencia artificial."
       >
         {/* TODO: reemplazar por el enlace permanente del grupo de WhatsApp */}
-        <a className={CTA_LINK_PRIMARY} href="https://chat.whatsapp.com/" target="_blank" rel="noopener noreferrer">
+        <a className={CTA_LINK_PRIMARY} href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ" target="_blank" rel="noopener noreferrer">
           Entrar al grupo de WhatsApp
         </a>
         <a className={CTA_LINK} href="https://cal.com/josegelves/meeting" target="_blank" rel="noopener noreferrer">
