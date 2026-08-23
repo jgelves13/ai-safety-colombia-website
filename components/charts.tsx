@@ -14,7 +14,10 @@
  *
  * Si se actualizan, hay que actualizar tambien las frases del texto que las citan. */
 
-import { useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+
+/** en el servidor no hay layout que medir */
+const usarLayout = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 const INK = "#211a12";
 const MUTED = "#5a5044";
@@ -64,15 +67,37 @@ function Lienzo({
   children: React.ReactNode;
 }) {
   const ref = useRef<SVGSVGElement>(null);
+  const marco = useRef<HTMLDivElement>(null);
+  const caja = useRef<HTMLDivElement>(null);
+  const [pos, setPos] = useState<{ x: number; y: number } | null>(null);
+
   const coord = (e: React.PointerEvent) => {
     const r = ref.current?.getBoundingClientRect();
     if (!r) return null;
     return { x: ((e.clientX - r.left) / r.width) * W, y: ((e.clientY - r.top) / r.height) * H };
   };
-  const derecha = tip ? tip.x > W * 0.56 : false;
+
+  /* la cajita se mide y se encaja dentro del lienzo, para que nunca salga cortada */
+  usarLayout(() => {
+    if (!tip || !marco.current || !caja.current) {
+      if (pos) setPos(null);
+      return;
+    }
+    const cw = marco.current.offsetWidth;
+    const ch = marco.current.offsetHeight;
+    const bw = caja.current.offsetWidth;
+    const bh = caja.current.offsetHeight;
+    const px = (tip.x / W) * cw;
+    const py = (tip.y / H) * ch;
+    const cabe = px + 16 + bw <= cw - 6;
+    const x = Math.max(6, Math.min(cabe ? px + 16 : px - 16 - bw, cw - bw - 6));
+    const y = Math.max(6, Math.min(py - bh / 2, ch - bh - 6));
+    setPos({ x, y });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tip, W, H]);
 
   return (
-    <div className="relative">
+    <div ref={marco} className="relative">
       <svg
         ref={ref}
         viewBox={`0 0 ${W} ${H}`}
@@ -93,11 +118,12 @@ function Lienzo({
       </svg>
       {tip ? (
         <div
-          className="pointer-events-none absolute z-20 w-[260px] rounded-md border border-aisc-line bg-aisc-sand/95 px-3 py-2.5 shadow-[0_4px_18px_rgba(33,26,18,0.14)]"
+          ref={caja}
+          className="pointer-events-none absolute z-20 w-[min(260px,calc(100%-12px))] rounded-md border border-aisc-line bg-aisc-sand/95 px-3 py-2.5 shadow-[0_4px_18px_rgba(33,26,18,0.14)]"
           style={{
-            left: `${(tip.x / W) * 100}%`,
-            top: `${(tip.y / H) * 100}%`,
-            transform: `translate(${derecha ? "calc(-100% - 16px)" : "16px"}, -50%)`,
+            left: pos ? `${pos.x}px` : 0,
+            top: pos ? `${pos.y}px` : 0,
+            opacity: pos ? 1 : 0,
           }}
         >
           <p className="text-meta font-semibold text-aisc-ink">{tip.titulo}</p>

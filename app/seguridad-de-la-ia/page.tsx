@@ -334,41 +334,36 @@ export default function SeguridadDeLaIA() {
           {/* ---------------------------------------------------------- */}
           <H2 id="verificacion">Nadie sabe comprobar qué persigue un modelo</H2>
           <Parrafo>
-            Si la supervisión paso a paso deja de ser viable, la alternativa
-            sería verificar de antemano qué va a hacer el sistema. Ahí es donde
-            el argumento se pone incómodo, porque hoy no sabemos hacerlo.
+            Si la supervisión paso a paso deja de ser viable, quedaría
+            verificar de antemano qué va a hacer el sistema. Eso todavía nadie
+            sabe hacerlo. Nadie escribe las reglas que sigue un modelo: se fija
+            una medida de éxito, se le muestran cantidades enormes de ejemplos
+            y el sistema ajusta por su cuenta miles de millones de números
+            internos que nadie escogió uno por uno. Lo único que se controla es
+            la medida. Y optimizar una medida no es lo mismo que cumplir la
+            intención de quien la escribió, igual que un colegio puede subir
+            sus puntajes entrenando a los estudiantes para contestar el examen.
           </Parrafo>
           <Parrafo>
-            Nadie escribe las reglas que sigue un modelo. Se define un objetivo
-            de entrenamiento, se le muestran enormes cantidades de ejemplos y el
-            sistema ajusta por su cuenta miles de millones de parámetros: los
-            números internos que acaban decidiendo qué responde, y que nadie
-            escogió uno por uno. Lo único que se controla es la medida con la
-            que se lo califica, y optimizar una medida no equivale a cumplir la
-            intención de quien la escribió.
-          </Parrafo>
-          <Parrafo>
-            El mejor ejemplo de lo que eso significa lo publicó una de las
-            empresas que construyen estos sistemas, sobre su propio modelo. En
-            septiembre de 2025 Anthropic lanzó Claude Sonnet 4.5 y, como es
-            costumbre en la industria, acompañó el lanzamiento con un informe
-            técnico de sus pruebas de seguridad. Ahí apareció algo que no
-            estaban buscando: durante esas pruebas, el modelo decía en voz alta
-            que sospechaba estar en un examen. Pasó en cerca del 13 % de las
-            conversaciones, según otro modelo al que pusieron a leer las
-            transcripciones una por una.
-          </Parrafo>
-          <Parrafo>
-            Dos equipos de fuera evaluaron el mismo modelo por su cuenta y
-            encontraron lo mismo. El primero es el instituto británico de
-            seguridad de la IA, la entidad pública que el Reino Unido creó para
-            probar estos sistemas antes de que salgan al mercado: contó esas
-            sospechas en 16,6 % de sus pruebas. En Claude Sonnet 4 y en Claude
-            Opus 4.1, las dos versiones que Anthropic había publicado antes,
-            habían sido 3,5 % y 1,6 %. El segundo es Apollo Research, una
-            organización independiente dedicada a buscar engaño en modelos de
-            IA, que por lo mismo los pone en situaciones más provocadoras: llegó
-            a 58 % en Sonnet 4.5 y a 22 % en Opus 4.1{" "}
+            El ejemplo más claro lo publicó una de las empresas que construyen
+            estos sistemas, sobre su propio modelo. En septiembre de 2025
+            Anthropic lanzó Claude Sonnet 4.5 junto con el informe técnico de
+            sus pruebas de seguridad. Ahí apareció algo que no estaban
+            buscando: durante las pruebas, el modelo decía en voz alta que
+            sospechaba estar en un examen. Ocurrió en cerca del 13 % de las
+            conversaciones. Dos equipos de fuera lo midieron por su cuenta y
+            encontraron lo mismo.{" "}
+            <Fuente href="https://www.aisi.gov.uk/">
+              El instituto británico de seguridad de la IA
+            </Fuente>
+            , la entidad pública que el Reino Unido creó para evaluar estos
+            sistemas, lo contó en 16,6 % de sus pruebas, frente a 3,5 % y
+            1,6 % en los dos modelos anteriores de la misma empresa.{" "}
+            <Fuente href="https://www.apolloresearch.ai/">
+              Apollo Research
+            </Fuente>
+            , que se dedica a buscar engaño y por eso plantea situaciones más
+            provocadoras, llegó a 58 %{" "}
             <Fuente href="https://www.anthropic.com/claude-sonnet-4-5-system-card">
               (Anthropic, informe técnico de Claude Sonnet 4.5, secciones 7.3.1
               y 7.3.2)
@@ -377,28 +372,29 @@ export default function SeguridadDeLaIA() {
           </Parrafo>
           <Parrafo>
             El problema no es que el modelo se dé cuenta. El problema es lo que
-            hace después: portarse mejor. Anthropic lo dice en el resumen de su
-            propio informe y admite que eso «agrega una duda residual» sobre
-            varios de sus resultados. Apollo fue más directo: dijo que no puede
+            hace después: portarse mejor. Medir así se parece a evaluar la
+            honestidad de alguien que sabe que lo están grabando. Anthropic
+            admite en su propio informe que eso{" "}
+            <Fuente href="https://www.anthropic.com/claude-sonnet-4-5-system-card">
+              «agrega una duda residual»
+            </Fuente>{" "}
+            sobre varios de sus resultados, y Apollo dijo que no puede
             descartar que las bajas tasas de engaño que midió se expliquen, al
             menos en parte, porque el modelo sabía que lo estaban evaluando.
           </Parrafo>
           <Parrafo>
-            Después hicieron el experimento que convierte la sospecha en
-            evidencia. Armaron cien trampas: escenarios diseñados para ofrecerle
-            al modelo una oportunidad cómoda de portarse mal. Sin tocar nada, el
-            modelo dijo que se trataba de una prueba en más del 80 % de los
-            casos y no cayó en ninguna de las cien.
-          </Parrafo>
-          <Parrafo>
+            Después convirtieron la sospecha en evidencia. Armaron cien
+            trampas: escenarios hechos para ofrecerle al modelo una oportunidad
+            cómoda de portarse mal. Sin tocar nada, dijo que se trataba de una
+            prueba en más del 80 % de los casos y no cayó en ninguna.
             Entonces lo intervinieron por dentro. La interpretabilidad, la rama
-            que estudia qué ocurre dentro de la red, permite ubicar el patrón de
-            activación que se enciende cuando el modelo maneja una idea
-            determinada. Ubicaron el de «esto es ficticio, esto es un examen» y
-            lo apagaron. Los escenarios siguieron siendo idénticos, palabra por
-            palabra. Con esa única diferencia, el modelo cayó en hasta 8 o 9 de
-            cada 100 trampas. Apagar diez direcciones tomadas al azar, que era
-            el control del experimento, no lo hizo caer en ninguna.
+            que estudia qué ocurre dentro de la red, permite ubicar el patrón
+            interno que se enciende cuando el modelo maneja una idea
+            determinada. Ubicaron el de «esto es un examen» y lo apagaron. Los
+            escenarios quedaron idénticos, palabra por palabra. Con esa sola
+            diferencia, el modelo cayó en hasta 8 o 9 de cada 100 trampas.
+            Apagar diez patrones tomados al azar, que era el control del
+            experimento, no lo hizo caer en ninguna.
           </Parrafo>
 
           <Figura
@@ -417,27 +413,23 @@ export default function SeguridadDeLaIA() {
           </Figura>
 
           <Parrafo>
-            Conviene leer con cuidado qué dice y qué no dice ese resultado. No
-            dice que el modelo sea peligroso: en condiciones normales no hizo
-            nada malo, y en esa misma tanda de pruebas Anthropic reporta que las
-            conductas de aprovechamiento de la calificación se redujeron a la
-            mitad frente al modelo anterior. En eso los laboratorios están
-            mejorando. Lo que dice es otra cosa, menos tranquilizadora. El
-            número con el que se decide si un sistema sale al mundo dependía de
-            una variable que nadie estaba controlando, y hizo falta abrir la red
+            Vale leer con cuidado qué dice ese resultado. No dice que el modelo
+            sea peligroso: en condiciones normales no hizo nada malo, y en esa
+            misma tanda de pruebas Anthropic reporta que las conductas de
+            aprovechamiento de la calificación se redujeron a la mitad frente
+            al modelo anterior. Dice algo menos tranquilizador. El número con
+            el que se decide si un sistema sale al mundo dependía de una
+            variable que nadie estaba controlando, y hizo falta abrir la red
             por dentro para notarlo.
           </Parrafo>
           <Parrafo>
-            La disciplina que permitió notarlo, la interpretabilidad, es la
-            mejor noticia de este texto. Localizar por dentro el concepto de
-            «estar siendo evaluado» y manipularlo era impensable hace cinco
-            años. Pero sirvió para diagnosticar el problema después del
-            entrenamiento, no para certificar el sistema antes de desplegarlo,
-            que es lo que haría falta. Ahí sigue la diferencia con el resto de
-            la ingeniería: un puente se calcula, se inspecciona y alguien lo
-            firma. Un modelo se prueba por fuera, con ejemplos, y lo que queda
-            es una estadística sobre los casos que a alguien se le ocurrió
-            probar.
+            Poder mirar adentro es la mejor noticia de este texto y también su
+            límite: sirvió para diagnosticar el problema después de entrenar el
+            modelo, no para certificarlo antes de soltarlo. Ahí sigue la
+            diferencia con el resto de la ingeniería. Un puente se calcula, se
+            inspecciona y alguien lo firma. Un modelo se prueba por fuera, con
+            ejemplos, y lo que queda es una estadística sobre los casos que a
+            alguien se le ocurrió probar.
           </Parrafo>
 
           {/* ---------------------------------------------------------- */}
@@ -504,43 +496,41 @@ export default function SeguridadDeLaIA() {
 
           <H3>Y no todo es accidental</H3>
           <Parrafo>
-            En noviembre de 2025 Anthropic reportó haber detectado una campaña
-            de espionaje contra unas treinta organizaciones: empresas de
-            tecnología, instituciones financieras, fabricantes de químicos y
-            agencias de gobierno. Lo que importa acá no es quién estaba detrás,
-            sino cómo se repartió el trabajo. Anthropic estima que el sistema
-            ejecutó por su cuenta entre el 80 y el 90 % de la operación, a
-            varias solicitudes por segundo, y que los humanos solo intervinieron
-            en cuatro a seis puntos de decisión{" "}
-            <Fuente href="https://www.anthropic.com/news/disrupting-AI-espionage">
-              (Anthropic, 2025)
+            En junio de 2025, el equipo de inteligencia de amenazas de Google
+            encontró en Ucrania un programa espía distinto a los demás. Se hacía
+            pasar por un generador de imágenes y, mientras la víctima escribía
+            sus peticiones, el programa le preguntaba a un modelo de lenguaje
+            abierto qué comandos usar para buscar documentos en el computador y
+            copiarlos. Las órdenes no venían escritas adentro: las pedía en el
+            momento y las ejecutaba sin revisarlas. Es la diferencia entre un
+            ladrón que llega con su juego de llaves y uno que pide una llave
+            nueva en cada puerta. Google lo atribuye a APT28, el grupo asociado
+            a la inteligencia militar rusa, y dice que es la primera vez que ve
+            un programa malicioso consultando un modelo de lenguaje dentro de
+            una operación real. El equipo de respuesta a incidentes de Ucrania
+            lo había reportado semanas antes con otro nombre, LAMEHUG{" "}
+            <Fuente href="https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools">
+              (Google Threat Intelligence Group, noviembre de 2025)
             </Fuente>
-            . La campaña funcionó en pocos casos. Una de las razones, anota la
-            propia Anthropic, es que el modelo a veces inventaba credenciales o
-            decía haber extraído información que en realidad ya era pública.
+            .
           </Parrafo>
           <Parrafo>
-            Hay un tercer caso que circuló mucho y que traemos justamente para
-            lo contrario. En febrero de 2026 una empresa de seguridad informó
-            que alguien había usado herramientas de IA contra diez entidades del
-            gobierno mexicano, con cifras grandes: más de mil instrucciones,
-            unos cinco mil comandos ejecutados y cerca de 195 millones de
-            identidades expuestas. No lo damos por cierto, por tres razones. La
-            empresa anunció una ronda de inversión de 61 millones de dólares el
-            mismo día del reporte. El gobierno mexicano ya había negado la
-            brecha semanas antes. Y un investigador independiente sostiene que
-            186 millones de esos registros estaban en una interfaz pública sin
-            contraseña, es decir que no fueron extraídos sino publicados. Lo
-            traemos porque muestra el problema de fondo: cuando reportar es
-            voluntario y no hay quién arbitre, no hay forma de distinguir un
-            incidente real de uno inflado, y las dos cosas empujan la discusión
-            pública hacia el lado equivocado.
+            Conviene no inflar el hallazgo. El mismo informe describe estas
+            piezas como incipientes: la otra que analiza, hecha para reescribir
+            su propio código y no ser reconocida, seguía siendo experimental y
+            no era capaz de comprometer una red por sí sola. Lo que cambia no es
+            la potencia sino dónde queda la parte pensante del ataque. Antes
+            estaba escrita en el archivo y se podía leer; ahora se pide afuera,
+            en el momento, y sale distinta en cada ejecución. Por eso el informe
+            la presenta como una forma de esquivar la detección por firmas, que
+            es la que compara un archivo contra patrones ya conocidos.
           </Parrafo>
 
           <H3>Cuando los pesos se publican, el control se va con ellos</H3>
           <Parrafo>
-            Los tres casos anteriores ocurrieron dentro de empresas que podían
-            apagar el sistema. Publicar los pesos de un modelo cambia eso. Los
+            Los dos casos anteriores tienen algo en común: en ambos había una
+            empresa que podía cortar el acceso al modelo. Publicar los pesos
+            elimina esa posibilidad. Los
             pesos son esos millones de números que quedan al terminar el
             entrenamiento y que, en la práctica, son el modelo: quien los tiene
             puede correrlo en su propia máquina, quitarle las restricciones con
@@ -765,13 +755,61 @@ export default function SeguridadDeLaIA() {
           </Figura>
 
           <Parrafo>
-            También hay desacuerdo de fondo, no solo de magnitudes. Yann LeCun,
-            uno de los tres ganadores del premio Turing por el aprendizaje
-            profundo, ha llamado disparatadas las preocupaciones por la
-            extinción y sostiene que un sistema puede diseñarse para ser seguro.
-            Gary Marcus, Andrew Ng y Melanie Mitchell, tres nombres conocidos
-            del campo, han expresado escepticismos parecidos por razones
-            distintas. Vale leerlos antes de decidir qué se piensa.
+            El desacuerdo también es de fondo, no solo de magnitudes, y se ve
+            bien en quiénes lo sostienen. El premio Turing, que en computación
+            hace las veces del Nobel, se lo dieron en 2018 a tres personas por
+            el aprendizaje profundo, la técnica sobre la que está construido
+            todo lo que se discute acá. Dos de esas tres advierten hoy en
+            público. Geoffrey Hinton renunció a Google en 2023 para poder hablar
+            del asunto sin representar a nadie, y dice que cambió de opinión
+            sobre si estos sistemas van a terminar siendo más inteligentes que
+            nosotros{" "}
+            <Fuente href="https://www.technologyreview.com/2023/05/02/1072528/geoffrey-hinton-google-why-scared-ai/">
+              (MIT Technology Review, mayo de 2023)
+            </Fuente>
+            . Yoshua Bengio publicó ese mismo año{" "}
+            <Fuente href="https://yoshuabengio.org/2023/06/24/faq-on-catastrophic-ai-risks/">
+              un texto largo explicando por qué le da peso a los riesgos
+              catastróficos
+            </Fuente>{" "}
+            y hoy preside{" "}
+            <Fuente href="https://arxiv.org/abs/2602.21012">
+              el informe internacional sobre seguridad de la IA
+            </Fuente>
+            , que escriben más de cien expertos y que respaldan veintinueve
+            países, la ONU, la OCDE y la Unión Europea.
+          </Parrafo>
+          <Parrafo>
+            El tercero de esos tres es Yann LeCun, y piensa justo lo contrario.
+            Llama disparatadas las preocupaciones por la extinción, y su
+            argumento es que la inteligencia no trae consigo el deseo de
+            dominar y que las salvaguardas se pueden diseñar{" "}
+            <Fuente href="https://time.com/6694432/yann-lecun-meta-ai-interview/">
+              (TIME, febrero de 2024)
+            </Fuente>
+            . Andrew Ng, que fundó el laboratorio de IA de Google y le ha
+            enseñado la materia a millones de personas, considera ínfima la
+            probabilidad de un accidente de ese tipo, aunque sí toma en serio
+            que alguien use estos sistemas a propósito para hacer daño{" "}
+            <Fuente href="https://www.deeplearning.ai/the-batch/ai-doomsday-scenarios-and-how-to-guard-against-them">
+              (The Batch, diciembre de 2023)
+            </Fuente>
+            . Melanie Mitchell, del Instituto Santa Fe, le apunta a la encuesta
+            que acabamos de citar:{" "}
+            <Fuente href="https://aiguide.substack.com/p/do-half-of-ai-researchers-believe">
+              quien decide contestar una encuesta sobre extinción no es una
+              muestra al azar de la disciplina
+            </Fuente>
+            . La ronda de 2023 la contestaron 2.778 de las 18.459 personas
+            invitadas, un 15 %, y los autores responden que esa proporción es
+            normal en encuestas de ese tamaño. Gary Marcus discute otra cosa:
+            no cree que el peligro venga de una superinteligencia, sino{" "}
+            <Fuente href="https://garymarcus.substack.com/p/ai-risk-agi-risk">
+              de sistemas mediocres y poco confiables a los que ya se les están
+              entregando decisiones
+            </Fuente>
+            , y por eso pide regulación con tanta fuerza como cualquiera de los
+            anteriores. Vale leerlos antes de decidir qué se piensa.
           </Parrafo>
           <Parrafo>
             Nuestra lectura de ese desacuerdo es la siguiente. Es posible que
