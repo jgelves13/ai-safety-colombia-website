@@ -159,8 +159,8 @@ export default function Investigacion() {
             <span className="text-kicker text-aisc-sand/70">Lo que sale de acá</span>
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">Investigación</h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              No tenemos un equipo de investigación propio. Lo que hacemos es organizar los fines de semana donde la
-              gente de acá produce el trabajo, y publicarlo. Estos son los reportes de la última edición.
+              Lo que se investiga desde acá sale de los hackathons que organizamos. Un fin de semana, equipos que se
+              arman en el momento y un reporte publicado y evaluado al final. Estos son los de la última edición.
             </p>
           </div>
         </div>
@@ -177,8 +177,8 @@ export default function Investigacion() {
                 <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
                   Apart Research
                 </a>
-                . El formato es un fin de semana: viernes en la noche se arman los equipos, domingo en la noche se
-                entrega un reporte, y la semana siguiente lo califican jurados de fuera.
+                . Viernes en la noche se arman los equipos, domingo en la noche se entrega un reporte, y la semana
+                siguiente lo califican jurados de fuera.
               </p>
               <p>
                 La mayoría de quienes llegan nunca había trabajado en seguridad de la IA. Salen con un trabajo firmado,
