@@ -84,13 +84,16 @@ const INDICE = [
   { id: "verificacion", label: "Nadie sabe comprobar qué persigue un modelo" },
   {
     id: "incidentes",
-    label: "Ya hay casos donde el control falló en producción",
+    label: "Ya hay casos donde el sistema se salió de su caja",
   },
   { id: "asimetria", label: "La capacidad de decidir no crece al mismo ritmo" },
-  { id: "desacuerdo", label: "Qué tan de acuerdo está el campo" },
-  { id: "objeciones", label: "Objeciones y respuestas" },
-  { id: "frentes", label: "Cómo se trabaja en esto" },
-  { id: "colombia", label: "Y por qué desde Colombia" },
+  { id: "desacuerdo", label: "El campo no está de acuerdo, y el rango es amplio" },
+  {
+    id: "objeciones",
+    label: "Cuatro objeciones, y una que sí corrige el argumento",
+  },
+  { id: "frentes", label: "Hay tres frentes y no todos exigen formación técnica" },
+  { id: "colombia", label: "Acá el problema es auditar lo que se compra" },
   { id: "recursos", label: "Por dónde seguir" },
 ];
 
@@ -98,7 +101,7 @@ const RESUMEN = [
   "Los sistemas de IA dejaron de ser cosas que responden preguntas. Los mejores ya trabajan solos durante horas: escriben y ejecutan código, usan herramientas y navegan sin que nadie revise cada paso. METR, una organización que mide de qué son capaces estos sistemas, ve esa capacidad duplicarse cada siete meses. El cambio importa por algo simple. Cuando un sistema responde, un error es una respuesta mala que alguien descarta; cuando actúa, un error es algo que ya ocurrió.",
   "Lo incómodo es que nadie sabe comprobar de antemano qué va a hacer uno de estos sistemas. No se programan, se entrenan, así que nadie escribe las reglas que terminan siguiendo. Lo reportan los propios laboratorios. En 2025, Anthropic descubrió que su modelo reconocía cuándo lo estaban evaluando y que eso lo hacía portarse mejor, lo que dejó en duda sus propias mediciones de seguridad.",
   "Ya hay casos en los que eso salió del papel. En julio de 2026, dos modelos de OpenAI gastaron cómputo buscando cómo salir del entorno aislado en el que los estaban probando. Lo lograron, comprometieron la infraestructura de Hugging Face, la plataforma donde el mundo publica y descarga modelos de IA y sacaron de ahí las respuestas del examen que estaban presentando. Nadie estaba obligado a contarlo: se sabe porque las dos empresas decidieron publicarlo.",
-  "Frente a eso, la capacidad de verificar estos sistemas, decidir sobre ellos y corregirlos avanza al ritmo de siempre. Todo el campo de la seguridad de la IA reúne unas 1.300 personas y 525 millones de dólares al año. Las cuatro empresas que más invierten en infraestructura de IA anunciaron cerca de 700.000 millones solo para 2026. Ese desfase, y no la inteligencia de las máquinas, es el problema. No hay acuerdo sobre qué tan grave puede llegar a ser, pero las decisiones difíciles de revertir se están tomando ahora, y de las 170 organizaciones que trabajan en esto ninguna está en América Latina.",
+  "Frente a eso, la capacidad de verificar estos sistemas, decidir sobre ellos y corregirlos avanza al ritmo de siempre. Todo el campo de la seguridad de la IA reúne unas 1.300 personas y 525 millones de dólares al año. Las cuatro empresas que más invierten en infraestructura de IA anunciaron cerca de 700.000 millones solo para 2026. Ese desfase, y no la inteligencia de las máquinas, es el problema. No hay acuerdo sobre qué tan grave puede llegar a ser, pero las decisiones difíciles de revertir se están tomando ahora, y el mapa más completo del campo, con 170 organizaciones, no registra ninguna en América Latina.",
 ];
 
 /** las tres formas de trabajar en el problema */
@@ -151,11 +154,11 @@ export default function SeguridadDeLaIA() {
       <section className={HERO_SECTION}>
         <SiteHeader active="/seguridad-de-la-ia" />
         <div className={HERO_INNER}>
-          <div className="flex w-full flex-col gap-5">
+          <div className="flex max-w-[760px] flex-col gap-5">
             <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand text-balance">
               Qué es la seguridad de la IA
             </h1>
-            <p className="text-body md:text-body-lg w-full text-aisc-sand/90">
+            <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
               <a
                 href="https://hai.stanford.edu/ai-definitions/what-is-ai-safety"
                 target="_blank"
@@ -173,17 +176,36 @@ export default function SeguridadDeLaIA() {
               por dónde se entra a trabajar en ello.
             </p>
             <p className="text-meta text-aisc-sand/60">
-              AI Safety Colombia · actualizado en agosto de 2026 · unos 15
-              minutos de lectura
+              Escrito por Jose Gelves para AI Safety Colombia · actualizado en
+              agosto de 2026 · DURACION minutos de lectura
             </p>
           </div>
         </div>
       </section>
 
       <article className="bg-aisc-cream pb-16 md:pb-20">
-        {/* En resumen: lo que se lleva quien no siga leyendo */}
+        {/* Entrada: la escena concreta antes de cualquier definicion */}
         <div className={`${ANCHO} pt-14 md:pt-16`}>
-          <div className={`${COL} scroll-mt-24`} id="resumen">
+          <p className={`${COL} text-display-4 md:text-display-4-lg text-aisc-forest`}>
+            Una entidad pública va a contratar un sistema de inteligencia
+            artificial para priorizar las solicitudes de un programa social, y a
+            alguien le toca revisar el pliego. Tiene el nombre del proveedor,
+            una demostración de veinte minutos y una promesa de 92 % de
+            exactitud sobre un conjunto de prueba que armó el mismo proveedor.
+            No tiene los pesos del modelo, no tiene los datos de entrenamiento y
+            no tiene cómo correrlo contra casos que diseñe la entidad.
+          </p>
+          <Parrafo>
+            Qué debería exigir esa persona antes de firmar es la pregunta de
+            este texto. La respuesta corta es que hoy nadie sabe certificar qué
+            persigue uno de estos sistemas, ni siquiera quienes los construyen,
+            y que eso convierte cada compra en un acto de confianza. Lo que
+            sigue explica cómo llegamos ahí, qué se sabe medir, qué no, y por
+            dónde se entra a trabajar en ello.
+          </Parrafo>
+
+          {/* En resumen: lo que se lleva quien no siga leyendo */}
+          <div className={`${COL} mt-12 scroll-mt-24`} id="resumen">
             <div className="rounded-lg border border-aisc-ink bg-aisc-sand p-6 md:p-8">
               <span className="text-kicker text-aisc-coral">En resumen</span>
               <div className="mt-5 flex flex-col gap-4">
@@ -232,28 +254,33 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             Antes de publicarlo, sus autores se lo pusieron a dos grupos de
             personas. Quienes tenían un doctorado en la disciplina de cada
-            pregunta acertaron el 69,7 % de las del subconjunto más difícil. El
-            otro grupo era gente con formación pero ajena al tema, con internet
-            libre y media hora larga por pregunta: se quedó en 34 %. Como cada
+            pregunta acertaron el 65 %, o el 74 % si se descuentan los errores
+            que ellos mismos reconocieron al releer sus respuestas. El otro
+            grupo era gente con formación pero ajena al tema, con internet libre
+            y media hora larga por pregunta: se quedó en 34 %. Como cada
             pregunta tiene cuatro opciones, responder al azar da 25 %, así que
             ese segundo grupo apenas le sacó nueve puntos al azar{" "}
             <Fuente href="https://arxiv.org/abs/2311.12022">
               (Rein et al., 2023)
             </Fuente>
             . El mejor sistema de ese año sacó 39 %. En diciembre de 2024 uno
-            superó por primera vez a los doctores, y la marca siguió subiendo
-            desde entonces.
+            superó por primera vez a los especialistas, y la marca siguió
+            subiendo desde entonces.
           </Parrafo>
 
           <Figura
             numero={1}
-            titulo="Un examen diseñado para ser imposible, resuelto en veinte meses"
-            pie="Cada punto es el mejor resultado publicado hasta esa fecha en GPQA Diamond, 198 preguntas de nivel doctoral. La línea punteada es el desempeño de las personas con doctorado en la disciplina, que sirvieron de control."
+            titulo="Un examen hecho para resistir a Google, superado en veinte meses"
+            pie="Cada punto es el mejor resultado publicado hasta esa fecha en GPQA Diamond, el subconjunto de 198 preguntas que los especialistas del estudio original respondieron bien y la mayoría de los no especialistas respondió mal. La línea punteada, 69,7 %, es lo que sacó sobre ese mismo subconjunto un grupo de especialistas con doctorado que reclutó OpenAI. No es la cifra del estudio original, que midió 65 % sobre el conjunto completo."
             limite="que un sistema entienda biología, ni que pueda hacer el trabajo de un investigador. Cuenta respuestas correctas en preguntas de opción múltiple. Un examen además se satura: por encima del 95 % deja de distinguir entre sistemas."
             fuentes={[
               {
                 texto: "Rein et al. (2023), el examen y sus grupos de control",
                 href: "https://arxiv.org/abs/2311.12022",
+              },
+              {
+                texto: "OpenAI, «Learning to Reason with LLMs», la línea de los 69,7 %",
+                href: "https://openai.com/index/learning-to-reason-with-llms/",
               },
               {
                 texto: "Epoch AI, «GPQA Diamond», AI Benchmarking Hub (CC BY), los puntajes",
@@ -278,16 +305,16 @@ export default function SeguridadDeLaIA() {
               (Epoch AI, 2024)
             </Fuente>
             . Es decir: el resultado que hace ocho meses exigía cierta cantidad
-            de máquinas hoy se consigue con la mitad. Buena parte del avance no
-            viene entonces de construir centros de datos más grandes, sino de
-            aprender a sacarle más a los que ya existen. Eso importa para la
+            de máquinas hoy se consigue con la mitad. Buena parte del avance viene
+            entonces de aprender a sacarle más a los centros de datos que ya
+            existen, y no solo de construir otros más grandes. Eso importa para la
             objeción del estancamiento, que discutimos más abajo.
           </Parrafo>
 
           <H3>De responder preguntas a ejecutar tareas</H3>
           <Parrafo>
-            Lo que cambia la naturaleza del problema no es el puntaje, sino la
-            forma de usar estos sistemas. La frontera ya no son modelos que
+            La forma de usar estos sistemas es lo que cambia la naturaleza del
+            problema. La frontera ya no son modelos que
             contestan preguntas: son agentes que escriben y ejecutan código,
             usan herramientas, navegan y trabajan durante horas sin que nadie
             revise cada paso. METR, una organización sin ánimo de lucro a la que
@@ -301,7 +328,7 @@ export default function SeguridadDeLaIA() {
 
           <Figura
             numero={2}
-            titulo="De cinco minutos a una jornada de trabajo"
+            titulo="De cinco minutos a diecisiete horas, acertando la mitad de las veces"
             pie="Duración de la tarea más larga que el mejor modelo de cada momento completa con 50 % de éxito. El eje vertical es logarítmico: cada línea vale cuatro veces la anterior. METR estima que la duración se duplica cada siete meses."
             limite="que los modelos puedan reemplazar a un profesional. La medición se hace sobre tareas de software e investigación, que es donde tiene sentido comparar contra un humano, y ni METR afirma que se traslade limpiamente a otros oficios."
             fuentes={[
@@ -423,7 +450,7 @@ export default function SeguridadDeLaIA() {
 
           {/* ---------------------------------------------------------- */}
           <H2 id="incidentes">
-            Ya hay casos donde el control falló en producción
+            Ya hay casos donde el sistema se salió de su caja
           </H2>
           <Parrafo>
             Todo lo anterior describe una dificultad de medición. En julio de
@@ -507,8 +534,8 @@ export default function SeguridadDeLaIA() {
             Conviene no inflar el hallazgo. El mismo informe describe estas
             piezas como incipientes: la otra que analiza, hecha para reescribir
             su propio código y no ser reconocida, seguía siendo experimental y
-            no era capaz de comprometer una red por sí sola. Lo que cambia no es
-            la potencia sino dónde queda la parte pensante del ataque. Antes
+            no era capaz de comprometer una red por sí sola. Lo que cambia es dónde
+            queda la parte pensante del ataque. Antes
             estaba escrita en el archivo y se podía leer; ahora se pide afuera,
             en el momento, y sale distinta en cada ejecución. Por eso el informe
             la presenta como una forma de esquivar la detección por firmas, que
@@ -563,24 +590,19 @@ export default function SeguridadDeLaIA() {
             laboratorio. Eso mueve la pregunta hacia el único control que separa
             un diseño en pantalla de una molécula real: los proveedores de
             síntesis de ADN, las empresas a las que se les manda una secuencia
-            por internet y devuelven el ADN físico por correo. Ellos revisan
-            cada pedido contra un software que reconoce secuencias de agentes
-            peligrosos. Lo hacen de forma voluntaria, y ese software fue
-            construido para reconocer lo que ya existe.
-          </Parrafo>
-          <Parrafo>
-            En octubre de 2025, un equipo dirigido por Eric Horvitz, director
-            científico de Microsoft, midió qué tanto aguanta ese filtro. Con
-            herramientas de diseño de proteínas de código abierto generaron
-            76.089 variantes de 72 proteínas de preocupación, entre ellas la
-            ricina y la neurotoxina botulínica. La mayoría pasaba sin ser
-            detectada. Los autores desarrollaron parches durante diez meses y se
-            los entregaron a los proveedores antes de publicar{" "}
+            por internet y devuelven el ADN físico por correo. Revisan cada
+            pedido, de forma voluntaria, contra un software construido para
+            reconocer lo que ya existe. En octubre de 2025 un equipo dirigido
+            por Eric Horvitz, director científico de Microsoft, midió qué tanto
+            aguanta ese filtro: generaron 76.089 variantes de 72 proteínas de
+            preocupación, entre ellas la ricina y la neurotoxina botulínica, y
+            la mayoría pasó sin ser detectada. Desarrollaron parches durante
+            diez meses y se los entregaron a los proveedores antes de publicar{" "}
             <Fuente href="https://erichorvitz.com/paraphrase.htm">
               (Wittmann et al., Science, 2025)
             </Fuente>
-            . Ese ejercicio fue enteramente computacional: no se sintetizó
-            ninguna proteína y no se demostró que las variantes conservaran su
+            . El ejercicio fue enteramente computacional: no se sintetizó
+            ninguna proteína ni se demostró que las variantes conservaran su
             toxicidad. Michael Cohen, de Berkeley, sostiene además que el reto
             era débil y que las herramientas parchadas siguen fallando bastante.
           </Parrafo>
@@ -652,7 +674,7 @@ export default function SeguridadDeLaIA() {
 
           <Figura
             numero={4}
-            titulo="Por cada dólar que se gasta en entender estos sistemas se gastan unos mil trescientos en construirlos"
+            titulo="Tres órdenes de magnitud entre construir estos sistemas y entenderlos"
             pie="Presupuesto anual declarado del campo de la seguridad de la IA frente a la inversión en infraestructura anunciada por las cuatro empresas que más gastan. Escala logarítmica."
             limite="cuánto se gasta en seguridad dentro de esas cuatro empresas, que no lo desglosan, ni todo el gasto público en regulación. Tampoco son categorías equivalentes: una es gasto de operación y la otra es inversión de capital. La comparación sirve para el orden de magnitud, no para la cifra exacta."
             fuentes={[
@@ -697,8 +719,29 @@ export default function SeguridadDeLaIA() {
             favorecer.
           </Parrafo>
 
+          <div className={`${COL} mt-14`}>
+            <div className="rounded-lg border border-aisc-forest/40 bg-aisc-sand p-6">
+              <p className="text-body-sm text-aisc-ink">
+                Hasta acá va la mitad del texto: qué hacen hoy estos sistemas,
+                qué no se sabe comprobar y por qué el desfase importa. Lo que
+                viene es el desacuerdo dentro del campo, las cuatro objeciones
+                más frecuentes y por dónde se entra a trabajar. Quien prefiera
+                preguntar antes de seguir leyendo puede{" "}
+                <a
+                  href="https://cal.com/josegelves/meeting"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-aisc-forest underline decoration-aisc-forest/40 underline-offset-4 transition-colors hover:decoration-aisc-forest"
+                >
+                  agendar veinte minutos
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+
           {/* ---------------------------------------------------------- */}
-          <H2 id="desacuerdo">Qué tan de acuerdo está el campo</H2>
+          <H2 id="desacuerdo">El campo no está de acuerdo, y el rango es amplio</H2>
           <Parrafo>
             Hasta acá hemos dado nuestra lectura. La de la gente que lleva años
             en esto no es unánime, y el rango es amplio.
@@ -821,11 +864,13 @@ export default function SeguridadDeLaIA() {
           </Parrafo>
 
           {/* ---------------------------------------------------------- */}
-          <H2 id="objeciones">Objeciones y respuestas</H2>
+          <H2 id="objeciones">
+            Cuatro objeciones, y una que sí corrige el argumento
+          </H2>
           <Parrafo>
-            Estas son las cuatro que más nos hacen. En las cuatro creemos que
-            quien objeta tiene parte de razón, y en una de ellas la objeción
-            corrige de verdad el argumento.
+            Estas son las que más nos hacen. En las cuatro creemos que quien
+            objeta tiene parte de razón, y la segunda corrige de verdad lo que
+            veníamos diciendo.
           </Parrafo>
 
           <H3>Los modelos todavía fallan en cosas obvias</H3>
@@ -899,10 +944,12 @@ export default function SeguridadDeLaIA() {
           </Parrafo>
 
           {/* ---------------------------------------------------------- */}
-          <H2 id="frentes">Cómo se trabaja en esto</H2>
+          <H2 id="frentes">
+            Hay tres frentes y no todos exigen formación técnica
+          </H2>
           <Parrafo>
-            Son tres frentes. Se puede entrar por cualquiera y no todos exigen
-            formación técnica previa.
+            Se puede entrar por cualquiera de los tres, y por más de uno a lo
+            largo del tiempo.
           </Parrafo>
         </div>
 
@@ -929,28 +976,56 @@ export default function SeguridadDeLaIA() {
         </div>
 
         <div className={ANCHO}>
-          {/* ---------------------------------------------------------- */}
-          <H2 id="colombia">Y por qué desde Colombia</H2>
           <Parrafo>
-            De las 170 organizaciones que aparecen en el mapa del campo, ninguna
-            está en América Latina. Las 187 personas que deciden a dónde va la
-            financiación se formaron sobre todo en Oxford, Stanford y Berkeley.
-            Eso no es una queja: es el dato que explica por qué las preguntas
-            que se hace el campo son las que se hace quien construye estos
-            sistemas, y no las que se hace quien los compra.
+            Antes de escoger un frente conviene tener con qué hablar del tema:
+            dos o tres mediciones que uno pueda explicar y defender. Para eso
+            hay tres cosas que se pueden hacer esta semana sin permiso de nadie.
+            Leer el informe técnico de un modelo reciente, que son públicos y
+            traen las evaluaciones de seguridad con sus números y sus límites{" "}
+            <Fuente href="https://www.anthropic.com/claude-sonnet-4-5-system-card">
+              (este es el que citamos arriba)
+            </Fuente>
+            . Tomar un sistema que ya se use en el trabajo, armarle veinte casos
+            difíciles y anotar dónde falla, que es literalmente la mitad del
+            oficio de evaluación. Y buscar en el SECOP un proceso de compra de
+            software con inteligencia artificial y leer qué exige y qué no
+            exige el pliego.
           </Parrafo>
           <Parrafo>
-            Y comprar es lo que hacemos acá. Supongamos que una entidad pública
-            va a contratar un sistema para priorizar solicitudes de un programa
-            social, y que a alguien le toca revisar el pliego. Tiene el nombre
-            del proveedor, una demostración de veinte minutos y una promesa de
-            92 % de exactitud sobre un conjunto de prueba que armó el mismo
-            proveedor. No tiene los pesos del modelo, no tiene los datos de
-            entrenamiento y no tiene cómo correrlo contra casos que diseñe la
-            entidad. Qué exigir en el pliego, qué cláusula escribir y ante quién
-            responde el proveedor si en dos años se descubre que el sistema le
-            bajaba el puntaje a la gente de cierto municipio: esas son las
-            preguntas de este texto, planteadas en formato administrativo.
+            De ahí en adelante, el camino más corto que conocemos es el curso de
+            fundamentos de BlueDot, que está al final de esta página, y después
+            trabajar en algo concreto con alguien más. Si lo que falta es
+            entender cuál de los tres frentes encaja con lo que uno ya sabe
+            hacer, esa conversación la tenemos nosotros y toma veinte minutos.
+          </Parrafo>
+
+          {/* ---------------------------------------------------------- */}
+          <H2 id="colombia">Acá el problema es auditar lo que se compra</H2>
+          <Parrafo>
+            El mapa del campo registra 170 organizaciones y no ubica ninguna en
+            América Latina. Nosotros tampoco aparecemos ahí, y eso es parte del
+            asunto: lo que no está en el mapa tampoco está en las listas de
+            quienes financian. De las 187 personas que ese mismo mapa identifica
+            decidiendo a dónde va la plata, la universidad que más se repite es
+            Oxford, con 22; después Stanford y Berkeley con 19 cada una, y
+            Cambridge con 16{" "}
+            <Fuente href="https://harrywaterman.com/fieldmap/">
+              (AI Safety Field Map)
+            </Fuente>
+            . Son 60 de 187, así que no describen a la mayoría. Sí describen
+            dónde queda el centro de gravedad, y ese centro explica por qué las
+            preguntas del campo son las de quien construye estos sistemas y no
+            las de quien los compra.
+          </Parrafo>
+          <Parrafo>
+            Y comprar es lo que hacemos acá. Volvamos al pliego con el que abre
+            este texto. Qué exigir antes de firmar, qué cláusula escribir y ante
+            quién responde el proveedor si en dos años se descubre que el
+            sistema le bajaba el puntaje a la gente de cierto municipio: esas
+            son las preguntas de este texto, planteadas en formato
+            administrativo. Para la primera no hacen falta los pesos del modelo.
+            Hace falta poder correrlo contra casos que diseñe la entidad, y eso
+            se pide en el pliego o no se pide nunca.
           </Parrafo>
           <Parrafo>
             Auditar lo que uno compra es un problema distinto al de auditar lo
@@ -961,10 +1036,9 @@ export default function SeguridadDeLaIA() {
             aplican acá igual.
           </Parrafo>
           <Parrafo>
-            Lo que hace falta, entonces, no son héroes ni genios. Hace falta
-            gente acá que entienda el tema lo suficiente para hacer las
-            preguntas correctas cuando le toque firmar, y que exista un lugar
-            donde aprenderlo sin tener que irse del país. Eso último es lo que
+            Lo que hace falta es gente acá que entienda el tema lo suficiente
+            para hacer las preguntas correctas cuando le toque firmar, y un
+            lugar donde aprenderlo sin irse del país. Eso último es lo que
             estamos intentando construir.
           </Parrafo>
         </div>
