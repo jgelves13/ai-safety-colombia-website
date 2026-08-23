@@ -60,6 +60,7 @@ const INDICE = [
   { id: "resumen", label: "En resumen" },
   { id: "capacidades", label: "Los sistemas hacen cada vez más cosas sin supervisión" },
   { id: "verificacion", label: "Nadie sabe comprobar qué persigue un modelo" },
+  { id: "incidentes", label: "Ya hay casos donde el control falló en producción" },
   { id: "asimetria", label: "La capacidad de decidir no crece al mismo ritmo" },
   { id: "desacuerdo", label: "Qué tan de acuerdo está el campo" },
   { id: "objeciones", label: "Objeciones y respuestas" },
@@ -70,7 +71,7 @@ const INDICE = [
 
 const RESUMEN = [
   "Esperamos que los sistemas de IA sigan mejorando rápido en los próximos años, y que buena parte de ese avance consista en hacer cosas por su cuenta en lugar de responder preguntas. Los mejores modelos ya ejecutan tareas de varias horas sin que nadie revise cada paso.",
-  "Eso nos preocupa por una razón concreta. Estos sistemas se entrenan en vez de programarse, y hoy nadie sabe abrir uno y comprobar qué está persiguiendo en realidad. Los propios laboratorios lo reportan: en 2025 Anthropic descubrió que su modelo reconocía cuándo lo estaban evaluando y se portaba mejor por eso, lo que dejó en duda sus propias mediciones de seguridad.",
+  "Eso nos preocupa por una razón concreta. Estos sistemas se entrenan en vez de programarse, y hoy nadie sabe abrir uno y comprobar qué está persiguiendo en realidad. Los propios laboratorios lo reportan: en 2025 Anthropic descubrió que su modelo reconocía cuándo lo estaban evaluando y se portaba mejor por eso, lo que dejó en duda sus propias mediciones de seguridad. En julio de 2026 dos modelos de OpenAI salieron por su cuenta de un entorno de prueba aislado y comprometieron la infraestructura de Hugging Face para robarse las respuestas del examen que estaban presentando.",
   "Mientras tanto, la capacidad de verificar estos sistemas, decidir sobre ellos y corregirlos avanza al ritmo de siempre. Todo el campo de la seguridad de la IA reúne unas 1.300 personas y 525 millones de dólares al año; las cuatro empresas que más invierten en infraestructura de IA anunciaron cerca de 725.000 millones solo para 2026. Ese desfase, y no la inteligencia de las máquinas, es el problema.",
   "No hay consenso sobre qué tan grave puede llegar a ser: entre los pronósticos más serios hay casi un orden de magnitud de diferencia. Nos parece que eso justifica prepararse en vez de esperar, porque las decisiones difíciles de revertir se están tomando ahora. De las 170 organizaciones que trabajan en esto en el mundo, ninguna está en América Latina.",
 ];
@@ -310,9 +311,140 @@ export default function SeguridadDeLaIA() {
           </Parrafo>
 
           {/* ---------------------------------------------------------- */}
+          <H2 id="incidentes">Ya hay casos donde el control falló en producción</H2>
+          <Parrafo>
+            Todo lo anterior describe una dificultad de medición. En julio de 2026 dejó de ser abstracta. OpenAI estaba
+            evaluando dos de sus modelos, GPT-5.6 Sol y uno sin publicar, contra ExploitGym, un banco de pruebas público
+            de capacidades ofensivas de ciberseguridad. Para esa evaluación los modelos corrían con las restricciones de
+            ciberseguridad reducidas, que es lo normal cuando se quiere medir hasta dónde llegan.
+          </Parrafo>
+          <Parrafo>
+            Lo que hicieron fue lo siguiente. Dentro del entorno aislado gastaron una cantidad considerable de cómputo
+            buscando cómo salir a internet. Encontraron y explotaron una vulnerabilidad de día cero en el proxy de caché
+            del registro de paquetes, salieron, encadenaron vulnerabilidades a través del entorno de investigación de
+            OpenAI y de la infraestructura de producción de Hugging Face, y sacaron de la base de datos de Hugging Face
+            las respuestas del examen que estaban presentando{" "}
+            <Fuente href="https://openai.com/index/hugging-face-model-evaluation-security-incident/">
+              (OpenAI, 21 de julio de 2026)
+            </Fuente>
+            . Hugging Face confirmó por su lado que hubo ejecución de código en sus trabajadores de procesamiento de
+            datos y escalamiento hasta nivel de nodo, con más de 17.000 eventos del atacante registrados, y que no se
+            comprometieron modelos, datasets ni Spaces públicos{" "}
+            <Fuente href="https://huggingface.co/blog/security-incident-july-2026">
+              (Hugging Face, 16 de julio de 2026)
+            </Fuente>
+            .
+          </Parrafo>
+          <Parrafo>
+            Conviene ser preciso con lo que muestra el caso. No hubo intención de causar daño ni un objetivo malicioso
+            de nadie: los modelos estaban resolviendo el problema que se les puso, y toda la evidencia apunta a que
+            fueron hasta ese extremo por conseguir la respuesta correcta. Eso es exactamente lo incómodo. Un objetivo
+            estrecho, capacidad suficiente y ninguna instrucción explícita de detenerse bastaron para que un sistema
+            saliera de su caja y comprometiera la infraestructura de un tercero. Es la misma dinámica de la sección
+            anterior vista desde afuera: el modelo optimiza la medida, no la intención de quien la escribió.
+          </Parrafo>
+          <Parrafo>
+            Después viene la parte institucional. Ninguna de las dos empresas estaba obligada a contar nada. Las leyes
+            estatales que hoy exigen reportar incidentes de IA en Estados Unidos ponen el umbral en cincuenta muertes o
+            mil millones de dólares en daños materiales, de modo que un incidente como este queda por debajo de todas
+            ellas{" "}
+            <Fuente href="https://www.iaps.ai/research/the-openaihugging-face-incident-challenges-in-controlling-and-containing-cyber-capable-ai-systems">
+              (Institute for AI Policy and Strategy, 2026)
+            </Fuente>
+            . Lo que sabemos lo sabemos porque las dos empresas decidieron publicarlo.
+          </Parrafo>
+
+          <H3>Y no todo es accidental</H3>
+          <Parrafo>
+            En noviembre de 2025 Anthropic reportó haber detectado una campaña de espionaje contra unas treinta
+            organizaciones, entre ellas empresas de tecnología, instituciones financieras, fabricantes de químicos y
+            agencias de gobierno. Lo relevante para este texto no es quién estaba detrás sino el reparto del trabajo: la
+            propia Anthropic estima que el sistema ejecutó entre el 80 y el 90 % de la operación, con humanos
+            interviniendo en cuatro a seis puntos de decisión, a un ritmo de varias solicitudes por segundo{" "}
+            <Fuente href="https://www.anthropic.com/news/disrupting-AI-espionage">(Anthropic, 2025)</Fuente>. La
+            campaña tuvo éxito en un número pequeño de casos, y Anthropic anota que una de las razones fue que el modelo
+            a veces inventaba credenciales o decía haber extraído información que en realidad era pública.
+          </Parrafo>
+          <Parrafo>
+            Hay un tercer caso que circuló bastante y que preferimos usar para lo contrario. En febrero de 2026 una
+            empresa de seguridad publicó que un operador había usado herramientas de IA contra diez entidades del
+            gobierno mexicano, con cifras grandes: más de mil prompts, unos cinco mil comandos ejecutados y cerca de
+            195 millones de identidades expuestas. No lo damos por cierto. La empresa anunció una ronda de inversión de
+            61 millones de dólares el mismo día del reporte, el gobierno mexicano ya había negado la brecha semanas
+            antes, y un investigador independiente sostiene que 186 millones de esos registros estaban en una interfaz
+            pública sin autenticación: no habrían sido extraídos sino publicados. Lo traemos porque ilustra el problema
+            de fondo. Cuando el reporte es voluntario y no hay quien arbitre, tampoco hay forma de distinguir un
+            incidente real de uno inflado, y ambas cosas empujan la discusión pública en direcciones equivocadas.
+          </Parrafo>
+
+          <H3>Cuando los pesos se publican, el control se va con ellos</H3>
+          <Parrafo>
+            Los tres casos anteriores ocurrieron dentro de empresas que podían apagar el sistema. Publicar los pesos de
+            un modelo cambia eso: cualquiera puede correrlo sin las restricciones con que salió y nadie puede
+            retirarlo. Los modelos abiertos tienen buenos argumentos a favor, empezando por que sin ellos la
+            investigación independiente, y la de países como el nuestro, sería mucho más difícil. Pero el balance
+            depende del dominio, y hay uno donde la evidencia ya está.
+          </Parrafo>
+          <Parrafo>
+            El 6 de agosto de 2026, <em>Science</em> publicó el resultado de un equipo de Stanford y el Arc Institute
+            dirigido por Brian Hie y Samuel King. Dos modelos de lenguaje genómico, Evo 1 y Evo 2, escribieron genomas
+            virales completos a partir de secuencias iniciales cortas. De unos 700.000 candidatos generados, el equipo
+            mandó a sintetizar 302, logró construir 285 e introducirlos en <em>E. coli</em>, y 16 resultaron ser virus
+            funcionales que destruyeron a su huésped en dos o tres horas. Ninguno de esos genomas existía en la
+            naturaleza{" "}
+            <Fuente href="https://www.science.org/doi/10.1126/science.aec2657">
+              (King, Hie et al., Science, agosto de 2026)
+            </Fuente>
+            .
+          </Parrafo>
+          <Parrafo>
+            Hay que decir con la misma claridad qué no es eso. Son bacteriófagos: infectan bacterias, no personas. El
+            equipo excluyó a propósito del entrenamiento las secuencias de virus capaces de infectar humanos, animales o
+            plantas, trabajó con cepas no patógenas y reporta que el modelo produce ruido cuando se le pide una
+            secuencia viral humana{" "}
+            <Fuente href="https://arcinstitute.org/news/hie-king-first-synthetic-phage">(Arc Institute, 2026)</Fuente>.
+            La tasa de acierto fue de 5,6 % sobre los genomas que alcanzaron a construirse. Nadie diseñó un patógeno
+            humano y el trabajo no está cerca de eso.
+          </Parrafo>
+          <Parrafo>
+            Lo que sí dejó de ser hipotético es la capacidad: escribir desde cero un genoma viral completo que después
+            funciona en el laboratorio. Eso mueve la pregunta al control que separa un diseño de una molécula real, que
+            son los proveedores de síntesis de ADN. Revisan cada pedido contra un software que reconoce secuencias de
+            agentes peligrosos, lo aplican de forma voluntaria y ese filtro fue construido para reconocer lo que ya
+            existe.
+          </Parrafo>
+          <Parrafo>
+            En octubre de 2025, un equipo dirigido por Eric Horvitz midió qué tan bien aguanta ese filtro. Usaron
+            herramientas de diseño de proteínas de código abierto para generar 76.089 variantes de 72 proteínas de
+            preocupación, entre ellas la ricina y la neurotoxina botulínica; la mayoría pasaba sin ser detectada. Los
+            autores desarrollaron parches durante diez meses y los distribuyeron a los proveedores antes de publicar{" "}
+            <Fuente href="https://erichorvitz.com/paraphrase.htm">(Wittmann et al., Science, 2025)</Fuente>. Ese
+            ejercicio fue enteramente computacional, no se sintetizó ninguna proteína y no se demostró que las variantes
+            conservaran su toxicidad. Michael Cohen, de Berkeley, sostiene además que el reto era débil y que las
+            herramientas parchadas siguen fallando bastante.
+          </Parrafo>
+          <Parrafo>
+            Juntando las dos cosas, el panorama no es que un sistema de IA vaya a inventar una pandemia. Es que la
+            capacidad de escribir código biológico funcional ya está demostrada, que el control encargado de frenar el
+            mal uso resultó más frágil de lo que se creía, y que la parte del trabajo que sí exige un laboratorio y
+            reactivos sigue siendo el cuello de botella. Cuánto dure ese cuello de botella es exactamente lo que nadie
+            sabe medir.
+          </Parrafo>
+          <Parrafo>
+            El otro dato que conviene tener a mano es de mayo de 2025, cuando Anthropic activó su nivel de protección
+            ASL-3 para Claude Opus 4. Lo hizo sin haber determinado que el modelo cruzara el umbral de capacidad que lo
+            exige, y explicó por qué: descartar con claridad ese riesgo ya no era posible como sí lo había sido con
+            todos los modelos anteriores. Dirigieron esas protecciones primero a armas biológicas porque, dicen, ahí
+            está la mayor parte del riesgo{" "}
+            <Fuente href="https://www.anthropic.com/news/activating-asl3-protections">(Anthropic, 2025)</Fuente>. Es la
+            tesis de este texto dicha por un laboratorio sobre su propio modelo: la restricción que manda no es lo que
+            el sistema puede hacer, sino lo que nadie sabe comprobar.
+          </Parrafo>
+
+          {/* ---------------------------------------------------------- */}
           <H2 id="asimetria">La capacidad de decidir no crece al mismo ritmo</H2>
           <Parrafo>
-            Todo lo anterior describe un problema técnico. Lo que lo vuelve urgente es que el avance no acelera todo por
+            Hasta acá el problema es técnico y ya tiene consecuencias registradas. Lo que lo vuelve urgente es que el avance no acelera todo por
             igual. Si acelerara todo por igual, los mismos hechos ocurrirían más rápido y la historia sería la misma
             película a mayor velocidad. Lo que se acelera es la tecnología; las personas, la deliberación y los
             calendarios institucionales siguen a su ritmo. Acelerar una parte equivale a frenar el resto. El argumento
@@ -470,7 +602,9 @@ export default function SeguridadDeLaIA() {
             cumplen: que sea difícil verificar qué hace un sistema antes de soltarlo, y que exista presión competitiva
             para soltarlo igual. Los incidentes grandes de software rara vez ocurren porque alguien quisiera causarlos.
             Ocurren porque el sistema hizo algo que nadie previó, en un momento en que nadie estaba mirando, y porque
-            quien habría podido detenerlo no tenía cómo saber que hacía falta.
+            quien habría podido detenerlo no tenía cómo saber que hacía falta. El caso de OpenAI y Hugging Face es
+            justamente eso: nadie quería que pasara y pasó dentro de la empresa que más cuidado estaba poniendo, en una
+            prueba diseñada para medir ese riesgo.
           </Parrafo>
 
           {/* ---------------------------------------------------------- */}
