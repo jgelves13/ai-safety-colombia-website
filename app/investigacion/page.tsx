@@ -64,66 +64,79 @@ const OTROS = [
     titulo: "Marco ético para IA aplicada a la lengua guna de Panamá",
     ciudad: "Colombia",
     href: "https://apartresearch.com/project/marco-tico-para-ia-aplicada-a-la-preservacin-lingstica-guna-de-panam-6uxw",
+    equipo: "Ana María González Aldana, Kelvin Alvarado y Mariana Zuluaga Abril",
   },
   {
     titulo: "Governance Drift Evaluation Framework",
     ciudad: "Colombia",
     href: "https://apartresearch.com/project/governance-drift-evaluation-framework-gdef-vfzj",
+    equipo: "Andrés Mogollón, Juan Manuel Cortes Jimenez, Oscar Poveda, Devesh Sawant y Liliana Isabel Salazar",
   },
   {
     titulo: "Sistema de dos clasificadores para seguridad en modelos de lenguaje",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/dualclassifier-system-for-llm-security-s491",
+    equipo: "Nicolás David Galindo, Daniel Libardo Diaz Gonzalez, Juan Jacobo Izquierdo Becerra y David Andrés Ramírez",
   },
   {
     titulo: "Los peajes de los de abajo",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/los-peajes-de-los-de-abajo-i6wx",
+    equipo: "Mongui Rogers",
   },
   {
     titulo: "Contestabilidad algorítmica en el Estado colombiano",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/contestabilidad-algortmica-en-el-estado-colombiano-un-canal-de-objecin-asistido-por-ia-lbsm",
+    equipo: "Emely Condor y Federico Perez",
   },
   {
     titulo: "Comercio agéntico y protección al consumidor",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/agentic-commerce-and-consumer-protection-emerging-risks-and-regulatory-gaps-be7b",
+    equipo: "Francely Carreño y Sofía Botía",
   },
   {
     titulo: "JurisGuard-LATAM",
     ciudad: "Jamundí",
     href: "https://apartresearch.com/project/jurisguardlatam-sadx",
+    equipo: "Jhon Harvey Tejada Tabares",
   },
   {
     titulo: "Honest-Code",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/honestcode-8pnk",
+    equipo: "Yoel Alfonso",
   },
   {
     titulo: "Mapeo de herramientas de IA en los call centers colombianos",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/mapeo-de-herramientas-ia-en-contextos-laborales-el-caso-de-los-call-centers-en-colombia-k1kk",
+    equipo: "Daniel Bravo",
   },
   {
     titulo: "Confía-CO",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/confaco-a-reliability-evaluation-for-an-ai-customerservice-assistant-operating-in-colombian-spanish-vfxt",
+    equipo: "Marlon Naranjo",
   },
   {
     titulo: "Evaluación de uso responsable de IA en pymes latinoamericanas",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/herramienta-de-evaluacin-y-recomendacin-para-la-promocin-de-uso-responsable-de-ia-en-pymes-latinoamericanas-1gvb",
+    equipo: "Diana Marcela Daza Jaimes, David José Daza Jaimes, Juan Camilo Medina Moreno, Luis Carlos Ordoñez Montenegro y Ángela Pinilla Parra",
   },
   {
     titulo: "Jailbreaks estructurales en español",
     ciudad: "Cali",
     href: "https://apartresearch.com/project/beyond-english-assessing-the-robustness-of-llm-safety-mechanisms-against-structural-jailbreaks-in-spanish-s4zk",
+    equipo: "Jonathan Narvaez",
   },
   {
     titulo: "Guardian LATAM",
     ciudad: "Armenia",
     href: "https://apartresearch.com/project/guardian-latam-early-detection-of-hallucination-risk-in-spanishspeaking-multiagent-ai-systems-using-consensus-geometry-5lzw",
+    equipo: "Edwin Hernan Cedeño Vargas",
   },
 ];
 
@@ -258,13 +271,15 @@ export default function Investigacion() {
             {OTROS.map((o) => (
               <li key={o.href} className="border-t border-aisc-forest-deep/25 first:border-t-0 md:[&:nth-child(2)]:border-t-0">
                 <a
-                  className="group flex items-baseline justify-between gap-6 py-4 transition-colors hover:text-aisc-forest"
+                  className="group flex flex-col gap-1 py-4 transition-colors hover:text-aisc-forest"
                   href={o.href}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <span className="text-body-sm md:text-body">{o.titulo}</span>
-                  <span className="text-meta shrink-0 text-aisc-muted">{o.ciudad}</span>
+                  <span className="text-meta text-aisc-muted">
+                    {o.equipo} · {o.ciudad}
+                  </span>
                 </a>
               </li>
             ))}
