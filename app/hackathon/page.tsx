@@ -116,7 +116,7 @@ const GRUPOS = [
       },
       {
         name: "BlueDot Impact",
-        body: "Sus cursos gratuitos son la entrada estándar al campo. Con los Rapid Grants pagan trabajo concreto: 631 apoyos entregados y respuesta en tres días en promedio.",
+        body: "Sus cursos gratuitos son la entrada estándar al campo. Con los Rapid Grants pagan además trabajo concreto: 631 apoyos entregados por USD 1.423.595, con respuesta en tres días en promedio.",
         logo: "/aisc/aliados/bluedot.png",
         href: "https://bluedot.org/grants/rapid",
       },
