@@ -227,7 +227,7 @@ export default function Investigacion() {
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">Investigación</h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
               Acá está lo que publica la gente de la comunidad: artículos revisados por pares, documentos de
-              trabajo y reportes de investigación, cada uno con la institución que lo publicó.
+              trabajo y reportes de investigación.
             </p>
           </div>
         </div>
@@ -239,9 +239,6 @@ export default function Investigacion() {
           <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
             <h2 className="text-display-2 md:text-display-2-lg text-balance">Publicaciones de la comunidad</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
-              <p>
-                Publicaciones en las que alguien de AI Safety Colombia aparece como autor.
-              </p>
               <p>
                 La lista está abierta. Si eres de la comunidad y publicaste algo,{" "}
                 <a className={ENLACE} href="mailto:contacto@aisafetycolombia.org">

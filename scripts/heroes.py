@@ -336,4 +336,5 @@ def main():
         print(nombre, os.path.getsize(ruta))
 
 
-main()
+if __name__ == "__main__":
+    main()
