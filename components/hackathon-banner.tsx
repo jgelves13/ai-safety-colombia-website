@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
    sobre el resto del inicio: va arriba del hero, igual que en el sitio actual. */
 export const SPRINT = {
   badge: "Apart Research · CeSIA",
-  title: "AI Incident Response Sprint · sede Bogotá",
+  title: "AI Incident Response Sprint · presencial en Bogotá",
   body: "Del 11 al 13 de septiembre. Un fin de semana para investigar cómo se responde cuando un sistema de IA falla en serio: contención, reconstrucción del incidente, respuesta regulatoria y comunicación. USD 2.000 en premios.",
   cta: "Ver la convocatoria",
   href: "https://apartresearch.com/sprints/ai-incident-response-sprint-2026-09-11-to-2026-09-13?utm_source=aisafetycolombia",

@@ -73,7 +73,7 @@ const ALIADOS = [
     name: "Apart Research",
     logo: "/aisc/aliados/apart.png",
     href: "https://apartresearch.com",
-    body: "Hackathons de investigación en seguridad de la IA, con sedes en todo el mundo.",
+    body: "Convoca hackathons de investigación en seguridad de la IA, abiertos a participantes de todo el mundo.",
   },
   {
     name: "BlueDot Impact",
@@ -100,7 +100,7 @@ const PROGRAMAS = [
   {
     kicker: "Con Apart Research",
     title: "Hackathons de investigación",
-    body: "Un fin de semana para pasar de leer sobre seguridad de la IA a producir un trabajo propio, con sede en Bogotá y participantes de toda la región.",
+    body: "Un fin de semana para pasar de leer sobre seguridad de la IA a producir un trabajo propio. Apart Research los convoca a nivel global y nosotros abrimos el espacio presencial en Bogotá.",
   },
   {
     kicker: "Todos los viernes",

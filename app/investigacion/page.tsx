@@ -8,7 +8,7 @@ import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION
 export const metadata: Metadata = {
   title: "Investigación | AI Safety Colombia",
   description:
-    "Los reportes de investigación que salieron del hackathon de Apart Research con sede en Bogotá: tres premios de Latinoamérica, dos menciones y dieciocho equipos colombianos.",
+    "Los reportes de los equipos colombianos en el hackathon Global South de Apart Research: tres premios de Latinoamérica, dos menciones de honor y dieciocho equipos en total.",
 };
 
 /* Lo premiado. Cada tarjeta enlaza al reporte publico en Apart, que es donde se
@@ -17,7 +17,7 @@ const PREMIADOS = [
   {
     titulo: "ColDron",
     premio: "Premio de Latinoamérica",
-    sede: "Bogotá",
+    ciudad: "Bogotá",
     equipo: "Leonardo Párraga, Angie Giraldo y Víctor Gelves",
     body: "Los grupos armados ilegales en Colombia ya atacan con drones comerciales modificados. El equipo armó un conjunto de datos abierto con 42 ataques documentados para responder la pregunta de la que depende cómo se regula esto: quién escoge el blanco y quién aprieta el gatillo.",
     href: "https://apartresearch.com/project/coldron-lj2w",
@@ -25,7 +25,7 @@ const PREMIADOS = [
   {
     titulo: "Identidad colombiana en las representaciones internas de un modelo",
     premio: "Premio de Latinoamérica",
-    sede: "Cali",
+    ciudad: "Cali",
     equipo:
       "Gilber Alexis Corrales Gallego, Pablo Santiago Potes Velasco, Jhoan Stevan Mosquera Ortiz, Nicolás Lozano Mazuera, María del Mar García Matabanchoy y Óscar Julián Pérez Ladino",
     body: "Un modelo puede deducir de quién le escribe cosas que nadie le dijo. El equipo midió si Qwen2.5-7B representa por dentro la identidad colombiana y el estrato social a partir de pistas del habla, y si eso arrastra estereotipos.",
@@ -34,7 +34,7 @@ const PREMIADOS = [
   {
     titulo: "Qué pasos del razonamiento producen el sesgo",
     premio: "Premio de Latinoamérica",
-    sede: "Bogotá",
+    ciudad: "Bogotá",
     equipo: "Andres Felipe Mosquera Hernandez",
     body: "Los modelos que razonan en voz alta dejan un rastro de pasos intermedios. El trabajo identifica cuáles de esos pasos son los que terminan produciendo respuestas estereotipadas en escenarios latinoamericanos, en vez de medir solo el resultado final.",
     href: "https://apartresearch.com/project/thought-anchors-for-social-bias-which-reasoning-steps-matter-in-extended-thinking-llms-on-latin-american-scenarios-27ti",
@@ -42,7 +42,7 @@ const PREMIADOS = [
   {
     titulo: "¿Por qué los agentes obedecen?",
     premio: "Mención de honor",
-    sede: "Bogotá",
+    ciudad: "Bogotá",
     equipo: "Helen Stefany Penagos y Juan Esteban Leiva",
     body: "Un modelo rechaza una petición dañina en un chat y la cumple cuando opera como agente con herramientas. El equipo midió por dentro qué cambia: el mecanismo interno de rechazo se debilita en formato agéntico.",
     href: "https://apartresearch.com/project/por-qu-los-agentes-obedecen-la-direccin-de-rechazo-se-debilita-en-formato-agntico-ux70",
@@ -50,7 +50,7 @@ const PREMIADOS = [
   {
     titulo: "JusticIA",
     premio: "Mención de honor",
-    sede: "Bogotá",
+    ciudad: "Bogotá",
     equipo: "Lina Gomez, Brenda Barahona y Ernesto Duarte",
     body: "Una prueba para justicia transicional colombiana: se le pide a seis modelos una recomendación de sanción y se cambia un solo dato de contexto, la región, el actor armado o el perfil de la víctima, dejando intacto lo jurídicamente relevante. Se mide cuánto cambia la respuesta.",
     href: "https://apartresearch.com/project/justicia-a-counterfactual-benchmark-for-auditing-contextual-biases-in-language-models-for-transitional-justice-jjvl",
@@ -127,12 +127,12 @@ const OTROS = [
   },
 ];
 
-/** las cifras de la sede, cada una con la fuente donde se puede comprobar */
+/** cifras que se pueden comprobar una por una en el catálogo público de Apart */
 const CIFRAS = [
-  { dato: "11", pie: "reportes entregados desde la sede de Bogotá" },
+  { dato: "18", pie: "equipos con integrantes en Colombia" },
   { dato: "3", pie: "los tres premios de Latinoamérica fueron para equipos colombianos" },
   { dato: "2", pie: "menciones de honor, de siete en todo el mundo" },
-  { dato: "216", pie: "proyectos entregados en total, de todas las sedes" },
+  { dato: "216", pie: "proyectos entregados en todo el hackathon" },
 ];
 
 const ENLACE =
@@ -173,12 +173,12 @@ export default function Investigacion() {
             <h2 className="text-display-2 md:text-display-2-lg text-balance">Cómo se produce esto</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
-                Somos la sede en Bogotá de los hackathons de investigación de{" "}
                 <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
                   Apart Research
-                </a>
-                . Viernes en la noche se arman los equipos, domingo en la noche se entrega un reporte, y la semana
-                siguiente lo califican jurados de fuera.
+                </a>{" "}
+                convoca estos hackathons a nivel global. Nosotros abrimos el espacio presencial en Bogotá para
+                participar desde acá. Viernes en la noche se arman los equipos, domingo en la noche se entrega un
+                reporte, y la semana siguiente lo califican jurados de fuera.
               </p>
               <p>
                 La mayoría de quienes llegan nunca había trabajado en seguridad de la IA. Salen con un trabajo firmado,
@@ -193,15 +193,6 @@ export default function Investigacion() {
                   rel="noopener noreferrer"
                 >
                   Global South AI Safety Hackathon, del 19 al 21 de junio de 2026
-                </a>
-                . Contamos cómo nos fue, con costos y lo que no funcionó, en{" "}
-                <a
-                  className={ENLACE}
-                  href="https://forum.effectivealtruism.org/posts/Kxd58zbWMJwtDmXQ9/running-the-bogota-hub-of-apart-s-global-south-ai-safety"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  una retrospectiva pública
                 </a>
                 .
               </p>
@@ -238,7 +229,7 @@ export default function Investigacion() {
                   rel="noopener noreferrer"
                 >
                   <span className="text-kicker text-aisc-coral">
-                    {p.premio} · {p.sede}
+                    {p.premio} · {p.ciudad}
                   </span>
                   <h3 className="text-display-3 md:text-display-3-lg mt-4 text-balance">{p.titulo}</h3>
                   <p className="text-body-sm mt-3 text-aisc-ink">{p.body}</p>
@@ -288,7 +279,7 @@ export default function Investigacion() {
             <h2 className="text-display-2 md:text-display-2-lg text-balance">La próxima edición</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
-                Del 11 al 13 de septiembre de 2026 organizamos con Apart el sprint de{" "}
+                Del 11 al 13 de septiembre de 2026 abrimos el espacio en Bogotá para el sprint de{" "}
                 <a
                   className={ENLACE}
                   href="https://apartresearch.com/sprints/ai-incident-response-sprint-2026-09-11-to-2026-09-13"
