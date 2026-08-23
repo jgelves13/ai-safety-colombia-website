@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { CIERRE_ISO, TRACKS_FORM, VIAJE_FORM } from "@/app/hackathon/datos";
+import { CIERRE_ISO, EQUIPO_FORM, TRACKS_FORM, VIAJE_FORM } from "@/app/hackathon/datos";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -45,6 +45,7 @@ const LIMITES: Record<string, number> = {
   aiSafety: 900,
   reason: 1500,
   hubProblem: 1500,
+  hubTeamNames: 600,
   hubAccess: 800,
   hubExtra: 800,
 };
@@ -64,6 +65,7 @@ const OBLIGATORIOS = [
 
 const TRACKS = new Set(TRACKS_FORM.map((t) => t.id as string));
 const VIAJES = new Set(VIAJE_FORM.map((t) => t.id as string));
+const EQUIPOS = new Set(EQUIPO_FORM.map((t) => t.id as string));
 
 type Crudo = Record<string, unknown>;
 
@@ -87,6 +89,11 @@ function validar(raw: Crudo): { ok: true; datos: Record<string, string> } | { ok
   const track = texto(raw.hubTrack);
   if (!TRACKS.has(track)) return { ok: false, campo: "hubTrack" };
   datos.hubTrack = track;
+
+  const equipo = texto(raw.hubTeam);
+  if (!EQUIPOS.has(equipo)) return { ok: false, campo: "hubTeam" };
+  datos.hubTeam = equipo;
+  if (equipo === "equipo" && !datos.hubTeamNames) return { ok: false, campo: "hubTeamNames" };
 
   const viaje = texto(raw.hubTravel);
   if (!VIAJES.has(viaje)) return { ok: false, campo: "hubTravel" };
@@ -120,6 +127,8 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
     reason: datos.reason,
     hub_problem: datos.hubProblem,
     hub_track: datos.hubTrack,
+    hub_team: datos.hubTeam,
+    hub_team_names: datos.hubTeamNames || null,
     hub_travel: datos.hubTravel,
     hub_access: datos.hubAccess || null,
     hub_extra: datos.hubExtra || null,

@@ -137,18 +137,49 @@ const HUB = [
 
 /* Premios de Apart, tal como los publica su convocatoria. */
 const PREMIOS = [
-  { puesto: "Primer puesto", monto: "USD 1.000" },
-  { puesto: "Segundo puesto", monto: "USD 500" },
-  { puesto: "Tercer puesto", monto: "USD 300" },
-  { puesto: "Cuarto puesto", monto: "USD 100" },
-  { puesto: "Quinto puesto", monto: "USD 100" },
+  { puesto: "Primer puesto", monto: "1.000" },
+  { puesto: "Segundo puesto", monto: "500" },
+  { puesto: "Tercer puesto", monto: "300" },
+  { puesto: "Cuarto puesto", monto: "100" },
+  { puesto: "Quinto puesto", monto: "100" },
 ];
 
+/* Los mentores, al modo de SASH: retrato cuadrado, nombre y rol. Mientras no
+   tengamos la foto de alguien se muestra la tarjeta con sus iniciales; el
+   archivo va en public/aisc/mentores/. */
+/* Mientras no tengamos la foto de alguien, la casilla muestra sus iniciales
+   en lugar de una imagen rota. */
+const MENTORES: { nombre: string; rol: string; foto?: string }[] = [
+  { nombre: "Camila Beltrán", rol: "Mentora" },
+];
+
+function iniciales(nombre: string): string {
+  return nombre
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((parte) => parte[0])
+    .join("");
+}
+
+/* Cada perfil con el rótulo por el que alguien se reconoce de un vistazo. */
 const PERFILES = [
-  "Gente de ingeniería, ciencia de datos o seguridad informática que quiera meterle mano a la contención y al análisis del incidente.",
-  "Gente de derecho, política pública o periodismo: los frentes de regulación y comunicación se ganan escribiendo bien y entendiendo el expediente.",
-  "Quien ya responda incidentes en otra industria, de banca a salud, y quiera ver cómo se traduce eso a sistemas de IA.",
-  "Quien viene leyendo sobre riesgos de la IA y quiere pasar de leer a producir algo que otra persona pueda usar.",
+  {
+    rotulo: "Perfiles técnicos",
+    body: "Ingeniería, ciencia de datos o seguridad informática: la contención y el análisis del incidente piden manos en el teclado durante los tres días.",
+  },
+  {
+    rotulo: "Derecho, política pública y periodismo",
+    body: "Los frentes de regulación y comunicación se ganan escribiendo bien y entendiendo el expediente, no programando.",
+  },
+  {
+    rotulo: "Quien ya responde incidentes",
+    body: "De banca a salud, la respuesta a incidentes ya es un oficio. Acá se trata de ver qué cambia cuando el que falló es un sistema de IA.",
+  },
+  {
+    rotulo: "Quien viene leyendo",
+    body: "Si llevas meses leyendo sobre riesgos de la IA y no sabes por dónde entrar, este fin de semana es la forma más corta de pasar de leer a producir algo.",
+  },
 ];
 
 const FAQ = [
@@ -402,42 +433,86 @@ export default function Hackathon() {
                   .
                 </p>
               </div>
-              <div>
-                <p className={ROTULO}>Confirmados hasta ahora</p>
-                <ul>
-                  <li className={FILA}>
-                    <span className="text-display-4 font-semibold text-aisc-forest">Camila Beltrán</span>
-                    <span className="text-body text-aisc-ink">
-                      Vamos anunciando el resto del grupo a medida que confirman.
-                    </span>
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
+          <ul className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:mt-14 lg:mt-16 lg:grid-cols-5">
+            {MENTORES.map((m) => (
+              <li className="flex flex-col gap-3" key={m.nombre}>
+                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[8px] bg-aisc-sand">
+                  {m.foto ? (
+                    <img
+                      alt={m.nombre}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover object-center"
+                      src={m.foto}
+                    />
+                  ) : (
+                    <span className="text-display-2 md:text-display-2-lg text-aisc-forest/45" aria-hidden="true">
+                      {iniciales(m.nombre)}
+                    </span>
+                  )}
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-display-4 font-semibold text-aisc-forest">{m.nombre}</span>
+                  <span className="text-body-sm text-aisc-muted">{m.rol}</span>
+                </div>
+              </li>
+            ))}
+            <li className="flex flex-col gap-3">
+              <div className="flex aspect-square w-full items-center justify-center rounded-[8px] border border-dashed border-aisc-forest/40 p-4 text-center">
+                <span className="text-body-sm text-aisc-muted">Vamos anunciando el resto a medida que confirman.</span>
+              </div>
+            </li>
+          </ul>
         </div>
       </section>
 
-      {/* Quién puede aplicar */}
-      <section id="quien" className={`${SECCION} py-12 md:py-14`}>
-        <div className={CONTENEDOR}>
-          <div aria-hidden="true" className={HAIRLINE} />
-          <div className={ENCABEZADO}>
+      {/* Quién puede aplicar: banda oscura, para que la página respire entre
+          tanto papel crema y para que los cuatro perfiles no queden en viñetas. */}
+      <section id="quien" className="relative overflow-hidden bg-aisc-forest-deep py-14 text-aisc-sand md:py-16">
+        <img
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          width="1697"
+          height="995"
+          decoding="async"
+          className={CTA_PATTERN_TOP}
+          style={{ color: "transparent" }}
+          src={PATRON}
+        />
+        <div className={`${CONTENEDOR} relative z-10`}>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start lg:gap-6">
             <h2 className="text-display-2 md:text-display-2-lg break-words">Quién puede aplicar</h2>
-            <div className="flex max-w-[640px] flex-col gap-6">
-              <p className="text-body md:text-body-lg text-aisc-ink">
+            <div className="flex max-w-[640px] flex-col gap-4">
+              <p className="text-body md:text-body-lg text-aisc-sand/90">
                 No se pide experiencia previa en seguridad de la IA ni título en nada. Se pide que puedas estar los tres
                 días y que llegues con una idea de qué te gustaría abordar.
               </p>
-              <ul className="text-body md:text-body-lg flex list-disc flex-col gap-3 pl-5 text-aisc-ink">
-                {PERFILES.map((p) => (
-                  <li key={p}>{p}</li>
-                ))}
-              </ul>
-              <p className="text-body md:text-body-lg text-aisc-ink">
+              <p className="text-body-sm text-aisc-sand/70">
                 La aplicación toma entre quince y veinticinco minutos y no necesitas preparar nada de antemano.
               </p>
             </div>
+          </div>
+          <ul className="mt-12 grid grid-cols-1 gap-x-10 md:mt-14 lg:mt-16 lg:grid-cols-2">
+            {PERFILES.map((p, i) => (
+              <li className="flex items-start gap-5 border-t border-aisc-sand/25 py-6" key={p.rotulo}>
+                <span className="text-display-4 shrink-0 tabular-nums text-aisc-coral" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="flex flex-col gap-1.5">
+                  <h3 className="text-display-4 md:text-display-4-lg text-balance">{p.rotulo}</h3>
+                  <p className="text-body-sm text-aisc-sand/75">{p.body}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-10 flex flex-wrap items-center gap-3">
+            <Link className={CTA_LINK_PRIMARY} href="/hackathon/aplicar">
+              Aplicar al espacio en Bogotá
+            </Link>
+            <span className="text-meta text-aisc-sand/70">{CIERRE_TEXTO}</span>
           </div>
         </div>
       </section>
@@ -452,7 +527,7 @@ export default function Hackathon() {
               <div className={PROSA}>
                 <p>
                   Apart reparte USD 2.000 entre los cinco primeros puestos de todo el sprint. Los jurados evalúan los
-                  proyectos la semana siguiente y la calificación es ciega.
+                  proyectos la semana siguiente y la calificación es ciega: no saben de dónde viene cada equipo.
                 </p>
                 <p>
                   Más allá del premio, los equipos con mejores resultados entran a la vía rápida de la beca de
@@ -460,16 +535,41 @@ export default function Hackathon() {
                   con los nombres de sus autores.
                 </p>
               </div>
-              <ul>
-                {PREMIOS.map((p) => (
-                  <li className="text-body flex items-baseline justify-between gap-6 border-t border-aisc-ink/20 py-3" key={p.puesto}>
-                    <span>{p.puesto}</span>
-                    <span className="tabular-nums text-aisc-forest">{p.monto}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
+          {/* La escalera de premios: el primer puesto lleno, los otros cuatro de
+              contorno, con la cifra como lo primero que se ve. */}
+          <ul className="mt-12 grid grid-cols-2 gap-3 md:mt-14 lg:mt-16 lg:grid-cols-5">
+            {PREMIOS.map((p, i) => (
+              <li className="flex" key={p.puesto}>
+                <article
+                  className={`flex min-h-[150px] w-full flex-col justify-between rounded-[8px] p-5 md:min-h-[172px] md:p-6 ${
+                    i === 0
+                      ? "bg-aisc-forest text-aisc-sand"
+                      : "border border-aisc-forest/55 bg-aisc-cream text-aisc-ink"
+                  }`}
+                >
+                  <span
+                    className={`text-meta font-semibold tracking-widest uppercase ${
+                      i === 0 ? "text-aisc-sand/75" : "text-aisc-muted"
+                    }`}
+                  >
+                    {p.puesto}
+                  </span>
+                  <span className="mt-6 flex flex-col">
+                    <span className={`text-meta ${i === 0 ? "text-aisc-sand/75" : "text-aisc-muted"}`}>USD</span>
+                    <span
+                      className={`text-display-2 md:text-display-2-lg tabular-nums ${
+                        i === 0 ? "text-aisc-sand" : "text-aisc-forest"
+                      }`}
+                    >
+                      {p.monto}
+                    </span>
+                  </span>
+                </article>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

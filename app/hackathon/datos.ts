@@ -24,6 +24,11 @@ export const TRACKS_FORM = [
   { id: "either", label: "Todavía no lo tengo claro" },
 ] as const;
 
+export const EQUIPO_FORM = [
+  { id: "solo", label: "Aplico solo y quiero que me ayuden a armar equipo" },
+  { id: "equipo", label: "Aplico con un equipo ya armado" },
+] as const;
+
 export const VIAJE_FORM = [
   { id: "bogota", label: "Vivo en Bogotá o cerca" },
   { id: "colombia", label: "Vengo de otra ciudad de Colombia" },

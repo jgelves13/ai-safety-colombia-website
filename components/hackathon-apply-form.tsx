@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { APART_SPRINT_URL, TRACKS_FORM, VIAJE_FORM } from "@/app/hackathon/datos";
+import { APART_SPRINT_URL, EQUIPO_FORM, TRACKS_FORM, VIAJE_FORM } from "@/app/hackathon/datos";
 
 /* Borrador local: quien empieza a escribir y cierra la pestaña no pierde lo que
    llevaba. Se borra al enviar. */
@@ -22,6 +22,8 @@ const VACIO: Campos = {
   reason: "",
   hubProblem: "",
   hubTrack: "",
+  hubTeam: "",
+  hubTeamNames: "",
   hubTravel: "",
   hubAccess: "",
   hubExtra: "",
@@ -43,6 +45,7 @@ const OBLIGATORIOS: { name: string; falta: string }[] = [
   { name: "reason", falta: "Por qué quieres participar" },
   { name: "hubProblem", falta: "El problema que te gustaría abordar" },
   { name: "hubTrack", falta: "El frente que te llama" },
+  { name: "hubTeam", falta: "Si aplicas solo o con equipo" },
   { name: "hubTravel", falta: "Cómo llegarías a Bogotá" },
   { name: "aiConfirm", falta: "La confirmación sobre el uso de IA" },
 ];
@@ -52,6 +55,7 @@ const LIMITES: Record<string, number> = {
   aiSafety: 900,
   reason: 1500,
   hubProblem: 1500,
+  hubTeamNames: 600,
   hubAccess: 800,
   hubExtra: 800,
 };
@@ -139,6 +143,9 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
     if (v.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim())) {
       nuevos.email = "Revisa el correo: parece que le falta algo.";
     }
+    if (v.hubTeam === "equipo" && !v.hubTeamNames.trim()) {
+      nuevos.hubTeamNames = "Falta responder.";
+    }
     for (const [name, tope] of Object.entries(LIMITES)) {
       if ((v[name] ?? "").length > tope) nuevos[name] = `Pasaste el límite de ${tope} caracteres.`;
     }
@@ -152,7 +159,9 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
     const nuevos = revisar();
     setErrores(nuevos);
     if (Object.keys(nuevos).length > 0) {
-      setFaltantes(OBLIGATORIOS.filter((c) => nuevos[c.name]).map((c) => c.falta));
+      const pendientes = OBLIGATORIOS.filter((c) => nuevos[c.name]).map((c) => c.falta);
+      if (nuevos.hubTeamNames) pendientes.push("Con quién aplicas");
+      setFaltantes(pendientes);
       requestAnimationFrame(() => resumen.current?.scrollIntoView({ behavior: "smooth", block: "center" }));
       return;
     }
@@ -455,6 +464,52 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
 
             <fieldset>
               <legend className={ETIQUETA}>
+                ¿Aplicas solo o con equipo?<span className="text-aisc-coral"> *</span>
+              </legend>
+              <span className={AYUDA}>
+                Los equipos son de una a cinco personas. Si aplicas solo, el viernes en la noche armamos equipos en la
+                sala con quien esté en la misma situación.
+              </span>
+              <div className="mt-3 flex flex-col gap-2">
+                {EQUIPO_FORM.map((t) => (
+                  <label
+                    className="text-body-sm flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6"
+                    key={t.id}
+                  >
+                    <input
+                      type="radio"
+                      name="hubTeam"
+                      value={t.id}
+                      checked={v.hubTeam === t.id}
+                      onChange={() => set("hubTeam", t.id)}
+                      className="mt-0.5 accent-aisc-forest"
+                    />
+                    <span>{t.label}</span>
+                  </label>
+                ))}
+              </div>
+              {errores.hubTeam ? (
+                <span className={ERROR} role="alert">
+                  {errores.hubTeam}
+                </span>
+              ) : null}
+            </fieldset>
+
+            {v.hubTeam === "equipo" ? (
+              <Campo
+                requerido
+                name="hubTeamNames"
+                label="¿Con quiénes aplicas?"
+                ayuda="Nombre y correo de cada persona del equipo. Cada una tiene que llenar este formulario por su lado."
+                error={errores.hubTeamNames}
+              >
+                <textarea {...areaProps("hubTeamNames", 4)} />
+                {contador("hubTeamNames")}
+              </Campo>
+            ) : null}
+
+            <fieldset>
+              <legend className={ETIQUETA}>
                 ¿Cómo llegarías a Bogotá?<span className="text-aisc-coral"> *</span>
               </legend>
               <span className={AYUDA}>
@@ -536,8 +591,10 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
             </span>
           ) : null}
           <p className="text-meta mt-4 text-aisc-muted">
-            Usamos lo que nos cuentas solo para la selección y para organizar el fin de semana. No lo compartimos con
-            nadie más. Si quieres que borremos tus datos, escríbenos a{" "}
+            Usamos lo que nos cuentas para la selección y para organizar el fin de semana. Si quedas seleccionado,
+            compartimos tu nombre, en qué andas y el frente que escogiste con el resto de participantes, que es como se
+            arman los equipos de quienes aplican solos. Tu correo y lo que nos digas en las dos últimas preguntas no
+            salen de nosotros. Si quieres que borremos tus datos, escríbenos a{" "}
             <a className={ENLACE} href="mailto:contacto@aisafetycolombia.org">
               contacto@aisafetycolombia.org
             </a>
