@@ -87,10 +87,9 @@ const INDICE = [
     label: "Ya hay casos donde el sistema se salió de su caja",
   },
   { id: "asimetria", label: "La capacidad de decidir no crece al mismo ritmo" },
-  { id: "desacuerdo", label: "El campo no está de acuerdo, y el rango es amplio" },
   {
-    id: "objeciones",
-    label: "Cuatro objeciones, y una que sí corrige el argumento",
+    id: "desacuerdo",
+    label: "Quienes no están de acuerdo tienen parte de razón",
   },
   { id: "frentes", label: "Hay tres frentes y no todos exigen formación técnica" },
   { id: "colombia", label: "Acá el problema es auditar lo que se compra" },
@@ -199,9 +198,7 @@ export default function SeguridadDeLaIA() {
             Qué debería exigir esa persona antes de firmar es la pregunta de
             este texto. La respuesta corta es que hoy nadie sabe certificar qué
             persigue uno de estos sistemas, ni siquiera quienes los construyen,
-            y que eso convierte cada compra en un acto de confianza. Lo que
-            sigue explica cómo llegamos ahí, qué se sabe medir, qué no, y por
-            dónde se entra a trabajar en ello.
+            y que eso convierte cada compra en un acto de confianza.
           </Parrafo>
 
           {/* En resumen: lo que se lleva quien no siga leyendo */}
@@ -304,26 +301,23 @@ export default function SeguridadDeLaIA() {
             <Fuente href="https://epoch.ai/blog/algorithmic-progress-in-language-models">
               (Epoch AI, 2024)
             </Fuente>
-            . Es decir: el resultado que hace ocho meses exigía cierta cantidad
-            de máquinas hoy se consigue con la mitad. Buena parte del avance viene
-            entonces de aprender a sacarle más a los centros de datos que ya
-            existen, y no solo de construir otros más grandes. Eso importa para la
-            objeción del estancamiento, que discutimos más abajo.
+            . Es decir: buena parte del avance viene de sacarle más a los
+            centros de datos que ya existen, y no solo de construir otros más
+            grandes. Eso importa para la objeción del estancamiento, que
+            discutimos más abajo.
           </Parrafo>
 
           <H3>De responder preguntas a ejecutar tareas</H3>
           <Parrafo>
-            La forma de usar estos sistemas es lo que cambia la naturaleza del
-            problema. La frontera ya no son modelos que
-            contestan preguntas: son agentes que escriben y ejecutan código,
+            La frontera ya no son modelos que contestan preguntas: son agentes
+            que escriben y ejecutan código,
             usan herramientas, navegan y trabajan durante horas sin que nadie
             revise cada paso. METR, una organización sin ánimo de lucro a la que
-            los propios laboratorios le entregan sus modelos para que los evalúe
-            antes de publicarlos, mide eso con una sola pregunta. Toma tareas
-            reales de software e investigación, mide cuánto tarda un profesional
-            en resolver cada una y busca la duración a partir de la cual el
-            mejor modelo del momento ya solo acierta la mitad de las veces. Esa
-            duración es lo que llama su horizonte.
+            los laboratorios le entregan sus modelos para evaluarlos antes de
+            publicarlos, mide eso así: toma tareas reales de software e
+            investigación, cronometra cuánto tarda un profesional en cada una y
+            busca la duración a partir de la cual el mejor modelo del momento ya
+            solo acierta la mitad de las veces. A eso le llama su horizonte.
           </Parrafo>
 
           <Figura
@@ -368,9 +362,8 @@ export default function SeguridadDeLaIA() {
             sus puntajes entrenando a los estudiantes para contestar el examen.
           </Parrafo>
           <Parrafo>
-            El ejemplo más claro lo publicó una de las empresas que construyen
-            estos sistemas, sobre su propio modelo. En septiembre de 2025
-            Anthropic lanzó Claude Sonnet 4.5 junto con{" "}
+            El ejemplo más claro lo publicó Anthropic sobre su propio modelo.
+            En septiembre de 2025 lanzó Claude Sonnet 4.5 junto con{" "}
             <Fuente href="https://www.anthropic.com/claude-sonnet-4-5-system-card">
               el informe técnico de sus pruebas de seguridad
             </Fuente>
@@ -379,8 +372,8 @@ export default function SeguridadDeLaIA() {
             Ocurrió en cerca del 13 % de las conversaciones, según la sección
             7.3.1 de ese informe. Dos equipos de fuera lo midieron por su
             cuenta y encontraron lo mismo. El instituto británico de seguridad
-            de la IA, la entidad pública que el Reino Unido creó para evaluar
-            estos sistemas, lo contó en 16,6 % de sus pruebas, frente a
+            de la IA, la entidad pública que evalúa estos sistemas allá, lo
+            contó en 16,6 % de sus pruebas, frente a
             3,5 % y 1,6 % en los dos modelos anteriores de la misma empresa.
             Apollo Research, que se dedica a buscar engaño y por eso plantea
             situaciones más provocadoras, llegó a 58 %. Las dos cifras están
@@ -405,8 +398,8 @@ export default function SeguridadDeLaIA() {
             prueba en más del 80 % de los casos y no cayó en ninguna.
             Entonces lo intervinieron por dentro. La interpretabilidad, la rama
             que estudia qué ocurre dentro de la red, permite ubicar el patrón
-            interno que se enciende cuando el modelo maneja una idea
-            determinada. Ubicaron el de «esto es un examen» y lo apagaron. Los
+            que se enciende cuando el modelo maneja una idea. Ubicaron el de
+            «esto es un examen» y lo apagaron. Los
             escenarios quedaron idénticos, palabra por palabra. Con esa sola
             diferencia, el modelo cayó en hasta 8 o 9 de cada 100 trampas.
             Apagar diez patrones tomados al azar, que era el control del
@@ -486,11 +479,10 @@ export default function SeguridadDeLaIA() {
             .
           </Parrafo>
           <Parrafo>
-            Conviene ser preciso con lo que muestra el caso. No hubo intención
-            de causar daño ni un objetivo malicioso de nadie: los modelos
+            Conviene ser preciso. No hubo intención de causar daño: los modelos
             estaban resolviendo el problema que se les puso, y toda la evidencia
-            apunta a que llegaron hasta ese extremo por conseguir la respuesta
-            correcta. Eso es exactamente lo incómodo. Un objetivo estrecho,
+            apunta a que llegaron a ese extremo por conseguir la respuesta
+            correcta. Eso es lo incómodo. Un objetivo estrecho,
             capacidad suficiente y ninguna instrucción explícita de detenerse
             bastaron para que un sistema saliera de su caja y comprometiera la
             infraestructura de un tercero. Es la misma dinámica de la sección
@@ -533,24 +525,23 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             Conviene no inflar el hallazgo. El mismo informe describe estas
             piezas como incipientes: la otra que analiza, hecha para reescribir
-            su propio código y no ser reconocida, seguía siendo experimental y
-            no era capaz de comprometer una red por sí sola. Lo que cambia es dónde
-            queda la parte pensante del ataque. Antes
-            estaba escrita en el archivo y se podía leer; ahora se pide afuera,
-            en el momento, y sale distinta en cada ejecución. Por eso el informe
-            la presenta como una forma de esquivar la detección por firmas, que
-            es la que compara un archivo contra patrones ya conocidos.
+            su propio código, seguía siendo experimental y no era capaz de
+            comprometer una red por sí sola. Lo que cambia es dónde queda la
+            parte pensante del ataque. Antes estaba escrita en el archivo y se
+            podía leer; ahora se pide afuera y sale distinta en cada ejecución.
+            Por eso el informe la presenta como una forma de esquivar la
+            detección por firmas, la que compara un archivo contra patrones ya
+            conocidos.
           </Parrafo>
 
           <H3>Cuando los pesos se publican, el control se va con ellos</H3>
           <Parrafo>
-            Los dos casos anteriores tienen algo en común: en ambos había una
-            empresa que podía cortar el acceso al modelo. Publicar los pesos
-            elimina esa posibilidad. Los
-            pesos son esos millones de números que quedan al terminar el
+            En los dos casos anteriores había una empresa que podía cortar el
+            acceso al modelo. Publicar los pesos elimina esa posibilidad. Los
+            pesos son los millones de números que quedan al terminar el
             entrenamiento y que, en la práctica, son el modelo: quien los tiene
-            puede correrlo en su propia máquina, quitarle las restricciones con
-            que salió y seguir usándolo aunque el autor se arrepienta. Los
+            lo corre en su máquina, le quita las restricciones con que salió y
+            sigue usándolo aunque el autor se arrepienta. Los
             modelos abiertos tienen buenos argumentos a favor, empezando por que
             sin ellos la investigación independiente, y la de países como el
             nuestro, sería mucho más difícil. Pero el balance depende del
@@ -638,9 +629,8 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             Hasta acá el problema es técnico y ya tiene consecuencias
             registradas. Lo que lo vuelve urgente es que el avance no acelera
-            todo por igual. Si acelerara todo por igual, los mismos hechos
-            ocurrirían más rápido y la historia sería la misma película a mayor
-            velocidad. Pero lo que se acelera es la tecnología, mientras las
+            todo por igual. Si lo hiciera, la historia sería la misma película
+            a mayor velocidad. Lo que se acelera es la tecnología, mientras las
             personas, la deliberación y los calendarios institucionales siguen a
             su ritmo. Acelerar una parte equivale a frenar el resto. El
             argumento es de los investigadores William MacAskill y Fin
@@ -700,7 +690,7 @@ export default function SeguridadDeLaIA() {
             </Fuente>
             . Es un documento serio y ese plazo es normal para una política
             pública. El punto es la comparación. Si la tendencia que mide METR
-            se mantuviera durante esos cinco años, y es un «si» grande, el
+            se mantuviera esos cinco años, y es un «si» grande, el
             horizonte de tareas que un sistema ejecuta solo se habría duplicado
             ocho veces antes de que termine de ejecutarse el plan que iba a
             regularlo.
@@ -741,7 +731,9 @@ export default function SeguridadDeLaIA() {
           </div>
 
           {/* ---------------------------------------------------------- */}
-          <H2 id="desacuerdo">El campo no está de acuerdo, y el rango es amplio</H2>
+          <H2 id="desacuerdo">
+            Quienes no están de acuerdo tienen parte de razón
+          </H2>
           <Parrafo>
             Hasta acá hemos dado nuestra lectura. La de la gente que lleva años
             en esto no es unánime, y el rango es amplio.
@@ -787,15 +779,14 @@ export default function SeguridadDeLaIA() {
           </Figura>
 
           <Parrafo>
-            El desacuerdo también es de fondo, no solo de magnitudes, y se ve
-            bien en quiénes lo sostienen. El premio Turing, que en computación
-            hace las veces del Nobel, se lo dieron en 2018 a tres personas por
-            el aprendizaje profundo, la técnica sobre la que está construido
-            todo lo que se discute acá. Dos de esas tres advierten hoy en
-            público. Geoffrey Hinton renunció a Google en 2023 para poder hablar
-            del asunto sin representar a nadie, y dice que cambió de opinión
-            sobre si estos sistemas van a terminar siendo más inteligentes que
-            nosotros{" "}
+            El desacuerdo es de fondo, no solo de magnitudes, y se ve bien en
+            quiénes lo sostienen. El premio Turing, que en computación hace las
+            veces del Nobel, se lo dieron en 2018 a tres personas por el
+            aprendizaje profundo, la técnica sobre la que está construido todo
+            lo que se discute acá. Dos de las tres advierten hoy en público.
+            Geoffrey Hinton renunció a Google en 2023 para hablar sin
+            representar a nadie, y dice que cambió de opinión sobre si estos
+            sistemas van a terminar siendo más inteligentes que nosotros{" "}
             <Fuente href="https://www.technologyreview.com/2023/05/02/1072528/geoffrey-hinton-google-why-scared-ai/">
               (MIT Technology Review, mayo de 2023)
             </Fuente>
@@ -808,20 +799,19 @@ export default function SeguridadDeLaIA() {
             <Fuente href="https://arxiv.org/abs/2602.21012">
               el informe internacional sobre seguridad de la IA
             </Fuente>
-            , que escriben más de cien expertos y que respaldan veintinueve
-            países, la ONU, la OCDE y la Unión Europea.
+            , que escriben más de cien expertos y respaldan veintinueve países,
+            la ONU, la OCDE y la Unión Europea.
           </Parrafo>
           <Parrafo>
-            El tercero de esos tres es Yann LeCun, y piensa justo lo contrario.
-            Llama disparatadas las preocupaciones por la extinción, y su
-            argumento es que la inteligencia no trae consigo el deseo de
-            dominar y que las salvaguardas se pueden diseñar{" "}
+            El tercero es Yann LeCun, y piensa lo contrario. Llama disparatadas
+            las preocupaciones por la extinción, porque en su lectura la
+            inteligencia no trae consigo el deseo de dominar y las salvaguardas
+            se pueden diseñar{" "}
             <Fuente href="https://time.com/6694432/yann-lecun-meta-ai-interview/">
               (TIME, febrero de 2024)
             </Fuente>
-            . Andrew Ng, que fundó el laboratorio de IA de Google y le ha
-            enseñado la materia a millones de personas, considera ínfima la
-            probabilidad de un accidente de ese tipo, aunque sí toma en serio
+            . Andrew Ng, que fundó el laboratorio de IA de Google, considera
+            ínfima la probabilidad de un accidente así, aunque sí toma en serio
             que alguien use estos sistemas a propósito para hacer daño{" "}
             <Fuente href="https://www.deeplearning.ai/the-batch/ai-doomsday-scenarios-and-how-to-guard-against-them">
               (The Batch, diciembre de 2023)
@@ -832,25 +822,91 @@ export default function SeguridadDeLaIA() {
               quien decide contestar una encuesta sobre extinción no es una
               muestra al azar de la disciplina
             </Fuente>
-            . La ronda de 2023 la contestaron 2.778 de las 18.459 personas
-            invitadas, un 15 %, y los autores responden que esa proporción es
-            normal en encuestas de ese tamaño. Gary Marcus discute otra cosa:
-            no cree que el peligro venga de una superinteligencia, sino{" "}
+            . La contestaron 2.778 de las 18.459 personas invitadas, un 15 %, y
+            los autores responden que esa proporción es normal en encuestas de
+            ese tamaño. Gary Marcus ubica el peligro en otra parte:{" "}
             <Fuente href="https://garymarcus.substack.com/p/ai-risk-agi-risk">
-              de sistemas mediocres y poco confiables a los que ya se les están
+              en sistemas mediocres y poco confiables a los que ya se les están
               entregando decisiones
             </Fuente>
             , y por eso pide regulación con tanta fuerza como cualquiera de los
             anteriores. Vale leerlos antes de decidir qué se piensa.
           </Parrafo>
+
+          <H3>Las cuatro objeciones que más nos hacen</H3>
           <Parrafo>
-            Nuestra lectura de ese desacuerdo es la siguiente. Es posible que
-            quienes trabajan en el campo exageren el peligro, y también que lo
-            subestimen; no tenemos forma de saber cuál de los dos sesgos manda.
-            Pero lo que sostenemos no depende de acertar la cifra. Depende de
-            dos afirmaciones más modestas: que hoy no sabemos certificar qué
-            persigue un sistema, que es un hecho documentado por quienes los
-            construyen, y que las decisiones difíciles de revertir se están
+            En las cuatro creemos que quien objeta tiene parte de razón, y la
+            segunda corrige de verdad lo que veníamos diciendo.
+          </Parrafo>
+          <Parrafo>
+            <strong>Los modelos todavía fallan en cosas obvias.</strong> Es
+            cierto y seguirá siéndolo un buen rato: un sistema que resuelve una
+            pregunta de doctorado puede equivocarse contando letras o inventar
+            una cita con total seguridad. Quien lo señala suele estar
+            respondiéndole a gente que promete de más, y hace bien. Pero no toca
+            el argumento, porque en ningún momento afirmamos que estos sistemas
+            sean confiables. Afirmamos lo contrario: fallan de forma difícil de
+            anticipar. Si los errores fueran parejos se podrían acotar y
+            certificar. Lo que complica el peritaje es esa mezcla de mucha
+            capacidad en unas cosas y fragilidad en otras, sin que se sepa de
+            antemano en cuáles.
+          </Parrafo>
+          <Parrafo>
+            <strong>Esto distrae de los daños que ya existen.</strong> Sesgo en
+            decisiones de crédito, vigilancia, desinformación, efectos sobre el
+            empleo. Esta es la objeción que corrige el argumento y no queremos
+            suavizarla: la atención y el presupuesto son finitos, y ha habido
+            momentos en que el discurso del riesgo existencial sirvió para
+            saltarse discusiones sobre daños que ya estaban ocurriendo.
+          </Parrafo>
+          <Parrafo>
+            Lo que sostenemos es que el trabajo se solapa más de lo que sugiere
+            la discusión pública. Saber medir de qué es capaz un sistema,
+            auditarlo, exigir evidencia antes de desplegarlo y tener a quién
+            reclamarle cuando falla es la misma capacidad institucional para un
+            modelo que niega créditos hoy y para uno que administre
+            infraestructura en diez años. Por eso la parte colombiana de este
+            texto está escrita alrededor de compras públicas y no de escenarios
+            futuros.
+          </Parrafo>
+          <Parrafo>
+            <strong>El progreso se va a estancar.</strong> Puede pasar, y hay
+            razones serias para pensarlo: el cómputo, la energía y los datos de
+            buena calidad son cuellos de botella reales, la investigación que
+            requiere experimentos físicos no se acelera solo con más código, y
+            meterle más gente y más plata a un problema de investigación suele
+            tener rendimientos decrecientes. En contra juega el dato de Epoch
+            que citamos arriba: si el desempeño se abarata a la mitad cada ocho
+            meses por mejoras algorítmicas, el avance no depende solo de
+            construir centros de datos más grandes. Y aun si los frenos ganan,
+            el resultado es un salto grande de productividad en vez de una
+            espiral, y ese mundo también necesita gente capaz de evaluar y
+            auditar lo que se está comprando, con más tiempo para aprender a
+            hacerlo.
+          </Parrafo>
+          <Parrafo>
+            <strong>Nadie va a desplegar a propósito algo peligroso.</strong> De
+            acuerdo, y el argumento no necesita que nadie sea malintencionado.
+            Le bastan dos condiciones que ya se cumplen: que sea difícil
+            verificar qué hace un sistema antes de soltarlo, y que exista
+            presión competitiva para soltarlo igual. Los incidentes grandes de
+            software rara vez ocurren porque alguien quisiera causarlos. Ocurren
+            porque el sistema hizo algo que nadie previó, en un momento en que
+            nadie estaba mirando, y porque quien habría podido detenerlo no
+            tenía cómo saber que hacía falta. El caso de OpenAI y Hugging Face
+            es eso: nadie quería que pasara, y pasó dentro de la empresa que más
+            cuidado estaba poniendo, en una prueba diseñada para medir ese
+            riesgo.
+          </Parrafo>
+
+          <H3>Qué sostenemos y qué nos haría cambiar de opinión</H3>
+          <Parrafo>
+            Es posible que quienes trabajan en el campo exageren el peligro, y
+            también que lo subestimen; no tenemos forma de saber cuál de los dos
+            sesgos manda. Lo que sostenemos no depende de acertar la cifra.
+            Depende de dos afirmaciones más modestas: que hoy no sabemos
+            certificar qué persigue un sistema, hecho documentado por quienes
+            los construyen, y que las decisiones difíciles de revertir se están
             tomando ahora. Esperar a tener certeza tiene un costo asimétrico,
             porque para cuando la haya, la mayoría de las decisiones útiles ya
             se habrán tomado.
@@ -861,86 +917,6 @@ export default function SeguridadDeLaIA() {
             plazos se cae. Y si aparecen métodos que permitan certificar qué
             persigue un sistema antes de desplegarlo, se cae casi todo lo demás,
             porque es de ahí de donde sale la urgencia.
-          </Parrafo>
-
-          {/* ---------------------------------------------------------- */}
-          <H2 id="objeciones">
-            Cuatro objeciones, y una que sí corrige el argumento
-          </H2>
-          <Parrafo>
-            Estas son las que más nos hacen. En las cuatro creemos que quien
-            objeta tiene parte de razón, y la segunda corrige de verdad lo que
-            veníamos diciendo.
-          </Parrafo>
-
-          <H3>Los modelos todavía fallan en cosas obvias</H3>
-          <Parrafo>
-            Es cierto y seguirá siéndolo un buen rato. Las capacidades no crecen
-            parejo: un sistema que resuelve una pregunta de doctorado puede
-            equivocarse contando letras o inventar una cita con total seguridad.
-            Quien señala esto suele estar respondiéndole a gente que promete de
-            más, y hace bien.
-          </Parrafo>
-          <Parrafo>
-            La objeción no toca el argumento, sin embargo, porque en ningún
-            momento afirmamos que los sistemas sean confiables. Afirmamos lo
-            contrario: que fallan de forma difícil de anticipar. Si los errores
-            fueran parejos se podrían acotar y certificar. Lo que complica el
-            peritaje es exactamente esa mezcla de mucha capacidad en unas cosas
-            y fragilidad en otras, sin que se sepa de antemano en cuáles.
-          </Parrafo>
-
-          <H3>Esto distrae de los daños que ya existen</H3>
-          <Parrafo>
-            Sesgo en decisiones de crédito, vigilancia, desinformación, efectos
-            sobre el empleo. Esta es la objeción que corrige el argumento y no
-            queremos suavizarla: la atención y el presupuesto son finitos, y ha
-            habido momentos en que el discurso del riesgo existencial sirvió
-            para saltarse discusiones sobre daños que ya estaban ocurriendo.
-          </Parrafo>
-          <Parrafo>
-            Lo que sostenemos es que el trabajo se solapa más de lo que sugiere
-            la discusión pública. Saber medir de qué es capaz un sistema, poder
-            auditarlo, exigir evidencia antes de desplegarlo y tener a quién
-            reclamarle cuando falla es la misma capacidad institucional para un
-            modelo que niega créditos hoy y para uno que administre
-            infraestructura en diez años. Es también la razón por la que la
-            parte colombiana de este texto está escrita alrededor de compras
-            públicas y no de escenarios futuros.
-          </Parrafo>
-
-          <H3>El progreso se va a estancar</H3>
-          <Parrafo>
-            Puede pasar, y hay razones serias para pensarlo. El cómputo, la
-            energía y los datos de buena calidad son cuellos de botella reales;
-            la investigación que requiere experimentos físicos no se acelera
-            solo con más código; y meterle más gente y más plata a un problema
-            de investigación suele tener rendimientos decrecientes. Este es el
-            escenario que más nos haría cambiar de opinión sobre los plazos.
-          </Parrafo>
-          <Parrafo>
-            En contra juega el dato de Epoch: si el desempeño se abarata a la
-            mitad cada ocho meses por mejoras algorítmicas, el avance no depende
-            solo de construir centros de datos más grandes. Y aun si los frenos
-            ganan, el resultado es un salto grande de productividad en vez de
-            una espiral, y ese mundo también necesita gente capaz de evaluar y
-            auditar los sistemas que se están comprando. Con más tiempo para
-            aprender a hacerlo, que sería una buena noticia.
-          </Parrafo>
-
-          <H3>Nadie va a desplegar a propósito algo peligroso</H3>
-          <Parrafo>
-            De acuerdo, y el argumento no necesita que nadie sea
-            malintencionado. Le bastan dos condiciones que ya se cumplen: que
-            sea difícil verificar qué hace un sistema antes de soltarlo, y que
-            exista presión competitiva para soltarlo igual. Los incidentes
-            grandes de software rara vez ocurren porque alguien quisiera
-            causarlos. Ocurren porque el sistema hizo algo que nadie previó, en
-            un momento en que nadie estaba mirando, y porque quien habría podido
-            detenerlo no tenía cómo saber que hacía falta. El caso de OpenAI y
-            Hugging Face es justamente eso: nadie quería que pasara, y pasó
-            dentro de la empresa que más cuidado estaba poniendo, en una prueba
-            diseñada para medir ese riesgo.
           </Parrafo>
 
           {/* ---------------------------------------------------------- */}
@@ -1018,14 +994,14 @@ export default function SeguridadDeLaIA() {
             las de quien los compra.
           </Parrafo>
           <Parrafo>
-            Y comprar es lo que hacemos acá. Volvamos al pliego con el que abre
-            este texto. Qué exigir antes de firmar, qué cláusula escribir y ante
-            quién responde el proveedor si en dos años se descubre que el
-            sistema le bajaba el puntaje a la gente de cierto municipio: esas
-            son las preguntas de este texto, planteadas en formato
-            administrativo. Para la primera no hacen falta los pesos del modelo.
-            Hace falta poder correrlo contra casos que diseñe la entidad, y eso
-            se pide en el pliego o no se pide nunca.
+            Y comprar es lo que hacemos acá. Volvamos al pliego del principio.
+            Qué exigir antes de firmar, qué cláusula escribir y ante quién
+            responde el proveedor si en dos años se descubre que el sistema le
+            bajaba el puntaje a la gente de cierto municipio: son las preguntas
+            de este texto en formato administrativo. Para la primera no hacen
+            falta los pesos del modelo. Hace falta poder correrlo contra casos
+            que diseñe la entidad, y eso se pide en el pliego o no se pide
+            nunca.
           </Parrafo>
           <Parrafo>
             Auditar lo que uno compra es un problema distinto al de auditar lo
