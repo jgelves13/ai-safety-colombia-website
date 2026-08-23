@@ -8,10 +8,10 @@ import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION
 export const metadata: Metadata = {
   title: "Investigación",
   description:
-    "Lo que publican los miembros de AI Safety Colombia: trabajos propios con instituciones de fuera, y los reportes de los equipos colombianos en el hackathon Global South de Apart Research.",
+    "Lo que publican los miembros de AI Safety Colombia: artículos revisados por pares, documentos de trabajo y reportes de investigación.",
 };
 
-/* Publicaciones firmadas por miembros de la comunidad, por fuera del hackathon.
+/* Publicaciones firmadas por miembros de la comunidad.
    `miembros` marca en negrilla a quien es de acá dentro de la lista de autores,
    que se transcribe completa y en el orden en que la publicó el editor. */
 const PUBLICACIONES = [
@@ -218,9 +218,8 @@ export default function Investigacion() {
             <span className="text-kicker text-aisc-sand/70">Lo que sale de acá</span>
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">Investigación</h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              Acá está lo que publica la gente de la comunidad. Una parte son trabajos propios, hechos con
-              instituciones de fuera. La otra sale de los hackathons que abrimos en Bogotá, donde el reporte se
-              produce en un fin de semana.
+              Acá está lo que publica la gente de la comunidad: artículos revisados por pares, documentos de
+              trabajo y reportes de investigación, cada uno con la institución que lo publicó.
             </p>
           </div>
         </div>
@@ -233,8 +232,8 @@ export default function Investigacion() {
             <h2 className="text-display-2 md:text-display-2-lg text-balance">Publicaciones de la comunidad</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
-                Trabajos firmados por miembros de AI Safety Colombia y publicados por fuera del hackathon, con las
-                instituciones donde se hicieron. En cada lista de autores va resaltado el nombre de quien es de acá.
+                Trabajos firmados por miembros de AI Safety Colombia, con las instituciones donde se hicieron. En
+                cada lista de autores va resaltado el nombre de quien es de acá.
               </p>
               <p>
                 La lista está abierta. Si eres de la comunidad y publicaste algo,{" "}

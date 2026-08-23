@@ -27,7 +27,7 @@ const PUERTAS = [
     href: "/investigacion",
     Icon: IconActualidad,
     title: "Investigación",
-    body: "Lo que publica la gente de acá: trabajos propios y los reportes del último hackathon.",
+    body: "Lo que publica la gente de acá: artículos, documentos de trabajo y reportes de investigación.",
   },
   {
     href: "/unete",
