@@ -98,7 +98,7 @@ const INDICE = [
   { id: "frentes", label: "Hay tres frentes y no todos exigen formación técnica" },
   {
     id: "colombia",
-    label: "Lo que falta acá no es una agenda propia, es gente",
+    label: "El campo es demasiado pequeño para el problema que tiene enfrente",
   },
 ];
 
@@ -820,41 +820,47 @@ export default function SeguridadDeLaIA() {
         <div className={ANCHO}>
           {/* ---------------------------------------------------------- */}
           <H2 id="colombia">
-            Lo que falta acá no es una agenda propia, es gente
+            El campo es demasiado pequeño para el problema que tiene enfrente
           </H2>
           <Parrafo>
-            Hay un mapa que lleva la cuenta de quién trabaja en esto.
-            Registra 170 organizaciones y ninguna queda en América Latina;
-            nosotros tampoco estamos ahí. De las 187 personas que ese mapa
-            identifica repartiendo el dinero del campo, 60 estudiaron en
-            Oxford, Stanford o Berkeley{" "}
+            El campo entero cabe en 1.313 personas de tiempo completo
+            repartidas en 170 organizaciones, según el mapa que lleva esa
+            cuenta. Ninguna de ellas queda en América Latina. De las 187
+            personas que deciden a dónde va el dinero, 76 se formaron en
+            cuatro universidades: Oxford, Stanford, Berkeley y Cambridge{" "}
             <Fuente href="https://harrywaterman.com/fieldmap/">
               (AI Safety Field Map)
             </Fuente>
             .
           </Parrafo>
           <Parrafo>
-            Eso decide qué se investiga. Las preguntas que se hacen son
-            las de quien todavía tiene el modelo en las manos. Acá el
-            modelo llega hecho: una entidad lo compra, lo pone a decidir
-            sobre gente y responde cuando falla. Esa parte no le queda
-            cerca a ninguna de las organizaciones del mapa.
+            Un grupo de ese tamaño no alcanza a cubrir lo que tiene
+            enfrente, y lo que alcanza a cubrir lo eligen esas mismas
+            personas. No es mala fe. Las preguntas que a uno se le ocurren
+            dependen de lo que tiene cerca, y ninguna de esas
+            organizaciones le responde a alguien de acá.
           </Parrafo>
           <Parrafo>
-            El problema de fondo es el mismo en los dos lados. Nadie sabe
-            certificar qué persigue un sistema antes de soltarlo. Lo que
-            cambia es a quién le cae encima la pregunta. Acá le cae a
-            quien firma el contrato: qué exigir antes de comprar, y ante
-            quién responde el proveedor si en dos años se descubre que el
-            sistema le bajaba el puntaje a la gente de cierto municipio.
-            De afuera nadie va a venir a hacer esas preguntas.
+            Eso no quiere decir que lo nuestro sea la letra menuda de los
+            contratos y lo demás sea de otros. Los problemas del comienzo
+            de esta página siguen sin resolverse y no tienen dueño.
+            Trabajar en interpretabilidad, en evaluaciones o en control no
+            exige estar en San Francisco. Exige haber entrado al campo.
           </Parrafo>
           <Parrafo>
-            Hacerlas no requiere un campo aparte. Requiere gente. Ese es
-            hoy el cuello de botella: entra menos de la que podría entrar,
-            y quien entra tarda de más porque no tiene con quién hablar.
-            Acortar ese camino es lo que hacemos. Somos un grupo que lee,
-            discute y trabaja en cosas concretas, y se entra sin
+            Y hay preguntas que, si no se hacen acá, no las hace nadie.
+            Qué tiene que exigir una entidad antes de comprar un sistema
+            que va a decidir sobre ciudadanos. Ante quién responde el
+            proveedor si dos años después se descubre que el sistema le
+            bajaba el puntaje a la gente de cierto municipio. Con qué
+            datos se entrenó lo que se está comprando.
+          </Parrafo>
+          <Parrafo>
+            Las dos cosas necesitan lo mismo: gente que pueda dedicarse a
+            esto. Ahí está hoy el límite. Entra menos gente de la que
+            podría, y quien entra tarda de más porque no tiene con quién
+            hablar. Acortar ese camino es lo que hacemos. Somos un grupo
+            que lee, discute y trabaja en cosas concretas, y se entra sin
             credencial previa. Para empezar por cuenta propia, lo más
             corto que conocemos es{" "}
             <Fuente href="https://bluedot.org">
