@@ -7,7 +7,8 @@ export const APART_SPRINT_URL =
 /* Cierre de aplicaciones al espacio presencial: 6 de septiembre de 2026,
    11:59 p. m. hora de Colombia (UTC-5). */
 export const CIERRE_ISO = "2026-09-07T04:59:59.999Z";
-export const CIERRE_TEXTO = "Las aplicaciones al espacio presencial cierran el 6 de septiembre, hora de Colombia.";
+export const CIERRE_TEXTO =
+  "Las aplicaciones al espacio presencial cierran a la medianoche del 6 de septiembre, hora de Colombia.";
 
 export function aplicacionesCerradas(ahora: Date = new Date()): boolean {
   return ahora.getTime() > Date.parse(CIERRE_ISO);

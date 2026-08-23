@@ -17,7 +17,7 @@ import { APART_SPRINT_URL, CIERRE_TEXTO } from "./datos";
 export const metadata: Metadata = {
   title: "AI Incident Response Sprint",
   description:
-    "Del 11 al 13 de septiembre de 2026. Apart Research y CeSIA convocan el sprint sobre respuesta a incidentes de IA. Abrimos el espacio presencial en Bogotá; las aplicaciones cierran el 6 de septiembre.",
+    "Del 11 al 13 de septiembre de 2026. Apart Research y CeSIA convocan el sprint sobre respuesta a incidentes de IA. Abrimos el espacio presencial en Bogotá; las aplicaciones cierran a la medianoche del 6 de septiembre.",
 };
 
 const ENLACE = "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
@@ -36,24 +36,6 @@ const DATOS = [
   {
     valor: "USD 2.000 en premios",
     nota: "Cinco puestos, que Apart reparte entre todo el sprint",
-  },
-];
-
-/* Quién hace qué. La frontera importa: Apart y CeSIA convocan, nosotros
-   abrimos la sala. */
-const ORGANIZAN: { nombre: string; rol: string; url?: string }[] = [
-  {
-    nombre: "Apart Research",
-    rol: "Convoca el sprint, define los cinco retos, pone los premios y recibe los proyectos.",
-    url: "https://apartresearch.com",
-  },
-  {
-    nombre: "CeSIA",
-    rol: "Coorganiza el sprint y lleva a reguladores europeos el material que pase la barra.",
-  },
-  {
-    nombre: "AI Safety Colombia",
-    rol: "Abre y sostiene el espacio presencial en Bogotá durante los tres días.",
   },
 ];
 
@@ -218,8 +200,6 @@ const HAIRLINE = "h-px w-full flex-none bg-aisc-forest-deep";
 const ENCABEZADO = "mt-5 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start lg:gap-6";
 const COLUMNA = "flex min-w-0 flex-col gap-6";
 const PROSA = "text-body md:text-body-lg flex max-w-[640px] flex-col gap-5 text-aisc-ink";
-const ROTULO = "text-meta mb-3 font-semibold tracking-widest text-aisc-muted uppercase";
-const FILA = "flex flex-col gap-0.5 border-t border-aisc-ink/20 py-3";
 /* La tarjeta de contorno con la que SASH lista lo que recibe cada persona. */
 const TARJETA = "flex min-h-[104px] flex-col gap-3 rounded-[8px] border border-aisc-forest/55 bg-aisc-cream p-5 md:min-h-[114px] md:p-6";
 const PATRON = "/aisc/patterns/aisc-wash-lattice.svg";
@@ -289,38 +269,40 @@ export default function Hackathon() {
                 </h3>
                 <div className={PROSA}>
                   <p>
-                    Ya hay casos documentados en los que un sistema de IA atacó por su cuenta a un tercero. Cuando eso
-                    pasa, casi nadie tiene a mano el procedimiento: no está escrito cómo se contiene, ni cómo se
-                    reconstruye qué falló, ni qué le puede exigir un regulador al proveedor, ni cómo se cuenta el caso
-                    sin exagerar ni minimizar.
+                    Ya hay casos documentados en los que un sistema de IA atacó por su cuenta a un tercero. En julio de
+                    2026, unos modelos que estaban siendo evaluados se salieron de su entorno de pruebas y encadenaron
+                    fallas hasta entrar a la infraestructura de producción de Hugging Face. Lo contaron{" "}
+                    <a
+                      className={ENLACE}
+                      href="https://openai.com/index/hugging-face-model-evaluation-security-incident/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      OpenAI
+                    </a>{" "}
+                    y{" "}
+                    <a
+                      className={ENLACE}
+                      href="https://huggingface.co/blog/security-incident-july-2026"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Hugging Face
+                    </a>{" "}
+                    cada uno por su lado. Ninguna ley los obligaba a hacerlo.
+                  </p>
+                  <p>
+                    Cuando pasa algo así, casi nadie tiene a mano el procedimiento: no está escrito cómo se contiene, ni
+                    cómo se reconstruye qué falló, ni qué le puede exigir un regulador al proveedor, ni cómo se cuenta el
+                    caso sin exagerar ni minimizar.
                   </p>
                   <p>
                     El sprint existe para llenar ese vacío con piezas concretas. Se trabaja en cinco frentes en paralelo
                     durante tres días. Cada equipo entrega algo que alguien más pueda usar: un estándar, un banco de
                     pruebas, un cuestionario para un regulador, un ejercicio de mesa. Los proyectos se califican después
-                    del fin de semana y se publican completos.
+                    del fin de semana y se publican completos. Apart Research y CeSIA convocan el sprint en todo el
+                    mundo; nosotros abrimos el espacio presencial en Bogotá.
                   </p>
-                </div>
-                <div className="flex flex-col">
-                  <p className={ROTULO}>Quién organiza qué</p>
-                  {ORGANIZAN.map((o) => (
-                    <div className={FILA} key={o.nombre}>
-                      {o.url ? (
-                        <a
-                          className="text-display-4 md:text-display-4-lg font-semibold text-aisc-forest underline-offset-2 hover:underline"
-                          href={o.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {o.nombre}
-                        </a>
-                      ) : (
-                        <p className="text-display-4 md:text-display-4-lg font-semibold text-aisc-forest">{o.nombre}</p>
-                      )}
-                      <p className="text-body text-aisc-ink">{o.rol}</p>
-                    </div>
-                  ))}
-                  <div aria-hidden="true" className="border-t border-aisc-ink/20" />
                 </div>
               </div>
             </div>
