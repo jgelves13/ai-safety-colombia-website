@@ -263,7 +263,6 @@ export default function Hackathon() {
         <SiteHeader active="/hackathon" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[860px] flex-col gap-5">
-            <span className="text-kicker text-aisc-sand/70">Apart Research · CeSIA · AI Safety Colombia</span>
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">
               AI Incident Response Sprint
             </h1>
