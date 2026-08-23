@@ -719,13 +719,18 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             <strong>Esto es una estrategia de marketing.</strong> En parte sí:
             al laboratorio le sirve que su producto suene poderoso. Pero las
-            cifras de esta página vienen de{" "}
+            cifras de esta página vienen de fuera de esas empresas: de{" "}
             <Fuente href="https://blog.redwoodresearch.org/p/sota-alignment-assessments-dont-strongly">
-              evaluadores externos
+              quienes evalúan los modelos por su cuenta
             </Fuente>
-            , y lo que encuentran no es un producto confiable. Y a veces la
-            empresa dice lo que ningún vendedor diría. Anthropic le negó Claude
-            al Pentágono para armas autónomas porque los sistemas de frontera{" "}
+            , de Hinton y Bengio, y de un{" "}
+            <Fuente href="https://futureoflife.org/ai-safety-index-summer-2026/">
+              panel independiente
+            </Fuente>{" "}
+            que este año no le puso a ninguna más de C+ en seguridad. Y a veces
+            la propia empresa dice lo que ningún vendedor diría. Anthropic le
+            negó Claude al Pentágono para armas autónomas porque los sistemas
+            de frontera{" "}
             <Fuente href="https://www.anthropic.com/news/statement-department-of-war">
               «no son lo bastante confiables»
             </Fuente>
