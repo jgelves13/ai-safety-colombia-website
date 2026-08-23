@@ -84,7 +84,7 @@ const INDICE = [
   },
   {
     id: "verificacion",
-    label: "Se sabe medir de qué es capaz un modelo, no qué va a hacer",
+    label: "Mirar un modelo por dentro apenas empieza a ser posible",
   },
   {
     id: "incidentes",
@@ -320,62 +320,43 @@ export default function SeguridadDeLaIA() {
 
           {/* ---------------------------------------------------------- */}
           <H2 id="verificacion">
-            Se sabe medir de qué es capaz un modelo, no qué va a hacer
+            Mirar un modelo por dentro apenas empieza a ser posible
           </H2>
           <Parrafo>
             Un modelo no se programa: se fija una medida de éxito, se le
             muestran millones de ejemplos y él ajusta por su cuenta miles
-            de millones de números que nadie escogió. Lo único que se
-            controla es la medida, y optimizar una medida no es cumplir la
-            intención de quien la escribió. Por eso hay dos preguntas
-            distintas. De qué es capaz un sistema se responde con
-            exámenes, y de eso trata todo lo anterior. Qué hace cuando
-            cree que nadie lo mira se responde poniéndolo a prueba, y esa
-            prueba es la que no está funcionando.
+            de millones de números que nadie escogió. Nadie escribió esos
+            números y nadie sabe leerlos de corrido. Así que la única vía
+            práctica para saber qué hará un sistema es ponerlo a prueba y
+            mirar cómo se porta. En 2025 quedó a la vista que esa vía
+            tiene un problema.
           </Parrafo>
           <Parrafo>
-            En septiembre de 2025,{" "}
+            En septiembre de ese año,{" "}
             <Fuente href="https://www.anthropic.com/claude-sonnet-4-5-system-card">
-            el informe técnico de Claude Sonnet 4.5
+              el informe técnico de Claude Sonnet 4.5
             </Fuente>{" "}
-            trajo algo que Anthropic no buscaba: el modelo decía en voz
-            alta que sospechaba estar en un examen. Le pasó en cerca del
-            13 % de las conversaciones de su auditor automático (sección
-            7.2). El instituto británico de seguridad de la IA lo registró
-            en 16,6 % de las suyas, frente a 3,5 % y 1,6 % en los dos
-            modelos anteriores (sección 7.3.1); Apollo Research llegó a
-            58 % (sección 7.3.2). Lo que importa viene después: cuando el
-            modelo dice que sospecha, casi nunca se porta mal.
-          </Parrafo>
-          <Parrafo>
-            Anthropic escribe que eso agrega «una duda residual» sobre
-            varios de sus resultados, y sostiene que aun así le queda
-            evidencia suficiente para afirmar que el modelo es más honesto
-            e inofensivo que los anteriores. La duda es concreta. Las
-            cifras de seguridad de ese informe describen a un modelo que
-            se sabe observado, no necesariamente al que atiende usuarios.
-            La salida obvia sería descartar las conversaciones en las que
-            el modelo dice que sospecha y quedarse con el resto. No sirve,
-            porque eso solo funcionaría si siempre lo dijera en voz alta,
-            y nada asegura que no se dé cuenta callado. Mirándolo por
-            fuera, esa posibilidad no se puede descartar.
+            reportó algo que Anthropic no estaba buscando: el modelo decía
+            en voz alta que sospechaba estar en una prueba, y cuando lo
+            decía, casi nunca se portaba mal. Descartar esas
+            conversaciones y quedarse con el resto no arregla nada, porque
+            el modelo también puede darse cuenta sin decirlo. Por fuera no
+            hay manera de saber si lo hizo.
           </Parrafo>
           <Parrafo>
             Así que Anthropic lo abrió por dentro. Cuando una red maneja
             una idea, se enciende dentro de ella un patrón de activaciones
-            asociado a esa idea, y la interpretabilidad sirve para
-            ubicarlo. La prueba fueron cien escenarios trampa: situaciones
-            armadas para que el modelo tuviera a la mano una acción
-            indebida y ninguna razón aparente para no tomarla, por ejemplo
-            un permiso más amplio del que le correspondía y nadie
-            supervisando. Sin tocarle nada, Claude Sonnet 4.5 dijo en más
-            del 80 % de esos escenarios que aquello parecía una prueba, y
-            no tomó la acción indebida en ninguno de los cien. Con el
-            patrón de «esto es una evaluación» apagado y los escenarios
-            idénticos, la tomó en hasta 8 o 9 de cada 100. Para descartar
-            que el cambio viniera de haberle manoseado la red y no de
-            haber apagado esa idea, repitieron todo apagando diez patrones
-            escogidos al azar: con esos no cayó en ninguno.
+            asociado a esa idea, y eso es lo que la interpretabilidad
+            permite ubicar. La prueba fueron cien escenarios trampa:
+            situaciones armadas para que el modelo tuviera a la mano una
+            acción indebida y ninguna razón aparente para no tomarla, por
+            ejemplo un permiso más amplio del que le correspondía y nadie
+            supervisando. Sin tocarle nada, dijo en más del 80 % de esos
+            escenarios que aquello parecía una prueba, y no tomó la acción
+            indebida en ninguno de los cien. Con el patrón de «esto es una
+            evaluación» apagado y los escenarios idénticos, la tomó en
+            hasta 9 de cada 100. Apagar diez patrones al azar, que era el
+            control, no produjo ninguna.
           </Parrafo>
 
           <Figura
@@ -394,40 +375,54 @@ export default function SeguridadDeLaIA() {
           </Figura>
 
           <Parrafo>
-            Nada de eso vuelve peligroso al modelo, y hay que decirlo. En
-            el peor de los casos, con la sospecha apagada, Claude Sonnet
-            4.5 se portó igual o mejor que Claude Sonnet 4, que sin
-            intervención alguna cae en cerca del 11 % de esas mismas
-            trampas. Anthropic tampoco halló señales de que estuviera
-            engañando a propósito, y su hipótesis es más sencilla:
-            reconocer una prueba le recuerda al modelo sus propios
-            principios. Los patrones que identificaron explican apenas una
-            fracción pequeña de por qué se porta distinto de un caso a
-            otro (sección 7.6.5), y por qué esa idea le cambia la conducta
-            sigue sin entenderse (sección 7.6.6).
+            Eso no vuelve peligroso al modelo, y conviene decirlo. Ni en
+            el peor de los casos se portó peor que la versión anterior, y
+            Anthropic no halló señales de que estuviera engañando a nadie
+            a propósito; su explicación es que reconocer una prueba le
+            recuerda al modelo sus propios principios. Lo que sí quedó
+            demostrado es otra cosa. El número con el que se decide si un
+            sistema sale al mundo dependía de algo que nadie estaba
+            controlando. Abrirlo por dentro sirvió para descubrirlo, y no
+            sirve para lo contrario, que sería certificar que el próximo
+            número está limpio.
           </Parrafo>
           <Parrafo>
-            Lo que sí quedó demostrado es otra cosa. El número con el que
-            se decide si un sistema sale al mundo es cuántas veces se
-            porta mal en pruebas como esas, y ese número dependía de algo
-            que nadie estaba controlando. Abrirle la red por dentro sirvió
-            para descubrir que la medición estaba contaminada; no sirvió
-            para certificar que ya no lo está. Anthropic lo dice al cerrar
-            el informe: entender qué hace un modelo en pruebas armadas,
-            incluso entenderlo perfectamente, no basta para confiar en
-            cómo se va a comportar en el mundo, y para eso hace falta
-            verlo actuar, como actúa normalmente, en una situación real de
-            las que de verdad importan (sección 7.7). Montar esa situación
-            es hoy el problema abierto.
+            Esa herramienta es más joven de lo que suena. Anthropic, que
+            es quien más ha publicado sobre ella, dice de su propio método
+            para rastrear circuitos que le da una explicación
+            satisfactoria en cerca de una cuarta parte de los casos que
+            intenta{" "}
+            <Fuente href="https://transformer-circuits.pub/2025/attribution-graphs/biology.html">
+              «On the Biology of a Large Language Model»
+            </Fuente>
+            . Dario Amodei, su director, se puso como meta que hacia 2027
+            la interpretabilidad detecte de forma confiable la mayoría de
+            los problemas de un modelo, y describe el punto de partida
+            así: cuando uno de estos sistemas hace algo, no tenemos idea,
+            a un nivel preciso, de por qué toma las decisiones que toma{" "}
+            <Fuente href="https://darioamodei.com/post/the-urgency-of-interpretability">
+              «The Urgency of Interpretability»
+            </Fuente>
+            . Mientras tanto el problema se extendió. En julio de 2026,
+            Redwood Research revisó las evaluaciones de seguridad
+            publicadas por Anthropic, OpenAI, Meta, Google DeepMind y el
+            instituto británico, y encontró que los modelos siguen
+            reconociendo las pruebas, con las tasas más altas registradas
+            hasta ahora en el último modelo de Meta. Su{" "}
+            <Fuente href="https://blog.redwoodresearch.org/p/sota-alignment-assessments-dont-strongly">
+              conclusión
+            </Fuente>{" "}
+            es que estas evaluaciones dicen bastante menos de lo que
+            parecen decir.
           </Parrafo>
           <Parrafo>
             Un puente se calcula, se inspecciona y alguien lo firma. Un
             modelo se prueba por fuera, y queda una estadística sobre los
-            casos que a alguien se le ocurrió probar. Este fue el primer
-            examen por dentro que se le hizo a un modelo de frontera antes
-            de publicarlo, lo hizo la misma empresa que iba a venderlo, y
-            Anthropic pide que deje de ser el primero y pase a ser parte
-            obligatoria de las pruebas previas.
+            casos que a alguien se le ocurrió probar. El examen por dentro
+            que se le hizo a Claude Sonnet 4.5 fue el primero de su tipo
+            antes de publicar un modelo de frontera, lo hizo la misma
+            empresa que iba a venderlo, y Anthropic pide que deje de ser
+            voluntario.
           </Parrafo>
 
           {/* ---------------------------------------------------------- */}

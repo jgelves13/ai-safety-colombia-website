@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Lo que publican los miembros de AI Safety Colombia: artículos revisados por pares, documentos de trabajo y reportes de investigación.",
 };
 
-/* Publicaciones firmadas por miembros de la comunidad.
+/* Publicaciones en las que alguien de la comunidad aparece como autor.
    `miembros` marca en negrilla a quien es de acá dentro de la lista de autores,
    que se transcribe completa y en el orden en que la publicó el editor. */
 const PUBLICACIONES = [
@@ -240,7 +240,7 @@ export default function Investigacion() {
             <h2 className="text-display-2 md:text-display-2-lg text-balance">Publicaciones de la comunidad</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
-                Trabajos firmados por miembros de AI Safety Colombia.
+                Publicaciones en las que alguien de AI Safety Colombia aparece como autor.
               </p>
               <p>
                 La lista está abierta. Si eres de la comunidad y publicaste algo,{" "}
@@ -291,7 +291,7 @@ export default function Investigacion() {
         </div>
       </section>
 
-      <section id="la-edicion" className="bg-aisc-cream">
+      <section id="hackathons" className="bg-aisc-cream">
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
@@ -320,23 +320,13 @@ export default function Investigacion() {
                 >
                   Global South AI Safety Hackathon, del 19 al 21 de junio de 2026
                 </a>
-                .
+                . Los jurados eran externos y evaluaron a ciegas los proyectos de toda Latinoamérica. Cada reporte
+                está publicado completo en el sitio de Apart.
               </p>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section id="premiados" className="bg-aisc-cream">
-        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
-          <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-          <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.92fr)] lg:gap-6">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">Los trabajos premiados</h2>
-            <p className="text-body md:text-body-lg text-aisc-ink">
-              Los jurados eran externos y evaluaron a ciegas los proyectos de toda Latinoamérica. Cada reporte está
-              publicado completo en el sitio de Apart.
-            </p>
-          </div>
+          <h3 className="text-display-3 md:text-display-3-lg pb-6 text-balance md:pb-7">Los trabajos premiados</h3>
           <ul className="grid grid-cols-1 gap-[10px] md:grid-cols-2">
             {PREMIADOS.map((p) => (
               <li className="flex" key={p.href}>
@@ -349,7 +339,7 @@ export default function Investigacion() {
                   <span className="text-kicker text-aisc-coral">
                     {p.premio} · {p.ciudad}
                   </span>
-                  <h3 className="text-display-3 md:text-display-3-lg mt-4 text-balance">{p.titulo}</h3>
+                  <h4 className="text-display-3 md:text-display-3-lg mt-4 text-balance">{p.titulo}</h4>
                   <p className="text-body-sm mt-3 text-aisc-ink">{p.body}</p>
                   <p className="text-meta mt-5 text-aisc-muted">{p.equipo}</p>
                   <span className="text-display-4 md:text-display-4-lg mt-7 text-aisc-forest underline underline-offset-4">
@@ -359,35 +349,33 @@ export default function Investigacion() {
               </li>
             ))}
           </ul>
-        </div>
-      </section>
 
-      <section id="otros" className="bg-aisc-cream px-6 pb-12 md:pb-14">
-        <div className="mx-auto w-full max-w-[1400px] rounded-[12px] bg-aisc-sand px-6 py-12 text-aisc-ink md:px-10 lg:py-[70px]">
-          <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-          <div className="grid grid-cols-1 gap-8 pt-5 pb-10 md:gap-10 md:pt-7 md:pb-12 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.92fr)] lg:gap-6">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">Los demás equipos colombianos</h2>
-            <p className="text-body md:text-body-lg text-aisc-ink">
-              Trece proyectos más de esa misma edición, entre presenciales y remotos.
-            </p>
+          <div className="mt-14 md:mt-16">
+            <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep/25" />
+            <div className="flex flex-col gap-2 pt-5 pb-4 md:flex-row md:items-baseline md:justify-between md:gap-10 md:pt-6">
+              <h3 className="text-display-4 md:text-display-4-lg text-balance">Los demás equipos colombianos</h3>
+              <p className="text-body-sm text-aisc-muted">
+                Trece proyectos más de esa misma edición, entre presenciales y remotos.
+              </p>
+            </div>
+            <ul className="grid grid-cols-1 gap-x-10 md:grid-cols-2">
+              {OTROS.map((o) => (
+                <li key={o.href} className="border-t border-aisc-forest-deep/15">
+                  <a
+                    className="flex flex-col gap-1 py-3.5 transition-colors hover:text-aisc-forest"
+                    href={o.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="text-body-sm">{o.titulo}</span>
+                    <span className="text-meta text-aisc-muted">
+                      {o.equipo} · {o.ciudad}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="grid grid-cols-1 gap-x-10 md:grid-cols-2">
-            {OTROS.map((o) => (
-              <li key={o.href} className="border-t border-aisc-forest-deep/25 first:border-t-0 md:[&:nth-child(2)]:border-t-0">
-                <a
-                  className="group flex flex-col gap-1 py-4 transition-colors hover:text-aisc-forest"
-                  href={o.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="text-body-sm md:text-body">{o.titulo}</span>
-                  <span className="text-meta text-aisc-muted">
-                    {o.equipo} · {o.ciudad}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
