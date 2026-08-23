@@ -6,7 +6,7 @@ import { HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/compo
 import { getAllPosts, getTopics } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Actualidad | AI Safety Colombia",
+  title: "Actualidad",
   description:
     "Lo que escribimos sobre seguridad de la inteligencia artificial, y lo que va saliendo de nuestros programas y eventos en Colombia.",
 };

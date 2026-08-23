@@ -20,7 +20,7 @@ import {
 } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Qué es la seguridad de la IA | AI Safety Colombia",
+  title: "Qué es la seguridad de la IA",
   description:
     "Por qué la velocidad del avance en inteligencia artificial, y no la inteligencia de las máquinas, es lo que la convierte en un problema de seguridad. Con las mediciones que lo sostienen y lo que no permiten concluir.",
 };
@@ -1085,7 +1085,7 @@ export default function SeguridadDeLaIA() {
 
       <CtaPanel
         title="¿Y qué hago con esto?"
-        body="Al principio lo más útil suele ser hablar con alguien que ya lleve un tiempo, aunque sea para descartar el tema. Después vienen los programas."
+        body="Al principio suele servir más hablar con alguien que ya lleva un tiempo, aunque sea para descartar el tema."
       >
         <Link className={CTA_LINK_PRIMARY} href="/programas">
           Ver los programas

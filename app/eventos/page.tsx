@@ -6,7 +6,7 @@ import SiteHeader from "@/components/site-header";
 import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Eventos | AI Safety Colombia",
+  title: "Eventos",
   description:
     "Charlas abiertas, talleres, cenas de diálogo y paneles sobre seguridad y gobernanza de la inteligencia artificial en Bogotá.",
 };
@@ -106,7 +106,7 @@ export default function Eventos() {
 
       <CtaPanel
         title="Que te avisemos del próximo"
-        body="El grupo de WhatsApp es donde se anuncia todo primero. También puedes escribirnos y te avisamos por correo."
+        body="En el grupo de WhatsApp se anuncia todo primero. Si prefieres correo, escríbenos."
       >
         {/* TODO: reemplazar por el enlace permanente del grupo de WhatsApp */}
         <a className={CTA_LINK_PRIMARY} href="https://chat.whatsapp.com/" target="_blank" rel="noopener noreferrer">

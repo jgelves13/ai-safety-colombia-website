@@ -339,7 +339,7 @@ export default function Home() {
       <CtaPanel
         kicker="Se entra trabajando"
         title="¿Quieres entrar?"
-        body="No hace falta ser investigador ni haber estudiado inteligencia artificial. Entra al grupo, escríbenos o agenda veinte minutos con Jose."
+        body="No hace falta ser investigador ni haber estudiado inteligencia artificial."
       >
         {/* TODO: reemplazar por el enlace permanente del grupo de WhatsApp */}
         <a className={CTA_LINK_PRIMARY} href="https://chat.whatsapp.com/" target="_blank" rel="noopener noreferrer">

@@ -6,7 +6,7 @@ import SiteHeader from "@/components/site-header";
 import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Investigación | AI Safety Colombia",
+  title: "Investigación",
   description:
     "Los reportes de los equipos colombianos en el hackathon Global South de Apart Research: tres premios de Latinoamérica, dos menciones de honor y dieciocho equipos en total.",
 };
@@ -323,7 +323,7 @@ export default function Investigacion() {
       <CtaPanel
         kicker="Se entra trabajando"
         title="El próximo reporte puede ser tuyo"
-        body="La mayoría de quienes ganaron llegaron sin haber leído nada del campo. Entra al grupo o agenda veinte minutos y te contamos cómo prepararte."
+        body="Casi todos los que ganaron llegaron sin haber leído nada del campo. Te contamos cómo prepararte."
       >
         {/* TODO: reemplazar por el enlace permanente del grupo de WhatsApp */}
         <a className={CTA_LINK_PRIMARY} href="https://chat.whatsapp.com/" target="_blank" rel="noopener noreferrer">

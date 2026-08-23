@@ -6,7 +6,7 @@ import SiteHeader from "@/components/site-header";
 import { CTA_LINK, CTA_LINK_PRIMARY, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Únete | AI Safety Colombia",
+  title: "Únete",
   description:
     "Cuatro formas de entrar a AI Safety Colombia: el grupo de WhatsApp, veinte minutos con Jose, un correo o venir a un evento.",
 };
@@ -206,7 +206,7 @@ export default function Unete() {
       <CtaPanel
         kicker="¿Prefieres mirar primero?"
         title="Nadie tiene que decidir hoy"
-        body="Si todavía no sabes bien de qué se trata, lee la explicación corta o mira qué hacemos antes de escribir."
+        body="Lee la explicación corta o mira lo que se ha hecho antes de escribir."
       >
         <Link className={CTA_LINK_PRIMARY} href="/seguridad-de-la-ia">
           Qué es AI safety

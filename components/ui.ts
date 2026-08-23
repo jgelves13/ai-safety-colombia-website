@@ -5,7 +5,7 @@ const BUTTON_BASE =
 /** los dos botones del panel de cierre: uno lleno y uno de contorno. Antes eran
     enlaces sin caja y el bloque entero se leia plano. */
 const CTA_BUTTON =
-  "inline-flex min-h-[52px] shrink-0 items-center justify-center rounded-full px-7 text-center transition-colors outline-none select-none focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-aisc-sand text-body-sm md:text-body font-medium";
+  "inline-flex min-h-[46px] shrink-0 items-center justify-center rounded-full px-6 text-center transition-colors outline-none select-none focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-aisc-sand text-body-sm font-medium";
 export const CTA_LINK_PRIMARY = `${CTA_BUTTON} bg-aisc-coral text-aisc-cream hover:bg-aisc-coral/85`;
 export const CTA_LINK = `${CTA_BUTTON} border border-aisc-sand/45 text-aisc-sand hover:border-aisc-sand hover:bg-aisc-sand hover:text-aisc-forest-deep`;
 
@@ -26,11 +26,11 @@ export const HERO_CORNER_CLASS =
 
 /** the two mirrored pattern washes on the midnight CTA panel */
 export const CTA_PANEL =
-  "relative flex min-h-[380px] items-center justify-center overflow-hidden rounded-[var(--radius)] bg-aisc-forest-deep px-6 py-20 text-center text-aisc-sand md:min-h-[420px] md:px-10 md:py-24 lg:min-h-[500px] lg:px-20 lg:py-28";
+  "relative overflow-hidden rounded-[var(--radius)] bg-aisc-forest-deep px-6 py-9 text-aisc-sand md:px-10 md:py-10 lg:px-14 lg:py-11";
 export const CTA_PATTERN_TOP =
-  "pointer-events-none absolute top-0 left-0 h-[56%] w-[72%] max-w-none select-none object-contain object-left-top opacity-70 mix-blend-screen md:h-[64%] md:w-[52%]";
+  "pointer-events-none absolute top-0 left-0 h-full w-[62%] max-w-none select-none object-contain object-left-top opacity-55 mix-blend-screen md:w-[34%]";
 export const CTA_PATTERN_BOTTOM =
-  "pointer-events-none absolute right-0 bottom-0 h-[56%] w-[72%] max-w-none rotate-180 select-none object-contain object-left-top opacity-70 mix-blend-screen md:h-[64%] md:w-[52%]";
+  "pointer-events-none absolute right-0 bottom-0 h-full w-[62%] max-w-none rotate-180 select-none object-contain object-left-top opacity-55 mix-blend-screen md:w-[34%]";
 
 /** the fill-style next/image emits, which these ports reproduce on a plain img */
 export const FILL_IMAGE = {

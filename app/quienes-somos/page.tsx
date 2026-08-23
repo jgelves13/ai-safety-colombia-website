@@ -6,7 +6,7 @@ import SiteHeader from "@/components/site-header";
 import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Quiénes somos | AI Safety Colombia",
+  title: "Quiénes somos",
   description:
     "Somos la primera organización dedicada a la seguridad de la inteligencia artificial en Colombia. Formamos gente, organizamos investigación y abrimos la conversación pública sobre el tema.",
 };
@@ -255,7 +255,7 @@ export default function QuienesSomos() {
 
       <CtaPanel
         title="Se entra trabajando"
-        body="No hay membresía ni convocatoria. Se llega a un evento, se entra a un programa o se agenda una conversación."
+        body="No hay membresía ni convocatoria: se llega a un evento, a un programa o a una conversación."
       >
         <Link className={CTA_LINK_PRIMARY} href="/programas">
           Ver los programas
