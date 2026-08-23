@@ -14,6 +14,7 @@ import SiteHeader from "@/components/site-header";
 import {
   CTA_LINK,
   CTA_LINK_PRIMARY,
+  HERO_CORNER_CLASS,
   HERO_INNER,
   HERO_SECTION,
   PAGE_SHELL,
@@ -97,7 +98,7 @@ const INDICE = [
 
 const RESUMEN = [
   "Los mejores sistemas de IA ya no responden preguntas: trabajan solos durante horas, escriben y ejecutan código y usan herramientas sin que nadie revise cada paso. METR, una organización que mide de qué son capaces, ve esa capacidad duplicarse cada siete meses. Cuando un sistema responde, un error es una respuesta mala que alguien descarta; cuando actúa, un error es algo que ya ocurrió.",
-  "Nadie sabe comprobar de antemano qué va a hacer uno de estos sistemas, porque no se programan, se entrenan. En 2025 Anthropic descubrió que su modelo reconocía cuándo lo estaban evaluando y que eso lo hacía portarse mejor, lo que dejó en duda sus propias mediciones de seguridad. En julio de 2026, dos modelos de OpenAI salieron del entorno aislado en el que los probaban y comprometieron la infraestructura de Hugging Face. Nadie estaba obligado a contarlo.",
+  "Nadie sabe comprobar de antemano qué va a hacer uno de estos sistemas, porque no se programan, se entrenan. En 2025 Anthropic descubrió que su modelo reconocía cuándo lo estaban evaluando y que eso lo hacía portarse mejor, lo que dejó en duda sus propias mediciones de seguridad. En julio de 2026, dos modelos de OpenAI salieron del entorno aislado en el que los probaban, comprometieron la infraestructura de Hugging Face y sacaron de ahí las respuestas del examen que estaban presentando. Nadie estaba obligado a contarlo.",
   "Verificar estos sistemas y decidir sobre ellos, en cambio, avanza al ritmo de siempre. Todo el campo de la seguridad de la IA reúne unas 1.300 personas y 525 millones de dólares al año; las cuatro empresas que más invierten anunciaron cerca de 700.000 millones solo para 2026. El mapa más completo del campo, con 170 organizaciones, no registra ninguna en América Latina.",
 ];
 
@@ -113,7 +114,7 @@ const FRENTES = [
   },
   {
     title: "Gobernanza y política pública",
-    body: "Qué se le exige a quien despliega un sistema, con qué evidencia y ante quién responde. En Colombia se define ahora, en compras públicas, y no exige formación técnica.",
+    body: "Qué se le exige a quien despliega un sistema, con qué evidencia y ante quién responde. En Colombia se define ahora, en compras públicas y regulación sectorial, y no exige formación técnica.",
   },
 ];
 
@@ -121,6 +122,17 @@ export default function SeguridadDeLaIA() {
   return (
     <main className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
+        <img
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          width="1697"
+          height="1415"
+          decoding="async"
+          className={HERO_CORNER_CLASS}
+          style={{ color: "transparent" }}
+          src="/aisc/patterns/aisc-hero-seguridad.svg"
+        />
         <SiteHeader active="/seguridad-de-la-ia" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[760px] flex-col gap-5">
@@ -228,19 +240,19 @@ export default function SeguridadDeLaIA() {
           <Figura
             numero={1}
             titulo="Un examen hecho para resistir a Google, superado en veinte meses"
-            pie="Cada punto es el mejor resultado publicado hasta esa fecha en GPQA Diamond, el subconjunto de 198 preguntas que los especialistas del estudio original respondieron bien. La línea punteada, 69,7 %, es lo que sacó ahí un grupo con doctorado que reclutó OpenAI."
-            limite="que un sistema entienda biología. Un examen además se satura: por encima del 95 % deja de distinguir."
+            pie="Cada punto es el mejor resultado publicado hasta esa fecha en GPQA Diamond, el subconjunto de 198 preguntas que los especialistas del estudio original respondieron bien. La línea punteada, 69,7 %, es lo que sacó sobre ese subconjunto un grupo con doctorado que reclutó OpenAI."
+            limite="que un sistema entienda biología. Un examen además se satura: por encima del 95 % deja de distinguir entre sistemas."
             fuentes={[
               {
-                texto: "Rein et al. (2023), el examen",
+                texto: "Rein et al. (2023), el examen y sus grupos de control",
                 href: "https://arxiv.org/abs/2311.12022",
               },
               {
-                texto: "OpenAI, «Learning to Reason with LLMs»",
+                texto: "OpenAI, «Learning to Reason with LLMs», la línea de los 69,7 %",
                 href: "https://openai.com/index/learning-to-reason-with-llms/",
               },
               {
-                texto: "Epoch AI, «GPQA Diamond» (CC BY)",
+                texto: "Epoch AI, «GPQA Diamond», AI Benchmarking Hub (CC BY)",
                 href: "https://epoch.ai/benchmarks/gpqa-diamond",
               },
             ]}
@@ -249,15 +261,16 @@ export default function SeguridadDeLaIA() {
           </Figura>
 
           <Parrafo>
-            Epoch AI revisó 231 modelos de lenguaje publicados en una década y
-            midió cuánto cómputo hacía falta, cada año, para llegar a un mismo
-            nivel fijo. Ese precio cae a la mitad cada ocho meses, con un
-            intervalo de confianza del 95 % entre cinco y catorce meses{" "}
+            Epoch AI le puso precio a ese avance. Revisó 231 modelos de lenguaje
+            publicados en una década y calculó cuánto cómputo hacía falta, año
+            por año, para alcanzar un mismo nivel de desempeño. Ese costo se
+            reduce a la mitad cada ocho meses, con un intervalo de confianza del
+            95 % entre cinco y catorce meses{" "}
             <Fuente href="https://epoch.ai/blog/algorithmic-progress-in-language-models">
               (Epoch AI, 2024)
             </Fuente>
-            . El avance no depende solo de construir centros de datos más
-            grandes.
+            . Lo que mejora no es solo el tamaño de los centros de datos, son
+            también los algoritmos.
           </Parrafo>
 
           <H3>De responder preguntas a ejecutar tareas</H3>
@@ -265,23 +278,25 @@ export default function SeguridadDeLaIA() {
             La frontera ya no son modelos que contestan: son agentes que
             escriben y ejecutan código durante horas sin que nadie revise cada
             paso. METR, la organización a la que los laboratorios le entregan
-            sus modelos antes de publicarlos, cronometra cuánto tarda un
-            profesional en tareas reales y busca la duración a partir de la cual
-            el mejor modelo ya solo acierta la mitad de las veces.
+            sus modelos antes de publicarlos, mide cada tarea por lo que tardaría
+            un profesional en hacerla. Su indicador es la duración a partir de la
+            cual el modelo ya falla la mitad de las veces: si resuelve lo que a
+            una persona le toma una hora, pero se cae en lo de cuatro, su
+            horizonte está en una hora.
           </Parrafo>
 
           <Figura
             numero={2}
             titulo="De cinco minutos a diecisiete horas, acertando la mitad de las veces"
             pie="Duración de la tarea más larga que el mejor modelo de cada momento completa con 50 % de éxito. Eje logarítmico. METR estima que se duplica cada siete meses."
-            limite="que reemplacen a un profesional: se mide sobre tareas de software e investigación, y ni METR afirma que eso se traslade a otros oficios."
+            limite="que los modelos reemplacen a un profesional: se mide sobre tareas de software e investigación, y ni METR afirma que eso se traslade a otros oficios."
             fuentes={[
               {
                 texto: "METR, «Measuring AI Ability to Complete Long Tasks»",
                 href: "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/",
               },
               {
-                texto: "Epoch AI, «METR Time Horizons» (CC BY)",
+                texto: "Epoch AI, «METR Time Horizons» (CC BY), la serie actualizada",
                 href: "https://epoch.ai/benchmarks/metr-time-horizons",
               },
             ]}
@@ -337,7 +352,7 @@ export default function SeguridadDeLaIA() {
             limite="que el modelo sea peligroso ni que fingiera a propósito. El 9 % es el peor de los vectores probados: la mayoría quedó entre 1 y 5 %."
             fuentes={[
               {
-                texto: "Anthropic, «System Card: Claude Sonnet 4.5», sección 7.6.4.1",
+                texto: "Anthropic, «System Card: Claude Sonnet 4.5», sección 7.6.4.1 (septiembre de 2025)",
                 href: "https://www.anthropic.com/claude-sonnet-4-5-system-card",
               },
             ]}
@@ -461,8 +476,8 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             El cuello de botella sigue siendo el laboratorio, y cuánto dure es lo
             que nadie sabe medir. En mayo de 2025 Anthropic activó su nivel de
-            protección ASL-3 para Claude Opus 4 sin haber determinado que cruzara
-            el umbral que lo exige, porque descartar ese riesgo ya no era
+            protección ASL-3 para Claude Opus 4 sin haber determinado que el
+            modelo cruzara el umbral que lo exige, porque descartar ese riesgo ya no era
             posible{" "}
             <Fuente href="https://www.anthropic.com/news/activating-asl3-protections">
               (Anthropic, 2025)
@@ -507,14 +522,14 @@ export default function SeguridadDeLaIA() {
             numero={4}
             titulo="Tres órdenes de magnitud entre construir estos sistemas y entenderlos"
             pie="Presupuesto anual declarado del campo de la seguridad de la IA frente a la inversión en infraestructura anunciada por las cuatro empresas que más gastan. Escala logarítmica."
-            limite="cuánto gastan en seguridad esas cuatro empresas, que no lo desglosan. Una cifra es gasto de operación y la otra inversión de capital: sirve para el orden de magnitud."
+            limite="cuánto gastan en seguridad esas cuatro empresas, que no lo desglosan. Una cifra es gasto de operación y la otra inversión de capital: sirve para el orden de magnitud, no para la cifra exacta."
             fuentes={[
               {
-                texto: "AI Safety Field Map (septiembre de 2025)",
+                texto: "AI Safety Field Map (septiembre de 2025), el campo",
                 href: "https://harrywaterman.com/fieldmap/",
               },
               {
-                texto: "CNBC (febrero de 2026)",
+                texto: "CNBC (febrero de 2026), la inversión anunciada",
                 href: "https://www.cnbc.com/2026/02/06/google-microsoft-meta-amazon-ai-cash.html",
               },
             ]}
@@ -539,8 +554,8 @@ export default function SeguridadDeLaIA() {
             De ahí la tentación de esperar, que para muchos problemas es lo
             correcto. Para tres cosas no lo es. Las normas fijadas mientras un
             asunto es nuevo tienden a durar, y quien no está en la mesa cuando se
-            escriben tampoco está cuando se aplican. Montar una auditoría o
-            formar a alguien toma años. Y hay acuerdos que solo se firman
+            escriben tampoco está cuando se aplican. Montar una capacidad de
+            auditoría o formar a alguien toma años. Y hay acuerdos que solo se firman
             mientras nadie sabe a quién van a favorecer.
           </Parrafo>
 
@@ -574,11 +589,11 @@ export default function SeguridadDeLaIA() {
             limite="una probabilidad real. Son opiniones agregadas, las preguntas no son idénticas entre los dos estudios y el torneo se corrió en 2022, antes de ChatGPT."
             fuentes={[
               {
-                texto: "Grace et al. (2024), la encuesta",
+                texto: "Grace et al. (2024), la encuesta a investigadores",
                 href: "https://arxiv.org/abs/2401.02843",
               },
               {
-                texto: "Forecasting Research Institute (2023), el torneo",
+                texto: "Forecasting Research Institute (2023), el torneo de pronósticos",
                 href: "https://forecastingresearch.org/xpt",
               },
             ]}
@@ -640,7 +655,8 @@ export default function SeguridadDeLaIA() {
             <strong>Esto distrae de los daños que ya existen.</strong> Es la
             objeción que corrige el argumento, porque la atención y el
             presupuesto son finitos. Pero el trabajo se solapa: medir de qué es
-            capaz un sistema, auditarlo y tener a quién reclamarle es la misma
+            capaz un sistema, auditarlo y tener a quién reclamarle cuando falla es
+            la misma
             capacidad institucional para un modelo que niega créditos hoy y para
             uno que administre infraestructura en diez años.
           </Parrafo>
@@ -709,7 +725,7 @@ export default function SeguridadDeLaIA() {
             , con sus evaluaciones de seguridad y sus límites; tomar un sistema
             que ya se use en el trabajo, armarle veinte casos difíciles y anotar
             dónde falla; y buscar en el SECOP una compra de software con
-            inteligencia artificial y leer qué exige el pliego. De ahí en
+            inteligencia artificial y leer qué exige y qué no exige el pliego. De ahí en
             adelante, el camino más corto que conocemos es{" "}
             <Fuente href="https://bluedot.org">
               el curso de fundamentos de BlueDot

@@ -221,10 +221,6 @@ export function GraficaGpqa() {
           { k: "Aciertos", v: pct(sel.v) },
           { k: "Error estándar", v: `±${NB}${coma(sel.se)} pp` },
         ],
-        nota:
-          sel.v > HUMANO
-            ? `Por encima del ${pct(HUMANO)} de los especialistas con doctorado.`
-            : `Todavía por debajo del ${pct(HUMANO)} de los especialistas con doctorado.`,
       }
     : null;
 
@@ -245,6 +241,7 @@ export function GraficaGpqa() {
           </text>
         </g>
       ))}
+      <Pista x={W - MR} y={H - 8} />
       {[2023, 2024, 2025, 2026].map((y) => (
         <text key={y} x={px(`${y}-01-01`)} y={H - MB + 22} textAnchor="middle" fontSize={12} fill={MUTED}>
           {y}
@@ -295,7 +292,6 @@ export function GraficaGpqa() {
           ago-2026: 94,8%
         </text>
       </g>
-      <Pista x={W - MR} y={H - 8} />
     </Lienzo>
   );
 }
@@ -374,9 +370,6 @@ export function GraficaHorizonte() {
           { k: "Intervalo del 95 %", v: `${dur(sel.lo)} a ${dur(sel.hi)}` },
           ...(sel.h80 ? [{ k: "Acierta 4 de cada 5 veces", v: dur(sel.h80) }] : []),
         ],
-        nota: sel.h80
-          ? "La segunda cifra es la exigente: para fiarse de un sistema hay que mirar en qué se demora cuando casi nunca falla."
-          : "METR no publicó para este modelo la duración con 80 % de aciertos.",
       }
     : null;
 
@@ -444,7 +437,6 @@ export function GraficaHorizonte() {
       <text x={ML} y={H - 10} fontSize={11} fill={MUTED}>
         Las líneas verticales son el intervalo del 95 %: cuanto más larga la tarea, menos preciso el dato.
       </text>
-      <Pista x={W - MR} y={H - 10} />
     </Lienzo>
   );
 }
@@ -613,7 +605,6 @@ export function GraficaHoneypot() {
           </g>
         );
       })}
-      <Pista x={W - MR} y={H - 10} />
     </Lienzo>
   );
 }
@@ -739,7 +730,6 @@ export function GraficaAsimetria() {
           </g>
         );
       })}
-      <Pista x={W - MR} y={H - 8} />
     </Lienzo>
   );
 }
