@@ -820,33 +820,26 @@ export default function SeguridadDeLaIA() {
             Hay más problemas abiertos que gente para trabajarlos
           </H2>
           <Parrafo>
-            El campo entero cabe en 1.313 personas de tiempo completo
-            repartidas en 170 organizaciones. Es poca gente para lo que
-            hay en esta página. De las 187 que deciden a dónde va el
-            dinero, 76 se formaron en cuatro universidades: Oxford,
-            Stanford, Berkeley y Cambridge. El mapa que lleva esa cuenta
-            no registra ninguna organización en América Latina{" "}
-            <Fuente href="https://harrywaterman.com/fieldmap/">
-              (AI Safety Field Map)
+            Nadie sabe todavía leer por dentro lo que un modelo persigue,
+            ni montar una evaluación que el modelo no reconozca como
+            evaluación, ni anticipar en qué va a fallar. Son preguntas
+            abiertas, y de ellas depende poder entregar uno de estos
+            sistemas con alguna garantía. La investigación que se ocupa de
+            ellas es cerca del 2 % de todo lo que se publica sobre
+            inteligencia artificial{" "}
+            <Fuente href="https://eto.tech/blog/still-drop-bucket-ai-safety-research/">
+              (Emerging Technology Observatory, 2025)
             </Fuente>
             .
           </Parrafo>
           <Parrafo>
-            Los problemas del comienzo de esta página siguen sin
-            resolverse. Nadie sabe todavía leer lo que un modelo persigue,
-            ni montar una evaluación que el modelo no reconozca como
-            evaluación. Son preguntas abiertas, y en una pregunta abierta
-            pesa más el tiempo que uno lleve metido en ella que el lugar
-            desde donde la trabaje. Entrar es la parte difícil.
-          </Parrafo>
-          <Parrafo>
-            Hay además una parte del problema que empieza cuando el modelo ya está
-            hecho. Cuando
-            una entidad compra un sistema para decidir sobre ciudadanos,
-            alguien tiene que saber qué exigirle antes de firmar, con qué
-            datos se entrenó, y ante quién responde el proveedor si dos
-            años después se descubre que le bajaba el puntaje a la gente
-            de cierto municipio. Esas preguntas no están en el mapa.
+            Hay además una parte del problema que empieza cuando el modelo
+            ya está hecho. Cuando una entidad compra un sistema para
+            decidir sobre ciudadanos, alguien tiene que saber qué exigirle
+            antes de firmar, con qué datos se entrenó, y ante quién
+            responde el proveedor si dos años después se descubre que le
+            bajaba el puntaje a la gente de cierto municipio. En eso hay
+            todavía menos gente.
           </Parrafo>
           <Parrafo>
             Las dos cosas piden lo mismo: gente que pueda dedicarse a
@@ -871,8 +864,8 @@ export default function SeguridadDeLaIA() {
         <Link className={CTA_LINK_PRIMARY} href="/unete">
           Unirse a la comunidad
         </Link>
-        <Link className={CTA_LINK} href="/programas">
-          Ver los programas
+        <Link className={CTA_LINK} href="/recursos">
+          Ver los recursos
         </Link>
       </CtaPanel>
       <SiteFooter />
