@@ -9,6 +9,7 @@ import {
   GraficaHorizonte,
 } from "@/components/charts";
 import CtaPanel from "@/components/cta-panel";
+import IndiceEnsayo, { type ItemIndice } from "@/components/indice-ensayo";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import {
@@ -62,10 +63,11 @@ function H2({ id, children }: { id: string; children: React.ReactNode }) {
   );
 }
 
-function H3({ children }: { children: React.ReactNode }) {
+function H3({ id, children }: { id?: string; children: React.ReactNode }) {
   return (
     <h3
-      className={`${COL} text-display-4 md:text-display-4-lg mt-10 mb-3 text-aisc-forest`}
+      id={id}
+      className={`${COL} text-display-4 md:text-display-4-lg mt-10 mb-3 scroll-mt-24 text-aisc-forest`}
     >
       {children}
     </h3>
@@ -76,11 +78,16 @@ function Parrafo({ children }: { children: React.ReactNode }) {
   return <p className={`${COL} ${P} mt-5`}>{children}</p>;
 }
 
-const INDICE = [
+const INDICE: ItemIndice[] = [
   { id: "resumen", label: "En resumen" },
   {
     id: "capacidades",
     label: "Los sistemas hacen cada vez más cosas sin supervisión",
+  },
+  {
+    id: "horizonte",
+    label: "De responder preguntas a ejecutar tareas",
+    nivel: 3,
   },
   {
     id: "verificacion",
@@ -90,11 +97,18 @@ const INDICE = [
     id: "incidentes",
     label: "Ya hay casos donde el sistema se salió de su caja",
   },
+  { id: "intencional", label: "Y no todo es accidental", nivel: 3 },
+  {
+    id: "pesos-abiertos",
+    label: "Publicar los pesos quita el freno",
+    nivel: 3,
+  },
   { id: "asimetria", label: "La capacidad de decidir no crece al mismo ritmo" },
   {
     id: "desacuerdo",
     label: "Quienes no están de acuerdo tienen parte de razón",
   },
+  { id: "objeciones", label: "Las cinco objeciones que más nos hacen", nivel: 3 },
   { id: "frentes", label: "Hay tres frentes y no todos exigen formación técnica" },
   { id: "colombia", label: "Hay más problemas abiertos que gente para trabajarlos" },
 ];
@@ -202,24 +216,7 @@ export default function SeguridadDeLaIA() {
           </div>
 
           {/* En esta pagina */}
-          <nav aria-label="Contenido de la página" className={`${COL} mt-10`}>
-            <p className="text-kicker text-aisc-muted">En esta página</p>
-            <ol className="text-body-sm mt-4 flex flex-col gap-2 text-aisc-ink">
-              {INDICE.map((item, i) => (
-                <li key={item.id} className="flex gap-3">
-                  <span className="text-meta tabular-nums text-aisc-muted">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <a
-                    href={`#${item.id}`}
-                    className="underline decoration-aisc-ink/25 underline-offset-4 transition-colors hover:decoration-aisc-forest hover:text-aisc-forest"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ol>
-          </nav>
+          <IndiceEnsayo items={INDICE} />
 
           {/* ---------------------------------------------------------- */}
           <H2 id="capacidades">
@@ -280,7 +277,7 @@ export default function SeguridadDeLaIA() {
             años lo corre mucha más gente con mucho menos.
           </Parrafo>
 
-          <H3>De responder preguntas a ejecutar tareas</H3>
+          <H3 id="horizonte">De responder preguntas a ejecutar tareas</H3>
           <Parrafo>
             La frontera ya no son modelos que contestan: son agentes que
             escriben y ejecutan código durante horas sin que nadie revise cada
@@ -466,7 +463,7 @@ export default function SeguridadDeLaIA() {
             .
           </Parrafo>
 
-          <H3>Y no todo es accidental</H3>
+          <H3 id="intencional">Y no todo es accidental</H3>
           <Parrafo>
             En junio de 2025, el equipo de inteligencia de amenazas de Google
             encontró en Ucrania un programa espía disfrazado de generador de
@@ -489,8 +486,9 @@ export default function SeguridadDeLaIA() {
             fijo que reconocer.
           </Parrafo>
 
-                    <H3>Publicar los pesos quita el freno, y en biología eso ya
-          importa</H3>
+                    <H3 id="pesos-abiertos">
+            Publicar los pesos quita el freno, y en biología eso ya importa
+          </H3>
           <Parrafo>
             En los dos casos anteriores había una empresa que podía cortar el
             acceso al modelo. Publicar los pesos elimina esa posibilidad: quien
@@ -712,7 +710,7 @@ export default function SeguridadDeLaIA() {
             anteriores.
           </Parrafo>
 
-          <H3>Las cinco objeciones que más nos hacen</H3>
+          <H3 id="objeciones">Las cinco objeciones que más nos hacen</H3>
           <Parrafo>
             <strong>Esto es una estrategia de marketing.</strong> En parte sí:
             al laboratorio le sirve que su producto suene poderoso. Pero las
