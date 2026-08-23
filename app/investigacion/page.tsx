@@ -46,6 +46,23 @@ const PUBLICACIONES = [
     href: "https://aigi.ox.ac.uk/publications/ai-benefit-sharing-framework-balancing-access-and-safety/",
   },
   {
+    titulo: "Approximating Human Preferences Using a Multi-Judge Learned System",
+    tipo: "Artículo aceptado en taller",
+    editor: "arXiv. Aceptado en dos talleres de NeurIPS 2025: Reliable ML from Unreliable Data y Latinx in AI",
+    fecha: "Octubre de 2025",
+    autores: [
+      "Eitán Sprejer",
+      "Fernando Avalos",
+      "Augusto Bernardi",
+      "Jose Pedro Brito de Azevedo Faustino",
+      "Jacob Haimes",
+      "Narmeen Fatimah Oozeer",
+    ],
+    miembros: ["Fernando Avalos"],
+    body: "Cada vez se usan más modelos de lenguaje como jueces que califican las respuestas de otros modelos. El problema es que califican mal: cambian de criterio según cómo esté redactada la rúbrica, arrastran sesgos y son inestables. El trabajo propone no confiar en un solo juez sino combinar varios, cada uno con su rúbrica, y aprender cuánto pesa cada uno. El sistema resultante deja ver qué juez pesó más en cada decisión, así que se puede revisar por qué calificó como calificó.",
+    href: "https://arxiv.org/abs/2510.25884",
+  },
+  {
     titulo: "La securitización de la inteligencia artificial: un análisis de sus impulsores y sus consecuencias",
     tipo: "Artículo revisado por pares",
     editor: "Revista de Estudios Sociales n.º 93, Universidad de los Andes",

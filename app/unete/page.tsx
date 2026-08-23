@@ -8,44 +8,63 @@ import { CTA_LINK, CTA_LINK_PRIMARY, HERO_INNER, HERO_SECTION, PAGE_SHELL } from
 export const metadata: Metadata = {
   title: "Únete",
   description:
-    "Cuatro formas de entrar a AI Safety Colombia: el grupo de WhatsApp, veinte minutos con Jose, un correo o venir a un evento.",
+    "Las tres cosas abiertas en AI Safety Colombia: el grupo de WhatsApp, el grupo de lectura sobre AI Control los viernes, y los eventos y hackathones en Bogotá.",
 };
 
-/* Las cuatro puertas reales, cada una con lo que pasa despues. Nada de formularios
-   por ahora: todo apunta a canales que ya existen. */
-const PUERTAS = [
+/* Las tres cosas que están abiertas ahora mismo, cada una con su ritmo real y
+   con lo que pasa después. Nada de formularios: todo apunta a canales que ya
+   existen. Lo demás (agendar, escribir) va abajo, que no son actividades. */
+const ABIERTO = [
   {
     // TODO: reemplazar por el enlace permanente del grupo de WhatsApp
     href: "https://chat.whatsapp.com/",
     external: true,
     title: "El grupo de WhatsApp",
+    cuando: "Siempre abierto",
     cta: "Entrar al grupo",
-    body: "Es donde se anuncian los eventos, las convocatorias y las sesiones del grupo de lectura. Poco tráfico y nadie tiene que presentarse.",
+    body: "Es donde se anuncia todo primero: las sesiones del grupo de lectura, los eventos y las convocatorias. Poco tráfico y nadie tiene que presentarse.",
     despues: "Entras y ves lo que viene. Puedes quedarte mirando el tiempo que quieras.",
-  },
-  {
-    href: "https://cal.com/josegelves/meeting",
-    external: true,
-    title: "Veinte minutos con Jose",
-    cta: "Agendar en el calendario",
-    body: "Una llamada para contarte qué hay, entender qué te interesa y decirte por dónde entrar sin que pierdas meses averiguándolo solo.",
-    despues: "Escoges una hora libre en el calendario. No hay que escribir antes.",
   },
   {
     href: "mailto:jose@aisafetycolombia.org",
     external: true,
-    title: "Escribirnos",
-    cta: "jose@aisafetycolombia.org",
-    body: "Sirve para lo que no cabe en un grupo: una propuesta de colaboración, una invitación, una pregunta larga o algo de tu organización.",
-    despues: "Contestamos nosotros, no un formulario.",
+    title: "Grupo de lectura: AI Control",
+    cuando: "Viernes, 6:30 p. m., virtual, una hora",
+    cta: "Pedir el enlace",
+    body: "Leemos y discutimos trabajos recientes sobre cómo supervisar sistemas de IA que actúan por su cuenta. Cada sesión la lidera un participante distinto y la presentación dura máximo veinte minutos, así que se puede llegar solo a escuchar o llegar a presentar.",
+    despues: "Te pasamos el enlace y la lectura de esa semana. Se puede entrar suelto, sin seguir el ciclo entero.",
   },
   {
     href: "/eventos",
     external: false,
-    title: "Venir a un evento",
+    title: "Eventos y hackathones",
+    cuando: "El próximo hackathon es del 11 al 13 de septiembre",
     cta: "Ver los próximos",
-    body: "Charlas, talleres y cenas de discusión en Bogotá. Entrada libre y casi siempre en universidad. Es la forma más fácil de ver de qué se trata sin comprometerte a nada.",
+    body: "Durante el año hay charlas y talleres en Bogotá, con entrada libre y casi siempre en universidad. El hackathon de investigación lo convoca Apart Research y nosotros abrimos el espacio presencial acá: son tres días para salir con un trabajo propio.",
     despues: "Llegas, escuchas y decides. Nadie te va a pedir datos en la puerta.",
+  },
+];
+
+/* Las tres razones por las que alguien escribe en vez de entrar a algo. No son
+   actividades, así que van en una franja delgada y no en tarjetas. */
+const ESCRIBIR = [
+  {
+    title: "No sabes por dónde empezar",
+    body: "Veinte minutos para entender qué te interesa y decirte por dónde entrar. Sin compromiso.",
+    href: "https://cal.com/josegelves/meeting",
+    cta: "Agendar en el calendario",
+  },
+  {
+    title: "Quieres ayudar a organizar",
+    body: "Quienes sostienen esto son voluntarios. Siempre falta gente para eventos, logística y comunicación.",
+    href: "mailto:jose@aisafetycolombia.org",
+    cta: "jose@aisafetycolombia.org",
+  },
+  {
+    title: "Escribes desde una universidad o una organización",
+    body: "Charlas, talleres y colaboraciones, o algo que quieras proponernos.",
+    href: "mailto:jose@aisafetycolombia.org",
+    cta: "jose@aisafetycolombia.org",
   },
 ];
 
@@ -53,47 +72,26 @@ const PUERTAS = [
 const NO_NECESITAS = [
   {
     title: "Un posgrado",
-    body: "Ni en inteligencia artificial ni en nada. Entre quienes participan hay gente de ingeniería, derecho, economía, política pública y ciencias sociales.",
+    body: "Ni en inteligencia artificial ni en nada. Vienen de ingeniería, derecho, economía, política pública y ciencias sociales.",
   },
   {
     title: "Experiencia previa en el tema",
-    body: "La mayoría llega sin haber leído nada del campo. Para eso están el grupo de lectura y la conversación de veinte minutos.",
+    body: "La mayoría llega sin haber leído nada del campo.",
   },
   {
     title: "Inglés fluido",
-    body: "Casi todo el material del campo está en inglés, pero acá se discute en español y las sesiones son en español.",
+    body: "Casi todo el material del campo está en inglés, pero acá se discute en español.",
   },
   {
     title: "Dedicarle la carrera entera",
-    body: "Se puede entrar a leer un viernes al mes y ya. Quien quiera ir más lejos encuentra por dónde, pero no es el requisito de entrada.",
-  },
-];
-
-/* Programas y eventos ya no cuelgan del menú: entran acá, que es donde alguien
-   pregunta qué hay para hacer. Cada bloque enlaza a su página completa. */
-const QUE_HAY = [
-  {
-    href: "/programas",
-    title: "Programas",
-    cta: "Ver los programas",
-    body: "El hackathon de investigación con Apart y el grupo de lectura sobre control de sistemas de IA. Son las dos cosas que sostenemos todo el año.",
-  },
-  {
-    href: "/eventos",
-    title: "Eventos",
-    cta: "Ver los próximos",
-    body: "Charlas, talleres y cenas de discusión en Bogotá. Entrada libre, casi siempre en universidad y sin que haya que registrarse antes.",
-  },
-  {
-    href: "/investigacion",
-    title: "Investigación",
-    cta: "Leer los reportes",
-    body: "Lo que publicó la gente que ya pasó por acá, desde artículos en revistas hasta reportes de investigación.",
+    body: "Se puede entrar a leer un viernes al mes y ya.",
   },
 ];
 
 const CARD =
   "overflow-hidden rounded-lg bg-aisc-cream text-aisc-ink border border-aisc-ink flex w-full flex-col p-6 md:p-7 lg:p-8";
+const ENLACE_CARD =
+  "text-display-4 md:text-display-4-lg text-aisc-forest underline underline-offset-4 transition-colors hover:text-aisc-forest-deep";
 
 export default function Unete() {
   return (
@@ -105,46 +103,43 @@ export default function Unete() {
             <span className="text-kicker text-aisc-sand/70">Se entra trabajando</span>
             <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand text-balance">Únete</h1>
             <p className="text-body md:text-body-lg max-w-[640px] text-aisc-sand/90">
-              No hace falta ser investigador ni haber estudiado inteligencia artificial. Estas son las cuatro formas de
-              entrar y lo que pasa después de cada una.
+              No hace falta ser investigador ni haber estudiado inteligencia artificial. Estas son las tres cosas
+              abiertas ahora mismo y lo que pasa después de cada una.
             </p>
           </div>
         </div>
       </section>
 
-      <section id="puertas" className="bg-aisc-cream">
-        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pt-14 pb-16 md:pb-20">
+      <section id="abierto" className="bg-aisc-cream">
+        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pt-14 pb-14 md:pb-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.92fr)] lg:gap-6">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">Por dónde entrar</h2>
+            <h2 className="text-display-2 md:text-display-2-lg text-balance">Qué hay abierto</h2>
             <p className="text-body md:text-body-lg text-aisc-ink">
               Ninguna es mejor que otra y no hay que empezar por la primera. Escoge la que te dé menos pereza hoy.
             </p>
           </div>
-          <ul className="grid grid-cols-1 gap-[10px] md:grid-cols-2">
-            {PUERTAS.map((puerta) => (
-              <li className="flex" key={puerta.title}>
+          <ul className="grid grid-cols-1 gap-[10px] md:grid-cols-3">
+            {ABIERTO.map((item) => (
+              <li className="flex" key={item.title}>
                 <article className={CARD}>
-                  <span aria-hidden="true" className="mb-5 block h-px w-10 flex-none bg-aisc-coral" />
-                  <h3 className="text-display-3 md:text-display-3-lg text-balance">{puerta.title}</h3>
-                  <p className="text-body-sm mt-3 text-aisc-ink">{puerta.body}</p>
-                  <p className="text-meta mt-5 text-aisc-forest">{puerta.despues}</p>
-                  <div className="mt-7">
-                    {puerta.external ? (
+                  <span className="text-kicker text-aisc-coral">{item.cuando}</span>
+                  <h3 className="text-display-3 md:text-display-3-lg mt-3 text-balance">{item.title}</h3>
+                  <p className="text-body-sm mt-3 text-aisc-ink">{item.body}</p>
+                  <p className="text-meta mt-5 text-aisc-forest">{item.despues}</p>
+                  <div className="mt-auto pt-7">
+                    {item.external ? (
                       <a
-                        className="text-display-4 md:text-display-4-lg text-aisc-forest underline underline-offset-4 transition-colors hover:text-aisc-forest-deep"
-                        href={puerta.href}
-                        target={puerta.href.startsWith("mailto:") ? undefined : "_blank"}
-                        rel={puerta.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                        className={ENLACE_CARD}
+                        href={item.href}
+                        target={item.href.startsWith("mailto:") ? undefined : "_blank"}
+                        rel={item.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
                       >
-                        {puerta.cta}
+                        {item.cta}
                       </a>
                     ) : (
-                      <Link
-                        className="text-display-4 md:text-display-4-lg text-aisc-forest underline underline-offset-4 transition-colors hover:text-aisc-forest-deep"
-                        href={puerta.href}
-                      >
-                        {puerta.cta}
+                      <Link className={ENLACE_CARD} href={item.href}>
+                        {item.cta}
                       </Link>
                     )}
                   </div>
@@ -155,50 +150,44 @@ export default function Unete() {
         </div>
       </section>
 
-      <section id="que-hay" className="bg-aisc-cream">
-        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-16 md:pb-20">
+      <section id="escribir" className="bg-aisc-cream">
+        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-          <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.92fr)] lg:gap-6">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">Qué hay para hacer</h2>
-            <p className="text-body md:text-body-lg text-aisc-ink">
-              Lo que está abierto ahora mismo, en orden de cuánto compromete.
-            </p>
-          </div>
-          <ul className="grid grid-cols-1 gap-[10px] md:grid-cols-3">
-            {QUE_HAY.map((item) => (
-              <li className="flex" key={item.href}>
-                <Link
-                  className="focus-visible:outline-aisc-forest flex w-full flex-col rounded-lg border border-aisc-ink bg-aisc-cream p-6 transition-colors hover:bg-aisc-sand focus-visible:outline-2 focus-visible:outline-offset-[3px] md:p-7 lg:p-8"
-                  href={item.href}
-                >
-                  <h3 className="text-display-3 md:text-display-3-lg text-balance">{item.title}</h3>
-                  <p className="text-body-sm mt-3 text-aisc-ink">{item.body}</p>
-                  <span className="text-display-4 md:text-display-4-lg mt-auto pt-7 text-aisc-forest underline underline-offset-4">
+          <div className="grid grid-cols-1 gap-6 pt-5 md:grid-cols-[minmax(0,240px)_minmax(0,1fr)] md:gap-10 md:pt-7">
+            <h2 className="text-display-3 md:text-display-3-lg text-balance">Si prefieres escribir</h2>
+            <ul className="grid grid-cols-1 gap-x-10 gap-y-6 md:grid-cols-3">
+              {ESCRIBIR.map((item) => (
+                <li className="border-aisc-line border-t pt-3" key={item.title}>
+                  <h3 className="text-body-sm font-semibold text-aisc-forest">{item.title}</h3>
+                  <p className="text-body-sm mt-1 text-aisc-muted">{item.body}</p>
+                  <a
+                    className="text-body-sm mt-2 inline-block text-aisc-forest underline underline-offset-4 transition-colors hover:text-aisc-forest-deep"
+                    href={item.href}
+                    target={item.href.startsWith("mailto:") ? undefined : "_blank"}
+                    rel={item.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                  >
                     {item.cta}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
-      <section id="requisitos" className="bg-aisc-cream px-6 pb-12 md:pb-14">
-        <div className="mx-auto w-full max-w-[1400px] rounded-[12px] bg-aisc-sand px-6 py-12 text-aisc-ink md:px-10 lg:py-[70px]">
+      <section id="requisitos" className="bg-aisc-cream">
+        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-          <div className="grid grid-cols-1 gap-8 pt-5 pb-14 md:gap-10 md:pt-7 md:pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.92fr)] lg:gap-6">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">Lo que no necesitas</h2>
-            <p className="text-body md:text-body-lg text-aisc-ink">
-              Las cuatro cosas que la gente cree que le faltan antes de escribirnos. Ninguna hace falta.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-3 md:gap-4 lg:grid-cols-2">
-            {NO_NECESITAS.map((item) => (
-              <div key={item.title} className="border-aisc-forest min-w-0 rounded-[8px] border bg-aisc-sand p-6 md:p-8">
-                <h3 className="text-display-4 md:text-display-4-lg text-aisc-forest">{item.title}</h3>
-                <p className="text-body-sm mt-3 text-aisc-ink">{item.body}</p>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 gap-6 pt-5 md:grid-cols-[minmax(0,240px)_minmax(0,1fr)] md:gap-10 md:pt-7">
+            <h2 className="text-display-3 md:text-display-3-lg text-balance">Lo que no necesitas</h2>
+            <dl className="grid grid-cols-1 gap-x-10 gap-y-5 sm:grid-cols-2">
+              {NO_NECESITAS.map((item) => (
+                <div className="border-aisc-line border-t pt-3" key={item.title}>
+                  <dt className="text-body-sm font-semibold text-aisc-forest">{item.title}</dt>
+                  <dd className="text-body-sm mt-1 text-aisc-muted">{item.body}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </section>
