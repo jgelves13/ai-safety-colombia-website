@@ -68,3 +68,35 @@ export const IconUnete = () => (
     <path d="M13.2 12H3.8" />
   </Icon>
 );
+
+/* Los tres formatos de la pagina de recursos, con el mismo trazo. */
+export const IconVideos = () => (
+  <Icon>
+    <rect x="2.6" y="5" width="18.8" height="14" rx="2.4" />
+    <path d="M10.2 9.4 14.6 12l-4.4 2.6V9.4Z" />
+  </Icon>
+);
+
+export const IconPodcasts = () => (
+  <Icon>
+    <rect x="9.2" y="2.8" width="5.6" height="10.4" rx="2.8" />
+    <path d="M5.6 11.2a6.4 6.4 0 0 0 12.8 0" />
+    <path d="M12 17.6V21" />
+  </Icon>
+);
+
+export const IconLibros = () => (
+  <Icon>
+    <path d="M12 6.4C10.4 5 8.4 4.4 5.2 4.4a1 1 0 0 0-1 1v11.8a1 1 0 0 0 1 1c3.2 0 5.2.6 6.8 2 1.6-1.4 3.6-2 6.8-2a1 1 0 0 0 1-1V5.4a1 1 0 0 0-1-1c-3.2 0-5.2.6-6.8 2Z" />
+    <path d="M12 6.4v13.8" />
+  </Icon>
+);
+
+export const IconCursos = () => (
+  <Icon>
+    <path d="M3.4 18.6h4.2v-4.2H3.4v4.2Z" />
+    <path d="M9.9 12.9h4.2V8.7H9.9v4.2Z" />
+    <path d="M16.4 7.2h4.2V3H16.4v4.2Z" />
+    <path d="M7.6 16.5h2.3v-3.6M14.1 10.8h2.3V7.2" />
+  </Icon>
+);

@@ -24,16 +24,16 @@ const ABIERTO = [
     despues: "Está siempre abierto y tiene poco tráfico. Entras, ves lo que viene y te quedas mirando el tiempo que quieras.",
   },
   {
-    href: "mailto:contacto@aisafetycolombia.org",
+    href: "https://chat.whatsapp.com/DfWuuPlzqmIFN1tRtl57SB",
     external: true,
     title: "Grupo de lectura: AI Control",
-    cta: "Pedir el enlace",
+    cta: "Entrar al grupo de lectura",
     body: "Un espacio abierto para discutir cómo se supervisa a un sistema de IA que actúa por su cuenta. Se llega con cualquier nivel de conocimiento y se puede venir solo a escuchar, o traer una lectura y presentarla.",
-    despues: "Los viernes a las 6:30 p. m., virtual y de una hora. Te pasamos el enlace y la lectura de la semana: están en inglés, aunque la discusión es en español.",
+    despues: "Nos vemos cada quince días, los viernes a las 6:30 p. m., por videollamada y durante una hora. La lectura se pasa antes por el grupo; está en inglés, aunque la discusión es en español.",
   },
   {
-    href: "/eventos",
-    external: false,
+    href: "https://luma.com/user/usr-TMDEtNWA1TozP77",
+    external: true,
     title: "Charlas y talleres",
     cta: "Ver los próximos",
     body: "Oyes de primera mano a alguien que trabaja en el tema y le puedes preguntar en persona lo que quieras. Es también donde la gente de la comunidad se conoce y salen las colaboraciones.",
@@ -45,7 +45,16 @@ const ABIERTO = [
     title: "Hackathones de investigación",
     cta: "Ver el de septiembre",
     body: "Sales con un trabajo propio, publicado y con retroalimentación escrita de jurados de fuera. Para mucha gente ha sido lo primero concreto que puede mostrar en el campo.",
-    despues: "El próximo es del 11 al 13 de septiembre, sobre respuesta a incidentes. Lo convoca Apart Research y nosotros abrimos el espacio presencial en Bogotá.",
+    despues: (
+      <>
+        El próximo es del 11 al 13 de septiembre, sobre respuesta a incidentes. Lo convoca Apart Research y nosotros
+        abrimos el espacio presencial en Bogotá.{" "}
+        <Link className="underline underline-offset-[3px] hover:text-aisc-forest-deep" href="/investigacion#hackathons">
+          Así fue la edición pasada
+        </Link>
+        .
+      </>
+    ),
   },
 ];
 

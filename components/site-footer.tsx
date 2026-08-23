@@ -8,6 +8,7 @@ const NAVEGACION = [
   { href: "/investigacion", label: "Investigación" },
   { href: "/unete", label: "Únete" },
   { href: "/quienes-somos", label: "Quiénes somos" },
+  { href: "/recursos", label: "Recursos" },
   { href: "/programas", label: "Programas" },
   { href: "/eventos", label: "Eventos" },
   { href: "/actualidad", label: "Actualidad" },
