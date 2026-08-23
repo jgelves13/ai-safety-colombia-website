@@ -253,12 +253,177 @@ export function GraficaEstimaciones() {
   );
 }
 
+/* --- Figura 4: el examen medido contra si mismo ---------------------------- */
+
+/* Anthropic, system card de Claude Sonnet 4.5, §7.6.4.1: 100 trampas sinteticas.
+   El maximo de 9 % es el peor de los vectores inhibidos; la mayoria quedo en 1-5 %. */
+const HONEYPOT = [
+  { l: "Sonnet 4.5\nsin intervenir", v: 0, n: "0 %", destacar: false },
+  { l: "Con direcciones\naleatorias inhibidas", v: 0, n: "0 %", destacar: false },
+  { l: "Con «esto es una\nprueba» inhibido", v: 9, n: "hasta 9 %", destacar: true },
+  { l: "Sonnet 4\nsin intervenir", v: 11, n: "≈11 %", destacar: false },
+];
+
+export function GraficaHoneypot() {
+  const W = 900;
+  const H = 300;
+  const MT = 30;
+  const MB = 76;
+  const ML = 56;
+  const MR = 24;
+  const MAX = 12;
+  const py = (v: number) => MT + (1 - v / MAX) * (H - MT - MB);
+  const paso = (W - ML - MR) / HONEYPOT.length;
+  const ancho = Math.min(110, paso * 0.5);
+
+  return (
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      className="h-auto w-full"
+      role="img"
+      aria-label="Porcentaje de acciones desalineadas en cien escenarios trampa, con y sin la conciencia de estar siendo evaluado"
+    >
+      {[0, 3, 6, 9, 12].map((t) => (
+        <g key={t}>
+          <line x1={ML} x2={W - MR} y1={py(t)} y2={py(t)} stroke={LINE} strokeWidth={t === 0 ? 2 : 1} />
+          <text x={ML - 12} y={py(t) + 4} textAnchor="end" fontSize={12} fill={MUTED}>
+            {t} %
+          </text>
+        </g>
+      ))}
+      {HONEYPOT.map((b, i) => {
+        const cx = ML + paso * (i + 0.5);
+        const alto = Math.max(py(b.v) === py(0) ? 0 : py(0) - py(b.v), 0);
+        return (
+          <g key={b.l}>
+            {alto > 0 ? (
+              <rect
+                x={cx - ancho / 2}
+                y={py(b.v)}
+                width={ancho}
+                height={alto}
+                fill={b.destacar ? CORAL : FOREST}
+                opacity={b.destacar ? 1 : 0.45}
+              />
+            ) : (
+              <line x1={cx - ancho / 2} x2={cx + ancho / 2} y1={py(0)} y2={py(0)} stroke={FOREST} strokeWidth={4} />
+            )}
+            <text
+              x={cx}
+              y={py(b.v) - 10}
+              textAnchor="middle"
+              fontSize={15}
+              fontWeight={600}
+              fill={b.destacar ? CORAL : INK}
+            >
+              {b.n}
+            </text>
+            {b.l.split("\n").map((linea, j) => (
+              <text key={linea} x={cx} y={H - MB + 24 + j * 16} textAnchor="middle" fontSize={12} fill={MUTED}>
+                {linea}
+              </text>
+            ))}
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+/* --- Figura 5: la desproporcion de escala ---------------------------------- */
+
+const ESCALA = [
+  {
+    l: "Todo el campo de la seguridad de la IA",
+    sub: "170 organizaciones, 1.313 personas de tiempo completo",
+    v: 525,
+    n: "525 millones",
+    destacar: true,
+  },
+  {
+    l: "Inversión anunciada en infraestructura de IA",
+    sub: "Amazon, Google, Meta y Microsoft, solo en 2026",
+    v: 725_000,
+    n: "725.000 millones",
+    destacar: false,
+  },
+];
+
+export function GraficaAsimetria() {
+  const W = 900;
+  const H = 300;
+  const ML = 24;
+  const MR = 24;
+  const MT = 46;
+  const alto = 46;
+  const hueco = 100;
+  const lo = Math.log10(100);
+  const hi = Math.log10(1_000_000);
+  const ancho = (v: number) => ((Math.log10(v) - lo) / (hi - lo)) * (W - ML - MR);
+  const ticks = [1_000, 10_000, 100_000, 1_000_000];
+  const rot = (v: number) => (v >= 1_000_000 ? "1 billón" : `${(v / 1000).toLocaleString("es-CO")} mil M`);
+  const base = MT + hueco * ESCALA.length + 4;
+
+  return (
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      className="h-auto w-full"
+      role="img"
+      aria-label="Comparación entre el presupuesto anual del campo de la seguridad de la IA y la inversión anunciada en infraestructura de IA"
+    >
+      {ticks.map((t) => (
+        <g key={t}>
+          <line x1={ML + ancho(t)} x2={ML + ancho(t)} y1={MT - 14} y2={base} stroke={LINE} strokeWidth={1} />
+          <text x={ML + ancho(t)} y={base + 20} textAnchor="middle" fontSize={12} fill={MUTED}>
+            {rot(t)}
+          </text>
+        </g>
+      ))}
+      <text x={ML} y={base + 44} fontSize={12} fill={MUTED}>
+        Dólares por año, escala logarítmica: cada línea vale diez veces la anterior.
+      </text>
+      {ESCALA.map((b, i) => {
+        const y = MT + hueco * i;
+        return (
+          <g key={b.l}>
+            <text x={ML} y={y - 22} fontSize={13} fontWeight={600} fill={INK}>
+              {b.l}
+            </text>
+            <text x={ML} y={y - 7} fontSize={12} fill={MUTED}>
+              {b.sub}
+            </text>
+            <rect
+              x={ML}
+              y={y}
+              width={Math.max(ancho(b.v), 3)}
+              height={alto}
+              fill={b.destacar ? CORAL : FOREST}
+              opacity={b.destacar ? 1 : 0.75}
+            />
+            <text
+              x={ML + ancho(b.v) + (ancho(b.v) > 300 ? -12 : 12)}
+              y={y + alto / 2 + 6}
+              textAnchor={ancho(b.v) > 300 ? "end" : "start"}
+              fontSize={16}
+              fontWeight={600}
+              fill={ancho(b.v) > 300 ? "#f6f1e4" : b.destacar ? CORAL : FOREST}
+            >
+              USD {b.n}
+            </text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
 /* --- envoltorio comun ------------------------------------------------------ */
 
 export function Figura({
   numero,
   titulo,
   pie,
+  limite,
   fuente,
   href,
   children,
@@ -266,6 +431,8 @@ export function Figura({
   numero: number;
   titulo: string;
   pie: string;
+  /** que NO se puede concluir de esta figura; se imprime debajo del grafico */
+  limite?: string;
   fuente: string;
   href: string;
   children: React.ReactNode;
@@ -280,6 +447,11 @@ export function Figura({
       <div className="overflow-x-auto rounded-lg border border-aisc-line bg-aisc-cream p-4 md:p-6">
         <div className="min-w-[560px]">{children}</div>
       </div>
+      {limite ? (
+        <p className="text-body-sm mt-3 max-w-[680px] border-l-2 border-aisc-coral pl-4 text-aisc-muted">
+          <span className="text-aisc-ink">No muestra:</span> {limite}
+        </p>
+      ) : null}
       <p className="text-meta mt-3 text-aisc-muted">
         Fuente:{" "}
         <a

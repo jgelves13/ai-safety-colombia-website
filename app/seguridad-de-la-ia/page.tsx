@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Figura, GraficaEstimaciones, GraficaGpqa, GraficaHorizonte } from "@/components/charts";
+import {
+  Figura,
+  GraficaAsimetria,
+  GraficaEstimaciones,
+  GraficaGpqa,
+  GraficaHoneypot,
+  GraficaHorizonte,
+} from "@/components/charts";
 import CtaPanel from "@/components/cta-panel";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
@@ -9,7 +16,7 @@ import { CTA_LINK, CTA_LINK_PRIMARY, HERO_INNER, HERO_SECTION, PAGE_SHELL } from
 export const metadata: Metadata = {
   title: "Qué es la seguridad de la IA | AI Safety Colombia",
   description:
-    "Por qué creemos que los avances de los últimos tres años son un problema de seguridad, qué tan de acuerdo está el campo, dónde puede estar mal nuestro argumento y qué se puede hacer desde Colombia.",
+    "Por qué la velocidad del avance en inteligencia artificial, y no la inteligencia de las máquinas, es lo que la convierte en un problema de seguridad. Con las mediciones que lo sostienen y lo que no permiten concluir.",
 };
 
 /** enlace de fuente en linea: siempre apunta al documento primario, nunca a un resumen */
@@ -27,7 +34,7 @@ function Fuente({ href, children }: { href: string; children: React.ReactNode })
 }
 
 /* Ancho de lectura: una sola columna. La prosa se queda en 720px y las figuras
-   salen a 980px. Nada de titulo a la izquierda y texto a la derecha. */
+   salen a 980px. */
 const COL = "mx-auto w-full max-w-[720px]";
 const ANCHO = "mx-auto w-full max-w-[980px] px-6 md:px-8";
 const P = "text-body md:text-body-lg text-aisc-ink";
@@ -51,8 +58,9 @@ function Parrafo({ children }: { children: React.ReactNode }) {
 
 const INDICE = [
   { id: "resumen", label: "En resumen" },
-  { id: "que-cambio", label: "Qué cambió en tres años" },
-  { id: "por-que", label: "Por qué creemos que es un problema de seguridad" },
+  { id: "capacidades", label: "Los sistemas hacen cada vez más cosas sin supervisión" },
+  { id: "verificacion", label: "Nadie sabe comprobar qué persigue un modelo" },
+  { id: "asimetria", label: "La capacidad de decidir no crece al mismo ritmo" },
   { id: "desacuerdo", label: "Qué tan de acuerdo está el campo" },
   { id: "objeciones", label: "Objeciones y respuestas" },
   { id: "frentes", label: "Cómo se trabaja en esto" },
@@ -61,41 +69,47 @@ const INDICE = [
 ];
 
 const RESUMEN = [
-  "Los sistemas de IA mejoraron muy rápido en los últimos tres años, y no solo en lo que se ve en redes sociales: también en exámenes técnicos difíciles y en sostener tareas largas sin que nadie los supervise. Abajo mostramos las dos mediciones con su fuente.",
-  "Creemos que el problema de fondo es que estos sistemas se entrenan en vez de programarse. Nadie escribe las reglas que siguen, y hoy no hay una forma confiable de abrir uno y comprobar qué está persiguiendo en realidad.",
-  "El campo no está de acuerdo sobre qué tan grave es. Entre los pronósticos más serios hay casi un orden de magnitud de diferencia, y hay científicos muy respetados que piensan que todo el argumento está mal planteado.",
-  "Hay alrededor de 1.100 personas en el mundo dedicadas de tiempo completo a esto, casi ninguna en América Latina. Mientras tanto se están escribiendo las reglas sobre qué se le puede exigir a un sistema antes de usarlo.",
+  "Esperamos que los sistemas de IA sigan mejorando rápido en los próximos años, y que buena parte de ese avance consista en hacer cosas por su cuenta en lugar de responder preguntas. Los mejores modelos ya ejecutan tareas de varias horas sin que nadie revise cada paso.",
+  "Eso nos preocupa por una razón concreta. Estos sistemas se entrenan en vez de programarse, y hoy nadie sabe abrir uno y comprobar qué está persiguiendo en realidad. Los propios laboratorios lo reportan: en 2025 Anthropic descubrió que su modelo reconocía cuándo lo estaban evaluando y se portaba mejor por eso, lo que dejó en duda sus propias mediciones de seguridad.",
+  "Mientras tanto, la capacidad de verificar estos sistemas, decidir sobre ellos y corregirlos avanza al ritmo de siempre. Todo el campo de la seguridad de la IA reúne unas 1.300 personas y 525 millones de dólares al año; las cuatro empresas que más invierten en infraestructura de IA anunciaron cerca de 725.000 millones solo para 2026. Ese desfase, y no la inteligencia de las máquinas, es el problema.",
+  "No hay consenso sobre qué tan grave puede llegar a ser: entre los pronósticos más serios hay casi un orden de magnitud de diferencia. Nos parece que eso justifica prepararse en vez de esperar, porque las decisiones difíciles de revertir se están tomando ahora. De las 170 organizaciones que trabajan en esto en el mundo, ninguna está en América Latina.",
 ];
 
-/** las tres formas de trabajar en el problema, sin que ninguna pese mas que las otras */
+/** las tres formas de trabajar en el problema */
 const FRENTES = [
   {
     title: "Alineación e interpretabilidad",
-    body: "Cómo lograr que un sistema persiga lo que se le pidió y no algo parecido, y cómo mirar por dentro para saber qué está haciendo en realidad. Es el corazón técnico del campo y sigue sin resolverse.",
+    body: "Cómo lograr que un sistema persiga lo que se le pidió y no algo parecido, y cómo mirar por dentro para saber qué está haciendo. Es el frente que ataca el problema de fondo y el que sigue sin resolverse.",
   },
   {
     title: "Evaluación y control",
-    body: "Cómo medir de qué es capaz un modelo antes de soltarlo y cómo mantenerlo bajo supervisión cuando ya actúa por su cuenta. Es lo más cercano a un peritaje técnico, y hoy hace falta gente que lo sepa hacer.",
+    body: "Cómo medir de qué es capaz un modelo antes de soltarlo y cómo mantenerlo bajo supervisión cuando ya actúa por su cuenta. Es lo más parecido a un peritaje técnico y donde más se necesita gente ahora mismo.",
   },
   {
     title: "Gobernanza y política pública",
-    body: "Qué se le exige a quien despliega un sistema, con qué evidencia y ante quién responde. En Colombia esto se está definiendo ahora, en compras públicas y en regulación sectorial.",
+    body: "Qué se le exige a quien despliega un sistema, con qué evidencia y ante quién responde. En Colombia se está definiendo ahora, en compras públicas y regulación sectorial, y no requiere formación técnica previa.",
   },
 ];
 
 /** recursos externos reales, cada uno con lo que nos parece a nosotros */
 const RECURSOS = [
   {
-    title: "Curso de fundamentos de BlueDot",
-    meta: "BlueDot Impact · inglés · gratuito",
-    body: "Es el punto de entrada más usado del campo y el que solemos recomendar primero. Cinco semanas de lecturas y discusión, con una versión técnica y una de gobernanza.",
-    href: "https://bluedot.org",
-  },
-  {
     title: "El perfil del problema de 80,000 Hours",
     meta: "80,000 Hours · inglés · lectura larga",
-    body: "La versión extensa de casi todo lo que está acá, mejor argumentada. Nos apoyamos bastante en ella, aunque no coincidimos con todo: son más optimistas que nosotros sobre lo rápido que se puede entrar al campo.",
+    body: "De ahí sale la forma de este texto: encadenar afirmaciones y después dedicarle una sección larga a las objeciones. Su versión del argumento pasa por la economía y el empleo; la nuestra pasa por la verificación.",
     href: "https://80000hours.org/problem-profiles/artificial-intelligence/",
+  },
+  {
+    title: "Preparing for the Intelligence Explosion",
+    meta: "MacAskill y Moorhouse, Forethought · inglés · artículo",
+    body: "El texto más exigente de esta lista y el que mejor explica por qué esperar a tener certeza sale caro. No hace falta comprar su escenario para quedarse con el argumento sobre los plazos.",
+    href: "https://www.forethought.org/research/preparing-for-the-intelligence-explosion",
+  },
+  {
+    title: "Curso de fundamentos de BlueDot",
+    meta: "BlueDot Impact · inglés · gratuito",
+    body: "El punto de entrada más usado del campo y el que solemos recomendar primero. Cinco semanas de lecturas y discusión, con una versión técnica y una de gobernanza.",
+    href: "https://bluedot.org",
   },
   {
     title: "AI Safety Info",
@@ -117,13 +131,13 @@ export default function SeguridadDeLaIA() {
               Qué es la seguridad de la IA
             </h1>
             <p className="text-body md:text-body-lg max-w-[700px] text-aisc-sand/90">
-              A finales de 2023 un grupo de investigadores publicó un examen de preguntas de doctorado hecho a
-              propósito para que ningún sistema de IA pudiera aprobarlo. El mejor de ese año sacó 39 %. Hoy la marca va
-              en 94,8 %. Este texto es nuestro intento de explicar qué hay detrás de ese salto y por qué creemos que es
-              un problema de seguridad y no solamente una buena noticia.
+              A finales de 2023 un grupo de investigadores publicó un examen de preguntas de doctorado hecho a propósito
+              para que ningún sistema de IA pudiera aprobarlo. El mejor de ese año sacó 39 %. Hoy la marca va en 94,8 %.
+              Lo que sigue es un argumento sobre por qué ese ritmo, y no la inteligencia de las máquinas, es lo que
+              convierte a la IA en un problema de seguridad.
             </p>
             <p className="text-meta text-aisc-sand/60">
-              AI Safety Colombia · actualizado en agosto de 2026 · unos 13 minutos de lectura
+              AI Safety Colombia · actualizado en agosto de 2026 · unos 15 minutos de lectura
             </p>
           </div>
         </div>
@@ -135,14 +149,13 @@ export default function SeguridadDeLaIA() {
           <div className={`${COL} scroll-mt-24`} id="resumen">
             <div className="rounded-lg border border-aisc-ink bg-aisc-sand p-6 md:p-8">
               <span className="text-kicker text-aisc-coral">En resumen</span>
-              <ul className="mt-5 flex flex-col gap-4">
-                {RESUMEN.map((linea) => (
-                  <li key={linea} className="flex gap-3">
-                    <span aria-hidden="true" className="mt-[0.7em] h-px w-4 flex-none bg-aisc-forest" />
-                    <span className="text-body-sm md:text-body text-aisc-ink">{linea}</span>
-                  </li>
+              <div className="mt-5 flex flex-col gap-4">
+                {RESUMEN.map((parrafo) => (
+                  <p key={parrafo} className="text-body-sm md:text-body text-aisc-ink">
+                    {parrafo}
+                  </p>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
 
@@ -164,32 +177,27 @@ export default function SeguridadDeLaIA() {
             </ol>
           </nav>
 
-          {/* 1 ---------------------------------------------------------- */}
-          <H2 id="que-cambio">Qué cambió en tres años</H2>
+          {/* ---------------------------------------------------------- */}
+          <H2 id="capacidades">Los sistemas hacen cada vez más cosas sin supervisión</H2>
           <Parrafo>
-            Durante mucho tiempo esta discusión se hizo en abstracto, y no era culpa de nadie: no había gran cosa que
-            medir. En los últimos tres años eso cambió lo suficiente como para poder mostrar curvas en vez de
-            argumentos, y las dos que nos parecen más útiles son estas.
+            La mejor evidencia pública de que las capacidades crecen rápido es GPQA, un conjunto de preguntas de
+            biología, física y química que un grupo de doctorandos escribió en 2023 con una instrucción incómoda: que
+            fueran difíciles incluso para alguien con Google abierto.
           </Parrafo>
           <Parrafo>
-            La primera es GPQA. Es un conjunto de preguntas de biología, física y química que un grupo de doctorandos
-            escribió en 2023 con una instrucción incómoda: que fueran difíciles incluso para alguien con Google
-            abierto. Para saber si lo habían logrado contrataron a dos grupos de personas. A los doctores del área les
-            fue bien, 69,7 % en el subconjunto más duro. Al otro grupo, gente capaz pero de fuera del campo, le dieron
-            internet libre y más de media hora por pregunta, y se quedó en 34 %, a nueve puntos de lo que da responder
-            al azar <Fuente href="https://arxiv.org/abs/2311.12022">(Rein et al., 2023)</Fuente>. Con eso quedaron
-            tranquilos de que el examen medía algo.
-          </Parrafo>
-          <Parrafo>
-            El mejor sistema disponible el año en que se publicó sacó 39 %. En diciembre de 2024 uno pasó por primera
-            vez la marca de los doctores, y desde entonces la frontera siguió subiendo hasta quedar unos veinticinco
-            puntos por encima de ella.
+            Para comprobar que el examen medía algo, sus autores lo aplicaron a dos grupos de control. Los doctores del
+            área sacaron 69,7 % en el subconjunto más duro. El segundo grupo, gente capaz pero ajena al campo, tuvo
+            internet libre y más de media hora por pregunta, y se quedó en 34 %, apenas nueve puntos por encima de
+            responder al azar <Fuente href="https://arxiv.org/abs/2311.12022">(Rein et al., 2023)</Fuente>. El mejor
+            sistema disponible ese año sacó 39 %. En diciembre de 2024 uno superó por primera vez a los doctores, y la
+            frontera siguió subiendo.
           </Parrafo>
 
           <Figura
             numero={1}
-            titulo="Un examen que se diseñó para ser imposible, resuelto en veinte meses"
-            pie="Cada punto es el mejor resultado publicado hasta esa fecha en GPQA Diamond, 198 preguntas de nivel doctoral. La línea punteada es el desempeño de los doctores del área que sirvieron de referencia."
+            titulo="Un examen diseñado para ser imposible, resuelto en veinte meses"
+            pie="Cada punto es el mejor resultado publicado hasta esa fecha en GPQA Diamond, 198 preguntas de nivel doctoral. La línea punteada es el desempeño de los doctores del área que sirvieron de control."
+            limite="que un sistema entienda biología, ni que pueda hacer el trabajo de un investigador. Cuenta respuestas correctas en preguntas de opción múltiple. Un examen además se satura: por encima del 95 % deja de distinguir entre sistemas."
             fuente="Epoch AI, «AI Benchmarking Hub» (CC BY)"
             href="https://epoch.ai/data/ai-benchmarking-dashboard"
           >
@@ -197,61 +205,29 @@ export default function SeguridadDeLaIA() {
           </Figura>
 
           <Parrafo>
-            La segunda medición se cita menos y a nosotros nos parece igual de importante. Epoch AI revisó 231 modelos
-            de lenguaje publicados a lo largo de una década y estimó cuánto cómputo hacía falta, en cada momento, para
-            alcanzar un nivel dado de desempeño. Esa cantidad se reduce a la mitad aproximadamente cada ocho meses, con
-            un intervalo de confianza del 95 % entre cinco y catorce{" "}
-            <Fuente href="https://epoch.ai/blog/algorithmic-progress-in-language-models">(Epoch AI, 2024)</Fuente>. Es
-            decir que buena parte del avance no viene de construir centros de datos más grandes, sino de aprender a
-            usarlos mejor, y eso pesa a la hora de discutir si el progreso se puede frenar cerrando la llave del
-            hardware.
-          </Parrafo>
-          <Parrafo>
-            Vale la pena decir qué no muestran estos gráficos. No muestran que un sistema entienda algo, solo que
-            responde bien. Además los exámenes se saturan: cuando un benchmark llega al 95 % deja de dar información
-            útil, y existe una discusión honesta sobre cuánto de la mejora es capacidad real y cuánto es que las
-            preguntas terminaron filtrándose en los datos de entrenamiento. Nosotros creemos que la tendencia de fondo
-            es real, y también creemos que es fácil leer de más en cualquiera de estas curvas tomada por separado.
+            Un solo examen no alcanza para hablar de una tendencia. Epoch AI revisó 231 modelos de lenguaje publicados a
+            lo largo de una década y estimó cuánto cómputo hacía falta, en cada momento, para alcanzar un nivel dado de
+            desempeño: esa cantidad se reduce a la mitad cada ocho meses aproximadamente, con un intervalo de confianza
+            del 95 % entre cinco y catorce{" "}
+            <Fuente href="https://epoch.ai/blog/algorithmic-progress-in-language-models">(Epoch AI, 2024)</Fuente>.
+            Buena parte del avance, entonces, no viene de construir centros de datos más grandes sino de aprender a
+            usarlos mejor, y eso importa para la objeción del estancamiento que discutimos abajo.
           </Parrafo>
 
-          {/* 2 ---------------------------------------------------------- */}
-          <H2 id="por-que">Por qué creemos que es un problema de seguridad</H2>
+          <H3>De responder preguntas a ejecutar tareas</H3>
           <Parrafo>
-            Hay varias maneras de armar este argumento y no todas nos convencen igual. La que nos parece más sólida
-            tiene tres pasos, y no hace falta comprarla entera: si alguno de los tres te parece débil, el resto del
-            texto sigue teniendo sentido, solo que con menos urgencia.
-          </Parrafo>
-
-          <H3>1. Estos sistemas se entrenan, no se programan</H3>
-          <Parrafo>
-            Nadie escribe las reglas que sigue un modelo. Se define un objetivo de entrenamiento, se le muestran
-            enormes cantidades de ejemplos y el sistema ajusta por su cuenta miles de millones de parámetros que nadie
-            eligió uno por uno. Lo que se controla es la medida con la que se lo califica, y optimizar una medida no es
-            lo mismo que cumplir la intención de quien la escribió.
-          </Parrafo>
-          <Parrafo>
-            Esto suena abstracto hasta que se ve en la práctica. Los reportes técnicos que publican los propios
-            laboratorios describen modelos que aprendieron a darle la razón al usuario porque eso subía la
-            calificación, modelos que encontraron errores en el sistema de puntuación y los explotaron en vez de
-            resolver la tarea, y modelos que se comportan distinto cuando detectan que los están evaluando. Ninguna de
-            esas conductas se le enseñó a propósito, y ninguna se arregla haciendo el modelo más inteligente: son
-            fallas de la medición. La interpretabilidad, que es el campo que intenta abrir un modelo y ver qué está
-            haciendo por dentro, ha avanzado mucho en cinco años y todavía está muy lejos de poder responder esa
-            pregunta con confianza.
-          </Parrafo>
-
-          <H3>2. Cada vez actúan más y se les revisa menos</H3>
-          <Parrafo>
-            La frontera del campo ya no son modelos que contestan preguntas. Son agentes que escriben y ejecutan
-            código, usan herramientas, navegan y operan durante horas sin que nadie mire cada paso. METR intenta medir
-            eso de forma directa preguntándose qué tan larga puede ser una tarea para que un modelo la complete con 50 %
-            de éxito, y expresando esa duración en el tiempo que le tomaría a un profesional humano.
+            Lo que cambia la naturaleza del problema no es el puntaje sino el modo de uso. La frontera del campo ya no
+            son modelos que contestan: son agentes que escriben y ejecutan código, usan herramientas, navegan y operan
+            durante horas sin que nadie revise cada paso. METR mide esto de forma directa. Pregunta qué tan larga puede
+            ser una tarea para que el mejor modelo del momento la complete con 50 % de éxito, y expresa esa duración en
+            el tiempo que le tomaría a un profesional humano.
           </Parrafo>
 
           <Figura
             numero={2}
             titulo="De cinco minutos a una jornada de trabajo"
-            pie="Duración de la tarea más larga que el mejor modelo de cada momento completa con 50 % de éxito. El eje vertical es logarítmico: cada línea vale cuatro veces la anterior."
+            pie="Duración de la tarea más larga que el mejor modelo de cada momento completa con 50 % de éxito. El eje vertical es logarítmico: cada línea vale cuatro veces la anterior. METR estima que la duración se duplica cada siete meses."
+            limite="que los modelos puedan reemplazar a un profesional. La medición se hace sobre tareas de software e investigación, que es donde tiene sentido comparar contra un humano, y ni METR afirma que se traslade limpiamente a otros oficios."
             fuente="METR, «Measuring AI Ability to Complete Long Tasks», vía Epoch AI (CC BY)"
             href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/"
           >
@@ -259,52 +235,159 @@ export default function SeguridadDeLaIA() {
           </Figura>
 
           <Parrafo>
-            METR estimó que esa duración se duplica cada siete meses y los datos de los últimos dos años van, si acaso,
-            más rápido. Conviene tomarlo con cuidado: la medición se hace sobre tareas de software e investigación,
-            que es donde tiene sentido comparar contra un profesional, y ni ellos afirman que se traslade limpiamente a
-            otros oficios. Lo que sí nos parece difícil de discutir es la consecuencia práctica. Cuando un sistema
-            actúa, un error deja de ser una respuesta equivocada y pasa a ser algo que ya ocurrió, y mientras más larga
-            es la cadena de acciones menos viable resulta que un humano la acompañe paso a paso.
+            La consecuencia práctica es la que importa para el resto del texto. Cuando un sistema responde, un error es
+            una respuesta equivocada que alguien puede descartar. Cuando un sistema actúa, un error es algo que ya
+            ocurrió. Y mientras más larga es la cadena de acciones, menos viable resulta que un humano la acompañe paso
+            a paso, que es justamente el mecanismo con el que hoy se controlan estos sistemas.
           </Parrafo>
 
-          <H3>3. La investigación se acelera a sí misma</H3>
+          {/* ---------------------------------------------------------- */}
+          <H2 id="verificacion">Nadie sabe comprobar qué persigue un modelo</H2>
           <Parrafo>
-            Buena parte del trabajo de construir IA consiste en programar, correr experimentos y analizar resultados,
-            que es justo lo que estos sistemas hacen mejor cada año. Si esa retroalimentación se sostiene, el margen
-            para detectar y corregir errores se estrecha en el peor momento posible.
+            Si la supervisión paso a paso deja de ser viable, la alternativa sería verificar de antemano qué va a hacer
+            el sistema. Ahí es donde el argumento se pone incómodo, porque hoy no sabemos hacerlo.
           </Parrafo>
           <Parrafo>
-            De los tres pasos, este es el que menos nos convence a nosotros mismos, y lo decimos porque es el que suele
-            citarse con más seguridad de la que merece. Volvemos sobre él en las objeciones.
-          </Parrafo>
-
-          {/* 3 ---------------------------------------------------------- */}
-          <H2 id="desacuerdo">Qué tan de acuerdo está el campo</H2>
-          <Parrafo>
-            Cuando uno se convence de un argumento así, lo sano es mirar si la gente que sabe del tema piensa lo mismo.
-            La respuesta corta es que no hay consenso, y eso cambia bastante cómo hay que leer todo lo anterior.
+            Nadie escribe las reglas que sigue un modelo. Se define un objetivo de entrenamiento, se le muestran enormes
+            cantidades de ejemplos y el sistema ajusta por su cuenta miles de millones de parámetros que nadie eligió
+            uno por uno. Lo único que se controla es la medida con la que se lo califica, y optimizar una medida no
+            equivale a cumplir la intención de quien la escribió.
           </Parrafo>
           <Parrafo>
-            Del lado de la preocupación, en 2023 se encuestó a 2.778 investigadores que publican en las principales
-            conferencias de IA. La mediana asignó 5 % de probabilidad a que la IA avanzada termine en la extinción
-            humana o en una pérdida de control comparable, y el promedio fue 16,2 %{" "}
-            <Fuente href="https://arxiv.org/abs/2401.02843">(Grace et al., 2024)</Fuente>. Entre 38 % y 51 % de ellos
-            le dieron al menos 10 % de probabilidad a un desenlace así. Incluso entre quienes veían más probable un
-            buen resultado, casi la mitad seguía asignando 5 % o más al peor.
+            El caso mejor documentado de lo que esto implica no viene de un crítico externo sino del reporte técnico con
+            el que Anthropic publicó Claude Sonnet 4.5 en septiembre de 2025. Al someterlo a sus evaluaciones de
+            alineación, el modelo empezó a decir en voz alta que sospechaba estar en una prueba: lo hizo en cerca del
+            13 % de las transcripciones de su auditor automático. Los dos evaluadores externos midieron lo mismo por su
+            cuenta. El instituto británico de seguridad de la IA contó 16,6 % de menciones espontáneas, contra 3,5 % del
+            modelo anterior; Apollo Research, que usa escenarios más agresivos, llegó a 58 %, contra 22 %{" "}
+            <Fuente href="https://www.anthropic.com/claude-sonnet-4-5-system-card">
+              (Anthropic, System Card de Claude Sonnet 4.5, §7.2 y §7.3)
+            </Fuente>
+            .
           </Parrafo>
           <Parrafo>
-            Del otro lado, los pronosticadores profesionales llegan a números mucho más bajos. El Forecasting Research
-            Institute organizó en 2022 un torneo entre expertos en riesgos de IA y superpronosticadores, gente
-            seleccionada por su historial de acertar en predicciones sobre temas que no domina. Los primeros estimaron
-            3 % de probabilidad de extinción causada por IA para 2100; los segundos, 0,38 %{" "}
-            <Fuente href="https://forecastingresearch.org/xpt">(Forecasting Research Institute, 2023)</Fuente>. El
-            torneo se corrió antes de ChatGPT, así que es razonable pensar que hoy ambos grupos acortarían sus plazos.
+            El problema no es que el modelo se dé cuenta. El problema es lo que hace después: se porta mejor. Anthropic
+            lo escribe en el resumen de su propio reporte, y añade que eso «agrega una duda residual» sobre varios de
+            sus resultados. Apollo fue más explícito y dijo que no puede descartar que las bajas tasas de engaño que
+            midieron estén explicadas, al menos en parte, por esa conciencia de estar siendo evaluado.
+          </Parrafo>
+          <Parrafo>
+            Después hicieron el experimento que convierte la sospecha en evidencia. Tomaron cien escenarios trampa,
+            situaciones armadas para ver si el modelo aprovecha una oportunidad de portarse mal. Sin intervenir, el
+            modelo verbalizó que era una prueba más del 80 % de las veces y no cayó en ninguna de las cien. Entonces
+            usaron herramientas de interpretabilidad para localizar dentro de la red las direcciones que representan
+            «esto es ficticio, esto es un examen» y las suprimieron. Con eso, y sin cambiar una sola palabra de los
+            escenarios, las acciones desalineadas subieron hasta 8 o 9 %. Suprimir direcciones al azar, como control, no
+            produjo ninguna.
           </Parrafo>
 
           <Figura
             numero={3}
+            titulo="El examen estaba midiendo, en parte, si el modelo sabía que era un examen"
+            pie="Porcentaje de acciones desalineadas en cien escenarios trampa. Las tres primeras barras son Claude Sonnet 4.5 bajo distintas intervenciones internas; la última es el modelo anterior, sin intervenir, como referencia."
+            limite="que el modelo sea peligroso ni que estuviera fingiendo a propósito. Muestra que la medición depende de una variable que los evaluadores no controlaban y que solo descubrieron mirando dentro de la red. El 9 % es el peor de los vectores probados: la mayoría quedó entre 1 y 5 %."
+            fuente="Anthropic, «System Card: Claude Sonnet 4.5», §7.6.4.1 (septiembre de 2025)"
+            href="https://www.anthropic.com/claude-sonnet-4-5-system-card"
+          >
+            <GraficaHoneypot />
+          </Figura>
+
+          <Parrafo>
+            Conviene leer bien qué dice y qué no dice ese resultado. No dice que el modelo sea peligroso: en condiciones
+            normales no hizo nada malo, y en la misma tanda de pruebas Anthropic reporta que las conductas de
+            aprovechamiento de la calificación cayeron a la mitad respecto del modelo anterior. Los laboratorios están
+            mejorando en esto. Lo que dice es algo distinto y menos tranquilizador: que el número que sirve para decidir
+            si un sistema se despliega dependía de una variable que nadie estaba controlando, y que hizo falta abrir la
+            red para darse cuenta.
+          </Parrafo>
+          <Parrafo>
+            La disciplina que hace eso, la interpretabilidad, es la que mejor noticia trae en este texto. Localizar por
+            dentro el concepto de «estar siendo evaluado» y manipularlo era impensable hace cinco años. Pero sirvió para
+            diagnosticar un problema después del entrenamiento, no para certificar un sistema antes de desplegarlo, que
+            es lo que haría falta. Ahí sigue la diferencia con el resto de la ingeniería: un puente se calcula, se
+            inspecciona y se firma; un modelo se prueba por fuera, con ejemplos, y lo que se obtiene es una estadística
+            sobre los casos que a alguien se le ocurrió probar.
+          </Parrafo>
+
+          {/* ---------------------------------------------------------- */}
+          <H2 id="asimetria">La capacidad de decidir no crece al mismo ritmo</H2>
+          <Parrafo>
+            Todo lo anterior describe un problema técnico. Lo que lo vuelve urgente es que el avance no acelera todo por
+            igual. Si acelerara todo por igual, los mismos hechos ocurrirían más rápido y la historia sería la misma
+            película a mayor velocidad. Lo que se acelera es la tecnología; las personas, la deliberación y los
+            calendarios institucionales siguen a su ritmo. Acelerar una parte equivale a frenar el resto. El argumento
+            es de William MacAskill y Fin Moorhouse{" "}
+            <Fuente href="https://www.forethought.org/research/preparing-for-the-intelligence-explosion">
+              (Forethought, 2025)
+            </Fuente>
+            , y no hace falta creer en una explosión de inteligencia para usarlo.
+          </Parrafo>
+          <Parrafo>
+            La forma más simple de verlo es contar quién está de cada lado. Un mapeo público del campo, construido sobre
+            el censo de organizaciones de Stephen McAleese, encuentra 170 organizaciones dedicadas a la seguridad y la
+            gobernanza de la IA en todo el mundo. Sumando las que reportan datos, son unas 1.313 personas de tiempo
+            completo y unos 525 millones de dólares al año{" "}
+            <Fuente href="https://harrywaterman.com/fieldmap/">(AI Safety Field Map, datos a septiembre de 2025)</Fuente>
+            . Del otro lado, Amazon, Google, Meta y Microsoft anunciaron en conjunto cerca de 725.000 millones de dólares
+            de inversión en infraestructura de IA solo para 2026, un 77 % más que el año anterior{" "}
+            <Fuente href="https://www.cnbc.com/2026/02/06/google-microsoft-meta-amazon-ai-cash.html">(CNBC, 2026)</Fuente>
+            .
+          </Parrafo>
+
+          <Figura
+            numero={4}
+            titulo="Por cada dólar que se gasta en entender estos sistemas se gastan unos mil cuatrocientos en construirlos"
+            pie="Presupuesto anual declarado del campo de la seguridad de la IA frente a la inversión en infraestructura anunciada por las cuatro empresas que más gastan. Escala logarítmica."
+            limite="cuánto se gasta en seguridad dentro de esas cuatro empresas, que no lo desglosan, ni todo el gasto público en regulación. Tampoco son categorías equivalentes: una es gasto de operación y la otra es inversión de capital. La comparación sirve para el orden de magnitud, no para la cifra exacta."
+            fuente="AI Safety Field Map (sep. 2025) y CNBC (feb. 2026)"
+            href="https://harrywaterman.com/fieldmap/"
+          >
+            <GraficaAsimetria />
+          </Figura>
+
+          <Parrafo>
+            La otra mitad de la asimetría es el calendario. Colombia aprobó su política nacional de inteligencia
+            artificial en febrero de 2025, con más de cien acciones y una hoja de ruta que va hasta 2030{" "}
+            <Fuente href="https://colaboracion.dnp.gov.co/CDT/Conpes/Econ%C3%B3micos/4144.pdf">
+              (CONPES 4144, DNP)
+            </Fuente>
+            . Es un documento serio y ese plazo es normal para una política pública. El punto es la comparación: si la
+            tendencia que mide METR se mantuviera durante esos cinco años, y es un si grande, el horizonte de tareas que
+            un sistema ejecuta solo se habría duplicado ocho veces antes de que termine de ejecutarse el plan que iba a
+            regularlo.
+          </Parrafo>
+          <Parrafo>
+            De ahí se sigue una tentación razonable: esperar. Si los sistemas van a ser mucho mejores en unos años,
+            conviene decidir entonces, con más información y mejores herramientas. Para muchos problemas eso es
+            correcto. Para tres cosas no lo es, y son las tres que nos parecen más sólidas del texto de MacAskill y
+            Moorhouse. Las normas que se fijan mientras un asunto todavía es nuevo tienden a durar, y quien no está en
+            la mesa cuando se escriben tampoco está cuando se aplican. Montar una capacidad de auditoría o formar a
+            alguien toma años, y ninguna de esas cosas se acelera por tener mejores modelos. Y hay acuerdos que solo se
+            firman mientras nadie sabe todavía a quién van a favorecer.
+          </Parrafo>
+
+          {/* ---------------------------------------------------------- */}
+          <H2 id="desacuerdo">Qué tan de acuerdo está el campo</H2>
+          <Parrafo>
+            Hasta acá hemos dado nuestra lectura. La de la gente que lleva años en esto no es unánime, y el rango es
+            amplio.
+          </Parrafo>
+          <Parrafo>
+            En 2023 se encuestó a 2.778 investigadores que publican en las principales conferencias de IA. La mediana
+            asignó 5 % de probabilidad a que la IA avanzada termine en la extinción humana o en una pérdida de control
+            comparable, y el promedio fue 16,2 %{" "}
+            <Fuente href="https://arxiv.org/abs/2401.02843">(Grace et al., 2024)</Fuente>. Entre 38 % y 51 % le dieron
+            al menos 10 % de probabilidad a un desenlace así. Los pronosticadores profesionales llegan a números mucho
+            más bajos: en un torneo del Forecasting Research Institute, los expertos en riesgos de IA estimaron 3 % de
+            probabilidad de extinción causada por IA para 2100 y los superpronosticadores, 0,38 %{" "}
+            <Fuente href="https://forecastingresearch.org/xpt">(Forecasting Research Institute, 2023)</Fuente>.
+          </Parrafo>
+
+          <Figura
+            numero={5}
             titulo="Casi un orden de magnitud entre gente que se dedica a estimar bien"
-            pie="Probabilidad de extinción o pérdida severa de control causada por IA. Eje logarítmico. Las preguntas no son idénticas entre los dos estudios, así que la comparación es orientativa."
+            pie="Probabilidad de extinción o pérdida severa de control causada por IA. Eje logarítmico."
+            limite="una probabilidad real. Son opiniones agregadas sobre un hecho sin precedentes, las preguntas no son idénticas entre los dos estudios y el torneo se corrió en 2022, antes de ChatGPT, así que es razonable pensar que hoy ambos grupos acortarían sus plazos."
             fuente="Grace et al. (2024) y Forecasting Research Institute (2023)"
             href="https://arxiv.org/abs/2401.02843"
           >
@@ -314,82 +397,86 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             También hay desacuerdo de fondo, no solo de magnitudes. Yann LeCun, uno de los tres ganadores del premio
             Turing por el aprendizaje profundo, ha llamado disparatadas las preocupaciones por la extinción y sostiene
-            que un sistema se puede diseñar para que sea seguro. Gary Marcus, Andrew Ng y Melanie Mitchell han
-            expresado escepticismos parecidos por razones distintas. Vale la pena leerlos antes de decidir qué se
-            piensa.
+            que un sistema puede diseñarse para ser seguro. Gary Marcus, Andrew Ng y Melanie Mitchell han expresado
+            escepticismos parecidos por razones distintas. Vale leerlos antes de decidir qué se piensa.
           </Parrafo>
           <Parrafo>
-            Es posible que quienes trabajan en el campo exageren el peligro, y también es posible que lo subestimen; no
-            tenemos forma de saber cuál de los dos sesgos manda. Lo que sacamos en limpio es más modesto de lo que
-            suele decirse por ahí: gente que sabe del tema lleva veinte años sin resolver el problema técnico de fondo
-            y no logra ponerse de acuerdo ni en el orden de magnitud del riesgo. Nos parece que eso alcanza para
-            justificar que haya gente trabajando en ello y para exigir evidencia antes de desplegar, y no alcanza para
-            afirmar que sabemos lo que va a pasar.
+            Nuestra lectura de ese desacuerdo es la siguiente. Es posible que quienes trabajan en el campo exageren el
+            peligro y también que lo subestimen, y no tenemos forma de saber cuál de los dos sesgos manda. Pero lo que
+            sostenemos no depende de acertar la cifra. Depende de dos afirmaciones más modestas: que hoy no sabemos
+            certificar qué persigue un sistema, que es un hecho documentado por quienes los construyen, y que las
+            decisiones difíciles de revertir se están tomando ahora. Esperar a tener certeza tiene un costo asimétrico,
+            porque para cuando la haya, la mayoría de las decisiones útiles ya se habrán tomado.
+          </Parrafo>
+          <Parrafo>
+            Sabemos además qué nos haría cambiar de opinión. Si la frontera de capacidades se estanca dos o tres años
+            seguidos, la parte sobre los plazos se cae. Y si aparecen métodos que permitan certificar qué persigue un
+            sistema antes de desplegarlo, se cae casi todo lo demás, porque es de ahí de donde sale la urgencia.
           </Parrafo>
 
-          {/* 4 ---------------------------------------------------------- */}
+          {/* ---------------------------------------------------------- */}
           <H2 id="objeciones">Objeciones y respuestas</H2>
           <Parrafo>
-            Estas son las cuatro que más nos hacen. Ninguna es tonta y en las cuatro creemos que quien objeta tiene
-            parte de razón.
+            Estas son las cuatro que más nos hacen. En las cuatro creemos que quien objeta tiene parte de razón, y en
+            una de ellas la objeción corrige de verdad el argumento.
           </Parrafo>
 
           <H3>Los modelos todavía fallan en cosas obvias</H3>
           <Parrafo>
-            Es cierto y va a seguir siéndolo un buen rato. Las capacidades no crecen parejo: un sistema que resuelve
-            una pregunta de doctorado puede equivocarse contando letras o inventarse una cita con toda seguridad. Quien
-            señala esto suele estar respondiendo a gente que promete demasiado, y hace bien.
+            Es cierto y seguirá siéndolo un buen rato. Las capacidades no crecen parejo: un sistema que resuelve una
+            pregunta de doctorado puede equivocarse contando letras o inventar una cita con total seguridad. Quien
+            señala esto suele estar respondiendo a gente que promete de más, y hace bien.
           </Parrafo>
           <Parrafo>
-            Donde no nos convence es en la conclusión. Un sistema que falla de forma impredecible es justamente el que
-            no se puede certificar antes de usarlo. Si los errores fueran parejos se podrían acotar; el problema es que
-            son muy capaces en unas cosas y frágiles en otras sin que se sepa de antemano en cuáles, y eso es difícil
-            de manejar tanto si el progreso sigue como si se detiene mañana.
+            La objeción no toca el argumento, sin embargo, porque en ningún momento afirmamos que los sistemas sean
+            confiables. Afirmamos lo contrario: que fallan de forma difícil de anticipar. Si los errores fueran parejos
+            se podrían acotar y certificar. Lo que complica el peritaje es exactamente esa mezcla de mucha capacidad en
+            unas cosas y fragilidad en otras, sin que se sepa de antemano en cuáles.
           </Parrafo>
 
           <H3>Esto distrae de los daños que ya existen</H3>
           <Parrafo>
-            Sesgo en decisiones de crédito, vigilancia, desinformación, efectos sobre el empleo. Son problemas reales y
-            presentes, y la objeción tiene una parte que no queremos suavizar: la atención y el presupuesto son
-            finitos, y ha habido momentos en que el discurso del riesgo existencial se usó para saltarse discusiones
-            sobre daños concretos que ya estaban ocurriendo.
+            Sesgo en decisiones de crédito, vigilancia, desinformación, efectos sobre el empleo. Esta es la objeción que
+            corrige el argumento y no queremos suavizarla: la atención y el presupuesto son finitos, y ha habido
+            momentos en que el discurso del riesgo existencial sirvió para saltarse discusiones sobre daños que ya
+            estaban ocurriendo.
           </Parrafo>
           <Parrafo>
-            Dicho eso, en la práctica buena parte del trabajo se solapa. Saber medir de qué es capaz un sistema, poder
-            auditarlo, exigir evidencia antes de desplegarlo y tener a quién reclamarle cuando falla sirve igual para
-            un modelo que niega créditos hoy que para uno que administre infraestructura en diez años. Nosotros
-            trabajamos en las dos cosas y no nos parece que haya que escoger.
+            Lo que sostenemos es que el trabajo se solapa más de lo que sugiere la discusión pública. Saber medir de qué
+            es capaz un sistema, poder auditarlo, exigir evidencia antes de desplegarlo y tener a quién reclamarle
+            cuando falla es la misma capacidad institucional para un modelo que niega créditos hoy y para uno que
+            administre infraestructura en diez años. Es también la razón por la que la parte colombiana de este texto
+            está escrita alrededor de compras públicas y no de escenarios futuros.
           </Parrafo>
 
           <H3>El progreso se va a estancar</H3>
           <Parrafo>
             Puede pasar, y hay razones serias para pensarlo. El cómputo, la energía y los datos de buena calidad son
-            cuellos de botella reales; la investigación que necesita experimentos en el mundo físico no se acelera solo
-            con más código; y meterle más gente y más plata a un problema de investigación suele tener rendimientos
-            decrecientes. Este es el escenario que más nos haría cambiar de opinión sobre el tercer paso del argumento.
+            cuellos de botella reales; la investigación que requiere experimentos físicos no se acelera solo con más
+            código; y meterle más gente y más plata a un problema de investigación suele tener rendimientos
+            decrecientes. Este es el escenario que más nos haría cambiar de opinión sobre los plazos.
           </Parrafo>
           <Parrafo>
-            En contra juega el dato de Epoch que citamos arriba: si el desempeño se abarata a la mitad cada ocho meses
-            por mejoras algorítmicas, no todo depende de construir centros de datos más grandes. Y aun si los frenos
-            ganan, lo que sigue siendo un salto grande de productividad en vez de una espiral, ese mundo también
-            necesita gente capaz de evaluar y auditar los sistemas que se están comprando. Solo que con más tiempo para
-            aprender a hacerlo, que sería una buena noticia.
+            En contra juega el dato de Epoch: si el desempeño se abarata a la mitad cada ocho meses por mejoras
+            algorítmicas, el avance no depende solo de construir centros de datos más grandes. Y aun si los frenos ganan,
+            el resultado es un salto grande de productividad en vez de una espiral, y ese mundo también necesita gente
+            capaz de evaluar y auditar los sistemas que se están comprando. Con más tiempo para aprender a hacerlo, que
+            sería una buena noticia.
           </Parrafo>
 
           <H3>Nadie va a desplegar a propósito algo peligroso</H3>
           <Parrafo>
             De acuerdo, y el argumento no necesita que nadie sea malintencionado. Le bastan dos condiciones que ya se
-            cumplen: que sea difícil verificar qué hace un sistema antes de soltarlo, y que haya presión competitiva
-            para soltarlo igual. Los incidentes grandes de software rara vez ocurren porque alguien quisiera causarlos;
-            ocurren porque el sistema hizo algo que nadie previó, en un momento en que nadie estaba mirando, y porque
-            la persona que habría podido detenerlo no tenía cómo saber que hacía falta.
+            cumplen: que sea difícil verificar qué hace un sistema antes de soltarlo, y que exista presión competitiva
+            para soltarlo igual. Los incidentes grandes de software rara vez ocurren porque alguien quisiera causarlos.
+            Ocurren porque el sistema hizo algo que nadie previó, en un momento en que nadie estaba mirando, y porque
+            quien habría podido detenerlo no tenía cómo saber que hacía falta.
           </Parrafo>
 
-          {/* 5 ---------------------------------------------------------- */}
+          {/* ---------------------------------------------------------- */}
           <H2 id="frentes">Cómo se trabaja en esto</H2>
           <Parrafo>
-            Son tres frentes que se necesitan entre sí. Se puede entrar por cualquiera y no todos exigen formación
-            técnica previa.
+            Son tres frentes. Se puede entrar por cualquiera y no todos exigen formación técnica previa.
           </Parrafo>
         </div>
 
@@ -411,37 +498,33 @@ export default function SeguridadDeLaIA() {
         </div>
 
         <div className={ANCHO}>
-          {/* 6 ---------------------------------------------------------- */}
+          {/* ---------------------------------------------------------- */}
           <H2 id="colombia">Y por qué desde Colombia</H2>
           <Parrafo>
-            Imagina que te toca firmar. Una entidad pública va a contratar un sistema para priorizar solicitudes de un
-            programa social y a ti te corresponde revisar el pliego. Tienes el nombre del proveedor, una demo de
-            veinte minutos y una promesa de exactitud del 92 % sobre un conjunto de prueba que armó el proveedor. No
-            tienes los pesos del modelo, no tienes los datos con los que se entrenó y no tienes forma de correrlo
-            contra casos que diseñes tú. ¿Qué le exiges? ¿Qué cláusula escribes? ¿Y quién responde si dentro de dos
-            años se descubre que el sistema le bajaba el puntaje a la gente de cierto municipio?
+            De las 170 organizaciones que aparecen en el mapa del campo, ninguna está en América Latina. Las 187
+            personas que deciden a dónde va la financiación se formaron sobre todo en Oxford, Stanford y Berkeley. Eso
+            no es una queja: es el dato que explica por qué las preguntas que se hace el campo son las que se hace quien
+            construye estos sistemas, y no las que se hace quien los compra.
           </Parrafo>
           <Parrafo>
-            Esa pregunta suena administrativa y en buena medida es de lo que se trata este campo. Auditar lo que uno
-            compra es un problema distinto al de auditar lo que uno entrena, y Colombia compra estos sistemas mucho más
-            de lo que los construye. No es el único frente que importa, pero sí es el que nos toca de cerca y el que
-            casi nadie afuera está mirando por nosotros.
+            Y comprar es lo que hacemos acá. Supongamos que una entidad pública va a contratar un sistema para priorizar
+            solicitudes de un programa social y a alguien le corresponde revisar el pliego. Tiene el nombre del
+            proveedor, una demostración de veinte minutos y una promesa de 92 % de exactitud sobre un conjunto de prueba
+            que armó el proveedor. No tiene los pesos del modelo, no tiene los datos de entrenamiento y no tiene forma
+            de correrlo contra casos que diseñe la entidad. Las preguntas que siguen (qué exigir, qué cláusula escribir,
+            ante quién responde el proveedor si en dos años se descubre que el sistema le bajaba el puntaje a la gente
+            de cierto municipio) son las de este texto, planteadas en formato administrativo.
           </Parrafo>
           <Parrafo>
-            La otra razón es de escala. Una estimación de 2025 cuenta cerca de 1.100 personas trabajando de tiempo
-            completo en seguridad de la IA en todo el mundo, unas 600 en trabajo técnico y 500 en gobernanza y
-            estrategia, contra unas 400 tres años antes{" "}
-            <Fuente href="https://forum.effectivealtruism.org/posts/nH8SnriBBhehsuvvo/ai-safety-field-growth-analysis-2025">
-              (AI Safety Field Growth Analysis, 2025)
-            </Fuente>
-            . Crece rápido y sigue siendo menos gente de la que trabaja en un solo ministerio. Casi ninguna de esas
-            1.100 personas está en América Latina, mientras las reglas se escriben en compras públicas, en regulación
-            sectorial y en acuerdos internacionales que después se aplican acá igual.
+            Auditar lo que uno compra es un problema distinto al de auditar lo que uno entrena, y es el que a Colombia
+            le toca resolver primero. No es el único frente que importa, pero es el que nadie está mirando por nosotros,
+            mientras las reglas se escriben en compras públicas, en regulación sectorial y en acuerdos internacionales
+            que después se aplican acá igual.
           </Parrafo>
           <Parrafo>
-            No creemos que hagan falta héroes ni genios. Hace falta que haya gente acá que entienda el tema lo
-            suficiente para hacer buenas preguntas, y que exista un lugar donde aprenderlo sin tener que irse del país.
-            Eso último es más o menos todo lo que estamos intentando construir.
+            Lo que hace falta, entonces, no son héroes ni genios. Hace falta gente acá que entienda el tema lo
+            suficiente para hacer las preguntas correctas cuando le toque firmar, y que exista un lugar donde aprenderlo
+            sin tener que irse del país. Eso último es lo que estamos intentando construir.
           </Parrafo>
         </div>
       </article>
@@ -451,10 +534,10 @@ export default function SeguridadDeLaIA() {
           <span aria-hidden="true" className="mb-6 block h-px w-12 flex-none bg-aisc-coral" />
           <h2 className="text-display-2 md:text-display-2-lg max-w-[560px] text-balance">Por dónde seguir</h2>
           <p className="text-body md:text-body-lg mt-4 max-w-[640px] text-aisc-ink">
-            Tres recursos que solemos recomendar, con lo que nos parece de cada uno. Buena parte del material del campo
+            Los dos textos en los que se apoya este argumento y dos formas de entrar al campo. Casi todo el material
             está en inglés; en nuestros programas lo trabajamos en español.
           </p>
-          <div className="mt-12 grid grid-cols-1 gap-3 md:gap-4 lg:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 gap-3 md:gap-4 lg:grid-cols-2">
             {RECURSOS.map((recurso) => (
               <a
                 key={recurso.href}
@@ -478,7 +561,7 @@ export default function SeguridadDeLaIA() {
 
       <CtaPanel
         title="¿Y qué hago con esto?"
-        body="Al principio lo más útil suele ser hablar con alguien que ya lleve un tiempo, aunque solo sea para descartar el tema. Después vienen los programas."
+        body="Al principio lo más útil suele ser hablar con alguien que ya lleve un tiempo, aunque sea para descartar el tema. Después vienen los programas."
       >
         <Link className={CTA_LINK_PRIMARY} href="/programas">
           Ver los programas
