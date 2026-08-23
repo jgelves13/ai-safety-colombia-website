@@ -45,6 +45,16 @@ const PUBLICACIONES = [
     body: "Propone un marco para repartir los beneficios de la IA sin bajar el estándar de seguridad. Se apoya en tres piezas: redistribuir parte de los retornos económicos, compartir tecnología y capacidad técnica, y contener la difusión de capacidades peligrosas. El argumento de fondo es que la gobernanza actual no resuelve quién accede a esos beneficios, y que los países de la mayoría global son los que quedan por fuera.",
     href: "https://aigi.ox.ac.uk/publications/ai-benefit-sharing-framework-balancing-access-and-safety/",
   },
+  {
+    titulo: "La securitización de la inteligencia artificial: un análisis de sus impulsores y sus consecuencias",
+    tipo: "Artículo revisado por pares",
+    editor: "Revista de Estudios Sociales n.º 93, Universidad de los Andes",
+    fecha: "Julio de 2025",
+    autores: ["Mónica A. Ulloa Ruiz", "Guillem Bas Graells"],
+    miembros: ["Mónica A. Ulloa Ruiz"],
+    body: "Estudia qué pasa cuando en Estados Unidos se habla de la inteligencia artificial como un asunto de seguridad nacional. Los autores revisan veinticinco declaraciones públicas de agencias del gobierno, organizaciones técnicas y medios, y encuentran dos maneras de plantear el problema: una habla de amenazas, señala a un adversario concreto y sirve para justificar medidas excepcionales; la otra habla de riesgos y cabe dentro de la regulación de siempre. La conclusión es que la segunda sostiene mejor la cooperación a largo plazo.",
+    href: "https://revistas.uniandes.edu.co/index.php/res/article/view/10754",
+  },
 ];
 
 /* Lo premiado. Cada tarjeta enlaza al reporte publico en Apart, que es donde se
@@ -224,7 +234,7 @@ export default function Investigacion() {
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
                 Trabajos firmados por miembros de AI Safety Colombia y publicados por fuera del hackathon, con las
-                instituciones donde se hicieron.
+                instituciones donde se hicieron. En cada lista de autores va resaltado el nombre de quien es de acá.
               </p>
               <p>
                 La lista está abierta. Si eres de la comunidad y publicaste algo,{" "}
@@ -256,7 +266,7 @@ export default function Investigacion() {
                         <span key={autor}>
                           {i > 0 ? ", " : ""}
                           {p.miembros.includes(autor) ? (
-                            <strong className="font-semibold text-aisc-forest">{autor}</strong>
+                            <strong className="font-semibold text-aisc-forest underline decoration-aisc-coral decoration-2 underline-offset-[3px]">{autor}</strong>
                           ) : (
                             autor
                           )}
