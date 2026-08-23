@@ -607,35 +607,6 @@ export default function Hackathon() {
         </div>
       </section>
 
-      {/* Preguntas frecuentes */}
-      <section id="preguntas" className={`${SECCION} py-12 md:py-14`}>
-        <div className={CONTENEDOR}>
-          <div aria-hidden="true" className={HAIRLINE} />
-          <div className="mt-5 flex flex-col gap-8">
-            <h2 className="text-display-2 md:text-display-2-lg break-words">Preguntas frecuentes</h2>
-            <ul className="flex flex-col">
-              {FAQ.map((f) => (
-                <li key={f.q}>
-                  <details className="group border-t border-aisc-ink/20">
-                    <summary className="text-display-4 md:text-display-4-lg flex cursor-pointer list-none items-baseline justify-between gap-6 py-5 transition-colors hover:text-aisc-forest [&::-webkit-details-marker]:hidden">
-                      <span className="text-balance">{f.q}</span>
-                      <span
-                        aria-hidden="true"
-                        className="shrink-0 text-aisc-coral transition-transform group-open:rotate-45"
-                      >
-                        +
-                      </span>
-                    </summary>
-                    <p className="text-body-sm max-w-[860px] pb-5 text-aisc-muted">{f.a}</p>
-                  </details>
-                </li>
-              ))}
-            </ul>
-            <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-ink/20" />
-          </div>
-        </div>
-      </section>
-
       {/* Quién convoca y quién financia */}
       <section id="organizan" className={`${SECCION} py-12 md:py-14`}>
         <div className={CONTENEDOR}>
@@ -680,6 +651,35 @@ export default function Hackathon() {
               </ul>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Preguntas frecuentes */}
+      <section id="preguntas" className={`${SECCION} py-12 md:py-14`}>
+        <div className={CONTENEDOR}>
+          <div aria-hidden="true" className={HAIRLINE} />
+          <div className="mt-5 flex flex-col gap-8">
+            <h2 className="text-display-2 md:text-display-2-lg break-words">Preguntas frecuentes</h2>
+            <ul className="flex flex-col">
+              {FAQ.map((f) => (
+                <li key={f.q}>
+                  <details className="group border-t border-aisc-ink/20">
+                    <summary className="text-display-4 md:text-display-4-lg flex cursor-pointer list-none items-baseline justify-between gap-6 py-5 transition-colors hover:text-aisc-forest [&::-webkit-details-marker]:hidden">
+                      <span className="text-balance">{f.q}</span>
+                      <span
+                        aria-hidden="true"
+                        className="shrink-0 text-aisc-coral transition-transform group-open:rotate-45"
+                      >
+                        +
+                      </span>
+                    </summary>
+                    <p className="text-body-sm max-w-[860px] pb-5 text-aisc-muted">{f.a}</p>
+                  </details>
+                </li>
+              ))}
+            </ul>
+            <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-ink/20" />
+          </div>
         </div>
       </section>
 
