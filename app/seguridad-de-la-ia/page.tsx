@@ -832,20 +832,21 @@ export default function SeguridadDeLaIA() {
             .
           </Parrafo>
           <Parrafo>
-            Los problemas del comienzo de esta página siguen abiertos y
-            sin dueño. Nadie sabe todavía leer lo que un modelo persigue,
+            Los problemas del comienzo de esta página siguen sin
+            resolverse. Nadie sabe todavía leer lo que un modelo persigue,
             ni montar una evaluación que el modelo no reconozca como
-            evaluación. Trabajar en eso no exige estar en San Francisco.
-            Exige haber entrado, y entrar es lo difícil.
+            evaluación. Son preguntas abiertas, y en una pregunta abierta
+            pesa más el tiempo que uno lleve metido en ella que el lugar
+            desde donde la trabaje. Entrar es la parte difícil.
           </Parrafo>
           <Parrafo>
-            Hay además un pedazo del problema que ese mapa no toca. Cuando
+            Hay además una parte del problema que empieza cuando el modelo ya está
+            hecho. Cuando
             una entidad compra un sistema para decidir sobre ciudadanos,
             alguien tiene que saber qué exigirle antes de firmar, con qué
             datos se entrenó, y ante quién responde el proveedor si dos
             años después se descubre que le bajaba el puntaje a la gente
-            de cierto municipio. Ninguna de esas 170 organizaciones va a hacer ese
-            trabajo.
+            de cierto municipio. Esas preguntas no están en el mapa.
           </Parrafo>
           <Parrafo>
             Las dos cosas piden lo mismo: gente que pueda dedicarse a
