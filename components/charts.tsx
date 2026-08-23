@@ -182,11 +182,11 @@ const HUMANO = 69.7;
 
 export function GraficaGpqa() {
   const W = 900;
-  const H = 420;
+  const H = 444;
   const ML = 46;
   const MR = 18;
   const MT = 30;
-  const MB = 46;
+  const MB = 70;
   const x0 = 2023.0;
   const x1 = 2026.9;
   const px = (d: string) => ML + ((yearOf(d) - x0) / (x1 - x0)) * (W - ML - MR);
@@ -329,11 +329,11 @@ const TICKS_H = [
 
 export function GraficaHorizonte() {
   const W = 900;
-  const H = 420;
+  const H = 444;
   const ML = 68;
   const MR = 18;
   const MT = 26;
-  const MB = 46;
+  const MB = 70;
   const x0 = 2023.0;
   const x1 = 2026.6;
   const lo = Math.log2(2.2);

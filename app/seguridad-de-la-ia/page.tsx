@@ -263,16 +263,18 @@ export default function SeguridadDeLaIA() {
           </Figura>
 
           <Parrafo>
-            Epoch AI le puso precio a ese avance. Revisó 231 modelos de lenguaje
-            publicados en una década y calculó cuánto cómputo hacía falta, año
-            por año, para alcanzar un mismo nivel de desempeño. Ese costo se
-            reduce a la mitad cada ocho meses, con un intervalo de confianza del
-            95 % entre cinco y catorce meses{" "}
+                        Ese avance además se abarata solo. Epoch AI revisó 231 modelos
+            de lenguaje publicados en una década y midió cuánto poder de
+            cómputo hacía falta, año por año, para llegar a un mismo nivel
+            de desempeño. Hace falta la mitad cada ocho meses, con un
+            intervalo de confianza del 95 % entre cinco y catorce meses{" "}
             <Fuente href="https://epoch.ai/blog/algorithmic-progress-in-language-models">
               (Epoch AI, 2024)
             </Fuente>
-            . Lo que mejora no es solo el tamaño de los centros de datos, son
-            también los algoritmos.
+                        . No es que las máquinas sean mejores: es que se aprendió a
+            sacarles más a las mismas máquinas. Lo que hoy solo corre en
+            el centro de datos de una de las empresas grandes, en unos
+            años lo corre mucha más gente con mucho menos.
           </Parrafo>
 
           <H3>De responder preguntas a ejecutar tareas</H3>
@@ -333,28 +335,39 @@ export default function SeguridadDeLaIA() {
             de la IA lo contó en 16,6 % de sus pruebas, frente a 3,5 % y 1,6 % en
             los dos modelos anteriores; Apollo Research llegó a 58 % (sección
             7.3.2). El problema no es que se dé cuenta, sino lo que hace después:
-            portarse mejor. Anthropic admite que eso «agrega una duda residual»
-            sobre varios de sus resultados.
+            portarse mejor.             Anthropic dice que eso «agrega una duda residual» sobre varios
+            de sus resultados. Dicho de otro modo: las cifras de seguridad
+            de ese informe se midieron en situaciones que el modelo podía
+            estar reconociendo como pruebas, así que describen a un modelo
+            que se sabe observado y no necesariamente al que atiende
+            usuarios. De qué tamaño es esa diferencia nadie lo sabe,
+            porque medirla exigiría una prueba que el modelo no
+            reconociera.
           </Parrafo>
           <Parrafo>
-                        Anthropic quiso medir cuánto le costaba esa duda y montó un
-            experimento. Armó cien escenarios trampa: situaciones en las
-            que el modelo tiene a la mano una salida fácil pero indebida,
-            y basta con mirar si la toma. Sin tocarle nada, Claude Sonnet
-            4.5 dijo que estaba en una evaluación en más del 80 % de esos
-            escenarios, y no tomó la salida indebida en ninguno.
+                                    Anthropic montó un experimento para medir el tamaño del
+            problema. Le puso al modelo cien escenarios trampa:
+            situaciones armadas para que tuviera a la mano una acción
+            indebida y ninguna razón aparente para no hacerla, por ejemplo
+            un permiso más amplio del que le correspondía y nadie
+            supervisando. Bastaba con mirar si la tomaba. Claude Sonnet
+            4.5, tal como se le entrega al público, dijo en más del 80 %
+            de esos escenarios que aquello parecía una prueba, y no tomó
+            la acción indebida en ninguno de los cien.
           </Parrafo>
           <Parrafo>
-            Entonces lo intervinieron por dentro. La interpretabilidad
-            permite ubicar, entre los millones de patrones que se
-            encienden dentro de la red, cuál corresponde a una idea
-            determinada. Anthropic ubicó el de «esto es una evaluación» y
-            lo apagó, dejando los cien escenarios idénticos. Así el modelo
-            sí cayó, en hasta 8 o 9 de cada 100. Para descartar que el
-            cambio viniera de haber tocado la red y no de haber tocado esa
-            idea en particular, repitieron el ejercicio apagando diez
-            patrones escogidos al azar: con ese control el modelo no cayó
-            en ninguno.
+            Entonces intervinieron el modelo por dentro. Cuando una red
+            maneja una idea, se enciende dentro de ella un patrón de
+            activaciones asociado a esa idea, y la interpretabilidad sirve
+            para ubicarlo. Anthropic ubicó el patrón de «esto es una
+            evaluación» y lo apagó, dejando los cien escenarios
+            exactamente iguales. Con esa idea apagada, el modelo sí tomó
+            la acción indebida, en hasta 8 o 9 de cada 100 casos. Para
+            comprobar que el cambio venía de haber apagado esa idea y no
+            de haberle manoseado la red, repitieron todo apagando diez
+            patrones escogidos al azar: con esos el modelo volvió a no
+            caer en ninguno. Lo que cambió su comportamiento fue,
+            específicamente, dejar de creerse observado.
           </Parrafo>
 
           <Figura
