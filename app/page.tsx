@@ -100,7 +100,7 @@ const PROGRAMAS = [
   {
     kicker: "Con Apart Research",
     title: "Hackathons de investigación",
-    body: "Un fin de semana para pasar de leer sobre seguridad de la IA a producir un trabajo propio. Apart Research los convoca a nivel global y nosotros abrimos el espacio presencial en Bogotá.",
+    body: "Un fin de semana para pasar de leer sobre seguridad de la IA a producir un trabajo propio. Apart Research los convoca a nivel global y nosotros abrimos el hub presencial en Bogotá.",
   },
   {
     kicker: "Todos los viernes",

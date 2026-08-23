@@ -12,6 +12,9 @@ export type ItemIndice = {
 /** Alto de la franja superior bajo la cual se considera que una seccion ya empezo. */
 const UMBRAL = 140;
 
+/** Ancho a partir del cual el margen izquierdo aguanta la columna del indice. */
+const RAIL = "min-[1540px]:block";
+
 /** Devuelve el id de la ultima seccion cuyo titulo ya paso por el umbral. */
 function useSeccionActiva(items: ItemIndice[]) {
   const [activo, setActivo] = useState<string>("");
@@ -55,37 +58,7 @@ function useSeccionActiva(items: ItemIndice[]) {
   return activo;
 }
 
-function Entrada({
-  item,
-  activo,
-  numero,
-}: {
-  item: ItemIndice;
-  activo: boolean;
-  numero?: string;
-}) {
-  const sangria = item.nivel === 3 ? "pl-6" : "pl-3";
-  const tamano = item.nivel === 3 ? "text-meta" : "text-body-sm";
-  const color = activo
-    ? "border-aisc-coral text-aisc-forest"
-    : "border-aisc-ink/15 text-aisc-muted hover:border-aisc-ink/40 hover:text-aisc-ink";
-  return (
-    <li>
-      <a
-        href={`#${item.id}`}
-        aria-current={activo ? "true" : undefined}
-        className={`flex gap-2 border-l-2 py-1.5 transition-colors ${sangria} ${tamano} ${color}`}
-      >
-        {numero ? (
-          <span className="text-meta tabular-nums opacity-60">{numero}</span>
-        ) : null}
-        <span className="text-balance">{item.label}</span>
-      </a>
-    </li>
-  );
-}
-
-/** Numera solo los titulos de seccion; los subtitulos van sin numero. */
+/** Numera solo los titulos de seccion; los subtitulos van sangrados y sin numero. */
 function numerar(items: ItemIndice[]) {
   let n = 0;
   return items.map((item) => {
@@ -95,43 +68,88 @@ function numerar(items: ItemIndice[]) {
   });
 }
 
+function Lista({
+  items,
+  activo,
+  compacta,
+  id,
+  className,
+}: {
+  items: ItemIndice[];
+  activo: string;
+  compacta?: boolean;
+  id?: string;
+  className?: string;
+}) {
+  const numeros = numerar(items);
+  return (
+    <ol id={id} className={className}>
+      {items.map((item, i) => {
+        const sub = item.nivel === 3;
+        const encendido = activo === item.id;
+        return (
+          <li key={item.id}>
+            <a
+              href={`#${item.id}`}
+              aria-current={encendido ? "true" : undefined}
+              className={[
+                "flex gap-2 transition-colors",
+                compacta ? "py-1 leading-snug" : "py-1.5",
+                sub ? "pl-7 text-meta" : "text-body-sm",
+                encendido
+                  ? "text-aisc-forest"
+                  : "text-aisc-muted hover:text-aisc-ink",
+              ].join(" ")}
+            >
+              {numeros[i] ? (
+                <span className="text-meta tabular-nums opacity-50">
+                  {numeros[i]}
+                </span>
+              ) : null}
+              <span className={encendido ? "underline decoration-aisc-coral decoration-2 underline-offset-4" : ""}>
+                {item.label}
+              </span>
+            </a>
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
 /**
  * Indice del ensayo. Aparece de dos formas segun el ancho: en el cuerpo del
- * texto, plegable en movil, y como columna fija a la izquierda cuando la
- * pantalla da para tenerla sin robarle margen a la lectura.
+ * texto, plegable en movil, y como columna fija en el margen izquierdo cuando
+ * la pantalla da para tenerla sin robarle ancho a la lectura. La columna se
+ * muestra entera, sin barra de desplazamiento propia.
  */
 export default function IndiceEnsayo({ items }: { items: ItemIndice[] }) {
   const activo = useSeccionActiva(items);
   const [abierto, setAbierto] = useState(false);
-  const numeros = numerar(items);
 
   return (
     <>
       {/* columna fija: solo cuando sobra margen a la izquierda de la lectura */}
       <nav
         aria-label="Contenido del ensayo"
-        style={{ left: "calc((100vw - 980px) / 2 - 240px)" }}
-        className={`fixed top-32 z-10 hidden max-h-[calc(100dvh-14rem)] w-[200px] overflow-y-auto transition-opacity duration-300 motion-reduce:transition-none min-[1500px]:block ${
+        style={{ left: "calc((100vw - 980px) / 2 - 262px)" }}
+        className={`fixed top-24 z-10 hidden w-[230px] transition-opacity duration-300 motion-reduce:transition-none ${RAIL} ${
           activo ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
         <p className="text-kicker text-aisc-muted">En esta página</p>
-        <ol className="mt-3 flex flex-col">
-          {items.map((item, i) => (
-            <Entrada
-              key={item.id}
-              item={item}
-              activo={activo === item.id}
-              numero={numeros[i]}
-            />
-          ))}
-        </ol>
+        <Lista
+          items={items}
+          activo={activo}
+          compacta
+          className="mt-3 flex flex-col border-l border-aisc-ink/15 pl-3"
+        />
       </nav>
 
       {/* en el cuerpo: se pliega en movil, queda abierto de tablet en adelante */}
       <nav
         aria-label="Contenido de la página"
-        className="mx-auto mt-10 w-full max-w-[720px] min-[1500px]:hidden"
+        className="mx-auto mt-10 w-full max-w-[720px] min-[1540px]:hidden"
       >
         <button
           type="button"
@@ -158,19 +176,12 @@ export default function IndiceEnsayo({ items }: { items: ItemIndice[] }) {
             />
           </svg>
         </button>
-        <ol
+        <Lista
+          items={items}
+          activo={activo}
           id="indice-ensayo"
           className={`mt-4 flex-col ${abierto ? "flex" : "hidden md:flex"}`}
-        >
-          {items.map((item, i) => (
-            <Entrada
-              key={item.id}
-              item={item}
-              activo={activo === item.id}
-              numero={numeros[i]}
-            />
-          ))}
-        </ol>
+        />
       </nav>
     </>
   );

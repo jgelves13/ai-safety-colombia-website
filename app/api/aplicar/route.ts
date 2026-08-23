@@ -166,7 +166,7 @@ async function confirmar(datos: Record<string, string>): Promise<void> {
   const cuerpo = [
     `Hola ${datos.firstName},`,
     "",
-    "Recibimos tu aplicación al espacio presencial del AI Incident Response Sprint, del 11 al 13 de septiembre en Bogotá.",
+    "Recibimos tu aplicación al hub presencial del AI Incident Response Sprint, del 11 al 13 de septiembre en Bogotá.",
     "",
     "Revisamos las aplicaciones a medida que llegan y te respondemos antes del sprint, quedes o no. Cuando confirmemos la sede la anunciamos por correo y por el grupo de WhatsApp.",
     "",

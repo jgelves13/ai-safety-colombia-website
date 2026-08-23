@@ -11,9 +11,8 @@ export const metadata: Metadata = {
     "Las cuatro cosas abiertas en AI Safety Colombia: el grupo de WhatsApp, el grupo de lectura sobre AI Control los viernes, las charlas en Bogotá y los hackathones de investigación.",
 };
 
-/* Las cuatro cosas que están abiertas ahora mismo, cada una con su ritmo real y
-   con lo que pasa después. Nada de formularios: todo apunta a canales que ya
-   existen. */
+/* Las cuatro cosas que están abiertas ahora mismo. Nada de formularios: todo
+   apunta a canales que ya existen. */
 const ABIERTO = [
   {
     href: "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ",
@@ -21,7 +20,6 @@ const ABIERTO = [
     title: "El grupo de WhatsApp",
     cta: "Entrar al grupo",
     body: "Es donde preguntas lo que no entiendes y discutes lo que acabó de salir, con gente que está en lo mismo. También es por donde te enteras primero de las sesiones, los eventos y las convocatorias.",
-    despues: "Está siempre abierto y tiene poco tráfico. Entras, ves lo que viene y te quedas mirando el tiempo que quieras.",
   },
   {
     href: "https://chat.whatsapp.com/DfWuuPlzqmIFN1tRtl57SB",
@@ -29,7 +27,6 @@ const ABIERTO = [
     title: "Grupo de lectura: AI Control",
     cta: "Entrar al grupo de lectura",
     body: "Un espacio abierto para discutir cómo se supervisa a un sistema de IA que actúa por su cuenta. Se llega con cualquier nivel de conocimiento y se puede venir solo a escuchar, o traer una lectura y presentarla.",
-    despues: "Nos vemos cada quince días, los viernes a las 6:30 p. m., por videollamada y durante una hora. La lectura se pasa antes por el grupo; está en inglés, aunque la discusión es en español.",
   },
   {
     href: "https://luma.com/user/usr-TMDEtNWA1TozP77",
@@ -37,7 +34,6 @@ const ABIERTO = [
     title: "Charlas y talleres",
     cta: "Ver los próximos",
     body: "Oyes de primera mano a alguien que trabaja en el tema y le puedes preguntar en persona lo que quieras. Es también donde la gente de la comunidad se conoce y salen las colaboraciones.",
-    despues: "Varias veces al año, en Bogotá y con entrada libre. Llegas, escuchas y decides; nadie te va a pedir datos en la puerta.",
   },
   {
     href: "/hackathon",
@@ -45,12 +41,6 @@ const ABIERTO = [
     title: "Hackathones de investigación",
     cta: "Ver el de septiembre",
     body: "Sales con un trabajo propio, publicado y con retroalimentación escrita de jurados de fuera. Para mucha gente ha sido lo primero concreto que puede mostrar en el campo.",
-    despues: (
-      <>
-        El próximo es del 11 al 13 de septiembre, sobre respuesta a incidentes. Lo convoca Apart Research y nosotros
-        abrimos el espacio presencial en Bogotá. Las aplicaciones cierran el 6 de septiembre.
-      </>
-    ),
   },
 ];
 
@@ -98,7 +88,6 @@ export default function Unete() {
                 <article className={CARD}>
                   <h3 className="text-display-3 md:text-display-3-lg text-balance">{item.title}</h3>
                   <p className="text-body-sm mt-3 text-aisc-ink">{item.body}</p>
-                  <p className="text-meta mt-5 text-aisc-forest">{item.despues}</p>
                   <div className="mt-auto pt-7">
                     {item.external ? (
                       <a

@@ -20,7 +20,7 @@ const PROGRAMAS = [
     external: true,
     kind: "Hackathon · presencial en Bogotá",
     title: "Hackathon de investigación",
-    body: "Un fin de semana para pasar de leer sobre seguridad de la IA a producir un trabajo propio, en equipo y con mentoría. Apart Research lo convoca a nivel global y nosotros abrimos el espacio presencial en Bogotá.",
+    body: "Un fin de semana para pasar de leer sobre seguridad de la IA a producir un trabajo propio, en equipo y con mentoría. Apart Research lo convoca a nivel global y nosotros abrimos el hub presencial en Bogotá.",
     kickerClass: "text-aisc-sand/70",
     cardClass: "border-aisc-forest-deep bg-aisc-forest-deep text-aisc-sand hover:bg-aisc-night",
     textClass: "text-aisc-sand/90",

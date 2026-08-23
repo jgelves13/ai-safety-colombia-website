@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 /* Seis entradas, en el orden en que alguien nuevo las necesita: qué es el
-   campo, qué sale de acá, la convocatoria abierta, cómo entrar, con qué
-   estudiar y quiénes somos. Eventos y blog viven dentro de esas páginas.
-   La tercera entrada lleva el nombre del sprint vigente: al cerrar el de
+   campo, qué está abierto ahora mismo, qué sale de acá, con qué estudiar,
+   cómo entrar y quiénes somos. Eventos y blog viven dentro de esas páginas.
+   La segunda entrada lleva el nombre del sprint vigente: al cerrar el de
    septiembre hay que renombrarla con el que siga. */
 const NAV = [
   { href: "/seguridad-de-la-ia", label: "¿Qué es AI safety?" },
-  { href: "/investigacion", label: "Investigación" },
   { href: "/hackathon", label: "AI Incident Response Sprint" },
-  { href: "/unete", label: "Únete" },
+  { href: "/investigacion", label: "Investigación" },
   { href: "/recursos", label: "Recursos" },
+  { href: "/unete", label: "Únete" },
   { href: "/quienes-somos", label: "Quiénes somos" },
 ];
 
@@ -33,7 +33,7 @@ function Nav({ active, className }: { active?: string; className: string }) {
           <Link
             key={item.href}
             aria-current={current ? "page" : undefined}
-            className={`text-body-sm text-aisc-sand transition-colors hover:text-aisc-sand/70${current ? " underline underline-offset-4" : ""}`}
+            className={`text-body-sm rounded-full px-3 py-1.5 text-aisc-sand transition-colors hover:bg-aisc-sand/10${current ? " bg-aisc-sand/15" : ""}`}
             href={item.href}
           >
             {item.label}
@@ -117,7 +117,7 @@ export default function SiteHeader({ active }: { active?: string }) {
       <header className="absolute inset-x-0 top-0 z-20 px-4 py-4 xl:px-20">
         <div className="mx-auto flex h-12 w-full max-w-md items-center gap-4 text-aisc-sand md:h-14 md:max-w-[1440px] md:gap-8">
           <Logo />
-          <Nav active={active} className="hidden items-center gap-4 lg:flex xl:gap-6 ml-2" />
+          <Nav active={active} className="hidden items-center gap-0.5 lg:flex xl:gap-2 ml-1" />
           <MenuButton />
         </div>
       </header>
@@ -130,7 +130,7 @@ export default function SiteHeader({ active }: { active?: string }) {
       >
         <div className="mx-auto flex h-14 w-full max-w-md items-center gap-4 rounded-full px-4 text-aisc-sand shadow-[0_12px_40px_-12px_rgba(20,54,32,0.55)] md:h-[68px] md:max-w-[1400px] md:gap-8 md:px-10 bg-aisc-forest-deep">
           <Logo />
-          <Nav active={active} className="hidden items-center gap-4 lg:flex xl:gap-6 ml-auto" />
+          <Nav active={active} className="hidden items-center gap-0.5 lg:flex xl:gap-2 ml-auto" />
           <MenuButton />
         </div>
       </header>

@@ -25,7 +25,7 @@ const FRENTES = [
   },
   {
     title: "Organizamos investigación",
-    body: "Abrimos en Bogotá el espacio presencial de los hackathons que convoca Apart Research, y conectamos a quien está empezando con mentores que ya publican en el campo. La salida es trabajo propio, no un certificado.",
+    body: "Abrimos en Bogotá el hub presencial de los hackathons que convoca Apart Research, y conectamos a quien está empezando con mentores que ya publican en el campo. La salida es trabajo propio, no un certificado.",
   },
   {
     title: "Abrimos la conversación",
@@ -46,7 +46,7 @@ const JUNTA = [
 const ALIADOS = [
   {
     name: "Apart Research",
-    body: "Convoca hackathons de investigación abiertos a todo el mundo. Nosotros abrimos el espacio presencial en Bogotá.",
+    body: "Convoca hackathons de investigación abiertos a todo el mundo. Nosotros abrimos el hub presencial en Bogotá.",
     logo: "/aisc/aliados/apart.png",
     href: "https://apartresearch.com",
   },

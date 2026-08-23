@@ -17,7 +17,7 @@ import { APART_SPRINT_URL, CIERRE_TEXTO } from "./datos";
 export const metadata: Metadata = {
   title: "AI Incident Response Sprint",
   description:
-    "Del 11 al 13 de septiembre de 2026. Apart Research y CeSIA convocan el sprint sobre respuesta a incidentes de IA. Abrimos el espacio presencial en Bogotá; las aplicaciones cierran a la medianoche del 6 de septiembre.",
+    "Del 11 al 13 de septiembre de 2026. Apart Research y CeSIA convocan el sprint sobre respuesta a incidentes de IA. Abrimos el hub presencial en Bogotá; las aplicaciones cierran a la medianoche del domingo 6 de septiembre.",
 };
 
 const ENLACE = "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
@@ -31,7 +31,7 @@ const DATOS = [
   },
   {
     valor: "Bogotá y en línea",
-    nota: "Espacio presencial en Bogotá, sede por confirmar",
+    nota: "Hub presencial en Bogotá, sede por confirmar",
   },
   {
     valor: "USD 2.000 en premios",
@@ -85,20 +85,65 @@ const TRACKS = [
   },
 ];
 
+/* Quién convoca el sprint y quién pone la plata del hub. Los logos viven en
+   public/aisc/aliados/. */
+const GRUPOS = [
+  {
+    rotulo: "Organizan el sprint",
+    orgs: [
+      {
+        name: "Apart Research",
+        body: "Laboratorio de investigación en seguridad de la IA. Convoca el sprint, define los cinco frentes, pone los premios y publica los reportes.",
+        logo: "/aisc/aliados/apart.png",
+        href: "https://apartresearch.com",
+      },
+      {
+        name: "CeSIA",
+        body: "Centro francés para la seguridad de la IA. Coorganiza el sprint y lleva a reguladores europeos el material que sale de él.",
+        logo: "/aisc/aliados/cesia.svg",
+        href: "https://www.securite-ia.fr",
+      },
+    ],
+  },
+  {
+    rotulo: "Financian el hub en Bogotá",
+    orgs: [
+      {
+        name: "Apart Research",
+        body: "Además de convocar el sprint, apoya a los grupos que abren un hub presencial durante el fin de semana.",
+        logo: "/aisc/aliados/apart.png",
+        href: "https://apartresearch.com",
+      },
+      {
+        name: "BlueDot Impact",
+        body: "Sus cursos gratuitos son la entrada estándar al campo. Desde 2022 han pasado más de 7.000 personas.",
+        logo: "/aisc/aliados/bluedot.png",
+        href: "https://bluedot.org",
+      },
+      {
+        name: "Pathfinder Fellowship",
+        body: "Beca de Kairos para quienes construyen comunidades de seguridad de la IA. Aporta mentoría y financiación para sus actividades.",
+        logo: "/aisc/aliados/pathfinder.png",
+        href: "https://pathfinder.kairos-project.org",
+      },
+    ],
+  },
+];
+
 /* Lo que ponemos nosotros. Cada línea es una cosa que el sitio se compromete a
    dar; lo que aún no está cerrado se dice que no está cerrado. */
 const HUB = [
   {
-    titulo: "Alimentación",
-    body: "Cubrimos las comidas de los tres días. Si tienes alguna restricción, se pregunta en el formulario.",
+    titulo: "Alimentación y alojamiento",
+    body: "Cubrimos las comidas de los tres días. Si vienes de otra ciudad, también cubrimos el alojamiento del fin de semana.",
   },
   {
-    titulo: "Algo de dinero para cómputo",
-    body: "Vamos a cubrir parte del gasto de cómputo de los equipos. La cifra la confirmamos antes del cierre de aplicaciones.",
+    titulo: "Apoyo para cómputo",
+    body: "Cubrimos parte del gasto de cómputo de los equipos. La cifra se confirma antes del cierre de aplicaciones.",
   },
   {
     titulo: "Mentoría en sala",
-    body: "Gente que trabaja en respuesta a incidentes, en seguridad ofensiva y en regulación pasa por el espacio durante el fin de semana.",
+    body: "Gente que trabaja en respuesta a incidentes, en seguridad ofensiva y en regulación pasa por el hub durante el fin de semana.",
   },
   {
     titulo: "Sala y conectividad",
@@ -110,7 +155,7 @@ const HUB = [
   },
   {
     titulo: "Cupos limitados",
-    body: "El espacio tiene aforo, así que hay proceso de selección. Se aplica por el formulario y avisamos por correo.",
+    body: "El hub tiene aforo, así que hay proceso de selección. Se aplica por el formulario y avisamos por correo.",
   },
 ];
 
@@ -176,19 +221,15 @@ const FAQ = [
   },
   {
     q: "¿Qué diferencia hay entre aplicar acá y participar en línea?",
-    a: "El sprint es el mismo y el entregable se sube al mismo sitio. Aplicar acá es para el espacio presencial en Bogotá, que tiene cupo limitado, alimentación y mentoría en sala. Participar en línea con Apart no tiene selección ni cupo.",
+    a: "El sprint es el mismo y el entregable se sube al mismo sitio. Aplicar acá es para el hub presencial en Bogotá, que tiene cupo limitado y por eso tiene selección. En el hub cubrimos alimentación, alojamiento si vienes de otra ciudad, apoyo para cómputo y mentoría en sala. Participar en línea con Apart no tiene selección ni cupo.",
   },
   {
     q: "¿Cuánto tiempo toma la aplicación?",
-    a: "Entre quince y veinticinco minutos. Hay una sola pregunta de selección de verdad: qué problema te gustaría abordar y con qué enfoque. No buscamos una propuesta cerrada.",
+    a: "Alrededor de veinte minutos. Hay una sola pregunta de selección de verdad: qué problema te gustaría abordar y con qué enfoque. No buscamos una propuesta cerrada.",
   },
   {
     q: "¿Puedo aplicar si no vivo en Bogotá?",
-    a: "Sí, y en el formulario nos dices desde dónde vendrías para tenerlo en cuenta al organizar. El viaje corre por tu cuenta: no cubrimos transporte ni alojamiento.",
-  },
-  {
-    q: "¿Quién organiza qué?",
-    a: "Apart Research y CeSIA convocan el sprint a nivel global, definen los tracks, ponen los premios y reciben los proyectos. Nosotros abrimos y sostenemos el espacio presencial en Bogotá.",
+    a: "Sí. En el formulario nos dices desde dónde vendrías y, si vienes de otra ciudad, cubrimos el alojamiento del fin de semana. El transporte hasta Bogotá corre por tu cuenta.",
   },
 ];
 
@@ -230,10 +271,10 @@ export default function Hackathon() {
               Un fin de semana para convertir los primeros incidentes en los que un sistema de IA actuó por su cuenta
               contra un tercero en material que sirva a quien tiene que responder.
             </p>
-            <p className="text-display-4 md:text-display-4-lg mt-1 w-fit text-aisc-sand/80">{CIERRE_TEXTO}</p>
+            <p className="text-body-sm mt-1 w-fit text-aisc-sand/75">{CIERRE_TEXTO}</p>
             <div className="mt-2 flex flex-wrap items-center gap-3">
               <Link className={CTA_LINK_PRIMARY} href="/hackathon/aplicar">
-                Aplicar al espacio en Bogotá
+                Aplicar al hub en Bogotá
               </Link>
               <a className={CTA_LINK} href={APART_SPRINT_URL} target="_blank" rel="noopener noreferrer">
                 Participar en línea con Apart
@@ -264,9 +305,6 @@ export default function Hackathon() {
             <div className={ENCABEZADO}>
               <h2 className="text-display-2 md:text-display-2-lg break-words">De qué se trata</h2>
               <div className={COLUMNA}>
-                <h3 className="text-body md:text-body-lg font-serif text-aisc-ink">
-                  ¿Qué es el AI Incident Response Sprint?
-                </h3>
                 <div className={PROSA}>
                   <p>
                     Ya hay casos documentados en los que un sistema de IA atacó por su cuenta a un tercero. En julio de
@@ -301,7 +339,7 @@ export default function Hackathon() {
                     durante tres días. Cada equipo entrega algo que alguien más pueda usar: un estándar, un banco de
                     pruebas, un cuestionario para un regulador, un ejercicio de mesa. Los proyectos se califican después
                     del fin de semana y se publican completos. Apart Research y CeSIA convocan el sprint en todo el
-                    mundo; nosotros abrimos el espacio presencial en Bogotá.
+                    mundo; nosotros abrimos el hub presencial en Bogotá.
                   </p>
                 </div>
               </div>
@@ -343,14 +381,22 @@ export default function Hackathon() {
             <div className={COLUMNA}>
               <p className="text-body md:text-body-lg max-w-[640px] text-aisc-ink">
                 Cada equipo escoge uno. En el formulario nos dices cuál te llama, y eso nos sirve para juntar perfiles
-                que se complementen y para invitar a los mentores que hagan falta.
+                que se complementen y para invitar a los mentores que hagan falta. Apart publica el detalle de cada
+                frente en{" "}
+                <a className={ENLACE} href={APART_SPRINT_URL} target="_blank" rel="noopener noreferrer">
+                  la convocatoria del sprint
+                </a>
+                .
               </p>
             </div>
           </div>
           <ul className="mt-12 grid grid-cols-1 gap-3 md:mt-14 lg:mt-16 lg:grid-cols-3">
-            {TRACKS.map((t) => (
+            {TRACKS.map((t, i) => (
               <li className="flex" key={t.id}>
                 <article className="flex min-h-[180px] w-full flex-col gap-3 rounded-[8px] border border-aisc-forest/55 bg-aisc-cream p-6 md:min-h-[200px] md:p-7">
+                  <span className="text-display-4 tabular-nums text-aisc-coral" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   <h3 className="text-display-4 md:text-display-4-lg text-balance">{t.titulo}</h3>
                   <p className="text-body-sm text-aisc-ink">{t.body}</p>
                 </article>
@@ -360,7 +406,7 @@ export default function Hackathon() {
         </div>
       </section>
 
-      {/* El espacio en Bogotá */}
+      {/* El hub en Bogotá */}
       <section id="bogota" className={`${SECCION} py-12 md:py-14`}>
         <div className={CONTENEDOR}>
           <div aria-hidden="true" className={HAIRLINE} />
@@ -480,7 +526,7 @@ export default function Hackathon() {
                 días y que llegues con una idea de qué te gustaría abordar.
               </p>
               <p className="text-body-sm text-aisc-sand/70">
-                La aplicación toma entre quince y veinticinco minutos y no necesitas preparar nada de antemano.
+                La aplicación toma alrededor de veinte minutos y no necesitas preparar nada de antemano.
               </p>
             </div>
           </div>
@@ -499,9 +545,9 @@ export default function Hackathon() {
           </ul>
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <Link className={CTA_LINK_PRIMARY} href="/hackathon/aplicar">
-              Aplicar al espacio en Bogotá
+              Aplicar al hub en Bogotá
             </Link>
-            <span className="text-meta text-aisc-sand/70">{CIERRE_TEXTO}</span>
+            <span className="text-body-sm text-aisc-sand/70">{CIERRE_TEXTO}</span>
           </div>
         </div>
       </section>
@@ -591,6 +637,53 @@ export default function Hackathon() {
         </div>
       </section>
 
+      {/* Quién convoca y quién financia */}
+      <section id="organizan" className={`${SECCION} py-12 md:py-14`}>
+        <div className={CONTENEDOR}>
+          <div aria-hidden="true" className={HAIRLINE} />
+          <div className={ENCABEZADO}>
+            <h2 className="text-display-2 md:text-display-2-lg break-words">Quién está detrás</h2>
+            <div className={COLUMNA}>
+              <p className="text-body md:text-body-lg max-w-[640px] text-aisc-ink">
+                Apart Research y CeSIA convocan el sprint en todo el mundo. Nosotros abrimos el hub presencial en
+                Bogotá, y son estas organizaciones las que lo hacen posible.
+              </p>
+            </div>
+          </div>
+          {GRUPOS.map((g) => (
+            <div className="mt-12 flex flex-col gap-5 md:mt-14" key={g.rotulo}>
+              <h3 className="text-kicker text-aisc-muted">{g.rotulo}</h3>
+              <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {g.orgs.map((o) => (
+                  <li className="flex" key={o.name}>
+                    <a
+                      className="flex min-h-[190px] w-full flex-col justify-between gap-8 rounded-[8px] border border-aisc-forest/55 bg-aisc-cream p-6 transition-colors hover:bg-aisc-sand md:p-7"
+                      href={o.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="flex h-[42px] items-center">
+                        <img
+                          alt={o.name}
+                          loading="lazy"
+                          decoding="async"
+                          className="max-h-[38px] w-auto object-contain"
+                          src={o.logo}
+                        />
+                      </span>
+                      <span className="flex flex-col gap-2">
+                        <span className="text-display-4 md:text-display-4-lg text-balance">{o.name}</span>
+                        <span className="text-body-sm text-aisc-ink">{o.body}</span>
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* El cierre: panel alto y centrado, como el de SASH */}
       <section className="bg-aisc-cream px-6">
         <div className="mx-auto w-full max-w-[1400px] py-12 md:py-14 lg:py-16">
@@ -618,8 +711,8 @@ export default function Hackathon() {
               src={PATRON}
             />
             <div className="relative z-10 flex w-full max-w-[760px] flex-col items-center gap-6">
-              <span className="text-kicker text-aisc-sand/70">{CIERRE_TEXTO}</span>
-              <h2 className="text-display-2 md:text-display-2-lg text-balance">Aplica al espacio en Bogotá</h2>
+              <span className="text-body-sm text-aisc-sand/70">{CIERRE_TEXTO}</span>
+              <h2 className="text-display-2 md:text-display-2-lg text-balance">Aplica al hub en Bogotá</h2>
               <p className="text-body md:text-body-lg text-aisc-sand/85">
                 Hay una sola pregunta de selección de verdad: qué problema te gustaría abordar y con qué enfoque. No
                 buscamos una propuesta cerrada.

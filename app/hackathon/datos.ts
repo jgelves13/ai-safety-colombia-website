@@ -4,11 +4,11 @@
 export const APART_SPRINT_URL =
   "https://apartresearch.com/sprints/ai-incident-response-sprint-2026-09-11-to-2026-09-13?utm_source=aisafetycolombia";
 
-/* Cierre de aplicaciones al espacio presencial: 6 de septiembre de 2026,
+/* Cierre de aplicaciones al hub en Bogotá: domingo 6 de septiembre de 2026,
    11:59 p. m. hora de Colombia (UTC-5). */
 export const CIERRE_ISO = "2026-09-07T04:59:59.999Z";
 export const CIERRE_TEXTO =
-  "Las aplicaciones al espacio presencial cierran a la medianoche del 6 de septiembre, hora de Colombia.";
+  "Las aplicaciones al hub en Bogotá cierran a la medianoche del domingo 6 de septiembre, hora de Colombia.";
 
 export function aplicacionesCerradas(ahora: Date = new Date()): boolean {
   return ahora.getTime() > Date.parse(CIERRE_ISO);

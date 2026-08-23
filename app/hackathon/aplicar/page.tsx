@@ -9,7 +9,7 @@ import { CIERRE_TEXTO, aplicacionesCerradas } from "../datos";
 export const metadata: Metadata = {
   title: "Aplicar al AI Incident Response Sprint",
   description:
-    "Formulario de aplicación al espacio presencial en Bogotá del AI Incident Response Sprint, del 11 al 13 de septiembre de 2026. Cierra el 6 de septiembre.",
+    "Formulario de aplicación al hub presencial en Bogotá del AI Incident Response Sprint, del 11 al 13 de septiembre de 2026. Cierra el 6 de septiembre.",
 };
 
 /* La página tiene que preguntarle la hora al servidor en cada visita: si se
@@ -38,10 +38,10 @@ export default function Aplicar() {
           <div className="flex max-w-[760px] flex-col gap-5">
             <span className="text-kicker text-aisc-sand/70">AI Incident Response Sprint · 11 al 13 de septiembre</span>
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">
-              Aplica al espacio en Bogotá
+              Aplica al hub en Bogotá
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO} Toma entre quince y veinticinco minutos y no necesitas preparar nada de antemano.
+              {CIERRE_TEXTO} Toma alrededor de veinte minutos y no necesitas preparar nada de antemano.
             </p>
           </div>
         </div>
@@ -52,8 +52,8 @@ export default function Aplicar() {
           {!cerrado ? (
             <div className="mb-8 flex flex-col gap-3">
               <p className="text-body-sm text-aisc-ink">
-                Durante los tres días tendrás espacio de trabajo, alimentación, conectividad y mentores en sala. El
-                cupo es limitado, así que hay selección.
+                Durante los tres días tendrás espacio de trabajo, alimentación, conectividad y mentores en sala. Si
+                vienes de otra ciudad, también cubrimos el alojamiento. El cupo es limitado, así que hay selección.
               </p>
               <p className="text-body-sm text-aisc-ink">
                 Si prefieres ver primero de qué se trata,{" "}

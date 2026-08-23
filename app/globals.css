@@ -123,12 +123,12 @@ body {
   line-height: 1.5;
 }
 
-/* metadatos: fechas, filtros, roles. En mono, no en la serif de display. */
+/* metadatos: fechas, filtros, roles. La misma familia del texto, un punto
+   mas pequena: lo que los separa es el tamano, no el tipo de letra. */
 @utility text-meta {
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-size: 0.9375rem;
-  line-height: 1.2;
-  letter-spacing: 0.01em;
+  line-height: 1.35;
 }
 
 @utility text-meta-lg {
@@ -136,12 +136,13 @@ body {
   line-height: 1.15;
 }
 
-/* antetitulo de seccion: mono, caja alta, coral */
+/* antetitulo de seccion: la de texto, en caja alta y con aire entre letras */
 @utility text-kicker {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.6875rem;
-  line-height: 1;
-  letter-spacing: 0.16em;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 

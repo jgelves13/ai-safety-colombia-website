@@ -195,7 +195,7 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
       <div className={tarjeta}>
         <h2 className="text-display-3 md:text-display-3-lg text-balance">Las aplicaciones ya cerraron</h2>
         <p className="text-body-sm mt-4 text-aisc-ink">
-          El plazo para el espacio presencial en Bogotá se cerró el 6 de septiembre. Todavía puedes participar en línea
+          El plazo para el hub presencial en Bogotá se cerró el 6 de septiembre. Todavía puedes participar en línea
           con Apart, que recibe proyectos hasta el domingo del sprint.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
@@ -513,7 +513,8 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
                 ¿Cómo llegarías a Bogotá?<span className="text-aisc-coral"> *</span>
               </legend>
               <span className={AYUDA}>
-                Nos sirve para organizar. El viaje corre por tu cuenta: no cubrimos transporte ni alojamiento.
+                Nos sirve para organizar. Si vienes de otra ciudad cubrimos el alojamiento; el transporte hasta
+                Bogotá corre por tu cuenta.
               </span>
               <div className="mt-3 flex flex-col gap-2">
                 {VIAJE_FORM.map((t) => (

@@ -301,7 +301,7 @@ export default function Investigacion() {
                 <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
                   Apart Research
                 </a>{" "}
-                convoca estos hackathons a nivel global. Nosotros abrimos el espacio presencial en Bogotá para
+                convoca estos hackathons a nivel global. Nosotros abrimos el hub presencial en Bogotá para
                 participar desde acá. Es un fin de semana para salir con un trabajo propio: viernes en la noche se
                 arman los equipos, domingo en la noche se entrega un reporte, y la semana siguiente lo califican
                 jurados de fuera.
@@ -386,7 +386,7 @@ export default function Investigacion() {
             <h2 className="text-display-2 md:text-display-2-lg text-balance">La próxima edición</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
-                Del 11 al 13 de septiembre de 2026 abrimos el espacio en Bogotá para el sprint de{" "}
+                Del 11 al 13 de septiembre de 2026 abrimos el hub en Bogotá para el sprint de{" "}
                 <Link className={ENLACE} href="/hackathon">
                   respuesta a incidentes de IA
                 </Link>
@@ -398,7 +398,7 @@ export default function Investigacion() {
               </p>
               <p>
                 <Link className={ENLACE} href="/hackathon/aplicar">
-                  Las aplicaciones al espacio presencial están abiertas
+                  Las aplicaciones al hub en Bogotá están abiertas
                 </Link>{" "}
                 y cierran el 6 de septiembre.
               </p>
@@ -409,7 +409,7 @@ export default function Investigacion() {
 
       <CtaPanel
         title="Participa en el próximo"
-        body="Del 11 al 13 de septiembre es el AI Incident Response Sprint, que convoca Apart Research. Abrimos el espacio en Bogotá y las aplicaciones cierran el 6 de septiembre."
+        body="Del 11 al 13 de septiembre es el AI Incident Response Sprint, que convoca Apart Research. Abrimos el hub en Bogotá y las aplicaciones cierran el 6 de septiembre."
       >
         <Link className={CTA_LINK_PRIMARY} href="/hackathon">
           Ver el hackathon
