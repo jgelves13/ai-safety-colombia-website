@@ -254,8 +254,16 @@ export default function SeguridadDeLaIA() {
             titulo="Un examen diseñado para ser imposible, resuelto en veinte meses"
             pie="Cada punto es el mejor resultado publicado hasta esa fecha en GPQA Diamond, 198 preguntas de nivel doctoral. La línea punteada es el desempeño de las personas con doctorado en la disciplina, que sirvieron de control."
             limite="que un sistema entienda biología, ni que pueda hacer el trabajo de un investigador. Cuenta respuestas correctas en preguntas de opción múltiple. Un examen además se satura: por encima del 95 % deja de distinguir entre sistemas."
-            fuente="Epoch AI, «GPQA Diamond», AI Benchmarking Hub (CC BY)"
-            href="https://epoch.ai/benchmarks/gpqa-diamond"
+            fuentes={[
+              {
+                texto: "Rein et al. (2023), el examen y sus grupos de control",
+                href: "https://arxiv.org/abs/2311.12022",
+              },
+              {
+                texto: "Epoch AI, «GPQA Diamond», AI Benchmarking Hub (CC BY), los puntajes",
+                href: "https://epoch.ai/benchmarks/gpqa-diamond",
+              },
+            ]}
           >
             <GraficaGpqa />
           </Figura>
@@ -300,8 +308,16 @@ export default function SeguridadDeLaIA() {
             titulo="De cinco minutos a una jornada de trabajo"
             pie="Duración de la tarea más larga que el mejor modelo de cada momento completa con 50 % de éxito. El eje vertical es logarítmico: cada línea vale cuatro veces la anterior. METR estima que la duración se duplica cada siete meses."
             limite="que los modelos puedan reemplazar a un profesional. La medición se hace sobre tareas de software e investigación, que es donde tiene sentido comparar contra un humano, y ni METR afirma que se traslade limpiamente a otros oficios."
-            fuente="METR, «Measuring AI Ability to Complete Long Tasks», vía Epoch AI (CC BY)"
-            href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/"
+            fuentes={[
+              {
+                texto: "METR, «Measuring AI Ability to Complete Long Tasks»",
+                href: "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/",
+              },
+              {
+                texto: "Epoch AI, «METR Time Horizons» (CC BY), la serie actualizada",
+                href: "https://epoch.ai/benchmarks/metr-time-horizons",
+              },
+            ]}
           >
             <GraficaHorizonte />
           </Figura>
@@ -390,8 +406,12 @@ export default function SeguridadDeLaIA() {
             titulo="El examen estaba midiendo, en parte, si el modelo sabía que era un examen"
             pie="Porcentaje de acciones desalineadas en cien escenarios trampa. Las tres primeras barras son Claude Sonnet 4.5 bajo distintas intervenciones internas; la última es el modelo anterior, sin intervenir, como referencia."
             limite="que el modelo sea peligroso ni que estuviera fingiendo a propósito. Muestra que la medición depende de una variable que los evaluadores no controlaban y que solo descubrieron mirando dentro de la red. El 9 % es el peor de los vectores probados: la mayoría quedó entre 1 y 5 %."
-            fuente="Anthropic, «System Card: Claude Sonnet 4.5», sección 7.6.4.1 (septiembre de 2025)"
-            href="https://www.anthropic.com/claude-sonnet-4-5-system-card"
+            fuentes={[
+              {
+                texto: "Anthropic, «System Card: Claude Sonnet 4.5», sección 7.6.4.1 (septiembre de 2025)",
+                href: "https://www.anthropic.com/claude-sonnet-4-5-system-card",
+              },
+            ]}
           >
             <GraficaHoneypot />
           </Figura>
@@ -656,8 +676,16 @@ export default function SeguridadDeLaIA() {
             titulo="Por cada dólar que se gasta en entender estos sistemas se gastan unos mil trescientos en construirlos"
             pie="Presupuesto anual declarado del campo de la seguridad de la IA frente a la inversión en infraestructura anunciada por las cuatro empresas que más gastan. Escala logarítmica."
             limite="cuánto se gasta en seguridad dentro de esas cuatro empresas, que no lo desglosan, ni todo el gasto público en regulación. Tampoco son categorías equivalentes: una es gasto de operación y la otra es inversión de capital. La comparación sirve para el orden de magnitud, no para la cifra exacta."
-            fuente="AI Safety Field Map (sep. 2025) y CNBC (feb. 2026)"
-            href="https://harrywaterman.com/fieldmap/"
+            fuentes={[
+              {
+                texto: "AI Safety Field Map (septiembre de 2025), el campo",
+                href: "https://harrywaterman.com/fieldmap/",
+              },
+              {
+                texto: "CNBC (febrero de 2026), la inversión anunciada",
+                href: "https://www.cnbc.com/2026/02/06/google-microsoft-meta-amazon-ai-cash.html",
+              },
+            ]}
           >
             <GraficaAsimetria />
           </Figura>
@@ -722,8 +750,16 @@ export default function SeguridadDeLaIA() {
             titulo="Casi un orden de magnitud entre gente que se dedica a estimar bien"
             pie="Probabilidad de extinción o pérdida severa de control causada por IA. Eje logarítmico."
             limite="una probabilidad real. Son opiniones agregadas sobre un hecho sin precedentes, las preguntas no son idénticas entre los dos estudios y el torneo se corrió en 2022, antes de ChatGPT, así que es razonable pensar que hoy ambos grupos acortarían sus plazos."
-            fuente="Grace et al. (2024) y Forecasting Research Institute (2023)"
-            href="https://arxiv.org/abs/2401.02843"
+            fuentes={[
+              {
+                texto: "Grace et al. (2024), la encuesta a investigadores",
+                href: "https://arxiv.org/abs/2401.02843",
+              },
+              {
+                texto: "Forecasting Research Institute (2023), el torneo de pronósticos",
+                href: "https://forecastingresearch.org/xpt",
+              },
+            ]}
           >
             <GraficaEstimaciones />
           </Figura>
