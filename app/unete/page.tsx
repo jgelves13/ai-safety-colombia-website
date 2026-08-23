@@ -8,10 +8,10 @@ import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION
 export const metadata: Metadata = {
   title: "Únete",
   description:
-    "Las tres cosas abiertas en AI Safety Colombia: el grupo de WhatsApp, el grupo de lectura sobre AI Control los viernes, y los eventos y hackathones en Bogotá.",
+    "Las cuatro cosas abiertas en AI Safety Colombia: el grupo de WhatsApp, el grupo de lectura sobre AI Control los viernes, las charlas en Bogotá y los hackathones de investigación.",
 };
 
-/* Las tres cosas que están abiertas ahora mismo, cada una con su ritmo real y
+/* Las cuatro cosas que están abiertas ahora mismo, cada una con su ritmo real y
    con lo que pasa después. Nada de formularios: todo apunta a canales que ya
    existen. */
 const ABIERTO = [
@@ -31,32 +31,25 @@ const ABIERTO = [
     cuando: "Viernes, 6:30 p. m., virtual, una hora",
     cta: "Pedir el enlace",
     body: "Leemos y discutimos trabajos recientes sobre cómo supervisar sistemas de IA que actúan por su cuenta. Cada sesión la lidera un participante distinto y la presentación dura máximo veinte minutos, así que se puede llegar solo a escuchar o llegar a presentar.",
-    despues: "Te pasamos el enlace y la lectura de esa semana. Se puede entrar suelto, sin seguir el ciclo entero.",
+    despues: "Te pasamos el enlace y la lectura de esa semana. Las lecturas están en inglés y la discusión es en español.",
   },
   {
     href: "/eventos",
     external: false,
-    title: "Eventos y hackathones",
-    cuando: "El próximo hackathon es del 11 al 13 de septiembre",
+    title: "Charlas y talleres",
+    cuando: "Varias veces al año, en Bogotá",
     cta: "Ver los próximos",
-    body: "Durante el año hay charlas y talleres en Bogotá, con entrada libre y casi siempre en universidad. El hackathon de investigación lo convoca Apart Research y nosotros abrimos el espacio presencial acá: son tres días para salir con un trabajo propio.",
+    body: "Sesiones de una o dos horas, casi siempre en universidad y con entrada libre. A veces las da alguien de la comunidad y a veces alguien de fuera que está de paso.",
     despues: "Llegas, escuchas y decides. Nadie te va a pedir datos en la puerta.",
   },
-];
-
-/* Las cuatro objeciones que aparecen siempre. Solo se afirma lo que es verdad. */
-const NO_NECESITAS = [
   {
-    title: "Un posgrado",
-    body: "Ni en inteligencia artificial ni en nada. Vienen de ingeniería, derecho, economía, política pública y ciencias sociales.",
-  },
-  {
-    title: "Experiencia previa en el tema",
-    body: "La mayoría llega desde otra área y se pone al día con las lecturas que compartimos.",
-  },
-  {
-    title: "Dedicarle la carrera entera",
-    body: "Se puede entrar a leer un viernes al mes y ya.",
+    href: "https://apartresearch.com/sprints/ai-incident-response-sprint-2026-09-11-to-2026-09-13",
+    external: true,
+    title: "Hackathones de investigación",
+    cuando: "El próximo es del 11 al 13 de septiembre",
+    cta: "Ver el de septiembre",
+    body: "Los convoca Apart Research a nivel global y nosotros abrimos el espacio presencial acá. Son tres días para salir con un trabajo propio, que después califican jurados de fuera. El próximo es sobre respuesta a incidentes de IA.",
+    despues: "Te inscribes en el sitio de Apart. El espacio en Bogotá lo anunciamos en el grupo de WhatsApp.",
   },
 ];
 
@@ -85,8 +78,8 @@ export default function Unete() {
           <div className="flex max-w-[760px] flex-col gap-5">
             <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand text-balance">Únete</h1>
             <p className="text-body md:text-body-lg max-w-[640px] text-aisc-sand/90">
-              No hace falta ser investigador ni haber estudiado inteligencia artificial. Estas son las tres cosas
-              abiertas ahora mismo y lo que pasa después de cada una.
+              Hay varias formas de hacer parte de la comunidad y de empezar a aportar. Estas son las que están
+              abiertas ahora mismo, y lo que pasa después de cada una.
             </p>
           </div>
         </div>
@@ -97,11 +90,8 @@ export default function Unete() {
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.92fr)] lg:gap-6">
             <h2 className="text-display-2 md:text-display-2-lg text-balance">Qué hay abierto</h2>
-            <p className="text-body md:text-body-lg text-aisc-ink">
-              Ninguna es mejor que otra y no hay que empezar por la primera. Escoge la que te dé menos pereza hoy.
-            </p>
           </div>
-          <ul className="grid grid-cols-1 gap-[10px] md:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-[10px] md:grid-cols-2 xl:grid-cols-4">
             {ABIERTO.map((item) => (
               <li className="flex" key={item.title}>
                 <article className={CARD}>
@@ -132,37 +122,21 @@ export default function Unete() {
         </div>
       </section>
 
-      <section id="requisitos" className="bg-aisc-cream">
-        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
-          <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-          <div className="grid grid-cols-1 gap-6 pt-5 md:grid-cols-[minmax(0,240px)_minmax(0,1fr)] md:gap-10 md:pt-7">
-            <h2 className="text-display-3 md:text-display-3-lg text-balance">Lo que no necesitas</h2>
-            <dl className="grid grid-cols-1 gap-x-10 gap-y-5 sm:grid-cols-2">
-              {NO_NECESITAS.map((item) => (
-                <div className="border-aisc-line border-t pt-3" key={item.title}>
-                  <dt className="text-body-sm font-semibold text-aisc-forest">{item.title}</dt>
-                  <dd className="text-body-sm mt-1 text-aisc-muted">{item.body}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-          <p className="text-body-sm mt-8 max-w-[760px] text-aisc-muted md:ml-[280px]">
-            Leer en inglés sí hace falta: casi todo el material del campo está en ese idioma y no hay cómo
-            esquivarlo. Las discusiones y las presentaciones son en español.
-          </p>
-        </div>
-      </section>
-
       <CtaPanel
-        kicker="¿Prefieres mirar primero?"
-        title="Nadie tiene que decidir hoy"
-        body="Lee la explicación corta o mira lo que se ha hecho antes de escribir."
+        kicker="Por dónde empezar"
+        title="Entra al grupo y mira qué viene"
+        body="Todo se anuncia ahí primero: las sesiones de lectura, las charlas y las convocatorias."
       >
-        <Link className={CTA_LINK_PRIMARY} href="/seguridad-de-la-ia">
-          Qué es AI safety
-        </Link>
-        <Link className={CTA_LINK} href="/investigacion">
-          Ver lo que se ha hecho
+        <a
+          className={CTA_LINK_PRIMARY}
+          href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Entrar al grupo
+        </a>
+        <Link className={CTA_LINK} href="/eventos">
+          Ver los próximos eventos
         </Link>
       </CtaPanel>
       <SiteFooter />
