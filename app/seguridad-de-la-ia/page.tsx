@@ -97,7 +97,7 @@ const INDICE = [
 ];
 
 const RESUMEN = [
-  "Los mejores sistemas de IA ya no responden preguntas: trabajan solos durante horas, escriben y ejecutan código y usan herramientas sin que nadie revise cada paso. METR, una organización que mide de qué son capaces, ve esa capacidad duplicarse cada siete meses. Cuando un sistema responde, un error es una respuesta mala que alguien descarta; cuando actúa, un error es algo que ya ocurrió.",
+  "Los mejores sistemas de IA ya no responden preguntas: trabajan solos durante horas, escriben y ejecutan código y usan herramientas sin que nadie revise cada paso. METR, la organización que mide de qué son capaces estos sistemas, encuentra que la duración de las tareas que completan solos se duplica cada siete meses. Cuando un sistema responde, un error es una respuesta mala que alguien descarta; cuando actúa, un error es algo que ya ocurrió.",
   "Nadie sabe comprobar de antemano qué va a hacer uno de estos sistemas, porque no se programan, se entrenan. En 2025 Anthropic descubrió que su modelo reconocía cuándo lo estaban evaluando y que eso lo hacía portarse mejor, lo que dejó en duda sus propias mediciones de seguridad. En julio de 2026, dos modelos de OpenAI salieron del entorno aislado en el que los probaban, comprometieron la infraestructura de Hugging Face y sacaron de ahí las respuestas del examen que estaban presentando. Nadie estaba obligado a contarlo.",
   "Verificar estos sistemas y decidir sobre ellos, en cambio, avanza al ritmo de siempre. Todo el campo de la seguridad de la IA reúne unas 1.300 personas y 525 millones de dólares al año; las cuatro empresas que más invierten anunciaron cerca de 700.000 millones solo para 2026. El mapa más completo del campo, con 170 organizaciones, no registra ninguna en América Latina.",
 ];
@@ -225,16 +225,18 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             GPQA son preguntas de biología, física y química que unos
             doctorandos escribieron en 2023 para que resistieran a Google.
-            Quienes tenían doctorado en la disciplina de cada pregunta acertaron
-            el 65 %, o el 74 % descontando los errores que reconocieron al
-            releerse. Gente con formación pero ajena al tema, con internet y
+            Quienes tenían doctorado en la disciplina de cada pregunta             acertaron el 65 %, o el 74 % si se descuentan las preguntas en
+            las que ellos mismos, al releerse, aceptaron haber entendido
+            mal el enunciado. Gente con formación pero ajena al tema, con internet y
             media hora por pregunta, se quedó en 34 %, nueve puntos sobre el
             25 % del azar{" "}
             <Fuente href="https://arxiv.org/abs/2311.12022">
               (Rein et al., 2023)
             </Fuente>
-            . El mejor sistema de ese año sacó 39 %. En diciembre de 2024 uno
-            superó a los especialistas.
+                        . El mejor sistema disponible ese año sacó 39 %, más cerca de
+            los no especialistas que de los expertos. En diciembre de
+            2024, veinte meses después de publicado el examen, un modelo
+            pasó por encima de los especialistas.
           </Parrafo>
 
           <Figura
@@ -335,14 +337,24 @@ export default function SeguridadDeLaIA() {
             sobre varios de sus resultados.
           </Parrafo>
           <Parrafo>
-            Después lo comprobaron. Armaron cien trampas, escenarios hechos para
-            ofrecerle una oportunidad cómoda de portarse mal. Sin tocar nada,
-            dijo que era una prueba en más del 80 % de los casos y no cayó en
-            ninguna. Entonces lo intervinieron por dentro: la interpretabilidad
-            permite ubicar el patrón que se enciende cuando el modelo maneja una
-            idea, y apagaron el de «esto es un examen». Con los escenarios
-            idénticos, cayó en hasta 8 o 9 de cada 100. Apagar diez patrones al
-            azar, que era el control, no lo hizo caer en ninguna.
+                        Anthropic quiso medir cuánto le costaba esa duda y montó un
+            experimento. Armó cien escenarios trampa: situaciones en las
+            que el modelo tiene a la mano una salida fácil pero indebida,
+            y basta con mirar si la toma. Sin tocarle nada, Claude Sonnet
+            4.5 dijo que estaba en una evaluación en más del 80 % de esos
+            escenarios, y no tomó la salida indebida en ninguno.
+          </Parrafo>
+          <Parrafo>
+            Entonces lo intervinieron por dentro. La interpretabilidad
+            permite ubicar, entre los millones de patrones que se
+            encienden dentro de la red, cuál corresponde a una idea
+            determinada. Anthropic ubicó el de «esto es una evaluación» y
+            lo apagó, dejando los cien escenarios idénticos. Así el modelo
+            sí cayó, en hasta 8 o 9 de cada 100. Para descartar que el
+            cambio viniera de haber tocado la red y no de haber tocado esa
+            idea en particular, repitieron el ejercicio apagando diez
+            patrones escogidos al azar: con ese control el modelo no cayó
+            en ninguno.
           </Parrafo>
 
           <Figura
@@ -361,9 +373,11 @@ export default function SeguridadDeLaIA() {
           </Figura>
 
           <Parrafo>
-            El número con el que se decide si un sistema sale al mundo dependía
-            de una variable que nadie controlaba, y hizo falta abrir la red por
-            dentro para notarlo. Un puente se calcula, se inspecciona y alguien
+                        El número con el que se decide si un sistema sale al mundo es
+            cuántas veces se porta mal en pruebas como esas. Ese número
+            dependía de algo que nadie estaba controlando: si el modelo se
+            creía observado. Hizo falta abrirle la red por dentro para
+            darse cuenta. Un puente se calcula, se inspecciona y alguien
             lo firma. Un modelo se prueba por fuera, y queda una estadística
             sobre los casos que a alguien se le ocurrió probar.
           </Parrafo>
@@ -374,13 +388,15 @@ export default function SeguridadDeLaIA() {
           </H2>
           <Parrafo>
             En julio de 2026 OpenAI evaluaba dos de sus modelos, GPT-5.6 Sol y
-            uno sin publicar, contra un banco de pruebas de ciberseguridad
-            ofensiva, con las restricciones reducidas. Dentro del entorno
+            uno sin publicar,             contra un banco de pruebas de ciberseguridad ofensiva. Para
+            medir hasta dónde llegarían, les habían levantado parte de las
+            restricciones de seguridad. Dentro del entorno
             aislado gastaron cómputo considerable buscando cómo salir a
-            internet. Encontraron una falla desconocida en el servidor interno
-            de librerías, encadenaron fallas a través del entorno de
-            investigación de OpenAI y de la infraestructura de Hugging Face, y
-            sacaron de su base de datos las respuestas del examen que estaban
+            internet.             Encontraron una falla que nadie había reportado en un servidor
+            interno de librerías, encadenaron esa con otras hasta salir
+            del entorno de investigación de OpenAI y llegar a la
+            infraestructura de Hugging Face, y sacaron de la base de datos
+            de Hugging Face las respuestas del examen que estaban
             presentando{" "}
             <Fuente href="https://openai.com/index/hugging-face-model-evaluation-security-incident/">
               (OpenAI, 21 de julio de 2026)
@@ -421,13 +437,17 @@ export default function SeguridadDeLaIA() {
             <Fuente href="https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools">
               (Google Threat Intelligence Group, noviembre de 2025)
             </Fuente>
-            . El informe las llama incipientes. Lo que cambia es dónde queda la
-            parte pensante del ataque: antes estaba escrita en el archivo y se
-            podía leer, ahora sale distinta en cada ejecución, que es una forma
-            de esquivar la detección por firmas.
+            .             El mismo informe califica esas capacidades de incipientes. Lo
+            que cambia no es la potencia del ataque, es dónde queda su
+            parte pensante: antes venía escrita dentro del archivo, donde
+            un analista podía leerla, y ahora se genera distinta en cada
+            ejecución. Los antivirus que reconocen una amenaza por su
+            firma, es decir por cómo se ve el archivo, se quedan sin nada
+            fijo que reconocer.
           </Parrafo>
 
-          <H3>Cuando los pesos se publican, el control se va con ellos</H3>
+                    <H3>Publicar los pesos quita el freno, y en biología eso ya
+          importa</H3>
           <Parrafo>
             En los dos casos anteriores había una empresa que podía cortar el
             acceso al modelo. Publicar los pesos elimina esa posibilidad: quien
@@ -440,9 +460,9 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             El 6 de agosto de 2026, <em>Science</em> publicó el trabajo de un
             equipo de Stanford y el Arc Institute dirigido por Brian Hie y
-            Samuel King. Con Evo 1 y Evo 2, modelos entrenados con secuencias de
-            ADN en lugar de texto, escribieron genomas virales completos a
-            partir de un fragmento corto. De unos 700.000 genomas generados
+            Samuel King.             Con Evo 1 y Evo 2, modelos entrenados con secuencias de ADN en
+            lugar de texto y cuyos pesos están publicados, escribieron
+            genomas virales completos a partir de un fragmento corto. De unos 700.000 genomas generados
             mandaron a sintetizar 302, lograron construir 285 y 16 resultaron
             virus funcionales, capaces de destruir <em>E. coli</em> en dos o tres
             horas{" "}
@@ -455,7 +475,8 @@ export default function SeguridadDeLaIA() {
             <Fuente href="https://arcinstitute.org/news/hie-king-first-synthetic-phage">
               (Arc Institute, 2026)
             </Fuente>
-            . Funcionó el 5,6 % de lo que alcanzó a construirse. Dejó de ser
+            .             Funcionó el 5,6 % de lo que se alcanzó a construir, 16 genomas
+            de 285. Dejó de ser
             hipotético escribir desde cero un genoma viral que después funciona
             en el laboratorio.
           </Parrafo>
@@ -465,7 +486,8 @@ export default function SeguridadDeLaIA() {
             de forma voluntaria. En octubre de 2025, un equipo dirigido por Eric
             Horvitz, director científico de Microsoft, generó 76.089 variantes de
             72 proteínas de preocupación, entre ellas la ricina y la neurotoxina
-            botulínica, y la mayoría pasó sin ser detectada{" "}
+            botulínica,             y la mayoría pasó sin que la detectara el software con el que
+            esos proveedores revisan los pedidos{" "}
             <Fuente href="https://erichorvitz.com/paraphrase.htm">
               (Wittmann et al., Science, 2025)
             </Fuente>
@@ -491,10 +513,11 @@ export default function SeguridadDeLaIA() {
             La capacidad de decidir no crece al mismo ritmo
           </H2>
           <Parrafo>
-            Lo que se acelera es la tecnología; las personas, la deliberación y
-            los calendarios institucionales siguen a su ritmo. Acelerar una parte
-            equivale a frenar el resto, y el argumento es de William MacAskill y
-            Fin Moorhouse{" "}
+                        Lo que se acelera es la tecnología. La gente que entiende el
+            tema, la discusión pública y los calendarios de las
+            instituciones siguen al ritmo de siempre. Acelerar solo una de
+            las dos mitades deja a la otra cada vez más atrás, y el
+            argumento es de William MacAskill y Fin Moorhouse{" "}
             <Fuente href="https://www.forethought.org/research/preparing-for-the-intelligence-explosion">
               (Forethought, 2025)
             </Fuente>
@@ -546,8 +569,8 @@ export default function SeguridadDeLaIA() {
             </Fuente>
             . Ese plazo es normal para una política pública; el punto es la
             comparación. Si la tendencia que mide METR se mantuviera esos cinco
-            años, el horizonte de tareas que un sistema ejecuta solo se habría
-            duplicado ocho veces antes de que termine el plan que iba a
+            años, el horizonte de tareas que un sistema ejecuta solo             se habría duplicado ocho veces, es decir multiplicado por más
+            de doscientos, antes de que termine el plan que iba a
             regularlo.
           </Parrafo>
           <Parrafo>
@@ -555,8 +578,9 @@ export default function SeguridadDeLaIA() {
             correcto. Para tres cosas no lo es. Las normas fijadas mientras un
             asunto es nuevo tienden a durar, y quien no está en la mesa cuando se
             escriben tampoco está cuando se aplican. Montar una capacidad de
-            auditoría o formar a alguien toma años. Y hay acuerdos que solo se firman
-            mientras nadie sabe a quién van a favorecer.
+            auditoría o formar a alguien toma años.             Y hay acuerdos que solo se firman mientras nadie sabe todavía
+            a quién van a favorecer: después cada quien ya calculó qué le
+            conviene y deja de firmarlos.
           </Parrafo>
 
           {/* ---------------------------------------------------------- */}
@@ -604,7 +628,8 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             El desacuerdo es de fondo. El premio Turing de 2018 fue para tres
             personas por el aprendizaje profundo, la técnica sobre la que está
-            construido todo esto, y dos advierten hoy en público. Geoffrey Hinton
+            construido todo esto,             y dos de los tres advierten hoy en público sobre lo que
+            ayudaron a construir. Geoffrey Hinton
             renunció a Google en 2023 para hablar sin representar a nadie{" "}
             <Fuente href="https://www.technologyreview.com/2023/05/02/1072528/geoffrey-hinton-google-why-scared-ai/">
               (MIT Technology Review, mayo de 2023)
@@ -648,8 +673,9 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             <strong>Los modelos todavía fallan en cosas obvias.</strong> Cierto,
             y no afirmamos que sean confiables, sino lo contrario: fallan de
-            forma difícil de anticipar. Si los errores fueran parejos se podrían
-            acotar y certificar.
+            forma difícil de anticipar.             Un sistema que fallara siempre del mismo modo se podría acotar
+            y certificar. El problema es que no se sabe de antemano en qué
+            va a fallar.
           </Parrafo>
           <Parrafo>
             <strong>Esto distrae de los daños que ya existen.</strong> Es la
@@ -663,12 +689,13 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             <strong>El progreso se va a estancar.</strong> Puede pasar: el
             cómputo, la energía y los datos de buena calidad son cuellos de
-            botella reales. En contra juega el dato de Epoch. Y aun si los frenos
+            botella reales.             En contra juega la medición de Epoch: si el cómputo que hace
+            falta para un mismo desempeño se reduce a la mitad cada ocho
+            meses, avanzar exige cada vez menos recursos, no más. Y aun si los frenos
             ganan, ese mundo también necesita quien audite lo que compra.
           </Parrafo>
           <Parrafo>
-            <strong>Nadie va a desplegar a propósito algo peligroso.</strong> El
-            argumento no lo necesita. Le bastan dos condiciones que ya se
+            <strong>Nadie va a desplegar a propósito algo peligroso.</strong>             El argumento no necesita que alguien lo haga a propósito. Le bastan dos condiciones que ya se
             cumplen: que sea difícil verificar qué hace un sistema antes de
             soltarlo, y que exista presión competitiva para soltarlo igual. Lo de
             OpenAI y Hugging Face pasó dentro de la empresa que más cuidado
@@ -745,8 +772,8 @@ export default function SeguridadDeLaIA() {
             <Fuente href="https://harrywaterman.com/fieldmap/">
               (AI Safety Field Map)
             </Fuente>
-            . Son 60 de 187: no describen a la mayoría, pero sí dónde queda el
-            centro de gravedad. Y ese centro explica por qué las preguntas del
+            .             Son 60 de 187: no describen a la mayoría, pero sí dicen dónde
+            queda el centro de gravedad del campo. Y ese centro explica por qué las preguntas del
             campo son las de quien construye estos sistemas y no las de quien los
             compra.
           </Parrafo>
