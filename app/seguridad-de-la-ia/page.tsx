@@ -823,42 +823,40 @@ export default function SeguridadDeLaIA() {
             Lo que falta acá no es una agenda propia, es gente
           </H2>
           <Parrafo>
-            El campo cabe hoy en 170 organizaciones, y el mapa que las
-            registra no ubica ninguna en América Latina. Nosotros tampoco
-            aparecemos ahí, y lo que no está en el mapa tampoco está en
-            las listas de quienes reparten la plata. De las 187 personas
-            que ese mapa identifica decidiendo a dónde va, 60 se formaron
-            en Oxford, Stanford o Berkeley{" "}
+            Hay un mapa que lleva la cuenta de quién trabaja en esto.
+            Registra 170 organizaciones y ninguna queda en América Latina;
+            nosotros tampoco estamos ahí. De las 187 personas que ese mapa
+            identifica repartiendo el dinero del campo, 60 estudiaron en
+            Oxford, Stanford o Berkeley{" "}
             <Fuente href="https://harrywaterman.com/fieldmap/">
               (AI Safety Field Map)
             </Fuente>
             .
           </Parrafo>
           <Parrafo>
-            Un campo con esa forma estudia lo que se ve desde donde está
-            parado, y desde ahí lo que se ve es el laboratorio que entrena
-            el modelo. Lo que pasa después, cuando el sistema ya se compró
-            y está decidiendo sobre gente, no le toca a nadie por oficio.
-            No es descuido: ninguna de las organizaciones que fijan la
-            agenda le responde a alguien de acá.
+            Eso decide qué se investiga. Las preguntas que se hacen son
+            las de quien todavía tiene el modelo en las manos. Acá el
+            modelo llega hecho: una entidad lo compra, lo pone a decidir
+            sobre gente y responde cuando falla. Esa parte no le queda
+            cerca a ninguna de las organizaciones del mapa.
           </Parrafo>
           <Parrafo>
-            El problema de fondo no cambia de país. Nadie sabe certificar
-            qué persigue un sistema antes de soltarlo, ni allá ni acá. Lo
-            que cambia es quién tiene que hacer la pregunta. Allá la hace
-            quien construye. Acá le toca a quien firma: qué exigir antes
-            de comprar, y ante quién responde el proveedor si dos años
-            después se descubre que el sistema le bajaba el puntaje a la
-            gente de cierto municipio.
+            El problema de fondo es el mismo en los dos lados. Nadie sabe
+            certificar qué persigue un sistema antes de soltarlo. Lo que
+            cambia es a quién le cae encima la pregunta. Acá le cae a
+            quien firma el contrato: qué exigir antes de comprar, y ante
+            quién responde el proveedor si en dos años se descubre que el
+            sistema le bajaba el puntaje a la gente de cierto municipio.
+            De afuera nadie va a venir a hacer esas preguntas.
           </Parrafo>
           <Parrafo>
-            Para eso no hay que inventar una agenda aparte. Hay que tener
-            gente que pueda trabajar en esto, y ahí está hoy el límite:
-            entra menos gente de la que podría, y la que entra tarda más
-            de lo necesario porque no tiene con quién hablar. Acortar ese
-            camino es lo que hacemos. Un grupo que lee, discute y trabaja
-            en cosas concretas, en el que se entra sin credencial previa.
-            Para empezar por cuenta propia, lo más corto que conocemos es{" "}
+            Hacerlas no requiere un campo aparte. Requiere gente. Ese es
+            hoy el cuello de botella: entra menos de la que podría entrar,
+            y quien entra tarda de más porque no tiene con quién hablar.
+            Acortar ese camino es lo que hacemos. Somos un grupo que lee,
+            discute y trabaja en cosas concretas, y se entra sin
+            credencial previa. Para empezar por cuenta propia, lo más
+            corto que conocemos es{" "}
             <Fuente href="https://bluedot.org">
               el curso de fundamentos de BlueDot
             </Fuente>
