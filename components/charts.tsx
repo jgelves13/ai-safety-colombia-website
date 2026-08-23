@@ -30,6 +30,7 @@ const GPQA: Punto[] = [
   { d: "2025-01-31", v: 77.0 },
   { d: "2025-02-24", v: 79.7 },
   { d: "2025-03-25", v: 83.8 },
+  { d: "2025-06-05", v: 84.8 },
   { d: "2025-06-17", v: 85.3 },
   { d: "2025-07-09", v: 87.0 },
   { d: "2025-11-13", v: 87.6 },
@@ -201,7 +202,7 @@ export function GraficaHorizonte() {
 
 const ESTIMACIONES = [
   { v: 0.38, l: "Superpronosticadores", n: "0,38%" },
-  { v: 3, l: "Expertos en riesgos de IA", n: "3%" },
+  { v: 3, l: "Expertos en IA del torneo", n: "3%" },
   { v: 5, l: "Investigadores de IA (mediana)", n: "5%" },
   { v: 16.2, l: "Investigadores de IA (media)", n: "16,2%" },
 ];
@@ -255,11 +256,12 @@ export function GraficaEstimaciones() {
 
 /* --- Figura 4: el examen medido contra si mismo ---------------------------- */
 
-/* Anthropic, system card de Claude Sonnet 4.5, §7.6.4.1: 100 trampas sinteticas.
-   El maximo de 9 % es el peor de los vectores inhibidos; la mayoria quedo en 1-5 %. */
+/* Anthropic, system card de Claude Sonnet 4.5, seccion 7.6.4.1: 100 trampas sinteticas.
+   El maximo de 8-9 % es el peor de los vectores inhibidos; la mayoria quedo en 1-5 %.
+   El control son diez direcciones tomadas al azar, que no produjeron ninguna accion desalineada. */
 const HONEYPOT = [
   { l: "Sonnet 4.5\nsin intervenir", v: 0, n: "0 %", destacar: false },
-  { l: "Con direcciones\naleatorias inhibidas", v: 0, n: "0 %", destacar: false },
+  { l: "Diez direcciones\nal azar (control)", v: 0, n: "0 %", destacar: false },
   { l: "Con «esto es una\nprueba» inhibido", v: 9, n: "hasta 9 %", destacar: true },
   { l: "Sonnet 4\nsin intervenir", v: 11, n: "≈11 %", destacar: false },
 ];
@@ -343,8 +345,8 @@ const ESCALA = [
   {
     l: "Inversión anunciada en infraestructura de IA",
     sub: "Amazon, Google, Meta y Microsoft, solo en 2026",
-    v: 725_000,
-    n: "725.000 millones",
+    v: 700_000,
+    n: "casi 700.000 millones",
     destacar: false,
   },
 ];
@@ -442,13 +444,13 @@ export function Figura({
       <figcaption className="mb-5">
         <span className="text-kicker text-aisc-coral">Figura {numero}</span>
         <p className="text-display-4 md:text-display-4-lg mt-2 text-aisc-ink">{titulo}</p>
-        <p className="text-body-sm mt-2 max-w-[680px] text-aisc-muted">{pie}</p>
+        <p className="text-body-sm mt-2 w-full text-aisc-muted">{pie}</p>
       </figcaption>
       <div className="overflow-x-auto rounded-lg border border-aisc-line bg-aisc-cream p-4 md:p-6">
         <div className="min-w-[560px]">{children}</div>
       </div>
       {limite ? (
-        <p className="text-body-sm mt-3 max-w-[680px] border-l-2 border-aisc-coral pl-4 text-aisc-muted">
+        <p className="text-body-sm mt-3 w-full border-l-2 border-aisc-coral pl-4 text-aisc-muted">
           <span className="text-aisc-ink">No muestra:</span> {limite}
         </p>
       ) : null}
