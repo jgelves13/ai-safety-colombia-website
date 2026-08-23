@@ -96,7 +96,10 @@ const INDICE = [
     label: "Quienes no están de acuerdo tienen parte de razón",
   },
   { id: "frentes", label: "Hay tres frentes y no todos exigen formación técnica" },
-  { id: "colombia", label: "Acá el problema es auditar lo que se compra" },
+  {
+    id: "colombia",
+    label: "Las preguntas de acá no las va a hacer nadie más",
+  },
 ];
 
 const RESUMEN = [
@@ -787,55 +790,55 @@ export default function SeguridadDeLaIA() {
         </div>
 
         <div className={ANCHO}>
-          <Parrafo>
-            Tres cosas se pueden hacer esta semana sin permiso de nadie: leer{" "}
-            <Fuente href="https://www.anthropic.com/claude-sonnet-4-5-system-card">
-              el informe técnico de un modelo reciente
-            </Fuente>
-            , con sus evaluaciones de seguridad y sus límites; tomar un sistema
-            que ya se use en el trabajo, armarle veinte casos difíciles y anotar
-            dónde falla; y buscar en el SECOP una compra de software con
-            inteligencia artificial y leer qué exige y qué no exige el pliego. De ahí en
-            adelante, el camino más corto que conocemos es{" "}
-            <Fuente href="https://bluedot.org">
-              el curso de fundamentos de BlueDot
-            </Fuente>
-            , y después trabajar en algo concreto con alguien más.
-          </Parrafo>
-
           {/* ---------------------------------------------------------- */}
-          <H2 id="colombia">Acá el problema es auditar lo que se compra</H2>
+          <H2 id="colombia">Las preguntas de acá no las va a hacer nadie más</H2>
           <Parrafo>
-            El mapa del campo registra 170 organizaciones y no ubica ninguna en
-            América Latina. Nosotros tampoco aparecemos ahí, y lo que no está en
-            el mapa tampoco está en las listas de quienes financian. De las 187
-            personas que ese mapa identifica decidiendo a dónde va la plata, la
-            universidad que más se repite es Oxford, con 22; después Stanford y
-            Berkeley con 19 cada una, y Cambridge con 16{" "}
+            El mapa del campo registra 170 organizaciones y no ubica
+            ninguna en América Latina. Nosotros tampoco aparecemos ahí, y
+            lo que no está en el mapa tampoco está en las listas de
+            quienes financian. De las 187 personas que ese mapa identifica
+            decidiendo a dónde va la plata, la universidad que más se
+            repite es Oxford, con 22; después Stanford y Berkeley con 19
+            cada una, y Cambridge con 16{" "}
             <Fuente href="https://harrywaterman.com/fieldmap/">
               (AI Safety Field Map)
             </Fuente>
-            .             Son 60 de 187: no describen a la mayoría, pero sí dicen dónde
-            queda el centro de gravedad del campo. Y ese centro explica por qué las preguntas del
-            campo son las de quien construye estos sistemas y no las de quien los
-            compra.
+            . Son 60 de 187: no describen a la mayoría, pero sí dicen
+            dónde queda el centro de gravedad del campo.
           </Parrafo>
           <Parrafo>
-            Comprar es lo que hacemos acá. Volvamos al pliego del principio. Qué
-            exigir antes de firmar, qué cláusula escribir y ante quién responde el
-            proveedor si en dos años se descubre que el sistema le bajaba el
-            puntaje a la gente de cierto municipio: son las preguntas de este
-            texto en formato administrativo. Para la primera no hacen falta los
-            pesos, hace falta poder correr el modelo contra casos que diseñe la
-            entidad, y eso se pide en el pliego o no se pide nunca.
+            Eso no quiere decir que acá el problema sea otro. Es el mismo:
+            nadie sabe certificar qué persigue un sistema antes de
+            soltarlo. Lo que cambia es por dónde se llega a él. Cerca de
+            esos centros se llega por el lado de quien construye el
+            sistema. Acá se llega casi siempre por el otro lado, el de
+            quien lo compra, lo pone a decidir sobre gente y responde
+            cuando falla. Nadie más va a hacer esas preguntas por
+            nosotros, porque no son las preguntas de quien construye.
           </Parrafo>
           <Parrafo>
-            Auditar lo que uno compra es un problema distinto al de auditar lo
-            que uno entrena, y es el que a Colombia le toca resolver primero. No
-            es el único frente que importa, pero es el que nadie está mirando por
-            nosotros. Hace falta gente acá que entienda el tema lo suficiente para
-            preguntar bien cuando le toque firmar, y un lugar donde aprenderlo sin
-            irse del país. Eso último es lo que estamos construyendo.
+            Volvamos al pliego del principio. Qué exigir antes de firmar,
+            qué cláusula escribir y ante quién responde el proveedor si en
+            dos años se descubre que el sistema le bajaba el puntaje a la
+            gente de cierto municipio: son las preguntas de este texto en
+            formato administrativo. Para la primera no hacen falta los
+            pesos, hace falta poder correr el modelo contra casos que
+            diseñe la entidad, y eso se pide en el pliego o no se pide
+            nunca.
+          </Parrafo>
+          <Parrafo>
+            Ninguno de los tres frentes está cerrado y a los tres se entra
+            desde acá. Lo que falta es gente que les dedique tiempo, y un
+            lugar donde aprender sin irse del país. Eso es lo que estamos
+            construyendo: un grupo que lee, discute y trabaja en cosas
+            concretas, y en el que se entra sin credencial previa. Para
+            empezar por cuenta propia, el camino más corto que conocemos
+            es{" "}
+            <Fuente href="https://bluedot.org">
+              el curso de fundamentos de BlueDot
+            </Fuente>
+            . Para no quedarse ahí, lo que sirve es trabajar en algo
+            concreto con alguien más, y para eso estamos.
           </Parrafo>
         </div>
       </article>
@@ -844,7 +847,10 @@ export default function SeguridadDeLaIA() {
         title="¿Y qué hago con esto?"
         body="Al principio suele servir más hablar con alguien que ya lleva un tiempo, aunque sea para descartar el tema."
       >
-        <Link className={CTA_LINK_PRIMARY} href="/programas">
+        <Link className={CTA_LINK_PRIMARY} href="/unete">
+          Unirse a la comunidad
+        </Link>
+        <Link className={CTA_LINK} href="/programas">
           Ver los programas
         </Link>
         <a
