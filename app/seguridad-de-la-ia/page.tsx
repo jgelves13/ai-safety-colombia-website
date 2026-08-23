@@ -717,21 +717,23 @@ export default function SeguridadDeLaIA() {
 
           <H3>Las cinco objeciones que más nos hacen</H3>
           <Parrafo>
-            <strong>Esto es una estrategia de marketing.</strong> En parte sí:
-            al laboratorio le sirve que su producto suene poderoso. Por eso
-            las cifras vienen de terceros, incluido Redwood, que le quita peso
-            a lo que los laboratorios publican. Y la posición cuesta plata.
-            Anthropic no permite usar Claude en armas autónomas ni en
-            vigilancia masiva, no levantó esos límites para el Pentágono y
-            perdió{" "}
+            <strong>Esto es una estrategia de marketing.</strong> En parte
+            sí: al laboratorio le sirve que su producto suene poderoso. Por eso
+            las cifras de esta página vienen de terceros, incluida la revisión
+            de Redwood que le quita peso a las evaluaciones que hacen los
+            propios laboratorios. Y sostener la posición cuesta plata. Anthropic
+            no permite que Claude se use en armas totalmente autónomas ni en
+            vigilancia masiva, y se negó a levantar esos límites cuando el
+            Pentágono se lo pidió. Perdió{" "}
             <Fuente href="https://www.anthropic.com/news/anthropic-and-the-department-of-defense-to-advance-responsible-ai-in-defense-operations">
-              un contrato de hasta 200 millones de dólares
+              un contrato con techo de 200 millones de dólares
             </Fuente>{" "}
-            y el acceso a todas las agencias federales{" "}
+            y quedó{" "}
             <Fuente href="https://www.npr.org/2026/03/06/g-s1-112713/pentagon-labels-ai-company-anthropic-a-supply-chain-risk">
-              (NPR, marzo de 2026)
+              declarada un riesgo para la cadena de suministro
             </Fuente>
-            .
+            , una figura pensada para proveedores ligados a gobiernos
+            adversarios.
           </Parrafo>
           <Parrafo>
             <strong>Los modelos todavía fallan en cosas obvias.</strong> Cierto,
