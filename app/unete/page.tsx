@@ -19,37 +19,33 @@ const ABIERTO = [
     href: "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ",
     external: true,
     title: "El grupo de WhatsApp",
-    cuando: "Siempre abierto",
     cta: "Entrar al grupo",
     body: "Es donde preguntas lo que no entiendes y discutes lo que acabó de salir, con gente que está en lo mismo. También es por donde te enteras primero de las sesiones, los eventos y las convocatorias.",
-    despues: "Entras y ves lo que viene. Puedes quedarte mirando el tiempo que quieras.",
+    despues: "Está siempre abierto y tiene poco tráfico. Entras, ves lo que viene y te quedas mirando el tiempo que quieras.",
   },
   {
     href: "mailto:contacto@aisafetycolombia.org",
     external: true,
     title: "Grupo de lectura: AI Control",
-    cuando: "Viernes, 6:30 p. m., virtual, una hora",
     cta: "Pedir el enlace",
-    body: "Terminas entendiendo cómo se supervisa a un sistema de IA que actúa por su cuenta, que es un área en la que casi nadie en el país trabaja todavía. Y si te animas a liderar una sesión, es la forma más barata de aprender a explicar un paper.",
-    despues: "Te pasamos el enlace y la lectura de esa semana. Las lecturas están en inglés y la discusión es en español.",
+    body: "Un espacio abierto para discutir cómo se supervisa a un sistema de IA que actúa por su cuenta. Se llega con cualquier nivel de conocimiento y se puede venir solo a escuchar, o traer una lectura y presentarla.",
+    despues: "Los viernes a las 6:30 p. m., virtual y de una hora. Te pasamos el enlace y la lectura de la semana: están en inglés, aunque la discusión es en español.",
   },
   {
     href: "/eventos",
     external: false,
     title: "Charlas y talleres",
-    cuando: "Varias veces al año, en Bogotá y con entrada libre",
     cta: "Ver los próximos",
     body: "Oyes de primera mano a alguien que trabaja en el tema y le puedes preguntar en persona lo que quieras. Es también donde la gente de la comunidad se conoce y salen las colaboraciones.",
-    despues: "Llegas, escuchas y decides. Nadie te va a pedir datos en la puerta.",
+    despues: "Varias veces al año, en Bogotá y con entrada libre. Llegas, escuchas y decides; nadie te va a pedir datos en la puerta.",
   },
   {
     href: "https://apartresearch.com/sprints/ai-incident-response-sprint-2026-09-11-to-2026-09-13",
     external: true,
     title: "Hackathones de investigación",
-    cuando: "Del 11 al 13 de septiembre, sobre respuesta a incidentes",
     cta: "Ver el de septiembre",
-    body: "Sales con un trabajo propio, publicado y con retroalimentación escrita de jurados de fuera. Para mucha gente ha sido lo primero concreto que puede mostrar en el campo. Los convoca Apart Research a nivel global y nosotros abrimos el espacio presencial acá.",
-    despues: "Te inscribes en el sitio de Apart. El espacio en Bogotá lo anunciamos en el grupo de WhatsApp.",
+    body: "Sales con un trabajo propio, publicado y con retroalimentación escrita de jurados de fuera. Para mucha gente ha sido lo primero concreto que puede mostrar en el campo.",
+    despues: "El próximo es del 11 al 13 de septiembre, sobre respuesta a incidentes. Lo convoca Apart Research y nosotros abrimos el espacio presencial en Bogotá.",
   },
 ];
 
@@ -95,8 +91,7 @@ export default function Unete() {
             {ABIERTO.map((item) => (
               <li className="flex" key={item.title}>
                 <article className={CARD}>
-                  <span className="text-kicker text-aisc-coral">{item.cuando}</span>
-                  <h3 className="text-display-3 md:text-display-3-lg mt-3 text-balance">{item.title}</h3>
+                  <h3 className="text-display-3 md:text-display-3-lg text-balance">{item.title}</h3>
                   <p className="text-body-sm mt-3 text-aisc-ink">{item.body}</p>
                   <p className="text-meta mt-5 text-aisc-forest">{item.despues}</p>
                   <div className="mt-auto pt-7">

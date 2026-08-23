@@ -717,27 +717,17 @@ export default function SeguridadDeLaIA() {
 
           <H3>Las cinco objeciones que más nos hacen</H3>
           <Parrafo>
-            <strong>Esto es una estrategia de marketing.</strong>{" "}
-            En parte sí, y conviene decirlo: a un laboratorio le sirve que
-            su producto suene poderoso, y el dato más llamativo de este
-            texto sale del informe de una de esas empresas. Por eso el
-            argumento no se apoya en lo que ellas dicen de sí mismas. Las
-            cifras que lo sostienen vienen de afuera: METR, Epoch AI, el
-            instituto británico, la encuesta a 2.778 investigadores, y una
-            revisión de Redwood cuyo punto es justamente que las
-            evaluaciones que publican los laboratorios prueban menos de lo
-            que aparentan. Además, sostener esa posición a veces cuesta
-            plata. Anthropic mantiene dos límites en su política de uso,
-            armas totalmente autónomas y vigilancia masiva de la
-            población, y se negó a levantarlos al renegociar su contrato
-            con el Pentágono{" "}
-            <Fuente href="https://www.anthropic.com/news/statement-comments-secretary-war">
-              (Anthropic, febrero de 2026)
-            </Fuente>
-            . Días después, el gobierno de Estados Unidos ordenó a sus
-            agencias dejar de usar sus modelos y el Pentágono lo declaró
-            un riesgo para la cadena de suministro, el primero de ese tipo
-            contra una empresa estadounidense{" "}
+            <strong>Esto es una estrategia de marketing.</strong> En parte sí:
+            al laboratorio le sirve que su producto suene poderoso. Por eso
+            las cifras vienen de terceros, incluida la revisión de Redwood que
+            le quita peso a las evaluaciones de los laboratorios. Y la
+            posición cuesta plata. Anthropic no permite que Claude se use en
+            armas totalmente autónomas ni en vigilancia masiva, y se negó a
+            levantar esos límites para el Pentágono: perdió{" "}
+            <Fuente href="https://www.anthropic.com/news/anthropic-and-the-department-of-defense-to-advance-responsible-ai-in-defense-operations">
+              un contrato de hasta 200 millones de dólares
+            </Fuente>{" "}
+            y el acceso a todas las agencias federales{" "}
             <Fuente href="https://www.npr.org/2026/03/06/g-s1-112713/pentagon-labels-ai-company-anthropic-a-supply-chain-risk">
               (NPR, marzo de 2026)
             </Fuente>
@@ -771,8 +761,8 @@ export default function SeguridadDeLaIA() {
             <strong>Nadie va a desplegar a propósito algo peligroso.</strong>             El argumento no necesita que alguien lo haga a propósito. Le bastan dos condiciones que ya se
             cumplen: que sea difícil verificar qué hace un sistema antes de
             soltarlo, y que exista presión competitiva para soltarlo igual. Lo de
-            OpenAI y Hugging Face pasó dentro de la empresa que más cuidado
-            estaba poniendo, en una prueba diseñada para medir ese riesgo.
+            OpenAI y Hugging Face pasó puertas adentro, en una prueba que la
+            propia empresa había diseñado para medir ese riesgo.
           </Parrafo>
           <Parrafo>
             Puede que el campo exagere el peligro y puede que lo subestime. Lo
