@@ -93,7 +93,6 @@ const INDICE = [
   },
   { id: "frentes", label: "Hay tres frentes y no todos exigen formación técnica" },
   { id: "colombia", label: "Acá el problema es auditar lo que se compra" },
-  { id: "recursos", label: "Por dónde seguir" },
 ];
 
 const RESUMEN = [
@@ -116,34 +115,6 @@ const FRENTES = [
   {
     title: "Gobernanza y política pública",
     body: "Qué se le exige a quien despliega un sistema, con qué evidencia y ante quién responde. En Colombia se está definiendo ahora, en compras públicas y regulación sectorial, y no requiere formación técnica previa.",
-  },
-];
-
-/** recursos externos reales, cada uno con lo que nos parece a nosotros */
-const RECURSOS = [
-  {
-    title: "El perfil del problema de 80,000 Hours",
-    meta: "80,000 Hours · inglés · lectura larga",
-    body: "De ahí sale la forma de este texto: encadenar afirmaciones y después dedicarle una sección larga a las objeciones. Su versión del argumento pasa por la economía y el empleo; la nuestra pasa por la verificación.",
-    href: "https://80000hours.org/problem-profiles/artificial-intelligence/",
-  },
-  {
-    title: "Preparing for the Intelligence Explosion",
-    meta: "MacAskill y Moorhouse, Forethought · inglés · artículo",
-    body: "El texto más exigente de esta lista y el que mejor explica por qué esperar a tener certeza sale caro. No hace falta comprar su escenario para quedarse con el argumento sobre los plazos.",
-    href: "https://www.forethought.org/research/preparing-for-the-intelligence-explosion",
-  },
-  {
-    title: "Curso de fundamentos de BlueDot",
-    meta: "BlueDot Impact · inglés · gratuito",
-    body: "El punto de entrada más usado del campo y el que solemos recomendar primero. Cinco semanas de lecturas y discusión, con una versión técnica y una de gobernanza.",
-    href: "https://bluedot.org",
-  },
-  {
-    title: "AI Safety Info",
-    meta: "Comunidad · inglés · preguntas sueltas",
-    body: "Respuestas cortas a las preguntas que casi todo el mundo se hace al principio. Sirve para resolver una duda puntual sin leer nada de corrido; la calidad varía de entrada a entrada.",
-    href: "https://aisafety.info",
   },
 ];
 
@@ -968,9 +939,13 @@ export default function SeguridadDeLaIA() {
             exige el pliego.
           </Parrafo>
           <Parrafo>
-            De ahí en adelante, el camino más corto que conocemos es el curso de
-            fundamentos de BlueDot, que está al final de esta página, y después
-            trabajar en algo concreto con alguien más. Si lo que falta es
+            De ahí en adelante, el camino más corto que conocemos es{" "}
+            <Fuente href="https://bluedot.org">
+              el curso de fundamentos de BlueDot
+            </Fuente>
+            , cinco semanas de lecturas y discusión con una versión técnica y
+            una de gobernanza, y después trabajar en algo concreto con alguien
+            más. Si lo que falta es
             entender cuál de los tres frentes encaja con lo que uno ya sabe
             hacer, esa conversación la tenemos nosotros y toma veinte minutos.
           </Parrafo>
@@ -1019,45 +994,6 @@ export default function SeguridadDeLaIA() {
           </Parrafo>
         </div>
       </article>
-
-      <section
-        id="recursos"
-        className="bg-aisc-cream scroll-mt-24 px-6 pb-12 md:pb-14"
-      >
-        <div className="mx-auto w-full max-w-[1400px] rounded-[12px] bg-aisc-sand px-6 py-12 text-aisc-ink md:px-10 lg:py-[70px]">
-          <h2 className="text-display-2 md:text-display-2-lg max-w-[560px] text-balance">
-            Por dónde seguir
-          </h2>
-          <p className="text-body md:text-body-lg mt-4 max-w-[640px] text-aisc-ink">
-            Los dos textos en los que se apoya este argumento y dos formas de
-            entrar al campo. Casi todo el material está en inglés; en nuestros
-            programas lo trabajamos en español.
-          </p>
-          <div className="mt-12 grid grid-cols-1 gap-3 md:gap-4 lg:grid-cols-2">
-            {RECURSOS.map((recurso) => (
-              <a
-                key={recurso.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group border-aisc-forest block min-h-[120px] min-w-0 rounded-[8px] border bg-aisc-sand p-6 transition-colors hover:bg-aisc-cream md:p-8 lg:p-10"
-                href={recurso.href}
-              >
-                <div className="min-w-0">
-                  <h3 className="text-display-4 md:text-display-4-lg text-aisc-forest transition-colors group-hover:text-aisc-forest-deep">
-                    {recurso.title}
-                  </h3>
-                  <p className="text-meta md:text-meta-lg mt-3 text-aisc-ink">
-                    {recurso.meta}
-                  </p>
-                  <p className="text-body-sm mt-2 max-w-[1080px] text-aisc-ink">
-                    {recurso.body}
-                  </p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <CtaPanel
         title="¿Y qué hago con esto?"
