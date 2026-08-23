@@ -6,6 +6,7 @@ const WHATSAPP = "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ";
 const NAVEGACION = [
   { href: "/seguridad-de-la-ia", label: "¿Qué es AI safety?" },
   { href: "/investigacion", label: "Investigación" },
+  { href: "/hackathon", label: "Hackathon" },
   { href: "/unete", label: "Únete" },
   { href: "/quienes-somos", label: "Quiénes somos" },
   { href: "/recursos", label: "Recursos" },

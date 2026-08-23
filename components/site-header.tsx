@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-/* Cinco entradas, en el orden en que alguien nuevo las necesita: qué es el
-   campo, qué sale de acá, cómo entrar, con qué estudiar y quiénes somos.
-   Programas, eventos y blog viven dentro de esas páginas. */
+/* Seis entradas, en el orden en que alguien nuevo las necesita: qué es el
+   campo, qué sale de acá, lo que está abierto ahora, cómo entrar, con qué
+   estudiar y quiénes somos. Eventos y blog viven dentro de esas páginas. */
 const NAV = [
   { href: "/seguridad-de-la-ia", label: "¿Qué es AI safety?" },
   { href: "/investigacion", label: "Investigación" },
+  { href: "/hackathon", label: "Hackathon" },
   { href: "/unete", label: "Únete" },
   { href: "/recursos", label: "Recursos" },
   { href: "/quienes-somos", label: "Quiénes somos" },

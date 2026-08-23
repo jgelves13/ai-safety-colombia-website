@@ -387,14 +387,9 @@ export default function Investigacion() {
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
                 Del 11 al 13 de septiembre de 2026 abrimos el espacio en Bogotá para el sprint de{" "}
-                <a
-                  className={ENLACE}
-                  href="https://apartresearch.com/sprints/ai-incident-response-sprint-2026-09-11-to-2026-09-13"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link className={ENLACE} href="/hackathon">
                   respuesta a incidentes de IA
-                </a>
+                </Link>
                 . El tema es qué se hace cuando un sistema de IA falla en producción y hay que reaccionar.
               </p>
               <p>
@@ -402,10 +397,10 @@ export default function Investigacion() {
                 todo el fin de semana.
               </p>
               <p>
-                <Link className={ENLACE} href="/unete">
-                  Acá están las formas de entrar
-                </Link>
-                .
+                <Link className={ENLACE} href="/hackathon/aplicar">
+                  Las aplicaciones al espacio presencial están abiertas
+                </Link>{" "}
+                y cierran el 6 de septiembre.
               </p>
             </div>
           </div>
@@ -414,16 +409,11 @@ export default function Investigacion() {
 
       <CtaPanel
         title="Participa en el próximo"
-        body="Del 11 al 13 de septiembre es el AI Incident Response Sprint, que convoca Apart Research. Abrimos el espacio en Bogotá y en el grupo de WhatsApp avisamos cuándo abre la inscripción y qué leer antes."
+        body="Del 11 al 13 de septiembre es el AI Incident Response Sprint, que convoca Apart Research. Abrimos el espacio en Bogotá y las aplicaciones cierran el 6 de septiembre."
       >
-        <a
-          className={CTA_LINK_PRIMARY}
-          href="https://apartresearch.com/sprints/ai-incident-response-sprint-2026-09-11-to-2026-09-13"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link className={CTA_LINK_PRIMARY} href="/hackathon">
           Ver el hackathon
-        </a>
+        </Link>
         <a
           className={CTA_LINK}
           href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"

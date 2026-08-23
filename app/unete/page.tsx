@@ -40,19 +40,15 @@ const ABIERTO = [
     despues: "Varias veces al año, en Bogotá y con entrada libre. Llegas, escuchas y decides; nadie te va a pedir datos en la puerta.",
   },
   {
-    href: "https://apartresearch.com/sprints/ai-incident-response-sprint-2026-09-11-to-2026-09-13",
-    external: true,
+    href: "/hackathon",
+    external: false,
     title: "Hackathones de investigación",
     cta: "Ver el de septiembre",
     body: "Sales con un trabajo propio, publicado y con retroalimentación escrita de jurados de fuera. Para mucha gente ha sido lo primero concreto que puede mostrar en el campo.",
     despues: (
       <>
         El próximo es del 11 al 13 de septiembre, sobre respuesta a incidentes. Lo convoca Apart Research y nosotros
-        abrimos el espacio presencial en Bogotá.{" "}
-        <Link className="underline underline-offset-[3px] hover:text-aisc-forest-deep" href="/investigacion#hackathons">
-          Así fue la edición pasada
-        </Link>
-        .
+        abrimos el espacio presencial en Bogotá. Las aplicaciones cierran el 6 de septiembre.
       </>
     ),
   },

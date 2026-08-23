@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 /* El sprint que estamos organizando ahora mismo. Mientras esté vigente manda
@@ -7,10 +8,10 @@ import { useEffect, useState } from "react";
 export const SPRINT = {
   badge: "Apart Research · CeSIA",
   title: "AI Incident Response Sprint · presencial en Bogotá",
-  body: "Del 11 al 13 de septiembre. Un fin de semana para investigar cómo se responde cuando un sistema de IA falla en serio: contención, reconstrucción del incidente, respuesta regulatoria y comunicación. USD 2.000 en premios.",
+  body: "Del 11 al 13 de septiembre. Un fin de semana para investigar cómo se responde cuando un sistema de IA falla en serio: contención, reconstrucción del incidente, respuesta regulatoria y comunicación. USD 2.000 en premios y las aplicaciones cierran el 6 de septiembre.",
   cta: "Ver la convocatoria",
-  href: "https://apartresearch.com/sprints/ai-incident-response-sprint-2026-09-11-to-2026-09-13?utm_source=aisafetycolombia",
-  /* fecha de arranque; no hay fecha de cierre de aplicaciones publicada */
+  href: "/hackathon",
+  /* fecha de arranque del sprint */
   startsAt: "2026-09-11",
 };
 
@@ -56,14 +57,12 @@ export default function HackathonBanner() {
           <p className="text-body-sm text-aisc-sand/85">{SPRINT.body}</p>
         </div>
         <div className="flex shrink-0 flex-wrap items-center gap-x-5 gap-y-2">
-          <a
+          <Link
             className="text-body-sm inline-flex min-h-11 items-center rounded-full bg-aisc-coral px-6 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85 focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-aisc-sand"
             href={SPRINT.href}
-            target="_blank"
-            rel="noopener noreferrer"
           >
             {SPRINT.cta}
-          </a>
+          </Link>
           <Countdown />
         </div>
       </div>
