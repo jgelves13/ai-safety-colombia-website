@@ -715,7 +715,34 @@ export default function SeguridadDeLaIA() {
             anteriores.
           </Parrafo>
 
-          <H3>Las cuatro objeciones que más nos hacen</H3>
+          <H3>Las cinco objeciones que más nos hacen</H3>
+          <Parrafo>
+            <strong>Esto es una estrategia de marketing.</strong>{" "}
+            En parte sí, y conviene decirlo: a un laboratorio le sirve que
+            su producto suene poderoso, y el dato más llamativo de este
+            texto sale del informe de una de esas empresas. Por eso el
+            argumento no se apoya en lo que ellas dicen de sí mismas. Las
+            cifras que lo sostienen vienen de afuera: METR, Epoch AI, el
+            instituto británico, la encuesta a 2.778 investigadores, y una
+            revisión de Redwood cuyo punto es justamente que las
+            evaluaciones que publican los laboratorios prueban menos de lo
+            que aparentan. Además, sostener esa posición a veces cuesta
+            plata. Anthropic mantiene dos límites en su política de uso,
+            armas totalmente autónomas y vigilancia masiva de la
+            población, y se negó a levantarlos al renegociar su contrato
+            con el Pentágono{" "}
+            <Fuente href="https://www.anthropic.com/news/statement-comments-secretary-war">
+              (Anthropic, febrero de 2026)
+            </Fuente>
+            . Días después, el gobierno de Estados Unidos ordenó a sus
+            agencias dejar de usar sus modelos y el Pentágono lo declaró
+            un riesgo para la cadena de suministro, el primero de ese tipo
+            contra una empresa estadounidense{" "}
+            <Fuente href="https://www.npr.org/2026/03/06/g-s1-112713/pentagon-labels-ai-company-anthropic-a-supply-chain-risk">
+              (NPR, marzo de 2026)
+            </Fuente>
+            .
+          </Parrafo>
           <Parrafo>
             <strong>Los modelos todavía fallan en cosas obvias.</strong> Cierto,
             y no afirmamos que sean confiables, sino lo contrario: fallan de
