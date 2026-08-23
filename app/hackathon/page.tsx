@@ -116,9 +116,9 @@ const GRUPOS = [
       },
       {
         name: "BlueDot Impact",
-        body: "Sus cursos gratuitos son la entrada estándar al campo. Desde 2022 han pasado más de 7.000 personas.",
+        body: "Sus cursos gratuitos son la entrada estándar al campo. Con los Rapid Grants pagan trabajo concreto: 631 apoyos entregados y respuesta en tres días en promedio.",
         logo: "/aisc/aliados/bluedot.png",
-        href: "https://bluedot.org",
+        href: "https://bluedot.org/grants/rapid",
       },
       {
         name: "Pathfinder Fellowship",

@@ -78,8 +78,8 @@ const ALIADOS = [
   {
     name: "BlueDot Impact",
     logo: "/aisc/aliados/bluedot.png",
-    href: "https://bluedot.org",
-    body: "Sus cursos gratuitos son la entrada estándar al campo. Desde 2022 han pasado más de 7.000 personas, hoy en laboratorios de IA y en gobiernos.",
+    href: "https://bluedot.org/grants/rapid",
+    body: "Sus cursos gratuitos son la entrada estándar al campo. Con los Rapid Grants pagan además trabajo concreto: 631 apoyos entregados por USD 1.423.595, con respuesta en tres días en promedio.",
   },
   {
     name: "Kairos",
