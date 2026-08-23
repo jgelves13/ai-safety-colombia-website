@@ -830,34 +830,30 @@ export default function SeguridadDeLaIA() {
             <Fuente href="https://harrywaterman.com/fieldmap/">
               (AI Safety Field Map)
             </Fuente>
-            . Ahí queda el centro de gravedad del campo.
+            . Un campo con esa forma trabaja en lo que esas organizaciones
+            consideran importante, y ninguna de ellas responde ante
+            alguien de acá.
           </Parrafo>
           <Parrafo>
-            Eso no cambia el problema. Sigue siendo el mismo: nadie sabe
-            certificar qué persigue un sistema antes de soltarlo. Cambia
-            por dónde se entra. Cerca de esos centros se entra por el lado
-            de quien construye el sistema. Acá casi siempre por el otro,
-            el de quien lo compra, lo pone a decidir sobre gente y
-            responde cuando falla.
+            Eso no vuelve distinto el problema. Sigue siendo el mismo:
+            nadie sabe certificar qué persigue un sistema antes de
+            soltarlo. Lo que cambia es por dónde se entra y a quién le
+            pega. Cerca de esos centros el sistema se construye. Acá se
+            compra, se pone a decidir sobre gente y se responde cuando
+            falla. Qué exigir en el pliego antes de firmar, y ante quién
+            responde el proveedor si dos años después se descubre que el
+            sistema le bajaba el puntaje a la gente de cierto municipio,
+            son preguntas de seguridad de la IA. No son las preguntas de
+            quien construye, y por eso nadie las va a hacer por nosotros.
           </Parrafo>
           <Parrafo>
-            Ese lado tiene una palanca propia. Certificar el modelo no
-            está a su alcance, pero ponerlo a prueba contra casos que
-            diseñe la propia entidad sí, y para eso no hacen falta los
-            pesos. Volvamos al pliego del principio: ahí se escribe esa
-            exigencia, y ahí se escribe ante quién responde el proveedor
-            si en dos años se descubre que el sistema le bajaba el puntaje
-            a la gente de cierto municipio. Se pide en el pliego o no se
-            pide nunca. Nadie más va a hacer esas preguntas, porque no son
-            las preguntas de quien construye.
-          </Parrafo>
-          <Parrafo>
-            Ninguno de los tres frentes está cerrado y a los tres se entra
-            desde acá. Falta gente que les dedique tiempo y un lugar donde
-            aprender sin irse del país. Eso estamos construyendo: un grupo
-            que lee, discute y trabaja en cosas concretas, y en el que se
-            entra sin credencial previa. Para empezar por cuenta propia,
-            el camino más corto que conocemos es{" "}
+            Lo que falta para hacerlas no es una agenda aparte, es gente.
+            El campo está limitado por cuánta gente capaz y con ganas
+            alcanza a entrar, y entrar toma más tiempo del necesario
+            cuando no hay con quién hablar. Acortar ese camino es lo que
+            hacemos: un grupo que lee, discute y trabaja en cosas
+            concretas, en el que se entra sin credencial previa. Para
+            empezar por cuenta propia, lo más corto que conocemos es{" "}
             <Fuente href="https://bluedot.org">
               el curso de fundamentos de BlueDot
             </Fuente>
@@ -869,7 +865,7 @@ export default function SeguridadDeLaIA() {
 
       <CtaPanel
         title="¿Y qué hago con esto?"
-        body="Al principio suele servir más hablar con alguien que ya lleva un tiempo, aunque sea para descartar el tema."
+        body="Lo que limita al campo es cuánta gente alcanza a entrar. Acortar ese camino es lo que hacemos."
       >
         <Link className={CTA_LINK_PRIMARY} href="/unete">
           Unirse a la comunidad
@@ -877,14 +873,6 @@ export default function SeguridadDeLaIA() {
         <Link className={CTA_LINK} href="/programas">
           Ver los programas
         </Link>
-        <a
-          className={CTA_LINK}
-          href="https://cal.com/josegelves/meeting"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Agendar 20 minutos
-        </a>
       </CtaPanel>
       <SiteFooter />
     </main>
