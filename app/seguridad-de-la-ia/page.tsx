@@ -680,27 +680,6 @@ export default function SeguridadDeLaIA() {
             favorecer.
           </Parrafo>
 
-          <div className={`${COL} mt-14`}>
-            <div className="rounded-lg border border-aisc-forest/40 bg-aisc-sand p-6">
-              <p className="text-body-sm text-aisc-ink">
-                Hasta acá va la mitad del texto: qué hacen hoy estos sistemas,
-                qué no se sabe comprobar y por qué el desfase importa. Lo que
-                viene es el desacuerdo dentro del campo, las cuatro objeciones
-                más frecuentes y por dónde se entra a trabajar. Quien prefiera
-                preguntar antes de seguir leyendo puede{" "}
-                <a
-                  href="https://cal.com/josegelves/meeting"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-aisc-forest underline decoration-aisc-forest/40 underline-offset-4 transition-colors hover:decoration-aisc-forest"
-                >
-                  agendar veinte minutos
-                </a>
-                .
-              </p>
-            </div>
-          </div>
-
           {/* ---------------------------------------------------------- */}
           <H2 id="desacuerdo">
             Quienes no están de acuerdo tienen parte de razón
