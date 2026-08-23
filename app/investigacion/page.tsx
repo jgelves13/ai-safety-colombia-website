@@ -203,13 +203,6 @@ const OTROS = [
   },
 ];
 
-/** cifras que se pueden comprobar una por una en el catálogo público de Apart */
-const CIFRAS = [
-  { dato: "3", pie: "los tres premios de Latinoamérica fueron para equipos colombianos" },
-  { dato: "2", pie: "menciones de honor, de siete en todo el mundo" },
-  { dato: "216", pie: "proyectos entregados en todo el hackathon" },
-];
-
 const ENLACE =
   "text-aisc-forest underline underline-offset-4 transition-colors hover:text-aisc-forest-deep";
 
@@ -302,27 +295,7 @@ export default function Investigacion() {
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
-            <div className="flex flex-col gap-8 md:gap-10">
-              <h2 className="text-display-2 md:text-display-2-lg text-balance">Lo que sale de los hackathons</h2>
-              <figure className="bg-aisc-forest-deep max-w-[440px] overflow-hidden rounded-[10px]">
-                <figcaption className="text-kicker border-aisc-sand/20 border-b px-6 py-4 text-aisc-sand/70">
-                  Resultados de nuestro último hackathon, en junio de 2026
-                </figcaption>
-                <dl className="px-6">
-                  {CIFRAS.map((c) => (
-                    <div
-                      key={c.pie}
-                      className="border-aisc-sand/15 flex items-baseline gap-5 border-b py-5 last:border-b-0"
-                    >
-                      <dt className="text-display-2 md:text-display-2-lg w-[96px] flex-none tabular-nums text-aisc-coral">
-                        {c.dato}
-                      </dt>
-                      <dd className="text-body-sm text-aisc-sand/85">{c.pie}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </figure>
-            </div>
+            <h2 className="text-display-2 md:text-display-2-lg text-balance">Lo que sale de los hackathons</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
                 <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
