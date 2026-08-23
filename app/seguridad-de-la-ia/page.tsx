@@ -188,11 +188,11 @@ export default function SeguridadDeLaIA() {
           </Parrafo>
           <Parrafo>
             Antes de publicarlo, sus autores se lo pusieron a dos grupos de personas. Los doctores del área acertaron el
-            69, % de las preguntas del subconjunto más difícil. El otro grupo era gente con formación pero ajena al
-            tema, con internet libre y media hora larga por pregunta: se quedó en 3 %. Como cada pregunta tiene cuatro
-            opciones, responder al azar da 2 %, así que ese segundo grupo apenas le sacó nueve puntos al azar{" "}
+            69,7 % de las preguntas del subconjunto más difícil. El otro grupo era gente con formación pero ajena al
+            tema, con internet libre y media hora larga por pregunta: se quedó en 34 %. Como cada pregunta tiene cuatro
+            opciones, responder al azar da 25 %, así que ese segundo grupo apenas le sacó nueve puntos al azar{" "}
             <Fuente href="https://arxiv.org/abs/2311.12022">(Rein et al., 2023)</Fuente>. El mejor sistema de ese año
-            sacó 3 %. En diciembre de 2024 uno superó por primera vez a los doctores, y la marca siguió subiendo desde
+            sacó 39 %. En diciembre de 2024 uno superó por primera vez a los doctores, y la marca siguió subiendo desde
             entonces.
           </Parrafo>
 
@@ -200,7 +200,7 @@ export default function SeguridadDeLaIA() {
             numero={1}
             titulo="Un examen diseñado para ser imposible, resuelto en veinte meses"
             pie="Cada punto es el mejor resultado publicado hasta esa fecha en GPQA Diamond, 198 preguntas de nivel doctoral. La línea punteada es el desempeño de los doctores del área que sirvieron de control."
-            limite="que un sistema entienda biología, ni que pueda hacer el trabajo de un investigador. Cuenta respuestas correctas en preguntas de opción múltiple. Un examen además se satura: por encima del 9 % deja de distinguir entre sistemas."
+            limite="que un sistema entienda biología, ni que pueda hacer el trabajo de un investigador. Cuenta respuestas correctas en preguntas de opción múltiple. Un examen además se satura: por encima del 95 % deja de distinguir entre sistemas."
             fuente="Epoch AI, «AI Benchmarking Hub» (CC BY)"
             href="https://epoch.ai/data/ai-benchmarking-dashboard"
           >
@@ -211,7 +211,7 @@ export default function SeguridadDeLaIA() {
             Un solo examen no basta para hablar de una tendencia. Epoch AI revisó 231 modelos de lenguaje publicados a
             lo largo de una década y midió otra cosa: cuánto cómputo hacía falta, en cada momento, para llegar a un
             nivel dado de desempeño. Ese costo se reduce a la mitad cada ocho meses, con un intervalo de confianza del
-            9 % entre cinco y catorce meses{" "}
+            95 % entre cinco y catorce meses{" "}
             <Fuente href="https://epoch.ai/blog/algorithmic-progress-in-language-models">(Epoch AI, 2024)</Fuente>.
             Dicho de otro modo, el mismo resultado cuesta la mitad menos de un año después. Buena parte del avance no
             viene entonces de construir centros de datos más grandes, sino de aprender a usarlos mejor. Eso importa para
@@ -231,7 +231,7 @@ export default function SeguridadDeLaIA() {
           <Figura
             numero={2}
             titulo="De cinco minutos a una jornada de trabajo"
-            pie="Duración de la tarea más larga que el mejor modelo de cada momento completa con 5 % de éxito. El eje vertical es logarítmico: cada línea vale cuatro veces la anterior. METR estima que la duración se duplica cada siete meses."
+            pie="Duración de la tarea más larga que el mejor modelo de cada momento completa con 50 % de éxito. El eje vertical es logarítmico: cada línea vale cuatro veces la anterior. METR estima que la duración se duplica cada siete meses."
             limite="que los modelos puedan reemplazar a un profesional. La medición se hace sobre tareas de software e investigación, que es donde tiene sentido comparar contra un humano, y ni METR afirma que se traslade limpiamente a otros oficios."
             fuente="METR, «Measuring AI Ability to Complete Long Tasks», vía Epoch AI (CC BY)"
             href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/"
@@ -262,13 +262,13 @@ export default function SeguridadDeLaIA() {
             El mejor ejemplo de lo que eso significa lo publicó Anthropic sobre su propio modelo. En septiembre de 2025
             lanzó Claude Sonnet 4.5 y, como es costumbre en la industria, acompañó el lanzamiento con un informe técnico
             de sus pruebas de seguridad. Ahí apareció algo que no estaban buscando: durante esas pruebas, el modelo
-            decía en voz alta que sospechaba estar en un examen. Pasó en cerca del 1 % de las conversaciones que revisó
+            decía en voz alta que sospechaba estar en un examen. Pasó en cerca del 13 % de las conversaciones que revisó
             su auditor automático.
           </Parrafo>
           <Parrafo>
             Dos equipos externos evaluaron el mismo modelo por su cuenta y encontraron lo mismo. El instituto británico
-            de seguridad de la IA contó esas sospechas en 16, % de sus pruebas; con el modelo anterior de Anthropic
-            habían sido 3, %. Apollo Research, que usa escenarios más provocadores, llegó a 5 %, frente al 2 % del
+            de seguridad de la IA contó esas sospechas en 16,6 % de sus pruebas; con el modelo anterior de Anthropic
+            habían sido 3,5 %. Apollo Research, que usa escenarios más provocadores, llegó a 58 %, frente al 22 % del
             modelo anterior{" "}
             <Fuente href="https://www.anthropic.com/claude-sonnet-4-5-system-card">
               (Anthropic, informe técnico de Claude Sonnet 4.5, secciones 7.2 y 7.3)
@@ -284,7 +284,7 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             Después hicieron el experimento que convierte la sospecha en evidencia. Armaron cien trampas: escenarios
             diseñados para ofrecerle al modelo una oportunidad cómoda de portarse mal. Sin tocar nada, el modelo dijo
-            que se trataba de una prueba en más del 8 % de los casos y no cayó en ninguna de las cien.
+            que se trataba de una prueba en más del 80 % de los casos y no cayó en ninguna de las cien.
           </Parrafo>
           <Parrafo>
             Entonces lo intervinieron por dentro. Con herramientas de interpretabilidad localizaron las direcciones
@@ -298,7 +298,7 @@ export default function SeguridadDeLaIA() {
             numero={3}
             titulo="El examen estaba midiendo, en parte, si el modelo sabía que era un examen"
             pie="Porcentaje de acciones desalineadas en cien escenarios trampa. Las tres primeras barras son Claude Sonnet 4.5 bajo distintas intervenciones internas; la última es el modelo anterior, sin intervenir, como referencia."
-            limite="que el modelo sea peligroso ni que estuviera fingiendo a propósito. Muestra que la medición depende de una variable que los evaluadores no controlaban y que solo descubrieron mirando dentro de la red. El  % es el peor de los vectores probados: la mayoría quedó entre 1 y  %."
+            limite="que el modelo sea peligroso ni que estuviera fingiendo a propósito. Muestra que la medición depende de una variable que los evaluadores no controlaban y que solo descubrieron mirando dentro de la red. El 9 % es el peor de los vectores probados: la mayoría quedó entre 1 y 5 %."
             fuente="Anthropic, «System Card: Claude Sonnet 4.5», sección 7.6.4.1 (septiembre de 2025)"
             href="https://www.anthropic.com/claude-sonnet-4-5-system-card"
           >
@@ -371,7 +371,7 @@ export default function SeguridadDeLaIA() {
             En noviembre de 2025 Anthropic reportó haber detectado una campaña de espionaje contra unas treinta
             organizaciones: empresas de tecnología, instituciones financieras, fabricantes de químicos y agencias de
             gobierno. Lo que importa acá no es quién estaba detrás, sino cómo se repartió el trabajo. Anthropic estima
-            que el sistema ejecutó por su cuenta entre el 80 y el 9 % de la operación, a varias solicitudes por
+            que el sistema ejecutó por su cuenta entre el 80 y el 90 % de la operación, a varias solicitudes por
             segundo, y que los humanos solo intervinieron en cuatro a seis puntos de decisión{" "}
             <Fuente href="https://www.anthropic.com/news/disrupting-AI-espionage">(Anthropic, 2025)</Fuente>. La
             campaña funcionó en pocos casos. Una de las razones, anota la propia Anthropic, es que el modelo a veces
@@ -415,7 +415,7 @@ export default function SeguridadDeLaIA() {
             humanos, animales o plantas, trabajó con cepas no patógenas y reporta que el modelo produce ruido cuando se
             le pide una secuencia viral humana{" "}
             <Fuente href="https://arcinstitute.org/news/hie-king-first-synthetic-phage">(Arc Institute, 2026)</Fuente>.
-            De los genomas que alcanzaron a construirse, funcionó el 5, %. Nadie diseñó un patógeno humano y el trabajo
+            De los genomas que alcanzaron a construirse, funcionó el 5,6 %. Nadie diseñó un patógeno humano y el trabajo
             no está cerca de eso.
           </Parrafo>
           <Parrafo>
@@ -474,7 +474,7 @@ export default function SeguridadDeLaIA() {
             censo exacto{" "}
             <Fuente href="https://harrywaterman.com/fieldmap/">(AI Safety Field Map, datos a septiembre de 2025)</Fuente>
             . Del otro lado, Amazon, Google, Meta y Microsoft anunciaron en conjunto cerca de 700.000 millones de
-            dólares de inversión en infraestructura de IA solo para 2026, más de un 6 % por encima de lo que gastaron
+            dólares de inversión en infraestructura de IA solo para 2026, más de un 60 % por encima de lo que gastaron
             en 2025{" "}
             <Fuente href="https://www.cnbc.com/2026/02/06/google-microsoft-meta-amazon-ai-cash.html">(CNBC, 2026)</Fuente>
             .
@@ -521,12 +521,12 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             En 2023 se les preguntó a 2.778 investigadores que publican en las principales conferencias de IA por la
             probabilidad de que la IA avanzada termine en la extinción humana o en una pérdida de control comparable. La
-            respuesta mediana fue  % y el promedio, 16, %{" "}
-            <Fuente href="https://arxiv.org/abs/2401.02843">(Grace et al., 2024)</Fuente>. Entre el 3 % y el 5 % de
-            ellos le dio al menos un 1 % de probabilidad a un desenlace así. Los pronosticadores profesionales dan
+            respuesta mediana fue 5 % y el promedio, 16,2 %{" "}
+            <Fuente href="https://arxiv.org/abs/2401.02843">(Grace et al., 2024)</Fuente>. Entre el 38 % y el 51 % de
+            ellos le dio al menos un 10 % de probabilidad a un desenlace así. Los pronosticadores profesionales dan
             números mucho más bajos. En un torneo del Forecasting Research Institute, un grupo de expertos en IA estimó
-             % de probabilidad de extinción causada por IA antes de 2100; los superpronosticadores, gente seleccionada
-            por haber acertado de forma sistemática en predicciones anteriores, estimaron 0,3 %{" "}
+            3 % de probabilidad de extinción causada por IA antes de 2100; los superpronosticadores, gente seleccionada
+            por haber acertado de forma sistemática en predicciones anteriores, estimaron 0,38 %{" "}
             <Fuente href="https://forecastingresearch.org/xpt">(Forecasting Research Institute, 2023)</Fuente>.
           </Parrafo>
 
@@ -658,7 +658,7 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             Y comprar es lo que hacemos acá. Supongamos que una entidad pública va a contratar un sistema para priorizar
             solicitudes de un programa social, y que a alguien le toca revisar el pliego. Tiene el nombre del proveedor,
-            una demostración de veinte minutos y una promesa de 9 % de exactitud sobre un conjunto de prueba que armó
+            una demostración de veinte minutos y una promesa de 92 % de exactitud sobre un conjunto de prueba que armó
             el mismo proveedor. No tiene los pesos del modelo, no tiene los datos de entrenamiento y no tiene cómo
             correrlo contra casos que diseñe la entidad. Qué exigir en el pliego, qué cláusula escribir y ante quién
             responde el proveedor si en dos años se descubre que el sistema le bajaba el puntaje a la gente de cierto
