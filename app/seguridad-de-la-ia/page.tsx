@@ -719,11 +719,11 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             <strong>Esto es una estrategia de marketing.</strong> En parte sí:
             al laboratorio le sirve que su producto suene poderoso. Por eso
-            las cifras vienen de terceros, incluida la revisión de Redwood que
-            le quita peso a las evaluaciones de los laboratorios. Y la
-            posición cuesta plata. Anthropic no permite que Claude se use en
-            armas totalmente autónomas ni en vigilancia masiva, y se negó a
-            levantar esos límites para el Pentágono: perdió{" "}
+            las cifras vienen de terceros, incluido Redwood, que le quita peso
+            a lo que los laboratorios publican. Y la posición cuesta plata.
+            Anthropic no permite usar Claude en armas autónomas ni en
+            vigilancia masiva, no levantó esos límites para el Pentágono y
+            perdió{" "}
             <Fuente href="https://www.anthropic.com/news/anthropic-and-the-department-of-defense-to-advance-responsible-ai-in-defense-operations">
               un contrato de hasta 200 millones de dólares
             </Fuente>{" "}
