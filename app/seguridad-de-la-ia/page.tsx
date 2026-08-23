@@ -164,17 +164,13 @@ export default function SeguridadDeLaIA() {
               >
                 «AI safety»
               </a>
-              , o seguridad de la IA, es el campo que se ocupa de que los
-              sistemas de inteligencia artificial funcionen de forma confiable y
-              no causen daño, incluso cuando son muy capaces, se usan a gran
-              escala o terminan en situaciones que nadie previó. Son tres
-              preocupaciones distintas. Los accidentes: el sistema que falla
-              donde no debía, como el modelo que hoy niega un crédito por la
-              razón equivocada. El mal uso: alguien que lo usa a propósito para
-              estafar o para atacar. Y el control: poder seguir dirigiendo un
-              sistema que ya persigue objetivos por su cuenta. Lo que sigue
-              explica por qué es difícil, qué tan rápido se está volviendo
-              urgente y por dónde se entra a trabajar en ello.
+              , o seguridad de la IA, es el campo que trabaja para que los
+              sistemas de inteligencia artificial hagan lo que se espera de
+              ellos y no causen daño. El problema es comprobarlo. Estos sistemas
+              no se programan, se entrenan, así que nadie escribe las reglas que
+              terminan siguiendo, y hoy ya trabajan solos durante horas. Este
+              texto explica hasta dónde llegó eso, qué se sabe medir y qué no, y
+              por dónde se entra a trabajar en ello.
             </p>
             <p className="text-meta text-aisc-sand/60">
               AI Safety Colombia · actualizado en agosto de 2026 · unos 15
@@ -347,28 +343,21 @@ export default function SeguridadDeLaIA() {
           <Parrafo>
             El ejemplo más claro lo publicó una de las empresas que construyen
             estos sistemas, sobre su propio modelo. En septiembre de 2025
-            Anthropic lanzó Claude Sonnet 4.5 junto con el informe técnico de
-            sus pruebas de seguridad. Ahí apareció algo que no estaban
-            buscando: durante las pruebas, el modelo decía en voz alta que
-            sospechaba estar en un examen. Ocurrió en cerca del 13 % de las
-            conversaciones. Dos equipos de fuera lo midieron por su cuenta y
-            encontraron lo mismo.{" "}
-            <Fuente href="https://www.aisi.gov.uk/">
-              El instituto británico de seguridad de la IA
-            </Fuente>
-            , la entidad pública que el Reino Unido creó para evaluar estos
-            sistemas, lo contó en 16,6 % de sus pruebas, frente a 3,5 % y
-            1,6 % en los dos modelos anteriores de la misma empresa.{" "}
-            <Fuente href="https://www.apolloresearch.ai/">
-              Apollo Research
-            </Fuente>
-            , que se dedica a buscar engaño y por eso plantea situaciones más
-            provocadoras, llegó a 58 %{" "}
+            Anthropic lanzó Claude Sonnet 4.5 junto con{" "}
             <Fuente href="https://www.anthropic.com/claude-sonnet-4-5-system-card">
-              (Anthropic, informe técnico de Claude Sonnet 4.5, secciones 7.3.1
-              y 7.3.2)
+              el informe técnico de sus pruebas de seguridad
             </Fuente>
-            .
+            . Ahí apareció algo que no estaban buscando: durante las pruebas,
+            el modelo decía en voz alta que sospechaba estar en un examen.
+            Ocurrió en cerca del 13 % de las conversaciones, según la sección
+            7.3.1 de ese informe. Dos equipos de fuera lo midieron por su
+            cuenta y encontraron lo mismo. El instituto británico de seguridad
+            de la IA, la entidad pública que el Reino Unido creó para evaluar
+            estos sistemas, lo contó en 16,6 % de sus pruebas, frente a
+            3,5 % y 1,6 % en los dos modelos anteriores de la misma empresa.
+            Apollo Research, que se dedica a buscar engaño y por eso plantea
+            situaciones más provocadoras, llegó a 58 %. Las dos cifras están
+            en la sección 7.3.2 del mismo informe.
           </Parrafo>
           <Parrafo>
             El problema no es que el modelo se dé cuenta. El problema es lo que

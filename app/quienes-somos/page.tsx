@@ -62,6 +62,12 @@ const ALIADOS = [
     logo: "/aisc/aliados/kairos.png",
     href: "https://kairos-project.org",
   },
+  {
+    name: "Coefficient Giving",
+    body: "Financia trabajo sobre riesgos globales. Hasta 2025 se llamó Open Philanthropy.",
+    logo: "/aisc/aliados/coefficient-giving.svg",
+    href: "https://www.coefficientgiving.org",
+  },
 ];
 
 export default function QuienesSomos() {
@@ -219,11 +225,12 @@ export default function QuienesSomos() {
             <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1fr)_minmax(280px,0.92fr)] md:items-start md:gap-6">
               <h2 className="text-display-2 md:text-display-2-lg">Con quién trabajamos</h2>
               <p className="text-body-sm text-aisc-ink md:text-body md:text-body-lg">
-                Tres organizaciones del campo con las que sostenemos trabajo. Otras acompañan programas puntuales, como
-                el hackathon, y aparecen en la página de ese programa.
+                Cuatro organizaciones del campo con las que sostenemos trabajo, y de las que también hemos recibido
+                financiación. Otras acompañan programas puntuales, como el hackathon, y aparecen en la página de ese
+                programa.
               </p>
             </div>
-            <div className="mt-10 grid grid-cols-1 gap-3 md:mt-14 md:grid-cols-3">
+            <div className="mt-10 grid grid-cols-1 gap-3 md:mt-14 md:grid-cols-2 lg:grid-cols-4">
               {ALIADOS.map((aliado) => (
                 <a
                   key={aliado.name}

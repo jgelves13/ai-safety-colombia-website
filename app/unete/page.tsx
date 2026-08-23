@@ -69,6 +69,29 @@ const NO_NECESITAS = [
   },
 ];
 
+/* Programas y eventos ya no cuelgan del menú: entran acá, que es donde alguien
+   pregunta qué hay para hacer. Cada bloque enlaza a su página completa. */
+const QUE_HAY = [
+  {
+    href: "/programas",
+    title: "Programas",
+    cta: "Ver los programas",
+    body: "El hackathon de investigación con Apart y el grupo de lectura sobre control de sistemas de IA. Son las dos cosas que sostenemos todo el año.",
+  },
+  {
+    href: "/eventos",
+    title: "Eventos",
+    cta: "Ver los próximos",
+    body: "Charlas, talleres y cenas de discusión en Bogotá. Entrada libre, casi siempre en universidad y sin que haya que registrarse antes.",
+  },
+  {
+    href: "/investigacion",
+    title: "Investigación",
+    cta: "Leer los reportes",
+    body: "Lo que produjo la gente que ya pasó por acá: dieciocho equipos colombianos en la última edición, tres de ellos premiados.",
+  },
+];
+
 const CARD =
   "overflow-hidden rounded-lg bg-aisc-cream text-aisc-ink border border-aisc-ink flex w-full flex-col p-6 md:p-7 lg:p-8";
 
@@ -132,6 +155,34 @@ export default function Unete() {
         </div>
       </section>
 
+      <section id="que-hay" className="bg-aisc-cream">
+        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-16 md:pb-20">
+          <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
+          <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.92fr)] lg:gap-6">
+            <h2 className="text-display-2 md:text-display-2-lg text-balance">Qué hay para hacer</h2>
+            <p className="text-body md:text-body-lg text-aisc-ink">
+              Lo que está abierto ahora mismo, en orden de cuánto compromete.
+            </p>
+          </div>
+          <ul className="grid grid-cols-1 gap-[10px] md:grid-cols-3">
+            {QUE_HAY.map((item) => (
+              <li className="flex" key={item.href}>
+                <Link
+                  className="focus-visible:outline-aisc-forest flex w-full flex-col rounded-lg border border-aisc-ink bg-aisc-cream p-6 transition-colors hover:bg-aisc-sand focus-visible:outline-2 focus-visible:outline-offset-[3px] md:p-7 lg:p-8"
+                  href={item.href}
+                >
+                  <h3 className="text-display-3 md:text-display-3-lg text-balance">{item.title}</h3>
+                  <p className="text-body-sm mt-3 text-aisc-ink">{item.body}</p>
+                  <span className="text-display-4 md:text-display-4-lg mt-auto pt-7 text-aisc-forest underline underline-offset-4">
+                    {item.cta}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section id="requisitos" className="bg-aisc-cream px-6 pb-12 md:pb-14">
         <div className="mx-auto w-full max-w-[1400px] rounded-[12px] bg-aisc-sand px-6 py-12 text-aisc-ink md:px-10 lg:py-[70px]">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
@@ -158,10 +209,10 @@ export default function Unete() {
         body="Si todavía no sabes bien de qué se trata, lee la explicación corta o mira qué hacemos antes de escribir."
       >
         <Link className={CTA_LINK_PRIMARY} href="/seguridad-de-la-ia">
-          Empezar aquí
+          Qué es AI safety
         </Link>
-        <Link className={CTA_LINK} href="/programas">
-          Ver los programas
+        <Link className={CTA_LINK} href="/investigacion">
+          Ver lo que se ha hecho
         </Link>
       </CtaPanel>
       <SiteFooter />

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CtaPanel from "@/components/cta-panel";
 import HackathonBanner from "@/components/hackathon-banner";
-import { IconQuienesSomos, IconSeguridad, IconUnete } from "@/components/section-icons";
+import { IconActualidad, IconQuienesSomos, IconSeguridad, IconUnete } from "@/components/section-icons";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { CTA_LINK, CTA_LINK_PRIMARY, FILL_IMAGE, HERO_CORNER_CLASS } from "@/components/ui";
@@ -20,20 +20,26 @@ const PUERTAS = [
   {
     href: "/seguridad-de-la-ia",
     Icon: IconSeguridad,
-    title: "Empezar aquí",
-    body: "Qué es la seguridad de la IA, por qué importa y en qué punto está la discusión hoy.",
+    title: "¿Qué es AI safety?",
+    body: "Qué es el campo, por qué importa y en qué punto está la discusión hoy.",
+  },
+  {
+    href: "/investigacion",
+    Icon: IconActualidad,
+    title: "Investigación",
+    body: "Los reportes que salieron del último hackathon, con los equipos que los firmaron.",
+  },
+  {
+    href: "/unete",
+    Icon: IconUnete,
+    title: "Únete",
+    body: "Programas, eventos y las cuatro formas de entrar.",
   },
   {
     href: "/quienes-somos",
     Icon: IconQuienesSomos,
     title: "Quiénes somos",
     body: "Quién está detrás, desde cuándo y con quién trabajamos.",
-  },
-  {
-    href: "/unete",
-    Icon: IconUnete,
-    title: "Únete",
-    body: "Las cuatro formas de entrar, y qué pasa después de cada una.",
   },
 ];
 
@@ -80,6 +86,12 @@ const ALIADOS = [
     logo: "/aisc/aliados/kairos.png",
     href: "https://kairos-project.org",
     body: "Programas de mentoría y apoyo a grupos universitarios de seguridad de la IA.",
+  },
+  {
+    name: "Coefficient Giving",
+    logo: "/aisc/aliados/coefficient-giving.svg",
+    href: "https://www.coefficientgiving.org",
+    body: "Financia trabajo sobre riesgos globales, entre ellos la seguridad de la IA. Hasta 2025 se llamó Open Philanthropy.",
   },
 ];
 
@@ -138,7 +150,7 @@ export default function Home() {
       <section className="rounded-t-[40px] bg-aisc-cream text-aisc-ink">
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 py-12 md:py-14 lg:py-16">
           <nav aria-label="Secciones del sitio">
-            <ul className="grid grid-cols-1 gap-[10px] sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="grid grid-cols-1 gap-[10px] sm:grid-cols-2 lg:grid-cols-4">
               {PUERTAS.map((p) => (
                 <li className="flex" key={p.href}>
                   <Link
@@ -294,12 +306,12 @@ export default function Home() {
             <div className="grid grid-cols-1 gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.9fr)] lg:items-start">
               <h2 className="text-display-2 md:text-display-2-lg text-balance">Trabajamos con</h2>
               <p className="text-body md:text-body-lg max-w-[760px] text-aisc-ink">
-                Organizaciones con las que sostenemos trabajo continuo. Los aliados de cada hackathon se anuncian en la
-                convocatoria correspondiente.
+                Organizaciones con las que sostenemos trabajo continuo. De las cuatro hemos recibido también
+                financiación. Los aliados de cada hackathon se anuncian en la convocatoria correspondiente.
               </p>
             </div>
           </div>
-          <ul className="grid grid-cols-1 gap-[10px] md:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-[10px] md:grid-cols-2 lg:grid-cols-4">
             {ALIADOS.map((aliado) => (
               <li className="flex" key={aliado.name}>
                 <a
