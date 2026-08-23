@@ -4,12 +4,14 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 /* Seis entradas, en el orden en que alguien nuevo las necesita: qué es el
-   campo, qué sale de acá, lo que está abierto ahora, cómo entrar, con qué
-   estudiar y quiénes somos. Eventos y blog viven dentro de esas páginas. */
+   campo, qué sale de acá, la convocatoria abierta, cómo entrar, con qué
+   estudiar y quiénes somos. Eventos y blog viven dentro de esas páginas.
+   La tercera entrada lleva el nombre del sprint vigente: al cerrar el de
+   septiembre hay que renombrarla con el que siga. */
 const NAV = [
   { href: "/seguridad-de-la-ia", label: "¿Qué es AI safety?" },
   { href: "/investigacion", label: "Investigación" },
-  { href: "/hackathon", label: "Hackathon" },
+  { href: "/hackathon", label: "AI Incident Response Sprint" },
   { href: "/unete", label: "Únete" },
   { href: "/recursos", label: "Recursos" },
   { href: "/quienes-somos", label: "Quiénes somos" },

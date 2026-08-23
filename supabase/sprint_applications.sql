@@ -9,9 +9,10 @@ create table if not exists public.sprint_applications (
   last_name     text        not null,
   email         text        not null,
   location      text        not null,
-  linkedin      text,
-  scholar       text,
+  linkedin      text        not null,
+  scholar       text        not null,
   career        text        not null,
+  ai_safety     text        not null,
   reason        text        not null,
   hub_problem   text        not null,
   hub_track     text        not null,
@@ -21,6 +22,10 @@ create table if not exists public.sprint_applications (
   ai_confirmed  boolean     not null default false,
   status        text        not null default 'nueva'
 );
+
+-- Por si la tabla ya existía de una edición anterior del formulario.
+alter table public.sprint_applications
+  add column if not exists ai_safety text;
 
 create index if not exists sprint_applications_sprint_idx
   on public.sprint_applications (sprint, submitted_at desc);

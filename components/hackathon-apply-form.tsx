@@ -18,6 +18,7 @@ const VACIO: Campos = {
   linkedin: "",
   scholar: "",
   career: "",
+  aiSafety: "",
   reason: "",
   hubProblem: "",
   hubTrack: "",
@@ -35,7 +36,10 @@ const OBLIGATORIOS: { name: string; falta: string }[] = [
   { name: "lastName", falta: "Tus apellidos" },
   { name: "email", falta: "Tu correo" },
   { name: "location", falta: "Desde dónde vendrías" },
+  { name: "linkedin", falta: "Tu LinkedIn" },
+  { name: "scholar", falta: "Tu GitHub, Scholar o portafolio" },
   { name: "career", falta: "En qué andas ahora" },
+  { name: "aiSafety", falta: "Tu acercamiento previo a la seguridad de la IA" },
   { name: "reason", falta: "Por qué quieres participar" },
   { name: "hubProblem", falta: "El problema que te gustaría abordar" },
   { name: "hubTrack", falta: "El frente que te llama" },
@@ -45,6 +49,7 @@ const OBLIGATORIOS: { name: string; falta: string }[] = [
 
 const LIMITES: Record<string, number> = {
   career: 800,
+  aiSafety: 900,
   reason: 1500,
   hubProblem: 1500,
   hubAccess: 800,
@@ -337,10 +342,22 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
             >
               <input {...textProps("location", "text", 200)} placeholder="Bogotá, Colombia" />
             </Campo>
-            <Campo name="linkedin" label="LinkedIn" error={errores.linkedin}>
+            <Campo
+              requerido
+              name="linkedin"
+              label="LinkedIn"
+              ayuda="Si no tienes, pega otro perfil donde se vea en qué has trabajado."
+              error={errores.linkedin}
+            >
               <input {...textProps("linkedin", "url", 300)} placeholder="https://linkedin.com/in/..." />
             </Campo>
-            <Campo name="scholar" label="GitHub, Scholar o portafolio" error={errores.scholar}>
+            <Campo
+              requerido
+              name="scholar"
+              label="GitHub, Scholar o portafolio"
+              ayuda="Cualquier cosa tuya que podamos abrir: repositorio, publicaciones, un texto, un proyecto."
+              error={errores.scholar}
+            >
               <input {...textProps("scholar", "url", 300)} placeholder="https://" />
             </Campo>
           </div>
@@ -362,6 +379,16 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
             >
               <textarea {...areaProps("career", 3)} />
               {contador("career")}
+            </Campo>
+            <Campo
+              requerido
+              name="aiSafety"
+              label="¿Has tenido algún acercamiento a la seguridad de la IA?"
+              ayuda="Un curso, un grupo de lectura, un artículo que te marcó, un proyecto, una charla. Si la respuesta es ninguno, dilo: no descalifica y nos sirve para saber con quién estamos hablando."
+              error={errores.aiSafety}
+            >
+              <textarea {...areaProps("aiSafety", 4)} />
+              {contador("aiSafety")}
             </Campo>
             <Campo
               requerido
@@ -431,8 +458,7 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
                 ¿Cómo llegarías a Bogotá?<span className="text-aisc-coral"> *</span>
               </legend>
               <span className={AYUDA}>
-                Nos sirve para organizar. El apoyo para viaje depende de lo que consigamos y no lo prometemos de
-                entrada.
+                Nos sirve para organizar. El viaje corre por tu cuenta: no cubrimos transporte ni alojamiento.
               </span>
               <div className="mt-3 flex flex-col gap-2">
                 {VIAJE_FORM.map((t) => (

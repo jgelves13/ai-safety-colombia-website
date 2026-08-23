@@ -26,7 +26,6 @@ export const TRACKS_FORM = [
 
 export const VIAJE_FORM = [
   { id: "bogota", label: "Vivo en Bogotá o cerca" },
-  { id: "colombia_self", label: "Vengo de otra ciudad de Colombia y me cubro el viaje" },
-  { id: "colombia_help", label: "Vengo de otra ciudad de Colombia y necesitaría apoyo" },
+  { id: "colombia", label: "Vengo de otra ciudad de Colombia" },
   { id: "international", label: "Vengo de fuera de Colombia" },
 ] as const;

@@ -42,13 +42,25 @@ const LIMITES: Record<string, number> = {
   linkedin: 300,
   scholar: 300,
   career: 800,
+  aiSafety: 900,
   reason: 1500,
   hubProblem: 1500,
   hubAccess: 800,
   hubExtra: 800,
 };
 
-const OBLIGATORIOS = ["firstName", "lastName", "email", "location", "career", "reason", "hubProblem"];
+const OBLIGATORIOS = [
+  "firstName",
+  "lastName",
+  "email",
+  "location",
+  "linkedin",
+  "scholar",
+  "career",
+  "aiSafety",
+  "reason",
+  "hubProblem",
+];
 
 const TRACKS = new Set(TRACKS_FORM.map((t) => t.id as string));
 const VIAJES = new Set(VIAJE_FORM.map((t) => t.id as string));
@@ -101,9 +113,10 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
     last_name: datos.lastName,
     email: datos.email,
     location: datos.location,
-    linkedin: datos.linkedin || null,
-    scholar: datos.scholar || null,
+    linkedin: datos.linkedin,
+    scholar: datos.scholar,
     career: datos.career,
+    ai_safety: datos.aiSafety,
     reason: datos.reason,
     hub_problem: datos.hubProblem,
     hub_track: datos.hubTrack,
