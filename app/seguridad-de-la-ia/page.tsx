@@ -96,10 +96,7 @@ const INDICE = [
     label: "Quienes no están de acuerdo tienen parte de razón",
   },
   { id: "frentes", label: "Hay tres frentes y no todos exigen formación técnica" },
-  {
-    id: "colombia",
-    label: "El campo es demasiado pequeño para el problema que tiene enfrente",
-  },
+  { id: "colombia", label: "Hay más problemas abiertos que gente para trabajarlos" },
 ];
 
 const RESUMEN = [
@@ -820,49 +817,43 @@ export default function SeguridadDeLaIA() {
         <div className={ANCHO}>
           {/* ---------------------------------------------------------- */}
           <H2 id="colombia">
-            El campo es demasiado pequeño para el problema que tiene enfrente
+            Hay más problemas abiertos que gente para trabajarlos
           </H2>
           <Parrafo>
             El campo entero cabe en 1.313 personas de tiempo completo
-            repartidas en 170 organizaciones, según el mapa que lleva esa
-            cuenta. Ninguna de ellas queda en América Latina. De las 187
-            personas que deciden a dónde va el dinero, 76 se formaron en
-            cuatro universidades: Oxford, Stanford, Berkeley y Cambridge{" "}
+            repartidas en 170 organizaciones. Es poca gente para lo que
+            hay en esta página. De las 187 que deciden a dónde va el
+            dinero, 76 se formaron en cuatro universidades: Oxford,
+            Stanford, Berkeley y Cambridge. El mapa que lleva esa cuenta
+            no registra ninguna organización en América Latina{" "}
             <Fuente href="https://harrywaterman.com/fieldmap/">
               (AI Safety Field Map)
             </Fuente>
             .
           </Parrafo>
           <Parrafo>
-            Un grupo de ese tamaño no alcanza a cubrir lo que tiene
-            enfrente, y lo que alcanza a cubrir lo eligen esas mismas
-            personas. No es mala fe. Las preguntas que a uno se le ocurren
-            dependen de lo que tiene cerca, y ninguna de esas
-            organizaciones le responde a alguien de acá.
+            Los problemas del comienzo de esta página siguen abiertos y
+            sin dueño. Nadie sabe todavía leer lo que un modelo persigue,
+            ni montar una evaluación que el modelo no reconozca como
+            evaluación. Trabajar en eso no exige estar en San Francisco.
+            Exige haber entrado, y entrar es lo difícil.
           </Parrafo>
           <Parrafo>
-            Eso no quiere decir que lo nuestro sea la letra menuda de los
-            contratos y lo demás sea de otros. Los problemas del comienzo
-            de esta página siguen sin resolverse y no tienen dueño.
-            Trabajar en interpretabilidad, en evaluaciones o en control no
-            exige estar en San Francisco. Exige haber entrado al campo.
+            Hay además un pedazo del problema que ese mapa no toca. Cuando
+            una entidad compra un sistema para decidir sobre ciudadanos,
+            alguien tiene que saber qué exigirle antes de firmar, con qué
+            datos se entrenó, y ante quién responde el proveedor si dos
+            años después se descubre que le bajaba el puntaje a la gente
+            de cierto municipio. Ninguna de esas 170 organizaciones va a hacer ese
+            trabajo.
           </Parrafo>
           <Parrafo>
-            Y hay preguntas que, si no se hacen acá, no las hace nadie.
-            Qué tiene que exigir una entidad antes de comprar un sistema
-            que va a decidir sobre ciudadanos. Ante quién responde el
-            proveedor si dos años después se descubre que el sistema le
-            bajaba el puntaje a la gente de cierto municipio. Con qué
-            datos se entrenó lo que se está comprando.
-          </Parrafo>
-          <Parrafo>
-            Las dos cosas necesitan lo mismo: gente que pueda dedicarse a
-            esto. Ahí está hoy el límite. Entra menos gente de la que
-            podría, y quien entra tarda de más porque no tiene con quién
-            hablar. Acortar ese camino es lo que hacemos. Somos un grupo
-            que lee, discute y trabaja en cosas concretas, y se entra sin
-            credencial previa. Para empezar por cuenta propia, lo más
-            corto que conocemos es{" "}
+            Las dos cosas piden lo mismo: gente que pueda dedicarse a
+            esto. Hoy entra menos de la que podría, y quien entra tarda de
+            más porque no tiene con quién hablar. Acortar ese camino es lo
+            que hacemos. Somos un grupo que lee, discute y trabaja en
+            cosas concretas, y se entra sin credencial previa. Para
+            empezar por cuenta propia, lo más corto que conocemos es{" "}
             <Fuente href="https://bluedot.org">
               el curso de fundamentos de BlueDot
             </Fuente>
