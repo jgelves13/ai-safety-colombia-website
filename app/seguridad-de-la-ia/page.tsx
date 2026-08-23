@@ -83,34 +83,62 @@ const INDICE: ItemIndice[] = [
   {
     id: "capacidades",
     label: "Los sistemas hacen cada vez más cosas sin supervisión",
+    corto: "Qué hacen sin supervisión",
   },
   {
     id: "horizonte",
     label: "De responder preguntas a ejecutar tareas",
+    corto: "De responder a ejecutar",
     nivel: 3,
   },
   {
     id: "verificacion",
     label: "Mirar un modelo por dentro apenas empieza a ser posible",
+    corto: "Mirar el modelo por dentro",
   },
   {
     id: "incidentes",
     label: "Ya hay casos donde el sistema se salió de su caja",
+    corto: "Casos fuera de la caja",
   },
-  { id: "intencional", label: "Y no todo es accidental", nivel: 3 },
+  {
+    id: "intencional",
+    label: "Y no todo es accidental",
+    corto: "No todo es accidental",
+    nivel: 3,
+  },
   {
     id: "pesos-abiertos",
     label: "Publicar los pesos quita el freno",
+    corto: "Pesos publicados",
     nivel: 3,
   },
-  { id: "asimetria", label: "La capacidad de decidir no crece al mismo ritmo" },
+  {
+    id: "asimetria",
+    label: "La capacidad de decidir no crece al mismo ritmo",
+    corto: "Decidir va a otro ritmo",
+  },
   {
     id: "desacuerdo",
     label: "Quienes no están de acuerdo tienen parte de razón",
+    corto: "El desacuerdo tiene razón",
   },
-  { id: "objeciones", label: "Las cinco objeciones que más nos hacen", nivel: 3 },
-  { id: "frentes", label: "Hay tres frentes y no todos exigen formación técnica" },
-  { id: "colombia", label: "Hay más problemas abiertos que gente para trabajarlos" },
+  {
+    id: "objeciones",
+    label: "Las cinco objeciones que más nos hacen",
+    corto: "Cinco objeciones",
+    nivel: 3,
+  },
+  {
+    id: "frentes",
+    label: "Hay tres frentes y no todos exigen formación técnica",
+    corto: "Tres frentes de trabajo",
+  },
+  {
+    id: "colombia",
+    label: "Hay más problemas abiertos que gente para trabajarlos",
+    corto: "Más problemas que gente",
+  },
 ];
 
 const RESUMEN = [

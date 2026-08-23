@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 export type ItemIndice = {
   id: string;
   label: string;
+  /** version breve para la columna del margen, donde no cabe la frase entera */
+  corto?: string;
   /** 2 = titulo de seccion, 3 = subtitulo dentro de una seccion */
   nivel?: 2 | 3;
 };
@@ -13,7 +15,7 @@ export type ItemIndice = {
 const UMBRAL = 140;
 
 /** Ancho a partir del cual el margen izquierdo aguanta la columna del indice. */
-const RAIL = "min-[1540px]:block";
+const RAIL = "min-[1440px]:block";
 
 /** Devuelve el id de la ultima seccion cuyo titulo ya paso por el umbral. */
 function useSeccionActiva(items: ItemIndice[]) {
@@ -77,6 +79,7 @@ function Lista({
 }: {
   items: ItemIndice[];
   activo: string;
+  /** en la columna del margen la entrada va corta y con menos aire */
   compacta?: boolean;
   id?: string;
   className?: string;
@@ -107,7 +110,7 @@ function Lista({
                 </span>
               ) : null}
               <span className={encendido ? "underline decoration-aisc-coral decoration-2 underline-offset-4" : ""}>
-                {item.label}
+                {compacta && item.corto ? item.corto : item.label}
               </span>
             </a>
           </li>
@@ -132,8 +135,8 @@ export default function IndiceEnsayo({ items }: { items: ItemIndice[] }) {
       {/* columna fija: solo cuando sobra margen a la izquierda de la lectura */}
       <nav
         aria-label="Contenido del ensayo"
-        style={{ left: "calc((100vw - 980px) / 2 - 262px)" }}
-        className={`fixed top-24 z-10 hidden w-[230px] transition-opacity duration-300 motion-reduce:transition-none ${RAIL} ${
+        style={{ left: "max(16px, calc((100vw - 980px) / 2 - 238px))" }}
+        className={`fixed top-24 z-10 hidden w-[210px] transition-opacity duration-300 motion-reduce:transition-none ${RAIL} ${
           activo ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
@@ -149,7 +152,7 @@ export default function IndiceEnsayo({ items }: { items: ItemIndice[] }) {
       {/* en el cuerpo: se pliega en movil, queda abierto de tablet en adelante */}
       <nav
         aria-label="Contenido de la página"
-        className="mx-auto mt-10 w-full max-w-[720px] min-[1540px]:hidden"
+        className="mx-auto mt-10 w-full max-w-[720px] min-[1440px]:hidden"
       >
         <button
           type="button"
