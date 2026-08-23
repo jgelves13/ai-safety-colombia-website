@@ -1,11 +1,12 @@
 import Link from "next/link";
 
 const SITIO = [
-  { href: "/seguridad-de-la-ia", label: "Qué es la seguridad de la IA" },
+  { href: "/seguridad-de-la-ia", label: "Empezar aquí" },
   { href: "/programas", label: "Programas" },
   { href: "/eventos", label: "Eventos" },
-  { href: "/actualidad", label: "Actualidad" },
+  { href: "/actualidad", label: "Blog" },
   { href: "/quienes-somos", label: "Quiénes somos" },
+  { href: "/unete", label: "Únete" },
 ];
 
 const PARTICIPAR = [

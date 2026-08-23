@@ -3,12 +3,16 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
+/* Los rotulos dicen que va a encontrar el visitante, no como se llama la seccion:
+   "Seguridad de la IA" repetia el nombre de la organizacion y en espanol se lee
+   primero como security, y "Actualidad" prometia noticias donde hay ensayos. */
 const NAV = [
-  { href: "/seguridad-de-la-ia", label: "Seguridad de la IA" },
+  { href: "/seguridad-de-la-ia", label: "Empezar aquí" },
   { href: "/programas", label: "Programas" },
   { href: "/eventos", label: "Eventos" },
-  { href: "/actualidad", label: "Actualidad" },
+  { href: "/actualidad", label: "Blog" },
   { href: "/quienes-somos", label: "Quiénes somos" },
+  { href: "/unete", label: "Únete" },
 ];
 
 /* The floating header is scroll-linked rather than a toggle: opacity tracks the

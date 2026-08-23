@@ -2,13 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CtaPanel from "@/components/cta-panel";
 import HackathonBanner from "@/components/hackathon-banner";
-import {
-  IconActualidad,
-  IconEventos,
-  IconProgramas,
-  IconQuienesSomos,
-  IconSeguridad,
-} from "@/components/section-icons";
+import { IconQuienesSomos, IconSeguridad, IconUnete } from "@/components/section-icons";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { CTA_LINK, CTA_LINK_PRIMARY, FILL_IMAGE, HERO_CORNER_CLASS } from "@/components/ui";
@@ -19,37 +13,27 @@ export const metadata: Metadata = {
     "Comunidad en Colombia de investigadores, ingenieros y profesionales de política pública dedicada a que la inteligencia artificial avance de forma segura y beneficiosa.",
 };
 
-/** las cinco puertas de entrada, con los mismos rotulos del menu */
+/* Tres puertas, no una copia del menu: son las tres preguntas que el sitio tiene
+   que responderle a quien llega por primera vez. Programas y Eventos tienen su
+   propia seccion mas abajo, y el resto vive en el menu y en el pie. */
 const PUERTAS = [
   {
     href: "/seguridad-de-la-ia",
     Icon: IconSeguridad,
-    title: "Seguridad de la IA",
-    body: "Qué es, por qué importa y en qué punto está la discusión hoy.",
-  },
-  {
-    href: "/programas",
-    Icon: IconProgramas,
-    title: "Programas",
-    body: "Formación, grupos de lectura y hackathons de investigación.",
-  },
-  {
-    href: "/eventos",
-    Icon: IconEventos,
-    title: "Eventos",
-    body: "Charlas, talleres y encuentros abiertos en Bogotá.",
-  },
-  {
-    href: "/actualidad",
-    Icon: IconActualidad,
-    title: "Actualidad",
-    body: "Lo que escribimos y lo que sale de nuestros hackathons.",
+    title: "Empezar aquí",
+    body: "Qué es la seguridad de la IA, por qué importa y en qué punto está la discusión hoy.",
   },
   {
     href: "/quienes-somos",
     Icon: IconQuienesSomos,
     title: "Quiénes somos",
     body: "Quién está detrás, desde cuándo y con quién trabajamos.",
+  },
+  {
+    href: "/unete",
+    Icon: IconUnete,
+    title: "Únete",
+    body: "Las cuatro formas de entrar, y qué pasa después de cada una.",
   },
 ];
 
@@ -154,7 +138,7 @@ export default function Home() {
       <section className="rounded-t-[40px] bg-aisc-cream text-aisc-ink">
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 py-12 md:py-14 lg:py-16">
           <nav aria-label="Secciones del sitio">
-            <ul className="grid grid-cols-1 gap-[10px] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            <ul className="grid grid-cols-1 gap-[10px] sm:grid-cols-2 lg:grid-cols-3">
               {PUERTAS.map((p) => (
                 <li className="flex" key={p.href}>
                   <Link

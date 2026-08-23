@@ -60,3 +60,11 @@ export const IconQuienesSomos = () => (
     <path d="M17.6 14.9c1.9.6 3.2 2.3 3.2 4.6" />
   </Icon>
 );
+
+export const IconUnete = () => (
+  <Icon>
+    <path d="M13.6 3.6h4.6a1.8 1.8 0 0 1 1.8 1.8v13.2a1.8 1.8 0 0 1-1.8 1.8h-4.6" />
+    <path d="M9.6 8.4 13.2 12l-3.6 3.6" />
+    <path d="M13.2 12H3.8" />
+  </Icon>
+);
