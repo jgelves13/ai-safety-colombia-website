@@ -215,6 +215,16 @@ const EQUIPO: Persona[] = [
       </>
     ),
   },
+  {
+    nombre: "Victor Gelves",
+    rol: "Voluntario",
+    bio: (
+      <>
+        Recién egresado del bachillerato. Programa por su cuenta desde los once
+        años.
+      </>
+    ),
+  },
 ];
 
 /* Cuantas fichas van arriba. El resto baja a la segunda fila. */
