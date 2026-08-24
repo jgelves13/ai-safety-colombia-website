@@ -70,6 +70,13 @@ const GRUPOS: Grupo[] = [
         body: "La biblioteca de referencia en video sobre alineación, control y los problemas que siguen abiertos.",
       },
       {
+        href: "https://www.youtube.com/@AI_In_Context",
+        title: "AI In Context",
+        miniatura: "/aisc/recursos/ai-in-context.webp",
+        quien: "80,000 Hours",
+        body: "Documentales largos sobre hacia dónde va la IA. El primero, sobre el escenario IA 2027, pasó los diez millones de reproducciones.",
+      },
+      {
         href: "https://www.youtube.com/@RationalAnimations",
         title: "Rational Animations",
         miniatura: "/aisc/recursos/rational-animations.webp",
@@ -173,10 +180,22 @@ const GRUPOS: Grupo[] = [
     icono: IconCursos,
     items: [
       {
-        href: "https://bluedot.org/courses/future-of-ai",
-        title: "The Future of AI",
-        quien: "BlueDot Impact, unas 2 horas",
-        body: "El punto de entrada que más recomendamos: gratis, corto y sin requisitos técnicos.",
+        href: "https://bluedot.org/courses/agi-strategy",
+        title: "AGI Strategy",
+        quien: "BlueDot Impact, unas 25 horas",
+        body: "El punto de entrada que más recomendamos: hacia dónde va la IA avanzada y qué puede desviarla.",
+      },
+      {
+        href: "https://bluedot.org/courses/ai-governance",
+        title: "Frontier AI Governance",
+        quien: "BlueDot Impact, unas 30 horas",
+        body: "Qué se está decidiendo sobre los modelos de frontera y en qué mesas se decide.",
+      },
+      {
+        href: "https://bluedot.org/courses/technical-ai-safety",
+        title: "Technical AI Safety",
+        quien: "BlueDot Impact, unas 30 horas",
+        body: "Alineación, interpretabilidad, evaluaciones y control. Pide saber cómo se entrena un modelo.",
       },
       {
         href: "https://deepmindsafetyresearch.medium.com/introducing-our-short-course-on-agi-safety-1072adb7912c",
@@ -207,6 +226,15 @@ const CARD =
 const CARD_CUERPO = "flex flex-1 flex-col gap-5 p-6 md:p-7";
 const MINIATURA = "block w-full border-b border-aisc-forest-deep/20 object-cover";
 const ENLACE = "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
+
+/* La rejilla se ajusta al numero de piezas para que cada grupo quepa en una
+   sola fila en pantalla ancha. Las clases van escritas enteras porque Tailwind
+   las busca en el codigo fuente. */
+const REJILLA = "mt-8 grid grid-cols-1 gap-[10px] md:mt-10 md:grid-cols-2 lg:grid-cols-3";
+const COLUMNAS: Record<number, string> = {
+  5: "xl:grid-cols-5",
+  6: "xl:grid-cols-6",
+};
 
 export default function Recursos() {
   return (
@@ -275,7 +303,7 @@ export default function Recursos() {
                 </div>
                 <p className="text-body-sm text-aisc-muted">{grupo.lead}</p>
               </div>
-              <ul className="mt-8 grid grid-cols-1 gap-[10px] md:mt-10 md:grid-cols-2 xl:grid-cols-4">
+              <ul className={`${REJILLA} ${COLUMNAS[grupo.items.length] ?? "xl:grid-cols-4"}`}>
                 {grupo.items.map((item) => (
                   <li className="flex" key={item.href}>
                     <article className={CARD}>

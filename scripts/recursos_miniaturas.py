@@ -45,6 +45,7 @@ PIEZAS: list[tuple[str, str]] = [
     ("rational-animations.jpg", "canal"),
     ("siliconversations.jpg", "canal"),
     ("doom-debates.jpg", "canal"),
+    ("ai-in-context.jpg", "canal"),
     ("axrp.jpg", "podcast"),
     ("80k-podcast.jpg", "podcast"),
     ("cognitive-revolution.jpg", "podcast"),
