@@ -35,14 +35,14 @@ ANCLA = F.PB(F.BOCA_X, F.MURO_Y, F.BOCA_Z)   # donde se colapsa lo que sobra
 # Donde se congela. Lo que manda no es el reloj sino hasta donde llega el
 # frente: el charco que Jose aprobo mide unos 234 px desde el punto de caida,
 # y ese tamano se alcanza mas tarde cada vez que el liquido se hace mas
-# espeso. Con el roce de fondo en 9,0 el frente va a unos 70 px por segundo,
-# la mitad que antes, y esos 234 px caen a los 2,6 s. Se corta un poco antes,
+# espeso. Con el roce de fondo en 12,0 el frente va a unos 63 px por segundo,
+# y el charco que se aprobo, de unos 218 px, cae a los 2,5 s. Se corta un poco antes,
 # porque el liquido espeso no solo llega mas lejos con el tiempo sino que se
 # ensancha mas por el camino, y a los 2,6 el charco ya toca el filo de abajo
 # de la banda. Quien cambie la
 # viscosidad tiene que volver a correr scripts/fluido_medida.py y buscar el
 # instante del mismo alcance, no dejar el numero como esta.
-FIN = 2.35
+FIN = 2.5
 
 
 def instantes():
@@ -152,9 +152,25 @@ def clip_cerca():
             "%s,%s" % (_n(a), _n(b)) for a, b in c) for c in caras)
 
 
+# Cuanto dura en pantalla un segundo simulado. Subir la viscosidad hace que el
+# frente avance menos por segundo, pero la animacion entera seguia durando lo
+# mismo y se veia igual de rapida. Esto separa las dos cosas: la fisica decide
+# la forma, el reloj decide el ritmo. Con 1,9 el derrame tarda casi cinco
+# segundos en cuajar, que es lo que se lee como espeso.
+ESCALA_T = 1.9
+
+
+def escala_css(css):
+    u"""Los tiempos del CSS de la rotura estan escritos en segundos absolutos y
+    cuadran con el instante del golpe. Si el liquido se ralentiza y ellos no,
+    la pared se rompe antes de que salga nada. Se estiran con el mismo factor."""
+    return re.sub(r"(\d*\.?\d+)s(?![a-z])",
+                  lambda m: "%.3fs" % (float(m.group(1)) * ESCALA_T), css)
+
+
 def animacion(ts, ds):
-    dur = FIN
-    kt = ";".join("%.4f" % (t / dur) for t in ts)
+    dur = FIN * ESCALA_T
+    kt = ";".join("%.4f" % (t / FIN) for t in ts)
     return ('<animate attributeName="d" dur="%.2fs" begin="0s"'
             ' repeatCount="1" fill="freeze" calcMode="linear"'
             ' keyTimes="%s" values="%s"/>' % (dur, kt, ";".join(ds)))
@@ -197,7 +213,7 @@ def svg(ts, ds, animado=True, fondo=True, suf=""):
         dentro = re.sub(r' stroke-dash(array|offset)="[^"]*"', "", dentro)
         dentro = dentro.replace('mask="url(#m)"', 'stroke-opacity="0.17"')
         caja = re.sub(r' stroke-dash(array|offset)="[^"]*"', "", caja)
-    css = (R.ESTILO + QUIETO) if animado else ""
+    css = (escala_css(R.ESTILO) + QUIETO) if animado else ""
     tapa = ('<rect width="%d" height="%d" fill="%s"/>'
             % (int(F.BW), int(F.BH), R._hex(H.FONDO))) if fondo else ""
     cuerpo = (u'<svg viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg"'

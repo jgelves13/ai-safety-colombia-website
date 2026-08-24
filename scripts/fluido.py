@@ -234,7 +234,7 @@ FLUIDO = (~SOLIDO).astype(float)
 # 0,25, o sea NU por debajo de 1,31 con dt de 0,0025 y DX de 0,114. Pasado ahi
 # la lamina se llena de cuadros y revienta. Para frenar mas de lo que da esa
 # cota se sube el roce del fondo, que no tiene ese limite.
-CF = 9.0                         # roce del fondo: lo que hace que se asiente
+CF = 12.0                        # roce del fondo: lo que hace que se asiente
 NU = 1.15                        # viscosidad
 NUH = 0.11
 
