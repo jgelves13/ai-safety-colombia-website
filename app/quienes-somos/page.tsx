@@ -133,16 +133,8 @@ const EQUIPO: Persona[] = [
       "https://www.linkedin.com/in/camila-alejandra-beltran-reyes-ab288627a/",
     bio: (
       <>
-        Asesora sénior de IA en{" "}
-        <a
-          className={ENLACE}
-          href="https://www.mintic.gov.co/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          MinTIC
-        </a>{" "}
-        y experta de la{" "}
+        Consultora en gobernanza de IA para varias organizaciones. Miembro del
+        grupo de expertos de la{" "}
         <a
           className={ENLACE}
           href="https://oecd.ai/en/about/network-of-experts"
@@ -150,26 +142,17 @@ const EQUIPO: Persona[] = [
           rel="noopener noreferrer"
         >
           OCDE
-        </a>
-        . Como Winter Fellow de{" "}
-        <a
-          className={ENLACE}
-          href="https://www.governance.ai/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GovAI
-        </a>
-        , investigó la{" "}
-        <a
-          className={ENLACE}
-          href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          regulación europea
         </a>{" "}
-        de escenarios de pérdida de control.
+        en riesgo y rendición de cuentas e investigadora asociada del{" "}
+        <a
+          className={ENLACE}
+          href="https://aiforgood.itu.int/multimedia-authenticity/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          AMAS Young Research Programme
+        </a>{" "}
+        de la UIT.
       </>
     ),
   },
