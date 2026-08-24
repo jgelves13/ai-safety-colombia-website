@@ -207,7 +207,11 @@ const EQUIPO: Persona[] = [
       /* La Coalición no tiene sitio propio, así que el nombre va sin enlace. */
       <>
         Cofundador y codirector de la Coalición Colombiana de Juventudes, Paz y
-        Seguridad.
+        Seguridad. Magíster en política educativa internacional de la{" "}
+        <a className={ENLACE} href="https://www.gse.harvard.edu/" target="_blank" rel="noopener noreferrer">
+          Harvard Graduate School of Education
+        </a>
+        .
       </>
     ),
   },
