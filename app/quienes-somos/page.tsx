@@ -111,6 +111,7 @@ const EQUIPO: Persona[] = [
     nombre: "Fernando Avalos",
     rol: "Cofundador (en memoria)",
     foto: "/aisc/equipo/fernando-avalos.png",
+    linkedin: "https://www.linkedin.com/in/fernando-avalos-lopez/",
     bio: (
       <>
         Fue investigador en{" "}
