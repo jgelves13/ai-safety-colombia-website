@@ -109,7 +109,9 @@ EJE_A = [(2.03, 4.00, 0.55, 0.24),
          (2.03, 4.27, 0.115, 0.18),
          (2.04, 4.32, 0.05, 0.17),
          (2.05, 4.35, 0.00, 0.20),
-         (2.06, 4.50, 0.00, 0.30)]
+         (2.06, 4.50, 0.00, 0.30),
+         (2.06, 4.63, 0.00, 0.38),
+         (2.06, 4.76, 0.00, 0.44)]
 CHARCO_A = (2.06, 4.90, 1.24, 0.66)
 INUND_A = (1.4, 5.9, 12.5, 7.0)
 
@@ -177,15 +179,18 @@ def gotas(eje, n=3):
     return out
 
 
-def charco(centro, clase, semilla=0.0, fijo=None, onda=1.0, cae=None):
+def charco(centro, clase, semilla=0.0, fijo=None, onda=1.0, cae=None,
+           canto=True):
     """Charco quieto o inundacion. Crece desde el punto donde cae el chorro,
     que es tambien el origen de la escala: como la proyeccion es paralela,
     agrandarlo en pantalla es agrandarlo en el suelo del mundo."""
     cx, cy, rx, ry = centro
     tapa = ovalo(cx, cy, rx, ry, semilla=semilla, onda=onda)
-    canto = [(x, y + 6.5) for x, y in tapa]     # el espesor, apenas un canto
     o = P(O, *(cae or (cx, cy)))
-    dentro = forma(suave(canto), CORAL_DER) + forma(suave(tapa), CORAL_POZO)
+    dentro = forma(suave(tapa), CORAL_POZO)
+    if canto:                                   # el espesor, apenas un canto
+        borde = [(x, y + 6.5) for x, y in tapa]
+        dentro = forma(suave(borde), CORAL_DER) + dentro
     escala = ('<g transform="scale(%s)">' % fijo if fijo
               else '<g class="%s">' % clase)
     return ('<g transform="translate(%.1f,%.1f)">%s'
@@ -244,11 +249,11 @@ ESTILO = u"""
 """
 
 CASOS = [
-    ("1", u"1. por el muro", EJE_A, (CHARCO_A, INUND_A, (2.06, 4.66)), False,
+    ("1", u"1. por el muro", EJE_A, (CHARCO_A, INUND_A, (2.06, 4.74)), False,
      u"baja por la cara, cruza el reborde de la base y hace charco"),
     ("2", u"2. a presion", EJE_B, (CHARCO_B, INUND_B, (2.12, 6.85)), False,
      u"sale en arco y cae mas lejos"),
-    ("3", u"3. por el muro, sin fin", EJE_A, (CHARCO_A, INUND_A, (2.06, 4.66)), True,
+    ("3", u"3. por el muro, sin fin", EJE_A, (CHARCO_A, INUND_A, (2.06, 4.74)), True,
      u"el mismo camino, pero el liquido no se acaba"),
     ("4", u"4. a presion, sin fin", EJE_B, (CHARCO_B, INUND_B, (2.12, 6.85)), True,
      u"el arco no para hasta inundar el header"),
@@ -294,13 +299,20 @@ def liquido(ident, eje, centro, sinfin, animado):
         # todo es un rectangulo coral y no hay nada que mirar
         pool = charco(forma_pool, "", fijo=0.62 if sinfin else 1.0, **args)
         chorro = cinta(eje, CORAL)
-        return [], ([pool] if sinfin else []), ([] if sinfin else [pool]) + [chorro]
+        if sinfin:
+            pozo = charco(charco_fino, "", fijo=1.0, semilla=1.1, cae=cae,
+                          canto=False)
+            return [], [pool], [pozo, chorro]
+        return [], [], [pool, chorro]
 
     pool = charco(forma_pool, clase, **args)
+    pozo = ""
     if sinfin:
-        # el chorro tiene que hacer su charco antes de que la inundacion
-        # arranque, si no el agua parece brotar del piso
-        pool = charco(charco_fino, "lq-charco", semilla=1.1, cae=cae) + pool
+        # el chorro hace su charco delante de la caja, donde el chorro lo
+        # alcanza; la inundacion sale de ahi. Sin canto, para que al crecer la
+        # inundacion se lo trague sin dejar costura
+        pozo = charco(charco_fino, "lq-charco", semilla=1.1, cae=cae,
+                      canto=False)
     defs = [cortina(eje, "lqc" + ident, False)]
     cuerpo = cinta(eje, CORAL, "lq-chorro")
     if sinfin:
@@ -310,7 +322,7 @@ def liquido(ident, eje, centro, sinfin, animado):
         chorro = ('<g clip-path="url(#lqb%s)"><g clip-path="url(#lqc%s)">%s'
                   '</g></g>' % (ident, ident, cuerpo))
     detras = [pool] if sinfin else []
-    delante = ([] if sinfin else [pool]) + [chorro] + gotas(eje)
+    delante = ([pozo] if sinfin else [pool]) + [chorro] + gotas(eje)
     return defs, detras, delante
 
 
