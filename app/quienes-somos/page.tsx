@@ -140,7 +140,28 @@ const EQUIPO: Persona[] = [
       </>
     ),
   },
+  {
+    nombre: "Fernando Avalos",
+    rol: "En memoria",
+    bio: (
+      <>
+        Coautor de{" "}
+        <a
+          className={ENLACE}
+          href="https://arxiv.org/abs/2510.25884"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Approximating Human Preferences Using a Multi-Judge Learned System
+        </a>
+        , aceptado en dos talleres de NeurIPS 2025.
+      </>
+    ),
+  },
 ];
+
+/* Cuantas fichas van arriba. El resto baja a la segunda fila. */
+const EN_PRIMERA_FILA = 1;
 
 const ALIADOS = [
   {
@@ -240,7 +261,7 @@ export default function QuienesSomos() {
               el retrato mida lo mismo alli y aca. La primera fila ocupa dos de
               los cinco puestos y la segunda, cuatro. */}
           <ul className="mt-14 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:mt-16 lg:mt-20 lg:grid-cols-5">
-            {EQUIPO.slice(0, 2).map((p) => (
+            {EQUIPO.slice(0, EN_PRIMERA_FILA).map((p) => (
               <Ficha key={p.nombre} p={p} />
             ))}
           </ul>
@@ -248,10 +269,10 @@ export default function QuienesSomos() {
           {/* La segunda fila siempre tiene cuatro puestos. Los que aun no
               tienen nombre quedan marcados, no escondidos. */}
           <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:mt-10 lg:grid-cols-5">
-            {EQUIPO.slice(2).map((p) => (
+            {EQUIPO.slice(EN_PRIMERA_FILA).map((p) => (
               <Ficha key={p.nombre} p={p} />
             ))}
-            {Array.from({ length: Math.max(0, 4 - (EQUIPO.length - 2)) }).map((_, i) => (
+            {Array.from({ length: Math.max(0, 4 - (EQUIPO.length - EN_PRIMERA_FILA)) }).map((_, i) => (
               <li className="flex flex-col gap-3" key={`por-anunciar-${i}`}>
                 <div className="flex aspect-square w-full items-center justify-center rounded-[8px] border border-dashed border-aisc-forest/40 p-4 text-center">
                   <span className="text-body-sm text-aisc-muted">Por anunciar</span>
