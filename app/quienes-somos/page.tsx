@@ -11,28 +11,6 @@ export const metadata: Metadata = {
     "Somos la primera organización dedicada a la seguridad de la inteligencia artificial en Colombia. Formamos gente, organizamos investigación y abrimos la conversación pública sobre el tema.",
 };
 
-/** cifras verificadas: fundación 2024, 7 eventos publicos, 3 colocaciones en ML4Good */
-const CIFRAS = [
-  { valor: "2024", label: "Año en que arrancamos, en Bogotá" },
-  { valor: "7", label: "Eventos públicos entre 2024 y 2026" },
-  { valor: "3", label: "Colocaciones en ML4Good, el campamento técnico del campo" },
-];
-
-const FRENTES = [
-  {
-    title: "Formamos gente",
-    body: "Grupos de lectura, hackathons y acompañamiento uno a uno para que alguien pase de tener curiosidad a tener un trabajo hecho. Casi todo el material del campo está en inglés; acá se discute en español.",
-  },
-  {
-    title: "Organizamos investigación",
-    body: "Abrimos en Bogotá el hub presencial de los hackathons que convoca Apart Research, y conectamos a quien está empezando con mentores que ya publican en el campo. La salida es trabajo propio, no un certificado.",
-  },
-  {
-    title: "Abrimos la conversación",
-    body: "Charlas, paneles y cenas donde se juntan investigación, sector público e industria. La regulación de la IA en Colombia se está escribiendo ahora y casi nadie del país está en esa mesa.",
-  },
-];
-
 /** TODO: agregar al resto de la junta cuando Jose pase nombres, roles y LinkedIn */
 const JUNTA = [
   {
@@ -100,13 +78,13 @@ export default function QuienesSomos() {
       <section id="mision" className="bg-aisc-cream">
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 flex flex-col gap-10 pt-14 pb-10 md:pt-20 md:pb-12 lg:pt-24 lg:pb-14">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-[minmax(0,1fr)_minmax(280px,0.92fr)] sm:items-start sm:gap-8">
+          <div className="flex flex-col gap-8 md:gap-10">
             <h2 className="text-display-2 md:text-display-2-lg">Por qué existimos</h2>
-            <div className="flex flex-col gap-5 text-body-sm text-aisc-ink md:text-body md:text-body-lg">
+            <div className="grid grid-cols-1 gap-6 text-body-sm text-aisc-ink sm:grid-cols-3 sm:gap-8 md:text-body md:text-body-lg">
               <p>
                 Los sistemas de inteligencia artificial ganan capacidades más rápido de lo que crece nuestra
-                comprensión de ellos. En ese hueco trabaja muy poca gente en el mundo, y hasta hace poco nadie desde
-                acá.
+                comprensión de ellos. En ese hueco trabaja muy poca gente en el mundo. Los colombianos que ya estaban
+                ahí trabajaban cada uno por su lado.
               </p>
               <p>
                 Colombia son 52 millones de personas que van a usar estos sistemas, regularlos y sufrirlos, y hasta 2024
@@ -116,47 +94,10 @@ export default function QuienesSomos() {
               </p>
               <p>
                 Somos una organización pequeña y voluntaria. Lo que hacemos es concreto: formar gente, organizar
-                investigación y sostener la conversación pública sobre el tema en el país.
+                investigación y sostener la conversación pública sobre el tema en el país. Tres personas de acá han
+                entrado a ML4Good, el campamento técnico al que llega quien quiere dedicarse a esto.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="cifras" className="bg-aisc-cream">
-        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 flex flex-col gap-8 pb-10 md:gap-10 md:pb-12 lg:pb-14">
-          <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-          <div className="grid grid-cols-1 gap-[10px] sm:grid-cols-3">
-            {CIFRAS.map((cifra) => (
-              <article
-                key={cifra.valor}
-                className="flex min-h-[150px] flex-col justify-between gap-6 overflow-hidden rounded-lg border border-aisc-ink bg-aisc-cream p-6 text-aisc-ink md:min-h-[180px] md:p-8"
-              >
-                <p className="text-display-2 md:text-display-2-lg tabular-nums text-aisc-forest">{cifra.valor}</p>
-                <p className="text-body-sm text-aisc-ink">{cifra.label}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="frentes" className="bg-aisc-cream">
-        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 flex flex-col gap-8 pb-10 md:gap-10 md:pb-12 lg:pb-14">
-          <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-          <h2 className="text-display-2 md:text-display-2-lg">Qué hacemos</h2>
-          <div className="grid grid-cols-1 gap-[10px] sm:grid-cols-3">
-            {FRENTES.map((frente) => (
-              <article
-                key={frente.title}
-                className="flex min-h-[190px] flex-col justify-between gap-8 overflow-hidden rounded-lg border border-aisc-ink bg-aisc-cream p-6 text-aisc-ink md:min-h-[245px] md:p-8 lg:min-h-[300px]"
-              >
-                <span aria-hidden="true" className="mb-5 block h-px w-10 flex-none bg-aisc-coral" />
-                <div className="flex flex-col gap-3">
-                  <h3 className="text-display-3 md:text-display-3-lg text-balance">{frente.title}</h3>
-                  <p className="text-body-sm text-aisc-ink">{frente.body}</p>
-                </div>
-              </article>
-            ))}
           </div>
         </div>
       </section>
