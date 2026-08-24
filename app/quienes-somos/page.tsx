@@ -220,7 +220,7 @@ const EQUIPO: Persona[] = [
     rol: "Voluntario",
     bio: (
       <>
-        Recién egresado del bachillerato. Programa por su cuenta desde los once
+        Recién egresado del bachillerato. Programador autodidacta desde los once
         años.
       </>
     ),
