@@ -23,18 +23,63 @@ function iniciales(nombre: string): string {
     .join("");
 }
 
-/* Al modo del sprint: retrato cuadrado, nombre, rol y una bio corta. Sin foto
-   sale la tarjeta con las iniciales; el archivo va en public/aisc/equipo/.
-   Los dos primeros van en una fila de dos y el resto abajo en cuatro
-   columnas iguales, así que el orden del arreglo es el orden de la página.
-   TODO: faltan los cuatro de la segunda fila (nombre, rol, bio, LinkedIn). */
-const EQUIPO: {
+type Persona = {
   nombre: string;
   rol: string;
   foto?: string;
   linkedin?: string;
   bio: React.ReactNode;
-}[] = [
+};
+
+/* La ficha del sprint, tal cual: retrato cuadrado, nombre, rol y bio. Las dos
+   filas usan la misma rejilla de cuatro columnas para que las seis fichas
+   midan igual. */
+function Ficha({ p }: { p: Persona }) {
+  return (
+    <li className="flex flex-col gap-3">
+      <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-[8px] bg-aisc-sand">
+        {p.foto ? (
+          <img
+            alt={p.nombre}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover object-center"
+            src={p.foto}
+          />
+        ) : (
+          <span aria-hidden="true" className="text-display-2 md:text-display-2-lg text-aisc-forest/45">
+            {iniciales(p.nombre)}
+          </span>
+        )}
+      </div>
+      <div className="flex flex-col gap-0.5">
+        <h3 className="text-display-4 font-semibold text-aisc-forest">
+          {p.linkedin ? (
+            <a
+              className="underline decoration-aisc-forest/30 underline-offset-4 transition-colors hover:text-aisc-coral hover:decoration-aisc-coral"
+              href={p.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {p.nombre}
+            </a>
+          ) : (
+            p.nombre
+          )}
+        </h3>
+        <p className="text-body-sm text-aisc-muted">{p.rol}</p>
+        <p className="text-body-sm mt-2 text-aisc-ink">{p.bio}</p>
+      </div>
+    </li>
+  );
+}
+
+/* Al modo del sprint: retrato cuadrado, nombre, rol y una bio corta. Sin foto
+   sale la tarjeta con las iniciales; el archivo va en public/aisc/equipo/.
+   Los dos primeros van en una fila de dos y el resto abajo en cuatro
+   columnas iguales, así que el orden del arreglo es el orden de la página.
+   TODO: faltan los cuatro de la segunda fila (nombre, rol, bio, LinkedIn). */
+const EQUIPO: Persona[] = [
   {
     nombre: "Jose Gelves",
     rol: "Director",
@@ -190,108 +235,20 @@ export default function QuienesSomos() {
               </p>
             </div>
           </div>
-          {/* Los dos primeros con el retrato al lado del texto: a media
-              pantalla un cuadrado a toda columna se come el bloque. */}
-          <div className="mt-14 grid grid-cols-1 gap-10 sm:grid-cols-2 md:mt-16 md:gap-12 lg:mt-20">
+          <ul className="mt-14 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4 md:mt-16 lg:mt-20">
             {EQUIPO.slice(0, 2).map((p) => (
-              <article className="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-6" key={p.nombre}>
-                <div className="flex aspect-square w-full max-w-[190px] flex-none items-center justify-center overflow-hidden rounded-[8px] bg-aisc-sand sm:w-[36%]">
-                  {p.foto ? (
-                    <img
-                      alt={p.nombre}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover object-center"
-                      src={p.foto}
-                    />
-                  ) : (
-                    <span aria-hidden="true" className="text-display-2 md:text-display-2-lg text-aisc-forest/45">
-                      {iniciales(p.nombre)}
-                    </span>
-                  )}
-                </div>
-                <div className="flex min-w-0 flex-col gap-0.5">
-                  <h3 className="text-display-4 font-semibold text-aisc-forest">
-                    {p.linkedin ? (
-                      <a
-                        className="underline decoration-aisc-forest/30 underline-offset-4 transition-colors hover:text-aisc-coral hover:decoration-aisc-coral"
-                        href={p.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {p.nombre}
-                      </a>
-                    ) : (
-                      p.nombre
-                    )}
-                  </h3>
-                  <p className="text-body-sm text-aisc-muted">{p.rol}</p>
-                  <p className="text-body-sm mt-2 text-aisc-ink">{p.bio}</p>
-                </div>
-              </article>
+              <Ficha key={p.nombre} p={p} />
             ))}
-          </div>
+          </ul>
 
           {EQUIPO.length > 2 && (
-            <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4 md:mt-12">
+            <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4 md:mt-10">
               {EQUIPO.slice(2).map((p) => (
-                <li className="flex flex-col gap-3" key={p.nombre}>
-                  <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-[8px] bg-aisc-sand">
-                    {p.foto ? (
-                      <img
-                        alt={p.nombre}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-full w-full object-cover object-center"
-                        src={p.foto}
-                      />
-                    ) : (
-                      <span aria-hidden="true" className="text-display-2 md:text-display-2-lg text-aisc-forest/45">
-                        {iniciales(p.nombre)}
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex flex-col gap-0.5">
-                    <h3 className="text-display-4 font-semibold text-aisc-forest">
-                      {p.linkedin ? (
-                        <a
-                          className="underline decoration-aisc-forest/30 underline-offset-4 transition-colors hover:text-aisc-coral hover:decoration-aisc-coral"
-                          href={p.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {p.nombre}
-                        </a>
-                      ) : (
-                        p.nombre
-                      )}
-                    </h3>
-                    <p className="text-body-sm text-aisc-muted">{p.rol}</p>
-                    <p className="text-body-sm mt-2 text-aisc-ink">{p.bio}</p>
-                  </div>
-                </li>
+                <Ficha key={p.nombre} p={p} />
               ))}
             </ul>
           )}
 
-          <article className="mt-12 flex flex-col gap-5 rounded-lg border border-aisc-forest bg-aisc-sand p-6 text-aisc-ink md:mt-14 md:p-8">
-            <header className="flex min-w-0 flex-col gap-1.5">
-              <h3 className="text-display-3 md:text-display-3-lg break-words">¿Quieres estar acá?</h3>
-              <p className="text-body-sm text-aisc-forest">Voluntariado</p>
-            </header>
-            <p className="text-body-sm max-w-[720px] text-aisc-ink">
-              Buscamos gente que ayude a organizar eventos, a traducir material, a llevar la comunicación y a mover
-              los programas. No hace falta ser técnico, hace falta aparecer.
-            </p>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-body-sm w-fit text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
-              href="https://cal.com/josegelves/meeting"
-            >
-              Hablemos 20 minutos
-            </a>
-          </article>
         </div>
       </section>
 
