@@ -141,6 +141,10 @@ def cortina(eje, ident, adelante):
     v = (-u[1], u[0])
     L = 4000.0
     s = -1.0 if not adelante else 1.0
+    if not adelante:
+        # el filo se retrasa 55 px: la cinta tiene ancho, y su arranque asoma
+        # por detras de la boca si el filo pasa justo por el primer punto
+        p = (p[0] - u[0] * 55.0, p[1] - u[1] * 55.0)
     a = (p[0] + v[0] * L, p[1] + v[1] * L)
     b = (p[0] - v[0] * L, p[1] - v[1] * L)
     pts = [a, b, (b[0] + s * u[0] * L, b[1] + s * u[1] * L),
@@ -218,8 +222,8 @@ ESTILO = u"""
 @keyframes lqOnda{0%%,100%%{transform:translate(0,0)}
   50%%{transform:translate(2px,0)}}
 
-.lq-charco{animation:lqCrece 1.6s cubic-bezier(.2,.7,.3,1) %(tp)ss both}
-.lq-inunda{animation:lqCrece 4.6s cubic-bezier(.5,.02,.75,.4) %(tp)ss both}
+.lq-charco{animation:lqCrece 1.1s cubic-bezier(.2,.75,.35,1) %(tp)ss both}
+.lq-inunda{animation:lqCrece 4.2s cubic-bezier(.42,.06,.7,.5) %(ti)ss both}
 @keyframes lqCrece{from{transform:scale(0)}to{transform:scale(1)}}
 
 .lq-gota{opacity:0}
@@ -293,6 +297,10 @@ def liquido(ident, eje, centro, sinfin, animado):
         return [], ([pool] if sinfin else []), ([] if sinfin else [pool]) + [chorro]
 
     pool = charco(forma_pool, clase, **args)
+    if sinfin:
+        # el chorro tiene que hacer su charco antes de que la inundacion
+        # arranque, si no el agua parece brotar del piso
+        pool = charco(charco_fino, "lq-charco", semilla=1.1, cae=cae) + pool
     defs = [cortina(eje, "lqc" + ident, False)]
     cuerpo = cinta(eje, CORAL, "lq-chorro")
     if sinfin:
@@ -309,7 +317,7 @@ def liquido(ident, eje, centro, sinfin, animado):
 def estilo(eje, sinfin):
     p, u, largo = _dir(eje)
     largo *= 1.35
-    return ESTILO % {"t0": T0, "tf": TF, "tp": TP,
+    return ESTILO % {"t0": T0, "tf": TF, "tp": TP, "ti": round(TP + 0.4, 2),
                      "ux": round(u[0] * largo, 1),
                      "uy": round(u[1] * largo, 1),
                      "g1": round(T0 + 0.55, 2), "g2": round(T0 + 1.05, 2),
