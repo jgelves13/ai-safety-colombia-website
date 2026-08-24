@@ -11,8 +11,6 @@ const MARCA = `<svg viewBox="0 0 1280 521" xmlns="http://www.w3.org/2000/svg" pr
 .hk-roto{animation:hkEntra 0.120s steps(1,start) 1.368s both}
 .hk-esquirla{transform-box:fill-box;transform-origin:60% 20%;
   animation:hkEntra 0.160s linear 1.444s both,hkAbre 0.340s cubic-bezier(.2,.8,.3,1) 1.444s both}
-.hk-lasca{animation:hkEntra 0.160s linear 1.444s both}
-.hk-eco{animation:hkEntra 0.160s linear 1.444s both}
 @keyframes hkEntra{from{opacity:0}to{opacity:1}}
 @keyframes hkSale{from{opacity:1}to{opacity:0}}
 @keyframes hkAbre{from{transform:scale(.55)}to{transform:scale(1)}}
@@ -20,8 +18,7 @@ const MARCA = `<svg viewBox="0 0 1280 521" xmlns="http://www.w3.org/2000/svg" pr
   48%{transform:translate(5px,-2px)}74%{transform:translate(-2px,1px)}
   100%{transform:translate(0,0)}}
 @media (prefers-reduced-motion:reduce){
-  .hk-caja,.hk-roto,.hk-esquirla,.hk-lasca,.hk-eco{
-    animation:none;opacity:1;transform:none}
+  .hk-caja,.hk-roto,.hk-esquirla{animation:none;opacity:1;transform:none}
   .hk-intacto,.hk-grieta{display:none}
 }
 </style>
@@ -111,11 +108,11 @@ const MARCA = `<svg viewBox="0 0 1280 521" xmlns="http://www.w3.org/2000/svg" pr
 <polygon points="950.1,915.3 1005.4,992.2 979.6,987.7" fill="#566c57" stroke="#f3ead8" stroke-width="1.9" stroke-opacity="0.95"/>
 <polygon points="997.1,1042.0 928.1,989.0 958.0,1075.4" fill="#566c57" stroke="#f3ead8" stroke-width="1.9" stroke-opacity="0.95"/>
 <polygon points="825.9,923.3 784.5,908.8 734.5,934.2" fill="#566c57" stroke="#f3ead8" stroke-width="1.9" stroke-opacity="0.95"/>
-<g id="hkLascasHk" class="hk-lasca"><polygon points="718.2,995.4 794.4,1057.0 744.7,1054.1 678.4,1002.7" fill="#39543f" stroke="#f3ead8" stroke-width="1.9" stroke-opacity="0.7"/>
+<polygon points="718.2,995.4 794.4,1057.0 744.7,1054.1 678.4,1002.7" fill="#39543f" stroke="#f3ead8" stroke-width="1.9" stroke-opacity="0.7"/>
 <polygon points="798.3,1086.9 850.7,1139.8 800.2,1144.1 753.7,1100.2" fill="#39543f" stroke="#f3ead8" stroke-width="1.9" stroke-opacity="0.7"/>
 <polygon points="950.1,1126.9 1019.2,1183.1 973.6,1180.7 913.6,1133.8" fill="#39543f" stroke="#f3ead8" stroke-width="1.9" stroke-opacity="0.7"/>
-<polygon points="698.9,1080.4 745.0,1125.8 702.3,1129.0 661.5,1091.3" fill="#39543f" stroke="#f3ead8" stroke-width="1.9" stroke-opacity="0.7"/></g>
-</g></g></g><g clip-path="url(#lqCercaHk)"><use href="#lqCuerpoHk"/><use href="#lqQuietoHk" class="hk-quieto"/></g><g transform="translate(655.2,0) scale(0.36820)"><g class="hk-caja"><g class="hk-eco"><g opacity="0.26"><use href="#hkLascasHk"/></g></g></g></g></svg>`;
+<polygon points="698.9,1080.4 745.0,1125.8 702.3,1129.0 661.5,1091.3" fill="#39543f" stroke="#f3ead8" stroke-width="1.9" stroke-opacity="0.7"/>
+</g></g></g><g clip-path="url(#lqCercaHk)"><use href="#lqCuerpoHk"/><use href="#lqQuietoHk" class="hk-quieto"/></g></svg>`;
 
 export function HeroHackathon({ className }: { className?: string }) {
   return (
