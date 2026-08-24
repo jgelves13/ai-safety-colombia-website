@@ -80,7 +80,7 @@ export default function QuienesSomos() {
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="flex flex-col gap-8 md:gap-10">
             <h2 className="text-display-2 md:text-display-2-lg">Por qué existimos</h2>
-            <div className="flex max-w-[860px] flex-col gap-5 text-body-sm text-aisc-ink md:gap-6 md:text-body md:text-body-lg">
+            <div className="text-body md:text-body-lg flex flex-col gap-5 text-aisc-ink">
               <p>
                 Los sistemas de inteligencia artificial ganan capacidades más rápido de lo que crece nuestra
                 comprensión de ellos. En ese hueco trabaja muy poca gente en el mundo. Los colombianos que ya estaban
