@@ -8,7 +8,7 @@ import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION
 export const metadata: Metadata = {
   title: "Investigación",
   description:
-    "Lo que publican los miembros de AI Safety Colombia: artículos revisados por pares, documentos de trabajo y reportes de investigación.",
+    "Lo que publican los miembros de AI Safety Colombia: artículos revisados por pares, documentos de trabajo, reportes de investigación y los productos de nuestras hackathones.",
 };
 
 /* Publicaciones en las que alguien de la comunidad aparece como autor.
@@ -227,7 +227,7 @@ export default function Investigacion() {
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">Investigación</h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
               Acá está lo que publica la gente de la comunidad: artículos revisados por pares, documentos de
-              trabajo y reportes de investigación.
+              trabajo, reportes de investigación y los productos de nuestras hackathones.
             </p>
           </div>
         </div>
