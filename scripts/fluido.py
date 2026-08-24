@@ -427,13 +427,38 @@ EXP_MASA = 1.80
 MASA0 = 0.020
 
 
+# Cuanto tarda la caja en quedarse sin nada, contado hacia atras desde el final
+# de la corrida. Es la correccion del corte: antes el chorro seguia cayendo a
+# toda presion en el mismo cuadro en que la animacion se congelaba, y una lamina
+# que se detiene de golpe en mitad del movimiento se lee como un corte, no como
+# un final. Con el vaciado, la presion de adentro se acaba, el chorro adelgaza
+# hasta nada y el charco llega a su sitio frenandose. El congelado cae sobre
+# algo que ya estaba quieto y deja de notarse.
+CIERRE = 0.80
+
+
+def vaciado(t):
+    u"""De uno a cero en los ultimos CIERRE segundos, con las dos puntas planas.
+
+    Es un suavizado de tercer grado y no una recta porque el corte de una recta
+    tiene esquina: la velocidad del frente cambiaria de golpe en el instante en
+    que empieza el vaciado, y ese quiebre se ve igual que el que se quiere
+    quitar."""
+    x = (T_FIN - t) / CIERRE
+    if x >= 1.0:
+        return 1.0
+    if x <= 0.0:
+        return 0.0
+    return x * x * (3.0 - 2.0 * x)
+
+
 def caudal(t):
-    u"""El boquete no da abasto: la presion de adentro va subiendo."""
+    u"""El boquete no da abasto: la presion de adentro va subiendo. Hasta que se
+    acaba lo que habia dentro."""
     if t < 0.0:
         return 0.0
-    if t < 1.6:
-        return CAUDAL
-    return CAUDAL * min(1.0 + (t - 1.6) * 0.75, 4.0)
+    q = CAUDAL if t < 1.6 else CAUDAL * min(1.0 + (t - 1.6) * 0.75, 4.0)
+    return q * vaciado(t)
 
 
 def masa(t):
@@ -442,7 +467,7 @@ def masa(t):
     espera, el charco se asienta primero y se ve el frenazo."""
     if t < 0.0:
         return 0.0
-    return MASA0 * (1.0 + t) ** EXP_MASA
+    return MASA0 * (1.0 + t) ** EXP_MASA * vaciado(t)
 
 
 def grav_agua(t):

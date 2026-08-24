@@ -46,24 +46,21 @@ FIN = 2.5
 
 
 def instantes():
-    u"""Cuando se guarda un cuadro: apretados mientras cae, sueltos al inundar.
+    u"""Cuando se guarda un cuadro: a paso fijo desde la rotura hasta el corte.
 
-    Los dos ritmos se recortan contra FIN, y no solo el segundo. Estos tiempos
-    salen como las claves del SMIL divididas por la duracion, o sea que tienen
-    que quedar entre cero y uno: un solo cuadro pasado el corte da una clave
-    mayor que uno y el navegador descarta la animacion entera, con lo que el
-    trazo se queda en el primer cuadro y no se ve ni una gota."""
+    Antes el final iba mas suelto que el resto, y ese tramo largo se notaba: el
+    navegador interpola en linea recta entre cuadro y cuadro, asi que un hueco
+    del triple de ancho es un tramo donde la forma deja de acompanar a la fisica
+    y se desliza. El paso va parejo de punta a punta.
+
+    Estos tiempos salen como las claves del SMIL, y tienen que quedar entre cero
+    y uno: un solo cuadro pasado el corte da una clave mayor que uno, el
+    navegador descarta la animacion entera y el trazo se queda en el primer
+    cuadro, sin que se vea ni una gota."""
+    t0 = F.T_GOLPE + 0.10
+    n = max(2, int(round((FIN - t0) / 0.115)))
     ts = [0.0, F.T_GOLPE]
-    t = F.T_GOLPE + 0.10
-    while t < min(2.30, FIN):
-        ts.append(round(t, 3))
-        t += 0.115
-    while t < FIN:
-        ts.append(round(t, 3))
-        t += 0.38
-    while len(ts) > 1 and ts[-1] > FIN - 0.02:
-        ts.pop()
-    ts.append(FIN)
+    ts += [round(t0 + (FIN - t0) * k / float(n), 3) for k in range(n + 1)]
     return ts
 
 
@@ -168,9 +165,34 @@ def escala_css(css):
                   lambda m: "%.3fs" % (float(m.group(1)) * ESCALA_T), css)
 
 
+# Donde empieza a frenar el reloj, y cuanto. La fisica sola no cierra el
+# derrame: cortar el chorro no detiene la lamina, que a la altura del corte
+# todavia se abria a unos 60 px por segundo. Una animacion que se congela con
+# el liquido a esa velocidad no termina, se corta. Asi que el reloj hace la
+# otra mitad: desde T_FRENA el segundo simulado se estira hasta durar FRENO
+# veces lo que duraba, y el ultimo tramo queda casi quieto.
+#
+# El estiron va como el cuadrado, que arranca con pendiente cero, para que el
+# frenado empiece sin escalon; una recta meteria una esquina en T_FRENA y se
+# veria el mismo defecto movido de sitio. Y se paga alargando la animacion, no
+# acelerando el principio: si se repartiera dentro de la misma duracion, el
+# chorro volveria a caer deprisa, que es justo lo que Jose devolvio.
+T_FRENA = 1.95
+FRENO = 4.0
+
+
+def reloj(t):
+    u"""Segundo simulado a segundo de pantalla, ya con el frenado del final."""
+    if t <= T_FRENA:
+        return t * ESCALA_T
+    u_ = (t - T_FRENA) / (FIN - T_FRENA)
+    return ESCALA_T * (T_FRENA + (FIN - T_FRENA) *
+                       (u_ + (FRENO - 1.0) * u_ ** 3 / 3.0))
+
+
 def animacion(ts, ds):
-    dur = FIN * ESCALA_T
-    kt = ";".join("%.4f" % (t / FIN) for t in ts)
+    dur = reloj(FIN)
+    kt = ";".join("%.4f" % (reloj(t) / dur) for t in ts)
     return ('<animate attributeName="d" dur="%.2fs" begin="0s"'
             ' repeatCount="1" fill="freeze" calcMode="linear"'
             ' keyTimes="%s" values="%s"/>' % (dur, kt, ";".join(ds)))
