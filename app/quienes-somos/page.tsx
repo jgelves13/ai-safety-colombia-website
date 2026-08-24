@@ -87,8 +87,7 @@ const EQUIPO: Persona[] = [
     linkedin: "https://www.linkedin.com/in/josegelves/",
     bio: (
       <>
-        Politólogo. Dirige AI Safety Colombia desde 2024. Consultor de
-        transformación digital de la{" "}
+        Consultor de transformación digital de la{" "}
         <a className={ENLACE} href="https://uniandes.edu.co/" target="_blank" rel="noopener noreferrer">
           Universidad de los Andes
         </a>{" "}
@@ -103,10 +102,6 @@ const EQUIPO: Persona[] = [
         y embajador de{" "}
         <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
           Apart Research
-        </a>
-        . Pasó por{" "}
-        <a className={ENLACE} href="https://www.ml4good.org/" target="_blank" rel="noopener noreferrer">
-          ML4Good
         </a>
         .
       </>
