@@ -651,23 +651,15 @@ export default function Hackathon() {
             </div>
           </div>
           <ul className="mt-12 grid grid-cols-1 gap-x-10 md:mt-14 lg:mt-16 lg:grid-cols-2">
-            {PERFILES.map((p, i) => (
+            {PERFILES.map((p) => (
               <li
-                className="flex items-start gap-5 border-t border-aisc-sand/25 py-6"
+                className="flex flex-col gap-1.5 border-t border-aisc-sand/25 py-6"
                 key={p.rotulo}
               >
-                <span
-                  className="text-display-4 shrink-0 tabular-nums text-aisc-coral"
-                  aria-hidden="true"
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="flex flex-col gap-1.5">
-                  <h3 className="text-display-4 md:text-display-4-lg text-balance">
-                    {p.rotulo}
-                  </h3>
-                  <p className="text-body-sm text-aisc-sand/75">{p.body}</p>
-                </div>
+                <h3 className="text-display-4 md:text-display-4-lg text-balance">
+                  {p.rotulo}
+                </h3>
+                <p className="text-body-sm text-aisc-sand/75">{p.body}</p>
               </li>
             ))}
           </ul>
