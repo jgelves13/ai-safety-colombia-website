@@ -354,9 +354,14 @@ def libro(o, x, y, dx, dy, z, alto, coral=False, w=SEC):
 
 
 def recursos():
-    """Recursos: la fila entera parada en su estante, y una sacada a medias."""
-    escala(0.95)
-    o = (1290.0, 400.0)
+    """Recursos: la fila entera parada en su estante, y una sacada a medias.
+
+    Esta se dibuja mas grande que las otras y aun asi pesa lo mismo. El
+    estante es una banda delgada en diagonal: su caja es casi toda aire, y
+    lo que el ojo mide no es la caja sino el libro. Con la caja del equipo
+    los libros salian del tamano de un dedo."""
+    escala(1.16)
+    o = (1373.0, 342.0)
     formas = volumen(o, 0.0, 0.0, 1.3, 5.0, 0, 0.12)
     # grosor, alto, y cual es el que sale
     fila = ((0.50, 1.10, 0.0), (0.32, 0.86, 0.0), (0.44, 1.34, 0.0),
@@ -526,9 +531,11 @@ def _mover(formas, dx, dy):
 # es la media geometrica de la caja, no el alto ni el ancho: las siete figuras
 # de pie son altas y la fila de recortes de Actualidad es ancha, y por area
 # ocupan lo mismo en el ojo. La de "Que es AI safety" queda por fuera del
-# ajuste: su embudo se sale del borde a proposito.
+# ajuste: su embudo se sale del borde a proposito, y Recursos porque su
+# estante es una banda diagonal cuya caja no dice nada del tamano del libro.
+# Las dos traen su medida escrita en su propia funcion.
 REFERENCIA = "quienes-somos"
-SIN_AJUSTE = ("seguridad",)
+SIN_AJUSTE = ("seguridad", "recursos")
 
 
 SECCIONES = [
