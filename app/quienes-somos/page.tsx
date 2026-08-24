@@ -94,8 +94,7 @@ export default function QuienesSomos() {
               </p>
               <p>
                 Somos una organización pequeña y voluntaria. Lo que hacemos es concreto: formar gente, organizar
-                investigación y sostener la conversación pública sobre el tema en el país. Tres personas de acá han
-                entrado a ML4Good, el campamento técnico al que llega quien quiere dedicarse a esto.
+                investigación y sostener la conversación pública sobre el tema en el país.
               </p>
             </div>
           </div>
