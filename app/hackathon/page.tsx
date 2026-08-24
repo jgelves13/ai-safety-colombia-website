@@ -181,7 +181,7 @@ const MENTORES: {
 }[] = [
   {
     nombre: "Camila Beltrán",
-    rol: "Mentora",
+    rol: "Mentora y ponente",
     foto: "/aisc/mentores/camila-beltran.png",
     linkedin:
       "https://www.linkedin.com/in/camila-alejandra-beltran-reyes-ab288627a/",
@@ -551,13 +551,14 @@ export default function Hackathon() {
               <div className={PROSA}>
                 <p>
                   Durante el fin de semana pasa por la sala gente que trabaja en
-                  los temas de los cinco frentes. No dictan charlas: se sientan
-                  con los equipos a revisar lo que llevan.
+                  los temas de los cinco frentes. Algunos abren con una charla
+                  corta. Todos se sientan con los equipos a revisar lo que
+                  llevan.
                 </p>
                 <p>
                   Si trabajas en respuesta a incidentes, en seguridad ofensiva,
-                  en regulación o en comunicación de riesgos y te interesa
-                  acompañar a un equipo, escríbenos a{" "}
+                  en regulación o en comunicación de riesgos y te interesa dar
+                  una charla o acompañar a un equipo, escríbenos a{" "}
                   <a
                     className={ENLACE}
                     href="mailto:contacto@aisafetycolombia.org"
@@ -615,7 +616,7 @@ export default function Hackathon() {
             <li className="flex flex-col gap-3">
               <div className="flex aspect-square w-full items-center justify-center rounded-[8px] border border-dashed border-aisc-forest/40 p-4 text-center">
                 <span className="text-body-sm text-aisc-muted">
-                  Vamos anunciando el resto a medida que confirman.
+                  Pronto anunciamos más nombres.
                 </span>
               </div>
             </li>
