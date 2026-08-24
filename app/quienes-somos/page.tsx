@@ -216,12 +216,13 @@ const EQUIPO: Persona[] = [
     ),
   },
   {
-    nombre: "Victor Gelves",
+    nombre: "Manuel Cabrera",
     rol: "Voluntario",
+    linkedin: "https://www.linkedin.com/in/manueloff14/",
     bio: (
       <>
-        Recién egresado del bachillerato. Programador autodidacta desde los once
-        años.
+        Programador full stack. Estuvo en Altruismo Eficaz Uniandes entre enero
+        y agosto de 2025.
       </>
     ),
   },
