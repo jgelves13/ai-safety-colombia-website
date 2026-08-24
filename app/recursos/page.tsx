@@ -182,19 +182,19 @@ const GRUPOS: Grupo[] = [
       {
         href: "https://bluedot.org/courses/agi-strategy",
         title: "AGI Strategy",
-        quien: "BlueDot Impact, unas 25 horas",
+        quien: "BlueDot Impact",
         body: "El punto de entrada que más recomendamos: hacia dónde va la IA avanzada y qué puede desviarla.",
       },
       {
         href: "https://bluedot.org/courses/ai-governance",
         title: "Frontier AI Governance",
-        quien: "BlueDot Impact, unas 30 horas",
+        quien: "BlueDot Impact",
         body: "Qué se está decidiendo sobre los modelos de frontera y en qué mesas se decide.",
       },
       {
         href: "https://bluedot.org/courses/technical-ai-safety",
         title: "Technical AI Safety",
-        quien: "BlueDot Impact, unas 30 horas",
+        quien: "BlueDot Impact",
         body: "Alineación, interpretabilidad, evaluaciones y control. Pide saber cómo se entrena un modelo.",
       },
       {
