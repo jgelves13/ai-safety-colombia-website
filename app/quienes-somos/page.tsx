@@ -83,18 +83,39 @@ const EQUIPO: Persona[] = [
   {
     nombre: "Jose Gelves",
     rol: "Cofundador y director",
+    foto: "/aisc/equipo/jose-gelves.png",
     linkedin: "https://www.linkedin.com/in/josegelves/",
     bio: (
       <>
-        Politólogo. Dirige AI Safety Colombia desde 2024. Alumni de ML4Good,
-        Pathfinder fellow de Kairos y embajador de Apart Research. Trabaja en
-        transformación digital del sector público.
+        Politólogo. Dirige AI Safety Colombia desde 2024. Consultor de
+        transformación digital de la{" "}
+        <a className={ENLACE} href="https://uniandes.edu.co/" target="_blank" rel="noopener noreferrer">
+          Universidad de los Andes
+        </a>{" "}
+        para el{" "}
+        <a className={ENLACE} href="https://www.mintic.gov.co/" target="_blank" rel="noopener noreferrer">
+          MinTIC
+        </a>
+        . Pathfinder fellow de{" "}
+        <a className={ENLACE} href="https://kairos-project.org" target="_blank" rel="noopener noreferrer">
+          Kairos
+        </a>{" "}
+        y embajador de{" "}
+        <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
+          Apart Research
+        </a>
+        . Pasó por{" "}
+        <a className={ENLACE} href="https://www.ml4good.org/" target="_blank" rel="noopener noreferrer">
+          ML4Good
+        </a>
+        .
       </>
     ),
   },
   {
     nombre: "Fernando Avalos",
     rol: "Cofundador (en memoria)",
+    foto: "/aisc/equipo/fernando-avalos.png",
     bio: (
       <>
         Coautor de{" "}
