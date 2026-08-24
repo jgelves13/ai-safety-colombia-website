@@ -214,6 +214,54 @@ const MENTORES: {
       </>
     ),
   },
+  {
+    nombre: "Luis Cosio",
+    rol: "Mentor y ponente",
+    foto: "/aisc/mentores/luis-cosio.png",
+    linkedin: "https://www.linkedin.com/in/luiscosio/",
+    bio: (
+      <>
+        Del equipo técnico de{" "}
+        <a
+          className={ENLACE}
+          href="https://sl5.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          SL5
+        </a>
+        , la iniciativa para que los sistemas de IA más avanzados resistan a
+        adversarios estatales y a escenarios de pérdida de control. Coautor del{" "}
+        <a
+          className={ENLACE}
+          href="https://arxiv.org/abs/2605.08449"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          estándar SL5 de seguridad para IA
+        </a>
+        , mentor de{" "}
+        <a
+          className={ENLACE}
+          href="https://sparai.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          SPAR
+        </a>{" "}
+        y antes en el{" "}
+        <a
+          className={ENLACE}
+          href="https://securityandtechnology.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Institute for Security and Technology
+        </a>
+        .
+      </>
+    ),
+  },
 ];
 
 function iniciales(nombre: string): string {
