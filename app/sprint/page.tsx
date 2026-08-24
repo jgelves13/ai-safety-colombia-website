@@ -240,24 +240,6 @@ const MENTORES: {
         >
           estándar SL5
         </a>
-        , mentor de{" "}
-        <a
-          className={ENLACE}
-          href="https://sparai.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          SPAR
-        </a>{" "}
-        y exinvestigador del{" "}
-        <a
-          className={ENLACE}
-          href="https://securityandtechnology.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Institute for Security and Technology
-        </a>
         .
       </>
     ),
