@@ -245,13 +245,20 @@ export default function QuienesSomos() {
             ))}
           </ul>
 
-          {EQUIPO.length > 2 && (
-            <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:mt-10 lg:grid-cols-5">
-              {EQUIPO.slice(2).map((p) => (
-                <Ficha key={p.nombre} p={p} />
-              ))}
-            </ul>
-          )}
+          {/* La segunda fila siempre tiene cuatro puestos. Los que aun no
+              tienen nombre quedan marcados, no escondidos. */}
+          <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:mt-10 lg:grid-cols-5">
+            {EQUIPO.slice(2).map((p) => (
+              <Ficha key={p.nombre} p={p} />
+            ))}
+            {Array.from({ length: Math.max(0, 4 - (EQUIPO.length - 2)) }).map((_, i) => (
+              <li className="flex flex-col gap-3" key={`por-anunciar-${i}`}>
+                <div className="flex aspect-square w-full items-center justify-center rounded-[8px] border border-dashed border-aisc-forest/40 p-4 text-center">
+                  <span className="text-body-sm text-aisc-muted">Por anunciar</span>
+                </div>
+              </li>
+            ))}
+          </ul>
 
         </div>
       </section>
