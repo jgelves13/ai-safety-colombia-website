@@ -113,7 +113,15 @@ const EQUIPO: Persona[] = [
     foto: "/aisc/equipo/fernando-avalos.png",
     bio: (
       <>
-        Coautor de{" "}
+        Fue investigador en{" "}
+        <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
+          Apart Research
+        </a>{" "}
+        e ingeniero de investigación en el{" "}
+        <a className={ENLACE} href="https://www.orcg.info/" target="_blank" rel="noopener noreferrer">
+          Observatorio de Riesgos Catastróficos Globales
+        </a>
+        . Coautor de{" "}
         <a
           className={ENLACE}
           href="https://arxiv.org/abs/2510.25884"
