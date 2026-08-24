@@ -145,7 +145,7 @@ const EQUIPO: Persona[] = [
         >
           OCDE
         </a>{" "}
-        en riesgo y rendición de cuentas e investigadora asociada del{" "}
+        e investigadora asociada del{" "}
         <a
           className={ENLACE}
           href="https://aiforgood.itu.int/multimedia-authenticity/"

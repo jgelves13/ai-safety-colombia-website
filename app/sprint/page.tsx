@@ -184,8 +184,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           OCDE
-        </a>{" "}
-        en riesgo y rendición de cuentas, investigadora asociada del{" "}
+        </a>
+        , investigadora asociada del{" "}
         <a
           className={ENLACE}
           href="https://aiforgood.itu.int/multimedia-authenticity/"
