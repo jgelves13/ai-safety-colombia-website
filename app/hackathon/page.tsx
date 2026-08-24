@@ -38,7 +38,7 @@ const DATOS = [
   },
   {
     valor: "USD 2.000 en premios",
-    nota: "Cinco puestos, que Apart reparte entre todo el sprint",
+    nota: "Cinco ganadores a nivel global, que Apart escoge entre todo el sprint",
   },
 ];
 
