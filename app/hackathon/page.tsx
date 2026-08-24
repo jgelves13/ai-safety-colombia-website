@@ -20,7 +20,8 @@ export const metadata: Metadata = {
     "Del 11 al 13 de septiembre de 2026. Apart Research y CeSIA convocan el sprint sobre respuesta a incidentes de IA. Abrimos el hub presencial en Bogotá; las aplicaciones cierran a la medianoche del domingo 6 de septiembre.",
 };
 
-const ENLACE = "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
+const ENLACE =
+  "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
 
 /* Los tres datos que alguien busca antes de leer nada más. Una cifra grande y
    una línea de apoyo, sin más: es lo que hace que se lean de un vistazo. */
@@ -238,11 +239,14 @@ const CONTENEDOR = "mx-auto w-full max-w-[1448px] px-8 md:px-16";
 const HAIRLINE = "h-px w-full flex-none bg-aisc-forest-deep";
 /* El encabezado de dos columnas de SASH: el titular a la izquierda, todo el
    texto a la derecha en una medida corta. */
-const ENCABEZADO = "mt-5 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start lg:gap-6";
+const ENCABEZADO =
+  "mt-5 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start lg:gap-6";
 const COLUMNA = "flex min-w-0 flex-col gap-6";
-const PROSA = "text-body md:text-body-lg flex max-w-[640px] flex-col gap-5 text-aisc-ink";
+const PROSA =
+  "text-body md:text-body-lg flex max-w-[640px] flex-col gap-5 text-aisc-ink";
 /* La tarjeta de contorno con la que SASH lista lo que recibe cada persona. */
-const TARJETA = "flex min-h-[104px] flex-col gap-3 rounded-[8px] border border-aisc-forest/55 bg-aisc-cream p-5 md:min-h-[114px] md:p-6";
+const TARJETA =
+  "flex min-h-[104px] flex-col gap-3 rounded-[8px] border border-aisc-forest/55 bg-aisc-cream p-5 md:min-h-[114px] md:p-6";
 const PATRON = "/aisc/patterns/aisc-wash-lattice.svg";
 
 export default function Hackathon() {
@@ -267,15 +271,23 @@ export default function Hackathon() {
               AI Incident Response Sprint
             </h1>
             <p className="text-body md:text-body-lg max-w-[680px] text-aisc-sand/90">
-              Un fin de semana para convertir los primeros incidentes en los que un sistema de IA actuó por su cuenta
-              contra un tercero en material que sirva a quien tiene que responder.
+              Un fin de semana para convertir los primeros incidentes en los que
+              un sistema de IA actuó por su cuenta contra un tercero en material
+              que sirva a quien tiene que responder.
             </p>
-            <p className="text-body-sm mt-1 w-fit text-aisc-sand/75">{CIERRE_TEXTO}</p>
+            <p className="text-body-sm mt-1 w-fit text-aisc-sand/75">
+              {CIERRE_TEXTO}
+            </p>
             <div className="mt-2 flex flex-wrap items-center gap-3">
               <Link className={CTA_LINK_PRIMARY} href="/hackathon/aplicar">
                 Aplicar al hub en Bogotá
               </Link>
-              <a className={CTA_LINK} href={APART_SPRINT_URL} target="_blank" rel="noopener noreferrer">
+              <a
+                className={CTA_LINK}
+                href={APART_SPRINT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Participar en línea con Apart
               </a>
             </div>
@@ -292,7 +304,9 @@ export default function Hackathon() {
                 className="flex min-h-[122px] flex-col justify-start rounded-[8px] bg-aisc-forest-deep px-5 py-5 text-aisc-sand md:min-h-[142px] md:px-7 md:py-7"
                 key={d.valor}
               >
-                <dt className="text-display-4 md:text-display-4-lg break-words">{d.valor}</dt>
+                <dt className="text-display-4 md:text-display-4-lg break-words">
+                  {d.valor}
+                </dt>
                 <dd className="text-body-sm mt-3 text-aisc-sand">{d.nota}</dd>
               </div>
             ))}
@@ -301,46 +315,53 @@ export default function Hackathon() {
           {/* De qué se trata */}
           <section id="que-es" className="flex flex-col gap-5">
             <div aria-hidden="true" className={HAIRLINE} />
-            <div className={ENCABEZADO}>
-              <h2 className="text-display-2 md:text-display-2-lg break-words">De qué se trata</h2>
-              <div className={COLUMNA}>
-                <div className={PROSA}>
-                  <p>
-                    Ya hay casos documentados en los que un sistema de IA atacó por su cuenta a un tercero. En julio de
-                    2026, unos modelos que estaban siendo evaluados se salieron de su entorno de pruebas y encadenaron
-                    fallas hasta entrar a la infraestructura de producción de Hugging Face. Lo contaron{" "}
-                    <a
-                      className={ENLACE}
-                      href="https://openai.com/index/hugging-face-model-evaluation-security-incident/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      OpenAI
-                    </a>{" "}
-                    y{" "}
-                    <a
-                      className={ENLACE}
-                      href="https://huggingface.co/blog/security-incident-july-2026"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Hugging Face
-                    </a>{" "}
-                    cada uno por su lado. Ninguna ley los obligaba a hacerlo.
-                  </p>
-                  <p>
-                    Cuando pasa algo así, casi nadie tiene a mano el procedimiento: no está escrito cómo se contiene, ni
-                    cómo se reconstruye qué falló, ni qué le puede exigir un regulador al proveedor, ni cómo se cuenta el
-                    caso sin exagerar ni minimizar.
-                  </p>
-                  <p>
-                    El sprint existe para llenar ese vacío con piezas concretas. Se trabaja en cinco frentes en paralelo
-                    durante tres días. Cada equipo entrega algo que alguien más pueda usar: un estándar, un banco de
-                    pruebas, un cuestionario para un regulador, un ejercicio de mesa. Los proyectos se califican después
-                    del fin de semana y se publican completos. Apart Research y CeSIA convocan el sprint en todo el
-                    mundo; nosotros abrimos el hub presencial en Bogotá.
-                  </p>
-                </div>
+            <div className="mt-5 flex flex-col gap-6">
+              <h2 className="text-display-2 md:text-display-2-lg break-words">
+                De qué se trata
+              </h2>
+              <div className="text-body md:text-body-lg flex flex-col gap-5 text-aisc-ink">
+                <p>
+                  Ya hay casos documentados en los que un sistema de IA atacó
+                  por su cuenta a un tercero. En julio de 2026, unos modelos que
+                  estaban siendo evaluados se salieron de su entorno de pruebas
+                  y encadenaron fallas hasta entrar a la infraestructura de
+                  producción de Hugging Face. Lo contaron{" "}
+                  <a
+                    className={ENLACE}
+                    href="https://openai.com/index/hugging-face-model-evaluation-security-incident/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    OpenAI
+                  </a>{" "}
+                  y{" "}
+                  <a
+                    className={ENLACE}
+                    href="https://huggingface.co/blog/security-incident-july-2026"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Hugging Face
+                  </a>{" "}
+                  cada uno por su lado. Ninguna ley los obligaba a hacerlo.
+                </p>
+                <p>
+                  Cuando pasa algo así, casi nadie tiene a mano el
+                  procedimiento: no está escrito cómo se contiene, ni cómo se
+                  reconstruye qué falló, ni qué le puede exigir un regulador al
+                  proveedor, ni cómo se cuenta el caso sin exagerar ni
+                  minimizar.
+                </p>
+                <p>
+                  El sprint existe para llenar ese vacío con piezas concretas.
+                  Se trabaja en cinco frentes en paralelo durante tres días.
+                  Cada equipo entrega algo que alguien más pueda usar: un
+                  estándar, un banco de pruebas, un cuestionario para un
+                  regulador, un ejercicio de mesa. Los proyectos se califican
+                  después del fin de semana y se publican completos. Apart
+                  Research y CeSIA convocan el sprint en todo el mundo; nosotros
+                  abrimos el hub presencial en Bogotá.
+                </p>
               </div>
             </div>
           </section>
@@ -352,17 +373,22 @@ export default function Hackathon() {
         <div className="mx-auto w-full max-w-[1400px] rounded-[12px] bg-aisc-sand px-6 py-10 md:px-10 lg:py-14">
           <div aria-hidden="true" className={HAIRLINE} />
           <div className="mt-5 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start lg:gap-6">
-            <h2 className="text-display-2 md:text-display-2-lg break-words">Por qué vale el fin de semana</h2>
+            <h2 className="text-display-2 md:text-display-2-lg break-words">
+              Por qué vale el fin de semana
+            </h2>
             <p className="text-body md:text-body-lg max-w-[640px] text-aisc-ink">
-              Un hackathon de Apart no termina en una presentación de cinco minutos ante una sala amiga. Termina en un
-              documento que alguien de afuera lee, califica y cita.
+              Un hackathon de Apart no termina en una presentación de cinco
+              minutos ante una sala amiga. Termina en un documento que alguien
+              de afuera lee, califica y cita.
             </p>
           </div>
           <ul className="mt-12 grid grid-cols-1 gap-3 md:mt-14 lg:mt-16 lg:grid-cols-3">
             {PILARES.map((p) => (
               <li className="flex" key={p.titulo}>
                 <article className="flex min-h-[180px] w-full flex-col justify-end gap-4 rounded-[8px] border border-aisc-forest/55 bg-transparent p-6 md:min-h-[210px] md:p-8 lg:min-h-[240px]">
-                  <h3 className="text-display-4 md:text-display-4-lg text-balance">{p.titulo}</h3>
+                  <h3 className="text-display-4 md:text-display-4-lg text-balance">
+                    {p.titulo}
+                  </h3>
                   <p className="text-body-sm text-aisc-ink">{p.body}</p>
                 </article>
               </li>
@@ -376,13 +402,21 @@ export default function Hackathon() {
         <div className={CONTENEDOR}>
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
-            <h2 className="text-display-2 md:text-display-2-lg break-words">Los cinco frentes</h2>
+            <h2 className="text-display-2 md:text-display-2-lg break-words">
+              Los cinco frentes
+            </h2>
             <div className={COLUMNA}>
               <p className="text-body md:text-body-lg max-w-[640px] text-aisc-ink">
-                Cada equipo escoge uno. En el formulario nos dices cuál te llama, y eso nos sirve para juntar perfiles
-                que se complementen y para invitar a los mentores que hagan falta. Apart publica el detalle de cada
-                frente en{" "}
-                <a className={ENLACE} href={APART_SPRINT_URL} target="_blank" rel="noopener noreferrer">
+                Cada equipo escoge uno. En el formulario nos dices cuál te
+                llama, y eso nos sirve para juntar perfiles que se complementen
+                y para invitar a los mentores que hagan falta. Apart publica el
+                detalle de cada frente en{" "}
+                <a
+                  className={ENLACE}
+                  href={APART_SPRINT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   la convocatoria del sprint
                 </a>
                 .
@@ -393,10 +427,15 @@ export default function Hackathon() {
             {TRACKS.map((t, i) => (
               <li className="flex" key={t.id}>
                 <article className="flex min-h-[180px] w-full flex-col gap-3 rounded-[8px] border border-aisc-forest/55 bg-aisc-cream p-6 md:min-h-[200px] md:p-7">
-                  <span className="text-display-4 tabular-nums text-aisc-coral" aria-hidden="true">
+                  <span
+                    className="text-display-4 tabular-nums text-aisc-coral"
+                    aria-hidden="true"
+                  >
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="text-display-4 md:text-display-4-lg text-balance">{t.titulo}</h3>
+                  <h3 className="text-display-4 md:text-display-4-lg text-balance">
+                    {t.titulo}
+                  </h3>
                   <p className="text-body-sm text-aisc-ink">{t.body}</p>
                 </article>
               </li>
@@ -410,16 +449,19 @@ export default function Hackathon() {
         <div className={CONTENEDOR}>
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
-            <h2 className="text-display-2 md:text-display-2-lg break-words">Qué encuentras en Bogotá</h2>
+            <h2 className="text-display-2 md:text-display-2-lg break-words">
+              Qué encuentras en Bogotá
+            </h2>
             <div className={COLUMNA}>
               <div className={PROSA}>
                 <p>
-                  Trabajar tres días seguidos es más fácil acompañado que solo en la casa. Por eso abrimos una sala en
-                  Bogotá durante todo el fin de semana.
+                  Trabajar tres días seguidos es más fácil acompañado que solo
+                  en la casa. Por eso abrimos una sala en Bogotá durante todo el
+                  fin de semana.
                 </p>
                 <p>
-                  La sede se confirma en los próximos días. La anunciamos por correo a quienes queden seleccionados y
-                  por el{" "}
+                  La sede se confirma en los próximos días. La anunciamos por
+                  correo a quienes queden seleccionados y por el{" "}
                   <a
                     className={ENLACE}
                     href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
@@ -451,17 +493,24 @@ export default function Hackathon() {
         <div className={CONTENEDOR}>
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
-            <h2 className="text-display-2 md:text-display-2-lg break-words">Mentoría</h2>
+            <h2 className="text-display-2 md:text-display-2-lg break-words">
+              Mentoría
+            </h2>
             <div className={COLUMNA}>
               <div className={PROSA}>
                 <p>
-                  Durante el fin de semana pasa por la sala gente que trabaja en los temas de los cinco frentes. No
-                  dictan charlas: se sientan con los equipos a revisar lo que llevan.
+                  Durante el fin de semana pasa por la sala gente que trabaja en
+                  los temas de los cinco frentes. No dictan charlas: se sientan
+                  con los equipos a revisar lo que llevan.
                 </p>
                 <p>
-                  Si trabajas en respuesta a incidentes, en seguridad ofensiva, en regulación o en comunicación de
-                  riesgos y te interesa acompañar a un equipo, escríbenos a{" "}
-                  <a className={ENLACE} href="mailto:contacto@aisafetycolombia.org">
+                  Si trabajas en respuesta a incidentes, en seguridad ofensiva,
+                  en regulación o en comunicación de riesgos y te interesa
+                  acompañar a un equipo, escríbenos a{" "}
+                  <a
+                    className={ENLACE}
+                    href="mailto:contacto@aisafetycolombia.org"
+                  >
                     contacto@aisafetycolombia.org
                   </a>
                   .
@@ -482,20 +531,27 @@ export default function Hackathon() {
                       src={m.foto}
                     />
                   ) : (
-                    <span className="text-display-2 md:text-display-2-lg text-aisc-forest/45" aria-hidden="true">
+                    <span
+                      className="text-display-2 md:text-display-2-lg text-aisc-forest/45"
+                      aria-hidden="true"
+                    >
                       {iniciales(m.nombre)}
                     </span>
                   )}
                 </div>
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-display-4 font-semibold text-aisc-forest">{m.nombre}</span>
+                  <span className="text-display-4 font-semibold text-aisc-forest">
+                    {m.nombre}
+                  </span>
                   <span className="text-body-sm text-aisc-muted">{m.rol}</span>
                 </div>
               </li>
             ))}
             <li className="flex flex-col gap-3">
               <div className="flex aspect-square w-full items-center justify-center rounded-[8px] border border-dashed border-aisc-forest/40 p-4 text-center">
-                <span className="text-body-sm text-aisc-muted">Vamos anunciando el resto a medida que confirman.</span>
+                <span className="text-body-sm text-aisc-muted">
+                  Vamos anunciando el resto a medida que confirman.
+                </span>
               </div>
             </li>
           </ul>
@@ -504,7 +560,10 @@ export default function Hackathon() {
 
       {/* Quién puede aplicar: banda oscura, para que la página respire entre
           tanto papel crema y para que los cuatro perfiles no queden en viñetas. */}
-      <section id="quien" className="relative overflow-hidden bg-aisc-forest-deep py-14 text-aisc-sand md:py-16">
+      <section
+        id="quien"
+        className="relative overflow-hidden bg-aisc-forest-deep py-14 text-aisc-sand md:py-16"
+      >
         <img
           alt=""
           aria-hidden="true"
@@ -518,25 +577,37 @@ export default function Hackathon() {
         />
         <div className={`${CONTENEDOR} relative z-10`}>
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start lg:gap-6">
-            <h2 className="text-display-2 md:text-display-2-lg break-words">Quién puede aplicar</h2>
+            <h2 className="text-display-2 md:text-display-2-lg break-words">
+              Quién puede aplicar
+            </h2>
             <div className="flex max-w-[640px] flex-col gap-4">
               <p className="text-body md:text-body-lg text-aisc-sand/90">
-                No se pide experiencia previa en seguridad de la IA ni título en nada. Se pide que puedas estar los tres
-                días y que llegues con una idea de qué te gustaría abordar.
+                No se pide experiencia previa en seguridad de la IA ni título en
+                nada. Se pide que puedas estar los tres días y que llegues con
+                una idea de qué te gustaría abordar.
               </p>
               <p className="text-body-sm text-aisc-sand/70">
-                La aplicación toma alrededor de veinte minutos y no necesitas preparar nada de antemano.
+                La aplicación toma alrededor de veinte minutos y no necesitas
+                preparar nada de antemano.
               </p>
             </div>
           </div>
           <ul className="mt-12 grid grid-cols-1 gap-x-10 md:mt-14 lg:mt-16 lg:grid-cols-2">
             {PERFILES.map((p, i) => (
-              <li className="flex items-start gap-5 border-t border-aisc-sand/25 py-6" key={p.rotulo}>
-                <span className="text-display-4 shrink-0 tabular-nums text-aisc-coral" aria-hidden="true">
+              <li
+                className="flex items-start gap-5 border-t border-aisc-sand/25 py-6"
+                key={p.rotulo}
+              >
+                <span
+                  className="text-display-4 shrink-0 tabular-nums text-aisc-coral"
+                  aria-hidden="true"
+                >
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="flex flex-col gap-1.5">
-                  <h3 className="text-display-4 md:text-display-4-lg text-balance">{p.rotulo}</h3>
+                  <h3 className="text-display-4 md:text-display-4-lg text-balance">
+                    {p.rotulo}
+                  </h3>
                   <p className="text-body-sm text-aisc-sand/75">{p.body}</p>
                 </div>
               </li>
@@ -546,7 +617,9 @@ export default function Hackathon() {
             <Link className={CTA_LINK_PRIMARY} href="/hackathon/aplicar">
               Aplicar al hub en Bogotá
             </Link>
-            <span className="text-body-sm text-aisc-sand/70">{CIERRE_TEXTO}</span>
+            <span className="text-body-sm text-aisc-sand/70">
+              {CIERRE_TEXTO}
+            </span>
           </div>
         </div>
       </section>
@@ -556,17 +629,22 @@ export default function Hackathon() {
         <div className={CONTENEDOR}>
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
-            <h2 className="text-display-2 md:text-display-2-lg break-words">Premios y qué pasa después</h2>
+            <h2 className="text-display-2 md:text-display-2-lg break-words">
+              Premios y qué pasa después
+            </h2>
             <div className={COLUMNA}>
               <div className={PROSA}>
                 <p>
-                  Apart reparte USD 2.000 entre los cinco primeros puestos de todo el sprint. Los jurados evalúan los
-                  proyectos la semana siguiente y la calificación es ciega: no saben de dónde viene cada equipo.
+                  Apart reparte USD 2.000 entre los cinco primeros puestos de
+                  todo el sprint. Los jurados evalúan los proyectos la semana
+                  siguiente y la calificación es ciega: no saben de dónde viene
+                  cada equipo.
                 </p>
                 <p>
-                  Más allá del premio, los equipos con mejores resultados entran a la vía rápida de la beca de
-                  investigación de Apart y quedan conectados con mentores del campo. Cada reporte se publica completo y
-                  con los nombres de sus autores.
+                  Más allá del premio, los equipos con mejores resultados entran
+                  a la vía rápida de la beca de investigación de Apart y quedan
+                  conectados con mentores del campo. Cada reporte se publica
+                  completo y con los nombres de sus autores.
                 </p>
               </div>
             </div>
@@ -591,7 +669,11 @@ export default function Hackathon() {
                     {p.puesto}
                   </span>
                   <span className="mt-6 flex flex-col">
-                    <span className={`text-meta ${i === 0 ? "text-aisc-sand/75" : "text-aisc-muted"}`}>USD</span>
+                    <span
+                      className={`text-meta ${i === 0 ? "text-aisc-sand/75" : "text-aisc-muted"}`}
+                    >
+                      USD
+                    </span>
                     <span
                       className={`text-display-2 md:text-display-2-lg tabular-nums ${
                         i === 0 ? "text-aisc-sand" : "text-aisc-forest"
@@ -612,11 +694,14 @@ export default function Hackathon() {
         <div className={CONTENEDOR}>
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
-            <h2 className="text-display-2 md:text-display-2-lg break-words">Quién está detrás</h2>
+            <h2 className="text-display-2 md:text-display-2-lg break-words">
+              Quién está detrás
+            </h2>
             <div className={COLUMNA}>
               <p className="text-body md:text-body-lg max-w-[640px] text-aisc-ink">
-                Apart Research y CeSIA convocan el sprint en todo el mundo. Nosotros abrimos el hub presencial en
-                Bogotá, y son estas organizaciones las que lo hacen posible.
+                Apart Research y CeSIA convocan el sprint en todo el mundo.
+                Nosotros abrimos el hub presencial en Bogotá, y son estas
+                organizaciones las que lo hacen posible.
               </p>
             </div>
           </div>
@@ -642,8 +727,12 @@ export default function Hackathon() {
                         />
                       </span>
                       <span className="flex flex-col gap-2">
-                        <span className="text-display-4 md:text-display-4-lg text-balance">{o.name}</span>
-                        <span className="text-body-sm text-aisc-ink">{o.body}</span>
+                        <span className="text-display-4 md:text-display-4-lg text-balance">
+                          {o.name}
+                        </span>
+                        <span className="text-body-sm text-aisc-ink">
+                          {o.body}
+                        </span>
                       </span>
                     </a>
                   </li>
@@ -659,7 +748,9 @@ export default function Hackathon() {
         <div className={CONTENEDOR}>
           <div aria-hidden="true" className={HAIRLINE} />
           <div className="mt-5 flex flex-col gap-8">
-            <h2 className="text-display-2 md:text-display-2-lg break-words">Preguntas frecuentes</h2>
+            <h2 className="text-display-2 md:text-display-2-lg break-words">
+              Preguntas frecuentes
+            </h2>
             <ul className="flex flex-col">
               {FAQ.map((f) => (
                 <li key={f.q}>
@@ -673,12 +764,17 @@ export default function Hackathon() {
                         +
                       </span>
                     </summary>
-                    <p className="text-body-sm max-w-[860px] pb-5 text-aisc-muted">{f.a}</p>
+                    <p className="text-body-sm max-w-[860px] pb-5 text-aisc-muted">
+                      {f.a}
+                    </p>
                   </details>
                 </li>
               ))}
             </ul>
-            <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-ink/20" />
+            <div
+              aria-hidden="true"
+              className="h-px w-full flex-none bg-aisc-ink/20"
+            />
           </div>
         </div>
       </section>
@@ -710,17 +806,27 @@ export default function Hackathon() {
               src={PATRON}
             />
             <div className="relative z-10 flex w-full max-w-[760px] flex-col items-center gap-6">
-              <span className="text-body-sm text-aisc-sand/70">{CIERRE_TEXTO}</span>
-              <h2 className="text-display-2 md:text-display-2-lg text-balance">Aplica al hub en Bogotá</h2>
+              <span className="text-body-sm text-aisc-sand/70">
+                {CIERRE_TEXTO}
+              </span>
+              <h2 className="text-display-2 md:text-display-2-lg text-balance">
+                Aplica al hub en Bogotá
+              </h2>
               <p className="text-body md:text-body-lg text-aisc-sand/85">
-                Hay una sola pregunta de selección de verdad: qué problema te gustaría abordar y con qué enfoque. No
-                buscamos una propuesta cerrada.
+                Hay una sola pregunta de selección de verdad: qué problema te
+                gustaría abordar y con qué enfoque. No buscamos una propuesta
+                cerrada.
               </p>
               <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
                 <Link className={CTA_LINK_PRIMARY} href="/hackathon/aplicar">
                   Aplicar
                 </Link>
-                <a className={CTA_LINK} href={APART_SPRINT_URL} target="_blank" rel="noopener noreferrer">
+                <a
+                  className={CTA_LINK}
+                  href={APART_SPRINT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Participar en línea
                 </a>
               </div>
