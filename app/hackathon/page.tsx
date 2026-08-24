@@ -187,7 +187,7 @@ const MENTORES: {
       "https://www.linkedin.com/in/camila-alejandra-beltran-reyes-ab288627a/",
     bio: (
       <>
-        Asesora sénior de política de IA en el{" "}
+        Asesora sénior de IA en{" "}
         <a
           className={ENLACE}
           href="https://www.mintic.gov.co/"
@@ -196,27 +196,34 @@ const MENTORES: {
         >
           MinTIC
         </a>{" "}
-        y parte de la{" "}
+        y experta de la{" "}
         <a
           className={ENLACE}
           href="https://oecd.ai/en/about/network-of-experts"
           target="_blank"
           rel="noopener noreferrer"
         >
-          red de expertos en IA de la OCDE
+          OCDE
         </a>
-        . Investigó cómo se interpretan jurídicamente los escenarios de pérdida
-        de control en el{" "}
+        . Investigó la{" "}
         <a
           className={ENLACE}
           href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Código de Buenas Prácticas de GPAI
+          regulación europea
         </a>{" "}
-        de la Unión Europea. Lidera el grupo de lectura sobre AI Control en AI
-        Safety Colombia.
+        de escenarios de pérdida de control en{" "}
+        <a
+          className={ENLACE}
+          href="https://www.governance.ai/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GovAI
+        </a>{" "}
+        y lidera el grupo de AI Control de AI Safety Colombia.
       </>
     ),
   },
@@ -562,7 +569,7 @@ export default function Hackathon() {
               </div>
             </div>
           </div>
-          <ul className="mt-12 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 md:mt-14 lg:mt-16 lg:grid-cols-3">
+          <ul className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:mt-14 lg:mt-16 lg:grid-cols-5">
             {MENTORES.map((m) => (
               <li className="flex flex-col gap-3" key={m.nombre}>
                 <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[8px] bg-aisc-sand">
