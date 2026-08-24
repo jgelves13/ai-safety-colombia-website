@@ -43,6 +43,8 @@ TINTA = "#16261c"                # el reglon sobre la hoja
 PAPEL_SUP = ARENA
 PAPEL_IZQ = "#cdc2ab"
 PAPEL_DER = "#b6ab94"
+HOJAS = _mezcla(FONDO, ARENA, 0.32)   # el canto de las paginas
+BANDA = _mezcla(FONDO, ARENA, 0.28)   # el rotulo del lomo
 CORAL_IZQ = _mezcla(FONDO, CORAL, 0.72)
 CORAL_DER = _mezcla(FONDO, CORAL, 0.52)
 
@@ -280,15 +282,63 @@ def actualidad():
     return formas
 
 
+def libro(o, x, y, dx, dy, z, alto, coral=False, w=SEC):
+    """Un libro parado, con el lomo hacia el ojo.
+
+    Lo que lo separa de un bloque son dos cosas: el bloque de hojas asoma
+    por dentro de la tapa, y el lomo lleva su banda de titulo."""
+    sup = [P(o, x, y, z + alto), P(o, x + dx, y, z + alto),
+           P(o, x + dx, y + dy, z + alto), P(o, x, y + dy, z + alto)]
+    izq = [P(o, x, y + dy, z + alto), P(o, x + dx, y + dy, z + alto),
+           P(o, x + dx, y + dy, z), P(o, x, y + dy, z)]
+    der = [P(o, x + dx, y, z + alto), P(o, x + dx, y + dy, z + alto),
+           P(o, x + dx, y + dy, z), P(o, x + dx, y, z)]
+    if coral:
+        tapa, ci, cd, trazo = CORAL_SUP, CORAL_IZQ, CORAL_DER, CORAL
+    else:
+        tapa, ci, cd, trazo = CARA_SUP, CARA_IZQ, CARA_DER, ARENA
+    out = [poli(izq, w=w, color=trazo, relleno=ci),
+           poli(der, w=w, color=trazo, relleno=cd),
+           poli(sup, w=w, color=trazo, relleno=tapa)]
+
+    # el canto de las hojas: metido bajo la tapa y lejos del lomo
+    m = min(0.055, dy * 0.22)
+    hojas = [P(o, x + 0.05, y + m, z + alto),
+             P(o, x + dx - 0.13, y + m, z + alto),
+             P(o, x + dx - 0.13, y + dy - m, z + alto),
+             P(o, x + 0.05, y + dy - m, z + alto)]
+    out.append(poli(hojas, w=GUIA, color=trazo, op=0.5, relleno=HOJAS))
+
+    # la banda del titulo y los dos filetes de abajo, sobre el lomo
+    b = min(0.075, dy * 0.28)
+    banda = [P(o, x + dx, y + b, z + alto * 0.80),
+             P(o, x + dx, y + dy - b, z + alto * 0.80),
+             P(o, x + dx, y + dy - b, z + alto * 0.60),
+             P(o, x + dx, y + b, z + alto * 0.60)]
+    out.append(poli(banda, w=GUIA, color=trazo, op=0.55, relleno=BANDA))
+    for t in (0.36, 0.29):
+        h = z + alto * t
+        out.append(linea(P(o, x + dx, y + b * 1.6, h),
+                         P(o, x + dx, y + dy - b * 1.6, h),
+                         w=GUIA, color=trazo, op=0.5))
+    return out
+
+
 def recursos():
-    """Recursos: los volumenes parados en su estante, listos para sacar uno."""
+    """Recursos: la fila entera parada en su estante, y una sacada a medias."""
     escala(0.95)
     o = (1290.0, 400.0)
     formas = volumen(o, 0.0, 0.0, 1.3, 5.0, 0, 0.12)
-    alturas = (1.05, 0.78, 1.38, 0.92, 1.18, 0.68)
-    for k, alto in enumerate(alturas):
-        formas += volumen(o, 0.16, 0.2 + 0.77 * k, 0.98, 0.55, 0.12, alto,
-                          coral=(k == 2), w=SEC)
+    # grosor, alto, y cual es el que sale
+    fila = ((0.50, 1.10, 0.0), (0.32, 0.86, 0.0), (0.44, 1.34, 0.0),
+            (0.28, 0.78, 0.0), (0.56, 1.24, 0.30), (0.38, 0.94, 0.0),
+            (0.30, 1.42, 0.0), (0.48, 0.88, 0.0), (0.34, 1.06, 0.0),
+            (0.42, 0.74, 0.0))
+    y = 0.28
+    for k, (grosor, alto, fuera) in enumerate(fila):
+        formas += libro(o, 0.16 + fuera, y, 0.98, grosor, 0.12, alto,
+                        coral=(fuera > 0))
+        y += grosor + 0.045
     return formas
 
 
