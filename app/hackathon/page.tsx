@@ -408,8 +408,8 @@ export default function Hackathon() {
             <div className={COLUMNA}>
               <p className="text-body md:text-body-lg max-w-[640px] text-aisc-ink">
                 Cada equipo escoge uno. En el formulario nos dices cuál te
-                llama, y eso nos sirve para juntar perfiles que se complementen
-                y para invitar a los mentores que hagan falta. Apart publica el
+                llama, y eso nos sirve para saber qué perfiles habrá en la sala y
+                para invitar a los mentores que hagan falta. Apart publica el
                 detalle de cada frente en{" "}
                 <a
                   className={ENLACE}

@@ -375,8 +375,8 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
         <section className={SECCION}>
           <h2 className="text-display-3 md:text-display-3-lg text-balance">Tu trayectoria</h2>
           <p className="text-body-sm mt-3 max-w-[640px] text-aisc-muted">
-            No pedimos credenciales ni experiencia previa en seguridad de la IA. Con saber de dónde vienes nos basta
-            para armar equipos que se complementen.
+            No pedimos credenciales ni experiencia previa en seguridad de la IA. Saber de dónde vienes nos sirve para la
+            selección y para que el viernes te sea más fácil dar con un equipo.
           </p>
           <div className="mt-6 flex flex-col gap-6">
             <Campo
