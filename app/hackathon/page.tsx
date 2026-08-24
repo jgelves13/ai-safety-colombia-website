@@ -40,22 +40,6 @@ const DATOS = [
   },
 ];
 
-/* Lo que se lleva alguien que participa. */
-const PILARES = [
-  {
-    titulo: "Sales con un artefacto, no con una idea",
-    body: "El entregable no es una presentación. Es un estándar de contención, un banco de detección, una petición de información para un regulador o un ejercicio de mesa: algo que otra persona pueda tomar y usar el lunes siguiente.",
-  },
-  {
-    titulo: "Te lee gente de fuera",
-    body: "Los proyectos los califican jurados que no estuvieron en la sala y que no saben de dónde viene cada equipo. La retroalimentación llega por escrito y el reporte queda publicado con tu nombre en el sitio de Apart.",
-  },
-  {
-    titulo: "Se entra sin credenciales",
-    body: "No se pide experiencia previa en seguridad de la IA ni título en nada. Los equipos son de una a cinco personas y se pueden armar en el momento, con quien esté en la sala.",
-  },
-];
-
 /* Los cinco tracks son de Apart. La descripción resume lo que su convocatoria
    pide como entregable, no lo que a nosotros nos parece interesante. */
 const TRACKS = [
@@ -408,43 +392,16 @@ export default function Hackathon() {
                   Se trabaja en cinco frentes en paralelo durante tres días.
                   Cada equipo entrega algo que alguien más pueda usar: un
                   estándar, un banco de pruebas, un cuestionario para un
-                  regulador, un ejercicio de mesa. Los proyectos se califican
-                  después del fin de semana y se publican completos. Apart
-                  Research y CeSIA convocan el sprint en todo el mundo; nosotros
-                  abrimos el hub presencial en Bogotá.
+                  regulador, un ejercicio de mesa. Después del fin de semana
+                  los califican jurados que no estuvieron en la sala. La
+                  retroalimentación llega por escrito y el reporte queda
+                  publicado con tu nombre. Apart Research y CeSIA convocan el
+                  sprint en todo el mundo; nosotros abrimos el hub presencial en
+                  Bogotá.
                 </p>
               </div>
             </div>
           </section>
-        </div>
-      </section>
-
-      {/* Los tres pilares, dentro del panel tintado */}
-      <section className="bg-aisc-cream px-6 py-10 md:py-12">
-        <div className="mx-auto w-full max-w-[1400px] rounded-[12px] bg-aisc-sand px-6 py-10 md:px-10 lg:py-14">
-          <div aria-hidden="true" className={HAIRLINE} />
-          <div className="mt-5 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start lg:gap-6">
-            <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Por qué vale el fin de semana
-            </h2>
-            <p className="text-body md:text-body-lg max-w-[640px] text-aisc-ink">
-              Un hackathon de Apart no termina en una presentación de cinco
-              minutos ante una sala amiga. Termina en un documento que alguien
-              de afuera lee, califica y cita.
-            </p>
-          </div>
-          <ul className="mt-12 grid grid-cols-1 gap-3 md:mt-14 lg:mt-16 lg:grid-cols-3">
-            {PILARES.map((p) => (
-              <li className="flex" key={p.titulo}>
-                <article className="flex min-h-[180px] w-full flex-col justify-end gap-4 rounded-[8px] border border-aisc-forest/55 bg-transparent p-6 md:min-h-[210px] md:p-8 lg:min-h-[240px]">
-                  <h3 className="text-display-4 md:text-display-4-lg text-balance">
-                    {p.titulo}
-                  </h3>
-                  <p className="text-body-sm text-aisc-ink">{p.body}</p>
-                </article>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
