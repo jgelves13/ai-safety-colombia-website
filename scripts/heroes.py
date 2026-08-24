@@ -232,19 +232,47 @@ def unete():
     return formas
 
 
+def persona(o, a, b, u, coral=False):
+    """Una persona de pie: cabeza, hombros y dos piernas.
+
+    Es la unica figura plana del conjunto, y a proposito. Un cuerpo armado
+    con prismas isometricos se lee como un bloque, no como alguien. En la
+    reticula solo se apoyan los pies: (a) corre a lo ancho de la lamina y
+    (b) es la profundidad, o sea que ordena quien tapa a quien."""
+    x, y = (a + b) / 2.0, (b - a) / 2.0
+    px, py = P(o, x, y, 0.0)
+    # el contorno va en arena tambien sobre el coral: en un grupo apretado
+    # dos figuras coral vecinas sin contorno se funden en una sola mancha
+    trazo = ARENA
+    relleno = CORAL_SUP if coral else CARA_SUP
+
+    def redondo(x0, y0, x1, y1, r):
+        return ('<rect x="%s" y="%s" width="%s" height="%s" rx="%s" fill="%s"'
+                ' stroke="%s" stroke-width="%s"/>'
+                % (_n(px + x0 * u), _n(py + y0 * u), _n((x1 - x0) * u),
+                   _n((y1 - y0) * u), _n(r * u), relleno, trazo, PRIM))
+
+    return [redondo(-0.52, -1.02, -0.09, 0.0, 0.21),      # pierna de atras
+            redondo(0.09, -1.02, 0.52, 0.0, 0.21),        # pierna de adelante
+            redondo(-0.64, -2.28, 0.64, -0.90, 0.46),     # torso y hombros
+            '<circle cx="%s" cy="%s" r="%s" fill="%s" stroke="%s"'
+            ' stroke-width="%s"/>' % (_n(px), _n(py - 2.72 * u), _n(0.46 * u),
+                                      relleno, trazo, PRIM)]
+
+
 def quienes_somos():
-    """Quienes somos: piezas distintas apoyadas en el mismo suelo."""
-    escala(0.95)
-    o = (1230.0, 380.0)
-    piezas = {(0, 0): 0.72, (1, 0): 1.18, (0, 1): 0.48, (2, 0): 0.88,
-              (1, 1): 1.62, (2, 1): 0.64, (1, 2): 0.95}
+    """Quienes somos: el grupo de pie, hombro con hombro."""
+    escala(0.9)
+    o = (1099.0, 993.0)
+    u = 210.0
+    # a lo ancho, la profundidad, el tamano de cada quien
+    grupo = ((-1.75, 0.00, 1.00, False), (0.00, 0.05, 1.06, True),
+             (1.75, -0.03, 0.94, False),
+             (-2.62, 1.05, 0.96, True), (-0.87, 1.08, 1.03, False),
+             (0.87, 1.04, 0.99, True), (2.62, 1.06, 0.92, False))
     formas = []
-    for s in range(6):
-        for x in range(3):
-            y = s - x
-            if (x, y) in piezas:
-                formas += volumen(o, x, y, 1, 1, 0, piezas[(x, y)],
-                                  coral=(x, y) == (1, 1))
+    for a, b, f, coral in sorted(grupo, key=lambda g: g[1]):
+        formas += persona(o, a, b, u * f, coral=coral)
     return formas
 
 
