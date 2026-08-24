@@ -32,10 +32,11 @@ NSUB = 2                        # trozos por cuadro, iguales en todos los cuadro
 ANCLA = F.PB(F.BOCA_X, F.MURO_Y, F.BOCA_Z)   # donde se colapsa lo que sobra
 
 
-# La inundacion se congela antes de tragarse el titular. A los 4,5 s el charco
-# ya llena la esquina y roza la linea de la fecha; a los 5 s se come la mitad
-# del titular y el cuerpo de texto deja de leerse.
-FIN = 4.5
+# Donde se congela. El liquido espeso corre mucho mas que el de antes, asi que
+# el corte manda mas que la fisica. A los 1,9 s el charco es un ovalo que cabe
+# al lado de la caja; pasados los 2,3 s se desborda por el filo de abajo y se
+# mete debajo del titular.
+FIN = 1.9
 
 
 def instantes():
@@ -145,24 +146,44 @@ def animacion(ts, ds):
             ' keyTimes="%s" values="%s"/>' % (dur, kt, ";".join(ds)))
 
 
+# El SMIL no atiende a prefers-reduced-motion, asi que para quien pidio no ver
+# movimiento se dibuja el ultimo cuadro y se esconde el que corre. Cuesta un
+# trazo de mas, unos 2 KB, y evita que la banda entera se llene sola durante
+# trece segundos delante de alguien que pidio lo contrario.
+QUIETO = u"""
+<style>
+.hk-quieto{display:none}
+@media (prefers-reduced-motion:reduce){
+  .hk-corre{display:none}
+  .hk-quieto{display:block}
+}
+</style>
+"""
+
+
 def svg(ts, ds, animado=True, fondo=True, suf=""):
     H.escala(0.78)
     capas = L._capas_caja(animado)
     caja = ('<g class="hk-caja" fill="none" stroke-linecap="round"'
             ' stroke-linejoin="round">%s</g>' % "".join(capas))
     if animado:
-        liq = ('<path id="lqCuerpo" fill="%s" fill-rule="evenodd" d="%s">%s'
-               '</path>' % (CORAL, ds[0], animacion(ts, ds)))
+        liq = ('<path id="lqCuerpo" class="hk-corre" fill="%s"'
+               ' fill-rule="evenodd" d="%s">%s</path>'
+               '<path id="lqQuieto" class="hk-quieto" fill="%s"'
+               ' fill-rule="evenodd" d="%s"/>'
+               % (CORAL, ds[0], animacion(ts, ds), CORAL, ds[-1]))
+        frente = ('<g clip-path="url(#lqCerca)"><use href="#lqCuerpo"/>'
+                  '<use href="#lqQuieto" class="hk-quieto"/></g>')
     else:
         liq = '<path id="lqCuerpo" fill="%s" fill-rule="evenodd" d="%s"/>' % (
             CORAL, ds[-1])
-    frente = '<g clip-path="url(#lqCerca)"><use href="#lqCuerpo"/></g>'
+        frente = '<g clip-path="url(#lqCerca)"><use href="#lqCuerpo"/></g>'
     dentro = L._inner_base()
     if not animado:
         dentro = re.sub(r' stroke-dash(array|offset)="[^"]*"', "", dentro)
         dentro = dentro.replace('mask="url(#m)"', 'stroke-opacity="0.17"')
         caja = re.sub(r' stroke-dash(array|offset)="[^"]*"', "", caja)
-    css = R.ESTILO if animado else ""
+    css = (R.ESTILO + QUIETO) if animado else ""
     tapa = ('<rect width="%d" height="%d" fill="%s"/>'
             % (int(F.BW), int(F.BH), R._hex(H.FONDO))) if fondo else ""
     cuerpo = (u'<svg viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg"'
@@ -172,7 +193,7 @@ def svg(ts, ds, animado=True, fondo=True, suf=""):
               % (int(F.BW), int(F.BH), css, clip_cerca(), tapa,
                  liq, F.OX, F.K, dentro + caja, frente))
     if suf:
-        for viejo in ("fade", "m", "lqCerca", "lqCuerpo"):
+        for viejo in ("fade", "m", "lqCerca", "lqCuerpo", "lqQuieto"):
             cuerpo = cuerpo.replace('id="%s"' % viejo, 'id="%s%s"' % (viejo, suf))
             cuerpo = cuerpo.replace("url(#%s)" % viejo, "url(#%s%s)" % (viejo, suf))
             cuerpo = cuerpo.replace('href="#%s"' % viejo, 'href="#%s%s"' % (viejo, suf))
@@ -221,6 +242,7 @@ def simula(quiero):
                                        minlargo=34.0, maxsub=NSUB)
 
     guardo[0.0] = []
+    F.T_FIN = FIN + 0.05   # no hay que simular mas alla del corte
     F.corre(al_frame)
     return guardo
 

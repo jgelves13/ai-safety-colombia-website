@@ -29,6 +29,13 @@ export const HERO_CORNER_CLASS =
 export const HERO_DERRAME_CLASS =
   "pointer-events-none absolute inset-0 z-0 hidden select-none [&>svg]:block [&>svg]:h-full [&>svg]:w-full md:block";
 
+/* El charco llega hasta debajo del titular y ahi el texto arena sobre coral se
+   queda en 2,9 de contraste. Un degradado del mismo verde del hero, de la mitad
+   hacia abajo, devuelve el titular a 10:1 sin apagar el derrame: sobre el verde
+   el velo no se nota y solo se ve donde hay coral. */
+export const HERO_VELO_CLASS =
+  "hk-velo pointer-events-none absolute inset-0 z-[1] hidden select-none md:block";
+
 /** the two mirrored pattern washes on the midnight CTA panel */
 export const CTA_PANEL =
   "relative overflow-hidden rounded-[var(--radius)] bg-aisc-forest-deep px-6 py-9 text-aisc-sand md:px-10 md:py-10 lg:px-14 lg:py-11";

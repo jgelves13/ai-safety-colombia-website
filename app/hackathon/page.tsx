@@ -11,6 +11,7 @@ import {
   HERO_DERRAME_CLASS,
   HERO_INNER,
   HERO_SECTION,
+  HERO_VELO_CLASS,
   PAGE_SHELL,
 } from "@/components/ui";
 import { APART_SPRINT_URL, CIERRE_TEXTO } from "./datos";
@@ -290,6 +291,7 @@ export default function Hackathon() {
     <main className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
         <HeroHackathon className={HERO_DERRAME_CLASS} />
+        <div className={HERO_VELO_CLASS} aria-hidden="true" />
         <SiteHeader active="/hackathon" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[860px] flex-col gap-5">

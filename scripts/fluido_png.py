@@ -116,8 +116,10 @@ def _fuente(px):
 
 
 def main():
-    # La revision se corta donde se corta la animacion que se publica.
-    F.T_FIN = 4.5
+    # La revision se corta donde se corta la animacion que se publica, asi que
+    # el corte lo manda el emisor y no se copia a mano.
+    import fluido_svg
+    F.T_FIN = fluido_svg.FIN
     if not os.path.isdir(F.SALIDA):
         os.makedirs(F.SALIDA)
     fondo, entera, rota = piezas()
@@ -138,7 +140,7 @@ def main():
                 duration=int(1000 / F.FPS), loop=0, optimize=True)
     print(gif)
 
-    marcas = [0.60, 0.80, 1.00, 1.35, 1.75, 2.30, 3.30, 4.50]
+    marcas = [0.58, 0.70, 0.82, 0.95, 1.15, 1.40, 1.65, F.T_FIN]
     elegidos = []
     for m in marcas:
         i = min(range(len(cuadros)), key=lambda j: abs(cuadros[j][0] - m))

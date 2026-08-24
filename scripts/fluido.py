@@ -80,9 +80,9 @@ NGZ = int(round((GZ1 - GZ0) / CEL))
 
 RHO0 = 2.2                       # densidad de reposo
 KP = 0.16                        # rigidez de la presion
-VISC = 0.14                      # cuanto se pega cada gota a sus vecinas
-REBOTE = 0.05
-ROCE = 2.6                        # roce del reborde, POR SEGUNDO
+VISC = 0.52                      # cuanto se pega cada gota a sus vecinas
+REBOTE = 0.02                    # espeso: no rebota, se aplasta
+ROCE = 3.6                        # roce del reborde, POR SEGUNDO
 
 N_MAX = 9000
 CAUDAL = 1050.0                   # particulas por segundo
@@ -208,9 +208,14 @@ class Corte(object):
 
 # --------------------------------------------------- 2. el agua del suelo
 
-WX0, WX1 = -15.4, 8.4
-WY0, WY1 = -6.6, 17.2
-NW = 208
+# La banda cabe justo entre -14,0 y 7,4 en x y entre -5,3 y 16,1 en y. Como
+# ahora el liquido llega hasta el borde del cuadro, la rejilla lleva cuatro
+# unidades de margen por lado: las condiciones de contorno son periodicas y sin
+# ese margen la inundacion daria la vuelta y reapareceria por la esquina
+# contraria. El anillo exterior ademas se drena, ver ABSORBE.
+WX0, WX1 = -19.4, 12.4
+WY0, WY1 = -10.6, 21.2
+NW = 278
 DX = (WX1 - WX0) / NW
 
 _gx = WX0 + (np.arange(NW) + 0.5) * DX
@@ -220,9 +225,18 @@ SOLIDO = ((MX > BASE0 - 0.06) & (MX < BASE1 + 0.06) &
           (MY > BASE0 - 0.06) & (MY < BASE1 + 0.06))
 FLUIDO = (~SOLIDO).astype(float)
 
-CF = 1.15                        # roce del fondo: lo que hace que se asiente
-NU = 0.10                        # viscosidad
-NUH = 0.030
+# Un liquido espeso se mueve como una lamina, no como agua: mucho roce de
+# fondo y mucha difusion de cantidad de movimiento. El frente queda romo y
+# avanza entero en vez de deshilacharse en dedos.
+CF = 4.4                         # roce del fondo: lo que hace que se asiente
+NU = 0.85                        # viscosidad
+NUH = 0.075
+
+# Fuera del cuadro el liquido se va. Sin esto se acumula contra el borde de la
+# rejilla y el frente se frena justo donde tiene que seguir.
+_borde = np.minimum(np.minimum(np.arange(NW)[:, None], NW - 1 - np.arange(NW)[:, None]),
+                    np.minimum(np.arange(NW)[None, :], NW - 1 - np.arange(NW)[None, :]))
+ABSORBE = np.clip(_borde / 14.0, 0.0, 1.0) ** 2
 
 
 def _ddx(a):
@@ -253,8 +267,14 @@ def _divy(q, v):
     return (g - np.roll(g, 1, 1)) / DX
 
 
-UMAX = 9.0
-HMAX = 2.5
+UMAX = 8.0
+# Tope de seguridad, no de diseno. Con 2,5 la masa extra que hace falta para
+# que el frente no se frene se tiraba a la basura y la inundacion se detenia
+# sola. El limite real lo pone el CFL: el paso aguanta mientras dt*raiz(g*h)
+# sea menor que DX, o sea h por debajo de 42 con g=50 y DX=0,114. Que el charco
+# quede hondo junto al boquete no se ve: el contorno solo pregunta si hay
+# liquido, no cuanto.
+HMAX = 14.0
 
 
 def paso_agua(h, hu, hv, dt, g):
@@ -274,8 +294,9 @@ def paso_agua(h, hu, hv, dt, g):
         vuelta = (np.roll(dentro, 1, 0) + np.roll(dentro, -1, 0) +
                   np.roll(dentro, 1, 1) + np.roll(dentro, -1, 1)) * 0.25
         h = h + vuelta * FLUIDO
-    hu = np.clip(hu * FLUIDO, -h * UMAX, h * UMAX)
-    hv = np.clip(hv * FLUIDO, -h * UMAX, h * UMAX)
+    h = h * ABSORBE
+    hu = np.clip(hu * FLUIDO * ABSORBE, -h * UMAX, h * UMAX)
+    hv = np.clip(hv * FLUIDO * ABSORBE, -h * UMAX, h * UMAX)
     return h, hu, hv
 
 
@@ -389,7 +410,15 @@ def siluetas(c, npts=64, minlargo=26.0, maxsub=3):
 DT = 0.0025
 FPS = 24.0
 T_GOLPE = 0.72                   # cuando se rompe el muro
-T_FIN = 7.4
+T_FIN = 8.4
+
+# El frente tiene que avanzar a paso constante, y una lamina viscosa que se
+# alimenta a caudal fijo se frena: el area mojada crece y la misma masa se
+# reparte en mas sitio. Para que el borde recorra los mismos pixeles cada
+# segundo hay que meter masa como una potencia del tiempo. EXP_MASA es ese
+# exponente, ajustado midiendo el alcance del contorno cuadro a cuadro.
+EXP_MASA = 1.80
+MASA0 = 0.020
 
 
 def caudal(t):
@@ -398,23 +427,23 @@ def caudal(t):
         return 0.0
     if t < 1.6:
         return CAUDAL
-    return CAUDAL * min(1.0 + (t - 1.6) * 0.55, 3.2)
+    return CAUDAL * min(1.0 + (t - 1.6) * 0.75, 4.0)
 
 
 def masa(t):
-    u"""Lo que cada gota deja en el suelo. Sube con la presion: es lo que
-    convierte el charco en inundacion sin que aparezca nada nuevo."""
-    if t < 2.2:
-        return 0.020
-    return 0.020 * min(1.0 + (t - 2.2) * 3.4, 26.0)
+    u"""Lo que cada gota deja en el suelo, creciendo como una potencia del
+    tiempo para que el frente no pierda velocidad. Arranca en la rotura: si
+    espera, el charco se asienta primero y se ve el frenazo."""
+    if t < 0.0:
+        return 0.0
+    return MASA0 * (1.0 + t) ** EXP_MASA
 
 
 def grav_agua(t):
-    u"""La onda del agua tiene que acelerarse para inundar el header en lo que
-    dura la escena. Sube despues de que el charco ya se leyo."""
-    if t < 2.6:
-        return 7.0
-    return 7.0 * min(1.0 + (t - 2.6) * 3.2, 19.0)
+    u"""Constante: lo que regula el avance es la masa que entra, no un
+    empujon que crece. Con el roce alto de un liquido espeso, esta es la que
+    da un frente romo que se mueve entero."""
+    return 50.0
 
 
 def corre(al_frame):
