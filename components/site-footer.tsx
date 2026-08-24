@@ -3,16 +3,15 @@ import { CTA_LINK_PRIMARY } from "./ui";
 
 const WHATSAPP = "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ";
 
+/* Las mismas seis entradas del encabezado, en el mismo orden. Programas,
+   Eventos y Actualidad no están en el menú, así que tampoco aquí. */
 const NAVEGACION = [
   { href: "/seguridad-de-la-ia", label: "¿Qué es AI safety?" },
-  { href: "/investigacion", label: "Investigación" },
   { href: "/hackathon", label: "AI Incident Response Sprint" },
+  { href: "/investigacion", label: "Investigación" },
+  { href: "/recursos", label: "Recursos" },
   { href: "/unete", label: "Únete" },
   { href: "/quienes-somos", label: "Quiénes somos" },
-  { href: "/recursos", label: "Recursos" },
-  { href: "/programas", label: "Programas" },
-  { href: "/eventos", label: "Eventos" },
-  { href: "/actualidad", label: "Actualidad" },
 ];
 
 /* La columna de comunidad: el correo y después las redes con su marca. */

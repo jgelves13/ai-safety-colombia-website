@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import CtaPanel from "@/components/cta-panel";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
@@ -222,8 +221,11 @@ const EQUIPO: Persona[] = [
     linkedin: "https://www.linkedin.com/in/manueloff14/",
     bio: (
       <>
-        Trabajó recientemente como programador full stack en Altruismo Eficaz
-        Uniandes entre enero y agosto de 2025. Recién egresado del bachillerato.
+        Trabajó recientemente como programador full stack en{" "}
+        <a className={ENLACE} href="https://www.linkedin.com/company/aeuniandes" target="_blank" rel="noopener noreferrer">
+          Altruismo Eficaz Uniandes
+        </a>
+        . Recién egresado del bachillerato.
       </>
     ),
   },
@@ -235,25 +237,25 @@ const EN_PRIMERA_FILA = 2;
 const ALIADOS = [
   {
     name: "Apart Research",
-    body: "Convoca hackathons de investigación abiertos a todo el mundo. Nosotros abrimos el hub presencial en Bogotá.",
+    body: "Convoca hackathons de investigación abiertos a todo el mundo. Nosotros abrimos el hub presencial en Bogotá y acompañamos a los equipos que compiten desde acá.",
     logo: "/aisc/aliados/apart.png",
     href: "https://apartresearch.com",
   },
   {
     name: "BlueDot Impact",
-    body: "Sus cursos gratuitos son la entrada estándar al campo. Con Rapid Grants financian trabajo concreto: USD 1,4 millones otorgados en total y decisiones en solo tres días en promedio.",
+    body: "Sus cursos gratuitos son la entrada estándar al campo. Con Rapid Grants financian trabajo concreto: 1,4 millones de dólares otorgados y decisiones en tres días.",
     logo: "/aisc/aliados/bluedot.png",
     href: "https://bluedot.org/grants/rapid",
   },
   {
     name: "Kairos",
-    body: "Su programa Pathfinder acompaña a quienes construyen comunidades de seguridad de la IA.",
+    body: "Su programa Pathfinder financia y acompaña a quienes organizan comunidades de seguridad de la IA: este año, 69 organizadores de 50 universidades en 12 países.",
     logo: "/aisc/aliados/kairos.png",
     href: "https://kairos-project.org",
   },
   {
     name: "Coefficient Giving",
-    body: "Solo en 2024 comprometió unos 50 millones de dólares en investigación técnica de seguridad de la IA. Hasta 2025 se llamó Open Philanthropy.",
+    body: "Concentra buena parte de la financiación filantrópica del campo: solo en 2024 comprometió unos 50 millones de dólares en investigación técnica de seguridad de la IA.",
     logo: "/aisc/aliados/coefficient-giving.svg",
     href: "https://www.coefficientgiving.org",
   },
@@ -388,14 +390,24 @@ export default function QuienesSomos() {
       </section>
 
       <CtaPanel
-        title="Cómo se entra"
+        title="¿Quieres ser voluntario?"
         body="No hay membresía ni convocatoria: se llega a un evento, a un programa o a una conversación."
       >
-        <Link className={CTA_LINK_PRIMARY} href="/programas">
-          Ver los programas
-        </Link>
-        <a className={CTA_LINK} href="https://cal.com/josegelves/meeting" target="_blank" rel="noopener noreferrer">
-          Agendar 20 minutos
+        <a
+          className={CTA_LINK_PRIMARY}
+          href="https://cal.com/josegelves/meeting"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Hablar 20 minutos
+        </a>
+        <a
+          className={CTA_LINK}
+          href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Entrar al grupo
         </a>
       </CtaPanel>
       <SiteFooter />
