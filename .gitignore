@@ -47,3 +47,8 @@ GEMINI.md
 .claude/
 .cursor/
 .aider*
+
+# artefactos de los generadores de heroes
+scripts/__pycache__/
+scripts/variantes/
+scripts/*.npz

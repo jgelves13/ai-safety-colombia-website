@@ -24,6 +24,11 @@ export const HERO_INNER =
 export const HERO_CORNER_CLASS =
   "pointer-events-none absolute right-0 bottom-0 z-0 hidden h-full w-auto max-w-[60%] select-none object-contain object-right-bottom md:block";
 
+/* El derrame del sprint ocupa toda la banda: la caja se queda abajo a la
+   derecha y el liquido tiene por donde correr. */
+export const HERO_DERRAME_CLASS =
+  "pointer-events-none absolute inset-0 z-0 hidden select-none [&>svg]:block [&>svg]:h-full [&>svg]:w-full md:block";
+
 /** the two mirrored pattern washes on the midnight CTA panel */
 export const CTA_PANEL =
   "relative overflow-hidden rounded-[var(--radius)] bg-aisc-forest-deep px-6 py-9 text-aisc-sand md:px-10 md:py-10 lg:px-14 lg:py-11";

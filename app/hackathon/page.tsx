@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
+import { HeroHackathon } from "@/components/hero-hackathon";
 import {
   CTA_LINK,
   CTA_LINK_PRIMARY,
   CTA_PATTERN_BOTTOM,
   CTA_PATTERN_TOP,
-  HERO_CORNER_CLASS,
+  HERO_DERRAME_CLASS,
   HERO_INNER,
   HERO_SECTION,
   PAGE_SHELL,
@@ -288,17 +289,7 @@ export default function Hackathon() {
   return (
     <main className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
-        <img
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          width="1697"
-          height="1415"
-          decoding="async"
-          className={HERO_CORNER_CLASS}
-          style={{ color: "transparent" }}
-          src="/aisc/patterns/aisc-hero-hackathon.svg"
-        />
+        <HeroHackathon className={HERO_DERRAME_CLASS} />
         <SiteHeader active="/hackathon" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[860px] flex-col gap-5">
