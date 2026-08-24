@@ -169,13 +169,57 @@ const PREMIOS = [
   { puesto: "Quinto puesto", monto: "100" },
 ];
 
-/* Los mentores, al modo de SASH: retrato cuadrado, nombre y rol. Mientras no
-   tengamos la foto de alguien se muestra la tarjeta con sus iniciales; el
-   archivo va en public/aisc/mentores/. */
-/* Mientras no tengamos la foto de alguien, la casilla muestra sus iniciales
-   en lugar de una imagen rota. */
-const MENTORES: { nombre: string; rol: string; foto?: string }[] = [
-  { nombre: "Camila Beltrán", rol: "Mentora" },
+/* Los mentores, al modo de SASH: retrato cuadrado, nombre, rol y una bio de
+   dos o tres frases. Mientras no tengamos la foto de alguien se muestra la
+   tarjeta con sus iniciales; el archivo va en public/aisc/mentores/. */
+const MENTORES: {
+  nombre: string;
+  rol: string;
+  foto?: string;
+  linkedin?: string;
+  bio?: React.ReactNode;
+}[] = [
+  {
+    nombre: "Camila Beltrán",
+    rol: "Mentora",
+    foto: "/aisc/mentores/camila-beltran.png",
+    linkedin:
+      "https://www.linkedin.com/in/camila-alejandra-beltran-reyes-ab288627a/",
+    bio: (
+      <>
+        Asesora sénior de política de IA en el{" "}
+        <a
+          className={ENLACE}
+          href="https://www.mintic.gov.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          MinTIC
+        </a>{" "}
+        y parte de la{" "}
+        <a
+          className={ENLACE}
+          href="https://oecd.ai/en/about/network-of-experts"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          red de expertos en IA de la OCDE
+        </a>
+        . Investigó cómo se interpretan jurídicamente los escenarios de pérdida
+        de control en el{" "}
+        <a
+          className={ENLACE}
+          href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Código de Buenas Prácticas de GPAI
+        </a>{" "}
+        de la Unión Europea. Lidera el grupo de lectura sobre AI Control en AI
+        Safety Colombia.
+      </>
+    ),
+  },
 ];
 
 function iniciales(nombre: string): string {
@@ -518,7 +562,7 @@ export default function Hackathon() {
               </div>
             </div>
           </div>
-          <ul className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:mt-14 lg:mt-16 lg:grid-cols-5">
+          <ul className="mt-12 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 md:mt-14 lg:mt-16 lg:grid-cols-3">
             {MENTORES.map((m) => (
               <li className="flex flex-col gap-3" key={m.nombre}>
                 <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[8px] bg-aisc-sand">
@@ -541,9 +585,23 @@ export default function Hackathon() {
                 </div>
                 <div className="flex flex-col gap-0.5">
                   <span className="text-display-4 font-semibold text-aisc-forest">
-                    {m.nombre}
+                    {m.linkedin ? (
+                      <a
+                        className="underline decoration-aisc-forest/30 underline-offset-4 transition-colors hover:text-aisc-coral hover:decoration-aisc-coral"
+                        href={m.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {m.nombre}
+                      </a>
+                    ) : (
+                      m.nombre
+                    )}
                   </span>
                   <span className="text-body-sm text-aisc-muted">{m.rol}</span>
+                  {m.bio ? (
+                    <p className="text-body-sm mt-2 text-aisc-ink">{m.bio}</p>
+                  ) : null}
                 </div>
               </li>
             ))}
