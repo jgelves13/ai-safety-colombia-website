@@ -174,6 +174,18 @@ const EQUIPO: Persona[] = [
       </>
     ),
   },
+  {
+    nombre: "Leonardo Párraga",
+    rol: "Voluntario",
+    linkedin: "https://www.linkedin.com/in/leonardoparraga/",
+    bio: (
+      /* La Coalición no tiene sitio propio, así que el nombre va sin enlace. */
+      <>
+        Cofundador y codirector de la Coalición Colombiana de Juventudes, Paz y
+        Seguridad.
+      </>
+    ),
+  },
 ];
 
 /* Cuantas fichas van arriba. El resto baja a la segunda fila. */
