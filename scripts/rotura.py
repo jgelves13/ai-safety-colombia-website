@@ -35,9 +35,9 @@ CARA_SUP, CARA_IZQ, CARA_DER = H.CARA_SUP, H.CARA_IZQ, H.CARA_DER
 SALIDA = (r"C:\Users\joseg\AppData\Local\Temp\claude\C--Users-joseg"
           r"\c6b40612-b2da-45c6-ac14-24b6236aa134\scratchpad\rotura")
 
-# el interior, en sombra: es lo que se ve por el hueco. La caja esta llena
-# de liquido, asi que por el boquete se ve el coral en sombra, no negro.
-ADENTRO = _mezcla((229, 96, 77), "#000000", 0.46)
+# lo que se ve por el hueco: la caja esta llena de liquido, y va del mismo
+# tono que el resto del liquido, sin sombra que lo separe.
+ADENTRO = H.CORAL
 # las paredes del tunel se sombrean como cualquier otra cara de la lamina: la
 # que mira hacia arriba recibe luz, la que mira hacia abajo queda en sombra y
 # las de los costados quedan a medio camino. Ese degradado es el embudo.
