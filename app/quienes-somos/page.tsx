@@ -8,7 +8,7 @@ import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION
 export const metadata: Metadata = {
   title: "Quiénes somos",
   description:
-    "Somos la primera organización dedicada a la seguridad de la inteligencia artificial en Colombia. Formamos gente, organizamos investigación y abrimos la conversación pública sobre el tema.",
+    "La primera organización que trabaja para que en Colombia haya gente dedicada a la seguridad de la inteligencia artificial. Formamos personas, impulsamos investigación y sostenemos la conversación pública sobre estos temas.",
 };
 
 const ENLACE =
@@ -190,7 +190,8 @@ export default function QuienesSomos() {
             <span className="text-kicker text-aisc-sand/70">Desde 2024</span>
             <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand">Quiénes somos</h1>
             <p className="text-body md:text-body-lg max-w-[640px] text-aisc-sand/90">
-              La primera organización dedicada a la seguridad de la inteligencia artificial en Colombia.
+              La primera organización que trabaja para que en Colombia haya gente dedicada a la seguridad de
+              la inteligencia artificial.
             </p>
           </div>
         </div>
