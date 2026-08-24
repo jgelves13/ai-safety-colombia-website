@@ -16,6 +16,7 @@ Cuatro decisiones sostienen el conjunto:
 """
 import io
 import os
+import re
 
 RAIZ = r"C:\Users\joseg\aisc-new-website\public\aisc\patterns"
 BASE = os.path.join(RAIZ, "aisc-corner-lattice.svg")
@@ -425,6 +426,111 @@ def hackathon():
     return formas
 
 
+# ------------------------------------------- todas del tamano de la del equipo
+
+def _caja(formas):
+    """La caja del dibujo, leida de las coordenadas ya escritas."""
+    xs, ys = [], []
+    for f in formas:
+        for m in re.finditer(r'points="([^"]+)"', f):
+            for par in m.group(1).split():
+                a, b = par.split(",")
+                xs.append(float(a)); ys.append(float(b))
+        for m in re.finditer(r'x1="([-\d.]+)" y1="([-\d.]+)" x2="([-\d.]+)"'
+                             r' y2="([-\d.]+)"', f):
+            xs += [float(m.group(1)), float(m.group(3))]
+            ys += [float(m.group(2)), float(m.group(4))]
+        for m in re.finditer(r'<rect x="([-\d.]+)" y="([-\d.]+)" width="([-\d.]+)"'
+                             r' height="([-\d.]+)"', f):
+            x, y, w, h = (float(g) for g in m.groups())
+            xs += [x, x + w]; ys += [y, y + h]
+        for m in re.finditer(r'<circle cx="([-\d.]+)" cy="([-\d.]+)" r="([-\d.]+)"', f):
+            cx, cy, r = (float(g) for g in m.groups())
+            xs += [cx - r, cx + r]; ys += [cy - r, cy + r]
+    return min(xs), min(ys), max(xs), max(ys)
+
+
+def _ajustar(formas, k, cx, cy):
+    """Agranda o achica la geometria alrededor de (cx, cy).
+
+    El grosor del trazo no entra en la cuenta: si entrara, la lamina que
+    crece saldria con lineas mas gordas que las demas y la jerarquia de
+    3.4 / 1.9 / 1.7 dejaria de valer para todo el conjunto."""
+    def ex(v):
+        return _n(cx + (float(v) - cx) * k)
+
+    def ey(v):
+        return _n(cy + (float(v) - cy) * k)
+
+    def el(v):
+        return _n(float(v) * k)
+
+    def _p(m):
+        return 'points="%s"' % " ".join(
+            "%s,%s" % (ex(par.split(",")[0]), ey(par.split(",")[1]))
+            for par in m.group(1).split())
+
+    def _li(m):
+        return 'x1="%s" y1="%s" x2="%s" y2="%s"' % (
+            ex(m.group(1)), ey(m.group(2)), ex(m.group(3)), ey(m.group(4)))
+
+    def _re(m):
+        return '<rect x="%s" y="%s" width="%s" height="%s" rx="%s"' % (
+            ex(m.group(1)), ey(m.group(2)), el(m.group(3)), el(m.group(4)),
+            el(m.group(5)))
+
+    def _ci(m):
+        return '<circle cx="%s" cy="%s" r="%s"' % (
+            ex(m.group(1)), ey(m.group(2)), el(m.group(3)))
+
+    out = []
+    for f in formas:
+        f = re.sub(r'points="([^"]+)"', _p, f)
+        f = re.sub(r'x1="([-\d.]+)" y1="([-\d.]+)" x2="([-\d.]+)" y2="([-\d.]+)"',
+                   _li, f)
+        f = re.sub(r'<rect x="([-\d.]+)" y="([-\d.]+)" width="([-\d.]+)"'
+                   r' height="([-\d.]+)" rx="([-\d.]+)"', _re, f)
+        f = re.sub(r'<circle cx="([-\d.]+)" cy="([-\d.]+)" r="([-\d.]+)"', _ci, f)
+        out.append(f)
+    return out
+
+
+def _mover(formas, dx, dy):
+    """Corre el dibujo entero sin cambiarle el tamano."""
+    def ex(v):
+        return _n(float(v) + dx)
+
+    def ey(v):
+        return _n(float(v) + dy)
+
+    out = []
+    for f in formas:
+        f = re.sub(r'points="([^"]+)"', lambda m: 'points="%s"' % " ".join(
+            "%s,%s" % (ex(par.split(",")[0]), ey(par.split(",")[1]))
+            for par in m.group(1).split()), f)
+        f = re.sub(r'x1="([-\d.]+)" y1="([-\d.]+)" x2="([-\d.]+)" y2="([-\d.]+)"',
+                    lambda m: 'x1="%s" y1="%s" x2="%s" y2="%s"' % (
+                        ex(m.group(1)), ey(m.group(2)),
+                        ex(m.group(3)), ey(m.group(4))), f)
+        f = re.sub(r'<rect x="([-\d.]+)" y="([-\d.]+)"',
+                    lambda m: '<rect x="%s" y="%s"' % (ex(m.group(1)),
+                                                       ey(m.group(2))), f)
+        f = re.sub(r'<circle cx="([-\d.]+)" cy="([-\d.]+)"',
+                    lambda m: '<circle cx="%s" cy="%s"' % (ex(m.group(1)),
+                                                           ey(m.group(2))), f)
+        out.append(f)
+    return out
+
+
+# La lamina del equipo da la medida y las demas se igualan a ella. La medida
+# es la media geometrica de la caja, no el alto ni el ancho: las siete figuras
+# de pie son altas y la fila de recortes de Actualidad es ancha, y por area
+# ocupan lo mismo en el ojo. La de "Que es AI safety" queda por fuera del
+# ajuste: su embudo se sale del borde a proposito.
+REFERENCIA = "quienes-somos"
+SIN_AJUSTE = ("seguridad",)
+
+
 SECCIONES = [
     ("portada", portada),
     ("seguridad", seguridad),
@@ -442,9 +548,26 @@ SECCIONES = [
 def main():
     base = io.open(BASE, encoding="utf-8").read()
     cabeza = base[: base.rindex("</svg>")]
-    for nombre, hacer in SECCIONES:
+    # se dibujan todas antes de escribir ninguna, porque la del equipo es la
+    # que fija el tamano de las demas
+    hechas = [(nombre, hacer()) for nombre, hacer in SECCIONES]
+    cajas = dict((nombre, _caja(formas)) for nombre, formas in hechas)
+    x0, y0, x1, y1 = cajas[REFERENCIA]
+    medida = ((x1 - x0) * (y1 - y0)) ** 0.5
+    for nombre, formas in hechas:
+        if nombre != REFERENCIA and nombre not in SIN_AJUSTE:
+            a0, b0, a1, b1 = cajas[nombre]
+            k = medida / (((a1 - a0) * (b1 - b0)) ** 0.5)
+            formas = _ajustar(formas, k, (a0 + a1) / 2.0, (b0 + b1) / 2.0)
+            # el dibujo crece desde su centro, asi que la que se agranda se
+            # saldria mas por el borde de lo que se salia. Se devuelve hasta
+            # donde llegaba antes: el sangrado sigue siendo el que se dibujo.
+            c0, d0, c1, d1 = _caja(formas)
+            dx, dy = min(0.0, a1 - c1), min(0.0, b1 - d1)
+            if dx or dy:
+                formas = _mover(formas, dx, dy)
         capa = '<g fill="none" stroke-linecap="round" stroke-linejoin="round">\n'
-        capa += "\n".join(hacer()) + "\n</g>\n"
+        capa += "\n".join(formas) + "\n</g>\n"
         ruta = os.path.join(RAIZ, "aisc-hero-%s.svg" % nombre)
         io.open(ruta, "w", encoding="utf-8", newline="\n").write(
             cabeza + capa + "</svg>\n")
