@@ -218,6 +218,7 @@ const EQUIPO: Persona[] = [
   {
     nombre: "Manuel Cabrera",
     rol: "Voluntario",
+    foto: "/aisc/equipo/manuel-cabrera.png",
     linkedin: "https://www.linkedin.com/in/manueloff14/",
     bio: (
       <>
