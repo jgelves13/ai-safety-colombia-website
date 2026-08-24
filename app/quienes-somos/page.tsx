@@ -11,13 +11,89 @@ export const metadata: Metadata = {
     "Somos la primera organización dedicada a la seguridad de la inteligencia artificial en Colombia. Formamos gente, organizamos investigación y abrimos la conversación pública sobre el tema.",
 };
 
-/** TODO: agregar al resto de la junta cuando Jose pase nombres, roles y LinkedIn */
-const JUNTA = [
+const ENLACE =
+  "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
+
+function iniciales(nombre: string): string {
+  return nombre
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((parte) => parte[0])
+    .join("");
+}
+
+/* Al modo del sprint: retrato cuadrado, nombre, rol y una bio corta. Sin foto
+   sale la tarjeta con las iniciales; el archivo va en public/aisc/equipo/.
+   Los dos primeros van en una fila de dos y el resto abajo en cuatro
+   columnas iguales, así que el orden del arreglo es el orden de la página.
+   TODO: faltan los cuatro de la segunda fila (nombre, rol, bio, LinkedIn). */
+const EQUIPO: {
+  nombre: string;
+  rol: string;
+  foto?: string;
+  linkedin?: string;
+  bio: React.ReactNode;
+}[] = [
   {
-    name: "Jose Gelves",
-    role: "Director",
-    bio: "Politólogo. Dirige AI Safety Colombia desde 2024. Alumni de ML4Good, Pathfinder fellow de Kairos y embajador de Apart Research. Trabaja en transformación digital del sector público.",
+    nombre: "Jose Gelves",
+    rol: "Director",
     linkedin: "https://www.linkedin.com/in/josegelves/",
+    bio: (
+      <>
+        Politólogo. Dirige AI Safety Colombia desde 2024. Alumni de ML4Good,
+        Pathfinder fellow de Kairos y embajador de Apart Research. Trabaja en
+        transformación digital del sector público.
+      </>
+    ),
+  },
+  {
+    nombre: "Camila Beltrán",
+    rol: "Grupo de AI Control",
+    foto: "/aisc/mentores/camila-beltran.png",
+    linkedin:
+      "https://www.linkedin.com/in/camila-alejandra-beltran-reyes-ab288627a/",
+    bio: (
+      <>
+        Asesora sénior de IA en{" "}
+        <a
+          className={ENLACE}
+          href="https://www.mintic.gov.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          MinTIC
+        </a>{" "}
+        y experta de la{" "}
+        <a
+          className={ENLACE}
+          href="https://oecd.ai/en/about/network-of-experts"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          OCDE
+        </a>
+        . Investigó la{" "}
+        <a
+          className={ENLACE}
+          href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          regulación europea
+        </a>{" "}
+        de escenarios de pérdida de control en{" "}
+        <a
+          className={ENLACE}
+          href="https://www.governance.ai/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GovAI
+        </a>
+        .
+      </>
+    ),
   },
 ];
 
@@ -114,48 +190,108 @@ export default function QuienesSomos() {
               </p>
             </div>
           </div>
-          <div className="mt-14 grid grid-cols-1 gap-[10px] sm:grid-cols-2 md:mt-16 lg:mt-20">
-            {JUNTA.map((persona) => (
-              <article
-                key={persona.name}
-                className="flex min-w-0 flex-col gap-5 overflow-hidden rounded-lg border border-aisc-ink bg-aisc-cream p-6 text-aisc-ink md:p-8"
-              >
-                <header className="flex min-w-0 flex-col gap-1.5">
-                  <h3 className="text-display-3 md:text-display-3-lg break-words">{persona.name}</h3>
-                  <p className="text-body-sm text-aisc-forest">{persona.role}</p>
-                </header>
-                <p className="text-body-sm text-aisc-ink">{persona.bio}</p>
-                {persona.linkedin && (
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-body-sm mt-auto w-fit text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
-                    href={persona.linkedin}
-                  >
-                    LinkedIn
-                  </a>
-                )}
+          {/* Los dos primeros con el retrato al lado del texto: a media
+              pantalla un cuadrado a toda columna se come el bloque. */}
+          <div className="mt-14 grid grid-cols-1 gap-10 sm:grid-cols-2 md:mt-16 md:gap-12 lg:mt-20">
+            {EQUIPO.slice(0, 2).map((p) => (
+              <article className="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-6" key={p.nombre}>
+                <div className="flex aspect-square w-full max-w-[190px] flex-none items-center justify-center overflow-hidden rounded-[8px] bg-aisc-sand sm:w-[36%]">
+                  {p.foto ? (
+                    <img
+                      alt={p.nombre}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover object-center"
+                      src={p.foto}
+                    />
+                  ) : (
+                    <span aria-hidden="true" className="text-display-2 md:text-display-2-lg text-aisc-forest/45">
+                      {iniciales(p.nombre)}
+                    </span>
+                  )}
+                </div>
+                <div className="flex min-w-0 flex-col gap-0.5">
+                  <h3 className="text-display-4 font-semibold text-aisc-forest">
+                    {p.linkedin ? (
+                      <a
+                        className="underline decoration-aisc-forest/30 underline-offset-4 transition-colors hover:text-aisc-coral hover:decoration-aisc-coral"
+                        href={p.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {p.nombre}
+                      </a>
+                    ) : (
+                      p.nombre
+                    )}
+                  </h3>
+                  <p className="text-body-sm text-aisc-muted">{p.rol}</p>
+                  <p className="text-body-sm mt-2 text-aisc-ink">{p.bio}</p>
+                </div>
               </article>
             ))}
-            <article className="flex min-w-0 flex-col gap-5 overflow-hidden rounded-lg border border-aisc-forest bg-aisc-sand p-6 text-aisc-ink md:p-8">
-              <header className="flex min-w-0 flex-col gap-1.5">
-                <h3 className="text-display-3 md:text-display-3-lg break-words">¿Quieres estar acá?</h3>
-                <p className="text-body-sm text-aisc-forest">Voluntariado</p>
-              </header>
-              <p className="text-body-sm text-aisc-ink">
-                Buscamos gente que ayude a organizar eventos, a traducir material, a llevar la comunicación y a mover
-                los programas. No hace falta ser técnico, hace falta aparecer.
-              </p>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-body-sm mt-auto w-fit text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
-                href="https://cal.com/josegelves/meeting"
-              >
-                Hablemos 20 minutos
-              </a>
-            </article>
           </div>
+
+          {EQUIPO.length > 2 && (
+            <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4 md:mt-12">
+              {EQUIPO.slice(2).map((p) => (
+                <li className="flex flex-col gap-3" key={p.nombre}>
+                  <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-[8px] bg-aisc-sand">
+                    {p.foto ? (
+                      <img
+                        alt={p.nombre}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover object-center"
+                        src={p.foto}
+                      />
+                    ) : (
+                      <span aria-hidden="true" className="text-display-2 md:text-display-2-lg text-aisc-forest/45">
+                        {iniciales(p.nombre)}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex flex-col gap-0.5">
+                    <h3 className="text-display-4 font-semibold text-aisc-forest">
+                      {p.linkedin ? (
+                        <a
+                          className="underline decoration-aisc-forest/30 underline-offset-4 transition-colors hover:text-aisc-coral hover:decoration-aisc-coral"
+                          href={p.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {p.nombre}
+                        </a>
+                      ) : (
+                        p.nombre
+                      )}
+                    </h3>
+                    <p className="text-body-sm text-aisc-muted">{p.rol}</p>
+                    <p className="text-body-sm mt-2 text-aisc-ink">{p.bio}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <article className="mt-12 flex flex-col gap-5 rounded-lg border border-aisc-forest bg-aisc-sand p-6 text-aisc-ink md:mt-14 md:p-8">
+            <header className="flex min-w-0 flex-col gap-1.5">
+              <h3 className="text-display-3 md:text-display-3-lg break-words">¿Quieres estar acá?</h3>
+              <p className="text-body-sm text-aisc-forest">Voluntariado</p>
+            </header>
+            <p className="text-body-sm max-w-[720px] text-aisc-ink">
+              Buscamos gente que ayude a organizar eventos, a traducir material, a llevar la comunicación y a mover
+              los programas. No hace falta ser técnico, hace falta aparecer.
+            </p>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-body-sm w-fit text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
+              href="https://cal.com/josegelves/meeting"
+            >
+              Hablemos 20 minutos
+            </a>
+          </article>
         </div>
       </section>
 
