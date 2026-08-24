@@ -39,6 +39,10 @@ CARA_SUP = _mezcla(FONDO, ARENA, 0.14)
 CARA_IZQ = _mezcla(FONDO, ARENA, 0.075)
 CARA_DER = _mezcla(FONDO, ARENA, 0.035)
 CORAL_SUP = CORAL
+TINTA = "#16261c"                # el reglon sobre la hoja
+PAPEL_SUP = ARENA
+PAPEL_IZQ = "#cdc2ab"
+PAPEL_DER = "#b6ab94"
 CORAL_IZQ = _mezcla(FONDO, CORAL, 0.72)
 CORAL_DER = _mezcla(FONDO, CORAL, 0.52)
 
@@ -93,6 +97,33 @@ def volumen(o, x, y, dx, dy, z, h, coral=False, reglones=0, w=PRIM, hueco=False)
         t = y + dy * (k + 1.0) / (reglones + 1.0)
         out.append(linea(P(o, x + 0.18, t, z + h), P(o, x + dx - 0.18, t, z + h),
                          w=GUIA, op=0.5))
+    return out
+
+
+def hoja(o, x, y, z, coral=False, dx=3.0, dy=4.0, gruesa=0.05, reglones=12):
+    """Una hoja de papel, no una losa: el grosor es un filo y lo que la
+    identifica son los reglones."""
+    sup = [P(o, x, y, z + gruesa), P(o, x + dx, y, z + gruesa),
+           P(o, x + dx, y + dy, z + gruesa), P(o, x, y + dy, z + gruesa)]
+    izq = [P(o, x, y + dy, z + gruesa), P(o, x + dx, y + dy, z + gruesa),
+           P(o, x + dx, y + dy, z), P(o, x, y + dy, z)]
+    der = [P(o, x + dx, y, z + gruesa), P(o, x + dx, y + dy, z + gruesa),
+           P(o, x + dx, y + dy, z), P(o, x + dx, y, z)]
+    if coral:
+        tonos, trazo = (CORAL_IZQ, CORAL_DER, CORAL_SUP), CORAL
+    else:
+        tonos, trazo = (PAPEL_IZQ, PAPEL_DER, PAPEL_SUP), "#a89d86"
+    out = [poli(izq, w=1.1, color=trazo, relleno=tonos[0]),
+           poli(der, w=1.1, color=trazo, relleno=tonos[1]),
+           poli(sup, w=1.4, color=trazo, relleno=tonos[2])]
+    largos = (0.9, 0.96, 0.82, 0.94, 0.74, 0.92, 0.86, 0.98,
+              0.7, 0.9, 0.55, 0.88)
+    for k in range(reglones):
+        t = y + dy * (k + 1.0) / (reglones + 1.6)
+        largo = largos[k % len(largos)]
+        out.append(linea(P(o, x + 0.34, t, z + gruesa),
+                         P(o, x + 0.34 + (dx - 0.68) * largo, t, z + gruesa),
+                         w=1.9, color=TINTA, op=0.7))
     return out
 
 
@@ -162,17 +193,23 @@ def seguridad():
 
 
 def investigacion():
-    """Investigacion: lo publicado se acumula, y encima va lo que se firma aca."""
-    escala(0.95)
-    o = (1450.0, 300.0)
-    formas = []
-    capas = ((0.00, 0.00), (0.08, -0.05), (-0.06, 0.07), (0.10, 0.02))
-    for k, (dx, dy) in enumerate(capas):
-        formas += volumen(o, dx, dy, 3, 4, k * 0.30, 0.12,
-                          reglones=(3 if k == len(capas) - 1 else 0))
-    formas += volumen(o, 0.16, 0.22, 2.72, 3.6, 1.42, 0.14, coral=True)
-    return formas
+    """Investigacion: un paquete de hojas, y encima la que se firma aca.
 
+    Antes eran losas y el grosor las delataba. Aca el filo es minimo, el
+    papel es opaco y los reglones de largo desigual son los que dicen que
+    eso es un texto."""
+    escala(0.80)
+    o = (1090.0, 300.0)
+    gruesa = 0.06
+    paquete = ((0.00, 0.00), (0.08, -0.05), (-0.06, 0.07), (0.11, 0.02),
+               (-0.03, -0.08), (0.05, 0.09), (-0.08, 0.04), (0.03, -0.03))
+    formas = []
+    for k, (dx, dy) in enumerate(paquete):
+        formas += hoja(o, dx, dy, k * gruesa, gruesa=gruesa,
+                       reglones=(12 if k == len(paquete) - 1 else 0))
+    formas += hoja(o, 1.32, 1.22, len(paquete) * gruesa, coral=True,
+                   gruesa=gruesa, reglones=12)
+    return formas
 
 def unete():
     """Unete: el sitio esta armado, falta una pieza, y la pieza esta bajando."""
