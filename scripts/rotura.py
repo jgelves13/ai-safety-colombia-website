@@ -169,10 +169,16 @@ GRIETAS_MORDIDA = [
 RITMO = 1.0
 
 # Cuando revienta el punto de quiebre, y cuanto tarda el frente en llegar a la
-# punta mas lejana. La ventana termina justo antes del golpe, en 0,70, para que
+# punta mas lejana. La ventana termina justo antes del golpe, en 0,35, para que
 # la grieta no se quede dibujada esperando: llega, y la caja cede.
-T_GRIETA = 0.40
-VENTANA_GRIETA = 0.28
+#
+# Los dos numeros estan en la escala del emisor del liquido, que los multiplica
+# por RITMO. Cuando ese reloj se duplico, estos bajaron a la mitad para que la
+# caja siguiera cediendo en el mismo segundo de la pagina: 0,40 por 1,9 y 0,20
+# por 3,8 dan los mismos 0,76 s. Lo mismo vale para los retrasos del CSS de mas
+# abajo y para F.T_GOLPE.
+T_GRIETA = 0.20
+VENTANA_GRIETA = 0.14
 
 
 def grietas(chas, centro):
@@ -323,11 +329,11 @@ def lamina(muerde, labio):
 
 ESTILO = """
 <style>
-.hk-caja{animation:hkGolpe .34s cubic-bezier(.36,.07,.19,.97) .70s both}
-.hk-intacto{animation:hkSale .10s steps(1,start) .72s both}
-.hk-roto{animation:hkEntra .12s steps(1,start) .72s both}
+.hk-caja{animation:hkGolpe .34s cubic-bezier(.36,.07,.19,.97) .35s both}
+.hk-intacto{animation:hkSale .10s steps(1,start) .36s both}
+.hk-roto{animation:hkEntra .12s steps(1,start) .36s both}
 .hk-esquirla{transform-box:fill-box;transform-origin:60% 20%;
-  animation:hkEntra .16s linear .76s both,hkAbre .34s cubic-bezier(.2,.8,.3,1) .76s both}
+  animation:hkEntra .16s linear .38s both,hkAbre .34s cubic-bezier(.2,.8,.3,1) .38s both}
 @keyframes hkEntra{from{opacity:0}to{opacity:1}}
 @keyframes hkSale{from{opacity:1}to{opacity:0}}
 @keyframes hkAbre{from{transform:scale(.55)}to{transform:scale(1)}}

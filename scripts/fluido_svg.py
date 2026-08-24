@@ -34,18 +34,30 @@ MINLARGO = 34.0                 # perimetro minimo para que un trozo cuente
 ANCLA = F.PB(F.BOCA_X, F.MURO_Y, F.BOCA_Z)   # donde se colapsa lo que sobra
 
 
-# Donde se congela, en reloj de pared. No es una eleccion libre: la escena
-# tiene que haber terminado sola antes de llegar aqui. Termina cuando la caja
-# se seca y ademas ha caido la ultima gota, asi que el corte va detras del
-# cierre del chorro mas el tiempo de caida. Congelar antes deja el chorro
-# colgado del muro, que es exactamente lo que Jose leia como un corte.
+# Donde se congela, en reloj de simulacion. No es una eleccion libre: la escena
+# tiene que haber llegado sola a su estado de reposo antes de este instante.
+# Llega cuando el chorro ya ha adelgazado hasta el hilo y encima se ha dejado
+# correr un rato con el hilo puesto, que es F.COLA. Congelar antes deja el
+# adelgazamiento a medias, y se lee como un corte.
 #
-# El tamano del charco se gobierna con F.T_SECA, no con este numero: es la
+# El chorro no se cierra: al final sigue cayendo el doce por ciento del caudal.
+# Asi que aqui no hay nada que esperar a que aterrice, y el ultimo cuadro tiene
+# liquido en el aire a proposito.
+#
+# El tamano del charco se gobierna con F.T_MENGUA, no con este numero: es la
 # cantidad de liquido que sale de la caja lo que decide hasta donde llega el
 # frente. Quien la mueva tiene que volver a correr scripts/fluido_medida.py y
 # comprobar que el alcance sigue rondando los 218 px desde el punto de caida,
 # que es el charco que Jose aprobo.
-FIN = round(F.T_GOLPE + F.T_SECA + F.CIERRE + F.CAIDA, 2)
+FIN = round(F.T_GOLPE + F.T_MENGUA + F.MENGUA + F.COLA, 2)
+
+# Cada cuanto se guarda un cuadro, en reloj de simulacion. El paso se midio
+# contra el reloj de pantalla y no contra el de la fisica: lo que se ve entre
+# dos claves es una recta, y a un cuarto de segundo por clave el ojo todavia no
+# separa los tramos. Al duplicar ESCALA_T el mismo paso pasaba a durar casi
+# medio segundo en pantalla, que es donde la interpolacion empieza a notarse,
+# asi que baja en la misma proporcion.
+PASO = 0.085
 
 
 def instantes():
@@ -61,7 +73,7 @@ def instantes():
     navegador descarta la animacion entera y el trazo se queda en el primer
     cuadro, sin que se vea ni una gota."""
     t0 = F.T_GOLPE + 0.10
-    n = max(2, int(round((FIN - t0) / 0.115)))
+    n = max(2, int(round((FIN - t0) / PASO)))
     ts = [0.0, F.T_GOLPE]
     ts += [round(t0 + (FIN - t0) * k / float(n), 3) for k in range(n + 1)]
     return ts
@@ -155,9 +167,18 @@ def clip_cerca():
 # Cuanto dura en pantalla un segundo simulado. Subir la viscosidad hace que el
 # frente avance menos por segundo, pero la animacion entera seguia durando lo
 # mismo y se veia igual de rapida. Esto separa las dos cosas: la fisica decide
-# la forma, el reloj decide el ritmo. Con 1,9 el derrame tarda casi cinco
-# segundos en cuajar, que es lo que se lee como espeso.
-ESCALA_T = 1.9
+# la forma, el reloj decide el ritmo.
+#
+# Con 3,8 el derrame tarda cerca de diez segundos en cuajar. Es el doble de lo
+# que estaba, porque a cinco segundos el charco se abria de un tiron y lo que se
+# queria ver era como se abre.
+#
+# Este numero arrastra dos cosas mas y las dos estan escritas aparte. Los
+# instantes del CSS y de la grieta se estiran con el, asi que F.T_GOLPE y los
+# retrasos de rotura.py van a la mitad para que el muro se siga rompiendo en el
+# mismo segundo de la pagina. Y el paso entre cuadros guardados va tambien a la
+# mitad, porque el hueco entre claves se mide en pantalla.
+ESCALA_T = 3.8
 
 
 def escala_css(css):

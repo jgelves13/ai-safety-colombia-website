@@ -460,7 +460,13 @@ def siluetas(c, npts=64, minlargo=26.0, maxsub=3):
 
 DT = 0.0025
 FPS = 24.0
-T_GOLPE = 0.72                   # cuando se rompe el muro
+# Cuando se rompe el muro, en reloj de simulacion. Va a la mitad de lo que
+# estaba porque el reloj de pantalla se duplico: el muro se sigue rompiendo
+# en el mismo instante de la pagina, 1,37 s, pero ahora ese instante se
+# alcanza con la mitad de segundos simulados. Quien lo mueva tiene que mover
+# con el los retrasos del CSS y de la grieta de rotura.py, que estan escritos
+# en la misma escala.
+T_GOLPE = 0.36
 T_FIN = 8.4
 
 # El frente tiene que avanzar a paso constante, y una lamina viscosa que se
@@ -472,30 +478,44 @@ EXP_MASA = 1.80
 MASA0 = 0.020
 
 
-# Cuando se acaba lo que habia dentro de la caja, y cuanto tarda el chorro en
-# cerrarse. Van en el reloj de la rotura, que es el que reciben caudal y masa:
-# la version anterior media el vaciado contra el final de la corrida, que va en
-# reloj de pared, y los 0,72 s de diferencia entre uno y otro se comian el
-# cierre entero. La caja seguia a presion en el ultimo cuadro y el chorro se
-# quedaba colgado del muro, que es el corte que se veia.
-T_SECA = 0.88
-CIERRE = 0.35
+# La caja pierde la presion, pero no se vacia. El chorro pasa de derrame a
+# hilo y se queda en hilo: sigue cayendo cuando el charco ya esta hecho. Antes
+# se cerraba del todo, y cerrar del todo deja el ultimo cuadro sin nada que se
+# mueva, que es una foto y no un final.
+#
+# Los tres tiempos van en el reloj de la rotura, que es el que reciben caudal y
+# masa. Una version anterior medio el cierre contra el final de la corrida, que
+# va en reloj de pared, y la diferencia entre uno y otro se comia el cierre
+# entero: la caja seguia a presion en el ultimo cuadro.
+T_MENGUA = 0.88                  # cuando el boquete deja de dar de si
+MENGUA = 0.45                    # lo que tarda en pasar de chorro a hilo
+COLA = 0.85                      # lo que se deja correr ya con el hilo puesto
 
-# Lo que tarda una gota en llegar al suelo. Despues del cierre hay que dejar
-# correr al menos esto sin emitir, porque si no lo que va por el aire se
-# congela a media caida. El cierre por si solo no vacia la escena: vacia la
-# caja.
-CAIDA = 0.90
+# El hilo tiene dos residuos y no uno, porque lo que se ve y lo que moja son
+# cosas distintas y hacen falta las dos a la vez.
+#
+# RESIDUO es cuantas gotas siguen saliendo, y decide si el hilo se ve. El
+# contorno se traza donde el campo llega a NIVEL, y el chorro es apenas dos
+# radios de desenfoque de ancho, asi que su pico va con el caudal y punto. Con
+# 0,12 el pico se quedaba en 0,9 y el hilo no salia en el contorno: el ultimo
+# tramo de la escena se veia como un charco pegado a la caja, sin nada cayendo.
+# La frontera esta cerca de 0,21; 0,26 deja el pico en torno a 1,7.
+#
+# RESIDUO_M es cuanto deja en el suelo cada una de esas gotas, y decide el
+# tamano del charco. Lo que manda sobre el frente es el producto de los dos, y
+# ese producto vale 0,12, que es el alcance de 219 px que Jose aprobo. Quien
+# suba uno tiene que bajar el otro en la misma proporcion, o el charco se pasa.
+RESIDUO = 0.26
+RESIDUO_M = 0.46
 
 
-def vaciado(t):
-    u"""De uno a cero mientras se cierra el chorro, con las dos puntas planas.
+def _suave(t):
+    u"""De uno a cero mientras el chorro adelgaza, con las dos puntas planas.
 
     Es un suavizado de tercer grado y no una recta porque el corte de una recta
     tiene esquina: la velocidad del frente cambiaria de golpe en el instante en
-    que empieza el vaciado, y ese quiebre se ve igual que el que se quiere
-    quitar."""
-    x = (T_SECA + CIERRE - t) / CIERRE
+    que el chorro empieza a adelgazar, y ese quiebre se ve."""
+    x = (T_MENGUA + MENGUA - t) / MENGUA
     if x >= 1.0:
         return 1.0
     if x <= 0.0:
@@ -504,12 +524,11 @@ def vaciado(t):
 
 
 def caudal(t):
-    u"""El boquete no da abasto: la presion de adentro va subiendo. Hasta que se
-    acaba lo que habia dentro."""
+    u"""Cuantas gotas salen por el boquete: el derrame primero, el hilo
+    despues."""
     if t < 0.0:
         return 0.0
-    q = CAUDAL if t < 1.6 else CAUDAL * min(1.0 + (t - 1.6) * 0.75, 4.0)
-    return q * vaciado(t)
+    return CAUDAL * (RESIDUO + (1.0 - RESIDUO) * _suave(t))
 
 
 def masa(t):
@@ -517,13 +536,17 @@ def masa(t):
     tiempo para que el frente no pierda velocidad. Arranca en la rotura: si
     espera, el charco se asienta primero y se ve el frenazo.
 
-    Deja de crecer cuando la caja se seca, pero no se vacia con ella: las gotas
-    que ya iban por el aire tienen que seguir entregando lo suyo al aterrizar.
-    Si se vaciara tambien esto, la ultima lengua del chorro caeria en el charco
-    sin engordarlo y se veria atravesarlo."""
+    Deja de crecer cuando el chorro se queda en hilo, y ademas se encoge con el:
+    las gotas del hilo cargan menos de la mitad que las del derrame. Asi el
+    charco sigue engordando, pero reparte cada vez menos en cada vez mas
+    superficie, y el frente se va parando solo, que es como se para un charco de
+    verdad. Sin lo segundo el hilo acabaria acelerando la inundacion otra vez,
+    porque para que se vea hacen falta el doble de gotas de las que el charco
+    aguanta."""
     if t < 0.0:
         return 0.0
-    return MASA0 * (1.0 + min(t, T_SECA + CIERRE)) ** EXP_MASA
+    return (MASA0 * (1.0 + min(t, T_MENGUA + MENGUA)) ** EXP_MASA
+            * (RESIDUO_M + (1.0 - RESIDUO_M) * _suave(t)))
 
 
 def grav_agua(t):
