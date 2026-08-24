@@ -30,6 +30,7 @@ import fluido as F
 CORAL = H.CORAL if isinstance(H.CORAL, str) else R._hex(H.CORAL)
 NPTS = 30                       # puntos por trozo, iguales en todos los cuadros
 NSUB = 2                        # trozos por cuadro, iguales en todos los cuadros
+MINLARGO = 34.0                 # perimetro minimo para que un trozo cuente
 ANCLA = F.PB(F.BOCA_X, F.MURO_Y, F.BOCA_Z)   # donde se colapsa lo que sobra
 
 
@@ -314,17 +315,26 @@ CACHE = os.path.join(F.SALIDA, "instantes.npz")
 def huella(quiero):
     u"""Con que se decide si la despensa sirve.
 
-    Antes bastaba con la lista de instantes, y eso es justo lo que no cambia
-    cuando se toca la fisica: se ajusto el vaciado de la caja, la firma siguio
-    igual y el emisor volvio a sacar los cuadros viejos. El chorro se quedaba
-    colgado del muro al final porque el cierre que se habia escrito nunca
-    llego a correr. Aqui entra tambien el codigo del simulador, que es lo que
-    decide como se mueve el liquido.
+    Una firma tiene que cubrir todo lo que decide el contenido guardado, no
+    solo lo que se le pide. Aqui eso son tres cosas y las tres se han colado
+    ya alguna vez.
+
+    Los instantes pedidos son lo unico que la primera version miraba, y son
+    justo lo que no cambia al tocar la fisica: se reescribio el vaciado de la
+    caja, la firma siguio igual y el emisor volvio a sacar los cuadros viejos.
+    Por eso entra el texto del simulador.
+
+    Lo guardado no es el campo sino el contorno ya remuestreado, asi que el
+    numero de puntos y de trozos tambien lo decide. Al subirlos sin tocar la
+    firma, la despensa devolvio contornos de la resolucion anterior y los
+    cuadros quedaron con distinto numero de comandos entre si, que es lo que
+    hace que el navegador descarte la interpolacion entera.
     """
     fuente = io.open(F.__file__.replace(".pyc", ".py"),
                      encoding="utf-8").read()
-    return "%s %s" % (" ".join("%.4f" % q for q in quiero),
-                      hashlib.sha1(fuente.encode("utf-8")).hexdigest())
+    return "%s | %d %d %.1f | %s" % (
+        " ".join("%.4f" % q for q in quiero), NPTS, NSUB, MINLARGO,
+        hashlib.sha1(fuente.encode("utf-8")).hexdigest())
 
 
 def simula(quiero):
@@ -336,7 +346,7 @@ def simula(quiero):
                 continue
             if abs(t - q) <= 1.0 / F.FPS:
                 guardo[q] = F.siluetas(F.campo(corte, h), npts=NPTS,
-                                       minlargo=34.0, maxsub=NSUB)
+                                       minlargo=MINLARGO, maxsub=NSUB)
 
     guardo[0.0] = []
     F.T_FIN = FIN + 0.05   # no hay que simular mas alla del corte

@@ -236,13 +236,58 @@ FLUIDO = (~SOLIDO).astype(float)
 # cota se sube el roce del fondo, que no tiene ese limite.
 CF = 12.0                        # roce del fondo: lo que hace que se asiente
 NU = 1.15                        # viscosidad
-NUH = 0.11
+
+# NUH difumina la profundidad, y esa difusion es la que planchaba el charco.
+# Con 0,11 la longitud que alcanza a borrar en los dos segundos que tarda el
+# frente en cruzar es de unas cuatro celdas, justo el tamano de los lobulos
+# que dibuja el relieve del suelo: la lamina salia lisa y el charco quedaba
+# ovalado. Con 0,05 los lobulos sobreviven. Es el estabilizador del campo de
+# alturas, asi que bajarlo mas empieza a dejar ondas de una celda.
+NUH = 0.05
 
 # Fuera del cuadro el liquido se va. Sin esto se acumula contra el borde de la
 # rejilla y el frente se frena justo donde tiene que seguir.
 _borde = np.minimum(np.minimum(np.arange(NW)[:, None], NW - 1 - np.arange(NW)[:, None]),
                     np.minimum(np.arange(NW)[None, :], NW - 1 - np.arange(NW)[None, :]))
 ABSORBE = np.clip(_borde / 14.0, 0.0, 1.0) ** 2
+
+
+# El suelo no es una mesa de billar. Un charco tiene cara de charco porque el
+# piso bajo el tiene lomos y hondonadas: el frente se atasca donde sube y corre
+# donde baja, y de ahi salen los lobulos. Sin esto la lamina se extiende igual
+# en todas direcciones y da un ovalo, que es lo que se veia.
+#
+# La amplitud se mide contra la pendiente del propio frente, no contra la
+# profundidad del charco. El borde del contorno esta donde el agua llega a
+# 0,012 de hondo, y ahi la lamina sube unos 0,0035 por celda: un lomo de altura
+# d corre el borde unas d/0,0035 celdas. El charco mide unas treinta y seis
+# celdas de ancho, asi que 0,030 da mordiscos de ocho, que es lo que se ve.
+# Subirla mas empieza a dejar islas secas dentro del charco.
+#
+# El tamano de los lomos importa tanto como su altura. La primera version
+# repartia el peso hacia la escala ancha, y una loma de ocho celdas tiene
+# pendiente ocho veces menor que su altura: el frente ni se entera. Aqui pesan
+# casi igual las tres escalas, y la normalizacion va por desviacion tipica y no
+# por el maximo, que lo fija un solo pico y aplana todo lo demas.
+AMP_SUELO = 0.030
+SEMILLA_SUELO = 7
+
+
+def _relieve(amp=AMP_SUELO, semilla=SEMILLA_SUELO):
+    u"""Un piso con lomos, de media cero y con la caja plana debajo."""
+    rng = np.random.RandomState(semilla)
+    r = rng.standard_normal((NW, NW))
+    b = (ndimage.gaussian_filter(r, 7.0) * 7.0 +
+         ndimage.gaussian_filter(r, 3.0) * 2.6 +
+         ndimage.gaussian_filter(r, 1.4) * 1.0)
+    b = b - b.mean()
+    b = b / (b.std() + 1e-9) * amp
+    # Bajo la huella de la caja el relieve no pinta nada y solo mete gradientes
+    # contra una pared solida, asi que se aplana.
+    return b * (1.0 - ndimage.gaussian_filter(SOLIDO.astype(float), 2.0))
+
+
+SUELO = _relieve()
 
 
 def _ddx(a):
@@ -288,9 +333,9 @@ def paso_agua(h, hu, hv, dt, g):
     u = np.clip(hu / np.maximum(h, eps), -UMAX, UMAX)
     v = np.clip(hv / np.maximum(h, eps), -UMAX, UMAX)
     hn = h - dt * (_divx(h, u) + _divy(h, v)) + dt * NUH * _lap(h)
-    hu = (hu - dt * (_divx(hu, u) + _divy(hu, v)) - dt * g * h * _ddx(h)
+    hu = (hu - dt * (_divx(hu, u) + _divy(hu, v)) - dt * g * h * _ddx(h + SUELO)
           - dt * CF * hu + dt * NU * _lap(hu))
-    hv = (hv - dt * (_divx(hv, u) + _divy(hv, v)) - dt * g * h * _ddy(h)
+    hv = (hv - dt * (_divx(hv, u) + _divy(hv, v)) - dt * g * h * _ddy(h + SUELO)
           - dt * CF * hv + dt * NU * _lap(hv))
     h = np.clip(hn, 0.0, HMAX)
     # la caja es solida: lo que entro en su huella se devuelve a los vecinos
