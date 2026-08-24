@@ -222,8 +222,8 @@ const EQUIPO: Persona[] = [
     linkedin: "https://www.linkedin.com/in/manueloff14/",
     bio: (
       <>
-        Programador full stack. Estuvo en Altruismo Eficaz Uniandes entre enero
-        y agosto de 2025.
+        Programador full stack en Altruismo Eficaz Uniandes entre enero y agosto
+        de 2025. Recién egresado del bachillerato.
       </>
     ),
   },
@@ -361,8 +361,7 @@ export default function QuienesSomos() {
               <h2 className="text-display-2 md:text-display-2-lg">Con quién trabajamos</h2>
               <p className="text-body-sm text-aisc-ink md:text-body md:text-body-lg">
                 Cuatro organizaciones del campo con las que sostenemos trabajo, y de las que también hemos recibido
-                financiación. Otras acompañan programas puntuales, como el hackathon, y aparecen en la página de ese
-                programa.
+                financiación.
               </p>
             </div>
             <div className="mt-10 grid grid-cols-1 gap-3 md:mt-14 md:grid-cols-2 lg:grid-cols-4">

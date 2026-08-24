@@ -191,7 +191,16 @@ const MENTORES: {
         >
           OCDE
         </a>
-        . Investigó la{" "}
+        . Como Winter Fellow de{" "}
+        <a
+          className={ENLACE}
+          href="https://www.governance.ai/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GovAI
+        </a>
+        , investigó la{" "}
         <a
           className={ENLACE}
           href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
@@ -200,16 +209,8 @@ const MENTORES: {
         >
           regulación europea
         </a>{" "}
-        de escenarios de pérdida de control en{" "}
-        <a
-          className={ENLACE}
-          href="https://www.governance.ai/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GovAI
-        </a>{" "}
-        y lidera el grupo de AI Control de AIS Colombia.
+        de escenarios de pérdida de control, y lidera el grupo de AI Control de
+        AIS Colombia.
       </>
     ),
   },
