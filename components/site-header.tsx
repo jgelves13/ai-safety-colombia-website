@@ -290,8 +290,10 @@ export default function SiteHeader({ active }: { active?: string }) {
         <div className="mx-auto flex h-12 w-full max-w-md items-center gap-4 text-aisc-sand md:h-14 md:max-w-[1440px] md:gap-8">
           <Logo idioma={idioma} />
           <Nav idioma={idioma} active={active} className="hidden items-center gap-0.5 lg:flex xl:gap-2 ml-1" />
-          <SelectorIdioma className="ml-auto hidden sm:block" />
-          <MenuButton idioma={idioma} abierto={abierto} onClick={() => setAbierto((v) => !v)} />
+          <div className="ml-auto flex items-center gap-2">
+            <SelectorIdioma />
+            <MenuButton idioma={idioma} abierto={abierto} onClick={() => setAbierto((v) => !v)} />
+          </div>
         </div>
       </header>
       <header
@@ -304,8 +306,10 @@ export default function SiteHeader({ active }: { active?: string }) {
         <div className="mx-auto flex h-14 w-full max-w-md items-center gap-4 rounded-full px-4 text-aisc-sand shadow-[0_12px_40px_-12px_rgba(20,54,32,0.55)] md:h-[68px] md:max-w-[1400px] md:gap-8 md:px-10 bg-aisc-forest-deep">
           <Logo idioma={idioma} />
           <Nav idioma={idioma} active={active} className="hidden items-center gap-0.5 lg:flex xl:gap-2 ml-auto" />
-          <SelectorIdioma className="lg:ml-0 ml-auto hidden sm:block" />
-          <MenuButton idioma={idioma} abierto={abierto} onClick={() => setAbierto((v) => !v)} />
+          <div className="ml-auto flex items-center gap-2 lg:ml-0">
+            <SelectorIdioma />
+            <MenuButton idioma={idioma} abierto={abierto} onClick={() => setAbierto((v) => !v)} />
+          </div>
         </div>
       </header>
       <PanelMovil
