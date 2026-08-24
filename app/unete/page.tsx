@@ -69,8 +69,8 @@ export default function Unete() {
           <div className="flex max-w-[760px] flex-col gap-5">
             <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand text-balance">Únete</h1>
             <p className="text-body md:text-body-lg max-w-[640px] text-aisc-sand/90">
-              Hay varias formas de hacer parte de la comunidad y de empezar a aportar. Estas son las que están
-              abiertas ahora mismo, y lo que pasa después de cada una.
+              Hay varias formas de hacer parte de la comunidad y de empezar a aprender. Estas son las que están
+              abiertas ahora mismo.
             </p>
           </div>
         </div>
