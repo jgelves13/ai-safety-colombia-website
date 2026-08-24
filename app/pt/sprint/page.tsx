@@ -177,16 +177,8 @@ const MENTORES: {
       "https://www.linkedin.com/in/camila-alejandra-beltran-reyes-ab288627a/",
     bio: (
       <>
-        Assessora sênior de IA no{" "}
-        <a
-          className={ENLACE}
-          href="https://www.mintic.gov.co/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          MinTIC
-        </a>{" "}
-        e especialista da{" "}
+        Consultora em governança de IA para várias organizações. Membro do grupo
+        de especialistas da{" "}
         <a
           className={ENLACE}
           href="https://oecd.ai/en/about/network-of-experts"
@@ -195,26 +187,16 @@ const MENTORES: {
         >
           OCDE
         </a>
-        . Como Winter Fellow do{" "}
+        , pesquisadora associada do{" "}
         <a
           className={ENLACE}
-          href="https://www.governance.ai/"
+          href="https://aiforgood.itu.int/multimedia-authenticity/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          GovAI
-        </a>
-        , pesquisou a{" "}
-        <a
-          className={ENLACE}
-          href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          regulação europeia
+          AMAS Young Research Programme
         </a>{" "}
-        de cenários de perda de controle, e lidera o grupo de AI control da AIS
-        Colombia.
+        da UIT e líder do grupo de AI Control da AIS Colombia.
       </>
     ),
   },
@@ -243,6 +225,15 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           padrão SL5
+        </a>{" "}
+        e mentor de um{" "}
+        <a
+          className={ENLACE}
+          href="https://sparai.org/projects/sp26/recXdgQxof26exbLh/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          projeto de pesquisa no SPAR
         </a>
         .
       </>

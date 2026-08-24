@@ -124,22 +124,13 @@ const EQUIPO: Persona[] = [
   },
   {
     nombre: "Camila Beltrán",
-    rol: "AI control reading group",
+    rol: "AI Control group",
     foto: "/aisc/mentores/camila-beltran.png",
     linkedin:
       "https://www.linkedin.com/in/camila-alejandra-beltran-reyes-ab288627a/",
     bio: (
       <>
-        Senior AI adviser at{" "}
-        <a
-          className={ENLACE}
-          href="https://www.mintic.gov.co/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          MinTIC
-        </a>{" "}
-        and an expert with the{" "}
+        AI governance consultant for several organisations. Member of the{" "}
         <a
           className={ENLACE}
           href="https://oecd.ai/en/about/network-of-experts"
@@ -147,26 +138,17 @@ const EQUIPO: Persona[] = [
           rel="noopener noreferrer"
         >
           OECD
-        </a>
-        . As a Winter Fellow at{" "}
-        <a
-          className={ENLACE}
-          href="https://www.governance.ai/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GovAI
-        </a>
-        , she researched the{" "}
-        <a
-          className={ENLACE}
-          href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          European rules
         </a>{" "}
-        on loss-of-control scenarios.
+        expert group and associate researcher with the ITU’s{" "}
+        <a
+          className={ENLACE}
+          href="https://aiforgood.itu.int/multimedia-authenticity/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          AMAS Young Research Programme
+        </a>
+        .
       </>
     ),
   },

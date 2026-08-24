@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "idiomas": "node scripts/idiomas.mjs",
+    "build": "node scripts/idiomas.mjs && next build",
     "start": "next start",
     "lint": "eslint"
   },
