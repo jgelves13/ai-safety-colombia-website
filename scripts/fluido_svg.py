@@ -32,6 +32,7 @@ NPTS = 30                       # puntos por trozo, iguales en todos los cuadros
 NSUB = 2                        # trozos por cuadro, iguales en todos los cuadros
 MINLARGO = 34.0                 # perimetro minimo para que un trozo cuente
 ANCLA = F.PB(F.BOCA_X, F.MURO_Y, F.BOCA_Z)   # donde se colapsa lo que sobra
+OP_LASCA = 0.26                 # cuanto se ve una lasca por debajo del charco
 
 
 # Donde se congela, en reloj de simulacion. No es una eleccion libre: la escena
@@ -312,14 +313,32 @@ def svg(ts, ds, animado=True, fondo=True, suf=""):
     css = (escala_css(R.ESTILO) + QUIETO) if animado else ""
     tapa = ('<rect width="%d" height="%d" fill="%s"/>'
             % (int(F.BW), int(F.BH), R._hex(H.FONDO))) if fondo else ""
+    # Las lascas del suelo se dibujan dos veces. La primera va con la caja, y
+    # es la que se ve mientras el suelo esta seco. La segunda va la ultima de
+    # todas, encima del charco de adelante, y apagada: cuando el coral las
+    # cubre siguen leyendose debajo, como pedazos de muro dentro del liquido.
+    # El grupo repite el desplazamiento del golpe, porque el original lo lleva
+    # por CSS y el CSS gana sobre el atributo: si se le pusiera aqui, durante
+    # el golpe el clon se quedaria quieto y las dos copias se separarian.
+    # La entrada va en su propia clase, y no heredada del grupo original:
+    # lo que <use> clona es el subarbol, no la opacidad de los padres, y
+    # una animacion sobre el referenciado no se propaga igual en todos los
+    # motores. Con hk-eco el clon aparece cuando revienta el muro, sin
+    # depender de eso. El 0.26 va en un grupo aparte para que la animacion
+    # de opacidad no lo pise: anidadas, las dos opacidades se multiplican.
+    lascas = (u'<g transform="translate(%.1f,0) scale(%.5f)">'
+              u'<g class="hk-caja"><g class="hk-eco">'
+              u'<g opacity="%.2f"><use href="#hkLascas"/></g>'
+              u'</g></g></g>' % (F.OX, F.K, OP_LASCA))
     cuerpo = (u'<svg viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg"'
               u' preserveAspectRatio="xMaxYMax slice" role="presentation">%s'
               u'<defs>%s</defs>%s'
-              u'%s<g transform="translate(%.1f,0) scale(%.5f)">%s</g>%s</svg>'
+              u'%s<g transform="translate(%.1f,0) scale(%.5f)">%s</g>%s%s</svg>'
               % (int(F.BW), int(F.BH), css, clip_cerca(), tapa,
-                 liq, F.OX, F.K, dentro + caja, frente))
+                 liq, F.OX, F.K, dentro + caja, frente, lascas))
     if suf:
-        for viejo in ("fade", "m", "lqCerca", "lqCuerpo", "lqQuieto"):
+        for viejo in ("fade", "m", "lqCerca", "lqCuerpo", "lqQuieto",
+                      "hkLascas"):
             cuerpo = cuerpo.replace('id="%s"' % viejo, 'id="%s%s"' % (viejo, suf))
             cuerpo = cuerpo.replace("url(#%s)" % viejo, "url(#%s%s)" % (viejo, suf))
             cuerpo = cuerpo.replace('href="#%s"' % viejo, 'href="#%s%s"' % (viejo, suf))

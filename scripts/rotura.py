@@ -256,16 +256,27 @@ def labios(boca, centro, indices):
 
 
 def esquirlas():
-    """Lascas planas, tiradas en el piso justo delante del hueco."""
+    """Lascas planas, tiradas en el piso justo delante del hueco.
+
+    Miden lo que mide un pedazo de muro que se desprendio: entre veinticinco y
+    treinta y cinco pixeles de lado en la banda, y no los doce de antes, en que
+    se leian como manchas del fondo.
+
+    Van dentro de su propio grupo con nombre. El charco de adelante se pinta
+    encima de la caja, asi que al inundarse el suelo las tapaba del todo; con
+    el nombre puesto, el que arma la escena vuelve a dibujarlas por encima del
+    liquido, apagadas, y se siguen viendo debajo del coral.
+    """
     out = []
-    for x, y, a, b in [(1.42, 4.50, 0.30, 0.12),
-                       (2.06, 4.66, 0.22, 0.16),
-                       (2.74, 4.48, 0.26, 0.11),
-                       (1.86, 4.94, 0.18, 0.13)]:
+    for x, y, a, b in [(1.24, 4.44, 0.66, 0.27),
+                       (2.10, 4.72, 0.52, 0.35),
+                       (2.90, 4.42, 0.60, 0.25),
+                       (1.70, 5.04, 0.45, 0.29)]:
         pts = [P(O, x, y), P(O, x + a, y + b * 0.4),
                P(O, x + a * 0.7, y + b), P(O, x - a * 0.15, y + b * 0.7)]
         out.append(poli(pts, w=SEC, color=ARENA, op=0.7, relleno=ASTILLA))
-    return out
+    return ['<g id="hkLascas" class="hk-lasca">%s</g>'
+            % chr(10).join(out)]
 
 
 # ------------------------------------------------------------- la caja
@@ -334,6 +345,8 @@ ESTILO = """
 .hk-roto{animation:hkEntra .12s steps(1,start) .36s both}
 .hk-esquirla{transform-box:fill-box;transform-origin:60% 20%;
   animation:hkEntra .16s linear .38s both,hkAbre .34s cubic-bezier(.2,.8,.3,1) .38s both}
+.hk-lasca{animation:hkEntra .16s linear .38s both}
+.hk-eco{animation:hkEntra .16s linear .38s both}
 @keyframes hkEntra{from{opacity:0}to{opacity:1}}
 @keyframes hkSale{from{opacity:1}to{opacity:0}}
 @keyframes hkAbre{from{transform:scale(.55)}to{transform:scale(1)}}
@@ -341,7 +354,8 @@ ESTILO = """
   48%{transform:translate(5px,-2px)}74%{transform:translate(-2px,1px)}
   100%{transform:translate(0,0)}}
 @media (prefers-reduced-motion:reduce){
-  .hk-caja,.hk-roto,.hk-esquirla{animation:none;opacity:1;transform:none}
+  .hk-caja,.hk-roto,.hk-esquirla,.hk-lasca,.hk-eco{
+    animation:none;opacity:1;transform:none}
   .hk-intacto,.hk-grieta{display:none}
 }
 </style>
