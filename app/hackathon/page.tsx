@@ -277,7 +277,7 @@ const FAQ = [
   },
   {
     q: "¿Cuánto tiempo toma la aplicación?",
-    a: "Alrededor de veinte minutos. Hay una sola pregunta de selección de verdad: qué problema te gustaría abordar y con qué enfoque. No buscamos una propuesta cerrada.",
+    a: "Alrededor de veinte minutos. Leemos la postulación completa. La pregunta que más pesa es qué problema te gustaría abordar y con qué enfoque, y no esperamos una propuesta cerrada.",
   },
   {
     q: "¿Puedo aplicar si no vivo en Bogotá?",
@@ -552,8 +552,8 @@ export default function Hackathon() {
                 <p>
                   Durante el fin de semana pasa por la sala gente que trabaja en
                   los temas de los cinco frentes. Algunos abren con una charla
-                  corta. Todos se sientan con los equipos a revisar lo que
-                  llevan.
+                  corta. Todos se sientan con los equipos a apoyar lo que
+                  estén construyendo.
                 </p>
                 <p>
                   Si trabajas en respuesta a incidentes, en seguridad ofensiva,
@@ -871,9 +871,9 @@ export default function Hackathon() {
                 Aplica al hub en Bogotá
               </h2>
               <p className="text-body md:text-body-lg text-aisc-sand/85">
-                Hay una sola pregunta de selección de verdad: qué problema te
-                gustaría abordar y con qué enfoque. No buscamos una propuesta
-                cerrada.
+                Leemos la postulación completa. La pregunta que más pesa es
+                qué problema te gustaría abordar y con qué enfoque. No buscamos
+                una propuesta cerrada.
               </p>
               <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
                 <Link className={CTA_LINK_PRIMARY} href="/hackathon/aplicar">
