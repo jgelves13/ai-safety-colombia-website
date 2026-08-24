@@ -12,6 +12,7 @@ el punto cero siempre en el mismo sitio y siempre en el mismo sentido.
 
     py -X utf8 scripts/fluido_svg.py
 """
+import hashlib
 import io
 import os
 import re
@@ -32,17 +33,18 @@ NSUB = 2                        # trozos por cuadro, iguales en todos los cuadro
 ANCLA = F.PB(F.BOCA_X, F.MURO_Y, F.BOCA_Z)   # donde se colapsa lo que sobra
 
 
-# Donde se congela. Lo que manda no es el reloj sino hasta donde llega el
-# frente: el charco que Jose aprobo mide unos 234 px desde el punto de caida,
-# y ese tamano se alcanza mas tarde cada vez que el liquido se hace mas
-# espeso. Con el roce de fondo en 12,0 el frente va a unos 63 px por segundo,
-# y el charco que se aprobo, de unos 218 px, cae a los 2,5 s. Se corta un poco antes,
-# porque el liquido espeso no solo llega mas lejos con el tiempo sino que se
-# ensancha mas por el camino, y a los 2,6 el charco ya toca el filo de abajo
-# de la banda. Quien cambie la
-# viscosidad tiene que volver a correr scripts/fluido_medida.py y buscar el
-# instante del mismo alcance, no dejar el numero como esta.
-FIN = 2.5
+# Donde se congela, en reloj de pared. No es una eleccion libre: la escena
+# tiene que haber terminado sola antes de llegar aqui. Termina cuando la caja
+# se seca y ademas ha caido la ultima gota, asi que el corte va detras del
+# cierre del chorro mas el tiempo de caida. Congelar antes deja el chorro
+# colgado del muro, que es exactamente lo que Jose leia como un corte.
+#
+# El tamano del charco se gobierna con F.T_SECA, no con este numero: es la
+# cantidad de liquido que sale de la caja lo que decide hasta donde llega el
+# frente. Quien la mueva tiene que volver a correr scripts/fluido_medida.py y
+# comprobar que el alcance sigue rondando los 218 px desde el punto de caida,
+# que es el charco que Jose aprobo.
+FIN = round(F.T_GOLPE + F.T_SECA + F.CIERRE + F.CAIDA, 2)
 
 
 def instantes():
@@ -204,34 +206,18 @@ def escala_css(css):
     return re.sub(r"animation:([^;}]*)", una, css)
 
 
-# Donde empieza a frenar el reloj, y cuanto. La fisica sola no cierra el
-# derrame: cortar el chorro no detiene la lamina, que a la altura del corte
-# todavia se abria a unos 60 px por segundo. Una animacion que se congela con
-# el liquido a esa velocidad no termina, se corta. Asi que el reloj hace la
-# otra mitad: desde T_FRENA el segundo simulado se estira hasta durar FRENO
-# veces lo que duraba, y el ultimo tramo queda casi quieto.
-#
-# El estiron va como el cuadrado, que arranca con pendiente cero, para que el
-# frenado empiece sin escalon; una recta meteria una esquina en T_FRENA y se
-# veria el mismo defecto movido de sitio. Y se paga alargando la animacion, no
-# acelerando el principio: si se repartiera dentro de la misma duracion, el
-# chorro volveria a caer deprisa, que es justo lo que Jose devolvio.
-T_FRENA = 1.95
-FRENO = 4.0
-
-
-def reloj(t):
-    u"""Segundo simulado a segundo de pantalla, ya con el frenado del final."""
-    if t <= T_FRENA:
-        return t * ESCALA_T
-    u_ = (t - T_FRENA) / (FIN - T_FRENA)
-    return ESCALA_T * (T_FRENA + (FIN - T_FRENA) *
-                       (u_ + (FRENO - 1.0) * u_ ** 3 / 3.0))
+# El reloj de pantalla ya no lleva frenado. Lo llevo mientras la corrida se
+# congelaba con el chorro abierto: el frente seguia abriendose a unos 62 px por
+# segundo en el ultimo cuadro y habia que disimular el paron estirando el final.
+# Ahora la escena termina sola. La caja se seca, cae la ultima gota y el frente
+# llega al corte a unos 26 px por segundo, que en pantalla son catorce: se
+# congela sobre algo que ya estaba practicamente quieto. Un estiron encima solo
+# serviria para que la ultima gota cayera a camara lenta.
 
 
 def animacion(ts, ds):
-    dur = reloj(FIN)
-    kt = ";".join("%.4f" % (reloj(t) / dur) for t in ts)
+    dur = FIN * ESCALA_T
+    kt = ";".join("%.4f" % (t / FIN) for t in ts)
     return ('<animate attributeName="d" dur="%.2fs" begin="0s"'
             ' repeatCount="1" fill="freeze" calcMode="linear"'
             ' keyTimes="%s" values="%s"/>' % (dur, kt, ";".join(ds)))
@@ -325,6 +311,22 @@ export function HeroHackathon({ className }: { className?: string }) {
 CACHE = os.path.join(F.SALIDA, "instantes.npz")
 
 
+def huella(quiero):
+    u"""Con que se decide si la despensa sirve.
+
+    Antes bastaba con la lista de instantes, y eso es justo lo que no cambia
+    cuando se toca la fisica: se ajusto el vaciado de la caja, la firma siguio
+    igual y el emisor volvio a sacar los cuadros viejos. El chorro se quedaba
+    colgado del muro al final porque el cierre que se habia escrito nunca
+    llego a correr. Aqui entra tambien el codigo del simulador, que es lo que
+    decide como se mueve el liquido.
+    """
+    fuente = io.open(F.__file__.replace(".pyc", ".py"),
+                     encoding="utf-8").read()
+    return "%s %s" % (" ".join("%.4f" % q for q in quiero),
+                      hashlib.sha1(fuente.encode("utf-8")).hexdigest())
+
+
 def simula(quiero):
     guardo = {}
 
@@ -346,7 +348,7 @@ def main():
     if not os.path.isdir(F.SALIDA):
         os.makedirs(F.SALIDA)
     quiero = instantes()
-    firma = " ".join("%.4f" % q for q in quiero)
+    firma = huella(quiero)
     guardo = None
     if os.path.exists(CACHE):
         z = np.load(CACHE)

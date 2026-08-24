@@ -427,24 +427,30 @@ EXP_MASA = 1.80
 MASA0 = 0.020
 
 
-# Cuanto tarda la caja en quedarse sin nada, contado hacia atras desde el final
-# de la corrida. Es la correccion del corte: antes el chorro seguia cayendo a
-# toda presion en el mismo cuadro en que la animacion se congelaba, y una lamina
-# que se detiene de golpe en mitad del movimiento se lee como un corte, no como
-# un final. Con el vaciado, la presion de adentro se acaba, el chorro adelgaza
-# hasta nada y el charco llega a su sitio frenandose. El congelado cae sobre
-# algo que ya estaba quieto y deja de notarse.
-CIERRE = 0.80
+# Cuando se acaba lo que habia dentro de la caja, y cuanto tarda el chorro en
+# cerrarse. Van en el reloj de la rotura, que es el que reciben caudal y masa:
+# la version anterior media el vaciado contra el final de la corrida, que va en
+# reloj de pared, y los 0,72 s de diferencia entre uno y otro se comian el
+# cierre entero. La caja seguia a presion en el ultimo cuadro y el chorro se
+# quedaba colgado del muro, que es el corte que se veia.
+T_SECA = 0.88
+CIERRE = 0.35
+
+# Lo que tarda una gota en llegar al suelo. Despues del cierre hay que dejar
+# correr al menos esto sin emitir, porque si no lo que va por el aire se
+# congela a media caida. El cierre por si solo no vacia la escena: vacia la
+# caja.
+CAIDA = 0.90
 
 
 def vaciado(t):
-    u"""De uno a cero en los ultimos CIERRE segundos, con las dos puntas planas.
+    u"""De uno a cero mientras se cierra el chorro, con las dos puntas planas.
 
     Es un suavizado de tercer grado y no una recta porque el corte de una recta
     tiene esquina: la velocidad del frente cambiaria de golpe en el instante en
     que empieza el vaciado, y ese quiebre se ve igual que el que se quiere
     quitar."""
-    x = (T_FIN - t) / CIERRE
+    x = (T_SECA + CIERRE - t) / CIERRE
     if x >= 1.0:
         return 1.0
     if x <= 0.0:
@@ -464,10 +470,15 @@ def caudal(t):
 def masa(t):
     u"""Lo que cada gota deja en el suelo, creciendo como una potencia del
     tiempo para que el frente no pierda velocidad. Arranca en la rotura: si
-    espera, el charco se asienta primero y se ve el frenazo."""
+    espera, el charco se asienta primero y se ve el frenazo.
+
+    Deja de crecer cuando la caja se seca, pero no se vacia con ella: las gotas
+    que ya iban por el aire tienen que seguir entregando lo suyo al aterrizar.
+    Si se vaciara tambien esto, la ultima lengua del chorro caeria en el charco
+    sin engordarlo y se veria atravesarlo."""
     if t < 0.0:
         return 0.0
-    return MASA0 * (1.0 + t) ** EXP_MASA * vaciado(t)
+    return MASA0 * (1.0 + min(t, T_SECA + CIERRE)) ** EXP_MASA
 
 
 def grav_agua(t):
