@@ -32,12 +32,17 @@ NSUB = 2                        # trozos por cuadro, iguales en todos los cuadro
 ANCLA = F.PB(F.BOCA_X, F.MURO_Y, F.BOCA_Z)   # donde se colapsa lo que sobra
 
 
-# Donde se congela. El liquido espeso corre mucho mas que el de antes, asi que
-# el corte manda mas que la fisica, y el margen es estrecho: a los 2,3 s el
-# charco ya se desborda por el filo de abajo y se mete debajo del titular, y a
-# los 1,9 s se queda corto. En 2,1 es un ovalo ancho que cabe al lado de la
-# caja sin llegar al borde.
-FIN = 2.1
+# Donde se congela. Lo que manda no es el reloj sino hasta donde llega el
+# frente: el charco que Jose aprobo mide unos 234 px desde el punto de caida,
+# y ese tamano se alcanza mas tarde cada vez que el liquido se hace mas
+# espeso. Con el roce de fondo en 9,0 el frente va a unos 70 px por segundo,
+# la mitad que antes, y esos 234 px caen a los 2,6 s. Se corta un poco antes,
+# porque el liquido espeso no solo llega mas lejos con el tiempo sino que se
+# ensancha mas por el camino, y a los 2,6 el charco ya toca el filo de abajo
+# de la banda. Quien cambie la
+# viscosidad tiene que volver a correr scripts/fluido_medida.py y buscar el
+# instante del mismo alcance, no dejar el numero como esta.
+FIN = 2.35
 
 
 def instantes():

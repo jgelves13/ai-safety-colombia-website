@@ -80,9 +80,9 @@ NGZ = int(round((GZ1 - GZ0) / CEL))
 
 RHO0 = 2.2                       # densidad de reposo
 KP = 0.16                        # rigidez de la presion
-VISC = 0.52                      # cuanto se pega cada gota a sus vecinas
+VISC = 0.75                      # cuanto se pega cada gota a sus vecinas
 REBOTE = 0.02                    # espeso: no rebota, se aplasta
-ROCE = 3.6                        # roce del reborde, POR SEGUNDO
+ROCE = 4.8                        # roce del reborde, POR SEGUNDO
 
 N_MAX = 9000
 CAUDAL = 1050.0                   # particulas por segundo
@@ -228,9 +228,15 @@ FLUIDO = (~SOLIDO).astype(float)
 # Un liquido espeso se mueve como una lamina, no como agua: mucho roce de
 # fondo y mucha difusion de cantidad de movimiento. El frente queda romo y
 # avanza entero en vez de deshilacharse en dedos.
-CF = 4.4                         # roce del fondo: lo que hace que se asiente
-NU = 0.85                        # viscosidad
-NUH = 0.075
+#
+# La difusion es explicita, asi que NU y NUH no se pueden subir sin mirar: el
+# paso aguanta mientras dt*NU dividido por DX al cuadrado quede por debajo de
+# 0,25, o sea NU por debajo de 1,31 con dt de 0,0025 y DX de 0,114. Pasado ahi
+# la lamina se llena de cuadros y revienta. Para frenar mas de lo que da esa
+# cota se sube el roce del fondo, que no tiene ese limite.
+CF = 9.0                         # roce del fondo: lo que hace que se asiente
+NU = 1.15                        # viscosidad
+NUH = 0.11
 
 # Fuera del cuadro el liquido se va. Sin esto se acumula contra el borde de la
 # rejilla y el frente se frena justo donde tiene que seguir.
@@ -274,7 +280,7 @@ UMAX = 8.0
 # sea menor que DX, o sea h por debajo de 42 con g=50 y DX=0,114. Que el charco
 # quede hondo junto al boquete no se ve: el contorno solo pregunta si hay
 # liquido, no cuanto.
-HMAX = 14.0
+HMAX = 22.0
 
 
 def paso_agua(h, hu, hv, dt, g):

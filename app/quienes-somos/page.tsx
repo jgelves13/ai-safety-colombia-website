@@ -222,8 +222,8 @@ const EQUIPO: Persona[] = [
     linkedin: "https://www.linkedin.com/in/manueloff14/",
     bio: (
       <>
-        Programador full stack en Altruismo Eficaz Uniandes entre enero y agosto
-        de 2025. Recién egresado del bachillerato.
+        Trabajó recientemente como programador full stack en Altruismo Eficaz
+        Uniandes entre enero y agosto de 2025. Recién egresado del bachillerato.
       </>
     ),
   },
