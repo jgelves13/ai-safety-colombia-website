@@ -393,7 +393,7 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
               requerido
               name="aiSafety"
               label="¿Has tenido algún acercamiento a la seguridad de la IA?"
-              ayuda="Un curso, un grupo de lectura, un artículo que te marcó, un proyecto, una charla. El sprint está abierto a quien llega al tema por primera vez, así que si es tu caso, escríbelo y cuéntanos qué te trajo hasta acá."
+              ayuda="Un curso, un grupo de lectura, un artículo que te marcó, un proyecto, una charla. Si nunca has tenido contacto con el tema, escribe eso mismo: el sprint está abierto a quien llega por primera vez y no descalifica."
               error={errores.aiSafety}
             >
               <textarea {...areaProps("aiSafety", 4)} />
