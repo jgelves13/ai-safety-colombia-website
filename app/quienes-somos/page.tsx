@@ -177,6 +177,9 @@ const EQUIPO: Persona[] = [
   {
     nombre: "Sofía Botia",
     rol: "Voluntaria",
+    foto: "/aisc/equipo/sofia-botia.png",
+    linkedin:
+      "https://www.linkedin.com/in/karen-sof%C3%ADa-botia-vizcaya-2898b334b/",
     bio: (
       <>
         Estudiante de derecho en la{" "}
