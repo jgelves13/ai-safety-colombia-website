@@ -177,6 +177,7 @@ const EQUIPO: Persona[] = [
   {
     nombre: "Leonardo Párraga",
     rol: "Voluntario",
+    foto: "/aisc/equipo/leonardo-parraga.png",
     linkedin: "https://www.linkedin.com/in/leonardoparraga/",
     bio: (
       /* La Coalición no tiene sitio propio, así que el nombre va sin enlace. */
