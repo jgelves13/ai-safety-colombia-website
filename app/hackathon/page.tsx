@@ -296,7 +296,7 @@ export default function Hackathon() {
       </section>
 
       {/* Las tres cifras duras, en tarjetas oscuras pegadas al hero. */}
-      <section className={`${SECCION} pt-9 pb-14 md:pt-10 md:pb-16`}>
+      <section className={`${SECCION} pt-9 pb-10 md:pt-10 md:pb-12`}>
         <div className={`${CONTENEDOR} flex flex-col gap-12 md:gap-14`}>
           <dl className="grid grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-3">
             {DATOS.map((d) => (
