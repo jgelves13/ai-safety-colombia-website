@@ -117,20 +117,11 @@ const EQUIPO: Persona[] = [
         <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
           Apart Research
         </a>{" "}
-        e ingeniero de investigación en el{" "}
+        e ingeniero de investigación y analista de riesgos en el{" "}
         <a className={ENLACE} href="https://www.orcg.info/" target="_blank" rel="noopener noreferrer">
           Observatorio de Riesgos Catastróficos Globales
         </a>
-        . Coautor de{" "}
-        <a
-          className={ENLACE}
-          href="https://arxiv.org/abs/2510.25884"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Approximating Human Preferences Using a Multi-Judge Learned System
-        </a>
-        , aceptado en dos talleres de NeurIPS 2025.
+        .
       </>
     ),
   },
