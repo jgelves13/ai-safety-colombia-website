@@ -182,15 +182,15 @@ const EQUIPO: Persona[] = [
       "https://www.linkedin.com/in/karen-sof%C3%ADa-botia-vizcaya-2898b334b/",
     bio: (
       <>
-        Estudiante de derecho en la{" "}
+        Estudiante de Derecho en la{" "}
         <a className={ENLACE} href="https://uniandes.edu.co/" target="_blank" rel="noopener noreferrer">
           Universidad de los Andes
         </a>
-        . Asistente de investigación de Cecilia Cavero en{" "}
+        . Asistente de investigación en{" "}
         <a className={ENLACE} href="https://www.psu.edu/" target="_blank" rel="noopener noreferrer">
           Penn State
         </a>{" "}
-        y monitora de investigación de Natalia Gaviria-Díaz en{" "}
+        y monitora de investigación en{" "}
         <a className={ENLACE} href="https://www.hbs.edu/" target="_blank" rel="noopener noreferrer">
           Harvard Business School
         </a>

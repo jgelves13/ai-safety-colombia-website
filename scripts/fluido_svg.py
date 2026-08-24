@@ -40,15 +40,23 @@ FIN = 1.9
 
 
 def instantes():
-    u"""Cuando se guarda un cuadro: apretados mientras cae, sueltos al inundar."""
+    u"""Cuando se guarda un cuadro: apretados mientras cae, sueltos al inundar.
+
+    Los dos ritmos se recortan contra FIN, y no solo el segundo. Estos tiempos
+    salen como las claves del SMIL divididas por la duracion, o sea que tienen
+    que quedar entre cero y uno: un solo cuadro pasado el corte da una clave
+    mayor que uno y el navegador descarta la animacion entera, con lo que el
+    trazo se queda en el primer cuadro y no se ve ni una gota."""
     ts = [0.0, F.T_GOLPE]
     t = F.T_GOLPE + 0.10
-    while t < 2.30:
+    while t < min(2.30, FIN):
         ts.append(round(t, 3))
         t += 0.115
     while t < FIN:
         ts.append(round(t, 3))
         t += 0.38
+    while len(ts) > 1 and ts[-1] > FIN - 0.02:
+        ts.pop()
     ts.append(FIN)
     return ts
 
