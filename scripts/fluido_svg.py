@@ -33,10 +33,11 @@ ANCLA = F.PB(F.BOCA_X, F.MURO_Y, F.BOCA_Z)   # donde se colapsa lo que sobra
 
 
 # Donde se congela. El liquido espeso corre mucho mas que el de antes, asi que
-# el corte manda mas que la fisica. A los 1,9 s el charco es un ovalo que cabe
-# al lado de la caja; pasados los 2,3 s se desborda por el filo de abajo y se
-# mete debajo del titular.
-FIN = 1.9
+# el corte manda mas que la fisica, y el margen es estrecho: a los 2,3 s el
+# charco ya se desborda por el filo de abajo y se mete debajo del titular, y a
+# los 1,9 s se queda corto. En 2,1 es un ovalo ancho que cabe al lado de la
+# caja sin llegar al borde.
+FIN = 2.1
 
 
 def instantes():
