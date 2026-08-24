@@ -80,7 +80,7 @@ export default function QuienesSomos() {
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="flex flex-col gap-8 md:gap-10">
             <h2 className="text-display-2 md:text-display-2-lg">Por qué existimos</h2>
-            <div className="grid grid-cols-1 gap-6 text-body-sm text-aisc-ink sm:grid-cols-3 sm:gap-8 md:text-body md:text-body-lg">
+            <div className="flex max-w-[860px] flex-col gap-5 text-body-sm text-aisc-ink md:gap-6 md:text-body md:text-body-lg">
               <p>
                 Los sistemas de inteligencia artificial ganan capacidades más rápido de lo que crece nuestra
                 comprensión de ellos. En ese hueco trabaja muy poca gente en el mundo. Los colombianos que ya estaban
@@ -102,14 +102,14 @@ export default function QuienesSomos() {
         </div>
       </section>
 
-      <section id="junta" className="bg-aisc-cream">
+      <section id="equipo" className="bg-aisc-cream">
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pt-0 pb-14 md:pb-20 lg:pb-24">
           <div className="flex flex-col gap-8 md:gap-10">
             <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-[minmax(0,1fr)_minmax(280px,0.92fr)] sm:items-start sm:gap-8">
-              <h2 className="text-display-2 md:text-display-2-lg">La junta</h2>
+              <h2 className="text-display-2 md:text-display-2-lg">El equipo</h2>
               <p className="text-body-sm text-aisc-ink md:text-body md:text-body-lg">
-                Quienes sostienen la operación. Todo el equipo es voluntario y la organización se financia con
+                Quienes sostienen la operación. Todos somos voluntarios y la organización se financia con
                 donaciones y con los presupuestos de los programas que organizamos.
               </p>
             </div>
