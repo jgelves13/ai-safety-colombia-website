@@ -221,24 +221,24 @@ const MENTORES: {
     linkedin: "https://www.linkedin.com/in/luiscosio/",
     bio: (
       <>
-        Del equipo técnico de{" "}
+        Miembro del equipo técnico de{" "}
         <a
           className={ENLACE}
           href="https://sl5.org/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          SL5
+          Security Level 5
         </a>
-        , la iniciativa para que los sistemas de IA más avanzados resistan a
-        adversarios estatales y a escenarios de pérdida de control. Coautor del{" "}
+        , iniciativa enfocada en proteger sistemas avanzados de IA frente a
+        adversarios estatales y pérdida de control. Coautor del{" "}
         <a
           className={ENLACE}
           href="https://arxiv.org/abs/2605.08449"
           target="_blank"
           rel="noopener noreferrer"
         >
-          estándar SL5 de seguridad para IA
+          estándar SL5
         </a>
         , mentor de{" "}
         <a
@@ -249,7 +249,7 @@ const MENTORES: {
         >
           SPAR
         </a>{" "}
-        y antes en el{" "}
+        y exinvestigador del{" "}
         <a
           className={ENLACE}
           href="https://securityandtechnology.org/"
