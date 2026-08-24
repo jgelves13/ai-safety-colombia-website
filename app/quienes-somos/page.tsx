@@ -83,18 +83,19 @@ export default function QuienesSomos() {
             <div className="text-body md:text-body-lg flex flex-col gap-5 text-aisc-ink">
               <p>
                 Los sistemas de inteligencia artificial ganan capacidades más rápido de lo que crece nuestra
-                comprensión de ellos. En ese hueco trabaja muy poca gente en el mundo. Los colombianos que ya estaban
-                ahí trabajaban cada uno por su lado.
+                comprensión de ellos, y todavía hay muy poca gente trabajando en los riesgos que esto genera. En
+                Colombia, quienes ya estaban en el área trabajaban principalmente por su cuenta y, hasta 2024, no
+                existía una organización dedicada a conectar esos esfuerzos.
               </p>
               <p>
-                Colombia son 52 millones de personas que van a usar estos sistemas, regularlos y sufrirlos, y hasta 2024
-                no había una sola organización trabajando en el tema. Empezamos para que la haya: para que quien quiera
-                meterse tenga por dónde entrar, y para que cuando se decidan las reglas haya gente de acá que entienda de
-                qué se está hablando.
+                Eso importa en un país de 52 millones de personas que va a usar estos sistemas, regularlos y verse
+                afectado por ellos. Creamos AI Safety Colombia para que quien quiera trabajar en estos problemas tenga
+                por dónde entrar y para que, cuando se tomen decisiones sobre la IA, haya gente en el país que entienda
+                lo que está en juego.
               </p>
               <p>
-                Somos una organización pequeña y voluntaria. Lo que hacemos es concreto: formar gente, organizar
-                investigación y sostener la conversación pública sobre el tema en el país.
+                Somos una organización pequeña y voluntaria. Nuestro trabajo es concreto: formar personas, impulsar
+                investigación y sostener la conversación pública sobre estos temas en Colombia.
               </p>
             </div>
           </div>
