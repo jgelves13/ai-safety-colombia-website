@@ -220,7 +220,7 @@ ESTILO = u"""
 
 .lq-charco{animation:lqCrece 1.6s cubic-bezier(.2,.7,.3,1) %(tp)ss both}
 .lq-inunda{animation:lqCrece 4.6s cubic-bezier(.5,.02,.75,.4) %(tp)ss both}
-@keyframes lqCrece{from{transform:scale(.05)}to{transform:scale(1)}}
+@keyframes lqCrece{from{transform:scale(0)}to{transform:scale(1)}}
 
 .lq-gota{opacity:0}
 .lq-g1{animation:lqGota .72s cubic-bezier(.45,0,.9,.6) %(g1)ss both}
@@ -251,7 +251,9 @@ CASOS = [
 ]
 
 T0 = 0.92            # el chorro arranca despues del golpe
-TP = 1.45            # el charco empieza a crecer
+TP = 1.78            # el charco empieza a crecer: el chorro tarda 0,8 s
+                     # en llegar al suelo, antes de eso no hay nada que
+                     # encharcar
 TF = 2.85            # el chorro se corta (solo en las finitas)
 
 
