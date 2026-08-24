@@ -47,7 +47,11 @@ type Grupo = {
   titulo: string;
   lead: string;
   icono: () => ReactNode;
-  items: { href: string; title: string; quien: string; body: string }[];
+  /* La proporcion de la miniatura es del grupo, no de la pieza: asi la fila
+     entera se lee pareja. Los canales y las caratulas son cuadrados; las
+     portadas de libro van 2:3. Un grupo sin miniaturas la omite. */
+  forma?: "cuadro" | "libro";
+  items: { href: string; title: string; quien: string; body: string; miniatura?: string }[];
 };
 
 const GRUPOS: Grupo[] = [
@@ -56,28 +60,33 @@ const GRUPOS: Grupo[] = [
     titulo: "Videos",
     lead: "Para entender el campo sin leer un artículo entero.",
     icono: IconVideos,
+    forma: "cuadro",
     items: [
       {
         href: "https://www.youtube.com/@RobertMilesAI/videos",
         title: "Robert Miles AI Safety",
+        miniatura: "/aisc/recursos/robert-miles.webp",
         quien: "Robert Miles",
         body: "La biblioteca de referencia en video sobre alineación, control y los problemas que siguen abiertos.",
       },
       {
         href: "https://www.youtube.com/@RationalAnimations",
         title: "Rational Animations",
+        miniatura: "/aisc/recursos/rational-animations.webp",
         quien: "YouTube",
         body: "Animaciones que adaptan ensayos clásicos sobre IA, racionalidad y riesgo existencial.",
       },
       {
         href: "https://www.youtube.com/@Siliconversations",
         title: "Siliconversations",
+        miniatura: "/aisc/recursos/siliconversations.webp",
         quien: "YouTube",
         body: "Explicadores animados y cortos, cada uno sobre un riesgo o una propuesta concreta.",
       },
       {
         href: "https://www.youtube.com/@DoomDebates",
         title: "Doom Debates",
+        miniatura: "/aisc/recursos/doom-debates.webp",
         quien: "Liron Shapira",
         body: "Debates y entrevistas donde las dos posiciones sobre el riesgo se discuten de frente.",
       },
@@ -88,28 +97,33 @@ const GRUPOS: Grupo[] = [
     titulo: "Podcasts",
     lead: "Conversaciones largas, buenas para trayecto o gimnasio.",
     icono: IconPodcasts,
+    forma: "cuadro",
     items: [
       {
         href: "https://axrp.net/",
         title: "AXRP",
+        miniatura: "/aisc/recursos/axrp.webp",
         quien: "Daniel Filan",
         body: "El podcast de referencia en alineación técnica: entrevistas extensas con quienes hacen la investigación.",
       },
       {
         href: "https://80000hours.org/podcast/",
         title: "The 80,000 Hours Podcast",
+        miniatura: "/aisc/recursos/80k-podcast.webp",
         quien: "80,000 Hours",
         body: "Conversaciones con investigadores, fundadores y gente de política sobre qué hacer con la carrera propia.",
       },
       {
         href: "https://www.cognitiverevolution.ai/",
         title: "The Cognitive Revolution",
+        miniatura: "/aisc/recursos/cognitive-revolution.webp",
         quien: "Nathan Labenz",
         body: "Semanal, con gente de los laboratorios de frontera. Sirve para seguirle el paso a lo que sale.",
       },
       {
         href: "https://futureoflife.org/podcast/",
         title: "Future of Life Institute Podcast",
+        miniatura: "/aisc/recursos/fli-podcast.webp",
         quien: "Future of Life Institute",
         body: "Entrevistas con investigadores, reguladores y filósofos sobre riesgo existencial.",
       },
@@ -120,28 +134,33 @@ const GRUPOS: Grupo[] = [
     titulo: "Libros",
     lead: "Cuando ya quieres el argumento completo y no un resumen.",
     icono: IconLibros,
+    forma: "libro",
     items: [
       {
         href: "https://brianchristian.org/the-alignment-problem/",
         title: "The Alignment Problem",
+        miniatura: "/aisc/recursos/alignment-problem.webp",
         quien: "Brian Christian",
         body: "Una narración accesible de por qué es difícil alinear un sistema con lo que de verdad queremos.",
       },
       {
         href: "https://people.eecs.berkeley.edu/~russell/hc.html",
         title: "Human Compatible",
+        miniatura: "/aisc/recursos/human-compatible.webp",
         quien: "Stuart Russell",
         body: "El argumento de uno de los autores del manual clásico de IA para redefinir el campo alrededor de la incertidumbre.",
       },
       {
         href: "https://nickbostrom.com/superintelligence",
         title: "Superintelligence",
+        miniatura: "/aisc/recursos/superintelligence.webp",
         quien: "Nick Bostrom",
         body: "El libro que llevó la discusión sobre IA general al debate público. Es de 2014 y se nota, pero fija el vocabulario.",
       },
       {
         href: "https://ifanyonebuildsit.com/",
         title: "If Anyone Builds It, Everyone Dies",
+        miniatura: "/aisc/recursos/if-anyone-builds-it.webp",
         quien: "Yudkowsky y Soares, 2025",
         body: "La versión más directa del caso pesimista. Útil incluso si no se comparte la conclusión.",
       },
@@ -181,8 +200,12 @@ const GRUPOS: Grupo[] = [
   },
 ];
 
+/* El marco recorta la miniatura, que va a sangre hasta el borde redondeado;
+   el relleno vive en el cuerpo para que la imagen no lo herede. */
 const CARD =
-  "flex h-full flex-col gap-5 rounded-[12px] border border-aisc-forest-deep/20 bg-aisc-cream p-6 transition-colors hover:border-aisc-forest-deep md:p-7";
+  "flex h-full flex-col overflow-hidden rounded-[12px] border border-aisc-forest-deep/20 bg-aisc-cream transition-colors hover:border-aisc-forest-deep";
+const CARD_CUERPO = "flex flex-1 flex-col gap-5 p-6 md:p-7";
+const MINIATURA = "block w-full border-b border-aisc-forest-deep/20 object-cover";
 const ENLACE = "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
 
 export default function Recursos() {
@@ -256,15 +279,29 @@ export default function Recursos() {
                 {grupo.items.map((item) => (
                   <li className="flex" key={item.href}>
                     <article className={CARD}>
-                      <div className="flex flex-col gap-1.5">
-                        <h3 className="text-display-4 md:text-display-4-lg text-balance">
-                          <a className={ENLACE} href={item.href} target="_blank" rel="noopener noreferrer">
-                            {item.title}
-                          </a>
-                        </h3>
-                        <span className="text-meta text-aisc-muted">{item.quien}</span>
+                      {item.miniatura ? (
+                        <img
+                          alt=""
+                          aria-hidden="true"
+                          loading="lazy"
+                          decoding="async"
+                          width={grupo.forma === "libro" ? 600 : 800}
+                          height={grupo.forma === "libro" ? 900 : 800}
+                          src={item.miniatura}
+                          className={`${MINIATURA} ${grupo.forma === "libro" ? "aspect-[2/3]" : "aspect-square"}`}
+                        />
+                      ) : null}
+                      <div className={CARD_CUERPO}>
+                        <div className="flex flex-col gap-1.5">
+                          <h3 className="text-display-4 md:text-display-4-lg text-balance">
+                            <a className={ENLACE} href={item.href} target="_blank" rel="noopener noreferrer">
+                              {item.title}
+                            </a>
+                          </h3>
+                          <span className="text-meta text-aisc-muted">{item.quien}</span>
+                        </div>
+                        <p className="text-body-sm text-aisc-ink">{item.body}</p>
                       </div>
-                      <p className="text-body-sm text-aisc-ink">{item.body}</p>
                     </article>
                   </li>
                 ))}
