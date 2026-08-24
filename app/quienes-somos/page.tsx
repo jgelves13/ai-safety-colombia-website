@@ -93,6 +93,24 @@ const EQUIPO: Persona[] = [
     ),
   },
   {
+    nombre: "Fernando Avalos",
+    rol: "En memoria",
+    bio: (
+      <>
+        Coautor de{" "}
+        <a
+          className={ENLACE}
+          href="https://arxiv.org/abs/2510.25884"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Approximating Human Preferences Using a Multi-Judge Learned System
+        </a>
+        , aceptado en dos talleres de NeurIPS 2025.
+      </>
+    ),
+  },
+  {
     nombre: "Camila Beltrán",
     rol: "Grupo de AI Control",
     foto: "/aisc/mentores/camila-beltran.png",
@@ -140,28 +158,10 @@ const EQUIPO: Persona[] = [
       </>
     ),
   },
-  {
-    nombre: "Fernando Avalos",
-    rol: "En memoria",
-    bio: (
-      <>
-        Coautor de{" "}
-        <a
-          className={ENLACE}
-          href="https://arxiv.org/abs/2510.25884"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Approximating Human Preferences Using a Multi-Judge Learned System
-        </a>
-        , aceptado en dos talleres de NeurIPS 2025.
-      </>
-    ),
-  },
 ];
 
 /* Cuantas fichas van arriba. El resto baja a la segunda fila. */
-const EN_PRIMERA_FILA = 1;
+const EN_PRIMERA_FILA = 2;
 
 const ALIADOS = [
   {
