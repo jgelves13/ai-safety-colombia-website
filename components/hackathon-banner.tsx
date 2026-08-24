@@ -10,7 +10,7 @@ export const SPRINT = {
   title: "AI Incident Response Sprint · presencial en Bogotá",
   body: "Del 11 al 13 de septiembre. Un fin de semana para investigar cómo se responde cuando un sistema de IA falla en serio: contención, reconstrucción del incidente, respuesta regulatoria y comunicación. USD 2.000 en premios y las aplicaciones cierran el 6 de septiembre.",
   cta: "Ver la convocatoria",
-  href: "/hackathon",
+  href: "/sprint",
   /* fecha de arranque del sprint */
   startsAt: "2026-09-11",
 };

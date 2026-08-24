@@ -10,7 +10,7 @@ import { useEffect, useRef } from "react";
    septiembre hay que renombrarla con el que siga. */
 const NAV = [
   { href: "/seguridad-de-la-ia", label: "¿Qué es AI safety?" },
-  { href: "/hackathon", label: "AI Incident Response Sprint" },
+  { href: "/sprint", label: "AI Incident Response Sprint" },
   { href: "/investigacion", label: "Investigación" },
   { href: "/recursos", label: "Recursos" },
   { href: "/unete", label: "Únete" },

@@ -36,7 +36,7 @@ const ABIERTO = [
     body: "Oyes de primera mano a alguien que trabaja en el tema y le puedes preguntar en persona lo que quieras. Es también donde la gente de la comunidad se conoce y salen las colaboraciones.",
   },
   {
-    href: "/hackathon",
+    href: "/sprint",
     external: false,
     title: "Hackathones de investigación",
     cta: "Ver el de septiembre",

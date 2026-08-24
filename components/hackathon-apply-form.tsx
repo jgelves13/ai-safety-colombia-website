@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { APART_SPRINT_URL, EQUIPO_FORM, TRACKS_FORM, VIAJE_FORM } from "@/app/hackathon/datos";
+import { APART_SPRINT_URL, EQUIPO_FORM, TRACKS_FORM, VIAJE_FORM } from "@/app/sprint/datos";
 
 /* Borrador local: quien empieza a escribir y cierra la pestaña no pierde lo que
    llevaba. Se borra al enviar. */
@@ -209,7 +209,7 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
           </a>
           <Link
             className="text-body-sm inline-flex min-h-11 items-center rounded-full border border-aisc-ink px-6 font-medium text-aisc-ink transition-colors hover:bg-aisc-ink hover:text-aisc-cream"
-            href="/hackathon"
+            href="/sprint"
           >
             Volver al sprint
           </Link>
@@ -240,7 +240,7 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
           </a>
           <Link
             className="text-body-sm inline-flex min-h-11 items-center rounded-full border border-aisc-ink px-6 font-medium text-aisc-ink transition-colors hover:bg-aisc-ink hover:text-aisc-cream"
-            href="/hackathon"
+            href="/sprint"
           >
             Volver al sprint
           </Link>

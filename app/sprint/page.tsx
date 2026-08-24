@@ -293,7 +293,7 @@ export default function Hackathon() {
       <section className={HERO_SECTION}>
         <HeroHackathon className={HERO_DERRAME_CLASS} />
         <div className={HERO_VELO_CLASS} aria-hidden="true" />
-        <SiteHeader active="/hackathon" />
+        <SiteHeader active="/sprint" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[860px] flex-col gap-5">
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">
@@ -308,7 +308,7 @@ export default function Hackathon() {
               {CIERRE_TEXTO}
             </p>
             <div className="mt-2 flex flex-wrap items-center gap-3">
-              <Link className={CTA_LINK_PRIMARY} href="/hackathon/aplicar">
+              <Link className={CTA_LINK_PRIMARY} href="/sprint/aplicar">
                 Aplicar al hub en Bogotá
               </Link>
               <a
@@ -623,7 +623,7 @@ export default function Hackathon() {
             ))}
           </ul>
           <div className="mt-10 flex flex-wrap items-center gap-3">
-            <Link className={CTA_LINK_PRIMARY} href="/hackathon/aplicar">
+            <Link className={CTA_LINK_PRIMARY} href="/sprint/aplicar">
               Aplicar al hub en Bogotá
             </Link>
             <span className="text-body-sm text-aisc-sand/70">
@@ -827,7 +827,7 @@ export default function Hackathon() {
                 una propuesta cerrada.
               </p>
               <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
-                <Link className={CTA_LINK_PRIMARY} href="/hackathon/aplicar">
+                <Link className={CTA_LINK_PRIMARY} href="/sprint/aplicar">
                   Aplicar
                 </Link>
                 <a

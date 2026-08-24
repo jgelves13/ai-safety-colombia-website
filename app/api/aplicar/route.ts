@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { CIERRE_ISO, EQUIPO_FORM, TRACKS_FORM, VIAJE_FORM } from "@/app/hackathon/datos";
+import { CIERRE_ISO, EQUIPO_FORM, TRACKS_FORM, VIAJE_FORM } from "@/app/sprint/datos";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

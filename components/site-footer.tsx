@@ -7,7 +7,7 @@ const WHATSAPP = "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ";
    Eventos y Actualidad no están en el menú, así que tampoco aquí. */
 const NAVEGACION = [
   { href: "/seguridad-de-la-ia", label: "¿Qué es AI safety?" },
-  { href: "/hackathon", label: "AI Incident Response Sprint" },
+  { href: "/sprint", label: "AI Incident Response Sprint" },
   { href: "/investigacion", label: "Investigación" },
   { href: "/recursos", label: "Recursos" },
   { href: "/unete", label: "Únete" },

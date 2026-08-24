@@ -33,7 +33,7 @@ export default function Aplicar() {
           style={{ color: "transparent" }}
           src="/aisc/patterns/aisc-hero-hackathon.svg"
         />
-        <SiteHeader active="/hackathon" />
+        <SiteHeader active="/sprint" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[760px] flex-col gap-5">
             <span className="text-kicker text-aisc-sand/70">AI Incident Response Sprint · 11 al 13 de septiembre</span>
@@ -59,7 +59,7 @@ export default function Aplicar() {
                 Si prefieres ver primero de qué se trata,{" "}
                 <Link
                   className="text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
-                  href="/hackathon"
+                  href="/sprint"
                 >
                   acá está el detalle del sprint
                 </Link>

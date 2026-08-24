@@ -384,7 +384,7 @@ export default function Investigacion() {
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
                 Del 11 al 13 de septiembre de 2026 abrimos el hub en Bogotá para el sprint de{" "}
-                <Link className={ENLACE} href="/hackathon">
+                <Link className={ENLACE} href="/sprint">
                   respuesta a incidentes de IA
                 </Link>
                 . El tema es qué se hace cuando un sistema de IA falla en producción y hay que reaccionar.
@@ -394,7 +394,7 @@ export default function Investigacion() {
                 todo el fin de semana.
               </p>
               <p>
-                <Link className={ENLACE} href="/hackathon/aplicar">
+                <Link className={ENLACE} href="/sprint/aplicar">
                   Las aplicaciones al hub en Bogotá están abiertas
                 </Link>{" "}
                 y cierran el 6 de septiembre.
@@ -408,7 +408,7 @@ export default function Investigacion() {
         title="Participa en el próximo"
         body="Del 11 al 13 de septiembre es el AI Incident Response Sprint, que convoca Apart Research. Abrimos el hub en Bogotá y las aplicaciones cierran el 6 de septiembre."
       >
-        <Link className={CTA_LINK_PRIMARY} href="/hackathon">
+        <Link className={CTA_LINK_PRIMARY} href="/sprint">
           Ver el hackathon
         </Link>
         <a
