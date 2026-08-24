@@ -390,14 +390,81 @@ GANANCIA = 13.5                  # cuanto pinta cada gota en el campo
 HREF = 0.024                     # profundidad a la que el agua ya es opaca
 NIVEL = 1.0
 
+# El chorro se pintaba como un rosario de gotas sueltas, y con el caudal alto
+# eso da igual: van tan juntas que el rastro sale continuo solo. Con el hilo del
+# final no. Ahi la presion del corte no actua, porque solo empuja por encima de
+# RHO0 y el hilo nunca llega; queda sola la viscosidad, que iguala velocidades y
+# junta unas gotas con otras. El hilo se agrupa en paquetes y entre paquete y
+# paquete se abre un vacio de veinte pixeles que baja con ellos. Ahi el campo se
+# hundia por debajo del nivel y el contorno partia el hilo en dos: el charco por
+# un lado y un munon colgando de la boca por el otro. Como los paquetes bajan,
+# el corte aparecia y desaparecia de un cuadro a otro, y eso era el parpadeo.
+#
+# Se pinta el tramo entre gota y gota, y no la gota. El hilo pasa a ser una
+# cinta que va de la boca al suelo sin poder tener huecos, porque sus huecos son
+# justo lo que se esta pintando.
+TRAMO_MAX = 46.0                 # px; mas lejos que eso no es hilo, son dos cosas
+TRAMO_N = 8                      # muestras con que se rellena cada tramo
+
+# Cada tramo lleva al menos la masa que hace falta para que se vea. Se mide
+# contra lo que el tramo baja en pantalla, que es por donde el hilo se estira, y
+# no contra su largo: dos gotas del mismo cuadro estan una al lado de la otra a
+# lo ancho del chorro, y esa distancia no es hilo que haya que rellenar.
+#
+# Se calibra contra la parte de arriba del hilo, que es la que sale bien: ahi
+# hay unas dos unidades de masa por celda de bajada y el campo da 1,9. Con 1,8
+# el vacio se rellena hasta 1,7, bien por encima de NIVEL, y donde el hilo ya
+# esta apretado el minimo no se alcanza y no cambia nada.
+#
+# Esto es una decision de dibujo y no de fisica. No toca masa(), asi que al
+# charco no cae ni una gota mas y el alcance del frente queda como estaba.
+DENSIDAD_MIN = 1.0               # masa por celda de bajada del hilo
+
+
+def _proyecta(x, y, z):
+    u"""Del mundo a la banda, que es donde vive el campo."""
+    return (OX + K * (O[0] + EX * (x - y)),
+            K * (O[1] + EY * (x + y) - EZ * z))
+
+
+def _hilo(corte):
+    u"""Los puntos con que se pinta el chorro, y lo que pesa cada uno."""
+    n = corte.n
+    # Se enhebra por altura en pantalla, que es lo unico que crece siempre a lo
+    # largo del hilo. Ni el orden de salida sirve, porque unas gotas adelantan a
+    # otras y el hilo saldria enredado, ni la altura en el mundo, porque el
+    # chorro tambien avanza hacia afuera mientras cae.
+    o = np.argsort(_proyecta(corte.x[:n], corte.y[:n], corte.z[:n])[1])
+    x, y, z = corte.x[:n][o], corte.y[:n][o], corte.z[:n][o]
+    px, py = _proyecta(x, y, z)
+    # A la de mas abajo se le añade detras una copia adelantada hasta donde va a
+    # tocar el suelo. Si no, el hilo se queda colgado a media caida cada vez que
+    # la de abajo acaba de aterrizar.
+    if n and corte.vz[:n][o][-1] < -1e-3:
+        vz, vy = corte.vz[:n][o][-1], corte.vy[:n][o][-1]
+        tt = min(z[-1] / (-vz), 0.05)
+        ex, ey = _proyecta(x[-1], y[-1] + vy * tt, z[-1] + vz * tt)
+        px, py = np.append(px, ex), np.append(py, ey)
+    if px.size < 2:
+        return px, py, np.ones(px.size)
+    dx, dy = px[1:] - px[:-1], py[1:] - py[:-1]
+    # Un tramo muy largo no es un hilo estirado: es una gota que se quedo en el
+    # reborde mientras el chorro seguia de largo. Ese no se pinta, se deja como
+    # gota suelta donde esta.
+    corto = (np.hypot(dx, dy) <= TRAMO_MAX).astype(float)
+    u = (np.arange(TRAMO_N) + 0.5) / TRAMO_N
+    sx = px[:-1, None] + (corto * dx)[:, None] * u
+    sy = py[:-1, None] + (corto * dy)[:, None] * u
+    peso = np.maximum(1.0, np.abs(corto * dy) / SF * DENSIDAD_MIN) / TRAMO_N
+    return sx.ravel(), sy.ravel(), np.repeat(peso, TRAMO_N)
+
 
 def campo(corte, h):
     u"""Un solo campo escalar: gotas mas lamina. De ahi sale una sola linea."""
     c = np.zeros((FW, FH))
     n = corte.n
     if n:
-        bx = OX + K * (O[0] + EX * (corte.x[:n] - corte.y[:n]))
-        by = K * (O[1] + EY * (corte.x[:n] + corte.y[:n]) - EZ * corte.z[:n])
+        bx, by, peso = _hilo(corte)
         fx = np.clip(bx / SF, 0, FW - 1.01)
         fy = np.clip(by / SF, 0, FH - 1.01)
         i0 = fx.astype(np.int32)
@@ -406,7 +473,7 @@ def campo(corte, h):
         for di, wa in ((0, 1 - a), (1, a)):
             for dj, wb in ((0, 1 - b), (1, b)):
                 np.add.at(c, (np.minimum(i0 + di, FW - 1),
-                              np.minimum(j0 + dj, FH - 1)), wa * wb)
+                              np.minimum(j0 + dj, FH - 1)), peso * wa * wb)
         c = ndimage.gaussian_filter(c, SIGMA_P) * GANANCIA
     agua = ndimage.map_coordinates(h, COORD, order=1, mode="constant")
     agua = agua.reshape(FW, FH) / HREF * 2.0

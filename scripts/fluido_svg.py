@@ -86,17 +86,34 @@ def _area(p):
     return 0.5 * float(np.sum(x * np.roll(y, -1) - np.roll(x, -1) * y))
 
 
-def canoniza(p):
-    u"""Mismo sentido de giro y mismo punto de arranque en todos los cuadros."""
+def canoniza(p, ref=None):
+    u"""Mismo sentido de giro y mismo punto de arranque en todos los cuadros.
+
+    El arranque no puede fijarse contra un punto del decorado. Los treinta
+    puntos van repartidos por igual a lo largo del contorno, asi que estan a
+    veintiseis pixeles unos de otros, y basta con que el charco crezca un poco
+    para que el vecino de la boca deje de ser el mismo: el arranque salta un
+    puesto y los treinta puntos se corren uno. La silueta es la misma, pero el
+    navegador interpola punto contra punto y durante el tramo los ve viajar a lo
+    largo del borde, cortando por dentro de cada curva. Eso es el temblor que
+    quedaba, y valia veinte pixeles de los veinticinco que se median.
+
+    Se elige el arranque que mas se parece al del cuadro anterior. Solo hay
+    treinta candidatos y el coste es el mismo para todos.
+    """
     if _area(p) < 0.0:
         p = p[::-1]
-    d = (p[:, 0] - ANCLA[0]) ** 2 + (p[:, 1] - ANCLA[1]) ** 2
-    return np.roll(p, -int(np.argmin(d)), axis=0)
+    if ref is None or float(np.ptp(ref, axis=0).max()) < 1e-6:
+        d = (p[:, 0] - ANCLA[0]) ** 2 + (p[:, 1] - ANCLA[1]) ** 2
+        return np.roll(p, -int(np.argmin(d)), axis=0)
+    coste = [((np.roll(p, -r, axis=0) - ref) ** 2).sum() for r in range(len(p))]
+    return np.roll(p, -int(np.argmin(coste)), axis=0)
 
 
-def cuadro(sil):
+def cuadro(sil, prev=None):
     u"""Rellena hasta NSUB trozos; lo que falta se colapsa en la boca."""
-    tro = [canoniza(p) for p in sil[:NSUB]]
+    tro = [canoniza(p, None if prev is None else prev[j])
+           for j, p in enumerate(sil[:NSUB])]
     while len(tro) < NSUB:
         tro.append(np.tile(np.array(ANCLA, dtype=float), (NPTS, 1)))
     return tro
@@ -133,8 +150,14 @@ def _trozo(p):
     return sal[0] + "C" + cad + "Z"
 
 
-def d_de(sil):
-    return "".join(_trozo(p) for p in cuadro(sil))
+def ds_de(sils):
+    u"""Los `d` de toda la pelicula, cada cuadro enganchado al anterior."""
+    ds, prev = [], None
+    for sil in sils:
+        tro = cuadro(sil, prev)
+        ds.append("".join(_trozo(p) for p in tro))
+        prev = tro
+    return ds
 
 
 # --------------------------------------------------------------- el ensamble
@@ -402,7 +425,7 @@ def main():
         for j, p in enumerate(guardo[q]):
             z["s%d_%d" % (i, j)] = p
     np.savez_compressed(CACHE, **z)
-    ds = [d_de(guardo[t]) for t in ts]
+    ds = ds_de([guardo[t] for t in ts])
     print("instantes:", len(ts), "peso del trazo:",
           sum(len(d) for d in ds) // 1024, "KB")
 
