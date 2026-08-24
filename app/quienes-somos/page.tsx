@@ -152,16 +152,7 @@ const EQUIPO: Persona[] = [
         >
           OCDE
         </a>
-        . Investigó la{" "}
-        <a
-          className={ENLACE}
-          href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          regulación europea
-        </a>{" "}
-        de escenarios de pérdida de control en{" "}
+        . Como Winter Fellow de{" "}
         <a
           className={ENLACE}
           href="https://www.governance.ai/"
@@ -170,7 +161,16 @@ const EQUIPO: Persona[] = [
         >
           GovAI
         </a>
-        .
+        , investigó la{" "}
+        <a
+          className={ENLACE}
+          href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          regulación europea
+        </a>{" "}
+        de escenarios de pérdida de control.
       </>
     ),
   },
