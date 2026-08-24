@@ -13,10 +13,9 @@ export type Idioma = "es" | "en" | "pt";
 export const IDIOMAS: Idioma[] = ["es", "en", "pt"];
 
 /* Los que ya tienen todas sus páginas escritas y por tanto aparecen en el
-   selector. Mientras el inglés y el portugués estén a medias, el selector no se
-   muestra: ofrecer una dirección que todavía no existe es peor que no ofrecer
-   nada. Al terminar cada árbol se agrega su sigla acá. */
-export const IDIOMAS_LISTOS: Idioma[] = ["es"];
+   selector. Un idioma entra acá cuando su árbol está completo: ofrecer una
+   dirección que todavía no existe es peor que no ofrecer nada. */
+export const IDIOMAS_LISTOS: Idioma[] = ["es", "en", "pt"];
 
 /** Cómo se llama cada idioma en su propia lengua, para el menú del selector. */
 export const NOMBRE_IDIOMA: Record<Idioma, string> = {
@@ -118,9 +117,12 @@ export function rutaEn(idioma: Idioma, rutaActual: string): string {
   return fila ? fila.ruta[idioma] : INICIO[idioma];
 }
 
-/** Las tres direcciones de una misma página, para el hreflang de los metadatos. */
+/** Las tres direcciones de una misma página, para el hreflang de los metadatos.
+    El x-default apunta al español, que es la versión que reciben los buscadores
+    cuando el idioma del visitante no es ninguno de los tres. */
 export function alternativas(rutaActual: string): Record<string, string> {
   const salida: Record<string, string> = {};
   for (const i of IDIOMAS) salida[i] = rutaEn(i, rutaActual);
+  salida["x-default"] = rutaEn("es", rutaActual);
   return salida;
 }

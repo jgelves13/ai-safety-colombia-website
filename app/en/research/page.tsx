@@ -7,21 +7,22 @@ import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
-  title: "Investigación",
+  title: "Research",
   description:
-    "Lo que publican los miembros de AI Safety Colombia: artículos revisados por pares, documentos de trabajo, reportes de investigación y los productos de nuestras hackathones.",
-  alternates: { canonical: "/investigacion", languages: alternativas("/investigacion") },
+    "What the members of AI Safety Colombia publish: peer-reviewed articles, working papers, research reports and the output of our hackathons.",
+  alternates: { canonical: "/en/research", languages: alternativas("/en/research") },
 };
 
 /* Publicaciones en las que alguien de la comunidad aparece como autor.
    `miembros` marca en negrilla a quien es de acá dentro de la lista de autores,
-   que se transcribe completa y en el orden en que la publicó el editor. */
+   que se transcribe completa y en el orden en que la publicó el editor. Los
+   títulos van como los publicó cada editor, sin traducir. */
 const PUBLICACIONES = [
   {
     titulo: "AI Benefit-Sharing Framework: Balancing Access and Safety",
-    tipo: "Documento de trabajo",
-    editor: "Oxford Martin AI Governance Initiative, Universidad de Oxford",
-    fecha: "Diciembre de 2025",
+    tipo: "Working paper",
+    editor: "Oxford Martin AI Governance Initiative, University of Oxford",
+    fecha: "December 2025",
     autores: [
       "Sumaya Nur Adan",
       "Joanna Wiaterek",
@@ -44,14 +45,14 @@ const PUBLICACIONES = [
       "Anna Yelizarova",
     ],
     miembros: ["Camila Beltran"],
-    body: "Propone un marco para repartir los beneficios de la IA sin bajar el estándar de seguridad. Se apoya en tres piezas: redistribuir parte de los retornos económicos, compartir tecnología y capacidad técnica, y contener la difusión de capacidades peligrosas. El argumento de fondo es que la gobernanza actual no resuelve quién accede a esos beneficios, y que los países de la mayoría global son los que quedan por fuera.",
+    body: "It proposes a framework for sharing the benefits of AI without lowering the safety standard. It rests on three pieces: redistributing part of the economic returns, sharing technology and technical capacity, and containing the spread of dangerous capabilities. The underlying argument is that current governance does not settle who gets access to those benefits, and that countries of the global majority are the ones left out.",
     href: "https://aigi.ox.ac.uk/publications/ai-benefit-sharing-framework-balancing-access-and-safety/",
   },
   {
     titulo: "Approximating Human Preferences Using a Multi-Judge Learned System",
-    tipo: "Artículo aceptado en taller",
-    editor: "arXiv. Aceptado en dos talleres de NeurIPS 2025: Reliable ML from Unreliable Data y Latinx in AI",
-    fecha: "Octubre de 2025",
+    tipo: "Workshop paper",
+    editor: "arXiv. Accepted at two NeurIPS 2025 workshops: Reliable ML from Unreliable Data and Latinx in AI",
+    fecha: "October 2025",
     autores: [
       "Eitán Sprejer",
       "Fernando Avalos",
@@ -61,17 +62,17 @@ const PUBLICACIONES = [
       "Narmeen Fatimah Oozeer",
     ],
     miembros: ["Fernando Avalos"],
-    body: "Cada vez se usan más modelos de lenguaje como jueces que califican las respuestas de otros modelos. El problema es que califican mal: cambian de criterio según cómo esté redactada la rúbrica, arrastran sesgos y son inestables. El trabajo propone no confiar en un solo juez sino combinar varios, cada uno con su rúbrica, y aprender cuánto pesa cada uno. El sistema resultante deja ver qué juez pesó más en cada decisión, así que se puede revisar por qué calificó como calificó.",
+    body: "Language models are increasingly used as judges that grade the answers of other models. The problem is that they grade badly: they shift criteria depending on how the rubric is worded, they carry biases and they are unstable. The paper proposes not trusting a single judge but combining several, each with its own rubric, and learning how much each one weighs. The resulting system shows which judge weighed most in each decision, so you can check why it graded the way it did.",
     href: "https://arxiv.org/abs/2510.25884",
   },
   {
     titulo: "La securitización de la inteligencia artificial: un análisis de sus impulsores y sus consecuencias",
-    tipo: "Artículo revisado por pares",
-    editor: "Revista de Estudios Sociales n.º 93, Universidad de los Andes",
-    fecha: "Julio de 2025",
+    tipo: "Peer-reviewed article",
+    editor: "Revista de Estudios Sociales no. 93, Universidad de los Andes",
+    fecha: "July 2025",
     autores: ["Mónica A. Ulloa Ruiz", "Guillem Bas Graells"],
     miembros: ["Mónica A. Ulloa Ruiz"],
-    body: "Estudia qué pasa cuando en Estados Unidos se habla de la inteligencia artificial como un asunto de seguridad nacional. Los autores revisan veinticinco declaraciones públicas de agencias del gobierno, organizaciones técnicas y medios, y encuentran dos maneras de plantear el problema: una habla de amenazas, señala a un adversario concreto y sirve para justificar medidas excepcionales; la otra habla de riesgos y cabe dentro de la regulación de siempre. La conclusión es que la segunda sostiene mejor la cooperación a largo plazo.",
+    body: "It studies what happens when artificial intelligence is framed in the United States as a matter of national security. The authors review twenty-five public statements from government agencies, technical organisations and the press, and find two ways of posing the problem: one speaks of threats, points at a specific adversary and serves to justify exceptional measures; the other speaks of risks and fits inside ordinary regulation. The conclusion is that the second sustains long-term cooperation better.",
     href: "https://revistas.uniandes.edu.co/index.php/res/article/view/10754",
   },
 ];
@@ -81,43 +82,43 @@ const PUBLICACIONES = [
 const PREMIADOS = [
   {
     titulo: "ColDron",
-    premio: "Premio de Latinoamérica",
+    premio: "Latin America prize",
     ciudad: "Bogotá",
-    equipo: "Leonardo Párraga, Angie Giraldo y Víctor Gelves",
-    body: "Los grupos armados ilegales en Colombia ya atacan con drones comerciales modificados. El equipo armó un conjunto de datos abierto con 42 ataques documentados para responder la pregunta de la que depende cómo se regula esto: quién escoge el blanco y quién aprieta el gatillo.",
+    equipo: "Leonardo Párraga, Angie Giraldo and Víctor Gelves",
+    body: "Illegal armed groups in Colombia already attack with modified commercial drones. The team built an open dataset of 42 documented attacks to answer the question this regulation hinges on: who picks the target and who pulls the trigger.",
     href: "https://apartresearch.com/project/coldron-lj2w",
   },
   {
-    titulo: "Identidad colombiana en las representaciones internas de un modelo",
-    premio: "Premio de Latinoamérica",
+    titulo: "Colombian identity in a model's internal representations",
+    premio: "Latin America prize",
     ciudad: "Cali",
     equipo:
-      "Gilber Alexis Corrales Gallego, Pablo Santiago Potes Velasco, Jhoan Stevan Mosquera Ortiz, Nicolás Lozano Mazuera, María del Mar García Matabanchoy y Óscar Julián Pérez Ladino",
-    body: "Un modelo puede deducir de quién le escribe cosas que nadie le dijo. El equipo midió si Qwen2.5-7B representa por dentro la identidad colombiana y el estrato social a partir de pistas del habla, y si eso arrastra estereotipos.",
+      "Gilber Alexis Corrales Gallego, Pablo Santiago Potes Velasco, Jhoan Stevan Mosquera Ortiz, Nicolás Lozano Mazuera, María del Mar García Matabanchoy and Óscar Julián Pérez Ladino",
+    body: "A model can infer things about whoever writes to it that nobody told it. The team measured whether Qwen2.5-7B internally represents Colombian identity and social class from speech cues, and whether that drags stereotypes along.",
     href: "https://apartresearch.com/project/probing-latent-colombian-identity-inferences-in-qwen257b-with-natural-language-autoencoders-mucf",
   },
   {
-    titulo: "Qué pasos del razonamiento producen el sesgo",
-    premio: "Premio de Latinoamérica",
+    titulo: "Which reasoning steps produce the bias",
+    premio: "Latin America prize",
     ciudad: "Bogotá",
     equipo: "Andres Felipe Mosquera Hernandez",
-    body: "Los modelos que razonan en voz alta dejan un rastro de pasos intermedios. El trabajo identifica cuáles de esos pasos son los que terminan produciendo respuestas estereotipadas en escenarios latinoamericanos, en vez de medir solo el resultado final.",
+    body: "Models that reason out loud leave a trail of intermediate steps. The work identifies which of those steps end up producing stereotyped answers in Latin American scenarios, instead of measuring only the final output.",
     href: "https://apartresearch.com/project/thought-anchors-for-social-bias-which-reasoning-steps-matter-in-extended-thinking-llms-on-latin-american-scenarios-27ti",
   },
   {
-    titulo: "¿Por qué los agentes obedecen?",
-    premio: "Mención de honor",
+    titulo: "Why do agents obey?",
+    premio: "Honourable mention",
     ciudad: "Bogotá",
-    equipo: "Helen Stefany Penagos y Juan Esteban Leiva",
-    body: "Un modelo rechaza una petición dañina en un chat y la cumple cuando opera como agente con herramientas. El equipo midió por dentro qué cambia: el mecanismo interno de rechazo se debilita en formato agéntico.",
+    equipo: "Helen Stefany Penagos and Juan Esteban Leiva",
+    body: "A model refuses a harmful request in a chat and carries it out when it operates as an agent with tools. The team measured what changes inside: the internal refusal mechanism weakens in agentic format.",
     href: "https://apartresearch.com/project/por-qu-los-agentes-obedecen-la-direccin-de-rechazo-se-debilita-en-formato-agntico-ux70",
   },
   {
     titulo: "JusticIA",
-    premio: "Mención de honor",
+    premio: "Honourable mention",
     ciudad: "Bogotá",
-    equipo: "Lina Gomez, Brenda Barahona y Ernesto Duarte",
-    body: "Una prueba para justicia transicional colombiana: se le pide a seis modelos una recomendación de sanción y se cambia un solo dato de contexto, la región, el actor armado o el perfil de la víctima, dejando intacto lo jurídicamente relevante. Se mide cuánto cambia la respuesta.",
+    equipo: "Lina Gomez, Brenda Barahona and Ernesto Duarte",
+    body: "A test for Colombian transitional justice: six models are asked to recommend a sentence and a single piece of context is changed, the region, the armed actor or the victim's profile, leaving what is legally relevant untouched. What is measured is how much the answer moves.",
     href: "https://apartresearch.com/project/justicia-a-counterfactual-benchmark-for-auditing-contextual-biases-in-language-models-for-transitional-justice-jjvl",
   },
 ];
@@ -126,22 +127,22 @@ const PREMIADOS = [
    en el catalogo publico de Apart. */
 const OTROS = [
   {
-    titulo: "Marco ético para IA aplicada a la lengua guna de Panamá",
+    titulo: "An ethical framework for AI applied to Panama's Guna language",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/marco-tico-para-ia-aplicada-a-la-preservacin-lingstica-guna-de-panam-6uxw",
-    equipo: "Ana María González Aldana, Kelvin Alvarado y Mariana Zuluaga Abril",
+    equipo: "Ana María González Aldana, Kelvin Alvarado and Mariana Zuluaga Abril",
   },
   {
     titulo: "Governance Drift Evaluation Framework",
     ciudad: "Colombia",
     href: "https://apartresearch.com/project/governance-drift-evaluation-framework-gdef-vfzj",
-    equipo: "Andrés Mogollón, Juan Manuel Cortes Jimenez, Oscar Poveda, Devesh Sawant y Liliana Isabel Salazar",
+    equipo: "Andrés Mogollón, Juan Manuel Cortes Jimenez, Oscar Poveda, Devesh Sawant and Liliana Isabel Salazar",
   },
   {
-    titulo: "Sistema de dos clasificadores para seguridad en modelos de lenguaje",
+    titulo: "A two-classifier system for language model security",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/dualclassifier-system-for-llm-security-s491",
-    equipo: "Nicolás David Galindo, Daniel Libardo Diaz Gonzalez, Juan Jacobo Izquierdo Becerra y David Andrés Ramírez",
+    equipo: "Nicolás David Galindo, Daniel Libardo Diaz Gonzalez, Juan Jacobo Izquierdo Becerra and David Andrés Ramírez",
   },
   {
     titulo: "Los peajes de los de abajo",
@@ -150,16 +151,16 @@ const OTROS = [
     equipo: "Mongui Rogers",
   },
   {
-    titulo: "Contestabilidad algorítmica en el Estado colombiano",
+    titulo: "Algorithmic contestability in the Colombian state",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/contestabilidad-algortmica-en-el-estado-colombiano-un-canal-de-objecin-asistido-por-ia-lbsm",
-    equipo: "Emely Condor y Federico Perez",
+    equipo: "Emely Condor and Federico Perez",
   },
   {
-    titulo: "Comercio agéntico y protección al consumidor",
+    titulo: "Agentic commerce and consumer protection",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/agentic-commerce-and-consumer-protection-emerging-risks-and-regulatory-gaps-be7b",
-    equipo: "Francely Carreño, Sofía Botía y Vanessa Reyes",
+    equipo: "Francely Carreño, Sofía Botía and Vanessa Reyes",
   },
   {
     titulo: "JurisGuard-LATAM",
@@ -174,7 +175,7 @@ const OTROS = [
     equipo: "Yoel Alfonso",
   },
   {
-    titulo: "Mapeo de herramientas de IA en los call centers colombianos",
+    titulo: "Mapping AI tools in Colombian call centres",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/mapeo-de-herramientas-ia-en-contextos-laborales-el-caso-de-los-call-centers-en-colombia-k1kk",
     equipo: "Daniel Bravo",
@@ -186,13 +187,13 @@ const OTROS = [
     equipo: "Marlon Naranjo",
   },
   {
-    titulo: "Evaluación de uso responsable de IA en pymes latinoamericanas",
+    titulo: "Assessing responsible AI use in Latin American small businesses",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/herramienta-de-evaluacin-y-recomendacin-para-la-promocin-de-uso-responsable-de-ia-en-pymes-latinoamericanas-1gvb",
-    equipo: "Diana Marcela Daza Jaimes, David José Daza Jaimes, Juan Camilo Medina Moreno, Luis Carlos Ordoñez Montenegro y Ángela Pinilla Parra",
+    equipo: "Diana Marcela Daza Jaimes, David José Daza Jaimes, Juan Camilo Medina Moreno, Luis Carlos Ordoñez Montenegro and Ángela Pinilla Parra",
   },
   {
-    titulo: "Jailbreaks estructurales en español",
+    titulo: "Structural jailbreaks in Spanish",
     ciudad: "Cali",
     href: "https://apartresearch.com/project/beyond-english-assessing-the-robustness-of-llm-safety-mechanisms-against-structural-jailbreaks-in-spanish-s4zk",
     equipo: "Jonathan Narvaez",
@@ -208,9 +209,9 @@ const OTROS = [
 const ENLACE =
   "text-aisc-forest underline underline-offset-4 transition-colors hover:text-aisc-forest-deep";
 
-export default function Investigacion() {
+export default function Research() {
   return (
-    <main className={PAGE_SHELL}>
+    <main lang="en" className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
         <img
           alt=""
@@ -223,13 +224,13 @@ export default function Investigacion() {
           style={{ color: "transparent" }}
           src="/aisc/patterns/aisc-hero-investigacion.svg"
         />
-        <SiteHeader active="/investigacion" />
+        <SiteHeader active="/en/research" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[760px] flex-col gap-5">
-            <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">Investigación</h1>
+            <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">Research</h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              Acá está lo que publica la gente de la comunidad: artículos revisados por pares, documentos de
-              trabajo, reportes de investigación y los productos de nuestras hackathones.
+              Here is what the people in the community publish: peer-reviewed articles, working papers, research
+              reports and the output of our hackathons.
             </p>
           </div>
         </div>
@@ -239,14 +240,14 @@ export default function Investigacion() {
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pt-14 pb-14 md:pb-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">Publicaciones de la comunidad</h2>
+            <h2 className="text-display-2 md:text-display-2-lg text-balance">Publications from the community</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
-                La lista está abierta. Si eres de la comunidad y publicaste algo,{" "}
+                The list is open. If you are part of the community and you published something,{" "}
                 <a className={ENLACE} href="mailto:contacto@aisafetycolombia.org">
-                  escríbenos
+                  write to us
                 </a>{" "}
-                y lo agregamos.
+                and we will add it.
               </p>
             </div>
           </div>
@@ -280,7 +281,7 @@ export default function Investigacion() {
                     </p>
                     <p className="text-body-sm mt-4 text-aisc-ink">{p.body}</p>
                     <span className="text-display-4 md:text-display-4-lg mt-6 text-aisc-forest underline underline-offset-4">
-                      Leer el documento
+                      Read the document
                     </span>
                   </div>
                 </a>
@@ -294,38 +295,37 @@ export default function Investigacion() {
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">Lo que sale de los hackathons</h2>
+            <h2 className="text-display-2 md:text-display-2-lg text-balance">What comes out of the hackathons</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
                 <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
                   Apart Research
                 </a>{" "}
-                convoca estos hackathons a nivel global. Nosotros abrimos el hub presencial en Bogotá para
-                participar desde acá. Es un fin de semana para salir con un trabajo propio: viernes en la noche se
-                arman los equipos, domingo en la noche se entrega un reporte, y la semana siguiente lo califican
-                jurados de fuera.
+                convenes these hackathons globally. We open the in-person hub in Bogotá so people can take part from
+                here. It is a weekend that ends with work of your own: teams form on Friday night, a report is
+                submitted on Sunday night, and the following week outside judges grade it.
               </p>
               <p>
-                La mayoría de quienes llegan nunca había trabajado en seguridad de la IA. Salen con un trabajo firmado,
-                publicado y con retroalimentación escrita.
+                Most of those who turn up had never worked on AI safety. They leave with a piece of work signed,
+                published and with written feedback.
               </p>
               <p>
-                La última edición fue el{" "}
+                The latest edition was the{" "}
                 <a
                   className={ENLACE}
                   href="https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Global South AI Safety Hackathon, del 19 al 21 de junio de 2026
+                  Global South AI Safety Hackathon, 19 to 21 June 2026
                 </a>
-                . Los jurados eran externos y evaluaron a ciegas los proyectos de toda Latinoamérica. Cada reporte
-                está publicado completo en el sitio de Apart.
+                . The judges were external and graded projects from across Latin America blind. Every report is
+                published in full on Apart&rsquo;s site.
               </p>
             </div>
           </div>
 
-          <h3 className="text-display-3 md:text-display-3-lg pb-6 text-balance md:pb-7">Los trabajos premiados</h3>
+          <h3 className="text-display-3 md:text-display-3-lg pb-6 text-balance md:pb-7">The award-winning work</h3>
           <ul className="grid grid-cols-1 gap-[10px] md:grid-cols-2">
             {PREMIADOS.map((p) => (
               <li className="flex" key={p.href}>
@@ -342,7 +342,7 @@ export default function Investigacion() {
                   <p className="text-body-sm mt-3 text-aisc-ink">{p.body}</p>
                   <p className="text-meta mt-5 text-aisc-muted">{p.equipo}</p>
                   <span className="text-display-4 md:text-display-4-lg mt-7 text-aisc-forest underline underline-offset-4">
-                    Leer el reporte
+                    Read the report
                   </span>
                 </a>
               </li>
@@ -352,9 +352,9 @@ export default function Investigacion() {
           <div className="mt-14 md:mt-16">
             <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep/25" />
             <div className="flex flex-col gap-2 pt-5 pb-4 md:flex-row md:items-baseline md:justify-between md:gap-10 md:pt-6">
-              <h3 className="text-display-4 md:text-display-4-lg text-balance">Los demás equipos colombianos</h3>
+              <h3 className="text-display-4 md:text-display-4-lg text-balance">The other Colombian teams</h3>
               <p className="text-body-sm text-aisc-muted">
-                Trece proyectos más de esa misma edición, entre presenciales y remotos.
+                Thirteen more projects from that same edition, in person and remote.
               </p>
             </div>
             <ul className="grid grid-cols-1 gap-x-10 md:grid-cols-2">
@@ -382,24 +382,24 @@ export default function Investigacion() {
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="grid grid-cols-1 gap-8 pt-5 md:gap-10 md:pt-7 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">La próxima edición</h2>
+            <h2 className="text-display-2 md:text-display-2-lg text-balance">The next edition</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
               <p>
-                Del 11 al 13 de septiembre de 2026 abrimos el hub en Bogotá para el sprint de{" "}
-                <Link className={ENLACE} href="/sprint">
-                  respuesta a incidentes de IA
-                </Link>
-                . El tema es qué se hace cuando un sistema de IA falla en producción y hay que reaccionar.
-              </p>
-              <p>
-                No hace falta experiencia previa ni saber programar. Los equipos se arman ahí y hay mentoría durante
-                todo el fin de semana.
-              </p>
-              <p>
-                <Link className={ENLACE} href="/sprint/aplicar">
-                  Las aplicaciones al hub en Bogotá están abiertas
+                From 11 to 13 September 2026 we open the hub in Bogotá for the{" "}
+                <Link className={ENLACE} href="/en/sprint">
+                  AI incident response
                 </Link>{" "}
-                y cierran el 6 de septiembre.
+                sprint. The subject is what you do when an AI system fails in production and someone has to react.
+              </p>
+              <p>
+                No previous experience is needed, and no coding. Teams form on the spot and there is mentoring
+                throughout the weekend.
+              </p>
+              <p>
+                <Link className={ENLACE} href="/en/sprint/apply">
+                  Applications to the Bogotá hub are open
+                </Link>{" "}
+                and close on 6 September.
               </p>
             </div>
           </div>
@@ -407,11 +407,11 @@ export default function Investigacion() {
       </section>
 
       <CtaPanel
-        title="Participa en el próximo"
-        body="Del 11 al 13 de septiembre es el AI Incident Response Sprint, que convoca Apart Research. Abrimos el hub en Bogotá y las aplicaciones cierran el 6 de septiembre."
+        title="Take part in the next one"
+        body="From 11 to 13 September is the AI Incident Response Sprint, convened by Apart Research. We open the hub in Bogotá and applications close on 6 September."
       >
-        <Link className={CTA_LINK_PRIMARY} href="/sprint">
-          Ver el hackathon
+        <Link className={CTA_LINK_PRIMARY} href="/en/sprint">
+          See the hackathon
         </Link>
         <a
           className={CTA_LINK}
@@ -419,10 +419,10 @@ export default function Investigacion() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Entrar al grupo de WhatsApp
+          Join the WhatsApp group
         </a>
       </CtaPanel>
-      <SiteFooter />
+      <SiteFooter idioma="en" />
     </main>
   );
 }

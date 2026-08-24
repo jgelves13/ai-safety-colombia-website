@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { APART_SPRINT_URL, EQUIPO_FORM, TRACKS_FORM, VIAJE_FORM } from "@/app/sprint/datos";
+import type { Idioma } from "@/lib/idiomas";
+import { RUTA_SPRINT, TEXTOS_APLICAR } from "@/lib/textos-aplicar";
 
 /* Borrador local: quien empieza a escribir y cierra la pestaña no pierde lo que
    llevaba. Se borra al enviar. */
@@ -31,23 +33,24 @@ const VACIO: Campos = {
   website: "",
 };
 
-/* Cada campo obligatorio con el texto que aparece en el resumen de arriba
-   cuando alguien intenta enviar sin llenarlo. */
-const OBLIGATORIOS: { name: string; falta: string }[] = [
-  { name: "firstName", falta: "Tu nombre" },
-  { name: "lastName", falta: "Tus apellidos" },
-  { name: "email", falta: "Tu correo" },
-  { name: "location", falta: "Desde dónde vendrías" },
-  { name: "linkedin", falta: "Tu LinkedIn" },
-  { name: "scholar", falta: "Tu GitHub, Scholar o portafolio" },
-  { name: "career", falta: "En qué andas ahora" },
-  { name: "aiSafety", falta: "Tu acercamiento previo a la seguridad de la IA" },
-  { name: "reason", falta: "Por qué quieres participar" },
-  { name: "hubProblem", falta: "El problema que te gustaría abordar" },
-  { name: "hubTrack", falta: "El frente que te llama" },
-  { name: "hubTeam", falta: "Si aplicas solo o con equipo" },
-  { name: "hubTravel", falta: "Cómo llegarías a Bogotá" },
-  { name: "aiConfirm", falta: "La confirmación sobre el uso de IA" },
+/* Los campos que no se pueden dejar en blanco. El texto con que aparece cada
+   uno en el resumen de arriba está en lib/textos-aplicar.ts, en los tres
+   idiomas. */
+const OBLIGATORIOS = [
+  "firstName",
+  "lastName",
+  "email",
+  "location",
+  "linkedin",
+  "scholar",
+  "career",
+  "aiSafety",
+  "reason",
+  "hubProblem",
+  "hubTrack",
+  "hubTeam",
+  "hubTravel",
+  "aiConfirm",
 ];
 
 const LIMITES: Record<string, number> = {
@@ -75,6 +78,7 @@ function Campo({
   ayuda,
   error,
   requerido,
+  opcional,
   children,
 }: {
   name: string;
@@ -82,13 +86,14 @@ function Campo({
   ayuda?: string;
   error?: string;
   requerido?: boolean;
+  opcional: string;
   children: React.ReactNode;
 }) {
   return (
     <div className="flex flex-col">
       <label className={ETIQUETA} htmlFor={name}>
         {label}
-        {requerido ? <span className="text-aisc-coral"> *</span> : <span className="text-aisc-muted"> (opcional)</span>}
+        {requerido ? <span className="text-aisc-coral"> *</span> : <span className="text-aisc-muted">{opcional}</span>}
       </label>
       {ayuda ? <span className={AYUDA}>{ayuda}</span> : null}
       <div className="mt-2">{children}</div>
@@ -101,7 +106,15 @@ function Campo({
   );
 }
 
-export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
+export default function HackathonApplyForm({
+  cerrado,
+  idioma = "es",
+}: {
+  cerrado: boolean;
+  idioma?: Idioma;
+}) {
+  const t = TEXTOS_APLICAR[idioma];
+  const sprint = RUTA_SPRINT[idioma];
   const [v, setV] = useState<Campos>(VACIO);
   const [errores, setErrores] = useState<Record<string, string>>({});
   const [estado, setEstado] = useState<"listo" | "enviando" | "enviado" | "falla">("listo");
@@ -138,16 +151,16 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
   const revisar = () => {
     const nuevos: Record<string, string> = {};
     for (const campo of OBLIGATORIOS) {
-      if (!v[campo.name]?.trim()) nuevos[campo.name] = "Falta responder.";
+      if (!v[campo]?.trim()) nuevos[campo] = t.faltaResponder;
     }
     if (v.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim())) {
-      nuevos.email = "Revisa el correo: parece que le falta algo.";
+      nuevos.email = t.correoMal;
     }
     if (v.hubTeam === "equipo" && !v.hubTeamNames.trim()) {
-      nuevos.hubTeamNames = "Falta responder.";
+      nuevos.hubTeamNames = t.faltaResponder;
     }
     for (const [name, tope] of Object.entries(LIMITES)) {
-      if ((v[name] ?? "").length > tope) nuevos[name] = `Pasaste el límite de ${tope} caracteres.`;
+      if ((v[name] ?? "").length > tope) nuevos[name] = t.limite(tope);
     }
     return nuevos;
   };
@@ -159,8 +172,8 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
     const nuevos = revisar();
     setErrores(nuevos);
     if (Object.keys(nuevos).length > 0) {
-      const pendientes = OBLIGATORIOS.filter((c) => nuevos[c.name]).map((c) => c.falta);
-      if (nuevos.hubTeamNames) pendientes.push("Con quién aplicas");
+      const pendientes = OBLIGATORIOS.filter((c) => nuevos[c]).map((c) => t.falta[c]);
+      if (nuevos.hubTeamNames) pendientes.push(t.falta.hubTeamNames);
       setFaltantes(pendientes);
       requestAnimationFrame(() => resumen.current?.scrollIntoView({ behavior: "smooth", block: "center" }));
       return;
@@ -193,11 +206,8 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
   if (cerrado) {
     return (
       <div className={tarjeta}>
-        <h2 className="text-display-3 md:text-display-3-lg text-balance">Las aplicaciones ya cerraron</h2>
-        <p className="text-body-sm mt-4 text-aisc-ink">
-          El plazo para el hub presencial en Bogotá se cerró el 6 de septiembre. Todavía puedes participar en línea
-          con Apart, que recibe proyectos hasta el domingo del sprint.
-        </p>
+        <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.cerradoTitulo}</h2>
+        <p className="text-body-sm mt-4 text-aisc-ink">{t.cerradoCuerpo}</p>
         <div className="mt-7 flex flex-wrap gap-3">
           <a
             className="text-body-sm inline-flex min-h-11 items-center rounded-full bg-aisc-coral px-6 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85"
@@ -205,13 +215,13 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Participar en línea
+            {t.cerradoEnLinea}
           </a>
           <Link
             className="text-body-sm inline-flex min-h-11 items-center rounded-full border border-aisc-ink px-6 font-medium text-aisc-ink transition-colors hover:bg-aisc-ink hover:text-aisc-cream"
-            href="/sprint"
+            href={sprint}
           >
-            Volver al sprint
+            {t.volverAlSprint}
           </Link>
         </div>
       </div>
@@ -221,14 +231,9 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
   if (estado === "enviado") {
     return (
       <div className={tarjeta}>
-        <h2 className="text-display-3 md:text-display-3-lg text-balance">Recibimos tu aplicación</h2>
-        <p className="text-body-sm mt-4 text-aisc-ink">
-          Te llega una confirmación al correo que nos diste. Revisamos las aplicaciones a medida que llegan y
-          respondemos a todo el mundo antes del sprint, sin importar el resultado.
-        </p>
-        <p className="text-body-sm mt-3 text-aisc-ink">
-          Mientras tanto, el grupo de WhatsApp es por donde anunciamos la sede y lo que conviene leer antes.
-        </p>
+        <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.enviadoTitulo}</h2>
+        <p className="text-body-sm mt-4 text-aisc-ink">{t.enviadoCuerpo1}</p>
+        <p className="text-body-sm mt-3 text-aisc-ink">{t.enviadoCuerpo2}</p>
         <div className="mt-7 flex flex-wrap gap-3">
           <a
             className="text-body-sm inline-flex min-h-11 items-center rounded-full bg-aisc-coral px-6 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85"
@@ -236,13 +241,13 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Entrar al grupo
+            {t.enviadoGrupo}
           </a>
           <Link
             className="text-body-sm inline-flex min-h-11 items-center rounded-full border border-aisc-ink px-6 font-medium text-aisc-ink transition-colors hover:bg-aisc-ink hover:text-aisc-cream"
-            href="/sprint"
+            href={sprint}
           >
-            Volver al sprint
+            {t.volverAlSprint}
           </Link>
         </div>
       </div>
@@ -287,12 +292,11 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
       {estado === "falla" ? (
         <div className="mb-8 rounded-[var(--radius)] border border-aisc-coral bg-aisc-coral/8 p-5">
           <p className="text-body-sm text-aisc-ink">
-            No pudimos guardar tu aplicación. Vuelve a intentarlo en un minuto; lo que escribiste sigue acá. Si falla
-            otra vez, escríbenos a{" "}
+            {t.fallaAntes}
             <a className={ENLACE} href="mailto:contacto@aisafetycolombia.org">
               contacto@aisafetycolombia.org
-            </a>{" "}
-            y la recibimos por correo.
+            </a>
+            {t.fallaDespues}
           </p>
         </div>
       ) : null}
@@ -300,7 +304,7 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
       <div aria-live="polite" ref={resumen}>
         {faltantes.length > 0 ? (
           <div className="mb-8 rounded-[var(--radius)] border border-aisc-coral bg-aisc-coral/8 p-5">
-            <p className="text-body-sm font-medium text-aisc-ink">Falta responder esto antes de enviar:</p>
+            <p className="text-body-sm font-medium text-aisc-ink">{t.resumenTitulo}</p>
             <ul className="text-body-sm mt-2 list-disc pl-5 text-aisc-ink">
               {faltantes.map((f) => (
                 <li key={f}>{f}</li>
@@ -312,7 +316,7 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
 
       {/* trampa para robots: si viene llena, la aplicación se descarta */}
       <div aria-hidden="true" className="absolute h-px w-px overflow-hidden opacity-0">
-        <label htmlFor="website">No llenes este campo</label>
+        <label htmlFor="website">{t.trampa}</label>
         <input
           id="website"
           name="website"
@@ -325,46 +329,50 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
 
       <div className="flex flex-col gap-9">
         <section className={SECCION}>
-          <h2 className="text-display-3 md:text-display-3-lg text-balance">Datos básicos</h2>
+          <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.seccionBasicos}</h2>
           <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-            <Campo requerido name="firstName" label="Nombre" error={errores.firstName}>
+            <Campo opcional={t.opcional} requerido name="firstName" label={t.nombre} error={errores.firstName}>
               <input {...textProps("firstName", "text", 100)} autoComplete="given-name" />
             </Campo>
-            <Campo requerido name="lastName" label="Apellidos" error={errores.lastName}>
+            <Campo opcional={t.opcional} requerido name="lastName" label={t.apellidos} error={errores.lastName}>
               <input {...textProps("lastName", "text", 100)} autoComplete="family-name" />
             </Campo>
             <Campo
+              opcional={t.opcional}
               requerido
               name="email"
-              label="Correo"
-              ayuda="Acá te avisamos si quedaste y por acá mandamos la sede."
+              label={t.correo}
+              ayuda={t.correoAyuda}
               error={errores.email}
             >
               <input {...textProps("email", "email", 200)} autoComplete="email" />
             </Campo>
             <Campo
+              opcional={t.opcional}
               requerido
               name="location"
-              label="Desde dónde vendrías"
-              ayuda="Ciudad y país."
+              label={t.origen}
+              ayuda={t.origenAyuda}
               error={errores.location}
             >
-              <input {...textProps("location", "text", 200)} placeholder="Bogotá, Colombia" />
+              <input {...textProps("location", "text", 200)} placeholder={t.origenEjemplo} />
             </Campo>
             <Campo
+              opcional={t.opcional}
               requerido
               name="linkedin"
-              label="LinkedIn"
-              ayuda="Si no tienes, pega otro perfil donde se vea en qué has trabajado."
+              label={t.linkedin}
+              ayuda={t.linkedinAyuda}
               error={errores.linkedin}
             >
               <input {...textProps("linkedin", "url", 300)} placeholder="https://linkedin.com/in/..." />
             </Campo>
             <Campo
+              opcional={t.opcional}
               requerido
               name="scholar"
-              label="GitHub, Scholar o portafolio"
-              ayuda="Cualquier cosa tuya que podamos abrir: repositorio, publicaciones, un texto, un proyecto."
+              label={t.scholar}
+              ayuda={t.scholarAyuda}
               error={errores.scholar}
             >
               <input {...textProps("scholar", "url", 300)} placeholder="https://" />
@@ -373,37 +381,37 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
         </section>
 
         <section className={SECCION}>
-          <h2 className="text-display-3 md:text-display-3-lg text-balance">Tu trayectoria</h2>
-          <p className="text-body-sm mt-3 max-w-[640px] text-aisc-muted">
-            No pedimos credenciales ni experiencia previa en seguridad de la IA. Saber de dónde vienes nos sirve para la
-            selección y para que el viernes te sea más fácil dar con un equipo.
-          </p>
+          <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.seccionTrayectoria}</h2>
+          <p className="text-body-sm mt-3 max-w-[640px] text-aisc-muted">{t.trayectoriaNota}</p>
           <div className="mt-6 flex flex-col gap-6">
             <Campo
+              opcional={t.opcional}
               requerido
               name="career"
-              label="¿En qué andas ahora?"
-              ayuda="Qué estudias o en qué trabajas, y desde hace cuánto."
+              label={t.carrera}
+              ayuda={t.carreraAyuda}
               error={errores.career}
             >
               <textarea {...areaProps("career", 3)} />
               {contador("career")}
             </Campo>
             <Campo
+              opcional={t.opcional}
               requerido
               name="aiSafety"
-              label="¿Has tenido algún acercamiento a la seguridad de la IA?"
-              ayuda="Un curso, un grupo de lectura, un artículo que te marcó, un proyecto, una charla. Si nunca has tenido contacto con el tema, escribe eso mismo: el sprint está abierto a quien llega por primera vez y no descalifica."
+              label={t.acercamiento}
+              ayuda={t.acercamientoAyuda}
               error={errores.aiSafety}
             >
               <textarea {...areaProps("aiSafety", 4)} />
               {contador("aiSafety")}
             </Campo>
             <Campo
+              opcional={t.opcional}
               requerido
               name="reason"
-              label="¿Por qué quieres participar en este sprint?"
-              ayuda="Qué te trajo hasta acá y qué esperas llevarte del fin de semana."
+              label={t.motivo}
+              ayuda={t.motivoAyuda}
               error={errores.reason}
             >
               <textarea {...areaProps("reason", 5)} />
@@ -413,17 +421,15 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
         </section>
 
         <section className={SECCION}>
-          <h2 className="text-display-3 md:text-display-3-lg text-balance">La pregunta de selección</h2>
-          <p className="text-body-sm mt-3 max-w-[640px] text-aisc-muted">
-            Es una sola y es la que de verdad pesa. Responde con tu propio razonamiento: no aceptamos aplicaciones
-            escritas por un modelo.
-          </p>
+          <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.seccionSeleccion}</h2>
+          <p className="text-body-sm mt-3 max-w-[640px] text-aisc-muted">{t.seleccionNota}</p>
           <div className="mt-6 flex flex-col gap-6">
             <Campo
+              opcional={t.opcional}
               requerido
               name="hubProblem"
-              label="¿Qué problema te gustaría abordar en el sprint?"
-              ayuda="Hasta unas 200 palabras. No buscamos una propuesta cerrada; sí ver si te imaginas algo concreto y abordable en un fin de semana."
+              label={t.problema}
+              ayuda={t.problemaAyuda}
               error={errores.hubProblem}
             >
               <textarea {...areaProps("hubProblem", 8)} />
@@ -432,26 +438,25 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
 
             <fieldset>
               <legend className={ETIQUETA}>
-                ¿Cuál de los cinco frentes te llama más?<span className="text-aisc-coral"> *</span>
+                {t.frente}
+                <span className="text-aisc-coral"> *</span>
               </legend>
-              <span className={AYUDA}>
-                No es un compromiso. Los equipos se arman el viernes y puedes terminar en otro.
-              </span>
+              <span className={AYUDA}>{t.frenteAyuda}</span>
               <div className="mt-3 flex flex-col gap-2">
-                {TRACKS_FORM.map((t) => (
+                {TRACKS_FORM.map((opcion) => (
                   <label
                     className="text-body-sm flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6"
-                    key={t.id}
+                    key={opcion.id}
                   >
                     <input
                       type="radio"
                       name="hubTrack"
-                      value={t.id}
-                      checked={v.hubTrack === t.id}
-                      onChange={() => set("hubTrack", t.id)}
+                      value={opcion.id}
+                      checked={v.hubTrack === opcion.id}
+                      onChange={() => set("hubTrack", opcion.id)}
                       className="mt-0.5 accent-aisc-forest"
                     />
-                    <span>{t.label}</span>
+                    <span>{t.tracks[opcion.id]}</span>
                   </label>
                 ))}
               </div>
@@ -464,27 +469,25 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
 
             <fieldset>
               <legend className={ETIQUETA}>
-                ¿Aplicas solo o con equipo?<span className="text-aisc-coral"> *</span>
+                {t.equipo}
+                <span className="text-aisc-coral"> *</span>
               </legend>
-              <span className={AYUDA}>
-                Los equipos son de una a cinco personas. Si aplicas solo, el viernes en la noche armamos equipos en la
-                sala con quien esté en la misma situación.
-              </span>
+              <span className={AYUDA}>{t.equipoAyuda}</span>
               <div className="mt-3 flex flex-col gap-2">
-                {EQUIPO_FORM.map((t) => (
+                {EQUIPO_FORM.map((opcion) => (
                   <label
                     className="text-body-sm flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6"
-                    key={t.id}
+                    key={opcion.id}
                   >
                     <input
                       type="radio"
                       name="hubTeam"
-                      value={t.id}
-                      checked={v.hubTeam === t.id}
-                      onChange={() => set("hubTeam", t.id)}
+                      value={opcion.id}
+                      checked={v.hubTeam === opcion.id}
+                      onChange={() => set("hubTeam", opcion.id)}
                       className="mt-0.5 accent-aisc-forest"
                     />
-                    <span>{t.label}</span>
+                    <span>{t.equipos[opcion.id]}</span>
                   </label>
                 ))}
               </div>
@@ -497,10 +500,11 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
 
             {v.hubTeam === "equipo" ? (
               <Campo
+              opcional={t.opcional}
                 requerido
                 name="hubTeamNames"
-                label="¿Con quiénes aplicas?"
-                ayuda="Los nombres de las personas con las que vienes. Cada una tiene que llenar este formulario por su lado."
+                label={t.companeros}
+                ayuda={t.companerosAyuda}
                 error={errores.hubTeamNames}
               >
                 <textarea {...areaProps("hubTeamNames", 4)} />
@@ -510,27 +514,25 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
 
             <fieldset>
               <legend className={ETIQUETA}>
-                ¿Cómo llegarías a Bogotá?<span className="text-aisc-coral"> *</span>
+                {t.viaje}
+                <span className="text-aisc-coral"> *</span>
               </legend>
-              <span className={AYUDA}>
-                Nos sirve para organizar. Si vienes de otra ciudad cubrimos el alojamiento; el transporte hasta
-                Bogotá corre por tu cuenta.
-              </span>
+              <span className={AYUDA}>{t.viajeAyuda}</span>
               <div className="mt-3 flex flex-col gap-2">
-                {VIAJE_FORM.map((t) => (
+                {VIAJE_FORM.map((opcion) => (
                   <label
                     className="text-body-sm flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6"
-                    key={t.id}
+                    key={opcion.id}
                   >
                     <input
                       type="radio"
                       name="hubTravel"
-                      value={t.id}
-                      checked={v.hubTravel === t.id}
-                      onChange={() => set("hubTravel", t.id)}
+                      value={opcion.id}
+                      checked={v.hubTravel === opcion.id}
+                      onChange={() => set("hubTravel", opcion.id)}
                       className="mt-0.5 accent-aisc-forest"
                     />
-                    <span>{t.label}</span>
+                    <span>{t.viajes[opcion.id]}</span>
                   </label>
                 ))}
               </div>
@@ -544,21 +546,23 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
         </section>
 
         <section className={SECCION}>
-          <h2 className="text-display-3 md:text-display-3-lg text-balance">Para que el fin de semana te sirva</h2>
+          <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.seccionServir}</h2>
           <div className="mt-6 flex flex-col gap-6">
             <Campo
+              opcional={t.opcional}
               name="hubAccess"
-              label="¿Necesitas algo para poder participar?"
-              ayuda="Restricciones de alimentación, accesibilidad, horarios, cuidado de alguien. Lo que nos digas acá lo tenemos en cuenta al organizar."
+              label={t.acceso}
+              ayuda={t.accesoAyuda}
               error={errores.hubAccess}
             >
               <textarea {...areaProps("hubAccess", 3)} />
               {contador("hubAccess")}
             </Campo>
             <Campo
+              opcional={t.opcional}
               name="hubExtra"
-              label="¿Algo más que quieras contarnos?"
-              ayuda="Opcional de verdad. Si no se te ocurre nada, déjalo en blanco."
+              label={t.extra}
+              ayuda={t.extraAyuda}
               error={errores.hubExtra}
             >
               <textarea {...areaProps("hubExtra", 3)} />
@@ -568,7 +572,7 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
         </section>
 
         <section className={SECCION}>
-          <h2 className="text-display-3 md:text-display-3-lg text-balance">Antes de enviar</h2>
+          <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.seccionAntes}</h2>
           <label
             className="text-body-sm mt-6 flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-4 py-4 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6"
             htmlFor="aiConfirm"
@@ -581,10 +585,7 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
               onChange={(e) => set("aiConfirm", e.target.checked ? "si" : "")}
               className="mt-0.5 accent-aisc-forest"
             />
-            <span>
-              Las respuestas de esta aplicación las escribí yo. Pude usar un modelo para corregir la redacción, pero el
-              razonamiento es mío.
-            </span>
+            <span>{t.confirmacionIA}</span>
           </label>
           {errores.aiConfirm ? (
             <span className={ERROR} role="alert">
@@ -592,14 +593,11 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
             </span>
           ) : null}
           <p className="text-meta mt-4 text-aisc-muted">
-            Usamos lo que nos cuentas para dos cosas: escoger quiénes participan y organizar bien el fin de semana.
-            Si quedas seleccionado, el resto de participantes verá tu nombre, en qué andas y el frente que escogiste.
-            Así es como quien llega sin equipo encuentra con quién armarlo. Tu correo y tus respuestas a las dos últimas
-            preguntas se quedan con nosotros. Si en algún momento quieres que borremos tus datos, escríbenos a{" "}
+            {t.privacidadAntes}
             <a className={ENLACE} href="mailto:contacto@aisafetycolombia.org">
               contacto@aisafetycolombia.org
             </a>
-            .
+            {t.privacidadDespues}
           </p>
         </section>
       </div>
@@ -610,11 +608,9 @@ export default function HackathonApplyForm({ cerrado }: { cerrado: boolean }) {
           disabled={estado === "enviando"}
           type="submit"
         >
-          {estado === "enviando" ? "Enviando…" : "Enviar aplicación"}
+          {estado === "enviando" ? t.enviando : t.enviar}
         </button>
-        <span className="text-meta text-aisc-muted">
-          Lo que escribes se guarda en este navegador mientras no lo envíes.
-        </span>
+        <span className="text-meta text-aisc-muted">{t.guardado}</span>
       </div>
     </form>
   );

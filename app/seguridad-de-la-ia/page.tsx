@@ -20,11 +20,13 @@ import {
   HERO_SECTION,
   PAGE_SHELL,
 } from "@/components/ui";
+import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
   title: "Qué es la seguridad de la IA",
   description:
     "Por qué la velocidad del avance en inteligencia artificial, y no la inteligencia de las máquinas, es lo que la convierte en un problema de seguridad. Con las mediciones que lo sostienen y lo que no permiten concluir.",
+  alternates: { canonical: "/seguridad-de-la-ia", languages: alternativas("/seguridad-de-la-ia") },
 };
 
 /** enlace de fuente en linea: siempre apunta al documento primario, nunca a un resumen */

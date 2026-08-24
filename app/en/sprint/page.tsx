@@ -14,14 +14,16 @@ import {
   HERO_VELO_CLASS,
   PAGE_SHELL,
 } from "@/components/ui";
-import { APART_SPRINT_URL, CIERRE_TEXTO } from "./datos";
+import { APART_SPRINT_URL, CIERRE_TEXTO_IDIOMA } from "@/app/sprint/datos";
 import { alternativas } from "@/lib/idiomas";
+
+const CIERRE_TEXTO = CIERRE_TEXTO_IDIOMA.en;
 
 export const metadata: Metadata = {
   title: "AI Incident Response Sprint",
   description:
-    "Del 11 al 13 de septiembre de 2026. Apart Research y CeSIA convocan el sprint sobre respuesta a incidentes de IA. Abrimos el hub presencial en Bogotá; las aplicaciones cierran a la medianoche del domingo 6 de septiembre.",
-  alternates: { canonical: "/sprint", languages: alternativas("/sprint") },
+    "11 to 13 September 2026. Apart Research and CeSIA convene the sprint on AI incident response. We open the in-person hub in Bogotá; applications close at midnight on Sunday 6 September.",
+  alternates: { canonical: "/en/sprint", languages: alternativas("/en/sprint") },
 };
 
 const ENLACE =
@@ -31,16 +33,16 @@ const ENLACE =
    una línea de apoyo, sin más: es lo que hace que se lean de un vistazo. */
 const DATOS = [
   {
-    valor: "11 al 13 de septiembre",
-    nota: "Tres días, de viernes en la tarde a domingo en la noche",
+    valor: "11 to 13 September",
+    nota: "Three days, from Friday afternoon to Sunday night",
   },
   {
-    valor: "Bogotá y en línea",
-    nota: "Hub presencial en Bogotá, sede por confirmar",
+    valor: "Bogotá and online",
+    nota: "In-person hub in Bogotá, venue to be confirmed",
   },
   {
-    valor: "USD 2.000 en premios",
-    nota: "Cinco ganadores a nivel global, que Apart escoge entre todo el sprint",
+    valor: "USD 2,000 in prizes",
+    nota: "Five winners worldwide, picked by Apart across the whole sprint",
   },
 ];
 
@@ -49,28 +51,28 @@ const DATOS = [
 const TRACKS = [
   {
     id: "contencion",
-    titulo: "Estándares de contención",
-    body: "Escribir el mínimo con el que se debería correr una evaluación en caja de arena. Entra acá quien pueda proponer una matriz de control por fase de ataque, o empaquetar mitigaciones de forma que un tercero verifique que se cumplen.",
+    titulo: "Containment standards",
+    body: "Write the minimum any sandboxed evaluation should run under. This track is for whoever can propose a control matrix by attack phase, or package mitigations so that a third party can verify they are met.",
   },
   {
     id: "analisis",
-    titulo: "Análisis del incidente",
-    body: "Reconstruir qué pasó y en qué punto falló el monitoreo. Se buscan preguntas que alguien pueda resolver, revisiones que se puedan correr mañana y explicaciones causales que predigan algo.",
+    titulo: "Incident analysis",
+    body: "Reconstruct what happened and where the monitoring failed. What is wanted here: questions someone can actually answer, checks that can be run tomorrow, and causal explanations that predict something.",
   },
   {
     id: "regulacion",
-    titulo: "Respuesta regulatoria",
-    body: "Redactar peticiones de información que un regulador pueda usar casi sin editar, poner a prueba los sistemas de reporte que ya existen y señalar los vacíos legales que dejan.",
+    titulo: "Regulatory response",
+    body: "Draft information requests a regulator could use almost unedited, stress-test the reporting systems that already exist, and point at the legal gaps they leave behind.",
   },
   {
     id: "comunicacion",
-    titulo: "Estrategia de comunicación",
-    body: "Auditar cómo cubrieron el incidente los medios y armar el kit con el que se comunica el siguiente. Acá pesa el anclaje en el registro de lo que de verdad ocurrió.",
+    titulo: "Communication strategy",
+    body: "Audit how the press covered the incident and build the kit for communicating the next one. What counts here is staying anchored to the record of what actually happened.",
   },
   {
     id: "abierto",
-    titulo: "Track abierto",
-    body: "Cualquier otro ángulo del mismo problema. La condición es la de siempre: un artefacto que alguien pueda usar y una frase honesta sobre hasta dónde llega lo que demuestra.",
+    titulo: "Open track",
+    body: "Any other angle on the same problem. The condition is the usual one: an artefact someone can use and an honest sentence about how far what it shows really goes.",
   },
 ];
 
@@ -78,40 +80,40 @@ const TRACKS = [
    public/aisc/aliados/. */
 const GRUPOS = [
   {
-    rotulo: "Organizan el sprint",
+    rotulo: "Sprint organisers",
     orgs: [
       {
         name: "Apart Research",
-        body: "Laboratorio de investigación en seguridad de la IA. Convoca el sprint, define los cinco frentes, pone los premios y publica los reportes.",
+        body: "AI safety research lab. Convenes the sprint, defines the five tracks, puts up the prizes and publishes the reports.",
         logo: "/aisc/aliados/apart.png",
         href: "https://apartresearch.com",
       },
       {
         name: "CeSIA",
-        body: "Centro francés para la seguridad de la IA. Coorganiza el sprint y lleva a reguladores europeos el material que sale de él.",
+        body: "France's centre for AI safety. Co-organises the sprint and takes the material that comes out of it to European regulators.",
         logo: "/aisc/aliados/cesia.svg",
         href: "https://www.securite-ia.fr",
       },
     ],
   },
   {
-    rotulo: "Financian el hub en Bogotá",
+    rotulo: "Funding the hub in Bogotá",
     orgs: [
       {
         name: "Apart Research",
-        body: "Además de convocar el sprint, apoya a los grupos que abren un hub presencial durante el fin de semana.",
+        body: "Beyond convening the sprint, it supports the groups that open an in-person hub over the weekend.",
         logo: "/aisc/aliados/apart.png",
         href: "https://apartresearch.com",
       },
       {
         name: "BlueDot Impact",
-        body: "Sus cursos gratuitos son la entrada estándar al campo. Con Rapid Grants financian trabajo concreto: USD 1,4 millones otorgados en total y decisiones en solo tres días en promedio.",
+        body: "Their free courses are the standard way into the field. Through Rapid Grants they fund concrete work: 1.4 million dollars awarded in total and decisions in three days on average.",
         logo: "/aisc/aliados/bluedot.png",
         href: "https://bluedot.org/grants/rapid",
       },
       {
         name: "Pathfinder Fellowship",
-        body: "Beca de Kairos para quienes construyen comunidades de seguridad de la IA. Aporta mentoría y financiación para sus actividades.",
+        body: "Kairos fellowship for people building AI safety communities. It contributes mentorship and funding for their activities.",
         logo: "/aisc/aliados/pathfinder.png",
         href: "https://pathfinder.kairos-project.org",
       },
@@ -123,38 +125,38 @@ const GRUPOS = [
    dar; lo que aún no está cerrado se dice que no está cerrado. */
 const HUB = [
   {
-    titulo: "Alimentación y alojamiento",
-    body: "Cubrimos las comidas de los tres días. Si vienes de otra ciudad, también cubrimos el alojamiento del fin de semana.",
+    titulo: "Meals and lodging",
+    body: "We cover meals for all three days. If you are coming from another city, we also cover lodging for the weekend.",
   },
   {
-    titulo: "Apoyo para cómputo",
-    body: "Cubrimos parte del gasto de cómputo de los equipos. La cifra se confirma antes del cierre de aplicaciones.",
+    titulo: "Compute support",
+    body: "We cover part of the teams' compute costs. The figure is confirmed before applications close.",
   },
   {
-    titulo: "Mentoría en sala",
-    body: "Gente que trabaja en respuesta a incidentes, en seguridad ofensiva y en regulación pasa por el hub durante el fin de semana.",
+    titulo: "Mentorship in the room",
+    body: "People who work in incident response, offensive security and regulation come through the hub over the weekend.",
   },
   {
-    titulo: "Sala y conectividad",
-    body: "Espacio de trabajo durante todo el fin de semana, con mesas para equipos y con dónde conectarse.",
+    titulo: "Room and connectivity",
+    body: "A workspace for the whole weekend, with tables for teams and somewhere to plug in.",
   },
   {
-    titulo: "Con quién armar equipo",
-    body: "El viernes en la noche se arman los equipos en la sala. Mucha gente llega sola y sale con equipo.",
+    titulo: "People to build a team with",
+    body: "Teams form on Friday night, in the room. Plenty of people arrive alone and leave with a team.",
   },
   {
-    titulo: "Cupos limitados",
-    body: "El hub tiene aforo, así que hay proceso de selección. Se aplica por el formulario y avisamos por correo.",
+    titulo: "Limited places",
+    body: "The hub has a capacity, so there is a selection process. You apply through the form and we let you know by email.",
   },
 ];
 
 /* Premios de Apart, tal como los publica su convocatoria. */
 const PREMIOS = [
-  { puesto: "Primer puesto", monto: "1.000" },
-  { puesto: "Segundo puesto", monto: "500" },
-  { puesto: "Tercer puesto", monto: "300" },
-  { puesto: "Cuarto puesto", monto: "100" },
-  { puesto: "Quinto puesto", monto: "100" },
+  { puesto: "First place", monto: "1,000" },
+  { puesto: "Second place", monto: "500" },
+  { puesto: "Third place", monto: "300" },
+  { puesto: "Fourth place", monto: "100" },
+  { puesto: "Fifth place", monto: "100" },
 ];
 
 /* Los mentores, al modo de SASH: retrato cuadrado, nombre, rol y una bio de
@@ -169,43 +171,61 @@ const MENTORES: {
 }[] = [
   {
     nombre: "Camila Beltrán",
-    rol: "Mentora y ponente",
+    rol: "Mentor and speaker",
     foto: "/aisc/mentores/camila-beltran.png",
     linkedin:
       "https://www.linkedin.com/in/camila-alejandra-beltran-reyes-ab288627a/",
     bio: (
       <>
-        Consultora en gobernanza de IA para varias organizaciones. Miembro del
-        grupo de expertos de la{" "}
+        Senior AI adviser at{" "}
+        <a
+          className={ENLACE}
+          href="https://www.mintic.gov.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          MinTIC
+        </a>{" "}
+        and an expert with the{" "}
         <a
           className={ENLACE}
           href="https://oecd.ai/en/about/network-of-experts"
           target="_blank"
           rel="noopener noreferrer"
         >
-          OCDE
-        </a>{" "}
-        en riesgo y rendición de cuentas, investigadora asociada del{" "}
+          OECD
+        </a>
+        . As a Winter Fellow at{" "}
         <a
           className={ENLACE}
-          href="https://aiforgood.itu.int/multimedia-authenticity/"
+          href="https://www.governance.ai/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          AMAS Young Research Programme
+          GovAI
+        </a>
+        , she researched{" "}
+        <a
+          className={ENLACE}
+          href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          European regulation
         </a>{" "}
-        de la UIT y líder del grupo de AI Control de AIS Colombia.
+        of loss-of-control scenarios, and she leads the AI control group at AIS
+        Colombia.
       </>
     ),
   },
   {
     nombre: "Luis Cosio",
-    rol: "Mentor y ponente",
+    rol: "Mentor and speaker",
     foto: "/aisc/mentores/luis-cosio.png",
     linkedin: "https://www.linkedin.com/in/luiscosio/",
     bio: (
       <>
-        Miembro del equipo técnico de{" "}
+        Member of the technical team at{" "}
         <a
           className={ENLACE}
           href="https://sl5.org/"
@@ -214,15 +234,15 @@ const MENTORES: {
         >
           Security Level 5
         </a>
-        , iniciativa enfocada en proteger sistemas avanzados de IA frente a
-        adversarios estatales y pérdida de control. Coautor del{" "}
+        , an initiative focused on protecting advanced AI systems from state
+        adversaries and loss of control. Co-author of the{" "}
         <a
           className={ENLACE}
           href="https://arxiv.org/abs/2605.08449"
           target="_blank"
           rel="noopener noreferrer"
         >
-          estándar SL5
+          SL5 standard
         </a>
         .
       </>
@@ -242,47 +262,47 @@ function iniciales(nombre: string): string {
 /* Cada perfil con el rótulo por el que alguien se reconoce de un vistazo. */
 const PERFILES = [
   {
-    rotulo: "Perfiles técnicos",
-    body: "Ingeniería, ciencia de datos o seguridad informática: la contención y el análisis del incidente piden manos en el teclado durante los tres días.",
+    rotulo: "Technical profiles",
+    body: "Engineering, data science or information security: containment and incident analysis need hands on the keyboard for all three days.",
   },
   {
-    rotulo: "Derecho, política pública y periodismo",
-    body: "Los frentes de regulación y comunicación se ganan escribiendo bien y entendiendo el expediente, no programando.",
+    rotulo: "Law, public policy and journalism",
+    body: "The regulation and communication tracks are won by writing well and understanding the record, not by programming.",
   },
   {
-    rotulo: "Quien ya responde incidentes",
-    body: "De banca a salud, la respuesta a incidentes ya es un oficio. Acá se trata de ver qué cambia cuando el que falló es un sistema de IA.",
+    rotulo: "People who already respond to incidents",
+    body: "From banking to health, incident response is already a trade. Here it is about seeing what changes when the thing that failed is an AI system.",
   },
   {
-    rotulo: "Quien llega al tema por primera vez",
-    body: "No hace falta haber leído nada sobre seguridad de la IA. Se entra por lo que ya sabes hacer y lo que falte se pregunta en la sala. Buena parte de quienes hoy trabajan en el campo entraron por un fin de semana como este.",
+    rotulo: "People coming to the topic for the first time",
+    body: "You do not need to have read anything about AI safety. You come in through what you already know how to do, and whatever is missing you ask about in the room. A good share of the people working in the field today came in through a weekend like this one.",
   },
 ];
 
 const FAQ = [
   {
-    q: "¿Puedo aplicar si nunca he trabajado en seguridad de la IA?",
-    a: "Sí, y es el caso de buena parte de quienes participan. Los proyectos que mejor salen suelen mezclar a alguien que conoce el campo con alguien que sabe hacer muy bien otra cosa: escribir, litigar, levantar infraestructura, leerse un expediente. Lo que sí pedimos es que puedas estar los tres días.",
+    q: "Can I apply if I have never worked in AI safety?",
+    a: "Yes, and that is the case for a good share of the people who take part. The projects that turn out best usually mix someone who knows the field with someone who is very good at something else: writing, litigating, building infrastructure, reading a case file. What we do ask is that you can be there all three days.",
   },
   {
-    q: "¿Necesito saber programar?",
-    a: "No para todos los tracks. Los de regulación y comunicación se ganan escribiendo bien y entendiendo el expediente. Los de contención y análisis sí piden manos en el teclado, aunque los equipos suelen mezclar perfiles.",
+    q: "Do I need to know how to code?",
+    a: "Not for every track. Regulation and communication are won by writing well and understanding the record. Containment and analysis do need hands on the keyboard, though teams usually mix profiles.",
   },
   {
-    q: "¿Tengo que llegar con equipo?",
-    a: "No. Los equipos son de una a cinco personas y se arman el viernes en la noche, en la sala y en el Discord de Apart. Mucha gente llega sola y sale con equipo.",
+    q: "Do I have to arrive with a team?",
+    a: "No. Teams are one to five people and they form on Friday night, in the room and on Apart's Discord. Plenty of people arrive alone and leave with a team.",
   },
   {
-    q: "¿Qué diferencia hay entre aplicar acá y participar en línea?",
-    a: "El sprint es el mismo y el entregable se sube al mismo sitio. Aplicar acá es para el hub presencial en Bogotá, que tiene cupo limitado y por eso tiene selección. En el hub cubrimos alimentación, alojamiento si vienes de otra ciudad, apoyo para cómputo y mentoría en sala. Participar en línea con Apart no tiene selección ni cupo.",
+    q: "What is the difference between applying here and taking part online?",
+    a: "The sprint is the same one and the deliverable goes to the same place. Applying here is for the in-person hub in Bogotá, which has limited capacity and therefore a selection process. At the hub we cover meals, lodging if you are coming from another city, compute support and mentorship in the room. Taking part online with Apart has no selection and no cap.",
   },
   {
-    q: "¿Cuánto tiempo toma la aplicación?",
-    a: "Alrededor de veinte minutos. Leemos la postulación completa. La pregunta que más pesa es qué problema te gustaría abordar y con qué enfoque, y no esperamos una propuesta cerrada.",
+    q: "How long does the application take?",
+    a: "About twenty minutes. We read the whole application. The question that weighs most is what problem you would like to work on and with what approach, and we are not expecting a finished proposal.",
   },
   {
-    q: "¿Puedo aplicar si no vivo en Bogotá?",
-    a: "Sí. En el formulario nos dices desde dónde vendrías y, si vienes de otra ciudad, cubrimos el alojamiento del fin de semana. El transporte hasta Bogotá corre por tu cuenta.",
+    q: "Can I apply if I do not live in Bogotá?",
+    a: "Yes. In the form you tell us where you would be coming from and, if it is another city, we cover lodging for the weekend. Travel to Bogotá is on you.",
   },
 ];
 
@@ -303,27 +323,27 @@ const PATRON = "/aisc/patterns/aisc-wash-lattice.svg";
 
 export default function Hackathon() {
   return (
-    <main className={PAGE_SHELL}>
+    <main lang="en" className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
         <HeroHackathon className={HERO_DERRAME_CLASS} />
         <div className={HERO_VELO_CLASS} aria-hidden="true" />
-        <SiteHeader active="/sprint" />
+        <SiteHeader active="/en/sprint" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[860px] flex-col gap-5">
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">
               AI Incident Response Sprint
             </h1>
             <p className="text-body md:text-body-lg max-w-[680px] text-aisc-sand/90">
-              Un fin de semana para convertir los primeros incidentes en los que
-              un sistema de IA actuó por su cuenta contra un tercero en material
-              que sirva a quien tiene que responder.
+              A weekend to turn the first incidents in which an AI system acted
+              on its own against a third party into material that is useful to
+              whoever has to respond.
             </p>
             <p className="text-body-sm mt-1 w-fit text-aisc-sand/75">
               {CIERRE_TEXTO}
             </p>
             <div className="mt-2 flex flex-wrap items-center gap-3">
-              <Link className={CTA_LINK_PRIMARY} href="/sprint/aplicar">
-                Aplicar al hub en Bogotá
+              <Link className={CTA_LINK_PRIMARY} href="/en/sprint/apply">
+                Apply to the Bogotá hub
               </Link>
               <a
                 className={CTA_LINK}
@@ -331,7 +351,7 @@ export default function Hackathon() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Participar en línea con Apart
+                Take part online with Apart
               </a>
             </div>
           </div>
@@ -360,15 +380,15 @@ export default function Hackathon() {
             <div aria-hidden="true" className={HAIRLINE} />
             <div className="mt-5 flex flex-col gap-6">
               <h2 className="text-display-2 md:text-display-2-lg break-words">
-                De qué se trata
+                What this is about
               </h2>
               <div className="text-body md:text-body-lg flex flex-col gap-5 text-aisc-ink">
                 <p>
-                  Ya hay casos documentados en los que un sistema de IA atacó
-                  por su cuenta a un tercero. En julio de 2026, unos modelos que
-                  estaban siendo evaluados se salieron de su entorno de pruebas
-                  y encadenaron fallas hasta entrar a la infraestructura de
-                  producción de Hugging Face. Lo contaron{" "}
+                  There are already documented cases in which an AI system
+                  attacked a third party on its own. In July 2026, models that
+                  were being evaluated broke out of their test environment and
+                  chained failures until they reached Hugging Face&apos;s
+                  production infrastructure. It was reported by{" "}
                   <a
                     className={ENLACE}
                     href="https://openai.com/index/hugging-face-model-evaluation-security-incident/"
@@ -377,7 +397,7 @@ export default function Hackathon() {
                   >
                     OpenAI
                   </a>{" "}
-                  y{" "}
+                  and by{" "}
                   <a
                     className={ENLACE}
                     href="https://huggingface.co/blog/security-incident-july-2026"
@@ -386,26 +406,24 @@ export default function Hackathon() {
                   >
                     Hugging Face
                   </a>{" "}
-                  cada uno por su lado. Ninguna ley los obligaba a hacerlo.
+                  separately. No law obliged them to do it.
                 </p>
                 <p>
-                  Cuando pasa algo así, casi nadie tiene a mano el
-                  procedimiento: no está escrito cómo se contiene, ni cómo se
-                  reconstruye qué falló, ni qué le puede exigir un regulador al
-                  proveedor, ni cómo se cuenta el caso sin exagerar ni
-                  minimizar.
+                  When something like that happens, almost nobody has the
+                  procedure to hand: it is not written down how to contain it,
+                  nor how to reconstruct what failed, nor what a regulator can
+                  demand of the provider, nor how to tell the story without
+                  exaggerating or playing it down.
                 </p>
                 <p>
-                  El sprint existe para llenar ese vacío con piezas concretas.
-                  Se trabaja en cinco frentes en paralelo durante tres días.
-                  Cada equipo entrega algo que alguien más pueda usar: un
-                  estándar, un banco de pruebas, un cuestionario para un
-                  regulador, un ejercicio de mesa. Después del fin de semana
-                  los califican jurados que no estuvieron en la sala. La
-                  retroalimentación llega por escrito y el reporte queda
-                  publicado con tu nombre. Apart Research y CeSIA convocan el
-                  sprint en todo el mundo; nosotros abrimos el hub presencial en
-                  Bogotá.
+                  The sprint exists to fill that gap with concrete pieces. Five
+                  tracks run in parallel over three days. Each team delivers
+                  something someone else can use: a standard, a test bench, a
+                  questionnaire for a regulator, a tabletop exercise. After the
+                  weekend the work is graded by judges who were not in the room.
+                  Feedback arrives in writing and the report is published under
+                  your name. Apart Research and CeSIA convene the sprint
+                  worldwide; we open the in-person hub in Bogotá.
                 </p>
               </div>
             </div>
@@ -419,21 +437,21 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Los cinco frentes
+              The five tracks
             </h2>
             <div className={COLUMNA}>
               <p className="text-body md:text-body-lg max-w-[640px] text-aisc-ink">
-                Cada equipo escoge uno. En el formulario nos dices cuál te
-                llama, y eso nos sirve para saber qué perfiles habrá en la sala y
-                para invitar a los mentores que hagan falta. Apart publica el
-                detalle de cada frente en{" "}
+                Each team picks one. In the form you tell us which one appeals
+                to you, and that tells us what profiles will be in the room and
+                which mentors we still need to invite. Apart publishes the
+                detail of each track in{" "}
                 <a
                   className={ENLACE}
                   href={APART_SPRINT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  la convocatoria del sprint
+                  the sprint call
                 </a>
                 .
               </p>
@@ -466,25 +484,25 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Qué encuentras en Bogotá
+              What you find in Bogotá
             </h2>
             <div className={COLUMNA}>
               <div className={PROSA}>
                 <p>
-                  Trabajar tres días seguidos es más fácil acompañado que solo
-                  en la casa. Por eso abrimos una sala en Bogotá durante todo el
-                  fin de semana.
+                  Working three days straight is easier in company than alone at
+                  home. That is why we open a room in Bogotá for the whole
+                  weekend.
                 </p>
                 <p>
-                  La sede se confirma en los próximos días. La anunciamos por
-                  correo a quienes queden seleccionados y por el{" "}
+                  The venue is confirmed in the coming days. We announce it by
+                  email to whoever is selected and through the{" "}
                   <a
                     className={ENLACE}
                     href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    grupo de WhatsApp
+                    WhatsApp group
                   </a>
                   .
                 </p>
@@ -510,20 +528,20 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Mentoría
+              Mentorship
             </h2>
             <div className={COLUMNA}>
               <div className={PROSA}>
                 <p>
-                  Durante el fin de semana pasa por la sala gente que trabaja en
-                  los temas de los cinco frentes. Algunos abren con una charla
-                  corta. Todos se sientan con los equipos a apoyar lo que
-                  estén construyendo.
+                  Over the weekend, people who work on the subjects of the five
+                  tracks come through the room. Some open with a short talk. All
+                  of them sit down with the teams to support whatever they are
+                  building.
                 </p>
                 <p>
-                  Si trabajas en respuesta a incidentes, en seguridad ofensiva,
-                  en regulación o en comunicación de riesgos y te interesa dar
-                  una charla o acompañar a un equipo, escríbenos a{" "}
+                  If you work in incident response, offensive security,
+                  regulation or risk communication and you would like to give a
+                  talk or accompany a team, write to us at{" "}
                   <a
                     className={ENLACE}
                     href="mailto:contacto@aisafetycolombia.org"
@@ -581,7 +599,7 @@ export default function Hackathon() {
             <li className="flex flex-col gap-3">
               <div className="flex aspect-square w-full items-center justify-center rounded-[8px] border border-dashed border-aisc-forest/40 p-4 text-center">
                 <span className="text-body-sm text-aisc-muted">
-                  Pronto anunciamos más nombres.
+                  More names announced soon.
                 </span>
               </div>
             </li>
@@ -609,17 +627,18 @@ export default function Hackathon() {
         <div className={`${CONTENEDOR} relative z-10`}>
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start lg:gap-6">
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Quién puede aplicar
+              Who can apply
             </h2>
             <div className="flex max-w-[640px] flex-col gap-4">
               <p className="text-body md:text-body-lg text-aisc-sand/90">
-                No se pide experiencia previa en seguridad de la IA ni título en
-                nada. Se pide que puedas estar los tres días y que llegues con
-                una idea de qué te gustaría abordar.
+                No previous experience in AI safety is required, and no degree
+                in anything. What is required is that you can be there all three
+                days and that you arrive with an idea of what you would like to
+                work on.
               </p>
               <p className="text-body-sm text-aisc-sand/70">
-                La aplicación toma alrededor de veinte minutos y no necesitas
-                preparar nada de antemano.
+                The application takes about twenty minutes and you do not need
+                to prepare anything beforehand.
               </p>
             </div>
           </div>
@@ -637,8 +656,8 @@ export default function Hackathon() {
             ))}
           </ul>
           <div className="mt-10 flex flex-wrap items-center gap-3">
-            <Link className={CTA_LINK_PRIMARY} href="/sprint/aplicar">
-              Aplicar al hub en Bogotá
+            <Link className={CTA_LINK_PRIMARY} href="/en/sprint/apply">
+              Apply to the Bogotá hub
             </Link>
             <span className="text-body-sm text-aisc-sand/70">
               {CIERRE_TEXTO}
@@ -653,21 +672,21 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Premios y qué pasa después
+              Prizes and what happens next
             </h2>
             <div className={COLUMNA}>
               <div className={PROSA}>
                 <p>
-                  Apart reparte USD 2.000 entre los cinco primeros puestos de
-                  todo el sprint. Los jurados evalúan los proyectos la semana
-                  siguiente y la calificación es ciega: no saben de dónde viene
-                  cada equipo.
+                  Apart splits USD 2,000 among the top five places across the
+                  whole sprint. The judges evaluate the projects the following
+                  week and the grading is blind: they do not know where each
+                  team comes from.
                 </p>
                 <p>
-                  Más allá del premio, los equipos con mejores resultados entran
-                  a la vía rápida de la beca de investigación de Apart y quedan
-                  conectados con mentores del campo. Cada reporte se publica
-                  completo y con los nombres de sus autores.
+                  Beyond the prize, the teams with the best results go on the
+                  fast track for Apart&apos;s research fellowship and stay
+                  connected to mentors in the field. Every report is published
+                  in full, with the names of its authors.
                 </p>
               </div>
             </div>
@@ -718,13 +737,13 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Quién está detrás
+              Who is behind it
             </h2>
             <div className={COLUMNA}>
               <p className="text-body md:text-body-lg max-w-[640px] text-aisc-ink">
-                Apart Research y CeSIA convocan el sprint en todo el mundo.
-                Nosotros abrimos el hub presencial en Bogotá, y son estas
-                organizaciones las que lo hacen posible.
+                Apart Research and CeSIA convene the sprint worldwide. We open
+                the in-person hub in Bogotá, and these are the organisations
+                that make it possible.
               </p>
             </div>
           </div>
@@ -772,7 +791,7 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className="mt-5 flex flex-col gap-8">
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Preguntas frecuentes
+              Frequently asked questions
             </h2>
             <ul className="flex flex-col">
               {FAQ.map((f) => (
@@ -833,16 +852,16 @@ export default function Hackathon() {
                 {CIERRE_TEXTO}
               </span>
               <h2 className="text-display-2 md:text-display-2-lg text-balance">
-                Aplica al hub en Bogotá
+                Apply to the Bogotá hub
               </h2>
               <p className="text-body md:text-body-lg text-aisc-sand/85">
-                Leemos la postulación completa. La pregunta que más pesa es
-                qué problema te gustaría abordar y con qué enfoque. No buscamos
-                una propuesta cerrada.
+                We read the whole application. The question that weighs most is
+                what problem you would like to work on and with what approach.
+                We are not looking for a finished proposal.
               </p>
               <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
-                <Link className={CTA_LINK_PRIMARY} href="/sprint/aplicar">
-                  Aplicar
+                <Link className={CTA_LINK_PRIMARY} href="/en/sprint/apply">
+                  Apply
                 </Link>
                 <a
                   className={CTA_LINK}
@@ -850,14 +869,14 @@ export default function Hackathon() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Participar en línea
+                  Take part online
                 </a>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <SiteFooter />
+      <SiteFooter idioma="en" />
     </main>
   );
 }

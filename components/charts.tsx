@@ -12,9 +12,14 @@
  * Figura 5: Grace et al. (2024), Tabla 2, y Forecasting Research Institute,
  *   Existential Persuasion Tournament, Tabla 9.
  *
- * Si se actualizan, hay que actualizar tambien las frases del texto que las citan. */
+ * Si se actualizan, hay que actualizar tambien las frases del texto que las citan.
+ *
+ * Los numeros viven en este archivo una sola vez. Lo que cambia por idioma son
+ * las etiquetas, y esas viven en TEXTOS, mas abajo. */
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+
+import type { Idioma } from "@/lib/idiomas";
 
 /** en el servidor no hay layout que medir */
 const usarLayout = typeof window === "undefined" ? useEffect : useLayoutEffect;
@@ -29,20 +34,568 @@ const NB = " ";
 const MS_YEAR = 365.25 * 24 * 3600 * 1000;
 const yearOf = (d: string) => Date.parse(d) / MS_YEAR + 1970;
 
-const MESES = ["ene.", "feb.", "mar.", "abr.", "may.", "jun.", "jul.", "ago.", "sep.", "oct.", "nov.", "dic."];
-const fecha = (d: string) => {
-  const [a, m] = d.split("-");
-  return `${MESES[Number(m) - 1]} ${a}`;
+/* --- diccionario ----------------------------------------------------------- */
+
+type FilaTexto = { k: string; v: string };
+
+type Barra = { l: string; n: string; titulo: string; filas: FilaTexto[]; nota: string };
+
+type Textos = {
+  meses: string[];
+  /** separador decimal: el ingles usa punto, el espanol y el portugues coma */
+  decimal: string;
+  pista: string;
+  min: string;
+  hora: string;
+  dias: string;
+  figura: string;
+  noMuestra: string;
+  fuente: string;
+  fuentes: string;
+  conjuncion: string;
+  gpqa: {
+    etiqueta: string;
+    publicado: string;
+    quien: string;
+    aciertos: string;
+    errorEstandar: string;
+    azar: string;
+    humanos: string;
+    primero: string;
+    cruce: string;
+    ultimo: string;
+  };
+  horizonte: {
+    etiqueta: string;
+    ticks: string[];
+    publicado: string;
+    quien: string;
+    mitad: string;
+    intervalo: string;
+    cuatroDeCinco: string;
+    a: string;
+    anotaciones: string[];
+    destacado: string;
+    nota: string;
+  };
+  honeypot: { etiqueta: string; barras: Barra[] };
+  asimetria: {
+    etiqueta: string;
+    nota: string;
+    rot: (v: number) => string;
+    barras: { l: string; sub: string; n: string; titulo: string; filas: FilaTexto[]; nota: string }[];
+  };
+  estimaciones: {
+    etiqueta: string;
+    mediana: string;
+    promedio: string;
+    intervalo: string;
+    cuantos: string;
+    a: string;
+    nota: string;
+    filas: { g: string; sub: string; n: string; pregunta: string; loc: string }[];
+  };
 };
-const coma = (v: number, dec = 1) => v.toFixed(dec).replace(".", ",");
-const pct = (v: number, dec = 1) => `${coma(v, dec)}${NB}%`;
-/** minutos a la unidad que se lee de un vistazo */
-const dur = (min: number) => {
-  if (min < 90) return `${Math.round(min)}${NB}min`;
-  const h = min / 60;
-  if (h < 40) return `${coma(h)}${NB}h`;
-  return `${coma(h / 24)}${NB}días`;
+
+const TEXTOS: Record<Idioma, Textos> = {
+  es: {
+    meses: ["ene.", "feb.", "mar.", "abr.", "may.", "jun.", "jul.", "ago.", "sep.", "oct.", "nov.", "dic."],
+    decimal: ",",
+    pista: "Pase el cursor por la gráfica para ver cada dato",
+    min: "min",
+    hora: "h",
+    dias: "días",
+    figura: "Figura",
+    noMuestra: "No muestra:",
+    fuente: "Fuente: ",
+    fuentes: "Fuentes: ",
+    conjuncion: " y ",
+    gpqa: {
+      etiqueta:
+        "Resultados en el examen GPQA Diamond, de 2023 a 2026, comparados con el desempeño de especialistas con doctorado",
+      publicado: "Publicado",
+      quien: "Quién lo hizo",
+      aciertos: "Aciertos",
+      errorEstandar: "Error estándar",
+      azar: "Responder al azar: 25%",
+      humanos: "Especialistas con doctorado: 69,7%",
+      primero: "mar-2023: 35,7%",
+      cruce: "dic-2024: pasa la marca humana",
+      ultimo: "ago-2026: 94,8%",
+    },
+    horizonte: {
+      etiqueta:
+        "Duración de las tareas que un modelo completa con la mitad de aciertos, de 2023 a 2026, con su intervalo de confianza",
+      ticks: ["4 min", "15 min", "1 hora", "4 horas", "16 horas", "2,7 días"],
+      publicado: "Publicado",
+      quien: "Quién lo hizo",
+      mitad: "Acierta la mitad de las veces",
+      intervalo: "Intervalo del 95 %",
+      cuatroDeCinco: "Acierta 4 de cada 5 veces",
+      a: " a ",
+      anotaciones: ["GPT-4: 5 minutos", "o1: 39 minutos", "GPT-5: 3 horas"],
+      destacado: "abr-2026: 17 horas",
+      nota: "Las líneas verticales son el intervalo del 95 %: cuanto más larga la tarea, menos preciso el dato.",
+    },
+    honeypot: {
+      etiqueta:
+        "Porcentaje de acciones desalineadas en cien escenarios trampa, con y sin la conciencia de estar siendo evaluado",
+      barras: [
+        {
+          l: "Sonnet 4.5\nsin tocar",
+          n: `0${NB}%`,
+          titulo: "Claude Sonnet 4.5, sin intervenir",
+          filas: [
+            { k: "Acciones desalineadas", v: "0 de 100" },
+            { k: "Dice que sospecha", v: "más del 80 % de las veces" },
+          ],
+          nota: "El modelo, tal como salió al mercado, no cayó en ninguna de las cien trampas.",
+        },
+        {
+          l: "Diez direcciones\nal azar (control)",
+          n: `0${NB}%`,
+          titulo: "Control: diez direcciones internas al azar",
+          filas: [
+            { k: "Acciones desalineadas", v: "cero" },
+            { k: "Fuerza aplicada", v: "la misma del experimento" },
+          ],
+          nota: "Sirve para descartar que el resultado se explique por sacudir el modelo con cualquier cosa.",
+        },
+        {
+          l: "Con «esto es una\nprueba» inhibido",
+          n: `hasta 9${NB}%`,
+          titulo: "Apagando la idea de estar en un examen",
+          filas: [
+            { k: "Máximo alcanzado", v: "8 a 9 %" },
+            { k: "La mayoría de vectores", v: "entre 1 y 5 %, o en 0" },
+          ],
+          nota: "La parte sólida de la barra es donde quedó la mayoría; la clara, hasta dónde llegó el peor caso.",
+        },
+        {
+          l: "Sonnet 4\nsin tocar",
+          n: `≈11${NB}%`,
+          titulo: "Claude Sonnet 4, la versión anterior",
+          filas: [{ k: "Acciones desalineadas", v: "cerca del 11 %" }],
+          nota: "Anthropic lo pone como referencia: ni apagando esa idea, Sonnet 4.5 llega a portarse tan mal como su antecesor.",
+        },
+      ],
+    },
+    asimetria: {
+      etiqueta:
+        "Comparación entre el presupuesto anual del campo de la seguridad de la IA y la inversión anunciada en infraestructura de IA",
+      nota: "Dólares por año, escala logarítmica: cada línea vale diez veces la anterior.",
+      rot: (v) => (v >= 1_000_000 ? "1 billón" : `${(v / 1000).toLocaleString("es-CO")} mil M`),
+      barras: [
+        {
+          l: "Todo el campo de la seguridad de la IA",
+          sub: "170 organizaciones, 1.313 personas de tiempo completo",
+          n: "525 millones",
+          titulo: "Seguridad de la IA, presupuesto anual",
+          filas: [
+            { k: "Presupuesto", v: "USD 525 millones" },
+            { k: "Organizaciones", v: "170" },
+            { k: "Personas", v: "1.313 de tiempo completo" },
+            { k: "En América Latina", v: "ninguna" },
+          ],
+          nota: "Censo de Harry Waterman, cerrado en septiembre de 2025; cuenta organizaciones dedicadas, no equipos internos de las empresas.",
+        },
+        {
+          l: "Inversión anunciada en infraestructura de IA",
+          sub: "Amazon, Google, Meta y Microsoft, solo en 2026",
+          n: "casi 700.000 millones",
+          titulo: "Infraestructura de IA, un solo año",
+          filas: [
+            { k: "Inversión anunciada", v: "cerca de USD 700.000 M" },
+            { k: "Quiénes", v: "Amazon, Google, Meta, Microsoft" },
+            { k: "Año", v: "2026" },
+            { k: "Cuántas veces más", v: "unas 1.300" },
+          ],
+          nota: "Son cifras que las cuatro empresas anunciaron a sus inversionistas en febrero de 2026, no gasto ya ejecutado.",
+        },
+      ],
+    },
+    estimaciones: {
+      etiqueta:
+        "Estimaciones de la probabilidad de extinción causada por la inteligencia artificial, según distintos grupos",
+      mediana: "Mediana",
+      promedio: "Promedio",
+      intervalo: "Intervalo del 95 %",
+      cuantos: "Cuántos",
+      a: " a ",
+      nota: "Escala logarítmica. Los dos ejercicios preguntaron cosas distintas: pase el cursor para ver la pregunta exacta.",
+      filas: [
+        {
+          g: "Superpronosticadores",
+          sub: "gente con buen historial prediciendo, no especialistas en IA",
+          n: "88 participantes",
+          pregunta: "Probabilidad de que la IA cause la extinción humana antes de 2100.",
+          loc: "Forecasting Research Institute, Tabla 9",
+        },
+        {
+          g: "Expertos en IA del mismo torneo",
+          sub: "respondieron la misma pregunta, en el mismo ejercicio",
+          n: "80 participantes",
+          pregunta: "Probabilidad de que la IA cause la extinción humana antes de 2100.",
+          loc: "Forecasting Research Institute, Tabla 9",
+        },
+        {
+          g: "Investigadores que publican en IA",
+          sub: "mediana 5 %, promedio 16,2 %: hay una cola larga de respuestas altas",
+          n: "1.321 respuestas",
+          pregunta:
+            "¿Qué probabilidad le da a que los avances futuros en IA causen la extinción humana, o una pérdida de poder igual de permanente y grave?",
+          loc: "Grace et al. (2024), Tabla 2, datos de 2023",
+        },
+        {
+          g: "Los mismos, preguntados por el control",
+          sub: "mediana 10 %, promedio 19,4 %",
+          n: "661 respuestas",
+          pregunta:
+            "¿Qué probabilidad le da a que sea la incapacidad humana de controlar sistemas de IA avanzados la que cause ese desenlace?",
+          loc: "Grace et al. (2024), Tabla 2, datos de 2023",
+        },
+      ],
+    },
+  },
+
+  en: {
+    meses: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    decimal: ".",
+    pista: "Hover over the chart to see each data point",
+    min: "min",
+    hora: "h",
+    dias: "days",
+    figura: "Figure",
+    noMuestra: "Does not show:",
+    fuente: "Source: ",
+    fuentes: "Sources: ",
+    conjuncion: " and ",
+    gpqa: {
+      etiqueta:
+        "Scores on the GPQA Diamond exam, from 2023 to 2026, compared with the performance of specialists holding a doctorate",
+      publicado: "Released",
+      quien: "Who built it",
+      aciertos: "Correct answers",
+      errorEstandar: "Standard error",
+      azar: "Answering at random: 25%",
+      humanos: "Specialists with a doctorate: 69.7%",
+      primero: "Mar 2023: 35.7%",
+      cruce: "Dec 2024: passes the human mark",
+      ultimo: "Aug 2026: 94.8%",
+    },
+    horizonte: {
+      etiqueta:
+        "Length of the tasks a model completes half the time, from 2023 to 2026, with its confidence interval",
+      ticks: ["4 min", "15 min", "1 hour", "4 hours", "16 hours", "2.7 days"],
+      publicado: "Released",
+      quien: "Who built it",
+      mitad: "Succeeds half the time",
+      intervalo: "95% interval",
+      cuatroDeCinco: "Succeeds 4 times out of 5",
+      a: " to ",
+      anotaciones: ["GPT-4: 5 minutes", "o1: 39 minutes", "GPT-5: 3 hours"],
+      destacado: "Apr 2026: 17 hours",
+      nota: "The vertical lines are the 95% interval: the longer the task, the less precise the estimate.",
+    },
+    honeypot: {
+      etiqueta:
+        "Share of misaligned actions across a hundred honeypot scenarios, with and without the awareness of being evaluated",
+      barras: [
+        {
+          l: "Sonnet 4.5\nuntouched",
+          n: `0${NB}%`,
+          titulo: "Claude Sonnet 4.5, with no intervention",
+          filas: [
+            { k: "Misaligned actions", v: "0 out of 100" },
+            { k: "Says it suspects", v: "more than 80% of the time" },
+          ],
+          nota: "The model, exactly as it shipped, fell for none of the hundred honeypots.",
+        },
+        {
+          l: "Ten random\ndirections (control)",
+          n: `0${NB}%`,
+          titulo: "Control: ten random internal directions",
+          filas: [
+            { k: "Misaligned actions", v: "zero" },
+            { k: "Strength applied", v: "the same as in the experiment" },
+          ],
+          nota: "It rules out that the result comes from jolting the model with anything at all.",
+        },
+        {
+          l: "With “this is a\ntest” suppressed",
+          n: `up to 9${NB}%`,
+          titulo: "Switching off the idea of sitting an exam",
+          filas: [
+            { k: "Highest reached", v: "8 to 9%" },
+            { k: "Most vectors", v: "between 1 and 5%, or at 0" },
+          ],
+          nota: "The solid part of the bar is where most vectors landed; the pale part, how far the worst case went.",
+        },
+        {
+          l: "Sonnet 4\nuntouched",
+          n: `≈11${NB}%`,
+          titulo: "Claude Sonnet 4, the previous version",
+          filas: [{ k: "Misaligned actions", v: "around 11%" }],
+          nota: "Anthropic offers it as a reference: even with that idea switched off, Sonnet 4.5 does not behave as badly as its predecessor.",
+        },
+      ],
+    },
+    asimetria: {
+      etiqueta:
+        "Comparison between the annual budget of the AI safety field and the investment announced in AI infrastructure",
+      nota: "Dollars per year, logarithmic scale: each line is worth ten times the previous one.",
+      rot: (v) => (v >= 1_000_000 ? "1 trillion" : `${v / 1000} bn`),
+      barras: [
+        {
+          l: "The whole AI safety field",
+          sub: "170 organisations, 1,313 full-time staff",
+          n: "525 million",
+          titulo: "AI safety, annual budget",
+          filas: [
+            { k: "Budget", v: "USD 525 million" },
+            { k: "Organisations", v: "170" },
+            { k: "People", v: "1,313 full-time" },
+            { k: "In Latin America", v: "none" },
+          ],
+          nota: "Census by Harry Waterman, closed in September 2025; it counts dedicated organisations, not the companies' internal teams.",
+        },
+        {
+          l: "Investment announced in AI infrastructure",
+          sub: "Amazon, Google, Meta and Microsoft, in 2026 alone",
+          n: "almost 700 billion",
+          titulo: "AI infrastructure, a single year",
+          filas: [
+            { k: "Investment announced", v: "around USD 700 bn" },
+            { k: "Who", v: "Amazon, Google, Meta, Microsoft" },
+            { k: "Year", v: "2026" },
+            { k: "How many times more", v: "about 1,300" },
+          ],
+          nota: "These are figures the four companies announced to their investors in February 2026, not spending already executed.",
+        },
+      ],
+    },
+    estimaciones: {
+      etiqueta: "Estimates of the probability of extinction caused by artificial intelligence, by group",
+      mediana: "Median",
+      promedio: "Mean",
+      intervalo: "95% interval",
+      cuantos: "How many",
+      a: " to ",
+      nota: "Logarithmic scale. The two exercises asked different questions: hover to see the exact wording.",
+      filas: [
+        {
+          g: "Superforecasters",
+          sub: "people with a good track record predicting, not AI specialists",
+          n: "88 participants",
+          pregunta: "Probability that AI causes human extinction before 2100.",
+          loc: "Forecasting Research Institute, Table 9",
+        },
+        {
+          g: "AI experts in the same tournament",
+          sub: "they answered the same question, in the same exercise",
+          n: "80 participants",
+          pregunta: "Probability that AI causes human extinction before 2100.",
+          loc: "Forecasting Research Institute, Table 9",
+        },
+        {
+          g: "Researchers who publish in AI",
+          sub: "median 5%, mean 16.2%: there is a long tail of high answers",
+          n: "1,321 answers",
+          pregunta:
+            "What probability do you give to future advances in AI causing human extinction, or an equally permanent and severe disempowerment?",
+          loc: "Grace et al. (2024), Table 2, 2023 data",
+        },
+        {
+          g: "The same people, asked about control",
+          sub: "median 10%, mean 19.4%",
+          n: "661 answers",
+          pregunta:
+            "What probability do you give to human inability to control advanced AI systems being what causes that outcome?",
+          loc: "Grace et al. (2024), Table 2, 2023 data",
+        },
+      ],
+    },
+  },
+
+  pt: {
+    meses: ["jan.", "fev.", "mar.", "abr.", "mai.", "jun.", "jul.", "ago.", "set.", "out.", "nov.", "dez."],
+    decimal: ",",
+    pista: "Passe o cursor pelo gráfico para ver cada dado",
+    min: "min",
+    hora: "h",
+    dias: "dias",
+    figura: "Figura",
+    noMuestra: "Não mostra:",
+    fuente: "Fonte: ",
+    fuentes: "Fontes: ",
+    conjuncion: " e ",
+    gpqa: {
+      etiqueta:
+        "Resultados no exame GPQA Diamond, de 2023 a 2026, comparados com o desempenho de especialistas com doutorado",
+      publicado: "Publicado",
+      quien: "Quem fez",
+      aciertos: "Acertos",
+      errorEstandar: "Erro padrão",
+      azar: "Responder ao acaso: 25%",
+      humanos: "Especialistas com doutorado: 69,7%",
+      primero: "mar. 2023: 35,7%",
+      cruce: "dez. 2024: passa a marca humana",
+      ultimo: "ago. 2026: 94,8%",
+    },
+    horizonte: {
+      etiqueta:
+        "Duração das tarefas que um modelo completa na metade das vezes, de 2023 a 2026, com seu intervalo de confiança",
+      ticks: ["4 min", "15 min", "1 hora", "4 horas", "16 horas", "2,7 dias"],
+      publicado: "Publicado",
+      quien: "Quem fez",
+      mitad: "Acerta na metade das vezes",
+      intervalo: "Intervalo de 95 %",
+      cuatroDeCinco: "Acerta 4 de cada 5 vezes",
+      a: " a ",
+      anotaciones: ["GPT-4: 5 minutos", "o1: 39 minutos", "GPT-5: 3 horas"],
+      destacado: "abr. 2026: 17 horas",
+      nota: "As linhas verticais são o intervalo de 95 %: quanto mais longa a tarefa, menos preciso o dado.",
+    },
+    honeypot: {
+      etiqueta:
+        "Porcentagem de ações desalinhadas em cem cenários-armadilha, com e sem a consciência de estar sendo avaliado",
+      barras: [
+        {
+          l: "Sonnet 4.5\nsem mexer",
+          n: `0${NB}%`,
+          titulo: "Claude Sonnet 4.5, sem intervenção",
+          filas: [
+            { k: "Ações desalinhadas", v: "0 de 100" },
+            { k: "Diz que suspeita", v: "mais de 80 % das vezes" },
+          ],
+          nota: "O modelo, tal como saiu ao mercado, não caiu em nenhuma das cem armadilhas.",
+        },
+        {
+          l: "Dez direções ao\nacaso (controle)",
+          n: `0${NB}%`,
+          titulo: "Controle: dez direções internas ao acaso",
+          filas: [
+            { k: "Ações desalinhadas", v: "zero" },
+            { k: "Força aplicada", v: "a mesma do experimento" },
+          ],
+          nota: "Serve para descartar que o resultado se explique por sacudir o modelo com qualquer coisa.",
+        },
+        {
+          l: "Com «isto é um\nteste» inibido",
+          n: `até 9${NB}%`,
+          titulo: "Desligando a ideia de estar num exame",
+          filas: [
+            { k: "Máximo alcançado", v: "8 a 9 %" },
+            { k: "A maioria dos vetores", v: "entre 1 e 5 %, ou em 0" },
+          ],
+          nota: "A parte sólida da barra é onde ficou a maioria; a clara, até onde chegou o pior caso.",
+        },
+        {
+          l: "Sonnet 4\nsem mexer",
+          n: `≈11${NB}%`,
+          titulo: "Claude Sonnet 4, a versão anterior",
+          filas: [{ k: "Ações desalinhadas", v: "perto de 11 %" }],
+          nota: "A Anthropic o coloca como referência: nem desligando essa ideia o Sonnet 4.5 chega a se comportar tão mal quanto seu antecessor.",
+        },
+      ],
+    },
+    asimetria: {
+      etiqueta:
+        "Comparação entre o orçamento anual do campo da segurança da IA e o investimento anunciado em infraestrutura de IA",
+      nota: "Dólares por ano, escala logarítmica: cada linha vale dez vezes a anterior.",
+      rot: (v) => (v >= 1_000_000 ? "1 trilhão" : `${v / 1000} bi`),
+      barras: [
+        {
+          l: "Todo o campo da segurança da IA",
+          sub: "170 organizações, 1.313 pessoas em tempo integral",
+          n: "525 milhões",
+          titulo: "Segurança da IA, orçamento anual",
+          filas: [
+            { k: "Orçamento", v: "USD 525 milhões" },
+            { k: "Organizações", v: "170" },
+            { k: "Pessoas", v: "1.313 em tempo integral" },
+            { k: "Na América Latina", v: "nenhuma" },
+          ],
+          nota: "Censo de Harry Waterman, fechado em setembro de 2025; conta organizações dedicadas, não equipes internas das empresas.",
+        },
+        {
+          l: "Investimento anunciado em infraestrutura de IA",
+          sub: "Amazon, Google, Meta e Microsoft, só em 2026",
+          n: "quase 700 bilhões",
+          titulo: "Infraestrutura de IA, um único ano",
+          filas: [
+            { k: "Investimento anunciado", v: "cerca de USD 700 bi" },
+            { k: "Quem", v: "Amazon, Google, Meta, Microsoft" },
+            { k: "Ano", v: "2026" },
+            { k: "Quantas vezes mais", v: "cerca de 1.300" },
+          ],
+          nota: "São cifras que as quatro empresas anunciaram a seus investidores em fevereiro de 2026, não gasto já executado.",
+        },
+      ],
+    },
+    estimaciones: {
+      etiqueta:
+        "Estimativas da probabilidade de extinção causada pela inteligência artificial, segundo diferentes grupos",
+      mediana: "Mediana",
+      promedio: "Média",
+      intervalo: "Intervalo de 95 %",
+      cuantos: "Quantos",
+      a: " a ",
+      nota: "Escala logarítmica. Os dois exercícios perguntaram coisas diferentes: passe o cursor para ver a pergunta exata.",
+      filas: [
+        {
+          g: "Superprevisores",
+          sub: "gente com bom histórico de previsão, não especialistas em IA",
+          n: "88 participantes",
+          pregunta: "Probabilidade de que a IA cause a extinção humana antes de 2100.",
+          loc: "Forecasting Research Institute, Tabela 9",
+        },
+        {
+          g: "Especialistas em IA do mesmo torneio",
+          sub: "responderam a mesma pergunta, no mesmo exercício",
+          n: "80 participantes",
+          pregunta: "Probabilidade de que a IA cause a extinção humana antes de 2100.",
+          loc: "Forecasting Research Institute, Tabela 9",
+        },
+        {
+          g: "Pesquisadores que publicam em IA",
+          sub: "mediana 5 %, média 16,2 %: há uma cauda longa de respostas altas",
+          n: "1.321 respostas",
+          pregunta:
+            "Que probabilidade você dá a que os avanços futuros em IA causem a extinção humana, ou uma perda de poder igualmente permanente e grave?",
+          loc: "Grace et al. (2024), Tabela 2, dados de 2023",
+        },
+        {
+          g: "Os mesmos, perguntados sobre o controle",
+          sub: "mediana 10 %, média 19,4 %",
+          n: "661 respostas",
+          pregunta:
+            "Que probabilidade você dá a que seja a incapacidade humana de controlar sistemas de IA avançados a causa desse desfecho?",
+          loc: "Grace et al. (2024), Tabela 2, dados de 2023",
+        },
+      ],
+    },
+  },
 };
+
+/* --- formato numerico, que tambien cambia de idioma ------------------------ */
+
+function formato(t: Textos) {
+  const coma = (v: number, dec = 1) => v.toFixed(dec).replace(".", t.decimal);
+  const pct = (v: number, dec = 1) => `${coma(v, dec)}${NB}%`;
+  const fecha = (d: string) => {
+    const [a, m] = d.split("-");
+    return `${t.meses[Number(m) - 1]} ${a}`;
+  };
+  /** minutos a la unidad que se lee de un vistazo */
+  const dur = (min: number) => {
+    if (min < 90) return `${Math.round(min)}${NB}${t.min}`;
+    const h = min / 60;
+    if (h < 40) return `${coma(h)}${NB}${t.hora}`;
+    return `${coma(h / 24)}${NB}${t.dias}`;
+  };
+  return { coma, pct, fecha, dur };
+}
 
 /* --- envoltorio con tooltip ------------------------------------------------ */
 
@@ -143,10 +696,10 @@ function Lienzo({
 }
 
 /** pista para quien no sabe que la grafica responde */
-function Pista({ x, y }: { x: number; y: number }) {
+function Pista({ x, y, texto }: { x: number; y: number; texto: string }) {
   return (
     <text x={x} y={y} textAnchor="end" fontSize={11} fill={MUTED} opacity={0.75}>
-      Pase el cursor por la gráfica para ver cada dato
+      {texto}
     </text>
   );
 }
@@ -180,7 +733,9 @@ const GPQA: PuntoGpqa[] = [
 /** doctores del area que OpenAI recluto para calibrar el subconjunto Diamond */
 const HUMANO = 69.7;
 
-export function GraficaGpqa() {
+export function GraficaGpqa({ idioma = "es" }: { idioma?: Idioma }) {
+  const t = TEXTOS[idioma];
+  const { coma, pct, fecha } = formato(t);
   const W = 900;
   const H = 444;
   const ML = 46;
@@ -216,23 +771,16 @@ export function GraficaGpqa() {
         y: py(sel.v),
         titulo: sel.m,
         filas: [
-          { k: "Publicado", v: fecha(sel.d) },
-          { k: "Quién lo hizo", v: sel.o },
-          { k: "Aciertos", v: pct(sel.v) },
-          { k: "Error estándar", v: `±${NB}${coma(sel.se)} pp` },
+          { k: t.gpqa.publicado, v: fecha(sel.d) },
+          { k: t.gpqa.quien, v: sel.o },
+          { k: t.gpqa.aciertos, v: pct(sel.v) },
+          { k: t.gpqa.errorEstandar, v: `±${NB}${coma(sel.se)} pp` },
         ],
       }
     : null;
 
   return (
-    <Lienzo
-      W={W}
-      H={H}
-      etiqueta="Resultados en el examen GPQA Diamond, de 2023 a 2026, comparados con el desempeño de especialistas con doctorado"
-      tip={tip}
-      onMover={mover}
-      onSalir={() => setI(null)}
-    >
+    <Lienzo W={W} H={H} etiqueta={t.gpqa.etiqueta} tip={tip} onMover={mover} onSalir={() => setI(null)}>
       {[0, 25, 50, 75, 100].map((v) => (
         <g key={v}>
           <line x1={ML} x2={W - MR} y1={py(v)} y2={py(v)} stroke={LINE} strokeWidth={1} />
@@ -241,7 +789,7 @@ export function GraficaGpqa() {
           </text>
         </g>
       ))}
-      <Pista x={W - MR} y={H - 8} />
+      <Pista x={W - MR} y={H - 8} texto={t.pista} />
       {[2023, 2024, 2025, 2026].map((y) => (
         <text key={y} x={px(`${y}-01-01`)} y={H - MB + 22} textAnchor="middle" fontSize={12} fill={MUTED}>
           {y}
@@ -251,13 +799,13 @@ export function GraficaGpqa() {
       {/* franja de adivinanza al azar: cada pregunta trae cuatro opciones */}
       <rect x={ML} y={py(25)} width={W - ML - MR} height={py(0) - py(25)} fill={INK} opacity={0.04} />
       <text x={ML + 8} y={py(25) - 7} fontSize={12} fill={MUTED}>
-        Responder al azar: 25%
+        {t.gpqa.azar}
       </text>
 
       {/* linea humana */}
       <line x1={ML} x2={W - MR} y1={py(HUMANO)} y2={py(HUMANO)} stroke={CORAL} strokeWidth={1.5} strokeDasharray="6 5" />
       <text x={W - MR} y={py(HUMANO) - 9} textAnchor="end" fontSize={13} fill={CORAL} fontWeight={600}>
-        Especialistas con doctorado: 69,7%
+        {t.gpqa.humanos}
       </text>
 
       {/* guia vertical del punto seleccionado */}
@@ -282,14 +830,14 @@ export function GraficaGpqa() {
       <g opacity={i === null ? 1 : 0.25}>
         <circle cx={px(GPQA[0].d)} cy={py(GPQA[0].v)} r={5.5} fill="none" stroke={FOREST} strokeWidth={1.5} />
         <text x={px(GPQA[0].d) + 14} y={py(GPQA[0].v) + 4} fontSize={13} fill={INK}>
-          mar-2023: 35,7%
+          {t.gpqa.primero}
         </text>
         <line x1={px(cruce.d)} x2={px(cruce.d)} y1={py(cruce.v) - 10} y2={py(100) - 6} stroke={MUTED} strokeWidth={1} />
         <text x={px(cruce.d) - 8} y={py(100) - 10} textAnchor="end" fontSize={13} fill={INK}>
-          dic-2024: pasa la marca humana
+          {t.gpqa.cruce}
         </text>
         <text x={px(GPQA[GPQA.length - 1].d) - 6} y={py(GPQA[GPQA.length - 1].v) + 22} textAnchor="end" fontSize={13} fill={INK}>
-          ago-2026: 94,8%
+          {t.gpqa.ultimo}
         </text>
       </g>
     </Lienzo>
@@ -318,16 +866,11 @@ const HORIZONTE: PuntoMetr[] = [
   { d: "2026-04-07", v: 1044.8, lo: 508.9, hi: 3304.3, h80: 185.9, m: "Claude Mythos (preview)", o: "Anthropic" },
 ];
 
-const TICKS_H = [
-  { v: 4, l: "4 min" },
-  { v: 15, l: "15 min" },
-  { v: 60, l: "1 hora" },
-  { v: 240, l: "4 horas" },
-  { v: 960, l: "16 horas" },
-  { v: 3840, l: "2,7 días" },
-];
+const TICKS_H = [4, 15, 60, 240, 960, 3840];
 
-export function GraficaHorizonte() {
+export function GraficaHorizonte({ idioma = "es" }: { idioma?: Idioma }) {
+  const t = TEXTOS[idioma];
+  const { fecha, dur } = formato(t);
   const W = 900;
   const H = 444;
   const ML = 68;
@@ -364,29 +907,22 @@ export function GraficaHorizonte() {
         y: py(sel.v),
         titulo: sel.m,
         filas: [
-          { k: "Publicado", v: fecha(sel.d) },
-          { k: "Quién lo hizo", v: sel.o },
-          { k: "Acierta la mitad de las veces", v: dur(sel.v) },
-          { k: "Intervalo del 95 %", v: `${dur(sel.lo)} a ${dur(sel.hi)}` },
-          ...(sel.h80 ? [{ k: "Acierta 4 de cada 5 veces", v: dur(sel.h80) }] : []),
+          { k: t.horizonte.publicado, v: fecha(sel.d) },
+          { k: t.horizonte.quien, v: sel.o },
+          { k: t.horizonte.mitad, v: dur(sel.v) },
+          { k: t.horizonte.intervalo, v: `${dur(sel.lo)}${t.horizonte.a}${dur(sel.hi)}` },
+          ...(sel.h80 ? [{ k: t.horizonte.cuatroDeCinco, v: dur(sel.h80) }] : []),
         ],
       }
     : null;
 
   return (
-    <Lienzo
-      W={W}
-      H={H}
-      etiqueta="Duración de las tareas que un modelo completa con la mitad de aciertos, de 2023 a 2026, con su intervalo de confianza"
-      tip={tip}
-      onMover={mover}
-      onSalir={() => setI(null)}
-    >
-      {TICKS_H.map((t) => (
-        <g key={t.v}>
-          <line x1={ML} x2={W - MR} y1={py(t.v)} y2={py(t.v)} stroke={LINE} strokeWidth={1} />
-          <text x={ML - 10} y={py(t.v) + 4} textAnchor="end" fontSize={12} fill={MUTED}>
-            {t.l}
+    <Lienzo W={W} H={H} etiqueta={t.horizonte.etiqueta} tip={tip} onMover={mover} onSalir={() => setI(null)}>
+      {TICKS_H.map((v, j) => (
+        <g key={v}>
+          <line x1={ML} x2={W - MR} y1={py(v)} y2={py(v)} stroke={LINE} strokeWidth={1} />
+          <text x={ML - 10} y={py(v) + 4} textAnchor="end" fontSize={12} fill={MUTED}>
+            {t.horizonte.ticks[j]}
           </text>
         </g>
       ))}
@@ -420,22 +956,22 @@ export function GraficaHorizonte() {
 
       <g opacity={i === null ? 1 : 0.25}>
         <text x={px("2023-03-14") + 14} y={py(5.4) + 4} fontSize={13} fill={INK}>
-          GPT-4: 5 minutos
+          {t.horizonte.anotaciones[0]}
         </text>
         <text x={px("2024-12-17") + 12} y={py(39.2) + 4} fontSize={13} fill={INK}>
-          o1: 39 minutos
+          {t.horizonte.anotaciones[1]}
         </text>
         <text x={px("2025-08-07") + 12} y={py(203) + 16} fontSize={13} fill={INK}>
-          GPT-5: 3 horas
+          {t.horizonte.anotaciones[2]}
         </text>
         <circle cx={px("2026-04-07")} cy={py(1044.8)} r={6} fill="none" stroke={CORAL} strokeWidth={2} />
         <text x={px("2026-04-07") - 12} y={py(1044.8) + 5} textAnchor="end" fontSize={13} fill={CORAL} fontWeight={600}>
-          abr-2026: 17 horas
+          {t.horizonte.destacado}
         </text>
       </g>
 
       <text x={ML} y={H - 10} fontSize={11} fill={MUTED}>
-        Las líneas verticales son el intervalo del 95 %: cuanto más larga la tarea, menos preciso el dato.
+        {t.horizonte.nota}
       </text>
     </Lienzo>
   );
@@ -450,58 +986,15 @@ export function GraficaHorizonte() {
    desalineadas llegan a un maximo de 8-9 %, y la mayoria queda entre 1 y 5 % o en 0.
    Control: diez vectores SAE aleatorios de la misma norma, cero acciones. */
 const HONEYPOT = [
-  {
-    l: "Sonnet 4.5\nsin tocar",
-    v: 0,
-    n: `0${NB}%`,
-    tipico: 0,
-    destacar: false,
-    titulo: "Claude Sonnet 4.5, sin intervenir",
-    filas: [
-      { k: "Acciones desalineadas", v: "0 de 100" },
-      { k: "Dice que sospecha", v: "más del 80 % de las veces" },
-    ],
-    nota: "El modelo, tal como salió al mercado, no cayó en ninguna de las cien trampas.",
-  },
-  {
-    l: "Diez direcciones\nal azar (control)",
-    v: 0,
-    n: `0${NB}%`,
-    tipico: 0,
-    destacar: false,
-    titulo: "Control: diez direcciones internas al azar",
-    filas: [
-      { k: "Acciones desalineadas", v: "cero" },
-      { k: "Fuerza aplicada", v: "la misma del experimento" },
-    ],
-    nota: "Sirve para descartar que el resultado se explique por sacudir el modelo con cualquier cosa.",
-  },
-  {
-    l: "Con «esto es una\nprueba» inhibido",
-    v: 9,
-    n: `hasta 9${NB}%`,
-    tipico: 5,
-    destacar: true,
-    titulo: "Apagando la idea de estar en un examen",
-    filas: [
-      { k: "Máximo alcanzado", v: "8 a 9 %" },
-      { k: "La mayoría de vectores", v: "entre 1 y 5 %, o en 0" },
-    ],
-    nota: "La parte sólida de la barra es donde quedó la mayoría; la clara, hasta dónde llegó el peor caso.",
-  },
-  {
-    l: "Sonnet 4\nsin tocar",
-    v: 11,
-    n: `≈11${NB}%`,
-    tipico: 11,
-    destacar: false,
-    titulo: "Claude Sonnet 4, la versión anterior",
-    filas: [{ k: "Acciones desalineadas", v: "cerca del 11 %" }],
-    nota: "Anthropic lo pone como referencia: ni apagando esa idea, Sonnet 4.5 llega a portarse tan mal como su antecesor.",
-  },
+  { v: 0, tipico: 0, destacar: false },
+  { v: 0, tipico: 0, destacar: false },
+  { v: 9, tipico: 5, destacar: true },
+  { v: 11, tipico: 11, destacar: false },
 ];
 
-export function GraficaHoneypot() {
+export function GraficaHoneypot({ idioma = "es" }: { idioma?: Idioma }) {
+  const t = TEXTOS[idioma];
+  const barras = HONEYPOT.map((b, j) => ({ ...b, ...t.honeypot.barras[j] }));
   const W = 900;
   const H = 320;
   const MT = 30;
@@ -510,15 +1003,15 @@ export function GraficaHoneypot() {
   const MR = 24;
   const MAX = 12;
   const py = (v: number) => MT + (1 - v / MAX) * (H - MT - MB);
-  const paso = (W - ML - MR) / HONEYPOT.length;
+  const paso = (W - ML - MR) / barras.length;
   const ancho = Math.min(110, paso * 0.5);
 
   const [i, setI] = useState<number | null>(null);
-  const b = i === null ? null : HONEYPOT[i];
+  const b = i === null ? null : barras[i];
 
   const mover = ({ x }: { x: number }) => {
     const k = Math.floor((x - ML) / paso);
-    setI(k >= 0 && k < HONEYPOT.length ? k : null);
+    setI(k >= 0 && k < barras.length ? k : null);
   };
 
   const tip: Tip | null = b
@@ -532,23 +1025,16 @@ export function GraficaHoneypot() {
     : null;
 
   return (
-    <Lienzo
-      W={W}
-      H={H}
-      etiqueta="Porcentaje de acciones desalineadas en cien escenarios trampa, con y sin la conciencia de estar siendo evaluado"
-      tip={tip}
-      onMover={mover}
-      onSalir={() => setI(null)}
-    >
-      {[0, 3, 6, 9, 12].map((t) => (
-        <g key={t}>
-          <line x1={ML} x2={W - MR} y1={py(t)} y2={py(t)} stroke={LINE} strokeWidth={t === 0 ? 2 : 1} />
-          <text x={ML - 12} y={py(t) + 4} textAnchor="end" fontSize={12} fill={MUTED}>
-            {t} %
+    <Lienzo W={W} H={H} etiqueta={t.honeypot.etiqueta} tip={tip} onMover={mover} onSalir={() => setI(null)}>
+      {[0, 3, 6, 9, 12].map((tk) => (
+        <g key={tk}>
+          <line x1={ML} x2={W - MR} y1={py(tk)} y2={py(tk)} stroke={LINE} strokeWidth={tk === 0 ? 2 : 1} />
+          <text x={ML - 12} y={py(tk) + 4} textAnchor="end" fontSize={12} fill={MUTED}>
+            {tk} %
           </text>
         </g>
       ))}
-      {HONEYPOT.map((b2, j) => {
+      {barras.map((b2, j) => {
         const cx = ML + paso * (j + 0.5);
         const alto = Math.max(py(0) - py(b2.v), 0);
         const altoTipico = Math.max(py(0) - py(b2.tipico), 0);
@@ -612,39 +1098,13 @@ export function GraficaHoneypot() {
 /* --- Figura 4: la desproporcion de escala ---------------------------------- */
 
 const ESCALA = [
-  {
-    l: "Todo el campo de la seguridad de la IA",
-    sub: "170 organizaciones, 1.313 personas de tiempo completo",
-    v: 525,
-    n: "525 millones",
-    destacar: true,
-    titulo: "Seguridad de la IA, presupuesto anual",
-    filas: [
-      { k: "Presupuesto", v: "USD 525 millones" },
-      { k: "Organizaciones", v: "170" },
-      { k: "Personas", v: "1.313 de tiempo completo" },
-      { k: "En América Latina", v: "ninguna" },
-    ],
-    nota: "Censo de Harry Waterman, cerrado en septiembre de 2025; cuenta organizaciones dedicadas, no equipos internos de las empresas.",
-  },
-  {
-    l: "Inversión anunciada en infraestructura de IA",
-    sub: "Amazon, Google, Meta y Microsoft, solo en 2026",
-    v: 700_000,
-    n: "casi 700.000 millones",
-    destacar: false,
-    titulo: "Infraestructura de IA, un solo año",
-    filas: [
-      { k: "Inversión anunciada", v: "cerca de USD 700.000 M" },
-      { k: "Quiénes", v: "Amazon, Google, Meta, Microsoft" },
-      { k: "Año", v: "2026" },
-      { k: "Cuántas veces más", v: "unas 1.300" },
-    ],
-    nota: "Son cifras que las cuatro empresas anunciaron a sus inversionistas en febrero de 2026, no gasto ya ejecutado.",
-  },
+  { v: 525, destacar: true },
+  { v: 700_000, destacar: false },
 ];
 
-export function GraficaAsimetria() {
+export function GraficaAsimetria({ idioma = "es" }: { idioma?: Idioma }) {
+  const t = TEXTOS[idioma];
+  const escala = ESCALA.map((b, j) => ({ ...b, ...t.asimetria.barras[j] }));
   const W = 900;
   const H = 310;
   const ML = 24;
@@ -656,14 +1116,13 @@ export function GraficaAsimetria() {
   const hi = Math.log10(1_000_000);
   const ancho = (v: number) => ((Math.log10(v) - lo) / (hi - lo)) * (W - ML - MR);
   const ticks = [1_000, 10_000, 100_000, 1_000_000];
-  const rot = (v: number) => (v >= 1_000_000 ? "1 billón" : `${(v / 1000).toLocaleString("es-CO")} mil M`);
-  const base = MT + hueco * ESCALA.length + 4;
+  const base = MT + hueco * escala.length + 4;
 
   const [i, setI] = useState<number | null>(null);
-  const b = i === null ? null : ESCALA[i];
+  const b = i === null ? null : escala[i];
 
   const mover = ({ x, y }: { x: number; y: number }) => {
-    const k = ESCALA.findIndex((_, j) => y >= MT + hueco * j - 34 && y < MT + hueco * j + alto + 10);
+    const k = escala.findIndex((_, j) => y >= MT + hueco * j - 34 && y < MT + hueco * j + alto + 10);
     setI(k >= 0 && x >= ML ? k : null);
   };
 
@@ -679,26 +1138,19 @@ export function GraficaAsimetria() {
       : null;
 
   return (
-    <Lienzo
-      W={W}
-      H={H}
-      etiqueta="Comparación entre el presupuesto anual del campo de la seguridad de la IA y la inversión anunciada en infraestructura de IA"
-      tip={tip}
-      onMover={mover}
-      onSalir={() => setI(null)}
-    >
-      {ticks.map((t) => (
-        <g key={t}>
-          <line x1={ML + ancho(t)} x2={ML + ancho(t)} y1={MT - 14} y2={base} stroke={LINE} strokeWidth={1} />
-          <text x={ML + ancho(t)} y={base + 20} textAnchor="middle" fontSize={12} fill={MUTED}>
-            {rot(t)}
+    <Lienzo W={W} H={H} etiqueta={t.asimetria.etiqueta} tip={tip} onMover={mover} onSalir={() => setI(null)}>
+      {ticks.map((tk) => (
+        <g key={tk}>
+          <line x1={ML + ancho(tk)} x2={ML + ancho(tk)} y1={MT - 14} y2={base} stroke={LINE} strokeWidth={1} />
+          <text x={ML + ancho(tk)} y={base + 20} textAnchor="middle" fontSize={12} fill={MUTED}>
+            {t.asimetria.rot(tk)}
           </text>
         </g>
       ))}
       <text x={ML} y={base + 44} fontSize={12} fill={MUTED}>
-        Dólares por año, escala logarítmica: cada línea vale diez veces la anterior.
+        {t.asimetria.nota}
       </text>
-      {ESCALA.map((b2, j) => {
+      {escala.map((b2, j) => {
         const y = MT + hueco * j;
         const activo = j === i;
         return (
@@ -742,62 +1194,19 @@ export function GraficaAsimetria() {
      Tabla 9: «AI Extinction Risk by 2100», mediana e intervalo del 95 %.
    - Grace et al. (2024), Tabla 2, resultados de 2023: media, desviacion,
      mediana y rango intercuartil de dos preguntas distintas. */
-type Estimacion = {
-  g: string;
-  sub: string;
-  med: number;
-  lo?: number;
-  hi?: number;
-  media?: number;
-  n: string;
-  pregunta: string;
-  loc: string;
-};
+type Estimacion = { med: number; lo?: number; hi?: number; media?: number };
 
 const ESTIMACIONES: Estimacion[] = [
-  {
-    g: "Superpronosticadores",
-    sub: "gente con buen historial prediciendo, no especialistas en IA",
-    med: 0.38,
-    lo: 0.1,
-    hi: 0.75,
-    n: "88 participantes",
-    pregunta: "Probabilidad de que la IA cause la extinción humana antes de 2100.",
-    loc: "Forecasting Research Institute, Tabla 9",
-  },
-  {
-    g: "Expertos en IA del mismo torneo",
-    sub: "respondieron la misma pregunta, en el mismo ejercicio",
-    med: 3,
-    lo: 0.49,
-    hi: 10,
-    n: "80 participantes",
-    pregunta: "Probabilidad de que la IA cause la extinción humana antes de 2100.",
-    loc: "Forecasting Research Institute, Tabla 9",
-  },
-  {
-    g: "Investigadores que publican en IA",
-    sub: "mediana 5 %, promedio 16,2 %: hay una cola larga de respuestas altas",
-    med: 5,
-    media: 16.2,
-    n: "1.321 respuestas",
-    pregunta:
-      "¿Qué probabilidad le da a que los avances futuros en IA causen la extinción humana, o una pérdida de poder igual de permanente y grave?",
-    loc: "Grace et al. (2024), Tabla 2, datos de 2023",
-  },
-  {
-    g: "Los mismos, preguntados por el control",
-    sub: "mediana 10 %, promedio 19,4 %",
-    med: 10,
-    media: 19.4,
-    n: "661 respuestas",
-    pregunta:
-      "¿Qué probabilidad le da a que sea la incapacidad humana de controlar sistemas de IA avanzados la que cause ese desenlace?",
-    loc: "Grace et al. (2024), Tabla 2, datos de 2023",
-  },
+  { med: 0.38, lo: 0.1, hi: 0.75 },
+  { med: 3, lo: 0.49, hi: 10 },
+  { med: 5, media: 16.2 },
+  { med: 10, media: 19.4 },
 ];
 
-export function GraficaEstimaciones() {
+export function GraficaEstimaciones({ idioma = "es" }: { idioma?: Idioma }) {
+  const t = TEXTOS[idioma];
+  const { coma, pct } = formato(t);
+  const datos = ESTIMACIONES.map((e, j) => ({ ...e, ...t.estimaciones.filas[j] }));
   const W = 900;
   const H = 380;
   const ML = 26;
@@ -808,14 +1217,14 @@ export function GraficaEstimaciones() {
   const hi = Math.log10(60);
   const px = (v: number) => ML + ((Math.log10(v) - lo) / (hi - lo)) * (W - ML - MR);
   const ticks = [0.1, 0.3, 1, 3, 10, 30];
-  const eje = MT + fila * ESTIMACIONES.length - 6;
+  const eje = MT + fila * datos.length - 6;
 
   const [i, setI] = useState<number | null>(null);
-  const e = i === null ? null : ESTIMACIONES[i];
+  const e = i === null ? null : datos[i];
 
   const mover = ({ y }: { x: number; y: number }) => {
     const k = Math.floor((y - MT + 26) / fila);
-    setI(k >= 0 && k < ESTIMACIONES.length ? k : null);
+    setI(k >= 0 && k < datos.length ? k : null);
   };
 
   const tip: Tip | null =
@@ -825,34 +1234,29 @@ export function GraficaEstimaciones() {
           y: MT + fila * i + 16,
           titulo: e.g,
           filas: [
-            { k: "Mediana", v: pct(e.med, e.med < 1 ? 2 : 0) },
-            ...(e.media ? [{ k: "Promedio", v: pct(e.media) }] : []),
-            ...(e.lo && e.hi ? [{ k: "Intervalo del 95 %", v: `${pct(e.lo, 2)} a ${pct(e.hi, 2)}` }] : []),
-            { k: "Cuántos", v: e.n },
+            { k: t.estimaciones.mediana, v: pct(e.med, e.med < 1 ? 2 : 0) },
+            ...(e.media ? [{ k: t.estimaciones.promedio, v: pct(e.media) }] : []),
+            ...(e.lo && e.hi
+              ? [{ k: t.estimaciones.intervalo, v: `${pct(e.lo, 2)}${t.estimaciones.a}${pct(e.hi, 2)}` }]
+              : []),
+            { k: t.estimaciones.cuantos, v: e.n },
           ],
           nota: `${e.pregunta} (${e.loc})`,
         }
       : null;
 
   return (
-    <Lienzo
-      W={W}
-      H={H}
-      etiqueta="Estimaciones de la probabilidad de extinción causada por la inteligencia artificial, según distintos grupos"
-      tip={tip}
-      onMover={mover}
-      onSalir={() => setI(null)}
-    >
-      {ticks.map((t) => (
-        <g key={t}>
-          <line x1={px(t)} x2={px(t)} y1={MT - 26} y2={eje} stroke={LINE} strokeWidth={1} />
-          <text x={px(t)} y={eje + 20} textAnchor="middle" fontSize={12} fill={MUTED}>
-            {coma(t, t < 1 ? 1 : 0)} %
+    <Lienzo W={W} H={H} etiqueta={t.estimaciones.etiqueta} tip={tip} onMover={mover} onSalir={() => setI(null)}>
+      {ticks.map((tk) => (
+        <g key={tk}>
+          <line x1={px(tk)} x2={px(tk)} y1={MT - 26} y2={eje} stroke={LINE} strokeWidth={1} />
+          <text x={px(tk)} y={eje + 20} textAnchor="middle" fontSize={12} fill={MUTED}>
+            {coma(tk, tk < 1 ? 1 : 0)} %
           </text>
         </g>
       ))}
 
-      {ESTIMACIONES.map((e2, j) => {
+      {datos.map((e2, j) => {
         const y = MT + fila * j + 22;
         const activo = j === i;
         const der = e2.media ?? e2.hi ?? e2.med;
@@ -903,18 +1307,18 @@ export function GraficaEstimaciones() {
       <g>
         <circle cx={ML + 6} cy={H - 26} r={5} fill={INK} />
         <text x={ML + 18} y={H - 22} fontSize={12} fill={MUTED}>
-          mediana
+          {t.estimaciones.mediana.toLowerCase()}
         </text>
         <circle cx={ML + 100} cy={H - 26} r={5} fill="none" stroke={INK} strokeWidth={2} />
         <text x={ML + 112} y={H - 22} fontSize={12} fill={MUTED}>
-          promedio
+          {t.estimaciones.promedio.toLowerCase()}
         </text>
         <line x1={ML + 200} x2={ML + 228} y1={H - 26} y2={H - 26} stroke={INK} strokeWidth={3} opacity={0.35} />
         <text x={ML + 236} y={H - 22} fontSize={12} fill={MUTED}>
-          intervalo del 95 %
+          {t.estimaciones.intervalo.toLowerCase()}
         </text>
         <text x={ML} y={H - 6} fontSize={11} fill={MUTED}>
-          Escala logarítmica. Los dos ejercicios preguntaron cosas distintas: pase el cursor para ver la pregunta exacta.
+          {t.estimaciones.nota}
         </text>
       </g>
     </Lienzo>
@@ -929,6 +1333,7 @@ export function Figura({
   pie,
   limite,
   fuentes,
+  idioma = "es",
   children,
 }: {
   numero: number;
@@ -938,12 +1343,16 @@ export function Figura({
   limite?: string;
   /** una entrada por fuente citada: cada una lleva su propio enlace */
   fuentes: { texto: string; href: string }[];
+  idioma?: Idioma;
   children: React.ReactNode;
 }) {
+  const t = TEXTOS[idioma];
   return (
     <figure className="my-12 md:my-14">
       <figcaption className="mb-5">
-        <span className="text-kicker text-aisc-coral">Figura {numero}</span>
+        <span className="text-kicker text-aisc-coral">
+          {t.figura} {numero}
+        </span>
         <p className="text-display-4 md:text-display-4-lg mt-2 text-aisc-ink">{titulo}</p>
         <p className="text-body-sm mt-2 w-full text-aisc-muted">{pie}</p>
       </figcaption>
@@ -952,14 +1361,14 @@ export function Figura({
       </div>
       {limite ? (
         <p className="text-body-sm mt-3 w-full border-l-2 border-aisc-coral pl-4 text-aisc-muted">
-          <span className="text-aisc-ink">No muestra:</span> {limite}
+          <span className="text-aisc-ink">{t.noMuestra}</span> {limite}
         </p>
       ) : null}
       <p className="text-meta mt-3 text-aisc-muted">
-        {fuentes.length > 1 ? "Fuentes: " : "Fuente: "}
+        {fuentes.length > 1 ? t.fuentes : t.fuente}
         {fuentes.map((f, i) => (
           <span key={f.href}>
-            {i > 0 ? (i === fuentes.length - 1 ? " y " : ", ") : ""}
+            {i > 0 ? (i === fuentes.length - 1 ? t.conjuncion : ", ") : ""}
             <a
               href={f.href}
               target="_blank"

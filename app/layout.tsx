@@ -18,6 +18,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  /* Los canónicos y los hreflang de cada página se escriben como rutas. Sin
+     esta base, Next las resuelve contra localhost y publica direcciones que no
+     existen. */
+  metadataBase: new URL("https://aisafetycolombia.org"),
   title: {
     default: "AI Safety Colombia",
     template: "%s | AI Safety Colombia",

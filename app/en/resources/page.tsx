@@ -8,10 +8,10 @@ import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
-  title: "Recursos",
+  title: "Resources",
   description:
-    "Lecturas, videos, podcasts, libros y cursos sobre seguridad de la IA, escogidos por la comunidad. Empieza por las cinco lecturas de entrada.",
-  alternates: { canonical: "/recursos", languages: alternativas("/recursos") },
+    "Reading, videos, podcasts, books and courses on AI safety, chosen by the community. Start with the five entry readings.",
+  alternates: { canonical: "/en/resources", languages: alternativas("/en/resources") },
 };
 
 /* Las cinco lecturas de entrada van en lista, sin tarjeta y sin icono: son lo
@@ -60,7 +60,7 @@ const GRUPOS: Grupo[] = [
   {
     id: "videos",
     titulo: "Videos",
-    lead: "Para entender el campo sin leer un artículo entero.",
+    lead: "To get a feel for the field without reading a whole article.",
     icono: IconVideos,
     forma: "cuadro",
     items: [
@@ -69,42 +69,42 @@ const GRUPOS: Grupo[] = [
         title: "Robert Miles AI Safety",
         miniatura: "/aisc/recursos/robert-miles.webp",
         quien: "Robert Miles",
-        body: "La biblioteca de referencia en video sobre alineación, control y los problemas que siguen abiertos.",
+        body: "The reference video library on alignment, control and the problems that are still open.",
       },
       {
         href: "https://www.youtube.com/@AI_In_Context",
         title: "AI In Context",
         miniatura: "/aisc/recursos/ai-in-context.webp",
         quien: "80,000 Hours",
-        body: "Documentales largos sobre hacia dónde va la IA. El primero, sobre el escenario IA 2027, pasó los diez millones de reproducciones.",
+        body: "Long documentaries on where AI is heading. The first one, on the AI 2027 scenario, passed ten million views.",
       },
       {
         href: "https://www.youtube.com/@RationalAnimations",
         title: "Rational Animations",
         miniatura: "/aisc/recursos/rational-animations.webp",
         quien: "YouTube",
-        body: "Animaciones que adaptan ensayos clásicos sobre IA, racionalidad y riesgo existencial.",
+        body: "Animations adapting classic essays on AI, rationality and existential risk.",
       },
       {
         href: "https://www.youtube.com/@Siliconversations",
         title: "Siliconversations",
         miniatura: "/aisc/recursos/siliconversations.webp",
         quien: "YouTube",
-        body: "Explicadores animados y cortos, cada uno sobre un riesgo o una propuesta concreta.",
+        body: "Short animated explainers, each on one concrete risk or proposal.",
       },
       {
         href: "https://www.youtube.com/@DoomDebates",
         title: "Doom Debates",
         miniatura: "/aisc/recursos/doom-debates.webp",
         quien: "Liron Shapira",
-        body: "Debates y entrevistas donde las dos posiciones sobre el riesgo se discuten de frente.",
+        body: "Debates and interviews where both positions on the risk are argued face to face.",
       },
     ],
   },
   {
     id: "podcasts",
     titulo: "Podcasts",
-    lead: "Conversaciones largas, buenas para trayecto o gimnasio.",
+    lead: "Long conversations, good for a commute or the gym.",
     icono: IconPodcasts,
     forma: "cuadro",
     items: [
@@ -113,35 +113,35 @@ const GRUPOS: Grupo[] = [
         title: "AXRP",
         miniatura: "/aisc/recursos/axrp.webp",
         quien: "Daniel Filan",
-        body: "El podcast de referencia en alineación técnica: entrevistas extensas con quienes hacen la investigación.",
+        body: "The reference podcast on technical alignment: long interviews with the people doing the research.",
       },
       {
         href: "https://80000hours.org/podcast/",
         title: "The 80,000 Hours Podcast",
         miniatura: "/aisc/recursos/80k-podcast.webp",
         quien: "80,000 Hours",
-        body: "Conversaciones con investigadores, fundadores y gente de política sobre qué hacer con la carrera propia.",
+        body: "Conversations with researchers, founders and policy people about what to do with your own career.",
       },
       {
         href: "https://www.cognitiverevolution.ai/",
         title: "The Cognitive Revolution",
         miniatura: "/aisc/recursos/cognitive-revolution.webp",
         quien: "Nathan Labenz",
-        body: "Semanal, con gente de los laboratorios de frontera. Sirve para seguirle el paso a lo que sale.",
+        body: "Weekly, with people from the frontier labs. Useful for keeping up with what comes out.",
       },
       {
         href: "https://futureoflife.org/podcast/",
         title: "Future of Life Institute Podcast",
         miniatura: "/aisc/recursos/fli-podcast.webp",
         quien: "Future of Life Institute",
-        body: "Entrevistas con investigadores, reguladores y filósofos sobre riesgo existencial.",
+        body: "Interviews with researchers, regulators and philosophers on existential risk.",
       },
     ],
   },
   {
     id: "libros",
-    titulo: "Libros",
-    lead: "Cuando ya quieres el argumento completo y no un resumen.",
+    titulo: "Books",
+    lead: "For when you want the whole argument and not a summary.",
     icono: IconLibros,
     forma: "libro",
     items: [
@@ -150,72 +150,72 @@ const GRUPOS: Grupo[] = [
         title: "The Alignment Problem",
         miniatura: "/aisc/recursos/alignment-problem.webp",
         quien: "Brian Christian",
-        body: "Una narración accesible de por qué es difícil alinear un sistema con lo que de verdad queremos.",
+        body: "An accessible account of why it is hard to align a system with what we actually want.",
       },
       {
         href: "https://people.eecs.berkeley.edu/~russell/hc.html",
         title: "Human Compatible",
         miniatura: "/aisc/recursos/human-compatible.webp",
         quien: "Stuart Russell",
-        body: "El argumento de uno de los autores del manual clásico de IA para redefinir el campo alrededor de la incertidumbre.",
+        body: "The case, from one of the authors of the classic AI textbook, for rebuilding the field around uncertainty.",
       },
       {
         href: "https://nickbostrom.com/superintelligence",
         title: "Superintelligence",
         miniatura: "/aisc/recursos/superintelligence.webp",
         quien: "Nick Bostrom",
-        body: "El libro que llevó la discusión sobre IA general al debate público. Es de 2014 y se nota, pero fija el vocabulario.",
+        body: "The book that brought the discussion of general AI into public debate. It is from 2014 and it shows, but it fixed the vocabulary.",
       },
       {
         href: "https://ifanyonebuildsit.com/",
         title: "If Anyone Builds It, Everyone Dies",
         miniatura: "/aisc/recursos/if-anyone-builds-it.webp",
-        quien: "Yudkowsky y Soares, 2025",
-        body: "La versión más directa del caso pesimista. Útil incluso si no se comparte la conclusión.",
+        quien: "Yudkowsky and Soares, 2025",
+        body: "The most direct version of the pessimistic case. Worth reading even if you do not share the conclusion.",
       },
     ],
   },
   {
     id: "cursos",
-    titulo: "Cursos",
-    lead: "Con fechas, tareas y alguien al otro lado.",
+    titulo: "Courses",
+    lead: "With deadlines, assignments and someone on the other side.",
     icono: IconCursos,
     items: [
       {
         href: "https://bluedot.org/courses/agi-strategy",
         title: "AGI Strategy",
         quien: "BlueDot Impact",
-        body: "El punto de entrada que más recomendamos. Se trabaja en grupos de ocho con un facilitador, desarmando una amenaza paso a paso para ver en cuál de esos pasos conviene intervenir.",
+        body: "The entry point we recommend most. You work in groups of eight with a facilitator, taking a threat apart step by step to see which of those steps is worth intervening on.",
       },
       {
         href: "https://bluedot.org/courses/ai-governance",
         title: "Frontier AI Governance",
         quien: "BlueDot Impact",
-        body: "Cada unidad deja algo hecho: un informe dirigido a alguien que decide, un mapa de quién manda sobre los modelos de frontera y una posición propia defendida por escrito.",
+        body: "Every unit leaves something finished: a brief aimed at someone who decides, a map of who has authority over frontier models, and a position of your own defended in writing.",
       },
       {
         href: "https://bluedot.org/courses/technical-ai-safety",
         title: "Technical AI Safety",
         quien: "BlueDot Impact",
-        body: "Recorre alineación, interpretabilidad, evaluaciones y control para que uno sepa en cuál encaja. Quien termina puede postular al sprint de proyectos de BlueDot.",
+        body: "It runs through alignment, interpretability, evaluations and control so you can tell which one fits you. Whoever finishes can apply to BlueDot's project sprint.",
       },
       {
         href: "https://deepmindsafetyresearch.medium.com/introducing-our-short-course-on-agi-safety-1072adb7912c",
         title: "AGI Safety Course",
         quien: "Google DeepMind",
-        body: "Setenta y cinco minutos de charlas grabadas con ejercicios. Separa dos maneras de que un objetivo salga mal: que el modelo explote el criterio con que se le premia, o que aprenda otro objetivo.",
+        body: "Seventy-five minutes of recorded talks with exercises. It separates two ways an objective goes wrong: the model gaming the criterion it is rewarded on, or the model learning a different objective.",
       },
       {
         href: "https://aisafetybook.com/",
         title: "AI Safety, Ethics and Society",
         quien: "Center for AI Safety",
-        body: "Trata la seguridad como un problema de ingeniería y no solo de aprendizaje automático: lleva a la IA lo que la aviación y la industria nuclear aprendieron sobre accidentes.",
+        body: "It treats safety as an engineering problem and not only a machine learning one: it carries over to AI what aviation and the nuclear industry learned about accidents.",
       },
       {
         href: "https://arena.education/curriculum",
         title: "ARENA",
-        quien: "Cinco semanas, para quien ya programa",
-        body: "Se programa desde el primer día: entrenar un transformador, abrirlo para ver qué calcula por dentro y armar una prueba que mida a un modelo.",
+        quien: "Five weeks, for people who already code",
+        body: "You write code from day one: train a transformer, open it up to see what it computes inside, and build a test that measures a model.",
       },
     ],
   },
@@ -238,9 +238,9 @@ const COLUMNAS: Record<number, string> = {
   6: "xl:grid-cols-6",
 };
 
-export default function Recursos() {
+export default function Resources() {
   return (
-    <main className={PAGE_SHELL}>
+    <main lang="en" className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
         <img
           alt=""
@@ -253,13 +253,13 @@ export default function Recursos() {
           style={{ color: "transparent" }}
           src="/aisc/patterns/aisc-hero-recursos.svg"
         />
-        <SiteHeader active="/recursos" />
+        <SiteHeader active="/en/resources" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[760px] flex-col gap-5">
-            <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand text-balance">Recursos</h1>
+            <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand text-balance">Resources</h1>
             <p className="text-body md:text-body-lg max-w-[640px] text-aisc-sand/90">
-              Lo que le pasamos a alguien que pregunta por dónde empezar. Casi todo está en inglés, que es donde se
-              publica el campo.
+              What we send to someone who asks where to start. Almost all of it is in English, which is where the
+              field publishes.
             </p>
           </div>
         </div>
@@ -269,9 +269,9 @@ export default function Recursos() {
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pt-14 pb-12 md:pb-14">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="grid grid-cols-1 gap-6 pt-5 md:pt-7 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.92fr)] lg:gap-10">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">Cinco lecturas para empezar</h2>
+            <h2 className="text-display-2 md:text-display-2-lg text-balance">Five readings to start with</h2>
             <p className="text-body-sm text-aisc-muted lg:pt-3">
-              En este orden. Las dos primeras no suponen nada; la última es una secuencia y toma varias sesiones.
+              In this order. The first two assume nothing; the last one is a sequence and takes several sittings.
             </p>
           </div>
           <ul className="mt-10 flex flex-col gap-4 md:mt-12">
@@ -345,22 +345,22 @@ export default function Recursos() {
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep/25" />
           <div className="grid grid-cols-1 gap-4 pt-5 md:pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.92fr)] lg:gap-10">
-            <h2 className="text-display-3 md:text-display-3-lg text-balance">Si quieres ver el campo completo</h2>
+            <h2 className="text-display-3 md:text-display-3-lg text-balance">If you want to see the whole field</h2>
             <p className="text-body-sm text-aisc-ink lg:pt-2">
               <a className={ENLACE} href="https://aisafety.com/" target="_blank" rel="noopener noreferrer">
                 aisafety.com
               </a>{" "}
-              es un directorio abierto con cientos de organizaciones, programas y proyectos, y con quién financia cada
-              cosa.
+              is an open directory with hundreds of organisations, programmes and projects, and with who funds each
+              one.
             </p>
           </div>
         </div>
       </section>
 
       <CtaPanel
-        kicker="Rinden más acompañados"
-        title="Recórrelos con alguien más"
-        body="En el grupo de lectura se discute uno cada quince días, y en el de WhatsApp se pregunta lo que no cuadra."
+        kicker="They go further with company"
+        title="Go through them with someone else"
+        body="The reading group discusses one every fortnight, and the WhatsApp group is where you ask what does not add up."
       >
         <a
           className={CTA_LINK_PRIMARY}
@@ -368,7 +368,7 @@ export default function Recursos() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Entrar al grupo de lectura
+          Join the reading group
         </a>
         <a
           className={CTA_LINK}
@@ -376,10 +376,10 @@ export default function Recursos() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Entrar al grupo general
+          Join the general group
         </a>
       </CtaPanel>
-      <SiteFooter />
+      <SiteFooter idioma="en" />
     </main>
   );
 }

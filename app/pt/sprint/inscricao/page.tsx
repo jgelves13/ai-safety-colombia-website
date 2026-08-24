@@ -4,25 +4,25 @@ import HackathonApplyForm from "@/components/hackathon-apply-form";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
-import { CIERRE_TEXTO, aplicacionesCerradas } from "../datos";
+import { CIERRE_TEXTO_IDIOMA, aplicacionesCerradas } from "@/app/sprint/datos";
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
-  title: "Aplicar al AI Incident Response Sprint",
+  title: "Inscrição no AI Incident Response Sprint",
   description:
-    "Formulario de aplicación al hub presencial en Bogotá del AI Incident Response Sprint, del 11 al 13 de septiembre de 2026. Cierra el 6 de septiembre.",
-  alternates: { canonical: "/sprint/aplicar", languages: alternativas("/sprint/aplicar") },
+    "Formulário de inscrição no hub presencial em Bogotá do AI Incident Response Sprint, de 11 a 13 de setembro de 2026. Encerra em 6 de setembro.",
+  alternates: { canonical: "/pt/sprint/inscricao", languages: alternativas("/pt/sprint/inscricao") },
 };
 
 /* La página tiene que preguntarle la hora al servidor en cada visita: si se
    prerenderizara, el cierre del 6 de septiembre quedaría congelado. */
 export const dynamic = "force-dynamic";
 
-export default function Aplicar() {
+export default function Inscricao() {
   const cerrado = aplicacionesCerradas();
 
   return (
-    <main className={PAGE_SHELL}>
+    <main lang="pt" className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
         <img
           alt=""
@@ -35,15 +35,15 @@ export default function Aplicar() {
           style={{ color: "transparent" }}
           src="/aisc/patterns/aisc-hero-hackathon.svg"
         />
-        <SiteHeader active="/sprint" />
+        <SiteHeader active="/pt/sprint" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[760px] flex-col gap-5">
-            <span className="text-kicker text-aisc-sand/70">AI Incident Response Sprint · 11 al 13 de septiembre</span>
+            <span className="text-kicker text-aisc-sand/70">AI Incident Response Sprint · 11 a 13 de setembro</span>
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">
-              Aplica al hub en Bogotá
+              Inscreva-se no hub em Bogotá
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO} Toma alrededor de veinte minutos y no necesitas preparar nada de antemano.
+              {CIERRE_TEXTO_IDIOMA.pt} Leva cerca de vinte minutos e não é preciso preparar nada de antemão.
             </p>
           </div>
         </div>
@@ -54,25 +54,25 @@ export default function Aplicar() {
           {!cerrado ? (
             <div className="mb-8 flex flex-col gap-3">
               <p className="text-body-sm text-aisc-ink">
-                Durante los tres días tendrás espacio de trabajo, alimentación, conectividad y mentores en sala. Si
-                vienes de otra ciudad, también cubrimos el alojamiento. El cupo es limitado, así que hay selección.
+                Durante os três dias você terá espaço de trabalho, alimentação, conectividade e mentores na sala. Se
+                vier de outra cidade, também cobrimos a hospedagem. As vagas são limitadas, então há seleção.
               </p>
               <p className="text-body-sm text-aisc-ink">
-                Si prefieres ver primero de qué se trata,{" "}
+                Se preferir ver primeiro do que se trata,{" "}
                 <Link
                   className="text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
-                  href="/sprint"
+                  href="/pt/sprint"
                 >
-                  acá está el detalle del sprint
+                  aqui está o detalhe do sprint
                 </Link>
                 .
               </p>
             </div>
           ) : null}
-          <HackathonApplyForm cerrado={cerrado} />
+          <HackathonApplyForm cerrado={cerrado} idioma="pt" />
         </div>
       </section>
-      <SiteFooter />
+      <SiteFooter idioma="pt" />
     </main>
   );
 }

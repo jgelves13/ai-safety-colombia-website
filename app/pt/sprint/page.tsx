@@ -14,14 +14,16 @@ import {
   HERO_VELO_CLASS,
   PAGE_SHELL,
 } from "@/components/ui";
-import { APART_SPRINT_URL, CIERRE_TEXTO } from "./datos";
+import { APART_SPRINT_URL, CIERRE_TEXTO_IDIOMA } from "@/app/sprint/datos";
 import { alternativas } from "@/lib/idiomas";
+
+const CIERRE_TEXTO = CIERRE_TEXTO_IDIOMA.pt;
 
 export const metadata: Metadata = {
   title: "AI Incident Response Sprint",
   description:
-    "Del 11 al 13 de septiembre de 2026. Apart Research y CeSIA convocan el sprint sobre respuesta a incidentes de IA. Abrimos el hub presencial en Bogotá; las aplicaciones cierran a la medianoche del domingo 6 de septiembre.",
-  alternates: { canonical: "/sprint", languages: alternativas("/sprint") },
+    "De 11 a 13 de setembro de 2026. Apart Research e CeSIA convocam o sprint sobre resposta a incidentes de IA. Abrimos o hub presencial em Bogotá; as inscrições encerram à meia-noite de domingo, 6 de setembro.",
+  alternates: { canonical: "/pt/sprint", languages: alternativas("/pt/sprint") },
 };
 
 const ENLACE =
@@ -31,16 +33,16 @@ const ENLACE =
    una línea de apoyo, sin más: es lo que hace que se lean de un vistazo. */
 const DATOS = [
   {
-    valor: "11 al 13 de septiembre",
-    nota: "Tres días, de viernes en la tarde a domingo en la noche",
+    valor: "11 a 13 de setembro",
+    nota: "Três dias, da sexta à tarde ao domingo à noite",
   },
   {
-    valor: "Bogotá y en línea",
-    nota: "Hub presencial en Bogotá, sede por confirmar",
+    valor: "Bogotá e on-line",
+    nota: "Hub presencial em Bogotá, sede a confirmar",
   },
   {
-    valor: "USD 2.000 en premios",
-    nota: "Cinco ganadores a nivel global, que Apart escoge entre todo el sprint",
+    valor: "USD 2.000 em prêmios",
+    nota: "Cinco vencedores no mundo todo, que a Apart escolhe entre o sprint inteiro",
   },
 ];
 
@@ -49,28 +51,28 @@ const DATOS = [
 const TRACKS = [
   {
     id: "contencion",
-    titulo: "Estándares de contención",
-    body: "Escribir el mínimo con el que se debería correr una evaluación en caja de arena. Entra acá quien pueda proponer una matriz de control por fase de ataque, o empaquetar mitigaciones de forma que un tercero verifique que se cumplen.",
+    titulo: "Padrões de contenção",
+    body: "Escrever o mínimo com que se deveria rodar uma avaliação em caixa de areia. Entra aqui quem puder propor uma matriz de controle por fase de ataque, ou empacotar mitigações de modo que um terceiro verifique que estão cumpridas.",
   },
   {
     id: "analisis",
-    titulo: "Análisis del incidente",
-    body: "Reconstruir qué pasó y en qué punto falló el monitoreo. Se buscan preguntas que alguien pueda resolver, revisiones que se puedan correr mañana y explicaciones causales que predigan algo.",
+    titulo: "Análise do incidente",
+    body: "Reconstruir o que aconteceu e em que ponto o monitoramento falhou. Buscam-se perguntas que alguém possa resolver, revisões que se possam rodar amanhã e explicações causais que prevejam algo.",
   },
   {
     id: "regulacion",
-    titulo: "Respuesta regulatoria",
-    body: "Redactar peticiones de información que un regulador pueda usar casi sin editar, poner a prueba los sistemas de reporte que ya existen y señalar los vacíos legales que dejan.",
+    titulo: "Resposta regulatória",
+    body: "Redigir pedidos de informação que um regulador possa usar quase sem editar, pôr à prova os sistemas de reporte que já existem e apontar as lacunas legais que eles deixam.",
   },
   {
     id: "comunicacion",
-    titulo: "Estrategia de comunicación",
-    body: "Auditar cómo cubrieron el incidente los medios y armar el kit con el que se comunica el siguiente. Acá pesa el anclaje en el registro de lo que de verdad ocurrió.",
+    titulo: "Estratégia de comunicação",
+    body: "Auditar como a imprensa cobriu o incidente e montar o kit com que se comunica o próximo. Aqui pesa a ancoragem no registro do que de fato ocorreu.",
   },
   {
     id: "abierto",
-    titulo: "Track abierto",
-    body: "Cualquier otro ángulo del mismo problema. La condición es la de siempre: un artefacto que alguien pueda usar y una frase honesta sobre hasta dónde llega lo que demuestra.",
+    titulo: "Track aberto",
+    body: "Qualquer outro ângulo do mesmo problema. A condição é a de sempre: um artefato que alguém possa usar e uma frase honesta sobre até onde vai o que ele demonstra.",
   },
 ];
 
@@ -78,40 +80,40 @@ const TRACKS = [
    public/aisc/aliados/. */
 const GRUPOS = [
   {
-    rotulo: "Organizan el sprint",
+    rotulo: "Organizam o sprint",
     orgs: [
       {
         name: "Apart Research",
-        body: "Laboratorio de investigación en seguridad de la IA. Convoca el sprint, define los cinco frentes, pone los premios y publica los reportes.",
+        body: "Laboratório de pesquisa em segurança da IA. Convoca o sprint, define os cinco tracks, oferece os prêmios e publica os relatórios.",
         logo: "/aisc/aliados/apart.png",
         href: "https://apartresearch.com",
       },
       {
         name: "CeSIA",
-        body: "Centro francés para la seguridad de la IA. Coorganiza el sprint y lleva a reguladores europeos el material que sale de él.",
+        body: "Centro francês para a segurança da IA. Coorganiza o sprint e leva a reguladores europeus o material que sai dele.",
         logo: "/aisc/aliados/cesia.svg",
         href: "https://www.securite-ia.fr",
       },
     ],
   },
   {
-    rotulo: "Financian el hub en Bogotá",
+    rotulo: "Financiam o hub em Bogotá",
     orgs: [
       {
         name: "Apart Research",
-        body: "Además de convocar el sprint, apoya a los grupos que abren un hub presencial durante el fin de semana.",
+        body: "Além de convocar o sprint, apoia os grupos que abrem um hub presencial durante o fim de semana.",
         logo: "/aisc/aliados/apart.png",
         href: "https://apartresearch.com",
       },
       {
         name: "BlueDot Impact",
-        body: "Sus cursos gratuitos son la entrada estándar al campo. Con Rapid Grants financian trabajo concreto: USD 1,4 millones otorgados en total y decisiones en solo tres días en promedio.",
+        body: "Seus cursos gratuitos são a entrada padrão no campo. Com os Rapid Grants financiam trabalho concreto: USD 1,4 milhão concedidos no total e decisões em apenas três dias, em média.",
         logo: "/aisc/aliados/bluedot.png",
         href: "https://bluedot.org/grants/rapid",
       },
       {
         name: "Pathfinder Fellowship",
-        body: "Beca de Kairos para quienes construyen comunidades de seguridad de la IA. Aporta mentoría y financiación para sus actividades.",
+        body: "Bolsa da Kairos para quem constrói comunidades de segurança da IA. Contribui com mentoria e financiamento para suas atividades.",
         logo: "/aisc/aliados/pathfinder.png",
         href: "https://pathfinder.kairos-project.org",
       },
@@ -123,38 +125,38 @@ const GRUPOS = [
    dar; lo que aún no está cerrado se dice que no está cerrado. */
 const HUB = [
   {
-    titulo: "Alimentación y alojamiento",
-    body: "Cubrimos las comidas de los tres días. Si vienes de otra ciudad, también cubrimos el alojamiento del fin de semana.",
+    titulo: "Alimentação e hospedagem",
+    body: "Cobrimos as refeições dos três dias. Se você vier de outra cidade, também cobrimos a hospedagem do fim de semana.",
   },
   {
-    titulo: "Apoyo para cómputo",
-    body: "Cubrimos parte del gasto de cómputo de los equipos. La cifra se confirma antes del cierre de aplicaciones.",
+    titulo: "Apoio para computação",
+    body: "Cobrimos parte do gasto de computação das equipes. O valor é confirmado antes do encerramento das inscrições.",
   },
   {
-    titulo: "Mentoría en sala",
-    body: "Gente que trabaja en respuesta a incidentes, en seguridad ofensiva y en regulación pasa por el hub durante el fin de semana.",
+    titulo: "Mentoria na sala",
+    body: "Gente que trabalha em resposta a incidentes, em segurança ofensiva e em regulação passa pelo hub durante o fim de semana.",
   },
   {
-    titulo: "Sala y conectividad",
-    body: "Espacio de trabajo durante todo el fin de semana, con mesas para equipos y con dónde conectarse.",
+    titulo: "Sala e conectividade",
+    body: "Espaço de trabalho durante todo o fim de semana, com mesas para equipes e com onde se conectar.",
   },
   {
-    titulo: "Con quién armar equipo",
-    body: "El viernes en la noche se arman los equipos en la sala. Mucha gente llega sola y sale con equipo.",
+    titulo: "Com quem montar equipe",
+    body: "Na sexta à noite as equipes se formam na sala. Muita gente chega sozinha e sai com equipe.",
   },
   {
-    titulo: "Cupos limitados",
-    body: "El hub tiene aforo, así que hay proceso de selección. Se aplica por el formulario y avisamos por correo.",
+    titulo: "Vagas limitadas",
+    body: "O hub tem lotação, então há processo de seleção. Você se inscreve pelo formulário e avisamos por e-mail.",
   },
 ];
 
 /* Premios de Apart, tal como los publica su convocatoria. */
 const PREMIOS = [
-  { puesto: "Primer puesto", monto: "1.000" },
-  { puesto: "Segundo puesto", monto: "500" },
-  { puesto: "Tercer puesto", monto: "300" },
-  { puesto: "Cuarto puesto", monto: "100" },
-  { puesto: "Quinto puesto", monto: "100" },
+  { puesto: "Primeiro lugar", monto: "1.000" },
+  { puesto: "Segundo lugar", monto: "500" },
+  { puesto: "Terceiro lugar", monto: "300" },
+  { puesto: "Quarto lugar", monto: "100" },
+  { puesto: "Quinto lugar", monto: "100" },
 ];
 
 /* Los mentores, al modo de SASH: retrato cuadrado, nombre, rol y una bio de
@@ -169,14 +171,22 @@ const MENTORES: {
 }[] = [
   {
     nombre: "Camila Beltrán",
-    rol: "Mentora y ponente",
+    rol: "Mentora e palestrante",
     foto: "/aisc/mentores/camila-beltran.png",
     linkedin:
       "https://www.linkedin.com/in/camila-alejandra-beltran-reyes-ab288627a/",
     bio: (
       <>
-        Consultora en gobernanza de IA para varias organizaciones. Miembro del
-        grupo de expertos de la{" "}
+        Assessora sênior de IA no{" "}
+        <a
+          className={ENLACE}
+          href="https://www.mintic.gov.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          MinTIC
+        </a>{" "}
+        e especialista da{" "}
         <a
           className={ENLACE}
           href="https://oecd.ai/en/about/network-of-experts"
@@ -184,28 +194,38 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           OCDE
-        </a>{" "}
-        en riesgo y rendición de cuentas, investigadora asociada del{" "}
+        </a>
+        . Como Winter Fellow do{" "}
         <a
           className={ENLACE}
-          href="https://aiforgood.itu.int/multimedia-authenticity/"
+          href="https://www.governance.ai/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          AMAS Young Research Programme
+          GovAI
+        </a>
+        , pesquisou a{" "}
+        <a
+          className={ENLACE}
+          href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          regulação europeia
         </a>{" "}
-        de la UIT y líder del grupo de AI Control de AIS Colombia.
+        de cenários de perda de controle, e lidera o grupo de AI control da AIS
+        Colombia.
       </>
     ),
   },
   {
     nombre: "Luis Cosio",
-    rol: "Mentor y ponente",
+    rol: "Mentor e palestrante",
     foto: "/aisc/mentores/luis-cosio.png",
     linkedin: "https://www.linkedin.com/in/luiscosio/",
     bio: (
       <>
-        Miembro del equipo técnico de{" "}
+        Integrante da equipe técnica da{" "}
         <a
           className={ENLACE}
           href="https://sl5.org/"
@@ -214,15 +234,15 @@ const MENTORES: {
         >
           Security Level 5
         </a>
-        , iniciativa enfocada en proteger sistemas avanzados de IA frente a
-        adversarios estatales y pérdida de control. Coautor del{" "}
+        , iniciativa voltada a proteger sistemas avançados de IA diante de
+        adversários estatais e de perda de controle. Coautor do{" "}
         <a
           className={ENLACE}
           href="https://arxiv.org/abs/2605.08449"
           target="_blank"
           rel="noopener noreferrer"
         >
-          estándar SL5
+          padrão SL5
         </a>
         .
       </>
@@ -242,47 +262,47 @@ function iniciales(nombre: string): string {
 /* Cada perfil con el rótulo por el que alguien se reconoce de un vistazo. */
 const PERFILES = [
   {
-    rotulo: "Perfiles técnicos",
-    body: "Ingeniería, ciencia de datos o seguridad informática: la contención y el análisis del incidente piden manos en el teclado durante los tres días.",
+    rotulo: "Perfis técnicos",
+    body: "Engenharia, ciência de dados ou segurança da informação: a contenção e a análise do incidente pedem mãos no teclado durante os três dias.",
   },
   {
-    rotulo: "Derecho, política pública y periodismo",
-    body: "Los frentes de regulación y comunicación se ganan escribiendo bien y entendiendo el expediente, no programando.",
+    rotulo: "Direito, políticas públicas e jornalismo",
+    body: "Os tracks de regulação e comunicação se ganham escrevendo bem e entendendo o processo, não programando.",
   },
   {
-    rotulo: "Quien ya responde incidentes",
-    body: "De banca a salud, la respuesta a incidentes ya es un oficio. Acá se trata de ver qué cambia cuando el que falló es un sistema de IA.",
+    rotulo: "Quem já responde a incidentes",
+    body: "De bancos a saúde, a resposta a incidentes já é um ofício. Aqui se trata de ver o que muda quando quem falhou é um sistema de IA.",
   },
   {
-    rotulo: "Quien llega al tema por primera vez",
-    body: "No hace falta haber leído nada sobre seguridad de la IA. Se entra por lo que ya sabes hacer y lo que falte se pregunta en la sala. Buena parte de quienes hoy trabajan en el campo entraron por un fin de semana como este.",
+    rotulo: "Quem chega ao tema pela primeira vez",
+    body: "Não é preciso ter lido nada sobre segurança da IA. Você entra pelo que já sabe fazer e o que faltar se pergunta na sala. Boa parte de quem hoje trabalha no campo entrou por um fim de semana como este.",
   },
 ];
 
 const FAQ = [
   {
-    q: "¿Puedo aplicar si nunca he trabajado en seguridad de la IA?",
-    a: "Sí, y es el caso de buena parte de quienes participan. Los proyectos que mejor salen suelen mezclar a alguien que conoce el campo con alguien que sabe hacer muy bien otra cosa: escribir, litigar, levantar infraestructura, leerse un expediente. Lo que sí pedimos es que puedas estar los tres días.",
+    q: "Posso me inscrever se nunca trabalhei em segurança da IA?",
+    a: "Sim, e é o caso de boa parte de quem participa. Os projetos que saem melhor costumam misturar alguém que conhece o campo com alguém que sabe fazer muito bem outra coisa: escrever, litigar, montar infraestrutura, ler um processo. O que pedimos é que você possa estar os três dias.",
   },
   {
-    q: "¿Necesito saber programar?",
-    a: "No para todos los tracks. Los de regulación y comunicación se ganan escribiendo bien y entendiendo el expediente. Los de contención y análisis sí piden manos en el teclado, aunque los equipos suelen mezclar perfiles.",
+    q: "Preciso saber programar?",
+    a: "Não para todos os tracks. Os de regulação e comunicação se ganham escrevendo bem e entendendo o processo. Os de contenção e análise pedem mãos no teclado, embora as equipes costumem misturar perfis.",
   },
   {
-    q: "¿Tengo que llegar con equipo?",
-    a: "No. Los equipos son de una a cinco personas y se arman el viernes en la noche, en la sala y en el Discord de Apart. Mucha gente llega sola y sale con equipo.",
+    q: "Tenho que chegar com equipe?",
+    a: "Não. As equipes são de uma a cinco pessoas e se formam na sexta à noite, na sala e no Discord da Apart. Muita gente chega sozinha e sai com equipe.",
   },
   {
-    q: "¿Qué diferencia hay entre aplicar acá y participar en línea?",
-    a: "El sprint es el mismo y el entregable se sube al mismo sitio. Aplicar acá es para el hub presencial en Bogotá, que tiene cupo limitado y por eso tiene selección. En el hub cubrimos alimentación, alojamiento si vienes de otra ciudad, apoyo para cómputo y mentoría en sala. Participar en línea con Apart no tiene selección ni cupo.",
+    q: "Qual é a diferença entre se inscrever aqui e participar on-line?",
+    a: "O sprint é o mesmo e o entregável vai para o mesmo lugar. Inscrever-se aqui é para o hub presencial em Bogotá, que tem vagas limitadas e por isso tem seleção. No hub cobrimos alimentação, hospedagem se você vier de outra cidade, apoio para computação e mentoria na sala. Participar on-line com a Apart não tem seleção nem limite de vagas.",
   },
   {
-    q: "¿Cuánto tiempo toma la aplicación?",
-    a: "Alrededor de veinte minutos. Leemos la postulación completa. La pregunta que más pesa es qué problema te gustaría abordar y con qué enfoque, y no esperamos una propuesta cerrada.",
+    q: "Quanto tempo leva a inscrição?",
+    a: "Cerca de vinte minutos. Lemos a inscrição inteira. A pergunta que mais pesa é que problema você gostaria de abordar e com que enfoque, e não esperamos uma proposta fechada.",
   },
   {
-    q: "¿Puedo aplicar si no vivo en Bogotá?",
-    a: "Sí. En el formulario nos dices desde dónde vendrías y, si vienes de otra ciudad, cubrimos el alojamiento del fin de semana. El transporte hasta Bogotá corre por tu cuenta.",
+    q: "Posso me inscrever se não moro em Bogotá?",
+    a: "Sim. No formulário você nos diz de onde viria e, se vier de outra cidade, cobrimos a hospedagem do fim de semana. O transporte até Bogotá corre por sua conta.",
   },
 ];
 
@@ -303,27 +323,27 @@ const PATRON = "/aisc/patterns/aisc-wash-lattice.svg";
 
 export default function Hackathon() {
   return (
-    <main className={PAGE_SHELL}>
+    <main lang="pt" className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
         <HeroHackathon className={HERO_DERRAME_CLASS} />
         <div className={HERO_VELO_CLASS} aria-hidden="true" />
-        <SiteHeader active="/sprint" />
+        <SiteHeader active="/pt/sprint" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[860px] flex-col gap-5">
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">
               AI Incident Response Sprint
             </h1>
             <p className="text-body md:text-body-lg max-w-[680px] text-aisc-sand/90">
-              Un fin de semana para convertir los primeros incidentes en los que
-              un sistema de IA actuó por su cuenta contra un tercero en material
-              que sirva a quien tiene que responder.
+              Um fim de semana para transformar os primeiros incidentes em que
+              um sistema de IA agiu por conta própria contra um terceiro em
+              material que sirva a quem tem que responder.
             </p>
             <p className="text-body-sm mt-1 w-fit text-aisc-sand/75">
               {CIERRE_TEXTO}
             </p>
             <div className="mt-2 flex flex-wrap items-center gap-3">
-              <Link className={CTA_LINK_PRIMARY} href="/sprint/aplicar">
-                Aplicar al hub en Bogotá
+              <Link className={CTA_LINK_PRIMARY} href="/pt/sprint/inscricao">
+                Inscrever-se no hub em Bogotá
               </Link>
               <a
                 className={CTA_LINK}
@@ -331,7 +351,7 @@ export default function Hackathon() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Participar en línea con Apart
+                Participar on-line com a Apart
               </a>
             </div>
           </div>
@@ -360,15 +380,15 @@ export default function Hackathon() {
             <div aria-hidden="true" className={HAIRLINE} />
             <div className="mt-5 flex flex-col gap-6">
               <h2 className="text-display-2 md:text-display-2-lg break-words">
-                De qué se trata
+                Do que se trata
               </h2>
               <div className="text-body md:text-body-lg flex flex-col gap-5 text-aisc-ink">
                 <p>
-                  Ya hay casos documentados en los que un sistema de IA atacó
-                  por su cuenta a un tercero. En julio de 2026, unos modelos que
-                  estaban siendo evaluados se salieron de su entorno de pruebas
-                  y encadenaron fallas hasta entrar a la infraestructura de
-                  producción de Hugging Face. Lo contaron{" "}
+                  Já há casos documentados em que um sistema de IA atacou por
+                  conta própria um terceiro. Em julho de 2026, modelos que
+                  estavam sendo avaliados saíram do seu ambiente de testes e
+                  encadearam falhas até entrar na infraestrutura de produção da
+                  Hugging Face. Contaram o caso a{" "}
                   <a
                     className={ENLACE}
                     href="https://openai.com/index/hugging-face-model-evaluation-security-incident/"
@@ -377,7 +397,7 @@ export default function Hackathon() {
                   >
                     OpenAI
                   </a>{" "}
-                  y{" "}
+                  e a{" "}
                   <a
                     className={ENLACE}
                     href="https://huggingface.co/blog/security-incident-july-2026"
@@ -385,27 +405,25 @@ export default function Hackathon() {
                     rel="noopener noreferrer"
                   >
                     Hugging Face
-                  </a>{" "}
-                  cada uno por su lado. Ninguna ley los obligaba a hacerlo.
+                  </a>
+                  , cada uma por seu lado. Nenhuma lei as obrigava a isso.
                 </p>
                 <p>
-                  Cuando pasa algo así, casi nadie tiene a mano el
-                  procedimiento: no está escrito cómo se contiene, ni cómo se
-                  reconstruye qué falló, ni qué le puede exigir un regulador al
-                  proveedor, ni cómo se cuenta el caso sin exagerar ni
-                  minimizar.
+                  Quando algo assim acontece, quase ninguém tem o procedimento à
+                  mão: não está escrito como se contém, nem como se reconstrói o
+                  que falhou, nem o que um regulador pode exigir do fornecedor,
+                  nem como se conta o caso sem exagerar nem minimizar.
                 </p>
                 <p>
-                  El sprint existe para llenar ese vacío con piezas concretas.
-                  Se trabaja en cinco frentes en paralelo durante tres días.
-                  Cada equipo entrega algo que alguien más pueda usar: un
-                  estándar, un banco de pruebas, un cuestionario para un
-                  regulador, un ejercicio de mesa. Después del fin de semana
-                  los califican jurados que no estuvieron en la sala. La
-                  retroalimentación llega por escrito y el reporte queda
-                  publicado con tu nombre. Apart Research y CeSIA convocan el
-                  sprint en todo el mundo; nosotros abrimos el hub presencial en
-                  Bogotá.
+                  O sprint existe para preencher esse vazio com peças concretas.
+                  Trabalha-se em cinco frentes em paralelo durante três dias.
+                  Cada equipe entrega algo que outra pessoa possa usar: um
+                  padrão, uma bancada de testes, um questionário para um
+                  regulador, um exercício de mesa. Depois do fim de semana, o
+                  trabalho é avaliado por jurados que não estiveram na sala. O
+                  retorno chega por escrito e o relatório fica publicado com o
+                  seu nome. Apart Research e CeSIA convocam o sprint no mundo
+                  todo; nós abrimos o hub presencial em Bogotá.
                 </p>
               </div>
             </div>
@@ -419,21 +437,21 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Los cinco frentes
+              Os cinco tracks
             </h2>
             <div className={COLUMNA}>
               <p className="text-body md:text-body-lg max-w-[640px] text-aisc-ink">
-                Cada equipo escoge uno. En el formulario nos dices cuál te
-                llama, y eso nos sirve para saber qué perfiles habrá en la sala y
-                para invitar a los mentores que hagan falta. Apart publica el
-                detalle de cada frente en{" "}
+                Cada equipe escolhe um. No formulário você nos diz qual chama a
+                sua atenção, e isso nos serve para saber que perfis haverá na
+                sala e para convidar os mentores que faltarem. A Apart publica o
+                detalhe de cada track na{" "}
                 <a
                   className={ENLACE}
                   href={APART_SPRINT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  la convocatoria del sprint
+                  convocatória do sprint
                 </a>
                 .
               </p>
@@ -466,18 +484,18 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Qué encuentras en Bogotá
+              O que você encontra em Bogotá
             </h2>
             <div className={COLUMNA}>
               <div className={PROSA}>
                 <p>
-                  Trabajar tres días seguidos es más fácil acompañado que solo
-                  en la casa. Por eso abrimos una sala en Bogotá durante todo el
-                  fin de semana.
+                  Trabalhar três dias seguidos é mais fácil acompanhado do que
+                  sozinho em casa. Por isso abrimos uma sala em Bogotá durante
+                  todo o fim de semana.
                 </p>
                 <p>
-                  La sede se confirma en los próximos días. La anunciamos por
-                  correo a quienes queden seleccionados y por el{" "}
+                  A sede se confirma nos próximos dias. Anunciamos por e-mail a
+                  quem for selecionado e pelo{" "}
                   <a
                     className={ENLACE}
                     href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
@@ -510,20 +528,21 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Mentoría
+              Mentoria
             </h2>
             <div className={COLUMNA}>
               <div className={PROSA}>
                 <p>
-                  Durante el fin de semana pasa por la sala gente que trabaja en
-                  los temas de los cinco frentes. Algunos abren con una charla
-                  corta. Todos se sientan con los equipos a apoyar lo que
-                  estén construyendo.
+                  Durante o fim de semana passa pela sala gente que trabalha nos
+                  temas dos cinco tracks. Alguns abrem com uma palestra curta.
+                  Todos se sentam com as equipes para apoiar o que estiverem
+                  construindo.
                 </p>
                 <p>
-                  Si trabajas en respuesta a incidentes, en seguridad ofensiva,
-                  en regulación o en comunicación de riesgos y te interesa dar
-                  una charla o acompañar a un equipo, escríbenos a{" "}
+                  Se você trabalha em resposta a incidentes, em segurança
+                  ofensiva, em regulação ou em comunicação de riscos e tem
+                  interesse em dar uma palestra ou acompanhar uma equipe,
+                  escreva para{" "}
                   <a
                     className={ENLACE}
                     href="mailto:contacto@aisafetycolombia.org"
@@ -581,7 +600,7 @@ export default function Hackathon() {
             <li className="flex flex-col gap-3">
               <div className="flex aspect-square w-full items-center justify-center rounded-[8px] border border-dashed border-aisc-forest/40 p-4 text-center">
                 <span className="text-body-sm text-aisc-muted">
-                  Pronto anunciamos más nombres.
+                  Em breve anunciamos mais nomes.
                 </span>
               </div>
             </li>
@@ -609,17 +628,17 @@ export default function Hackathon() {
         <div className={`${CONTENEDOR} relative z-10`}>
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start lg:gap-6">
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Quién puede aplicar
+              Quem pode se inscrever
             </h2>
             <div className="flex max-w-[640px] flex-col gap-4">
               <p className="text-body md:text-body-lg text-aisc-sand/90">
-                No se pide experiencia previa en seguridad de la IA ni título en
-                nada. Se pide que puedas estar los tres días y que llegues con
-                una idea de qué te gustaría abordar.
+                Não se pede experiência prévia em segurança da IA nem diploma em
+                nada. Pede-se que você possa estar os três dias e que chegue com
+                uma ideia do que gostaria de abordar.
               </p>
               <p className="text-body-sm text-aisc-sand/70">
-                La aplicación toma alrededor de veinte minutos y no necesitas
-                preparar nada de antemano.
+                A inscrição leva cerca de vinte minutos e você não precisa
+                preparar nada de antemão.
               </p>
             </div>
           </div>
@@ -637,8 +656,8 @@ export default function Hackathon() {
             ))}
           </ul>
           <div className="mt-10 flex flex-wrap items-center gap-3">
-            <Link className={CTA_LINK_PRIMARY} href="/sprint/aplicar">
-              Aplicar al hub en Bogotá
+            <Link className={CTA_LINK_PRIMARY} href="/pt/sprint/inscricao">
+              Inscrever-se no hub em Bogotá
             </Link>
             <span className="text-body-sm text-aisc-sand/70">
               {CIERRE_TEXTO}
@@ -653,21 +672,21 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Premios y qué pasa después
+              Prêmios e o que acontece depois
             </h2>
             <div className={COLUMNA}>
               <div className={PROSA}>
                 <p>
-                  Apart reparte USD 2.000 entre los cinco primeros puestos de
-                  todo el sprint. Los jurados evalúan los proyectos la semana
-                  siguiente y la calificación es ciega: no saben de dónde viene
-                  cada equipo.
+                  A Apart reparte USD 2.000 entre os cinco primeiros lugares do
+                  sprint inteiro. Os jurados avaliam os projetos na semana
+                  seguinte e a correção é cega: eles não sabem de onde vem cada
+                  equipe.
                 </p>
                 <p>
-                  Más allá del premio, los equipos con mejores resultados entran
-                  a la vía rápida de la beca de investigación de Apart y quedan
-                  conectados con mentores del campo. Cada reporte se publica
-                  completo y con los nombres de sus autores.
+                  Para além do prêmio, as equipes com melhores resultados entram
+                  na via rápida da bolsa de pesquisa da Apart e ficam conectadas
+                  a mentores do campo. Cada relatório é publicado na íntegra e
+                  com os nomes de seus autores.
                 </p>
               </div>
             </div>
@@ -718,13 +737,13 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Quién está detrás
+              Quem está por trás
             </h2>
             <div className={COLUMNA}>
               <p className="text-body md:text-body-lg max-w-[640px] text-aisc-ink">
-                Apart Research y CeSIA convocan el sprint en todo el mundo.
-                Nosotros abrimos el hub presencial en Bogotá, y son estas
-                organizaciones las que lo hacen posible.
+                Apart Research e CeSIA convocam o sprint no mundo todo. Nós
+                abrimos o hub presencial em Bogotá, e são estas organizações que
+                o tornam possível.
               </p>
             </div>
           </div>
@@ -772,7 +791,7 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className="mt-5 flex flex-col gap-8">
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Preguntas frecuentes
+              Perguntas frequentes
             </h2>
             <ul className="flex flex-col">
               {FAQ.map((f) => (
@@ -833,16 +852,16 @@ export default function Hackathon() {
                 {CIERRE_TEXTO}
               </span>
               <h2 className="text-display-2 md:text-display-2-lg text-balance">
-                Aplica al hub en Bogotá
+                Inscreva-se no hub em Bogotá
               </h2>
               <p className="text-body md:text-body-lg text-aisc-sand/85">
-                Leemos la postulación completa. La pregunta que más pesa es
-                qué problema te gustaría abordar y con qué enfoque. No buscamos
-                una propuesta cerrada.
+                Lemos a inscrição inteira. A pergunta que mais pesa é que
+                problema você gostaria de abordar e com que enfoque. Não
+                buscamos uma proposta fechada.
               </p>
               <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
-                <Link className={CTA_LINK_PRIMARY} href="/sprint/aplicar">
-                  Aplicar
+                <Link className={CTA_LINK_PRIMARY} href="/pt/sprint/inscricao">
+                  Inscrever-se
                 </Link>
                 <a
                   className={CTA_LINK}
@@ -850,14 +869,14 @@ export default function Hackathon() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Participar en línea
+                  Participar on-line
                 </a>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <SiteFooter />
+      <SiteFooter idioma="pt" />
     </main>
   );
 }

@@ -1,3 +1,5 @@
+import type { Idioma } from "@/lib/idiomas";
+
 /* Datos del sprint que usan la página, el formulario y la ruta de la API.
    Viven acá para que la fecha de cierre no quede escrita en tres lugares. */
 
@@ -7,8 +9,12 @@ export const APART_SPRINT_URL =
 /* Cierre de aplicaciones al hub en Bogotá: domingo 6 de septiembre de 2026,
    11:59 p. m. hora de Colombia (UTC-5). */
 export const CIERRE_ISO = "2026-09-07T04:59:59.999Z";
-export const CIERRE_TEXTO =
-  "Las aplicaciones al hub en Bogotá cierran a la medianoche del domingo 6 de septiembre, hora de Colombia.";
+export const CIERRE_TEXTO_IDIOMA: Record<Idioma, string> = {
+  es: "Las aplicaciones al hub en Bogotá cierran a la medianoche del domingo 6 de septiembre, hora de Colombia.",
+  en: "Applications to the Bogotá hub close at midnight on Sunday 6 September, Colombian time.",
+  pt: "As inscrições para o hub em Bogotá encerram à meia-noite de domingo, 6 de setembro, hora da Colômbia.",
+};
+export const CIERRE_TEXTO = CIERRE_TEXTO_IDIOMA.es;
 
 export function aplicacionesCerradas(ahora: Date = new Date()): boolean {
   return ahora.getTime() > Date.parse(CIERRE_ISO);

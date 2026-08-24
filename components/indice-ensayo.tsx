@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import type { Idioma } from "@/lib/idiomas";
+
 export type ItemIndice = {
   id: string;
   label: string;
@@ -126,7 +128,15 @@ function Lista({
  * la pantalla da para tenerla sin robarle ancho a la lectura. La columna se
  * muestra entera, sin barra de desplazamiento propia.
  */
-export default function IndiceEnsayo({ items }: { items: ItemIndice[] }) {
+/* lo unico que cambia de idioma en el riel */
+const TEXTOS: Record<Idioma, { ensayo: string; pagina: string; enEsta: string }> = {
+  es: { ensayo: "Contenido del ensayo", pagina: "Contenido de la página", enEsta: "En esta página" },
+  en: { ensayo: "Contents of the essay", pagina: "Contents of the page", enEsta: "On this page" },
+  pt: { ensayo: "Conteúdo do ensaio", pagina: "Conteúdo da página", enEsta: "Nesta página" },
+};
+
+export default function IndiceEnsayo({ items, idioma = "es" }: { items: ItemIndice[]; idioma?: Idioma }) {
+  const t = TEXTOS[idioma];
   const activo = useSeccionActiva(items);
   const [abierto, setAbierto] = useState(false);
 
@@ -134,13 +144,13 @@ export default function IndiceEnsayo({ items }: { items: ItemIndice[] }) {
     <>
       {/* columna fija: solo cuando sobra margen a la izquierda de la lectura */}
       <nav
-        aria-label="Contenido del ensayo"
+        aria-label={t.ensayo}
         style={{ left: "max(16px, calc((100vw - 980px) / 2 - 238px))" }}
         className={`fixed top-24 z-10 hidden w-[210px] transition-opacity duration-300 motion-reduce:transition-none ${RAIL} ${
           activo ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        <p className="text-kicker text-aisc-muted">En esta página</p>
+        <p className="text-kicker text-aisc-muted">{t.enEsta}</p>
         <Lista
           items={items}
           activo={activo}
@@ -151,7 +161,7 @@ export default function IndiceEnsayo({ items }: { items: ItemIndice[] }) {
 
       {/* en el cuerpo: se pliega en movil, queda abierto de tablet en adelante */}
       <nav
-        aria-label="Contenido de la página"
+        aria-label={t.pagina}
         className="mx-auto mt-10 w-full max-w-[720px] min-[1440px]:hidden"
       >
         <button
@@ -161,7 +171,7 @@ export default function IndiceEnsayo({ items }: { items: ItemIndice[] }) {
           aria-controls="indice-ensayo"
           className="flex w-full items-center justify-between gap-3 text-left md:pointer-events-none"
         >
-          <span className="text-kicker text-aisc-muted">En esta página</span>
+          <span className="text-kicker text-aisc-muted">{t.enEsta}</span>
           <svg
             viewBox="0 0 24 24"
             aria-hidden="true"

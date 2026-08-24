@@ -6,10 +6,10 @@ import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
-  title: "Quiénes somos",
+  title: "Quem somos",
   description:
-    "La primera organización que trabaja para que en Colombia haya gente dedicada a la seguridad de la inteligencia artificial. Formamos personas, impulsamos investigación y sostenemos la conversación pública sobre estos temas.",
-  alternates: { canonical: "/quienes-somos", languages: alternativas("/quienes-somos") },
+    "A primeira organização que trabalha para que na Colômbia haja gente dedicada à segurança da inteligência artificial. Formamos pessoas, apoiamos pesquisa e sustentamos a conversa pública sobre essas questões.",
+  alternates: { canonical: "/pt/quem-somos", languages: alternativas("/pt/quem-somos") },
 };
 
 const ENLACE =
@@ -75,32 +75,27 @@ function Ficha({ p }: { p: Persona }) {
   );
 }
 
-/* Al modo del sprint: retrato cuadrado, nombre, rol y una bio corta. Sin foto
-   sale la tarjeta con las iniciales; el archivo va en public/aisc/equipo/.
-   Los dos primeros van en una fila de dos y el resto abajo en cuatro
-   columnas iguales, así que el orden del arreglo es el orden de la página.
-   TODO: faltan los cuatro de la segunda fila (nombre, rol, bio, LinkedIn). */
 const EQUIPO: Persona[] = [
   {
     nombre: "Jose Gelves",
-    rol: "Cofundador y director",
+    rol: "Cofundador e diretor",
     foto: "/aisc/equipo/jose-gelves.png",
     linkedin: "https://www.linkedin.com/in/josegelves/",
     bio: (
       <>
-        Consultor de transformación digital de la{" "}
+        Consultor de transformação digital da{" "}
         <a className={ENLACE} href="https://uniandes.edu.co/" target="_blank" rel="noopener noreferrer">
           Universidad de los Andes
         </a>{" "}
-        para el{" "}
+        para o{" "}
         <a className={ENLACE} href="https://www.mintic.gov.co/" target="_blank" rel="noopener noreferrer">
           MinTIC
         </a>
-        . Pathfinder fellow de{" "}
+        , o ministério de tecnologia da Colômbia. Bolsista Pathfinder do{" "}
         <a className={ENLACE} href="https://kairos-project.org" target="_blank" rel="noopener noreferrer">
           Kairos
         </a>{" "}
-        y embajador de{" "}
+        e embaixador da{" "}
         <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
           Apart Research
         </a>
@@ -110,18 +105,18 @@ const EQUIPO: Persona[] = [
   },
   {
     nombre: "Fernando Avalos",
-    rol: "Cofundador (en memoria)",
+    rol: "Cofundador (in memoriam)",
     foto: "/aisc/equipo/fernando-avalos.png",
     linkedin: "https://www.linkedin.com/in/fernando-avalos-lopez/",
     bio: (
       <>
-        Fue investigador en{" "}
+        Foi pesquisador da{" "}
         <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
           Apart Research
         </a>{" "}
-        e ingeniero de investigación y analista de riesgos en el{" "}
+        e engenheiro de pesquisa e analista de riscos no{" "}
         <a className={ENLACE} href="https://www.orcg.info/" target="_blank" rel="noopener noreferrer">
-          Observatorio de Riesgos Catastróficos Globales
+          Observatório de Riscos Catastróficos Globais
         </a>
         .
       </>
@@ -129,14 +124,22 @@ const EQUIPO: Persona[] = [
   },
   {
     nombre: "Camila Beltrán",
-    rol: "Grupo de AI Control",
+    rol: "Grupo de leitura de AI control",
     foto: "/aisc/mentores/camila-beltran.png",
     linkedin:
       "https://www.linkedin.com/in/camila-alejandra-beltran-reyes-ab288627a/",
     bio: (
       <>
-        Consultora en gobernanza de IA para varias organizaciones. Miembro del
-        grupo de expertos de la{" "}
+        Assessora sênior de IA no{" "}
+        <a
+          className={ENLACE}
+          href="https://www.mintic.gov.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          MinTIC
+        </a>{" "}
+        e especialista da{" "}
         <a
           className={ENLACE}
           href="https://oecd.ai/en/about/network-of-experts"
@@ -144,37 +147,46 @@ const EQUIPO: Persona[] = [
           rel="noopener noreferrer"
         >
           OCDE
-        </a>{" "}
-        en riesgo y rendición de cuentas e investigadora asociada del{" "}
+        </a>
+        . Como Winter Fellow do{" "}
         <a
           className={ENLACE}
-          href="https://aiforgood.itu.int/multimedia-authenticity/"
+          href="https://www.governance.ai/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          AMAS Young Research Programme
+          GovAI
+        </a>
+        , pesquisou as{" "}
+        <a
+          className={ENLACE}
+          href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          regras europeias
         </a>{" "}
-        de la UIT.
+        sobre cenários de perda de controle.
       </>
     ),
   },
   {
     nombre: "Sofía Botia",
-    rol: "Voluntaria",
+    rol: "Voluntária",
     foto: "/aisc/equipo/sofia-botia.png",
     linkedin:
       "https://www.linkedin.com/in/karen-sof%C3%ADa-botia-vizcaya-2898b334b/",
     bio: (
       <>
-        Estudiante de Derecho en la{" "}
+        Estudante de Direito na{" "}
         <a className={ENLACE} href="https://uniandes.edu.co/" target="_blank" rel="noopener noreferrer">
           Universidad de los Andes
         </a>
-        . Asistente de investigación en{" "}
+        . Assistente de pesquisa na{" "}
         <a className={ENLACE} href="https://www.psu.edu/" target="_blank" rel="noopener noreferrer">
           Penn State
         </a>{" "}
-        y monitora de investigación en{" "}
+        e monitora de pesquisa na{" "}
         <a className={ENLACE} href="https://www.hbs.edu/" target="_blank" rel="noopener noreferrer">
           Harvard Business School
         </a>
@@ -184,14 +196,14 @@ const EQUIPO: Persona[] = [
   },
   {
     nombre: "Leonardo Párraga",
-    rol: "Voluntario",
+    rol: "Voluntário",
     foto: "/aisc/equipo/leonardo-parraga.png",
     linkedin: "https://www.linkedin.com/in/leonardoparraga/",
     bio: (
       /* La Coalición no tiene sitio propio, así que el nombre va sin enlace. */
       <>
-        Cofundador y codirector de la Coalición Colombiana de Juventudes, Paz y
-        Seguridad. Magíster en política educativa internacional de la{" "}
+        Cofundador e codiretor da Coalizão Colombiana de Juventudes, Paz e Segurança. Mestrado em política
+        educativa internacional pela{" "}
         <a className={ENLACE} href="https://www.gse.harvard.edu/" target="_blank" rel="noopener noreferrer">
           Harvard Graduate School of Education
         </a>
@@ -201,16 +213,16 @@ const EQUIPO: Persona[] = [
   },
   {
     nombre: "Manuel Cabrera",
-    rol: "Voluntario",
+    rol: "Voluntário",
     foto: "/aisc/equipo/manuel-cabrera.png",
     linkedin: "https://www.linkedin.com/in/manueloff14/",
     bio: (
       <>
-        Trabajó recientemente como programador full stack en{" "}
+        Trabalhou recentemente como programador full stack no{" "}
         <a className={ENLACE} href="https://www.linkedin.com/company/aeuniandes" target="_blank" rel="noopener noreferrer">
-          Altruismo Eficaz Uniandes
+          Altruísmo Eficaz Uniandes
         </a>
-        . Recién egresado del bachillerato.
+        . Acaba de terminar o ensino médio.
       </>
     ),
   },
@@ -222,33 +234,33 @@ const EN_PRIMERA_FILA = 2;
 const ALIADOS = [
   {
     name: "Apart Research",
-    body: "Convoca hackathons de investigación abiertos a todo el mundo. Nosotros abrimos el hub presencial en Bogotá y acompañamos a los equipos que compiten desde acá.",
+    body: "Convocam hackathons de pesquisa abertos a qualquer pessoa no mundo. Nós abrimos o hub presencial em Bogotá e acompanhamos as equipes que competem daqui.",
     logo: "/aisc/aliados/apart.png",
     href: "https://apartresearch.com",
   },
   {
     name: "BlueDot Impact",
-    body: "Sus cursos gratuitos son la entrada estándar al campo. Con Rapid Grants financian trabajo concreto: 1,4 millones de dólares otorgados y decisiones en tres días.",
+    body: "Seus cursos gratuitos são a porta de entrada padrão do campo. Pelos Rapid Grants financiam trabalho concreto: 1,4 milhão de dólares concedidos e decisões em três dias.",
     logo: "/aisc/aliados/bluedot.png",
     href: "https://bluedot.org/grants/rapid",
   },
   {
     name: "Kairos",
-    body: "Su programa Pathfinder financia y acompaña a quienes organizan comunidades de seguridad de la IA: este año, 69 organizadores de 50 universidades en 12 países.",
+    body: "Seu programa Pathfinder financia e acompanha quem constrói comunidades de segurança da IA: este ano, 69 organizadores de 50 universidades em 12 países.",
     logo: "/aisc/aliados/kairos.png",
     href: "https://kairos-project.org",
   },
   {
     name: "Coefficient Giving",
-    body: "Concentra buena parte de la financiación filantrópica del campo: solo en 2024 comprometió unos 50 millones de dólares en investigación técnica de seguridad de la IA.",
+    body: "Respondem por boa parte do financiamento filantrópico do campo: só em 2024 comprometeram cerca de 50 milhões de dólares em pesquisa técnica de segurança da IA.",
     logo: "/aisc/aliados/coefficient-giving.svg",
     href: "https://www.coefficientgiving.org",
   },
 ];
 
-export default function QuienesSomos() {
+export default function QuemSomos() {
   return (
-    <main className={PAGE_SHELL}>
+    <main lang="pt" className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
         <img
           alt=""
@@ -261,14 +273,14 @@ export default function QuienesSomos() {
           style={{ color: "transparent" }}
           src="/aisc/patterns/aisc-hero-quienes-somos.svg"
         />
-        <SiteHeader active="/quienes-somos" />
+        <SiteHeader active="/pt/quem-somos" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[760px] flex-col gap-5">
             <span className="text-kicker text-aisc-sand/70">Desde 2024</span>
-            <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand">Quiénes somos</h1>
+            <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand">Quem somos</h1>
             <p className="text-body md:text-body-lg max-w-[640px] text-aisc-sand/90">
-              La primera organización que trabaja para que en Colombia haya gente dedicada a la seguridad de
-              la inteligencia artificial.
+              A primeira organização que trabalha para que na Colômbia haja gente dedicada à segurança da inteligência
+              artificial.
             </p>
           </div>
         </div>
@@ -278,23 +290,22 @@ export default function QuienesSomos() {
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 flex flex-col gap-10 pt-14 pb-10 md:pt-20 md:pb-12 lg:pt-24 lg:pb-14">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="flex flex-col gap-8 md:gap-10">
-            <h2 className="text-display-2 md:text-display-2-lg">Por qué existimos</h2>
+            <h2 className="text-display-2 md:text-display-2-lg">Por que existimos</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-5 text-aisc-ink">
               <p>
-                Los sistemas de inteligencia artificial ganan capacidades más rápido de lo que crece nuestra
-                comprensión de ellos, y todavía hay muy poca gente trabajando en los riesgos que esto genera. En
-                Colombia, quienes ya estaban en el área trabajaban principalmente por su cuenta y, hasta 2024, no
-                existía una organización dedicada a conectar esos esfuerzos.
+                Os sistemas de inteligência artificial ganham capacidades mais rápido do que cresce nossa compreensão
+                sobre eles, e muito pouca gente trabalha nos riscos que isso cria. Na Colômbia, quem já estava na área
+                trabalhava sobretudo por conta própria e, até 2024, nenhuma organização se dedicava a conectar esses
+                esforços.
               </p>
               <p>
-                Eso importa en un país de 52 millones de personas que va a usar estos sistemas, regularlos y verse
-                afectado por ellos. Creamos AI Safety Colombia para que quien quiera trabajar en estos problemas tenga
-                por dónde entrar y para que, cuando se tomen decisiones sobre la IA, haya gente en el país que entienda
-                lo que está en juego.
+                Isso pesa num país de 52 milhões de pessoas que vão usar esses sistemas, regulá-los e ser afetadas por
+                eles. Criamos a AI Safety Colombia para que quem queira trabalhar nesses problemas tenha por onde
+                entrar, e para que, quando se decidir sobre IA, haja aqui gente que entenda o que está em jogo.
               </p>
               <p>
-                Somos una organización pequeña y voluntaria. Nuestro trabajo es concreto: formar personas, impulsar
-                investigación y sostener la conversación pública sobre estos temas en Colombia.
+                Somos uma organização pequena e voluntária. Nosso trabalho é concreto: formar pessoas, apoiar pesquisa
+                e sustentar a conversa pública sobre essas questões na Colômbia.
               </p>
             </div>
           </div>
@@ -306,10 +317,10 @@ export default function QuienesSomos() {
           <div className="flex flex-col gap-8 md:gap-10">
             <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-[minmax(0,1fr)_minmax(280px,0.92fr)] sm:items-start sm:gap-8">
-              <h2 className="text-display-2 md:text-display-2-lg">El equipo</h2>
+              <h2 className="text-display-2 md:text-display-2-lg">A equipe</h2>
               <p className="text-body-sm text-aisc-ink md:text-body md:text-body-lg">
-                Quienes sostienen la operación. Todos somos voluntarios y la organización se financia con
-                donaciones y con los presupuestos de los programas que organizamos.
+                As pessoas que mantêm isto de pé. Somos todos voluntários, e a organização se financia com doações e
+                com o orçamento dos programas que realizamos.
               </p>
             </div>
           </div>
@@ -331,7 +342,7 @@ export default function QuienesSomos() {
             {Array.from({ length: Math.max(0, 4 - (EQUIPO.length - EN_PRIMERA_FILA)) }).map((_, i) => (
               <li className="flex flex-col gap-3" key={`por-anunciar-${i}`}>
                 <div className="flex aspect-square w-full items-center justify-center rounded-[8px] border border-dashed border-aisc-forest/40 p-4 text-center">
-                  <span className="text-body-sm text-aisc-muted">Por anunciar</span>
+                  <span className="text-body-sm text-aisc-muted">A anunciar</span>
                 </div>
               </li>
             ))}
@@ -345,10 +356,10 @@ export default function QuienesSomos() {
           <div className="flex flex-col gap-8">
             <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
             <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1fr)_minmax(280px,0.92fr)] md:items-start md:gap-6">
-              <h2 className="text-display-2 md:text-display-2-lg">Con quién trabajamos</h2>
+              <h2 className="text-display-2 md:text-display-2-lg">Com quem trabalhamos</h2>
               <p className="text-body-sm text-aisc-ink md:text-body md:text-body-lg">
-                Cuatro organizaciones del campo con las que sostenemos trabajo, y de las que también hemos recibido
-                financiación.
+                Quatro organizações do campo com as quais sustentamos trabalho, e das quais também recebemos
+                financiamento.
               </p>
             </div>
             <div className="mt-10 grid grid-cols-1 gap-3 md:mt-14 md:grid-cols-2 lg:grid-cols-4">
@@ -375,8 +386,8 @@ export default function QuienesSomos() {
       </section>
 
       <CtaPanel
-        title="¿Quieres ser voluntario?"
-        body="No hay membresía ni convocatoria: se llega a un evento, a un programa o a una conversación."
+        title="Quer ser voluntário?"
+        body="Não há filiação nem edital: você aparece num evento, num programa ou numa conversa."
       >
         <a
           className={CTA_LINK_PRIMARY}
@@ -384,7 +395,7 @@ export default function QuienesSomos() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Hablar 20 minutos
+          Conversar 20 minutos
         </a>
         <a
           className={CTA_LINK}
@@ -392,10 +403,10 @@ export default function QuienesSomos() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Entrar al grupo
+          Entrar no grupo
         </a>
       </CtaPanel>
-      <SiteFooter />
+      <SiteFooter idioma="pt" />
     </main>
   );
 }
