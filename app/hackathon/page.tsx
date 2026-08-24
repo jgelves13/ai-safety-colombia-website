@@ -223,7 +223,7 @@ const MENTORES: {
         >
           GovAI
         </a>{" "}
-        y lidera el grupo de AI Control de AI Safety Colombia.
+        y lidera el grupo de AI Control de AIS Colombia.
       </>
     ),
   },
