@@ -235,14 +235,17 @@ export default function QuienesSomos() {
               </p>
             </div>
           </div>
-          <ul className="mt-14 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4 md:mt-16 lg:mt-20">
+          {/* La misma rejilla del sprint (dos, tres y cinco columnas) para que
+              el retrato mida lo mismo alli y aca. La primera fila ocupa dos de
+              los cinco puestos y la segunda, cuatro. */}
+          <ul className="mt-14 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:mt-16 lg:mt-20 lg:grid-cols-5">
             {EQUIPO.slice(0, 2).map((p) => (
               <Ficha key={p.nombre} p={p} />
             ))}
           </ul>
 
           {EQUIPO.length > 2 && (
-            <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4 md:mt-10">
+            <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:mt-10 lg:grid-cols-5">
               {EQUIPO.slice(2).map((p) => (
                 <Ficha key={p.nombre} p={p} />
               ))}
