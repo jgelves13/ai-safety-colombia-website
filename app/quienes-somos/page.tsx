@@ -82,7 +82,7 @@ function Ficha({ p }: { p: Persona }) {
 const EQUIPO: Persona[] = [
   {
     nombre: "Jose Gelves",
-    rol: "Director",
+    rol: "Cofundador y director",
     linkedin: "https://www.linkedin.com/in/josegelves/",
     bio: (
       <>
@@ -94,7 +94,7 @@ const EQUIPO: Persona[] = [
   },
   {
     nombre: "Fernando Avalos",
-    rol: "En memoria",
+    rol: "Cofundador (en memoria)",
     bio: (
       <>
         Coautor de{" "}
