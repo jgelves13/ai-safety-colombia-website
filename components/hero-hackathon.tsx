@@ -6,15 +6,13 @@
 
 const MARCA = `<svg viewBox="0 0 1280 521" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMaxYMax slice" role="presentation">
 <style>
-.hk-caja{animation:hkGolpe 0.646s cubic-bezier(.36,.07,.19,.97) 1.330s both}
-.hk-intacto{animation:hkSale 0.190s linear 1.368s both}
-.hk-roto{animation:hkEntra 0.228s linear 1.368s both}
-.hk-grieta line{animation:hkTraza 0.532s ease-out 0.760s both}
+.hk-caja{animation:hkGolpe 0.340s cubic-bezier(.36,.07,.19,.97) 1.330s both}
+.hk-intacto{animation:hkSale 0.100s steps(1,start) 1.368s both}
+.hk-roto{animation:hkEntra 0.120s steps(1,start) 1.368s both}
 .hk-esquirla{transform-box:fill-box;transform-origin:60% 20%;
-  animation:hkEntra 0.304s linear 1.444s both,hkAbre 0.646s cubic-bezier(.2,.8,.3,1) 1.444s both}
+  animation:hkEntra 0.160s linear 1.444s both,hkAbre 0.340s cubic-bezier(.2,.8,.3,1) 1.444s both}
 @keyframes hkEntra{from{opacity:0}to{opacity:1}}
 @keyframes hkSale{from{opacity:1}to{opacity:0}}
-@keyframes hkTraza{to{stroke-dashoffset:0}}
 @keyframes hkAbre{from{transform:scale(.55)}to{transform:scale(1)}}
 @keyframes hkGolpe{0%{transform:translate(0,0)}22%{transform:translate(-7px,3px)}
   48%{transform:translate(5px,-2px)}74%{transform:translate(-2px,1px)}
@@ -88,16 +86,16 @@ const MARCA = `<svg viewBox="0 0 1280 521" xmlns="http://www.w3.org/2000/svg" pr
 <polygon points="1160.0,886.4 1063.4,942.5 1063.4,1106.1 1160.0,1050.0" fill="#1b3c26" stroke="#f3ead8" stroke-width="1.9" stroke-opacity="0.55"/>
 <path d="M 704.4 897.6 L 704.4 734.0 L 1063.4 942.5 L 1063.4 1106.1 Z M 770.7 859.1 L 801.0 822.2 L 853.5 868.8 L 894.9 863.9 L 950.1 915.3 L 1005.4 992.2 L 966.7 995.4 L 997.1 1042.0 L 928.1 989.0 L 881.1 981.0 L 825.9 923.3 L 784.5 908.8 Z" fill-rule="evenodd" fill="#24432d" stroke="#f3ead8" stroke-width="1.9" stroke-opacity="0.75" stroke-linejoin="round"/>
 </g><g class="hk-grieta">
-<line x1="770.7" y1="859.1" x2="737.5" y2="827.1" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="46.1" stroke-dashoffset="46.1"/>
-<line x1="737.5" y1="827.1" x2="712.7" y2="828.7" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="24.9" stroke-dashoffset="24.9"/>
-<line x1="801.0" y1="822.2" x2="776.2" y2="782.2" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="47.2" stroke-dashoffset="47.2"/>
-<line x1="894.9" y1="863.9" x2="886.6" y2="839.9" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="25.4" stroke-dashoffset="25.4"/>
-<line x1="1005.4" y1="992.2" x2="1038.5" y2="998.7" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="33.7" stroke-dashoffset="33.7"/>
-<line x1="1038.5" y1="998.7" x2="1060.6" y2="1027.5" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="36.3" stroke-dashoffset="36.3"/>
-<line x1="997.1" y1="1042.0" x2="1030.2" y2="1077.2" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="48.4" stroke-dashoffset="48.4"/>
-<line x1="881.1" y1="981.0" x2="870.1" y2="993.8" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="16.9" stroke-dashoffset="16.9"/>
-<line x1="784.5" y1="908.8" x2="748.6" y2="900.8" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="36.8" stroke-dashoffset="36.8"/>
-<line x1="748.6" y1="900.8" x2="718.2" y2="870.4" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="43.0" stroke-dashoffset="43.0"/>
+<line x1="770.7" y1="859.1" x2="737.5" y2="827.1" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="46.1" stroke-dashoffset="46.1"><animate attributeName="stroke-dashoffset" from="46.1" to="0" begin="1.022s" dur="0.162s" calcMode="linear" fill="freeze"/></line>
+<line x1="737.5" y1="827.1" x2="712.7" y2="828.7" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="24.9" stroke-dashoffset="24.9"><animate attributeName="stroke-dashoffset" from="24.9" to="0" begin="1.184s" dur="0.088s" calcMode="linear" fill="freeze"/></line>
+<line x1="801.0" y1="822.2" x2="776.2" y2="782.2" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="47.2" stroke-dashoffset="47.2"><animate attributeName="stroke-dashoffset" from="47.2" to="0" begin="1.019s" dur="0.166s" calcMode="linear" fill="freeze"/></line>
+<line x1="894.9" y1="863.9" x2="886.6" y2="839.9" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="25.4" stroke-dashoffset="25.4"><animate attributeName="stroke-dashoffset" from="25.4" to="0" begin="0.760s" dur="0.089s" calcMode="linear" fill="freeze"/></line>
+<line x1="1005.4" y1="992.2" x2="1038.5" y2="998.7" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="33.7" stroke-dashoffset="33.7"><animate attributeName="stroke-dashoffset" from="33.7" to="0" begin="1.033s" dur="0.119s" calcMode="linear" fill="freeze"/></line>
+<line x1="1038.5" y1="998.7" x2="1060.6" y2="1027.5" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="36.3" stroke-dashoffset="36.3"><animate attributeName="stroke-dashoffset" from="36.3" to="0" begin="1.152s" dur="0.128s" calcMode="linear" fill="freeze"/></line>
+<line x1="997.1" y1="1042.0" x2="1030.2" y2="1077.2" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="48.4" stroke-dashoffset="48.4"><animate attributeName="stroke-dashoffset" from="48.4" to="0" begin="1.122s" dur="0.170s" calcMode="linear" fill="freeze"/></line>
+<line x1="881.1" y1="981.0" x2="870.1" y2="993.8" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="16.9" stroke-dashoffset="16.9"><animate attributeName="stroke-dashoffset" from="16.9" to="0" begin="0.760s" dur="0.060s" calcMode="linear" fill="freeze"/></line>
+<line x1="784.5" y1="908.8" x2="748.6" y2="900.8" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="36.8" stroke-dashoffset="36.8"><animate attributeName="stroke-dashoffset" from="36.8" to="0" begin="0.920s" dur="0.129s" calcMode="linear" fill="freeze"/></line>
+<line x1="748.6" y1="900.8" x2="718.2" y2="870.4" stroke="#f3ead8" stroke-width="2.2" stroke-opacity="0.95" stroke-linecap="round" stroke-dasharray="43.0" stroke-dashoffset="43.0"><animate attributeName="stroke-dashoffset" from="43.0" to="0" begin="1.049s" dur="0.151s" calcMode="linear" fill="freeze"/></line>
 </g><g class="hk-frente">
 <polygon points="1160.0,886.4 1256.6,942.5 1256.6,1106.1 1160.0,1050.0" fill="#24432d" stroke="#f3ead8" stroke-width="1.9" stroke-opacity="0.75"/>
 <polygon points="1615.6,734.0 1256.6,942.5 1256.6,1106.1 1615.6,897.6" fill="#1b3c26" stroke="#f3ead8" stroke-width="1.9" stroke-opacity="0.55"/>

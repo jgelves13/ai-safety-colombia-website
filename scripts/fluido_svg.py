@@ -158,11 +158,50 @@ ESCALA_T = 1.9
 
 
 def escala_css(css):
-    u"""Los tiempos del CSS de la rotura estan escritos en segundos absolutos y
-    cuadran con el instante del golpe. Si el liquido se ralentiza y ellos no,
-    la pared se rompe antes de que salga nada. Se estiran con el mismo factor."""
-    return re.sub(r"(\d*\.?\d+)s(?![a-z])",
-                  lambda m: "%.3fs" % (float(m.group(1)) * ESCALA_T), css)
+    u"""Corre los retrasos del CSS de la rotura, y solo los retrasos.
+
+    Los tiempos estan escritos en segundos absolutos y cuadran con el instante
+    del golpe, asi que si el liquido se ralentiza y ellos no, la pared se rompe
+    antes de que salga nada: el retraso se estira con el mismo factor.
+
+    Lo que dura cada gesto, en cambio, se queda como esta. Un golpe es un golpe
+    por espeso que sea lo de dentro, y estirarlo con el liquido lo vuelve de
+    goma. Peor todavia en el cambiazo de pared intacta a pared rota: el paso de
+    una a otra dura la decima de segundo en que no se nota, y multiplicado por
+    el factor se volvia una fundido de dos decimas en que el muro se queda
+    traslucido y se ve el coral de dentro como una franja marron. Jose lo leyo
+    como un corte, que es lo que es."""
+    def trozos(txt):
+        u"""Parte por comas, pero solo por las de fuera: cubic-bezier lleva las
+        suyas dentro y partir por ellas descoloca la cuenta de tiempos."""
+        fuera, hondo, actual = [], 0, []
+        for c in txt:
+            if c == "(":
+                hondo += 1
+            elif c == ")":
+                hondo -= 1
+            if c == "," and hondo == 0:
+                fuera.append("".join(actual))
+                actual = []
+            else:
+                actual.append(c)
+        fuera.append("".join(actual))
+        return fuera
+
+    def una(m):
+        salida = []
+        for parte in trozos(m.group(1)):
+            visto = [0]
+
+            def tiempo(t):
+                visto[0] += 1
+                v = float(t.group(1))
+                return "%.3fs" % (v * ESCALA_T if visto[0] == 2 else v)
+
+            salida.append(re.sub(r"(\d*\.?\d+)s(?![a-z])", tiempo, parte))
+        return "animation:" + ",".join(salida)
+
+    return re.sub(r"animation:([^;}]*)", una, css)
 
 
 # Donde empieza a frenar el reloj, y cuanto. La fisica sola no cierra el
@@ -215,6 +254,10 @@ QUIETO = u"""
 
 def svg(ts, ds, animado=True, fondo=True, suf=""):
     H.escala(0.78)
+    # La grieta lleva su reloj dentro del SVG, no en el CSS, asi que no pasa
+    # por escala_css: se le estira aqui, para que el frente llegue a la punta
+    # mas lejana en el mismo instante en que la caja cede.
+    R.RITMO = ESCALA_T if animado else 1.0
     capas = L._capas_caja(animado)
     caja = ('<g class="hk-caja" fill="none" stroke-linecap="round"'
             ' stroke-linejoin="round">%s</g>' % "".join(capas))
@@ -232,9 +275,9 @@ def svg(ts, ds, animado=True, fondo=True, suf=""):
         frente = '<g clip-path="url(#lqCerca)"><use href="#lqCuerpo"/></g>'
     dentro = L._inner_base()
     if not animado:
-        dentro = re.sub(r' stroke-dash(array|offset)="[^"]*"', "", dentro)
+        dentro = R.sin_trazo(dentro)
         dentro = dentro.replace('mask="url(#m)"', 'stroke-opacity="0.17"')
-        caja = re.sub(r' stroke-dash(array|offset)="[^"]*"', "", caja)
+        caja = R.sin_trazo(caja)
     css = (escala_css(R.ESTILO) + QUIETO) if animado else ""
     tapa = ('<rect width="%d" height="%d" fill="%s"/>'
             % (int(F.BW), int(F.BH), R._hex(H.FONDO))) if fondo else ""

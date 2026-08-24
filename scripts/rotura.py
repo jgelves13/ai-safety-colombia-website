@@ -164,21 +164,71 @@ GRIETAS_MORDIDA = [
 ]
 
 
-def grietas(chas):
-    """Cada tramo va suelto y con su largo medido, para que la animacion lo
-    pueda ir dibujando."""
-    out = []
+# El reloj de la rotura. Vale uno cuando la lamina se mira sola, y el emisor
+# del liquido lo sube para que la caja se rompa al mismo paso que el derrame.
+RITMO = 1.0
+
+# Cuando revienta el punto de quiebre, y cuanto tarda el frente en llegar a la
+# punta mas lejana. La ventana termina justo antes del golpe, en 0,70, para que
+# la grieta no se quede dibujada esperando: llega, y la caja cede.
+T_GRIETA = 0.40
+VENTANA_GRIETA = 0.28
+
+
+def grietas(chas, centro):
+    """Las grietas salen todas del mismo sitio y se van hacia afuera.
+
+    Antes cada tramo se dibujaba por su cuenta y con el mismo retraso, asi que
+    la punta de afuera aparecia a la vez que el arranque y la grieta se leia al
+    reves: nacida en los extremos y creciendo hacia el boquete. Aqui hay un solo
+    punto de quiebre, el centro del hueco, y un frente que se aleja de el a
+    velocidad constante. Lo que fija cuando le toca a cada tramo es la distancia
+    recorrida desde ese punto, no a que cadena pertenece.
+
+    El sentido de cada cadena tampoco se da por supuesto: se ordena por la punta
+    que da al boquete, para que el orden en que estan escritas no pueda invertir
+    la direccion.
+    """
+    cx, cy = P(O, centro[0], YB, centro[1])
+
+    def lejos(pt):
+        return math.hypot(pt[0] - cx, pt[1] - cy)
+
+    tramos = []
     for cadena in chas:
-        for k in range(len(cadena) - 1):
-            a = P(O, cadena[k][0], YB, cadena[k][1])
-            b = P(O, cadena[k + 1][0], YB, cadena[k + 1][1])
+        pts = [P(O, x, YB, z) for x, z in cadena]
+        if lejos(pts[-1]) < lejos(pts[0]):
+            pts.reverse()
+        d = lejos(pts[0])
+        for k in range(len(pts) - 1):
+            a, b = pts[k], pts[k + 1]
             largo = math.hypot(b[0] - a[0], b[1] - a[1])
-            out.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f"'
-                       ' stroke="%s" stroke-width="2.2" stroke-opacity="0.95"'
-                       ' stroke-linecap="round" stroke-dasharray="%.1f"'
-                       ' stroke-dashoffset="%.1f"/>'
-                       % (a[0], a[1], b[0], b[1], ARENA, largo, largo))
+            tramos.append((a, b, largo, d))
+            d += largo
+
+    cerca = min(d for _a, _b, _l, d in tramos)
+    lejano = max(d + l for _a, _b, l, d in tramos)
+    v = (lejano - cerca) / VENTANA_GRIETA
+
+    out = []
+    for a, b, largo, d in tramos:
+        out.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f"'
+                   ' stroke="%s" stroke-width="2.2" stroke-opacity="0.95"'
+                   ' stroke-linecap="round" stroke-dasharray="%.1f"'
+                   ' stroke-dashoffset="%.1f">'
+                   '<animate attributeName="stroke-dashoffset" from="%.1f"'
+                   ' to="0" begin="%.3fs" dur="%.3fs" calcMode="linear"'
+                   ' fill="freeze"/></line>'
+                   % (a[0], a[1], b[0], b[1], ARENA, largo, largo, largo,
+                      RITMO * (T_GRIETA + (d - cerca) / v),
+                      RITMO * (largo / v)))
     return out
+
+
+def sin_trazo(txt):
+    """La misma grieta, entera y quieta: sin dibujado que correr."""
+    txt = re.sub(r'<animate attributeName="stroke-dashoffset"[^>]*/>', "", txt)
+    return re.sub(r' stroke-dash(array|offset)="[^"]*"', "", txt)
 
 
 # ------------------------------------------------------- labios y esquirlas
@@ -251,7 +301,7 @@ def lamina(muerde, labio):
         roto = ([tapa_oscura] + tunel(cin, cout, MORDIDA_C, False)
                 + [canto(perfil_in, perfil_out), remate(),
                    cara(perfil_out, YB, CARA_IZQ)])
-        fisura = grietas(GRIETAS_MORDIDA)
+        fisura = grietas(GRIETAS_MORDIDA, MORDIDA_C)
         bordes = labios(cout, MORDIDA_C, [1, 4, 7]) if labio else []
     else:
         cout = BOCA
@@ -261,7 +311,7 @@ def lamina(muerde, labio):
         roto = ([tapa_oscura] + tunel(cin, cout, BOCA_C, True)
                 + [canto(PLANO, PLANO), remate(),
                    cara(PLANO, YB, CARA_IZQ, boca=cout)])
-        fisura = grietas(GRIETAS)
+        fisura = grietas(GRIETAS, BOCA_C)
         bordes = labios(cout, BOCA_C, [1, 4, 7, 10]) if labio else []
 
     if labio:
@@ -274,14 +324,12 @@ def lamina(muerde, labio):
 ESTILO = """
 <style>
 .hk-caja{animation:hkGolpe .34s cubic-bezier(.36,.07,.19,.97) .70s both}
-.hk-intacto{animation:hkSale .10s linear .72s both}
-.hk-roto{animation:hkEntra .12s linear .72s both}
-.hk-grieta line{animation:hkTraza .28s ease-out .40s both}
+.hk-intacto{animation:hkSale .10s steps(1,start) .72s both}
+.hk-roto{animation:hkEntra .12s steps(1,start) .72s both}
 .hk-esquirla{transform-box:fill-box;transform-origin:60% 20%;
   animation:hkEntra .16s linear .76s both,hkAbre .34s cubic-bezier(.2,.8,.3,1) .76s both}
 @keyframes hkEntra{from{opacity:0}to{opacity:1}}
 @keyframes hkSale{from{opacity:1}to{opacity:0}}
-@keyframes hkTraza{to{stroke-dashoffset:0}}
 @keyframes hkAbre{from{transform:scale(.55)}to{transform:scale(1)}}
 @keyframes hkGolpe{0%{transform:translate(0,0)}22%{transform:translate(-7px,3px)}
   48%{transform:translate(5px,-2px)}74%{transform:translate(-2px,1px)}
@@ -313,7 +361,7 @@ def fijo(ruta, muerde, labio):
               capa("hk-esquirla", bordes)]
     cuerpo = chr(10).join(p for p in partes if p)
     # sin animacion no hay trazo que correr: las grietas van completas
-    cuerpo = re.sub(r' stroke-dash(array|offset)="[^"]*"', "", cuerpo)
+    cuerpo = sin_trazo(cuerpo)
     grupo = ('<g fill="none" stroke-linecap="round"'
              ' stroke-linejoin="round">%s</g>' % cuerpo)
     base = io.open(BASE, encoding="utf-8").read()
