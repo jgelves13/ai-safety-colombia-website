@@ -223,6 +223,15 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           estándar SL5
+        </a>{" "}
+        y mentor de un{" "}
+        <a
+          className={ENLACE}
+          href="https://sparai.org/projects/sp26/recXdgQxof26exbLh/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          proyecto de investigación en SPAR
         </a>
         .
       </>
