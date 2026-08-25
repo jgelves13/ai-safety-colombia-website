@@ -185,16 +185,7 @@ const MENTORES: {
         >
           OECD
         </a>{" "}
-        expert group and associate researcher with the ITU’s{" "}
-        <a
-          className={ENLACE}
-          href="https://aiforgood.itu.int/multimedia-authenticity/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          AMAS Young Research Programme
-        </a>
-        . As a Winter Fellow at{" "}
+        expert group. As a Winter Fellow at{" "}
         <a
           className={ENLACE}
           href="https://www.governance.ai/"

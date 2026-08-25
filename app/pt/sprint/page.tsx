@@ -185,17 +185,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           OCDE
-        </a>{" "}
-        e pesquisadora associada do{" "}
-        <a
-          className={ENLACE}
-          href="https://aiforgood.itu.int/multimedia-authenticity/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          AMAS Young Research Programme
-        </a>{" "}
-        da UIT. Como Winter Fellow do{" "}
+        </a>
+        . Como Winter Fellow do{" "}
         <a
           className={ENLACE}
           href="https://www.governance.ai/"
