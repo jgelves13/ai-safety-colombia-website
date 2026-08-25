@@ -18,7 +18,6 @@ const VACIO: Campos = {
   email: "",
   location: "",
   linkedin: "",
-  scholar: "",
   career: "",
   reason: "",
   hubProblem: "",
@@ -41,7 +40,6 @@ const OBLIGATORIOS = [
   "email",
   "location",
   "linkedin",
-  "scholar",
   "career",
   "reason",
   "hubProblem",
@@ -364,16 +362,6 @@ export default function HackathonApplyForm({
             >
               <input {...textProps("linkedin", "url", 300)} placeholder="https://linkedin.com/in/..." />
             </Campo>
-            <Campo
-              opcional={t.opcional}
-              requerido
-              name="scholar"
-              label={t.scholar}
-              ayuda={t.scholarAyuda}
-              error={errores.scholar}
-            >
-              <input {...textProps("scholar", "url", 300)} placeholder="https://" />
-            </Campo>
           </div>
         </section>
 
@@ -409,6 +397,18 @@ export default function HackathonApplyForm({
         <section className={SECCION}>
           <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.seccionSeleccion}</h2>
           <p className="text-body-sm mt-3 max-w-[640px] text-aisc-muted">{t.seleccionNota}</p>
+          <p className="text-body-sm mt-2 max-w-[640px] text-aisc-muted">
+            {t.ejemplosAntes}
+            <a
+              className={ENLACE}
+              href={APART_SPRINT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t.ejemplosEnlace}
+            </a>
+            {t.ejemplosDespues}
+          </p>
           <div className="mt-6 flex flex-col gap-6">
             <Campo
               opcional={t.opcional}

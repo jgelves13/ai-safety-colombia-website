@@ -40,6 +40,9 @@ export type TextosAplicar = {
   trayectoriaNota: string;
   seccionSeleccion: string;
   seleccionNota: string;
+  ejemplosAntes: string;
+  ejemplosEnlace: string;
+  ejemplosDespues: string;
   seccionServir: string;
   seccionAntes: string;
 
@@ -53,8 +56,6 @@ export type TextosAplicar = {
   origenEjemplo: string;
   linkedin: string;
   linkedinAyuda: string;
-  scholar: string;
-  scholarAyuda: string;
   carrera: string;
   carreraAyuda: string;
   motivo: string;
@@ -125,7 +126,6 @@ const es: TextosAplicar = {
     email: "Tu correo",
     location: "Desde dónde vendrías",
     linkedin: "Tu LinkedIn",
-    scholar: "Tu GitHub, Scholar o portafolio",
     career: "En qué andas ahora",
     reason: "Por qué quieres participar",
     hubProblem: "El problema que te gustaría abordar",
@@ -143,6 +143,10 @@ const es: TextosAplicar = {
   seccionSeleccion: "Tu propuesta para el sprint",
   seleccionNota:
     "Responde con tu propio razonamiento: no aceptamos aplicaciones escritas por un modelo.",
+  ejemplosAntes: "Si todavía no te imaginas un proyecto, mira los ",
+  ejemplosEnlace: "proyectos de ejemplo que Apart propone en cada frente",
+  ejemplosDespues:
+    ". Puedes partir de uno de esos y torcerlo hacia lo que ya sabes hacer.",
   seccionServir: "Para que el fin de semana te sirva",
   seccionAntes: "Antes de enviar",
 
@@ -155,8 +159,6 @@ const es: TextosAplicar = {
   origenEjemplo: "Bogotá, Colombia",
   linkedin: "LinkedIn",
   linkedinAyuda: "Si no tienes, pega otro perfil donde se vea en qué has trabajado.",
-  scholar: "GitHub, Scholar o portafolio",
-  scholarAyuda: "Cualquier cosa tuya que podamos abrir: repositorio, publicaciones, un texto, un proyecto.",
   carrera: "¿En qué andas ahora?",
   carreraAyuda: "Qué estudias o en qué trabajas, y desde hace cuánto.",
   motivo: "¿Por qué quieres participar en este sprint?",
@@ -240,7 +242,6 @@ const en: TextosAplicar = {
     email: "Your email",
     location: "Where you would travel from",
     linkedin: "Your LinkedIn",
-    scholar: "Your GitHub, Scholar or portfolio",
     career: "What you are doing right now",
     reason: "Why you want to take part",
     hubProblem: "The problem you would like to work on",
@@ -258,6 +259,10 @@ const en: TextosAplicar = {
   seccionSeleccion: "Your proposal for the sprint",
   seleccionNota:
     "Answer in your own reasoning: we do not accept applications written by a model.",
+  ejemplosAntes: "If you cannot picture a project yet, look at the ",
+  ejemplosEnlace: "example projects Apart proposes for each track",
+  ejemplosDespues:
+    ". You can start from one of those and bend it toward what you already know how to do.",
   seccionServir: "So the weekend works for you",
   seccionAntes: "Before you send it",
 
@@ -270,8 +275,6 @@ const en: TextosAplicar = {
   origenEjemplo: "Bogotá, Colombia",
   linkedin: "LinkedIn",
   linkedinAyuda: "If you do not have one, paste another profile that shows what you have worked on.",
-  scholar: "GitHub, Scholar or portfolio",
-  scholarAyuda: "Anything of yours we can open: a repository, publications, a piece of writing, a project.",
   carrera: "What are you doing right now?",
   carreraAyuda: "What you study or where you work, and for how long.",
   motivo: "Why do you want to take part in this sprint?",
@@ -355,7 +358,6 @@ const pt: TextosAplicar = {
     email: "Seu e-mail",
     location: "De onde você viria",
     linkedin: "Seu LinkedIn",
-    scholar: "Seu GitHub, Scholar ou portfólio",
     career: "No que você está agora",
     reason: "Por que você quer participar",
     hubProblem: "O problema que você gostaria de abordar",
@@ -373,6 +375,10 @@ const pt: TextosAplicar = {
   seccionSeleccion: "Sua proposta para o sprint",
   seleccionNota:
     "Responda com o seu próprio raciocínio: não aceitamos inscrições escritas por um modelo.",
+  ejemplosAntes: "Se você ainda não consegue imaginar um projeto, veja os ",
+  ejemplosEnlace: "projetos de exemplo que a Apart propõe em cada track",
+  ejemplosDespues:
+    ". Você pode partir de um deles e torcê-lo para o que já sabe fazer.",
   seccionServir: "Para que o fim de semana sirva a você",
   seccionAntes: "Antes de enviar",
 
@@ -385,8 +391,6 @@ const pt: TextosAplicar = {
   origenEjemplo: "Bogotá, Colômbia",
   linkedin: "LinkedIn",
   linkedinAyuda: "Se você não tiver, cole outro perfil onde dê para ver no que você trabalhou.",
-  scholar: "GitHub, Scholar ou portfólio",
-  scholarAyuda: "Qualquer coisa sua que a gente possa abrir: repositório, publicações, um texto, um projeto.",
   carrera: "No que você está agora?",
   carreraAyuda: "O que você estuda ou onde trabalha, e há quanto tempo.",
   motivo: "Por que você quer participar deste sprint?",

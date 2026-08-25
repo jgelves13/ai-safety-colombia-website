@@ -52,3 +52,4 @@ GEMINI.md
 scripts/__pycache__/
 scripts/variantes/
 scripts/*.npz
+borradores/

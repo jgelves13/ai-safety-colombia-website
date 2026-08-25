@@ -169,13 +169,3 @@ body {
   }
 }
 
-/* --------------------- el velo del hero de /hackathon --------------------- */
-
-.hk-velo {
-  background: linear-gradient(
-    to top,
-    color-mix(in srgb, var(--color-aisc-forest-deep) 90%, transparent) 0%,
-    color-mix(in srgb, var(--color-aisc-forest-deep) 62%, transparent) 34%,
-    transparent 66%
-  );
-}

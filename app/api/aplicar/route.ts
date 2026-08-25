@@ -40,7 +40,6 @@ const LIMITES: Record<string, number> = {
   email: 200,
   location: 200,
   linkedin: 300,
-  scholar: 300,
   career: 800,
   reason: 1500,
   hubProblem: 1500,
@@ -55,7 +54,6 @@ const OBLIGATORIOS = [
   "email",
   "location",
   "linkedin",
-  "scholar",
   "career",
   "reason",
   "hubProblem",
@@ -119,7 +117,11 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
     email: datos.email,
     location: datos.location,
     linkedin: datos.linkedin,
-    scholar: datos.scholar,
+    /* La pregunta del portafolio se quito del formulario. La columna sigue en
+       la tabla por las aplicaciones que ya la traen, y como es not null se
+       manda vacia. Para retirarla del todo: alter table sprint_applications
+       alter column scholar drop not null. */
+    scholar: "",
     career: datos.career,
     reason: datos.reason,
     hub_problem: datos.hubProblem,

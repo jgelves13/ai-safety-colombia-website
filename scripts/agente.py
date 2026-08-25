@@ -24,8 +24,8 @@ labios doblados y esquirlas. No se toca un solo cuadro de la rotura.
     py -X utf8 scripts/agente.py          laminas + index.html
     py -X utf8 scripts/agente.py --png    ademas la hoja de instantes
     py -X utf8 scripts/agente.py --tsx    escribe components/hero-hackathon.tsx
-    py -X utf8 scripts/agente.py --ronda  el gif de una vuelta de la ronda
-"""
+    py -X utf8 scripts/agente.py --figura escribe components/agente-figura.ts
+    """
 import io
 import math
 import os
@@ -82,25 +82,6 @@ D_APAGA = 0.40
 RETARDO = 1.25               # lo que aguanta un tramo antes de empezar a irse
 D_BORRA = 1.00               # y lo que tarda en irse
 RETARDO_PISO = 0.35          # la celda se va un poco despues que la marca
-
-# La ronda. Salirse del cuadro no es el final: el agente sigue andando por ahi
-# mientras alguien lee la pagina. Vuelve al piso que quedo delante de la caja
-# rota, da una vuelta corta, se detiene a mirar y se va otra vez. El circuito
-# es cerrado —termina exactamente donde empieza— y se repite sin fin.
-ESPERA_RONDA = 2.9           # lo que la banda se queda vacia despues de la fuga
-D_RONDA = 0.42               # el paso de la ronda: anda, no corre
-D_ALTO = 1.20                # el alto en el fondo del recodo
-CICLO = 22.0                 # de una ronda a la siguiente
-
-# El punto de partida esta a la derecha del cuadro, fuera de la banda, para no
-# tener que aparecerlo ni desaparecerlo: cuando no esta en la ronda, no esta.
-RONDA_INICIO = (6.785, 1.915)
-# Entra por el zigzag de abajo, se detiene y sale por el de arriba. Ninguno de
-# los dos pisa la huella isometrica de la caja, y los dos se quedan a la
-# derecha del titular en los anchos de escritorio.
-RONDA_PASOS = ((0, 1), (-1, 0), (0, 1), (-1, 0), (0, 1), (-1, 0),
-               None,
-               (0, -1), (1, 0), (0, -1), (1, 0), (0, -1), (1, 0))
 
 BALDOSA = H._mezcla(H.FONDO, ARENA, 0.085)  # el piso que va apareciendo
 
@@ -362,11 +343,6 @@ CSS = u"""
   .ag-quieto{display:block}
 }
 .ag-quieto{display:none}
-/* La ronda se retira en pantallas angostas. Ahi la banda se recorta por
-   el ancho, el dibujo se corre sobre la columna de texto y el cubo queda
-   justo encima del boton de participar en linea. La fuga pasa por ahi una
-   sola vez; la ronda volveria cada rato. */
-@media (max-width:1079px){.ag-ronda{display:none}}
 </style>
 """
 
@@ -409,156 +385,6 @@ def animacion_cubo(seg, hitos):
     return ('<animateTransform attributeName="transform" type="translate"'
             ' begin="%.3fs" dur="%.3fs" values="%s" keyTimes="%s"'
             ' calcMode="linear" fill="freeze"/>' % (t0, dur, v, k))
-
-
-def ronda_camino():
-    u"""El circuito, en coordenadas del mundo. Cierra donde abre: el ultimo
-    punto es el primero, y por eso el ciclo se repite sin costura."""
-    pts = [(RONDA_INICIO[0], RONDA_INICIO[1], 0.0)]
-    for s in RONDA_PASOS:
-        if s is None:
-            continue
-        x, y, _z = pts[-1]
-        pts.append((x + s[0] * PASO, y + s[1] * PASO, 0.0))
-    return pts
-
-
-def ronda_reloj():
-    u"""Los tramos de la ronda, medidos desde el arranque del ciclo. El alto
-    no es un tramo: es un hueco en la linea de tiempo."""
-    pts = ronda_camino()
-    seg, t, i = [], 0.0, 0
-    for s in RONDA_PASOS:
-        if s is None:
-            t += D_ALTO
-            continue
-        seg.append((t, t + D_RONDA, pts[i], pts[i + 1], 0.10))
-        i += 1
-        t += D_RONDA
-    return seg
-
-
-def _llaves(ts):
-    u"""Las llaves de un animate que da la vuelta entera al ciclo."""
-    ks = [min(1.0, max(0.0, x / CICLO)) for x in ts]
-    for a, b in zip(ks, ks[1:]):
-        assert b >= a - 1e-9, "llaves de la ronda fuera de orden: %r" % ks
-    return ";".join("%.5f" % k for k in ks)
-
-
-def ronda(animado, t, arranque):
-    u"""La vuelta que el agente da mientras alguien lee la pagina.
-
-    Todo lo de aca dentro se anima sobre el ciclo entero, no sobre su propio
-    tramo: un `values` que arranca y termina en el mismo estado, repetido sin
-    fin. Lo que en la fuga era `fill="freeze"` aca seria el final de todo, asi
-    que en su lugar cada cosa vuelve sola a como estaba.
-
-    El cubo se dibuja quieto en el punto de partida, que esta fuera del cuadro
-    a la derecha: antes del primer ciclo no hay nada que ocultar, porque no
-    hay nada que se vea.
-    """
-    seg = ronda_reloj()
-    tc = None
-    if not animado:
-        if t is None or t < arranque:
-            return "", "", ""
-        tc = math.fmod(t - arranque, CICLO)
-
-    pts = ronda_camino()
-    ini = "%.3fs" % arranque
-
-    suelo = []
-    for j, (a, b, _x, _y, _s) in enumerate(seg):
-        cuando = max(0.0, a - 0.10)
-        borra = b + RETARDO + RETARDO_PISO
-        el = celda(pts[j + 1]).replace("<polygon ", '<polygon opacity="%s" ', 1)
-        if animado:
-            k = _llaves([0.0, cuando, cuando + 0.30, borra,
-                         borra + D_BORRA, CICLO])
-            suelo.append((el % "0").replace(
-                "/>", '><animate attributeName="opacity" values="0;0;1;1;0;0"'
-                      ' keyTimes="%s" begin="%s" dur="%.3fs"'
-                      ' repeatCount="indefinite"/></polygon>' % (k, ini, CICLO)))
-        else:
-            v = _vive(cuando, borra, tc)
-            if v > 0.005:
-                suelo.append(el % ("%.3f" % v))
-
-    marcas = []
-    for j, (a, b, _x, _y, _s) in enumerate(seg):
-        par = [pts[j], pts[j + 1]]
-        largo = _largo(par)
-        anda = 0.70 * (b - a)
-        borra = b + RETARDO
-        if animado:
-            # el trazo vuelve a esconderse en un pestaneo, ya con la opacidad
-            # en cero: el reinicio del ciclo no se ve
-            kd = _llaves([0.0, a, a + anda, borra + D_BORRA,
-                          borra + D_BORRA + 0.08, CICLO])
-            ko = _llaves([0.0, borra, borra + D_BORRA, CICLO])
-            marcas.append(
-                '<path d="%s" fill="none" stroke="%s" stroke-width="6.5"'
-                ' stroke-opacity="0.85" stroke-linecap="round"'
-                ' stroke-dasharray="%.1f %.1f" stroke-dashoffset="%.1f">'
-                '<animate attributeName="stroke-dashoffset"'
-                ' values="%.1f;%.1f;0;0;%.1f;%.1f" keyTimes="%s" begin="%s"'
-                ' dur="%.3fs" calcMode="linear" repeatCount="indefinite"/>'
-                '<animate attributeName="stroke-opacity"'
-                ' values="0.85;0.85;0;0" keyTimes="%s" begin="%s" dur="%.3fs"'
-                ' repeatCount="indefinite"/></path>'
-                % (_d(par), CORAL, largo, largo + 4.0, largo,
-                   largo, largo, largo, largo, kd, ini, CICLO,
-                   ko, ini, CICLO))
-        else:
-            queda = 0.85 * _vive(a, borra, tc)
-            if queda > 0.005:
-                u = min(1.0, max(0.0, (tc - a) / anda))
-                marcas.append(
-                    '<path d="%s" fill="none" stroke="%s" stroke-width="6.5"'
-                    ' stroke-opacity="%.3f" stroke-linecap="round"'
-                    ' stroke-dasharray="%.1f %.1f" stroke-dashoffset="%.1f"/>'
-                    % (_d(par), CORAL, queda, largo, largo + 4.0,
-                       largo * (1.0 - u)))
-
-    ori = pts[0]
-    if animado:
-        o = P(O, *ori)
-        ts, vals = [], []
-
-        def mete(x):
-            q = P(O, *posicion(seg, x))
-            ts.append(x)
-            vals.append("%.1f %.1f" % (q[0] - o[0], q[1] - o[1]))
-
-        mete(0.0)
-        for a, b, _x, _y, _s in seg:
-            if a > ts[-1] + 1e-6:
-                mete(a)      # el alto hay que anclarlo, o el cubo se desliza
-            for u in (0.35, 0.70, 1.0):
-                mete(a + (b - a) * u)
-        mete(CICLO)
-        cuerpo = "".join(cubo(ori)) + (
-            '<animateTransform attributeName="transform" type="translate"'
-            ' values="%s" keyTimes="%s" begin="%s" dur="%.3fs"'
-            ' calcMode="linear" repeatCount="indefinite"/>'
-            % (";".join(vals), _llaves(ts), ini, CICLO))
-    else:
-        cuerpo = "".join(cubo(posicion(seg, tc)))
-
-    agente = ('<g class="ag-ronda" fill="none" stroke-linecap="round"'
-              ' stroke-linejoin="round">%s</g>' % cuerpo)
-    # las tres piezas llevan la misma clase: la regla que las retira en
-    # pantallas angostas tiene que llevarselas juntas, o quedan las huellas
-    # de alguien que no esta
-    return _grupo(suelo), _grupo(marcas), agente
-
-
-def _grupo(partes):
-    # Envuelve las piezas de la ronda en su clase, o nada si no hay nada.
-    if not partes:
-        return ""
-    return '<g class="ag-ronda">%s</g>' % "".join(partes)
 
 
 def capas(animado=True, t=None):
@@ -607,16 +433,12 @@ def capas(animado=True, t=None):
                      animado, t)
     suelo_d = celdas(decidido, [seg[d0 + k][0] - 0.10 for k in range(len(decidido))],
                      animado, t)
-    # y la ronda, que empieza cuando la banda ya lleva un rato vacia
-    ron_suelo, ron_marcas, ron_agente = ronda(
-        animado, t, hitos["fin"] + ESPERA_RONDA)
-    suelo = [pie_suelo, suelo_t, suelo_d, ron_suelo]
+    suelo = [pie_suelo, suelo_t, suelo_d]
 
     tr_tanteo = [(a, b) for a, b, _x, _y, _s in seg[2:2 + len(tanteo)]]
     tr_buena = [(a, b) for a, b, _x, _y, _s in seg[d0:]]
     marcas = (rastro(ram_tanteo, tr_tanteo, CORAL, 0.85, 6.5, animado, t)
-              + rastro(ram_buena, tr_buena, CORAL, 0.9, 6.5, animado, t)
-              + ron_marcas)
+              + rastro(ram_buena, tr_buena, CORAL, 0.9, 6.5, animado, t))
 
     quieto = ""
     if animado:
@@ -632,7 +454,7 @@ def capas(animado=True, t=None):
         piel = '<g class="ag-piel">%s</g>' % "".join(cubo(aqui))
     agente = ('<g class="ag-cubo" fill="none" stroke-linecap="round"'
               ' stroke-linejoin="round">%s%s</g>' % (piel, motor if animado else ""))
-    return caja, "".join(suelo), marcas, agente + ron_agente, quieto, hitos
+    return caja, "".join(suelo), marcas, agente, quieto, hitos
 
 
 def _adentro(roto, t):
@@ -717,27 +539,6 @@ def revisar():
     print("reloj   nace %.2f  duda %.2f  decide %.2f  fin %.2f"
           % (T_NACE, hitos["duda"], hitos["decide"], hitos["fin"]))
 
-    # la ronda: el circuito tiene que cerrar, caber en la banda con celda y
-    # cubo incluidos, y no pisar la huella de la caja
-    ron = ronda_camino()
-    assert max(abs(a - b) for a, b in zip(ron[0], ron[-1])) < 1e-9, (
-        "el circuito de la ronda no cierra: %r vs %r" % (ron[0], ron[-1]))
-    rx = [banda(p)[0] for p in ron]
-    ry = [banda(p)[1] for p in ron]
-    alto_celda = PASO * abs(P(O, 0, 0)[1] - P(O, 0.5, 0.5)[1]) * K * 2.0
-    assert max(ry) + alto_celda / 2.0 < BH - 6, (
-        "la celda de la ronda se sale por abajo: %.0f" % (max(ry) + alto_celda / 2.0))
-    assert rx[0] > BW + 30, "la ronda no arranca fuera del cuadro: %.0f" % rx[0]
-    assert min(rx) > 900, "la ronda se mete debajo del titular: %.0f" % min(rx)
-    m = PASO / 2.0
-    for p in ron:
-        assert not (abs(p[0] - 2.0) < 1.3 + m and abs(p[1] - 2.0) < 1.3 + m), (
-            "la ronda pisa la caja en %r" % (p,))
-    ciclo = ronda_reloj()
-    assert ciclo[-1][1] + RETARDO + D_BORRA + RETARDO_PISO < CICLO - 1.0, (
-        "el rastro de la ronda no alcanza a borrarse antes del siguiente ciclo")
-    print("ronda   x %.0f..%.0f   y %.0f..%.0f   anda %.2fs de cada %.0f"
-          % (min(rx), max(rx), min(ry), max(ry), ciclo[-1][1], CICLO))
     return hitos
 
 
@@ -823,6 +624,7 @@ def pelicula(ruta, t0, t1, fps=12, ancho=760):
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TSX = os.path.join(RAIZ, "components", "hero-hackathon.tsx")
+FIGURA_RUTA = os.path.join(RAIZ, "components", "agente-figura.ts")
 
 CABEZA = u"""// Generado por scripts/agente.py. No editar a mano.
 //
@@ -830,6 +632,9 @@ CABEZA = u"""// Generado por scripts/agente.py. No editar a mano.
 // es alguien que elige. Prueba una direccion, se queda sin piso, retrocede
 // y toma la otra, con el suelo apareciendo delante de el. El rastro no se
 // acumula: cada paso se borra un par de segundos despues de darlo.
+//
+// Pasa una sola vez por carga. Lo que hace el agente despues esta en
+// components/agente-suelto.tsx, que lo suelta por la pagina entera.
 
 const MARCA = `%(svg)s`;
 
@@ -856,6 +661,124 @@ def componente(cuerpo):
         svg=cuerpo.replace("\\", "\\\\").replace(BQ, ESC + BQ).replace("${", ESC + "${"))
 
 
+# ------------------------------------------------------------- la figura
+
+# El agente que anda suelto por la pagina es el mismo que sale de la caja,
+# y tiene que serlo: si la figura se escribiera dos veces, la del hero y la
+# de la pagina se irian separando con cada retoque. Aca se emite una sola
+# vez, en un modulo que el componente solo traslada.
+#
+# Lo unico que cambia es la paleta. En el hero las caras se mezclan con el
+# verde del fondo y ademas van translucidas, que es lo correcto cuando el
+# fondo es siempre el mismo verde. La pagina cambia de fondo entre secciones:
+# ahi esa mezcla saldria olivosa sobre crema. Asi que las caras van opacas y
+# la sombra sale de oscurecer el coral contra si mismo, con las dos caidas
+# ajustadas para que el brillo relativo de las tres caras sea el del hero.
+SOMBRA = "#7a2a1f"
+
+
+def _sombra(p):
+    u"""El coral, oscurecido hacia su propia sombra."""
+    ca = [int(CORAL[1 + 2 * k:3 + 2 * k], 16) for k in range(3)]
+    cb = [int(SOMBRA[1 + 2 * k:3 + 2 * k], 16) for k in range(3)]
+    return "#%02x%02x%02x" % tuple(
+        int(round(ca[k] + (cb[k] - ca[k]) * p)) for k in range(3))
+
+
+FIGURA_TS = u"""// Generado por scripts/agente.py. No editar a mano.
+//
+// El agente, quieto en el origen. Las tres caras del cubo en coordenadas
+// locales, con el centro de su huella en (0,0): el componente que lo pasea
+// solo tiene que trasladarlo y escalarlo.
+
+export type Cara = { pts: string; relleno: string; ancho: number };
+
+export const TRAZO = "%(coral)s";
+
+export const CARAS: Cara[] = [
+%(caras)s];
+
+/* Un paso de la reticula isometrica, en unidades locales. Andar en +x
+   mueve la figura por PASO_X y andar en +y por PASO_Y. Combinandolos
+   salen las cuatro direcciones rectas de la pantalla: -x +y va a la
+   izquierda, +x -y a la derecha, +x +y abajo y -x -y arriba. */
+export const PASO_X = { x: %(px).2f, y: %(py).2f };
+export const PASO_Y = { x: %(qx).2f, y: %(qy).2f };
+
+/* Lo alto del brinco: el cubo no se desliza de celda en celda, se levanta
+   un poco a mitad de paso. Sin eso anda como una ficha arrastrada. */
+export const BRINCO = %(brinco).2f;
+
+/* Lo que ocupa la figura, para poder pedirle un tamano en pixeles. */
+export const FIGURA_ANCHO = %(fw).2f;
+export const FIGURA_ALTO = %(fh).2f;
+
+/* El andar, en segundos por paso. Son los mismos de la fuga: el agente de
+   la pagina y el del encabezado tienen que moverse igual, o se leen como
+   dos bichos distintos. */
+export const PASO_RAPIDO = %(rapido).3f;
+export const PASO_LENTO = %(lento).3f;
+
+/* De cada paso, la fraccion que se anda; el resto es descanso. */
+export const ANDA = %(anda).2f;
+
+/* El rastro: ancho y opacidad del trazo, lo que aguanta un tramo antes de
+   empezar a irse y lo que tarda en irse. */
+export const RASTRO = {
+  ancho: %(rancho).1f,
+  opacidad: %(ropa).2f,
+  retardo: %(retardo).2f,
+  borra: %(borra).2f,
+};
+
+/* La baldosa que cada paso enciende debajo. El lado va en celdas, y ese 5 %%
+   que le falta para la celda entera es el hueco que la separa de la
+   siguiente. La baldosa se va un poco despues que la marca que le quedo
+   encima. */
+export const PISO = {
+  lado: %(plado).2f,
+  ancho: %(pancho).1f,
+  retardo: %(pretardo).2f,
+};
+"""
+
+
+def figura():
+    u"""Las tres caras del cubo, en el origen y sin animar."""
+    H.escala(0.78)
+    o = (0.0, 0.0)
+    m = LADO / 2.0
+
+    def cara(pts):
+        return " ".join("%.2f,%.2f" % P(o, x, y, z) for x, y, z in pts)
+
+    # el mismo reparto que heroes.volumen: izquierda, derecha y tapa
+    caras = [
+        (cara([(-m, m, LADO), (m, m, LADO), (m, m, 0.0), (-m, m, 0.0)]),
+         _sombra(0.55), SEC),
+        (cara([(m, -m, LADO), (m, m, LADO), (m, m, 0.0), (m, -m, 0.0)]),
+         _sombra(0.85), SEC),
+        (cara([(-m, -m, LADO), (m, -m, LADO), (m, m, LADO), (-m, m, LADO)]),
+         CORAL, H.PRIM),
+    ]
+    filas = "".join(
+        '  { pts: "%s", relleno: "%s", ancho: %.1f },\n' % c for c in caras)
+
+    px = P(o, PASO, 0.0)
+    py = P(o, 0.0, PASO)
+    xy = [v.split(",") for c in caras for v in c[0].split()]
+    xs = [float(v[0]) for v in xy]
+    ys = [float(v[1]) for v in xy]
+    # el brinco del tramo largo de la fuga, medido en pantalla
+    brinco = P(o, 0.0, 0.0)[1] - P(o, 0.0, 0.0, 0.12)[1]
+    return FIGURA_TS % dict(
+        coral=CORAL, caras=filas, px=px[0], py=px[1], qx=py[0], qy=py[1],
+        brinco=brinco, fw=max(xs) - min(xs), fh=max(ys) - min(ys),
+        rapido=P_RAPIDO, lento=P_LENTO, anda=0.70, rancho=6.5, ropa=0.9,
+        retardo=RETARDO, borra=D_BORRA,
+        plado=PASO, pancho=3.0, pretardo=RETARDO_PISO)
+
+
 def main():
     if not os.path.isdir(SALIDA):
         os.makedirs(SALIDA)
@@ -872,14 +795,19 @@ def main():
             u"delante de el. El rastro no se acumula: cada paso se borra "
             u"un par de segundos despues de darlo, y detras del agente la banda "
             u"vuelve a quedar limpia. Sale del cuadro por el costado y nunca "
-            u"pasa por encima del titular. Y no se va del todo: cada 22 s "
-            u"vuelve por la derecha, da una vuelta delante de la caja rota, "
-            u"se detiene a mirar y se va otra vez.")
+            u"pasa por encima del titular. Ocurre una sola vez por carga: "
+            u"de ahi en adelante el agente le pertenece a la pagina y no a "
+            u"la banda.")
     pagina = PAGINA % dict(cuerpo=BANDA % dict(
         rot=u"El agente sale de la caja", nota=nota, svg=cuerpo))
     io.open(os.path.join(SALIDA, "index.html"), "w", encoding="utf-8",
             newline="\n").write(pagina)
     print(os.path.join(SALIDA, "index.html"))
+
+    if "--figura" in sys.argv:
+        io.open(FIGURA_RUTA, "w", encoding="utf-8",
+                newline=chr(10)).write(figura())
+        print(FIGURA_RUTA)
 
     if "--tsx" in sys.argv:
         web, _ = svg(animado=True, suf="Hk", fondo=False)
@@ -892,12 +820,6 @@ def main():
     if "--gif" in sys.argv:
         pelicula(os.path.join(SALIDA, "agente.gif"), T_GOLPE - 0.45,
                  hitos["fin"] + RETARDO + D_BORRA + 0.35)
-    if "--ronda" in sys.argv:
-        # una vuelta entera, desde que la banda esta vacia hasta que vuelve
-        # a estarlo; el resto del ciclo no tiene nada que mirar
-        t0 = hitos["fin"] + ESPERA_RONDA
-        pelicula(os.path.join(SALIDA, "ronda.gif"), t0 - 1.0,
-                 t0 + ronda_reloj()[-1][1] + RETARDO + D_BORRA + 1.2)
 
 
 if __name__ == "__main__":

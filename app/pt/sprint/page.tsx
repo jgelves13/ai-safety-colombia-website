@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
+import { AgenteSuelto } from "@/components/agente-suelto";
 import { HeroHackathon } from "@/components/hero-hackathon";
 import {
   CTA_LINK,
@@ -382,6 +383,9 @@ export default function Hackathon() {
   return (
     <main lang="pt" className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
+        {/* El agente del encabezado se va y no vuelve a la banda: de ahi
+            en adelante ronda por la pagina entera unas pocas veces. */}
+        <AgenteSuelto />
         <HeroHackathon className={HERO_FUGA_CLASS} />
         <SiteHeader active="/pt/sprint" />
         <div className={HERO_INNER}>
@@ -499,8 +503,8 @@ export default function Hackathon() {
               <p className="text-body md:text-body-lg max-w-[640px] text-aisc-ink">
                 Cada equipe escolhe um. No formulário você nos diz qual chama a
                 sua atenção, e isso nos serve para saber que perfis haverá na
-                sala e para convidar os mentores que faltarem. A Apart publica o
-                detalhe de cada track na{" "}
+                sala e para convidar os mentores que faltarem. A Apart descreve
+                cada track na{" "}
                 <a
                   className={ENLACE}
                   href={APART_SPRINT_URL}
@@ -509,7 +513,24 @@ export default function Hackathon() {
                 >
                   convocatória do sprint
                 </a>
-                .
+                , com projetos de exemplo para cada um.
+              </p>
+              <p className="text-body md:text-body-lg mt-5 max-w-[640px] text-aisc-ink">
+                Quem nunca esteve em um destes fins de semana não trava no tema,
+                trava na escala: quanto cabe em três dias. No hackathon
+                anterior, três pessoas montaram o{" "}
+                <a
+                  className={ENLACE}
+                  href="https://apartresearch.com/project/coldron-lj2w"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Coldron
+                </a>
+                , um conjunto de dados aberto sobre ataques com drones na
+                Colômbia e uma forma de classificar quanto controle humano resta
+                em cada arma. Está publicado, com os comentários de quem
+                revisou.
               </p>
             </div>
           </div>
