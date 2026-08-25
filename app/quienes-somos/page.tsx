@@ -144,8 +144,17 @@ const EQUIPO: Persona[] = [
           rel="noopener noreferrer"
         >
           OCDE
-        </a>
-        . Como Winter Fellow de{" "}
+        </a>{" "}
+        e investigadora asociada del{" "}
+        <a
+          className={ENLACE}
+          href="https://aiforgood.itu.int/multimedia-authenticity/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          AMAS Young Research Programme
+        </a>{" "}
+        de la UIT. Como Winter Fellow de{" "}
         <a
           className={ENLACE}
           href="https://www.governance.ai/"
