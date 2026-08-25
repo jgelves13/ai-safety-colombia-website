@@ -331,7 +331,9 @@ def svg(ts, ds, animado=True, fondo=True, suf=""):
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SVG_PUB = os.path.join(RAIZ, "public", "aisc", "patterns",
                        "aisc-hero-hackathon.svg")
-TSX = os.path.join(RAIZ, "components", "hero-hackathon.tsx")
+# el hero vivo del sprint ya no es el derrame: lo escribe scripts/agente.py.
+# Este emisor apunta a la copia guardada, para no pisar al agente.
+TSX = os.path.join(RAIZ, "components", "hero-hackathon-derrame.tsx")
 
 CABEZA = u"""// Generado por scripts/fluido_svg.py. No editar a mano.
 //
@@ -341,7 +343,7 @@ CABEZA = u"""// Generado por scripts/fluido_svg.py. No editar a mano.
 
 const MARCA = `%(svg)s`;
 
-export function HeroHackathon({ className }: { className?: string }) {
+export function HeroHackathonDerrame({ className }: { className?: string }) {
   return (
     <div
       className={className}
