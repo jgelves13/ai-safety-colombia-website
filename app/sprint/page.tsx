@@ -123,8 +123,8 @@ const GRUPOS = [
    dar; lo que aún no está cerrado se dice que no está cerrado. */
 const HUB = [
   {
-    titulo: "Alimentación y alojamiento",
-    body: "Cubrimos las comidas de los tres días. Si vienes de otra ciudad, también cubrimos el alojamiento del fin de semana.",
+    titulo: "Alimentación",
+    body: "Cubrimos las comidas de los tres días, para que los equipos no tengan que salir de la sala a resolverlo.",
   },
   {
     titulo: "Apoyo para cómputo",
@@ -350,7 +350,7 @@ const FAQ = [
   },
   {
     q: "¿Qué diferencia hay entre aplicar acá y participar en línea?",
-    a: "El sprint es el mismo y el entregable se sube al mismo sitio. Aplicar acá es para el hub presencial en Bogotá, que tiene cupo limitado y por eso tiene selección. En el hub cubrimos alimentación, alojamiento si vienes de otra ciudad, apoyo para cómputo y mentoría en sala. Participar en línea con Apart no tiene selección ni cupo.",
+    a: "El sprint es el mismo y el entregable se sube al mismo sitio. Aplicar acá es para el hub presencial en Bogotá, que tiene cupo limitado y por eso tiene selección. En el hub cubrimos alimentación, apoyo para cómputo y mentoría en sala. Participar en línea con Apart no tiene selección ni cupo.",
   },
   {
     q: "¿Cuánto tiempo toma la aplicación?",
@@ -358,7 +358,7 @@ const FAQ = [
   },
   {
     q: "¿Puedo aplicar si no vivo en Bogotá?",
-    a: "Sí. En el formulario nos dices desde dónde vendrías y, si vienes de otra ciudad, cubrimos el alojamiento del fin de semana. El transporte hasta Bogotá corre por tu cuenta.",
+    a: "Sí. En el formulario nos dices desde dónde vendrías. El transporte hasta Bogotá y la estadía corren por tu cuenta.",
   },
 ];
 

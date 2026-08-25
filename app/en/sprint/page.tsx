@@ -125,8 +125,8 @@ const GRUPOS = [
    dar; lo que aún no está cerrado se dice que no está cerrado. */
 const HUB = [
   {
-    titulo: "Meals and lodging",
-    body: "We cover meals for all three days. If you are coming from another city, we also cover lodging for the weekend.",
+    titulo: "Meals",
+    body: "We cover meals for all three days, so teams do not have to leave the room to sort it out.",
   },
   {
     titulo: "Compute support",
@@ -352,7 +352,7 @@ const FAQ = [
   },
   {
     q: "What is the difference between applying here and taking part online?",
-    a: "The sprint is the same one and the deliverable goes to the same place. Applying here is for the in-person hub in Bogotá, which has limited capacity and therefore a selection process. At the hub we cover meals, lodging if you are coming from another city, compute support and mentorship in the room. Taking part online with Apart has no selection and no cap.",
+    a: "The sprint is the same one and the deliverable goes to the same place. Applying here is for the in-person hub in Bogotá, which has limited capacity and therefore a selection process. At the hub we cover meals, compute support and mentorship in the room. Taking part online with Apart has no selection and no cap.",
   },
   {
     q: "How long does the application take?",
@@ -360,7 +360,7 @@ const FAQ = [
   },
   {
     q: "Can I apply if I do not live in Bogotá?",
-    a: "Yes. In the form you tell us where you would be coming from and, if it is another city, we cover lodging for the weekend. Travel to Bogotá is on you.",
+    a: "Yes. In the form you tell us where you would be coming from. Travel to Bogotá and your stay there are on you.",
   },
 ];
 

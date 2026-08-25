@@ -54,8 +54,8 @@ export default function Inscricao() {
           {!cerrado ? (
             <div className="mb-8 flex flex-col gap-3">
               <p className="text-body-sm text-aisc-ink">
-                Durante os três dias você terá espaço de trabalho, alimentação, conectividade e mentores na sala. Se
-                vier de outra cidade, também cobrimos a hospedagem. As vagas são limitadas, então há seleção.
+                Durante os três dias você terá espaço de trabalho, alimentação, conectividade e mentores na sala. As
+                vagas são limitadas, então há seleção.
               </p>
               <p className="text-body-sm text-aisc-ink">
                 Se preferir ver primeiro do que se trata,{" "}

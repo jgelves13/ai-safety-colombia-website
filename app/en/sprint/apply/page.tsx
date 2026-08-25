@@ -54,8 +54,8 @@ export default function Apply() {
           {!cerrado ? (
             <div className="mb-8 flex flex-col gap-3">
               <p className="text-body-sm text-aisc-ink">
-                Over the three days you get a place to work, meals, connectivity and mentors in the room. If you come
-                from another city, we also cover accommodation. Places are limited, so there is a selection process.
+                Over the three days you get a place to work, meals, connectivity and mentors in the room. Places are
+                limited, so there is a selection process.
               </p>
               <p className="text-body-sm text-aisc-ink">
                 If you would rather see what it is about first,{" "}

@@ -54,8 +54,8 @@ export default function Aplicar() {
           {!cerrado ? (
             <div className="mb-8 flex flex-col gap-3">
               <p className="text-body-sm text-aisc-ink">
-                Durante los tres días tendrás espacio de trabajo, alimentación, conectividad y mentores en sala. Si
-                vienes de otra ciudad, también cubrimos el alojamiento. El cupo es limitado, así que hay selección.
+                Durante los tres días tendrás espacio de trabajo, alimentación, conectividad y mentores en sala. El
+                cupo es limitado, así que hay selección.
               </p>
               <p className="text-body-sm text-aisc-ink">
                 Si prefieres ver primero de qué se trata,{" "}

@@ -125,8 +125,8 @@ const GRUPOS = [
    dar; lo que aún no está cerrado se dice que no está cerrado. */
 const HUB = [
   {
-    titulo: "Alimentação e hospedagem",
-    body: "Cobrimos as refeições dos três dias. Se você vier de outra cidade, também cobrimos a hospedagem do fim de semana.",
+    titulo: "Alimentação",
+    body: "Cobrimos as refeições dos três dias, para que as equipes não precisem sair da sala para resolver isso.",
   },
   {
     titulo: "Apoio para computação",
@@ -352,7 +352,7 @@ const FAQ = [
   },
   {
     q: "Qual é a diferença entre se inscrever aqui e participar on-line?",
-    a: "O sprint é o mesmo e o entregável vai para o mesmo lugar. Inscrever-se aqui é para o hub presencial em Bogotá, que tem vagas limitadas e por isso tem seleção. No hub cobrimos alimentação, hospedagem se você vier de outra cidade, apoio para computação e mentoria na sala. Participar on-line com a Apart não tem seleção nem limite de vagas.",
+    a: "O sprint é o mesmo e o entregável vai para o mesmo lugar. Inscrever-se aqui é para o hub presencial em Bogotá, que tem vagas limitadas e por isso tem seleção. No hub cobrimos alimentação, apoio para computação e mentoria na sala. Participar on-line com a Apart não tem seleção nem limite de vagas.",
   },
   {
     q: "Quanto tempo leva a inscrição?",
@@ -360,7 +360,7 @@ const FAQ = [
   },
   {
     q: "Posso me inscrever se não moro em Bogotá?",
-    a: "Sim. No formulário você nos diz de onde viria e, se vier de outra cidade, cobrimos a hospedagem do fim de semana. O transporte até Bogotá corre por sua conta.",
+    a: "Sim. No formulário você nos diz de onde viria. O transporte até Bogotá e a estadia correm por sua conta.",
   },
 ];
 

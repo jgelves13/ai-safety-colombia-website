@@ -180,7 +180,7 @@ const es: TextosAplicar = {
     "Los nombres de las personas con las que vienes. Cada una tiene que llenar este formulario por su lado.",
   viaje: "¿Cómo llegarías a Bogotá?",
   viajeAyuda:
-    "Nos sirve para organizar. Si vienes de otra ciudad cubrimos el alojamiento; el transporte hasta Bogotá corre por tu cuenta.",
+    "Nos sirve para organizar. El transporte hasta Bogotá y la estadía corren por tu cuenta.",
   acceso: "¿Necesitas algo para poder participar?",
   accesoAyuda:
     "Restricciones de alimentación, accesibilidad, horarios, cuidado de alguien. Lo que nos digas acá lo tenemos en cuenta al organizar.",
@@ -299,7 +299,7 @@ const en: TextosAplicar = {
     "The names of the people coming with you. Each of them has to fill in this form separately.",
   viaje: "How would you get to Bogotá?",
   viajeAyuda:
-    "This helps us organise. If you come from another city we cover accommodation; travel to Bogotá is on you.",
+    "This helps us organise. Travel to Bogotá and your stay there are on you.",
   acceso: "Do you need anything in order to take part?",
   accesoAyuda:
     "Dietary restrictions, accessibility, timing, caring for someone. Whatever you tell us here we take into account when organising.",
@@ -418,7 +418,7 @@ const pt: TextosAplicar = {
     "Os nomes das pessoas que vêm com você. Cada uma precisa preencher este formulário por conta própria.",
   viaje: "Como você chegaria a Bogotá?",
   viajeAyuda:
-    "Isso nos serve para organizar. Se você vem de outra cidade, cobrimos a hospedagem; o transporte até Bogotá fica por sua conta.",
+    "Isso nos serve para organizar. O transporte até Bogotá e a estadia ficam por sua conta.",
   acceso: "Você precisa de algo para poder participar?",
   accesoAyuda:
     "Restrições alimentares, acessibilidade, horários, cuidado de alguém. O que você contar aqui levamos em conta ao organizar.",
