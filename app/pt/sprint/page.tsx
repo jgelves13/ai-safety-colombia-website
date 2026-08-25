@@ -186,17 +186,26 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           OCDE
-        </a>
-        , pesquisadora associada do{" "}
+        </a>{" "}
+        e líder do grupo de AI Control da AIS Colombia. Como Winter Fellow do{" "}
         <a
           className={ENLACE}
-          href="https://aiforgood.itu.int/multimedia-authenticity/"
+          href="https://www.governance.ai/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          AMAS Young Research Programme
+          GovAI
         </a>{" "}
-        da UIT e líder do grupo de AI Control da AIS Colombia.
+        pesquisou a{" "}
+        <a
+          className={ENLACE}
+          href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          regulação europeia
+        </a>{" "}
+        dos cenários de perda de controle.
       </>
     ),
   },
@@ -234,8 +243,48 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           projeto de pesquisa no SPAR
+        </a>{" "}
+        e de um{" "}
+        <a
+          className={ENLACE}
+          href="https://www.matsprogram.org/stream/thiergart-11"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          grupo do MATS
+        </a>{" "}
+        sobre a segurança dos centros de dados.
+      </>
+    ),
+  },
+  {
+    nombre: "Manuela Chacón",
+    rol: "Mentora",
+    linkedin:
+      "https://www.linkedin.com/in/manuela-viviana-chac%C3%B3n-chamorro-04b0621bb/",
+    bio: (
+      <>
+        Doutoranda em Engenharia na{" "}
+        <a
+          className={ENLACE}
+          href="https://uniandes.edu.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Universidad de los Andes
         </a>
-        .
+        , onde pesquisa sistemas multiagente. Primeira autora do{" "}
+        <a
+          className={ENLACE}
+          href="https://ieeexplore.ieee.org/document/10988739/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          artigo
+        </a>{" "}
+        da IEEE Transactions on Artificial Intelligence que define como medir a
+        resiliência cooperativa: se um grupo de agentes sustenta o bem comum
+        quando o ambiente muda ou quando entra um que o esgota.
       </>
     ),
   },

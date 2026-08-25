@@ -139,16 +139,25 @@ const EQUIPO: Persona[] = [
         >
           OECD
         </a>{" "}
-        expert group and associate researcher with the ITU’s{" "}
+        expert group. As a Winter Fellow at{" "}
         <a
           className={ENLACE}
-          href="https://aiforgood.itu.int/multimedia-authenticity/"
+          href="https://www.governance.ai/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          AMAS Young Research Programme
-        </a>
-        .
+          GovAI
+        </a>{" "}
+        she researched the{" "}
+        <a
+          className={ENLACE}
+          href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          European regulation
+        </a>{" "}
+        of loss-of-control scenarios.
       </>
     ),
   },

@@ -139,17 +139,26 @@ const EQUIPO: Persona[] = [
           rel="noopener noreferrer"
         >
           OCDE
-        </a>{" "}
-        e pesquisadora associada do{" "}
+        </a>
+        . Como Winter Fellow do{" "}
         <a
           className={ENLACE}
-          href="https://aiforgood.itu.int/multimedia-authenticity/"
+          href="https://www.governance.ai/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          AMAS Young Research Programme
+          GovAI
         </a>{" "}
-        da UIT.
+        pesquisou a{" "}
+        <a
+          className={ENLACE}
+          href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          regulação europeia
+        </a>{" "}
+        dos cenários de perda de controle.
       </>
     ),
   },

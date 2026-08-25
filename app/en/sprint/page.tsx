@@ -186,16 +186,26 @@ const MENTORES: {
         >
           OECD
         </a>{" "}
-        expert group, associate researcher with the ITU’s{" "}
+        expert group and head of the AI Control group at AIS Colombia. As a
+        Winter Fellow at{" "}
         <a
           className={ENLACE}
-          href="https://aiforgood.itu.int/multimedia-authenticity/"
+          href="https://www.governance.ai/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          AMAS Young Research Programme
+          GovAI
         </a>{" "}
-        and head of the AI Control group at AIS Colombia.
+        she researched the{" "}
+        <a
+          className={ENLACE}
+          href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          European regulation
+        </a>{" "}
+        of loss-of-control scenarios.
       </>
     ),
   },
@@ -224,8 +234,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           SL5 standard
-        </a>{" "}
-        and mentor on a{" "}
+        </a>
+        . He mentors a{" "}
         <a
           className={ENLACE}
           href="https://sparai.org/projects/sp26/recXdgQxof26exbLh/"
@@ -233,8 +243,48 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           SPAR research project
+        </a>{" "}
+        and a{" "}
+        <a
+          className={ENLACE}
+          href="https://www.matsprogram.org/stream/thiergart-11"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          MATS stream
+        </a>{" "}
+        on datacenter security.
+      </>
+    ),
+  },
+  {
+    nombre: "Manuela Chacón",
+    rol: "Mentor",
+    linkedin:
+      "https://www.linkedin.com/in/manuela-viviana-chac%C3%B3n-chamorro-04b0621bb/",
+    bio: (
+      <>
+        Engineering PhD student at{" "}
+        <a
+          className={ENLACE}
+          href="https://uniandes.edu.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Universidad de los Andes
         </a>
-        .
+        , where she researches multi-agent systems. First author of the{" "}
+        <a
+          className={ENLACE}
+          href="https://ieeexplore.ieee.org/document/10988739/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          IEEE Transactions on Artificial Intelligence paper
+        </a>{" "}
+        that sets out how to measure cooperative resilience: whether a group of
+        agents keeps the common good going when the environment shifts or when
+        an agent that depletes it joins in.
       </>
     ),
   },
