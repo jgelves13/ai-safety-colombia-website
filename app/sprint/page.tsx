@@ -223,8 +223,8 @@ const MENTORES: {
         >
           Security Level 5
         </a>
-        , iniciativa enfocada en proteger sistemas avanzados de IA frente a
-        adversarios estatales y pérdida de control. Coautor del{" "}
+        , iniciativa que protege sistemas avanzados de IA frente a adversarios
+        estatales. Coautor del{" "}
         <a
           className={ENLACE}
           href="https://arxiv.org/abs/2605.08449"
@@ -232,8 +232,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           estándar SL5
-        </a>{" "}
-        y mentor de un{" "}
+        </a>
+        . Mentor de un{" "}
         <a
           className={ENLACE}
           href="https://sparai.org/projects/sp26/recXdgQxof26exbLh/"
@@ -257,12 +257,13 @@ const MENTORES: {
   },
   {
     nombre: "Manuela Chacón",
-    rol: "Mentora",
+    rol: "Ponente",
+    foto: "/aisc/mentores/manuela-chacon.png",
     linkedin:
       "https://www.linkedin.com/in/manuela-viviana-chac%C3%B3n-chamorro-04b0621bb/",
     bio: (
       <>
-        Estudiante de doctorado en Ingeniería en la{" "}
+        Candidata a doctora en Ingeniería en la{" "}
         <a
           className={ENLACE}
           href="https://uniandes.edu.co/"
@@ -270,8 +271,17 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           Universidad de los Andes
+        </a>{" "}
+        con una{" "}
+        <a
+          className={ENLACE}
+          href="https://ingenieria.uniandes.edu.co/es/noticias/ganadores-becas-deepmind-cinfonia"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          beca de Google DeepMind
         </a>
-        , donde investiga sistemas multiagente. Primera autora del{" "}
+        . Primera autora del{" "}
         <a
           className={ENLACE}
           href="https://ieeexplore.ieee.org/document/10988739/"
@@ -280,9 +290,17 @@ const MENTORES: {
         >
           artículo
         </a>{" "}
-        de IEEE Transactions on Artificial Intelligence que define cómo medir la
-        resiliencia cooperativa: si un grupo de agentes sostiene el bien común
-        cuando el entorno cambia o cuando entra uno que lo agota.
+        de IEEE sobre resiliencia cooperativa en sistemas multiagente.
+        Participó en la{" "}
+        <a
+          className={ENLACE}
+          href="https://www.cooperativeai.com/summer-school/summer-school-2025"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Cooperative AI Summer School
+        </a>{" "}
+        de la Cooperative AI Foundation.
       </>
     ),
   },
@@ -568,14 +586,14 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Mentoría
+              Mentores y ponentes
             </h2>
             <div className={COLUMNA}>
               <div className={PROSA}>
                 <p>
                   Durante el fin de semana pasa por la sala gente que trabaja en
                   los temas de los cinco frentes. Algunos abren con una charla
-                  corta. Todos se sientan con los equipos a apoyar lo que
+                  corta. Otros se sientan con los equipos a apoyar lo que
                   estén construyendo.
                 </p>
                 <p>

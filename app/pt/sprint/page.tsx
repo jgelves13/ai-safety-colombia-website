@@ -225,8 +225,8 @@ const MENTORES: {
         >
           Security Level 5
         </a>
-        , iniciativa voltada a proteger sistemas avançados de IA diante de
-        adversários estatais e de perda de controle. Coautor do{" "}
+        , iniciativa que protege sistemas avançados de IA diante de adversários
+        estatais. Coautor do{" "}
         <a
           className={ENLACE}
           href="https://arxiv.org/abs/2605.08449"
@@ -234,8 +234,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           padrão SL5
-        </a>{" "}
-        e mentor de um{" "}
+        </a>
+        . Mentor de um{" "}
         <a
           className={ENLACE}
           href="https://sparai.org/projects/sp26/recXdgQxof26exbLh/"
@@ -259,7 +259,8 @@ const MENTORES: {
   },
   {
     nombre: "Manuela Chacón",
-    rol: "Mentora",
+    rol: "Palestrante",
+    foto: "/aisc/mentores/manuela-chacon.png",
     linkedin:
       "https://www.linkedin.com/in/manuela-viviana-chac%C3%B3n-chamorro-04b0621bb/",
     bio: (
@@ -272,8 +273,17 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           Universidad de los Andes
+        </a>{" "}
+        com uma{" "}
+        <a
+          className={ENLACE}
+          href="https://ingenieria.uniandes.edu.co/es/noticias/ganadores-becas-deepmind-cinfonia"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          bolsa da Google DeepMind
         </a>
-        , onde pesquisa sistemas multiagente. Primeira autora do{" "}
+        . Primeira autora do{" "}
         <a
           className={ENLACE}
           href="https://ieeexplore.ieee.org/document/10988739/"
@@ -282,9 +292,17 @@ const MENTORES: {
         >
           artigo
         </a>{" "}
-        da IEEE Transactions on Artificial Intelligence que define como medir a
-        resiliência cooperativa: se um grupo de agentes sustenta o bem comum
-        quando o ambiente muda ou quando entra um que o esgota.
+        da IEEE sobre resiliência cooperativa em sistemas multiagente.
+        Participou da{" "}
+        <a
+          className={ENLACE}
+          href="https://www.cooperativeai.com/summer-school/summer-school-2025"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Cooperative AI Summer School
+        </a>{" "}
+        da Cooperative AI Foundation.
       </>
     ),
   },
@@ -568,14 +586,14 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Mentoria
+              Mentores e palestrantes
             </h2>
             <div className={COLUMNA}>
               <div className={PROSA}>
                 <p>
                   Durante o fim de semana passa pela sala gente que trabalha nos
                   temas dos cinco tracks. Alguns abrem com uma palestra curta.
-                  Todos se sentam com as equipes para apoiar o que estiverem
+                  Outros se sentam com as equipes para apoiar o que estiverem
                   construindo.
                 </p>
                 <p>

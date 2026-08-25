@@ -225,8 +225,8 @@ const MENTORES: {
         >
           Security Level 5
         </a>
-        , an initiative focused on protecting advanced AI systems from state
-        adversaries and loss of control. Co-author of the{" "}
+        , an initiative that protects advanced AI systems from state
+        adversaries. Co-author of the{" "}
         <a
           className={ENLACE}
           href="https://arxiv.org/abs/2605.08449"
@@ -259,12 +259,13 @@ const MENTORES: {
   },
   {
     nombre: "Manuela Chacón",
-    rol: "Mentor",
+    rol: "Speaker",
+    foto: "/aisc/mentores/manuela-chacon.png",
     linkedin:
       "https://www.linkedin.com/in/manuela-viviana-chac%C3%B3n-chamorro-04b0621bb/",
     bio: (
       <>
-        Engineering PhD student at{" "}
+        Engineering PhD candidate at{" "}
         <a
           className={ENLACE}
           href="https://uniandes.edu.co/"
@@ -272,19 +273,35 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           Universidad de los Andes
+        </a>{" "}
+        on a{" "}
+        <a
+          className={ENLACE}
+          href="https://ingenieria.uniandes.edu.co/es/noticias/ganadores-becas-deepmind-cinfonia"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Google DeepMind scholarship
         </a>
-        , where she researches multi-agent systems. First author of the{" "}
+        . First author of the{" "}
         <a
           className={ENLACE}
           href="https://ieeexplore.ieee.org/document/10988739/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          IEEE Transactions on Artificial Intelligence paper
+          IEEE paper
         </a>{" "}
-        that sets out how to measure cooperative resilience: whether a group of
-        agents keeps the common good going when the environment shifts or when
-        an agent that depletes it joins in.
+        on cooperative resilience in multi-agent systems. She took part in the{" "}
+        <a
+          className={ENLACE}
+          href="https://www.cooperativeai.com/summer-school/summer-school-2025"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Cooperative AI Summer School
+        </a>{" "}
+        run by the Cooperative AI Foundation.
       </>
     ),
   },
@@ -568,14 +585,14 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Mentorship
+              Mentors and speakers
             </h2>
             <div className={COLUMNA}>
               <div className={PROSA}>
                 <p>
                   Over the weekend, people who work on the subjects of the five
-                  tracks come through the room. Some open with a short talk. All
-                  of them sit down with the teams to support whatever they are
+                  tracks come through the room. Some open with a short talk.
+                  Others sit down with the teams to support whatever they are
                   building.
                 </p>
                 <p>
