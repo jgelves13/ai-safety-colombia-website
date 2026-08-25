@@ -185,8 +185,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           OCDE
-        </a>{" "}
-        e líder do grupo de AI Control da AIS Colombia. Como Winter Fellow do{" "}
+        </a>
+        . Como Winter Fellow do{" "}
         <a
           className={ENLACE}
           href="https://www.governance.ai/"
@@ -355,7 +355,7 @@ const FAQ = [
   },
   {
     q: "Quanto tempo leva a inscrição?",
-    a: "Cerca de vinte minutos. Lemos a inscrição inteira e tudo o que você escreve conta para a seleção. Não esperamos uma proposta fechada; queremos ver como você pensa o problema.",
+    a: "Cerca de vinte minutos. Não esperamos uma proposta fechada; queremos ver como você pensa o problema.",
   },
   {
     q: "Posso me inscrever se não moro em Bogotá?",
@@ -911,8 +911,8 @@ export default function Hackathon() {
                 Inscreva-se no hub em Bogotá
               </h2>
               <p className="text-body md:text-body-lg text-aisc-sand/85">
-                Lemos a inscrição inteira e tudo conta para a seleção. Não
-                buscamos uma proposta fechada.
+                Não buscamos uma proposta fechada. Queremos ver como você
+                pensa o problema.
               </p>
               <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
                 <Link className={CTA_LINK_PRIMARY} href="/pt/sprint/inscricao">

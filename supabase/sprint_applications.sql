@@ -12,7 +12,6 @@ create table if not exists public.sprint_applications (
   linkedin      text        not null,
   scholar       text        not null,
   career        text        not null,
-  ai_safety     text        not null,
   reason        text        not null,
   hub_problem   text        not null,
   hub_track     text        not null,
@@ -24,11 +23,6 @@ create table if not exists public.sprint_applications (
   ai_confirmed  boolean     not null default false,
   status        text        not null default 'nueva'
 );
-
--- El formulario dejó de preguntar por el acercamiento a la seguridad de la IA
--- el 25-ago-2026. La columna se queda con lo ya recibido, pero deja de exigirse.
-alter table public.sprint_applications
-  alter column ai_safety drop not null;
 
 -- Por si la tabla ya existía de una edición anterior del formulario.
 alter table public.sprint_applications

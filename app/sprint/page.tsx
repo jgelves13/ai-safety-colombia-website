@@ -183,8 +183,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           OCDE
-        </a>{" "}
-        y líder del grupo de AI Control de AIS Colombia. Como Winter Fellow de{" "}
+        </a>
+        . Como Winter Fellow de{" "}
         <a
           className={ENLACE}
           href="https://www.governance.ai/"
@@ -353,7 +353,7 @@ const FAQ = [
   },
   {
     q: "¿Cuánto tiempo toma la aplicación?",
-    a: "Alrededor de veinte minutos. Leemos la postulación completa y todo lo que escribes cuenta para la selección. No esperamos una propuesta cerrada; queremos ver cómo piensas el problema.",
+    a: "Alrededor de veinte minutos. No esperamos una propuesta cerrada; queremos ver cómo piensas el problema.",
   },
   {
     q: "¿Puedo aplicar si no vivo en Bogotá?",
@@ -910,8 +910,8 @@ export default function Hackathon() {
                 Aplica al hub en Bogotá
               </h2>
               <p className="text-body md:text-body-lg text-aisc-sand/85">
-                Leemos la postulación completa y todo cuenta para la selección.
-                No buscamos una propuesta cerrada.
+                No buscamos una propuesta cerrada. Queremos ver cómo piensas
+                el problema.
               </p>
               <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
                 <Link className={CTA_LINK_PRIMARY} href="/sprint/aplicar">

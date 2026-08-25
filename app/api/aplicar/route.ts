@@ -121,10 +121,6 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
     linkedin: datos.linkedin,
     scholar: datos.scholar,
     career: datos.career,
-    /* La columna sigue siendo NOT NULL en Supabase de cuando el formulario
-       preguntaba por el acercamiento a la seguridad de la IA. Se manda vacía
-       hasta que alguien corra el ALTER de supabase/sprint_applications.sql. */
-    ai_safety: "",
     reason: datos.reason,
     hub_problem: datos.hubProblem,
     hub_track: datos.hubTrack,

@@ -142,7 +142,7 @@ const es: TextosAplicar = {
     "No pedimos credenciales ni experiencia previa en seguridad de la IA. Saber de dónde vienes nos sirve para la selección y para que el viernes te sea más fácil dar con un equipo.",
   seccionSeleccion: "Tu propuesta para el sprint",
   seleccionNota:
-    "Leemos la aplicación completa y todo cuenta para la selección. Responde con tu propio razonamiento: no aceptamos aplicaciones escritas por un modelo.",
+    "Responde con tu propio razonamiento: no aceptamos aplicaciones escritas por un modelo.",
   seccionServir: "Para que el fin de semana te sirva",
   seccionAntes: "Antes de enviar",
 
@@ -184,7 +184,7 @@ const es: TextosAplicar = {
   confirmacionIA:
     "Las respuestas de esta aplicación las escribí yo. Pude usar un modelo para corregir la redacción, pero el razonamiento es mío.",
   privacidadAntes:
-    "Usamos lo que nos cuentas para dos cosas: escoger quiénes participan y organizar bien el fin de semana. Si quedas seleccionado, el resto de participantes verá tu nombre, en qué andas y el frente que escogiste. Así es como quien llega sin equipo encuentra con quién armarlo. Tu correo y tus respuestas a las dos últimas preguntas se quedan con nosotros. Si en algún momento quieres que borremos tus datos, escríbenos a ",
+    "Usamos la información que compartes para seleccionar a los participantes y organizar el fin de semana. Si eres seleccionado, los demás participantes podrán ver tu nombre, en qué estás trabajando y el frente que elegiste, para facilitar la formación de equipos. Tu correo y tus respuestas a las dos últimas preguntas serán confidenciales. Si en algún momento quieres que eliminemos tus datos, puedes escribirnos a ",
   privacidadDespues: ".",
   enviar: "Enviar aplicación",
   enviando: "Enviando…",
@@ -257,7 +257,7 @@ const en: TextosAplicar = {
     "We ask for no credentials and no prior experience in AI safety. Knowing where you come from helps us with selection, and it makes it easier for you to find a team on Friday.",
   seccionSeleccion: "Your proposal for the sprint",
   seleccionNota:
-    "We read the whole application and all of it counts for the selection. Answer in your own reasoning: we do not accept applications written by a model.",
+    "Answer in your own reasoning: we do not accept applications written by a model.",
   seccionServir: "So the weekend works for you",
   seccionAntes: "Before you send it",
 
@@ -299,7 +299,7 @@ const en: TextosAplicar = {
   confirmacionIA:
     "I wrote the answers in this application myself. I may have used a model to fix the wording, but the reasoning is mine.",
   privacidadAntes:
-    "We use what you tell us for two things: choosing who takes part and organising the weekend well. If you are selected, the other participants will see your name, what you are doing and the track you chose. That is how someone who arrives without a team finds one. Your email and your answers to the last two questions stay with us. If at any point you want us to delete your data, write to us at ",
+    "We use the information you share to select the participants and to organise the weekend. If you are selected, the other participants will see your name, what you are working on and the track you chose, so that teams come together more easily. Your email and your answers to the last two questions stay confidential. If at any point you want us to delete your data, you can write to us at ",
   privacidadDespues: ".",
   enviar: "Send application",
   enviando: "Sending…",
@@ -372,7 +372,7 @@ const pt: TextosAplicar = {
     "Não pedimos credenciais nem experiência prévia em segurança da IA. Saber de onde você vem nos serve para a seleção e para que na sexta seja mais fácil você encontrar uma equipe.",
   seccionSeleccion: "Sua proposta para o sprint",
   seleccionNota:
-    "Lemos a inscrição inteira e tudo conta para a seleção. Responda com o seu próprio raciocínio: não aceitamos inscrições escritas por um modelo.",
+    "Responda com o seu próprio raciocínio: não aceitamos inscrições escritas por um modelo.",
   seccionServir: "Para que o fim de semana sirva a você",
   seccionAntes: "Antes de enviar",
 
@@ -414,7 +414,7 @@ const pt: TextosAplicar = {
   confirmacionIA:
     "As respostas desta inscrição fui eu que escrevi. Posso ter usado um modelo para corrigir a redação, mas o raciocínio é meu.",
   privacidadAntes:
-    "Usamos o que você nos conta para duas coisas: escolher quem participa e organizar bem o fim de semana. Se você for selecionado, o restante dos participantes verá seu nome, no que você está e a frente que escolheu. É assim que quem chega sem equipe encontra com quem montá-la. Seu e-mail e suas respostas às duas últimas perguntas ficam conosco. Se em algum momento você quiser que apaguemos seus dados, escreva para ",
+    "Usamos as informações que você compartilha para selecionar os participantes e organizar o fim de semana. Se você for selecionado, os demais participantes poderão ver seu nome, no que você está trabalhando e a frente que escolheu, para facilitar a formação de equipes. Seu e-mail e suas respostas às duas últimas perguntas serão confidenciais. Se em algum momento você quiser que apaguemos seus dados, pode escrever para ",
   privacidadDespues: ".",
   enviar: "Enviar inscrição",
   enviando: "Enviando…",
