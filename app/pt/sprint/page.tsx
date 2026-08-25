@@ -235,25 +235,25 @@ const MENTORES: {
         >
           padrão SL5
         </a>
-        . Mentor de um{" "}
+        . Também já foi mentor no{" "}
         <a
           className={ENLACE}
           href="https://sparai.org/projects/sp26/recXdgQxof26exbLh/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          projeto de pesquisa no SPAR
+          SPAR
         </a>{" "}
-        e de um{" "}
+        e no{" "}
         <a
           className={ENLACE}
           href="https://www.matsprogram.org/stream/thiergart-11"
           target="_blank"
           rel="noopener noreferrer"
         >
-          grupo do MATS
+          MATS
         </a>{" "}
-        sobre a segurança dos centros de dados.
+        em projetos sobre segurança de centros de dados.
       </>
     ),
   },
@@ -274,16 +274,16 @@ const MENTORES: {
         >
           Universidad de los Andes
         </a>{" "}
-        com uma{" "}
+        e{" "}
         <a
           className={ENLACE}
           href="https://ingenieria.uniandes.edu.co/es/noticias/ganadores-becas-deepmind-cinfonia"
           target="_blank"
           rel="noopener noreferrer"
         >
-          bolsa da Google DeepMind
+          bolsista da Google DeepMind
         </a>
-        . Primeira autora do{" "}
+        . Primeira autora de um{" "}
         <a
           className={ENLACE}
           href="https://ieeexplore.ieee.org/document/10988739/"
@@ -292,8 +292,8 @@ const MENTORES: {
         >
           artigo
         </a>{" "}
-        da IEEE sobre resiliência cooperativa em sistemas multiagente.
-        Participou da{" "}
+        da IEEE sobre resiliência cooperativa em sistemas
+        multiagente e participante da{" "}
         <a
           className={ENLACE}
           href="https://www.cooperativeai.com/summer-school/summer-school-2025"
@@ -301,8 +301,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           Cooperative AI Summer School
-        </a>{" "}
-        da Cooperative AI Foundation.
+        </a>
+        .
       </>
     ),
   },

@@ -233,25 +233,25 @@ const MENTORES: {
         >
           estándar SL5
         </a>
-        . Mentor de un{" "}
+        . También ha sido mentor en{" "}
         <a
           className={ENLACE}
           href="https://sparai.org/projects/sp26/recXdgQxof26exbLh/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          proyecto de investigación en SPAR
+          SPAR
         </a>{" "}
-        y de un{" "}
+        y{" "}
         <a
           className={ENLACE}
           href="https://www.matsprogram.org/stream/thiergart-11"
           target="_blank"
           rel="noopener noreferrer"
         >
-          grupo de MATS
+          MATS
         </a>{" "}
-        sobre la seguridad de los centros de datos.
+        en proyectos sobre seguridad de centros de datos.
       </>
     ),
   },
@@ -272,16 +272,16 @@ const MENTORES: {
         >
           Universidad de los Andes
         </a>{" "}
-        con una{" "}
+        y{" "}
         <a
           className={ENLACE}
           href="https://ingenieria.uniandes.edu.co/es/noticias/ganadores-becas-deepmind-cinfonia"
           target="_blank"
           rel="noopener noreferrer"
         >
-          beca de Google DeepMind
+          becaria de Google DeepMind
         </a>
-        . Primera autora del{" "}
+        . Primera autora de un{" "}
         <a
           className={ENLACE}
           href="https://ieeexplore.ieee.org/document/10988739/"
@@ -290,8 +290,8 @@ const MENTORES: {
         >
           artículo
         </a>{" "}
-        de IEEE sobre resiliencia cooperativa en sistemas multiagente.
-        Participó en la{" "}
+        de IEEE sobre resiliencia cooperativa en sistemas
+        multiagente y participante de la{" "}
         <a
           className={ENLACE}
           href="https://www.cooperativeai.com/summer-school/summer-school-2025"
@@ -299,8 +299,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           Cooperative AI Summer School
-        </a>{" "}
-        de la Cooperative AI Foundation.
+        </a>
+        .
       </>
     ),
   },

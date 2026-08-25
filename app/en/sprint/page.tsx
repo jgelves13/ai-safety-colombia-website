@@ -235,25 +235,25 @@ const MENTORES: {
         >
           SL5 standard
         </a>
-        . He mentors a{" "}
+        . He has also mentored at{" "}
         <a
           className={ENLACE}
           href="https://sparai.org/projects/sp26/recXdgQxof26exbLh/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          SPAR research project
+          SPAR
         </a>{" "}
-        and a{" "}
+        and{" "}
         <a
           className={ENLACE}
           href="https://www.matsprogram.org/stream/thiergart-11"
           target="_blank"
           rel="noopener noreferrer"
         >
-          MATS stream
+          MATS
         </a>{" "}
-        on datacenter security.
+        on datacenter security projects.
       </>
     ),
   },
@@ -274,16 +274,16 @@ const MENTORES: {
         >
           Universidad de los Andes
         </a>{" "}
-        on a{" "}
+        and a{" "}
         <a
           className={ENLACE}
           href="https://ingenieria.uniandes.edu.co/es/noticias/ganadores-becas-deepmind-cinfonia"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Google DeepMind scholarship
+          Google DeepMind scholar
         </a>
-        . First author of the{" "}
+        . First author of an{" "}
         <a
           className={ENLACE}
           href="https://ieeexplore.ieee.org/document/10988739/"
@@ -292,7 +292,8 @@ const MENTORES: {
         >
           IEEE paper
         </a>{" "}
-        on cooperative resilience in multi-agent systems. She took part in the{" "}
+        on cooperative resilience in multi-agent systems and a
+        participant in the{" "}
         <a
           className={ENLACE}
           href="https://www.cooperativeai.com/summer-school/summer-school-2025"
@@ -300,8 +301,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           Cooperative AI Summer School
-        </a>{" "}
-        run by the Cooperative AI Foundation.
+        </a>
+        .
       </>
     ),
   },
