@@ -20,7 +20,6 @@ const VACIO: Campos = {
   linkedin: "",
   scholar: "",
   career: "",
-  aiSafety: "",
   reason: "",
   hubProblem: "",
   hubTrack: "",
@@ -44,7 +43,6 @@ const OBLIGATORIOS = [
   "linkedin",
   "scholar",
   "career",
-  "aiSafety",
   "reason",
   "hubProblem",
   "hubTrack",
@@ -55,7 +53,6 @@ const OBLIGATORIOS = [
 
 const LIMITES: Record<string, number> = {
   career: 800,
-  aiSafety: 900,
   reason: 1500,
   hubProblem: 1500,
   hubTeamNames: 600,
@@ -394,17 +391,6 @@ export default function HackathonApplyForm({
             >
               <textarea {...areaProps("career", 3)} />
               {contador("career")}
-            </Campo>
-            <Campo
-              opcional={t.opcional}
-              requerido
-              name="aiSafety"
-              label={t.acercamiento}
-              ayuda={t.acercamientoAyuda}
-              error={errores.aiSafety}
-            >
-              <textarea {...areaProps("aiSafety", 4)} />
-              {contador("aiSafety")}
             </Campo>
             <Campo
               opcional={t.opcional}

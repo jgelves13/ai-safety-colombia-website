@@ -8,10 +8,9 @@ import {
   CTA_LINK_PRIMARY,
   CTA_PATTERN_BOTTOM,
   CTA_PATTERN_TOP,
-  HERO_DERRAME_CLASS,
+  HERO_FUGA_CLASS,
   HERO_INNER,
   HERO_SECTION,
-  HERO_VELO_CLASS,
   PAGE_SHELL,
 } from "@/components/ui";
 import { APART_SPRINT_URL, CIERRE_TEXTO_IDIOMA } from "@/app/sprint/datos";
@@ -356,7 +355,7 @@ const FAQ = [
   },
   {
     q: "How long does the application take?",
-    a: "About twenty minutes. We read the whole application. The question that weighs most is what problem you would like to work on and with what approach, and we are not expecting a finished proposal.",
+    a: "About twenty minutes. We read the whole application and everything you write counts for the selection. We are not expecting a finished proposal; we want to see how you think about the problem.",
   },
   {
     q: "Can I apply if I do not live in Bogotá?",
@@ -383,8 +382,7 @@ export default function Hackathon() {
   return (
     <main lang="en" className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
-        <HeroHackathon className={HERO_DERRAME_CLASS} />
-        <div className={HERO_VELO_CLASS} aria-hidden="true" />
+        <HeroHackathon className={HERO_FUGA_CLASS} />
         <SiteHeader active="/en/sprint" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[860px] flex-col gap-5">
@@ -913,9 +911,8 @@ export default function Hackathon() {
                 Apply to the Bogotá hub
               </h2>
               <p className="text-body md:text-body-lg text-aisc-sand/85">
-                We read the whole application. The question that weighs most is
-                what problem you would like to work on and with what approach.
-                We are not looking for a finished proposal.
+                We read the whole application and all of it counts for the
+                selection. We are not looking for a finished proposal.
               </p>
               <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
                 <Link className={CTA_LINK_PRIMARY} href="/en/sprint/apply">

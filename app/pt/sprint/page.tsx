@@ -8,10 +8,9 @@ import {
   CTA_LINK_PRIMARY,
   CTA_PATTERN_BOTTOM,
   CTA_PATTERN_TOP,
-  HERO_DERRAME_CLASS,
+  HERO_FUGA_CLASS,
   HERO_INNER,
   HERO_SECTION,
-  HERO_VELO_CLASS,
   PAGE_SHELL,
 } from "@/components/ui";
 import { APART_SPRINT_URL, CIERRE_TEXTO_IDIOMA } from "@/app/sprint/datos";
@@ -356,7 +355,7 @@ const FAQ = [
   },
   {
     q: "Quanto tempo leva a inscrição?",
-    a: "Cerca de vinte minutos. Lemos a inscrição inteira. A pergunta que mais pesa é que problema você gostaria de abordar e com que enfoque, e não esperamos uma proposta fechada.",
+    a: "Cerca de vinte minutos. Lemos a inscrição inteira e tudo o que você escreve conta para a seleção. Não esperamos uma proposta fechada; queremos ver como você pensa o problema.",
   },
   {
     q: "Posso me inscrever se não moro em Bogotá?",
@@ -383,8 +382,7 @@ export default function Hackathon() {
   return (
     <main lang="pt" className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
-        <HeroHackathon className={HERO_DERRAME_CLASS} />
-        <div className={HERO_VELO_CLASS} aria-hidden="true" />
+        <HeroHackathon className={HERO_FUGA_CLASS} />
         <SiteHeader active="/pt/sprint" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[860px] flex-col gap-5">
@@ -913,8 +911,7 @@ export default function Hackathon() {
                 Inscreva-se no hub em Bogotá
               </h2>
               <p className="text-body md:text-body-lg text-aisc-sand/85">
-                Lemos a inscrição inteira. A pergunta que mais pesa é que
-                problema você gostaria de abordar e com que enfoque. Não
+                Lemos a inscrição inteira e tudo conta para a seleção. Não
                 buscamos uma proposta fechada.
               </p>
               <div className="mt-2 flex flex-wrap items-center justify-center gap-3">

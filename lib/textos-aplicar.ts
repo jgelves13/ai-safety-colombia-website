@@ -57,8 +57,6 @@ export type TextosAplicar = {
   scholarAyuda: string;
   carrera: string;
   carreraAyuda: string;
-  acercamiento: string;
-  acercamientoAyuda: string;
   motivo: string;
   motivoAyuda: string;
   problema: string;
@@ -129,7 +127,6 @@ const es: TextosAplicar = {
     linkedin: "Tu LinkedIn",
     scholar: "Tu GitHub, Scholar o portafolio",
     career: "En qué andas ahora",
-    aiSafety: "Tu acercamiento previo a la seguridad de la IA",
     reason: "Por qué quieres participar",
     hubProblem: "El problema que te gustaría abordar",
     hubTrack: "El frente que te llama",
@@ -143,9 +140,9 @@ const es: TextosAplicar = {
   seccionTrayectoria: "Tu trayectoria",
   trayectoriaNota:
     "No pedimos credenciales ni experiencia previa en seguridad de la IA. Saber de dónde vienes nos sirve para la selección y para que el viernes te sea más fácil dar con un equipo.",
-  seccionSeleccion: "La pregunta de selección",
+  seccionSeleccion: "Tu propuesta para el sprint",
   seleccionNota:
-    "Es una sola y es la que de verdad pesa. Responde con tu propio razonamiento: no aceptamos aplicaciones escritas por un modelo.",
+    "Leemos la aplicación completa y todo cuenta para la selección. Responde con tu propio razonamiento: no aceptamos aplicaciones escritas por un modelo.",
   seccionServir: "Para que el fin de semana te sirva",
   seccionAntes: "Antes de enviar",
 
@@ -162,9 +159,6 @@ const es: TextosAplicar = {
   scholarAyuda: "Cualquier cosa tuya que podamos abrir: repositorio, publicaciones, un texto, un proyecto.",
   carrera: "¿En qué andas ahora?",
   carreraAyuda: "Qué estudias o en qué trabajas, y desde hace cuánto.",
-  acercamiento: "¿Has tenido algún acercamiento a la seguridad de la IA?",
-  acercamientoAyuda:
-    "Un curso, un grupo de lectura, un artículo que te marcó, un proyecto, una charla. Si nunca has tenido contacto con el tema, escribe eso mismo: el sprint está abierto a quien llega por primera vez y no descalifica.",
   motivo: "¿Por qué quieres participar en este sprint?",
   motivoAyuda: "Qué te trajo hasta acá y qué esperas llevarte del fin de semana.",
   problema: "¿Qué problema te gustaría abordar en el sprint?",
@@ -248,7 +242,6 @@ const en: TextosAplicar = {
     linkedin: "Your LinkedIn",
     scholar: "Your GitHub, Scholar or portfolio",
     career: "What you are doing right now",
-    aiSafety: "Your previous contact with AI safety",
     reason: "Why you want to take part",
     hubProblem: "The problem you would like to work on",
     hubTrack: "The track that appeals to you",
@@ -262,9 +255,9 @@ const en: TextosAplicar = {
   seccionTrayectoria: "Your background",
   trayectoriaNota:
     "We ask for no credentials and no prior experience in AI safety. Knowing where you come from helps us with selection, and it makes it easier for you to find a team on Friday.",
-  seccionSeleccion: "The selection question",
+  seccionSeleccion: "Your proposal for the sprint",
   seleccionNota:
-    "There is only one and it is the one that really counts. Answer with your own reasoning: we do not accept applications written by a model.",
+    "We read the whole application and all of it counts for the selection. Answer in your own reasoning: we do not accept applications written by a model.",
   seccionServir: "So the weekend works for you",
   seccionAntes: "Before you send it",
 
@@ -281,9 +274,6 @@ const en: TextosAplicar = {
   scholarAyuda: "Anything of yours we can open: a repository, publications, a piece of writing, a project.",
   carrera: "What are you doing right now?",
   carreraAyuda: "What you study or where you work, and for how long.",
-  acercamiento: "Have you had any contact with AI safety?",
-  acercamientoAyuda:
-    "A course, a reading group, an article that stayed with you, a project, a talk. If you have never come across the topic, write exactly that: the sprint is open to people arriving for the first time and it does not disqualify you.",
   motivo: "Why do you want to take part in this sprint?",
   motivoAyuda: "What brought you here and what you hope to leave the weekend with.",
   problema: "What problem would you like to work on during the sprint?",
@@ -367,7 +357,6 @@ const pt: TextosAplicar = {
     linkedin: "Seu LinkedIn",
     scholar: "Seu GitHub, Scholar ou portfólio",
     career: "No que você está agora",
-    aiSafety: "Seu contato anterior com a segurança da IA",
     reason: "Por que você quer participar",
     hubProblem: "O problema que você gostaria de abordar",
     hubTrack: "A frente que te chama",
@@ -381,9 +370,9 @@ const pt: TextosAplicar = {
   seccionTrayectoria: "Sua trajetória",
   trayectoriaNota:
     "Não pedimos credenciais nem experiência prévia em segurança da IA. Saber de onde você vem nos serve para a seleção e para que na sexta seja mais fácil você encontrar uma equipe.",
-  seccionSeleccion: "A pergunta de seleção",
+  seccionSeleccion: "Sua proposta para o sprint",
   seleccionNota:
-    "É uma só e é a que realmente pesa. Responda com o seu próprio raciocínio: não aceitamos inscrições escritas por um modelo.",
+    "Lemos a inscrição inteira e tudo conta para a seleção. Responda com o seu próprio raciocínio: não aceitamos inscrições escritas por um modelo.",
   seccionServir: "Para que o fim de semana sirva a você",
   seccionAntes: "Antes de enviar",
 
@@ -400,9 +389,6 @@ const pt: TextosAplicar = {
   scholarAyuda: "Qualquer coisa sua que a gente possa abrir: repositório, publicações, um texto, um projeto.",
   carrera: "No que você está agora?",
   carreraAyuda: "O que você estuda ou onde trabalha, e há quanto tempo.",
-  acercamiento: "Você já teve algum contato com a segurança da IA?",
-  acercamientoAyuda:
-    "Um curso, um grupo de leitura, um artigo que te marcou, um projeto, uma palestra. Se você nunca teve contato com o tema, escreva isso mesmo: o sprint está aberto a quem chega pela primeira vez e isso não desclassifica.",
   motivo: "Por que você quer participar deste sprint?",
   motivoAyuda: "O que trouxe você até aqui e o que espera levar do fim de semana.",
   problema: "Que problema você gostaria de abordar no sprint?",

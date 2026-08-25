@@ -8,10 +8,9 @@ import {
   CTA_LINK_PRIMARY,
   CTA_PATTERN_BOTTOM,
   CTA_PATTERN_TOP,
-  HERO_DERRAME_CLASS,
+  HERO_FUGA_CLASS,
   HERO_INNER,
   HERO_SECTION,
-  HERO_VELO_CLASS,
   PAGE_SHELL,
 } from "@/components/ui";
 import { APART_SPRINT_URL, CIERRE_TEXTO } from "./datos";
@@ -354,7 +353,7 @@ const FAQ = [
   },
   {
     q: "¿Cuánto tiempo toma la aplicación?",
-    a: "Alrededor de veinte minutos. Leemos la postulación completa. La pregunta que más pesa es qué problema te gustaría abordar y con qué enfoque, y no esperamos una propuesta cerrada.",
+    a: "Alrededor de veinte minutos. Leemos la postulación completa y todo lo que escribes cuenta para la selección. No esperamos una propuesta cerrada; queremos ver cómo piensas el problema.",
   },
   {
     q: "¿Puedo aplicar si no vivo en Bogotá?",
@@ -381,8 +380,7 @@ export default function Hackathon() {
   return (
     <main className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
-        <HeroHackathon className={HERO_DERRAME_CLASS} />
-        <div className={HERO_VELO_CLASS} aria-hidden="true" />
+        <HeroHackathon className={HERO_FUGA_CLASS} />
         <SiteHeader active="/sprint" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[860px] flex-col gap-5">
@@ -912,9 +910,8 @@ export default function Hackathon() {
                 Aplica al hub en Bogotá
               </h2>
               <p className="text-body md:text-body-lg text-aisc-sand/85">
-                Leemos la postulación completa. La pregunta que más pesa es
-                qué problema te gustaría abordar y con qué enfoque. No buscamos
-                una propuesta cerrada.
+                Leemos la postulación completa y todo cuenta para la selección.
+                No buscamos una propuesta cerrada.
               </p>
               <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
                 <Link className={CTA_LINK_PRIMARY} href="/sprint/aplicar">

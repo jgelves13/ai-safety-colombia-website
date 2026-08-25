@@ -42,7 +42,6 @@ const LIMITES: Record<string, number> = {
   linkedin: 300,
   scholar: 300,
   career: 800,
-  aiSafety: 900,
   reason: 1500,
   hubProblem: 1500,
   hubTeamNames: 600,
@@ -58,7 +57,6 @@ const OBLIGATORIOS = [
   "linkedin",
   "scholar",
   "career",
-  "aiSafety",
   "reason",
   "hubProblem",
 ];
@@ -123,7 +121,10 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
     linkedin: datos.linkedin,
     scholar: datos.scholar,
     career: datos.career,
-    ai_safety: datos.aiSafety,
+    /* La columna sigue siendo NOT NULL en Supabase de cuando el formulario
+       preguntaba por el acercamiento a la seguridad de la IA. Se manda vacía
+       hasta que alguien corra el ALTER de supabase/sprint_applications.sql. */
+    ai_safety: "",
     reason: datos.reason,
     hub_problem: datos.hubProblem,
     hub_track: datos.hubTrack,

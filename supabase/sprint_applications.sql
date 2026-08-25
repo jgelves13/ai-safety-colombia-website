@@ -25,9 +25,13 @@ create table if not exists public.sprint_applications (
   status        text        not null default 'nueva'
 );
 
+-- El formulario dejó de preguntar por el acercamiento a la seguridad de la IA
+-- el 25-ago-2026. La columna se queda con lo ya recibido, pero deja de exigirse.
+alter table public.sprint_applications
+  alter column ai_safety drop not null;
+
 -- Por si la tabla ya existía de una edición anterior del formulario.
 alter table public.sprint_applications
-  add column if not exists ai_safety text,
   add column if not exists hub_team text,
   add column if not exists hub_team_names text;
 
