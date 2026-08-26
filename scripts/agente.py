@@ -25,6 +25,7 @@ labios doblados y esquirlas. No se toca un solo cuadro de la rotura.
     py -X utf8 scripts/agente.py --png    ademas la hoja de instantes
     py -X utf8 scripts/agente.py --tsx    escribe components/hero-hackathon.tsx
     py -X utf8 scripts/agente.py --figura escribe components/agente-figura.ts
+    (nadie lo importa ahora; queda por si la figura vuelve a hacer falta en TS)
     """
 import io
 import math
@@ -633,8 +634,8 @@ CABEZA = u"""// Generado por scripts/agente.py. No editar a mano.
 // y toma la otra, con el suelo apareciendo delante de el. El rastro no se
 // acumula: cada paso se borra un par de segundos despues de darlo.
 //
-// Pasa una sola vez por carga. Lo que hace el agente despues esta en
-// components/agente-suelto.tsx, que lo suelta por la pagina entera.
+// Pasa una sola vez por carga. Se va por el costado y no vuelve: el agente
+// no ronda la pagina.
 
 const MARCA = `%(svg)s`;
 
@@ -795,9 +796,8 @@ def main():
             u"delante de el. El rastro no se acumula: cada paso se borra "
             u"un par de segundos despues de darlo, y detras del agente la banda "
             u"vuelve a quedar limpia. Sale del cuadro por el costado y nunca "
-            u"pasa por encima del titular. Ocurre una sola vez por carga: "
-            u"de ahi en adelante el agente le pertenece a la pagina y no a "
-            u"la banda.")
+            u"pasa por encima del titular. Ocurre una sola vez por carga, "
+            u"y no vuelve.")
     pagina = PAGINA % dict(cuerpo=BANDA % dict(
         rot=u"El agente sale de la caja", nota=nota, svg=cuerpo))
     io.open(os.path.join(SALIDA, "index.html"), "w", encoding="utf-8",

@@ -5,8 +5,8 @@
 // y toma la otra, con el suelo apareciendo delante de el. El rastro no se
 // acumula: cada paso se borra un par de segundos despues de darlo.
 //
-// Pasa una sola vez por carga. Lo que hace el agente despues esta en
-// components/agente-suelto.tsx, que lo suelta por la pagina entera.
+// Pasa una sola vez por carga. Se va por el costado y no vuelve: el agente
+// no ronda la pagina.
 
 const MARCA = `<svg viewBox="0 0 1280 521" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMaxYMax slice" role="presentation">
 <style>
