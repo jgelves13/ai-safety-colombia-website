@@ -49,7 +49,7 @@ export default function ApplyQuick() {
               Apply to the Bogotá hub
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO_IDIOMA.en} This is the short version of the form. It is five questions.
+              {CIERRE_TEXTO_IDIOMA.en} This is the short version of the form. It is five questions, plus one optional.
             </p>
           </div>
         </div>

@@ -49,7 +49,7 @@ export default function InscricaoRapida() {
               Inscreva-se no hub em Bogotá
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO_IDIOMA.pt} Esta é a versão curta do formulário. São cinco perguntas.
+              {CIERRE_TEXTO_IDIOMA.pt} Esta é a versão curta do formulário. São cinco perguntas, mais uma opcional.
             </p>
           </div>
         </div>

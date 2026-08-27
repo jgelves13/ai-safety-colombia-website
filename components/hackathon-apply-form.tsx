@@ -450,6 +450,16 @@ export default function HackathonApplyForm({
               <textarea {...areaProps("reason", 5)} />
               {contador("reason")}
             </Campo>
+            <Campo
+              opcional={t.opcional}
+              name="hubAccess"
+              label={t.acceso}
+              ayuda={t.accesoAyuda}
+              error={errores.hubAccess}
+            >
+              <textarea {...areaProps("hubAccess", 3)} />
+              {contador("hubAccess")}
+            </Campo>
           </section>
           </>
         ) : (

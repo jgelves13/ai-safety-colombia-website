@@ -49,7 +49,7 @@ export default function AplicarRapido() {
               Aplica al hub en Bogotá
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO} Esta es la versión corta del formulario. Son cinco preguntas.
+              {CIERRE_TEXTO} Esta es la versión corta del formulario. Son cinco preguntas, más una opcional.
             </p>
           </div>
         </div>

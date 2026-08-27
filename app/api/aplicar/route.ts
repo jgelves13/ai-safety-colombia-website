@@ -77,7 +77,6 @@ const SIN_PREGUNTAR = [
   "hubTrack",
   "hubTeam",
   "hubTeamNames",
-  "hubAccess",
   "hubExtra",
 ];
 
