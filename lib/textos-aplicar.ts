@@ -85,6 +85,9 @@ export type TextosAplicar = {
   /* Opciones */
   tracks: Record<string, string>;
   equipos: Record<string, string>;
+  disponibilidad: string;
+  disponibilidadAyuda: string;
+  disponibilidades: Record<string, string>;
 };
 
 export const RUTA_SPRINT: Record<Idioma, string> = {
@@ -128,6 +131,7 @@ const es: TextosAplicar = {
     hubProblem: "El problema que te gustaría abordar",
     hubTrack: "El frente que te llama",
     hubTeam: "Si aplicas solo o con equipo",
+    hubAvailability: "Si puedes estar los tres días",
     aiConfirm: "La confirmación sobre el uso de IA",
     hubTeamNames: "Con quién aplicas",
   },
@@ -198,6 +202,15 @@ const es: TextosAplicar = {
     solo: "Aplico solo y quiero que me ayuden a armar equipo",
     equipo: "Aplico con un equipo ya armado",
   },
+  disponibilidad: "¿Qué tan seguro estás de que puedes estar los tres días?",
+  disponibilidadAyuda:
+    "El sprint va del viernes en la tarde al domingo en la noche. Los equipos se arman contando contigo, así que preferimos saberlo desde ahora.",
+  disponibilidades: {
+    seguro: "Seguro: ya lo tengo bloqueado",
+    casi: "Casi seguro: me falta confirmar algo",
+    parcial: "Solo puedo una parte del fin de semana",
+    no_se: "Todavía no lo sé",
+  },
 };
 
 const en: TextosAplicar = {
@@ -235,6 +248,7 @@ const en: TextosAplicar = {
     hubProblem: "The problem you would like to work on",
     hubTrack: "The track that appeals to you",
     hubTeam: "Whether you apply alone or with a team",
+    hubAvailability: "Whether you can be there all three days",
     aiConfirm: "The confirmation about the use of AI",
     hubTeamNames: "Who you are applying with",
   },
@@ -305,6 +319,15 @@ const en: TextosAplicar = {
     solo: "I am applying alone and would like help finding a team",
     equipo: "I am applying with a team already formed",
   },
+  disponibilidad: "How sure are you that you can be there all three days?",
+  disponibilidadAyuda:
+    "The sprint runs from Friday afternoon to Sunday night. Teams are put together counting on you, so we would rather know now.",
+  disponibilidades: {
+    seguro: "Sure: I already have it blocked off",
+    casi: "Almost sure: something is still to be confirmed",
+    parcial: "I can only make part of the weekend",
+    no_se: "I do not know yet",
+  },
 };
 
 const pt: TextosAplicar = {
@@ -342,6 +365,7 @@ const pt: TextosAplicar = {
     hubProblem: "O problema que você gostaria de abordar",
     hubTrack: "A frente que te chama",
     hubTeam: "Se você se inscreve sozinho ou com equipe",
+    hubAvailability: "Se você pode estar os três dias",
     aiConfirm: "A confirmação sobre o uso de IA",
     hubTeamNames: "Com quem você se inscreve",
   },
@@ -411,6 +435,15 @@ const pt: TextosAplicar = {
   equipos: {
     solo: "Inscrevo-me sozinho e quero ajuda para montar equipe",
     equipo: "Inscrevo-me com uma equipe já montada",
+  },
+  disponibilidad: "Quão certo você está de que pode estar os três dias?",
+  disponibilidadAyuda:
+    "O sprint vai da sexta à tarde até domingo à noite. As equipes são formadas contando com você, então preferimos saber desde já.",
+  disponibilidades: {
+    seguro: "Certo: já está reservado na minha agenda",
+    casi: "Quase certo: falta confirmar uma coisa",
+    parcial: "Só consigo parte do fim de semana",
+    no_se: "Ainda não sei",
   },
 };
 

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
   APART_SPRINT_URL,
+  DISPONIBILIDAD_FORM,
   EQUIPO_FORM,
   TRACKS_FORM,
 } from "@/app/sprint/datos";
@@ -29,6 +30,7 @@ const VACIO: Campos = {
   hubTrack: "",
   hubTeam: "",
   hubTeamNames: "",
+  hubAvailability: "",
   hubAccess: "",
   hubExtra: "",
   aiConfirm: "",
@@ -48,6 +50,7 @@ const OBLIGATORIOS_LARGO = [
   "hubProblem",
   "hubTrack",
   "hubTeam",
+  "hubAvailability",
   "aiConfirm",
 ];
 
@@ -59,6 +62,7 @@ const OBLIGATORIOS_CORTO = [
   "email",
   "linkedin",
   "reason",
+  "hubAvailability",
   "aiConfirm",
 ];
 
@@ -694,6 +698,41 @@ export default function HackathonApplyForm({
           </section>
           </>
         )}
+
+        {/* Los tres dias completos son la condicion del fin de semana, asi que
+            la pregunta va en los dos formularios. */}
+        <section className={SECCION}>
+          <fieldset>
+            <legend className={ETIQUETA}>
+              {t.disponibilidad}
+              <span className="text-aisc-coral"> *</span>
+            </legend>
+            <span className={AYUDA}>{t.disponibilidadAyuda}</span>
+            <div className="mt-3 flex flex-col gap-2">
+              {DISPONIBILIDAD_FORM.map((opcion) => (
+                <label
+                  className="text-body-sm flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6"
+                  key={opcion.id}
+                >
+                  <input
+                    type="radio"
+                    name="hubAvailability"
+                    value={opcion.id}
+                    checked={v.hubAvailability === opcion.id}
+                    onChange={() => set("hubAvailability", opcion.id)}
+                    className="mt-0.5 accent-aisc-forest"
+                  />
+                  <span>{t.disponibilidades[opcion.id]}</span>
+                </label>
+              ))}
+            </div>
+            {errores.hubAvailability ? (
+              <span className={ERROR} role="alert">
+                {errores.hubAvailability}
+              </span>
+            ) : null}
+          </fieldset>
+        </section>
 
         <section className={SECCION}>
           <h2 className="text-display-3 md:text-display-3-lg text-balance">

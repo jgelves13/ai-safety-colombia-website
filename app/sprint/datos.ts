@@ -40,3 +40,12 @@ export const EQUIPO_FORM = [
   { id: "solo", label: "Aplico solo y quiero que me ayuden a armar equipo" },
   { id: "equipo", label: "Aplico con un equipo ya armado" },
 ] as const;
+
+/* El fin de semana solo funciona si el equipo esta completo los tres dias.
+   Preguntarlo antes de seleccionar sale mas barato que descubrirlo el viernes. */
+export const DISPONIBILIDAD_FORM = [
+  { id: "seguro", label: "Seguro: ya lo tengo bloqueado" },
+  { id: "casi", label: "Casi seguro: me falta confirmar algo" },
+  { id: "parcial", label: "Solo puedo una parte del fin de semana" },
+  { id: "no_se", label: "Todavia no lo se" },
+] as const;

@@ -18,6 +18,7 @@ create table if not exists public.sprint_applications (
   hub_team      text        not null,
   hub_team_names text,
   hub_travel    text        not null,
+  hub_availability text,
   hub_access    text,
   hub_extra     text,
   ai_confirmed  boolean     not null default false,
@@ -35,9 +36,13 @@ create table if not exists public.sprint_applications (
 -- siendo not null y se guardan vacías, para no tocar las filas que ya están.
 
 -- Por si la tabla ya existía de una edición anterior del formulario.
+-- hub_availability guarda qué tan seguro está el aspirante de poder estar los
+-- tres días. La ruta ya la manda; mientras esta línea no se corra, guarda la
+-- aplicación sin esa respuesta y lo deja dicho en el log.
 alter table public.sprint_applications
   add column if not exists hub_team text,
-  add column if not exists hub_team_names text;
+  add column if not exists hub_team_names text,
+  add column if not exists hub_availability text;
 
 create index if not exists sprint_applications_sprint_idx
   on public.sprint_applications (sprint, submitted_at desc);

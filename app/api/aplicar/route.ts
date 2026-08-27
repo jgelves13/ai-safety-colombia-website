@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import {
   CIERRE_ISO,
+  DISPONIBILIDAD_FORM,
   EQUIPO_FORM,
   TRACKS_FORM,
 } from "@/app/sprint/datos";
@@ -81,6 +82,9 @@ const SIN_PREGUNTAR = [
 ];
 
 const TRACKS = new Set(TRACKS_FORM.map((t) => t.id as string));
+const DISPONIBILIDADES = new Set(
+  DISPONIBILIDAD_FORM.map((t) => t.id as string),
+);
 const EQUIPOS = new Set(EQUIPO_FORM.map((t) => t.id as string));
 
 type Crudo = Record<string, unknown>;
@@ -105,6 +109,13 @@ function validar(
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(datos.email))
     return { ok: false, campo: "email" };
+
+  /* Los tres dias completos son la condicion del fin de semana, asi que la
+     pregunta es obligatoria en los dos formularios. */
+  const disponible = texto(raw.hubAvailability);
+  if (!DISPONIBILIDADES.has(disponible))
+    return { ok: false, campo: "hubAvailability" };
+  datos.hubAvailability = disponible;
 
   if (formato === "corto") {
     for (const campo of SIN_PREGUNTAR) datos[campo] = "";
@@ -157,13 +168,14 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
     hub_team_names: datos.hubTeamNames || null,
     /* Lo mismo con la pregunta de como llegaria a Bogota. */
     hub_travel: "",
+    hub_availability: datos.hubAvailability,
     hub_access: datos.hubAccess || null,
     hub_extra: datos.hubExtra || null,
     ai_confirmed: true,
   };
 
-  try {
-    const r = await fetch(`${url}/rest/v1/${TABLA}`, {
+  const enviar = (cuerpo: object) =>
+    fetch(`${url}/rest/v1/${TABLA}`, {
       method: "POST",
       headers: {
         apikey: key,
@@ -171,13 +183,31 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
         "Content-Type": "application/json",
         Prefer: "return=minimal",
       },
-      body: JSON.stringify(fila),
+      body: JSON.stringify(cuerpo),
     });
-    if (!r.ok) {
-      console.error("[aplicar] Supabase respondió", r.status, await r.text());
+
+  try {
+    const r = await enviar(fila);
+    if (r.ok) return true;
+
+    const motivo = await r.text();
+    /* hub_availability llego al formulario antes que a la tabla. Mientras no
+       se corra el alter, se guarda la aplicacion sin esa respuesta: perder al
+       aspirante sale mucho mas caro que perder el dato. El log dice que falta,
+       y en cuanto exista la columna esta rama deja de entrar sola. */
+    if (motivo.includes("hub_availability")) {
+      console.error(
+        "[aplicar] falta la columna hub_availability en la tabla; se guarda sin ella. Corre: alter table public.sprint_applications add column if not exists hub_availability text;",
+      );
+      const { hub_availability: _sinColumna, ...resto } = fila;
+      const r2 = await enviar(resto);
+      if (r2.ok) return true;
+      console.error("[aplicar] Supabase respondió", r2.status, await r2.text());
       return false;
     }
-    return true;
+
+    console.error("[aplicar] Supabase respondió", r.status, motivo);
+    return false;
   } catch (e) {
     console.error("[aplicar] falló el insert", e);
     return false;
