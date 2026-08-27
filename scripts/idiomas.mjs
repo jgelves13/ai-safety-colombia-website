@@ -55,11 +55,12 @@ function archivo(ruta) {
   return join(RAIZ, "app", ruta === "/" ? "" : ruta, "page.tsx");
 }
 
+/* Los finales de linea no cuentan: en Windows el archivo esta en disco con
+   CRLF y en el servidor con LF, y la huella tiene que dar lo mismo en los dos
+   lados o el candado avisa de cambios que nadie hizo. */
 function huella(ruta) {
-  return createHash("sha256")
-    .update(readFileSync(archivo(ruta), "utf8"), "utf8")
-    .digest("hex")
-    .slice(0, 16);
+  const texto = readFileSync(archivo(ruta), "utf8").replace(/\r\n/g, "\n");
+  return createHash("sha256").update(texto, "utf8").digest("hex").slice(0, 16);
 }
 
 const sellar = process.argv.includes("--sellar");

@@ -2,7 +2,7 @@
   "nota": "Huella de cada página en español el día en que sus traducciones quedaron al día. Lo escribe `pnpm idiomas --sellar`; no se edita a mano.",
   "paginas": {
     "/": "4efd996e46d2bcf7",
-    "/seguridad-de-la-ia": "bd4775669ef3a5be",
+    "/seguridad-de-la-ia": "3f46cee9a9d4d075",
     "/sprint": "94622d2fd255cffd",
     "/investigacion": "63fb50535bd617a9",
     "/recursos": "03b86aff18e90b1d",
