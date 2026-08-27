@@ -65,12 +65,12 @@ export default function AplicarPorRecomendacion() {
               </p>
               <p className="text-body-sm text-aisc-ink">
                 Quien te recomendó ya respondió por tu trayectoria. Por eso solo te pedimos cómo contactarte y
-                unas líneas sobre lo que te interesa del fin de semana. Si prefieres ver primero de qué se trata,{" "}
+                unas líneas sobre lo que te interesa del fin de semana. Acá está{" "}
                 <Link
                   className="text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
                   href="/sprint"
                 >
-                  acá está el detalle del sprint
+                  el detalle del sprint
                 </Link>
                 .
               </p>

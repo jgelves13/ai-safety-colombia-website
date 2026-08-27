@@ -65,12 +65,12 @@ export default function ApplyByReferral() {
               </p>
               <p className="text-body-sm text-aisc-ink">
                 Whoever recommended you has already vouched for your background. So we only ask how to reach you and
-                a few lines on what draws you to the weekend. If you would rather see what it is about first,{" "}
+                a few lines on what draws you to the weekend. Here is{" "}
                 <Link
                   className="text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
                   href="/en/sprint"
                 >
-                  here is the detail of the sprint
+                  the detail of the sprint
                 </Link>
                 .
               </p>

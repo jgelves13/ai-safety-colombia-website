@@ -65,12 +65,12 @@ export default function InscricaoPorIndicacao() {
               </p>
               <p className="text-body-sm text-aisc-ink">
                 Quem recomendou você já respondeu pela sua trajetória. Por isso só pedimos como falar com você e
-                algumas linhas sobre o que te interessa do fim de semana. Se preferir ver primeiro do que se trata,{" "}
+                algumas linhas sobre o que te interessa do fim de semana. Aqui está{" "}
                 <Link
                   className="text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
                   href="/pt/sprint"
                 >
-                  aqui está o detalhe do sprint
+                  o detalhe do sprint
                 </Link>
                 .
               </p>
