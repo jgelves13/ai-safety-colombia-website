@@ -30,9 +30,9 @@ create table if not exists public.sprint_applications (
 -- LinkedIn y por qué quiere venir; el resto viaja en blanco, igual que scholar.
 -- Las filas del corto se reconocen porque career y hub_problem están vacías.
 --
--- hub_travel ya no lo pregunta ninguno de los dos: la ciudad la responde
--- location. La columna sigue siendo not null y se guarda vacía para no tocar
--- las filas que ya están.
+-- Ni location ni hub_travel se preguntan ya en ningún formulario. La ciudad de
+-- origen no cambiaba ninguna decisión de selección. Las dos columnas siguen
+-- siendo not null y se guardan vacías, para no tocar las filas que ya están.
 
 -- Por si la tabla ya existía de una edición anterior del formulario.
 alter table public.sprint_applications

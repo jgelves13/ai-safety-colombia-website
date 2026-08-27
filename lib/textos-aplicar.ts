@@ -51,9 +51,6 @@ export type TextosAplicar = {
   apellidos: string;
   correo: string;
   correoAyuda: string;
-  origen: string;
-  origenAyuda: string;
-  origenEjemplo: string;
   linkedin: string;
   linkedinAyuda: string;
   carrera: string;
@@ -125,7 +122,6 @@ const es: TextosAplicar = {
     firstName: "Tu nombre",
     lastName: "Tus apellidos",
     email: "Tu correo",
-    location: "Desde dónde vendrías",
     linkedin: "Tu LinkedIn",
     career: "En qué andas ahora",
     reason: "Por qué quieres participar",
@@ -154,9 +150,6 @@ const es: TextosAplicar = {
   apellidos: "Apellidos",
   correo: "Correo",
   correoAyuda: "Acá te avisamos si quedaste y por acá mandamos la sede.",
-  origen: "Desde dónde vendrías",
-  origenAyuda: "Ciudad y país.",
-  origenEjemplo: "Bogotá, Colombia",
   linkedin: "LinkedIn",
   linkedinAyuda: "Si no tienes, pega otro perfil donde se vea en qué has trabajado.",
   carrera: "¿En qué andas ahora?",
@@ -236,7 +229,6 @@ const en: TextosAplicar = {
     firstName: "Your first name",
     lastName: "Your last name",
     email: "Your email",
-    location: "Where you would travel from",
     linkedin: "Your LinkedIn",
     career: "What you are doing right now",
     reason: "Why you want to take part",
@@ -265,9 +257,6 @@ const en: TextosAplicar = {
   apellidos: "Last name",
   correo: "Email",
   correoAyuda: "This is where we tell you if you got in, and where we send the venue.",
-  origen: "Where would you travel from",
-  origenAyuda: "City and country.",
-  origenEjemplo: "Bogotá, Colombia",
   linkedin: "LinkedIn",
   linkedinAyuda: "If you do not have one, paste another profile that shows what you have worked on.",
   carrera: "What are you doing right now?",
@@ -347,7 +336,6 @@ const pt: TextosAplicar = {
     firstName: "Seu nome",
     lastName: "Seu sobrenome",
     email: "Seu e-mail",
-    location: "De onde você viria",
     linkedin: "Seu LinkedIn",
     career: "No que você está agora",
     reason: "Por que você quer participar",
@@ -376,9 +364,6 @@ const pt: TextosAplicar = {
   apellidos: "Sobrenome",
   correo: "E-mail",
   correoAyuda: "É por aqui que avisamos se você entrou e por onde mandamos o local.",
-  origen: "De onde você viria",
-  origenAyuda: "Cidade e país.",
-  origenEjemplo: "Bogotá, Colômbia",
   linkedin: "LinkedIn",
   linkedinAyuda: "Se você não tiver, cole outro perfil onde dê para ver no que você trabalhou.",
   carrera: "No que você está agora?",

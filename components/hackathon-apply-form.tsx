@@ -22,7 +22,6 @@ const VACIO: Campos = {
   firstName: "",
   lastName: "",
   email: "",
-  location: "",
   linkedin: "",
   career: "",
   reason: "",
@@ -43,7 +42,6 @@ const OBLIGATORIOS_LARGO = [
   "firstName",
   "lastName",
   "email",
-  "location",
   "linkedin",
   "career",
   "reason",
@@ -68,7 +66,6 @@ const LIMITES: Record<string, number> = {
   firstName: 100,
   lastName: 100,
   email: 200,
-  location: 200,
   linkedin: 300,
   career: 800,
   reason: 1500,
@@ -497,19 +494,6 @@ export default function HackathonApplyForm({
                 <input
                   {...textProps("email", "email", 200)}
                   autoComplete="email"
-                />
-              </Campo>
-              <Campo
-                opcional={t.opcional}
-                requerido
-                name="location"
-                label={t.origen}
-                ayuda={t.origenAyuda}
-                error={errores.location}
-              >
-                <input
-                  {...textProps("location", "text", 200)}
-                  placeholder={t.origenEjemplo}
                 />
               </Campo>
               <Campo

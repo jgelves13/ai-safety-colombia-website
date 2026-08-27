@@ -42,7 +42,6 @@ const LIMITES: Record<string, number> = {
   firstName: 100,
   lastName: 100,
   email: 200,
-  location: 200,
   linkedin: 300,
   career: 800,
   reason: 1500,
@@ -63,7 +62,6 @@ const OBLIGATORIOS: Record<string, string[]> = {
     "firstName",
     "lastName",
     "email",
-    "location",
     "linkedin",
     "career",
     "reason",
@@ -74,7 +72,6 @@ const OBLIGATORIOS: Record<string, string[]> = {
 
 /* Lo que el formulario corto no pregunta y por tanto se guarda vacio. */
 const SIN_PREGUNTAR = [
-  "location",
   "career",
   "hubProblem",
   "hubTrack",
@@ -144,7 +141,9 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
     first_name: datos.firstName,
     last_name: datos.lastName,
     email: datos.email,
-    location: datos.location,
+    /* Ni el largo ni el corto preguntan ya la ciudad. La columna es not null,
+       asi que se manda vacia; las filas viejas quedan como estan. */
+    location: "",
     linkedin: datos.linkedin,
     /* La pregunta del portafolio se quito del formulario. La columna sigue en
        la tabla por las aplicaciones que ya la traen, y como es not null se
@@ -157,9 +156,7 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
     hub_track: datos.hubTrack,
     hub_team: datos.hubTeam,
     hub_team_names: datos.hubTeamNames || null,
-    /* La pregunta de como llegaria a Bogota se quito de los dos formularios.
-       La ciudad ya la responde location. La columna es not null, asi que se
-       manda vacia. */
+    /* Lo mismo con la pregunta de como llegaria a Bogota. */
     hub_travel: "",
     hub_access: datos.hubAccess || null,
     hub_extra: datos.hubExtra || null,
