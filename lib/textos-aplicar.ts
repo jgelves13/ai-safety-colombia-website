@@ -60,6 +60,7 @@ export type TextosAplicar = {
   carreraAyuda: string;
   motivo: string;
   motivoAyuda: string;
+  motivoCortoAyuda: string;
   problema: string;
   problemaAyuda: string;
   frente: string;
@@ -68,8 +69,6 @@ export type TextosAplicar = {
   equipoAyuda: string;
   companeros: string;
   companerosAyuda: string;
-  viaje: string;
-  viajeAyuda: string;
   acceso: string;
   accesoAyuda: string;
   extra: string;
@@ -78,6 +77,9 @@ export type TextosAplicar = {
   /* Cierre */
   confirmacionIA: string;
   privacidadAntes: string;
+  /* El corto no pregunta ni el frente ni en que anda, asi que el aviso
+     tiene que decir otra cosa. */
+  privacidadCortaAntes: string;
   privacidadDespues: string;
   enviar: string;
   enviando: string;
@@ -86,7 +88,6 @@ export type TextosAplicar = {
   /* Opciones */
   tracks: Record<string, string>;
   equipos: Record<string, string>;
-  viajes: Record<string, string>;
 };
 
 export const RUTA_SPRINT: Record<Idioma, string> = {
@@ -131,7 +132,6 @@ const es: TextosAplicar = {
     hubProblem: "El problema que te gustaría abordar",
     hubTrack: "El frente que te llama",
     hubTeam: "Si aplicas solo o con equipo",
-    hubTravel: "Cómo llegarías a Bogotá",
     aiConfirm: "La confirmación sobre el uso de IA",
     hubTeamNames: "Con quién aplicas",
   },
@@ -163,6 +163,8 @@ const es: TextosAplicar = {
   carreraAyuda: "Qué estudias o en qué trabajas, y desde hace cuánto.",
   motivo: "¿Por qué quieres participar en este sprint?",
   motivoAyuda: "Qué te trajo hasta acá y qué esperas llevarte del fin de semana.",
+  motivoCortoAyuda:
+    "Con tres o cuatro frases nos basta. Qué te trajo hasta acá y qué esperas llevarte del fin de semana.",
   problema: "¿Qué problema te gustaría abordar en el sprint?",
   problemaAyuda:
     "Hasta unas 200 palabras. No buscamos una propuesta cerrada; sí ver si te imaginas algo concreto y abordable en un fin de semana.",
@@ -174,9 +176,6 @@ const es: TextosAplicar = {
   companeros: "¿Con quiénes aplicas?",
   companerosAyuda:
     "Los nombres de las personas con las que vienes. Cada una tiene que llenar este formulario por su lado.",
-  viaje: "¿Cómo llegarías a Bogotá?",
-  viajeAyuda:
-    "Nos sirve para organizar. El transporte hasta Bogotá y la estadía corren por tu cuenta.",
   acceso: "¿Necesitas algo para poder participar?",
   accesoAyuda:
     "Restricciones de alimentación, accesibilidad, horarios, cuidado de alguien. Lo que nos digas acá lo tenemos en cuenta al organizar.",
@@ -185,6 +184,8 @@ const es: TextosAplicar = {
 
   confirmacionIA:
     "Las respuestas de esta aplicación las escribí yo. Pude usar un modelo para corregir la redacción, pero el razonamiento es mío.",
+  privacidadCortaAntes:
+    "Usamos la información que compartes para seleccionar a los participantes y organizar el fin de semana. Si eres seleccionado, los demás participantes podrán ver tu nombre. Tu correo y lo que escribiste acá son confidenciales. Si en algún momento quieres que eliminemos tus datos, puedes escribirnos a ",
   privacidadAntes:
     "Usamos la información que compartes para seleccionar a los participantes y organizar el fin de semana. Si eres seleccionado, los demás participantes podrán ver tu nombre, en qué estás trabajando y el frente que elegiste, para facilitar la formación de equipos. Tu correo y tus respuestas a las dos últimas preguntas serán confidenciales. Si en algún momento quieres que eliminemos tus datos, puedes escribirnos a ",
   privacidadDespues: ".",
@@ -203,11 +204,6 @@ const es: TextosAplicar = {
   equipos: {
     solo: "Aplico solo y quiero que me ayuden a armar equipo",
     equipo: "Aplico con un equipo ya armado",
-  },
-  viajes: {
-    bogota: "Vivo en Bogotá o cerca",
-    colombia: "Vengo de otra ciudad de Colombia",
-    international: "Vengo de fuera de Colombia",
   },
 };
 
@@ -247,7 +243,6 @@ const en: TextosAplicar = {
     hubProblem: "The problem you would like to work on",
     hubTrack: "The track that appeals to you",
     hubTeam: "Whether you apply alone or with a team",
-    hubTravel: "How you would get to Bogotá",
     aiConfirm: "The confirmation about the use of AI",
     hubTeamNames: "Who you are applying with",
   },
@@ -279,6 +274,8 @@ const en: TextosAplicar = {
   carreraAyuda: "What you study or where you work, and for how long.",
   motivo: "Why do you want to take part in this sprint?",
   motivoAyuda: "What brought you here and what you hope to leave the weekend with.",
+  motivoCortoAyuda:
+    "Three or four sentences are enough. What brought you here and what you hope to leave the weekend with.",
   problema: "What problem would you like to work on during the sprint?",
   problemaAyuda:
     "Up to about 200 words. We are not looking for a finished proposal; we want to see whether you can picture something concrete and doable in a weekend.",
@@ -290,9 +287,6 @@ const en: TextosAplicar = {
   companeros: "Who are you applying with?",
   companerosAyuda:
     "The names of the people coming with you. Each of them has to fill in this form separately.",
-  viaje: "How would you get to Bogotá?",
-  viajeAyuda:
-    "This helps us organise. Travel to Bogotá and your stay there are on you.",
   acceso: "Do you need anything in order to take part?",
   accesoAyuda:
     "Dietary restrictions, accessibility, timing, caring for someone. Whatever you tell us here we take into account when organising.",
@@ -301,6 +295,8 @@ const en: TextosAplicar = {
 
   confirmacionIA:
     "I wrote the answers in this application myself. I may have used a model to fix the wording, but the reasoning is mine.",
+  privacidadCortaAntes:
+    "We use the information you share to select the participants and to organise the weekend. If you are selected, the other participants will see your name. Your email and what you wrote here stay confidential. If at any point you want us to delete your data, you can write to us at ",
   privacidadAntes:
     "We use the information you share to select the participants and to organise the weekend. If you are selected, the other participants will see your name, what you are working on and the track you chose, so that teams come together more easily. Your email and your answers to the last two questions stay confidential. If at any point you want us to delete your data, you can write to us at ",
   privacidadDespues: ".",
@@ -319,11 +315,6 @@ const en: TextosAplicar = {
   equipos: {
     solo: "I am applying alone and would like help finding a team",
     equipo: "I am applying with a team already formed",
-  },
-  viajes: {
-    bogota: "I live in Bogotá or nearby",
-    colombia: "I am coming from another city in Colombia",
-    international: "I am coming from outside Colombia",
   },
 };
 
@@ -363,7 +354,6 @@ const pt: TextosAplicar = {
     hubProblem: "O problema que você gostaria de abordar",
     hubTrack: "A frente que te chama",
     hubTeam: "Se você se inscreve sozinho ou com equipe",
-    hubTravel: "Como você chegaria a Bogotá",
     aiConfirm: "A confirmação sobre o uso de IA",
     hubTeamNames: "Com quem você se inscreve",
   },
@@ -395,6 +385,8 @@ const pt: TextosAplicar = {
   carreraAyuda: "O que você estuda ou onde trabalha, e há quanto tempo.",
   motivo: "Por que você quer participar deste sprint?",
   motivoAyuda: "O que trouxe você até aqui e o que espera levar do fim de semana.",
+  motivoCortoAyuda:
+    "Três ou quatro frases bastam. O que trouxe você até aqui e o que espera levar do fim de semana.",
   problema: "Que problema você gostaria de abordar no sprint?",
   problemaAyuda:
     "Até umas 200 palavras. Não buscamos uma proposta fechada; queremos ver se você imagina algo concreto e viável em um fim de semana.",
@@ -406,9 +398,6 @@ const pt: TextosAplicar = {
   companeros: "Com quem você se inscreve?",
   companerosAyuda:
     "Os nomes das pessoas que vêm com você. Cada uma precisa preencher este formulário por conta própria.",
-  viaje: "Como você chegaria a Bogotá?",
-  viajeAyuda:
-    "Isso nos serve para organizar. O transporte até Bogotá e a estadia ficam por sua conta.",
   acceso: "Você precisa de algo para poder participar?",
   accesoAyuda:
     "Restrições alimentares, acessibilidade, horários, cuidado de alguém. O que você contar aqui levamos em conta ao organizar.",
@@ -417,6 +406,8 @@ const pt: TextosAplicar = {
 
   confirmacionIA:
     "As respostas desta inscrição fui eu que escrevi. Posso ter usado um modelo para corrigir a redação, mas o raciocínio é meu.",
+  privacidadCortaAntes:
+    "Usamos as informações que você compartilha para selecionar os participantes e organizar o fim de semana. Se você for selecionado, os demais participantes poderão ver seu nome. Seu e-mail e o que você escreveu aqui são confidenciais. Se em algum momento você quiser que apaguemos seus dados, pode escrever para ",
   privacidadAntes:
     "Usamos as informações que você compartilha para selecionar os participantes e organizar o fim de semana. Se você for selecionado, os demais participantes poderão ver seu nome, no que você está trabalhando e a frente que escolheu, para facilitar a formação de equipes. Seu e-mail e suas respostas às duas últimas perguntas serão confidenciais. Se em algum momento você quiser que apaguemos seus dados, pode escrever para ",
   privacidadDespues: ".",
@@ -435,11 +426,6 @@ const pt: TextosAplicar = {
   equipos: {
     solo: "Inscrevo-me sozinho e quero ajuda para montar equipe",
     equipo: "Inscrevo-me com uma equipe já montada",
-  },
-  viajes: {
-    bogota: "Moro em Bogotá ou perto",
-    colombia: "Venho de outra cidade da Colômbia",
-    international: "Venho de fora da Colômbia",
   },
 };
 

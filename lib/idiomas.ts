@@ -89,6 +89,16 @@ export const PAGINAS: Pagina[] = [
   {
     ruta: { es: "/sprint/aplicar", en: "/en/sprint/apply", pt: "/pt/sprint/inscricao" },
   },
+  /* La version corta del formulario, la que se manda por enlace a quien llega
+     recomendado. No se enlaza desde ninguna pagina ni sale en buscadores, pero
+     tiene que estar aca para que el selector de idioma la sepa cruzar. */
+  {
+    ruta: {
+      es: "/sprint/aplicar/rapido",
+      en: "/en/sprint/apply/quick",
+      pt: "/pt/sprint/inscricao/rapida",
+    },
+  },
 ];
 
 /** Las entradas del menú, ya en el idioma que se pida. */

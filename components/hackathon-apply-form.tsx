@@ -6,14 +6,15 @@ import {
   APART_SPRINT_URL,
   EQUIPO_FORM,
   TRACKS_FORM,
-  VIAJE_FORM,
 } from "@/app/sprint/datos";
 import type { Idioma } from "@/lib/idiomas";
 import { RUTA_SPRINT, TEXTOS_APLICAR } from "@/lib/textos-aplicar";
 
 /* Borrador local: quien empieza a escribir y cierra la pestaña no pierde lo que
-   llevaba. Se borra al enviar. */
+   llevaba. Se borra al enviar. Cada formulario lleva su propia llave para que
+   uno no le pise lo escrito al otro. */
 const BORRADOR = "aisc-hackathon-2026-09";
+const BORRADOR_CORTO = "aisc-hackathon-2026-09-corto";
 
 type Campos = Record<string, string>;
 
@@ -29,7 +30,6 @@ const VACIO: Campos = {
   hubTrack: "",
   hubTeam: "",
   hubTeamNames: "",
-  hubTravel: "",
   hubAccess: "",
   hubExtra: "",
   aiConfirm: "",
@@ -39,7 +39,7 @@ const VACIO: Campos = {
 /* Los campos que no se pueden dejar en blanco. El texto con que aparece cada
    uno en el resumen de arriba está en lib/textos-aplicar.ts, en los tres
    idiomas. */
-const OBLIGATORIOS = [
+const OBLIGATORIOS_LARGO = [
   "firstName",
   "lastName",
   "email",
@@ -50,7 +50,17 @@ const OBLIGATORIOS = [
   "hubProblem",
   "hubTrack",
   "hubTeam",
-  "hubTravel",
+  "aiConfirm",
+];
+
+/* El corto pide lo indispensable: quién es, por dónde se le escribe, dónde se
+   ve su trabajo y por qué quiere venir. */
+const OBLIGATORIOS_CORTO = [
+  "firstName",
+  "lastName",
+  "email",
+  "linkedin",
+  "reason",
   "aiConfirm",
 ];
 
@@ -120,12 +130,17 @@ function Campo({
 export default function HackathonApplyForm({
   cerrado,
   idioma = "es",
+  corta = false,
 }: {
   cerrado: boolean;
   idioma?: Idioma;
+  /** La versión corta, la que se le manda por enlace a alguien recomendado. */
+  corta?: boolean;
 }) {
   const t = TEXTOS_APLICAR[idioma];
   const sprint = RUTA_SPRINT[idioma];
+  const OBLIGATORIOS = corta ? OBLIGATORIOS_CORTO : OBLIGATORIOS_LARGO;
+  const borrador = corta ? BORRADOR_CORTO : BORRADOR;
   const [v, setV] = useState<Campos>(VACIO);
   const [errores, setErrores] = useState<Record<string, string>>({});
   const [estado, setEstado] = useState<
@@ -139,7 +154,7 @@ export default function HackathonApplyForm({
      del cliente coincidan en el primer render. */
   useEffect(() => {
     try {
-      const guardado = window.localStorage.getItem(BORRADOR);
+      const guardado = window.localStorage.getItem(borrador);
       if (guardado) setV({ ...VACIO, ...(JSON.parse(guardado) as Campos) });
     } catch {
       /* si el almacenamiento está bloqueado, se sigue sin borrador */
@@ -151,7 +166,7 @@ export default function HackathonApplyForm({
     if (!cargado || estado === "enviado") return;
     try {
       window.localStorage.setItem(
-        BORRADOR,
+        borrador,
         JSON.stringify({ ...v, website: "" }),
       );
     } catch {
@@ -208,11 +223,11 @@ export default function HackathonApplyForm({
       const r = await fetch("/api/aplicar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(v),
+        body: JSON.stringify({ ...v, formato: corta ? "corto" : "largo" }),
       });
       if (!r.ok) throw new Error(String(r.status));
       try {
-        window.localStorage.removeItem(BORRADOR);
+        window.localStorage.removeItem(borrador);
       } catch {
         /* idem */
       }
@@ -285,6 +300,10 @@ export default function HackathonApplyForm({
   const contador = (name: string) => {
     const usado = (v[name] ?? "").length;
     const tope = LIMITES[name];
+    /* En el formulario corto le pedimos tres o cuatro frases: un "0 / 1500"
+       debajo de la caja dice lo contrario. El contador aparece solo cuando de
+       verdad falta poco para el tope. */
+    if (corta && usado < tope * 0.6) return null;
     return (
       <span
         className={`text-meta mt-1 block text-right tabular-nums ${usado > tope ? "text-aisc-coral" : "text-aisc-muted"}`}
@@ -365,278 +384,322 @@ export default function HackathonApplyForm({
       </div>
 
       <div className="flex flex-col gap-9">
-        <section className={SECCION}>
-          <h2 className="text-display-3 md:text-display-3-lg text-balance">
-            {t.seccionBasicos}
-          </h2>
-          <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-            <Campo
-              opcional={t.opcional}
-              requerido
-              name="firstName"
-              label={t.nombre}
-              error={errores.firstName}
-            >
-              <input
-                {...textProps("firstName", "text", 100)}
-                autoComplete="given-name"
-              />
-            </Campo>
-            <Campo
-              opcional={t.opcional}
-              requerido
-              name="lastName"
-              label={t.apellidos}
-              error={errores.lastName}
-            >
-              <input
-                {...textProps("lastName", "text", 100)}
-                autoComplete="family-name"
-              />
-            </Campo>
-            <Campo
-              opcional={t.opcional}
-              requerido
-              name="email"
-              label={t.correo}
-              ayuda={t.correoAyuda}
-              error={errores.email}
-            >
-              <input
-                {...textProps("email", "email", 200)}
-                autoComplete="email"
-              />
-            </Campo>
-            <Campo
-              opcional={t.opcional}
-              requerido
-              name="location"
-              label={t.origen}
-              ayuda={t.origenAyuda}
-              error={errores.location}
-            >
-              <input
-                {...textProps("location", "text", 200)}
-                placeholder={t.origenEjemplo}
-              />
-            </Campo>
-            <Campo
-              opcional={t.opcional}
-              requerido
-              name="linkedin"
-              label={t.linkedin}
-              ayuda={t.linkedinAyuda}
-              error={errores.linkedin}
-            >
-              <input
-                {...textProps("linkedin", "url", 300)}
-                placeholder="https://linkedin.com/in/..."
-              />
-            </Campo>
-          </div>
-        </section>
+        {corta ? (
+          <>
+          <section className={SECCION}>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="firstName"
+                label={t.nombre}
+                error={errores.firstName}
+              >
+                <input
+                  {...textProps("firstName", "text", 100)}
+                  autoComplete="given-name"
+                />
+              </Campo>
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="lastName"
+                label={t.apellidos}
+                error={errores.lastName}
+              >
+                <input
+                  {...textProps("lastName", "text", 100)}
+                  autoComplete="family-name"
+                />
+              </Campo>
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="email"
+                label={t.correo}
+                ayuda={t.correoAyuda}
+                error={errores.email}
+              >
+                <input
+                  {...textProps("email", "email", 200)}
+                  autoComplete="email"
+                />
+              </Campo>
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="linkedin"
+                label={t.linkedin}
+                ayuda={t.linkedinAyuda}
+                error={errores.linkedin}
+              >
+                <input
+                  {...textProps("linkedin", "url", 300)}
+                  placeholder="https://linkedin.com/in/..."
+                />
+              </Campo>
+            </div>
+          </section>
 
-        <section className={SECCION}>
-          <h2 className="text-display-3 md:text-display-3-lg text-balance">
-            {t.seccionTrayectoria}
-          </h2>
-          <p className="text-body-sm mt-3 max-w-[640px] text-aisc-muted">
-            {t.trayectoriaNota}
-          </p>
-          <div className="mt-6 flex flex-col gap-6">
-            <Campo
-              opcional={t.opcional}
-              requerido
-              name="career"
-              label={t.carrera}
-              ayuda={t.carreraAyuda}
-              error={errores.career}
-            >
-              <textarea {...areaProps("career", 3)} />
-              {contador("career")}
-            </Campo>
+          <section className={SECCION}>
             <Campo
               opcional={t.opcional}
               requerido
               name="reason"
               label={t.motivo}
-              ayuda={t.motivoAyuda}
+              ayuda={t.motivoCortoAyuda}
               error={errores.reason}
             >
               <textarea {...areaProps("reason", 5)} />
               {contador("reason")}
             </Campo>
-          </div>
-        </section>
-
-        <section className={SECCION}>
-          <h2 className="text-display-3 md:text-display-3-lg text-balance">
-            {t.seccionSeleccion}
-          </h2>
-          <p className="text-body-sm mt-3 max-w-[640px] text-aisc-muted">
-            {t.seleccionNota}
-          </p>
-          <p className="text-body-sm mt-2 max-w-[640px] text-aisc-muted">
-            {t.ejemplosAntes}
-            <a
-              className={ENLACE}
-              href={APART_SPRINT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t.ejemplosEnlace}
-            </a>
-            {t.ejemplosDespues}
-          </p>
-          <div className="mt-6 flex flex-col gap-6">
-            <Campo
-              opcional={t.opcional}
-              requerido
-              name="hubProblem"
-              label={t.problema}
-              ayuda={t.problemaAyuda}
-              error={errores.hubProblem}
-            >
-              <textarea {...areaProps("hubProblem", 8)} />
-              {contador("hubProblem")}
-            </Campo>
-
-            <fieldset>
-              <legend className={ETIQUETA}>
-                {t.frente}
-                <span className="text-aisc-coral"> *</span>
-              </legend>
-              <span className={AYUDA}>{t.frenteAyuda}</span>
-              <div className="mt-3 flex flex-col gap-2">
-                {TRACKS_FORM.map((opcion) => (
-                  <label
-                    className="text-body-sm flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6"
-                    key={opcion.id}
-                  >
-                    <input
-                      type="radio"
-                      name="hubTrack"
-                      value={opcion.id}
-                      checked={v.hubTrack === opcion.id}
-                      onChange={() => set("hubTrack", opcion.id)}
-                      className="mt-0.5 accent-aisc-forest"
-                    />
-                    <span>{t.tracks[opcion.id]}</span>
-                  </label>
-                ))}
-              </div>
-              {errores.hubTrack ? (
-                <span className={ERROR} role="alert">
-                  {errores.hubTrack}
-                </span>
-              ) : null}
-            </fieldset>
-
-            <fieldset>
-              <legend className={ETIQUETA}>
-                {t.equipo}
-                <span className="text-aisc-coral"> *</span>
-              </legend>
-              <span className={AYUDA}>{t.equipoAyuda}</span>
-              <div className="mt-3 flex flex-col gap-2">
-                {EQUIPO_FORM.map((opcion) => (
-                  <label
-                    className="text-body-sm flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6"
-                    key={opcion.id}
-                  >
-                    <input
-                      type="radio"
-                      name="hubTeam"
-                      value={opcion.id}
-                      checked={v.hubTeam === opcion.id}
-                      onChange={() => set("hubTeam", opcion.id)}
-                      className="mt-0.5 accent-aisc-forest"
-                    />
-                    <span>{t.equipos[opcion.id]}</span>
-                  </label>
-                ))}
-              </div>
-              {errores.hubTeam ? (
-                <span className={ERROR} role="alert">
-                  {errores.hubTeam}
-                </span>
-              ) : null}
-            </fieldset>
-
-            {v.hubTeam === "equipo" ? (
+          </section>
+          </>
+        ) : (
+          <>
+          <section className={SECCION}>
+            <h2 className="text-display-3 md:text-display-3-lg text-balance">
+              {t.seccionBasicos}
+            </h2>
+            <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
               <Campo
                 opcional={t.opcional}
                 requerido
-                name="hubTeamNames"
-                label={t.companeros}
-                ayuda={t.companerosAyuda}
-                error={errores.hubTeamNames}
+                name="firstName"
+                label={t.nombre}
+                error={errores.firstName}
               >
-                <textarea {...areaProps("hubTeamNames", 4)} />
-                {contador("hubTeamNames")}
+                <input
+                  {...textProps("firstName", "text", 100)}
+                  autoComplete="given-name"
+                />
               </Campo>
-            ) : null}
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="lastName"
+                label={t.apellidos}
+                error={errores.lastName}
+              >
+                <input
+                  {...textProps("lastName", "text", 100)}
+                  autoComplete="family-name"
+                />
+              </Campo>
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="email"
+                label={t.correo}
+                ayuda={t.correoAyuda}
+                error={errores.email}
+              >
+                <input
+                  {...textProps("email", "email", 200)}
+                  autoComplete="email"
+                />
+              </Campo>
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="location"
+                label={t.origen}
+                ayuda={t.origenAyuda}
+                error={errores.location}
+              >
+                <input
+                  {...textProps("location", "text", 200)}
+                  placeholder={t.origenEjemplo}
+                />
+              </Campo>
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="linkedin"
+                label={t.linkedin}
+                ayuda={t.linkedinAyuda}
+                error={errores.linkedin}
+              >
+                <input
+                  {...textProps("linkedin", "url", 300)}
+                  placeholder="https://linkedin.com/in/..."
+                />
+              </Campo>
+            </div>
+          </section>
 
-            <fieldset>
-              <legend className={ETIQUETA}>
-                {t.viaje}
-                <span className="text-aisc-coral"> *</span>
-              </legend>
-              <span className={AYUDA}>{t.viajeAyuda}</span>
-              <div className="mt-3 flex flex-col gap-2">
-                {VIAJE_FORM.map((opcion) => (
-                  <label
-                    className="text-body-sm flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6"
-                    key={opcion.id}
-                  >
-                    <input
-                      type="radio"
-                      name="hubTravel"
-                      value={opcion.id}
-                      checked={v.hubTravel === opcion.id}
-                      onChange={() => set("hubTravel", opcion.id)}
-                      className="mt-0.5 accent-aisc-forest"
-                    />
-                    <span>{t.viajes[opcion.id]}</span>
-                  </label>
-                ))}
-              </div>
-              {errores.hubTravel ? (
-                <span className={ERROR} role="alert">
-                  {errores.hubTravel}
-                </span>
+          <section className={SECCION}>
+            <h2 className="text-display-3 md:text-display-3-lg text-balance">
+              {t.seccionTrayectoria}
+            </h2>
+            <p className="text-body-sm mt-3 max-w-[640px] text-aisc-muted">
+              {t.trayectoriaNota}
+            </p>
+            <div className="mt-6 flex flex-col gap-6">
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="career"
+                label={t.carrera}
+                ayuda={t.carreraAyuda}
+                error={errores.career}
+              >
+                <textarea {...areaProps("career", 3)} />
+                {contador("career")}
+              </Campo>
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="reason"
+                label={t.motivo}
+                ayuda={t.motivoAyuda}
+                error={errores.reason}
+              >
+                <textarea {...areaProps("reason", 5)} />
+                {contador("reason")}
+              </Campo>
+            </div>
+          </section>
+
+          <section className={SECCION}>
+            <h2 className="text-display-3 md:text-display-3-lg text-balance">
+              {t.seccionSeleccion}
+            </h2>
+            <p className="text-body-sm mt-3 max-w-[640px] text-aisc-muted">
+              {t.seleccionNota}
+            </p>
+            <p className="text-body-sm mt-2 max-w-[640px] text-aisc-muted">
+              {t.ejemplosAntes}
+              <a
+                className={ENLACE}
+                href={APART_SPRINT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t.ejemplosEnlace}
+              </a>
+              {t.ejemplosDespues}
+            </p>
+            <div className="mt-6 flex flex-col gap-6">
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="hubProblem"
+                label={t.problema}
+                ayuda={t.problemaAyuda}
+                error={errores.hubProblem}
+              >
+                <textarea {...areaProps("hubProblem", 8)} />
+                {contador("hubProblem")}
+              </Campo>
+
+              <fieldset>
+                <legend className={ETIQUETA}>
+                  {t.frente}
+                  <span className="text-aisc-coral"> *</span>
+                </legend>
+                <span className={AYUDA}>{t.frenteAyuda}</span>
+                <div className="mt-3 flex flex-col gap-2">
+                  {TRACKS_FORM.map((opcion) => (
+                    <label
+                      className="text-body-sm flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6"
+                      key={opcion.id}
+                    >
+                      <input
+                        type="radio"
+                        name="hubTrack"
+                        value={opcion.id}
+                        checked={v.hubTrack === opcion.id}
+                        onChange={() => set("hubTrack", opcion.id)}
+                        className="mt-0.5 accent-aisc-forest"
+                      />
+                      <span>{t.tracks[opcion.id]}</span>
+                    </label>
+                  ))}
+                </div>
+                {errores.hubTrack ? (
+                  <span className={ERROR} role="alert">
+                    {errores.hubTrack}
+                  </span>
+                ) : null}
+              </fieldset>
+
+              <fieldset>
+                <legend className={ETIQUETA}>
+                  {t.equipo}
+                  <span className="text-aisc-coral"> *</span>
+                </legend>
+                <span className={AYUDA}>{t.equipoAyuda}</span>
+                <div className="mt-3 flex flex-col gap-2">
+                  {EQUIPO_FORM.map((opcion) => (
+                    <label
+                      className="text-body-sm flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6"
+                      key={opcion.id}
+                    >
+                      <input
+                        type="radio"
+                        name="hubTeam"
+                        value={opcion.id}
+                        checked={v.hubTeam === opcion.id}
+                        onChange={() => set("hubTeam", opcion.id)}
+                        className="mt-0.5 accent-aisc-forest"
+                      />
+                      <span>{t.equipos[opcion.id]}</span>
+                    </label>
+                  ))}
+                </div>
+                {errores.hubTeam ? (
+                  <span className={ERROR} role="alert">
+                    {errores.hubTeam}
+                  </span>
+                ) : null}
+              </fieldset>
+
+              {v.hubTeam === "equipo" ? (
+                <Campo
+                  opcional={t.opcional}
+                  requerido
+                  name="hubTeamNames"
+                  label={t.companeros}
+                  ayuda={t.companerosAyuda}
+                  error={errores.hubTeamNames}
+                >
+                  <textarea {...areaProps("hubTeamNames", 4)} />
+                  {contador("hubTeamNames")}
+                </Campo>
               ) : null}
-            </fieldset>
-          </div>
-        </section>
+            </div>
+          </section>
 
-        <section className={SECCION}>
-          <h2 className="text-display-3 md:text-display-3-lg text-balance">
-            {t.seccionServir}
-          </h2>
-          <div className="mt-6 flex flex-col gap-6">
-            <Campo
-              opcional={t.opcional}
-              name="hubAccess"
-              label={t.acceso}
-              ayuda={t.accesoAyuda}
-              error={errores.hubAccess}
-            >
-              <textarea {...areaProps("hubAccess", 3)} />
-              {contador("hubAccess")}
-            </Campo>
-            <Campo
-              opcional={t.opcional}
-              name="hubExtra"
-              label={t.extra}
-              ayuda={t.extraAyuda}
-              error={errores.hubExtra}
-            >
-              <textarea {...areaProps("hubExtra", 3)} />
-              {contador("hubExtra")}
-            </Campo>
-          </div>
-        </section>
+          <section className={SECCION}>
+            <h2 className="text-display-3 md:text-display-3-lg text-balance">
+              {t.seccionServir}
+            </h2>
+            <div className="mt-6 flex flex-col gap-6">
+              <Campo
+                opcional={t.opcional}
+                name="hubAccess"
+                label={t.acceso}
+                ayuda={t.accesoAyuda}
+                error={errores.hubAccess}
+              >
+                <textarea {...areaProps("hubAccess", 3)} />
+                {contador("hubAccess")}
+              </Campo>
+              <Campo
+                opcional={t.opcional}
+                name="hubExtra"
+                label={t.extra}
+                ayuda={t.extraAyuda}
+                error={errores.hubExtra}
+              >
+                <textarea {...areaProps("hubExtra", 3)} />
+                {contador("hubExtra")}
+              </Campo>
+            </div>
+          </section>
+          </>
+        )}
 
         <section className={SECCION}>
           <h2 className="text-display-3 md:text-display-3-lg text-balance">
@@ -662,7 +725,7 @@ export default function HackathonApplyForm({
             </span>
           ) : null}
           <p className="text-meta mt-4 text-aisc-muted">
-            {t.privacidadAntes}
+            {corta ? t.privacidadCortaAntes : t.privacidadAntes}
             <a className={ENLACE} href="mailto:contacto@aisafetycolombia.org">
               contacto@aisafetycolombia.org
             </a>

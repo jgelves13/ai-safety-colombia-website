@@ -24,6 +24,16 @@ create table if not exists public.sprint_applications (
   status        text        not null default 'nueva'
 );
 
+-- Hay dos formularios escribiendo acá. El largo, en /sprint/aplicar, llena
+-- todas las columnas. El corto, en /sprint/aplicar/rapido, es el enlace que se
+-- le manda a quien llega recomendado y solo pregunta nombre, apellidos, correo,
+-- LinkedIn y por qué quiere venir; el resto viaja en blanco, igual que scholar.
+-- Las filas del corto se reconocen porque career y hub_problem están vacías.
+--
+-- hub_travel ya no lo pregunta ninguno de los dos: la ciudad la responde
+-- location. La columna sigue siendo not null y se guarda vacía para no tocar
+-- las filas que ya están.
+
 -- Por si la tabla ya existía de una edición anterior del formulario.
 alter table public.sprint_applications
   add column if not exists hub_team text,

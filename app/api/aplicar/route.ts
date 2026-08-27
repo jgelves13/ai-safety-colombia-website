@@ -3,7 +3,6 @@ import {
   CIERRE_ISO,
   EQUIPO_FORM,
   TRACKS_FORM,
-  VIAJE_FORM,
 } from "@/app/sprint/datos";
 
 export const runtime = "nodejs";
@@ -53,19 +52,39 @@ const LIMITES: Record<string, number> = {
   hubExtra: 800,
 };
 
-const OBLIGATORIOS = [
-  "firstName",
-  "lastName",
-  "email",
+/* Hay dos formularios contra esta misma ruta. El largo, en /sprint/aplicar,
+   pregunta todo. El corto, en /sprint/aplicar/rapido, es el enlace que se le
+   manda a alguien recomendado: nombre, apellidos, correo, LinkedIn y por que
+   quiere venir. Las columnas que el corto no llena viajan vacias, igual que
+   scholar; en la tabla se reconocen porque career y hub_problem estan en
+   blanco. */
+const OBLIGATORIOS: Record<string, string[]> = {
+  largo: [
+    "firstName",
+    "lastName",
+    "email",
+    "location",
+    "linkedin",
+    "career",
+    "reason",
+    "hubProblem",
+  ],
+  corto: ["firstName", "lastName", "email", "linkedin", "reason"],
+};
+
+/* Lo que el formulario corto no pregunta y por tanto se guarda vacio. */
+const SIN_PREGUNTAR = [
   "location",
-  "linkedin",
   "career",
-  "reason",
   "hubProblem",
+  "hubTrack",
+  "hubTeam",
+  "hubTeamNames",
+  "hubAccess",
+  "hubExtra",
 ];
 
 const TRACKS = new Set(TRACKS_FORM.map((t) => t.id as string));
-const VIAJES = new Set(VIAJE_FORM.map((t) => t.id as string));
 const EQUIPOS = new Set(EQUIPO_FORM.map((t) => t.id as string));
 
 type Crudo = Record<string, unknown>;
@@ -77,32 +96,33 @@ function texto(v: unknown): string {
 function validar(
   raw: Crudo,
 ): { ok: true; datos: Record<string, string> } | { ok: false; campo: string } {
-  const datos: Record<string, string> = {};
+  const formato = texto(raw.formato) === "corto" ? "corto" : "largo";
+  const datos: Record<string, string> = { formato };
 
   for (const [campo, tope] of Object.entries(LIMITES)) {
     const valor = texto(raw[campo]);
     if (valor.length > tope) return { ok: false, campo };
     datos[campo] = valor;
   }
-  for (const campo of OBLIGATORIOS) {
+  for (const campo of OBLIGATORIOS[formato]) {
     if (!datos[campo]) return { ok: false, campo };
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(datos.email))
     return { ok: false, campo: "email" };
 
-  const track = texto(raw.hubTrack);
-  if (!TRACKS.has(track)) return { ok: false, campo: "hubTrack" };
-  datos.hubTrack = track;
+  if (formato === "corto") {
+    for (const campo of SIN_PREGUNTAR) datos[campo] = "";
+  } else {
+    const track = texto(raw.hubTrack);
+    if (!TRACKS.has(track)) return { ok: false, campo: "hubTrack" };
+    datos.hubTrack = track;
 
-  const equipo = texto(raw.hubTeam);
-  if (!EQUIPOS.has(equipo)) return { ok: false, campo: "hubTeam" };
-  datos.hubTeam = equipo;
-  if (equipo === "equipo" && !datos.hubTeamNames)
-    return { ok: false, campo: "hubTeamNames" };
-
-  const viaje = texto(raw.hubTravel);
-  if (!VIAJES.has(viaje)) return { ok: false, campo: "hubTravel" };
-  datos.hubTravel = viaje;
+    const equipo = texto(raw.hubTeam);
+    if (!EQUIPOS.has(equipo)) return { ok: false, campo: "hubTeam" };
+    datos.hubTeam = equipo;
+    if (equipo === "equipo" && !datos.hubTeamNames)
+      return { ok: false, campo: "hubTeamNames" };
+  }
 
   if (texto(raw.aiConfirm) !== "si") return { ok: false, campo: "aiConfirm" };
   datos.aiConfirm = "si";
@@ -137,7 +157,10 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
     hub_track: datos.hubTrack,
     hub_team: datos.hubTeam,
     hub_team_names: datos.hubTeamNames || null,
-    hub_travel: datos.hubTravel,
+    /* La pregunta de como llegaria a Bogota se quito de los dos formularios.
+       La ciudad ya la responde location. La columna es not null, asi que se
+       manda vacia. */
+    hub_travel: "",
     hub_access: datos.hubAccess || null,
     hub_extra: datos.hubExtra || null,
     ai_confirmed: true,
