@@ -28,6 +28,14 @@ const viejas: { from: string; to: string; permanent: boolean }[] = [
   { from: "/en/events", to: "/eventos", permanent: false },
   { from: "/en/groups", to: "/en/join", permanent: true },
   { from: "/en/hackathon", to: "/en/sprint", permanent: false },
+
+  /* La via de recomendacion se llamo un dia "rapido", que describia el formato
+     y no para quien era. Van temporales, no permanentes: la direccion es de
+     ayer, y si vuelve a cambiar de nombre un 308 ya cacheado en el navegador
+     del visitante no habria manera de deshacerlo. */
+  { from: "/sprint/aplicar/rapido", to: "/sprint/aplicar/recomendacion", permanent: false },
+  { from: "/en/sprint/apply/quick", to: "/en/sprint/apply/referral", permanent: false },
+  { from: "/pt/sprint/inscricao/rapida", to: "/pt/sprint/inscricao/indicacao", permanent: false },
 ];
 
 const nextConfig: NextConfig = {

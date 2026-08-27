@@ -52,10 +52,10 @@ const LIMITES: Record<string, number> = {
 };
 
 /* Hay dos formularios contra esta misma ruta. El largo, en /sprint/aplicar,
-   pregunta todo. El corto, en /sprint/aplicar/rapido, es el enlace que se le
-   manda a alguien recomendado: nombre, apellidos, correo, LinkedIn y por que
-   quiere venir. Las columnas que el corto no llena viajan vacias, igual que
-   scholar; en la tabla se reconocen porque career y hub_problem estan en
+   pregunta todo. El corto, en /sprint/aplicar/recomendacion, es el enlace que
+   se le manda a quien llega recomendado: nombre, apellidos, correo, LinkedIn y
+   por que quiere venir. Las columnas que el corto no llena viajan vacias, igual
+   que scholar; en la tabla se reconocen porque career y hub_problem estan en
    blanco. */
 const OBLIGATORIOS: Record<string, string[]> = {
   largo: [

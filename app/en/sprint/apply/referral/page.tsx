@@ -8,15 +8,15 @@ import { CIERRE_TEXTO_IDIOMA, aplicacionesCerradas } from "@/app/sprint/datos";
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
-  title: "Inscrição no AI Incident Response Sprint (por recomendação)",
+  title: "Apply to the AI Incident Response Sprint (by recommendation)",
   description:
-    "Via de recomendação para o hub presencial em Bogotá do AI Incident Response Sprint, de 11 a 13 de setembro de 2026.",
+    "Recommendation route for the in-person Bogotá hub of the AI Incident Response Sprint, 11 to 13 September 2026.",
   /* Esta dirección se manda por enlace, no se busca. Fuera del índice para que
      no compita con el formulario completo. */
   robots: { index: false, follow: false },
   alternates: {
-    canonical: "/pt/sprint/inscricao/rapida",
-    languages: alternativas("/pt/sprint/inscricao/rapida"),
+    canonical: "/en/sprint/apply/referral",
+    languages: alternativas("/en/sprint/apply/referral"),
   },
 };
 
@@ -24,11 +24,11 @@ export const metadata: Metadata = {
    prerenderizara, el cierre del 6 de septiembre quedaría congelado. */
 export const dynamic = "force-dynamic";
 
-export default function InscricaoRapida() {
+export default function ApplyByReferral() {
   const cerrado = aplicacionesCerradas();
 
   return (
-    <main lang="pt" className={PAGE_SHELL}>
+    <main lang="en" className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
         <img
           alt=""
@@ -41,16 +41,16 @@ export default function InscricaoRapida() {
           style={{ color: "transparent" }}
           src="/aisc/patterns/aisc-hero-hackathon.svg"
         />
-        <SiteHeader active="/pt/sprint" />
+        <SiteHeader active="/en/sprint" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[760px] flex-col gap-5">
-            <span className="text-kicker text-aisc-sand/70">AI Incident Response Sprint · 11 a 13 de setembro</span>
+            <span className="text-kicker text-aisc-sand/70">AI Incident Response Sprint · 11 to 13 September</span>
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">
-              Inscreva-se no hub em Bogotá
+              Apply to the Bogotá hub
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO_IDIOMA.pt} Esta via é para quem chega por recomendação de alguém da equipe ou de um
-              mentor do sprint.
+              {CIERRE_TEXTO_IDIOMA.en} This route is for people who reach us through someone on the team or a
+              mentor of the sprint.
             </p>
           </div>
         </div>
@@ -61,25 +61,25 @@ export default function InscricaoRapida() {
           {!cerrado ? (
             <div className="mb-8 flex flex-col gap-3">
               <p className="text-body-sm text-aisc-ink">
-                Durante os três dias você terá espaço de trabalho, alimentação, conectividade e mentores na sala.
+                Over the three days you get a place to work, meals, connectivity and mentors in the room.
               </p>
               <p className="text-body-sm text-aisc-ink">
-                Quem recomendou você já respondeu pela sua trajetória. Por isso só pedimos como falar com você e
-                algumas linhas sobre o que te interessa do fim de semana. Se preferir ver primeiro do que se trata,{" "}
+                Whoever recommended you has already vouched for your background. So we only ask how to reach you and
+                a few lines on what draws you to the weekend. If you would rather see what it is about first,{" "}
                 <Link
                   className="text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
-                  href="/pt/sprint"
+                  href="/en/sprint"
                 >
-                  aqui está o detalhe do sprint
+                  here is the detail of the sprint
                 </Link>
                 .
               </p>
             </div>
           ) : null}
-          <HackathonApplyForm cerrado={cerrado} idioma="pt" corta />
+          <HackathonApplyForm cerrado={cerrado} idioma="en" corta />
         </div>
       </section>
-      <SiteFooter idioma="pt" />
+      <SiteFooter idioma="en" />
     </main>
   );
 }

@@ -94,9 +94,9 @@ export const PAGINAS: Pagina[] = [
      tiene que estar aca para que el selector de idioma la sepa cruzar. */
   {
     ruta: {
-      es: "/sprint/aplicar/rapido",
-      en: "/en/sprint/apply/quick",
-      pt: "/pt/sprint/inscricao/rapida",
+      es: "/sprint/aplicar/recomendacion",
+      en: "/en/sprint/apply/referral",
+      pt: "/pt/sprint/inscricao/indicacao",
     },
   },
 ];

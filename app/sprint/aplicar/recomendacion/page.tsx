@@ -4,19 +4,19 @@ import HackathonApplyForm from "@/components/hackathon-apply-form";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
-import { CIERRE_TEXTO_IDIOMA, aplicacionesCerradas } from "@/app/sprint/datos";
+import { CIERRE_TEXTO, aplicacionesCerradas } from "../../datos";
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
-  title: "Apply to the AI Incident Response Sprint (by recommendation)",
+  title: "Aplicar al AI Incident Response Sprint (por recomendación)",
   description:
-    "Recommendation route for the in-person Bogotá hub of the AI Incident Response Sprint, 11 to 13 September 2026.",
+    "Vía de recomendación para el hub presencial en Bogotá del AI Incident Response Sprint, del 11 al 13 de septiembre de 2026.",
   /* Esta dirección se manda por enlace, no se busca. Fuera del índice para que
      no compita con el formulario completo. */
   robots: { index: false, follow: false },
   alternates: {
-    canonical: "/en/sprint/apply/quick",
-    languages: alternativas("/en/sprint/apply/quick"),
+    canonical: "/sprint/aplicar/recomendacion",
+    languages: alternativas("/sprint/aplicar/recomendacion"),
   },
 };
 
@@ -24,11 +24,11 @@ export const metadata: Metadata = {
    prerenderizara, el cierre del 6 de septiembre quedaría congelado. */
 export const dynamic = "force-dynamic";
 
-export default function ApplyQuick() {
+export default function AplicarPorRecomendacion() {
   const cerrado = aplicacionesCerradas();
 
   return (
-    <main lang="en" className={PAGE_SHELL}>
+    <main className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
         <img
           alt=""
@@ -41,16 +41,16 @@ export default function ApplyQuick() {
           style={{ color: "transparent" }}
           src="/aisc/patterns/aisc-hero-hackathon.svg"
         />
-        <SiteHeader active="/en/sprint" />
+        <SiteHeader active="/sprint" />
         <div className={HERO_INNER}>
           <div className="flex max-w-[760px] flex-col gap-5">
-            <span className="text-kicker text-aisc-sand/70">AI Incident Response Sprint · 11 to 13 September</span>
+            <span className="text-kicker text-aisc-sand/70">AI Incident Response Sprint · 11 al 13 de septiembre</span>
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">
-              Apply to the Bogotá hub
+              Aplica al hub en Bogotá
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO_IDIOMA.en} This route is for people who reach us through someone on the team or a
-              mentor of the sprint.
+              {CIERRE_TEXTO} Esta vía es para quien llega recomendado por alguien del equipo o por un mentor
+              del sprint.
             </p>
           </div>
         </div>
@@ -61,25 +61,25 @@ export default function ApplyQuick() {
           {!cerrado ? (
             <div className="mb-8 flex flex-col gap-3">
               <p className="text-body-sm text-aisc-ink">
-                Over the three days you get a place to work, meals, connectivity and mentors in the room.
+                Durante los tres días tendrás espacio de trabajo, alimentación, conectividad y mentores en sala.
               </p>
               <p className="text-body-sm text-aisc-ink">
-                Whoever recommended you has already vouched for your background. So we only ask how to reach you and
-                a few lines on what draws you to the weekend. If you would rather see what it is about first,{" "}
+                Quien te recomendó ya respondió por tu trayectoria. Por eso solo te pedimos cómo contactarte y
+                unas líneas sobre lo que te interesa del fin de semana. Si prefieres ver primero de qué se trata,{" "}
                 <Link
                   className="text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
-                  href="/en/sprint"
+                  href="/sprint"
                 >
-                  here is the detail of the sprint
+                  acá está el detalle del sprint
                 </Link>
                 .
               </p>
             </div>
           ) : null}
-          <HackathonApplyForm cerrado={cerrado} idioma="en" corta />
+          <HackathonApplyForm cerrado={cerrado} corta />
         </div>
       </section>
-      <SiteFooter idioma="en" />
+      <SiteFooter />
     </main>
   );
 }
