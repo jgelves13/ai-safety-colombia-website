@@ -6,7 +6,7 @@ import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
-  title: "Quiénes somos",
+  title: "¿Quiénes somos?",
   description:
     "La primera organización que trabaja para que en Colombia haya gente dedicada a la seguridad de la inteligencia artificial. Formamos personas, impulsamos investigación y sostenemos la conversación pública sobre estos temas.",
   alternates: { canonical: "/quienes-somos", languages: alternativas("/quienes-somos") },
@@ -283,7 +283,7 @@ export default function QuienesSomos() {
         <div className={HERO_INNER}>
           <div className="flex max-w-[760px] flex-col gap-5">
             <span className="text-kicker text-aisc-sand/70">Desde 2024</span>
-            <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand">Quiénes somos</h1>
+            <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand">¿Quiénes somos?</h1>
             <p className="text-body md:text-body-lg max-w-[640px] text-aisc-sand/90">
               La primera organización que trabaja para que en Colombia haya gente dedicada a la seguridad de
               la inteligencia artificial.
@@ -296,7 +296,7 @@ export default function QuienesSomos() {
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 flex flex-col gap-10 pt-14 pb-10 md:pt-20 md:pb-12 lg:pt-24 lg:pb-14">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="flex flex-col gap-8 md:gap-10">
-            <h2 className="text-display-2 md:text-display-2-lg">Por qué existimos</h2>
+            <h2 className="text-display-2 md:text-display-2-lg">¿Por qué existimos?</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-5 text-aisc-ink">
               <p>
                 Los sistemas de inteligencia artificial ganan capacidades más rápido de lo que crece nuestra

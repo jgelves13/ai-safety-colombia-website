@@ -82,7 +82,7 @@ export default function Participe() {
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pt-14 pb-14 md:pb-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.92fr)] lg:gap-6">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">O que está aberto</h2>
+            <h2 className="text-display-2 md:text-display-2-lg text-balance">O que está aberto?</h2>
           </div>
           <ul className="grid grid-cols-1 gap-[10px] md:grid-cols-2 xl:grid-cols-4">
             {ABIERTO.map((item) => (

@@ -2,7 +2,12 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { APART_SPRINT_URL, EQUIPO_FORM, TRACKS_FORM, VIAJE_FORM } from "@/app/sprint/datos";
+import {
+  APART_SPRINT_URL,
+  EQUIPO_FORM,
+  TRACKS_FORM,
+  VIAJE_FORM,
+} from "@/app/sprint/datos";
 import type { Idioma } from "@/lib/idiomas";
 import { RUTA_SPRINT, TEXTOS_APLICAR } from "@/lib/textos-aplicar";
 
@@ -50,6 +55,11 @@ const OBLIGATORIOS = [
 ];
 
 const LIMITES: Record<string, number> = {
+  firstName: 100,
+  lastName: 100,
+  email: 200,
+  location: 200,
+  linkedin: 300,
   career: 800,
   reason: 1500,
   hubProblem: 1500,
@@ -60,12 +70,14 @@ const LIMITES: Record<string, number> = {
 
 const INPUT =
   "text-body-sm w-full rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 text-aisc-ink transition-colors placeholder:text-aisc-muted/60 focus:border-aisc-forest focus:outline-2 focus:outline-offset-[1px] focus:outline-aisc-forest/35";
-const INPUT_MAL = "border-aisc-coral focus:border-aisc-coral focus:outline-aisc-coral/35";
+const INPUT_MAL =
+  "border-aisc-coral focus:border-aisc-coral focus:outline-aisc-coral/35";
 const ETIQUETA = "text-body-sm block font-medium text-aisc-ink";
 const AYUDA = "text-meta mt-1 block text-aisc-muted";
 const ERROR = "text-meta mt-1.5 block text-aisc-coral";
 const SECCION = "border-t border-aisc-line pt-8 first:border-t-0 first:pt-0";
-const ENLACE = "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
+const ENLACE =
+  "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
 
 function Campo({
   name,
@@ -88,7 +100,11 @@ function Campo({
     <div className="flex flex-col">
       <label className={ETIQUETA} htmlFor={name}>
         {label}
-        {requerido ? <span className="text-aisc-coral"> *</span> : <span className="text-aisc-muted">{opcional}</span>}
+        {requerido ? (
+          <span className="text-aisc-coral"> *</span>
+        ) : (
+          <span className="text-aisc-muted">{opcional}</span>
+        )}
       </label>
       {ayuda ? <span className={AYUDA}>{ayuda}</span> : null}
       <div className="mt-2">{children}</div>
@@ -112,7 +128,9 @@ export default function HackathonApplyForm({
   const sprint = RUTA_SPRINT[idioma];
   const [v, setV] = useState<Campos>(VACIO);
   const [errores, setErrores] = useState<Record<string, string>>({});
-  const [estado, setEstado] = useState<"listo" | "enviando" | "enviado" | "falla">("listo");
+  const [estado, setEstado] = useState<
+    "listo" | "enviando" | "enviado" | "falla"
+  >("listo");
   const [faltantes, setFaltantes] = useState<string[]>([]);
   const [cargado, setCargado] = useState(false);
   const resumen = useRef<HTMLDivElement>(null);
@@ -132,7 +150,10 @@ export default function HackathonApplyForm({
   useEffect(() => {
     if (!cargado || estado === "enviado") return;
     try {
-      window.localStorage.setItem(BORRADOR, JSON.stringify({ ...v, website: "" }));
+      window.localStorage.setItem(
+        BORRADOR,
+        JSON.stringify({ ...v, website: "" }),
+      );
     } catch {
       /* idem */
     }
@@ -167,10 +188,17 @@ export default function HackathonApplyForm({
     const nuevos = revisar();
     setErrores(nuevos);
     if (Object.keys(nuevos).length > 0) {
-      const pendientes = OBLIGATORIOS.filter((c) => nuevos[c]).map((c) => t.falta[c]);
+      const pendientes = OBLIGATORIOS.filter((c) => nuevos[c]).map(
+        (c) => t.falta[c],
+      );
       if (nuevos.hubTeamNames) pendientes.push(t.falta.hubTeamNames);
       setFaltantes(pendientes);
-      requestAnimationFrame(() => resumen.current?.scrollIntoView({ behavior: "smooth", block: "center" }));
+      requestAnimationFrame(() =>
+        resumen.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        }),
+      );
       return;
     }
 
@@ -196,12 +224,15 @@ export default function HackathonApplyForm({
     }
   };
 
-  const tarjeta = "rounded-lg border border-aisc-ink bg-aisc-cream p-6 md:p-9 lg:p-11";
+  const tarjeta =
+    "rounded-lg border border-aisc-ink bg-aisc-cream p-6 md:p-9 lg:p-11";
 
   if (cerrado) {
     return (
       <div className={tarjeta}>
-        <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.cerradoTitulo}</h2>
+        <h2 className="text-display-3 md:text-display-3-lg text-balance">
+          {t.cerradoTitulo}
+        </h2>
         <p className="text-body-sm mt-4 text-aisc-ink">{t.cerradoCuerpo}</p>
         <div className="mt-7 flex flex-wrap gap-3">
           <a
@@ -226,7 +257,9 @@ export default function HackathonApplyForm({
   if (estado === "enviado") {
     return (
       <div className={tarjeta}>
-        <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.enviadoTitulo}</h2>
+        <h2 className="text-display-3 md:text-display-3-lg text-balance">
+          {t.enviadoTitulo}
+        </h2>
         <p className="text-body-sm mt-4 text-aisc-ink">{t.enviadoCuerpo1}</p>
         <p className="text-body-sm mt-3 text-aisc-ink">{t.enviadoCuerpo2}</p>
         <div className="mt-7 flex flex-wrap gap-3">
@@ -253,7 +286,9 @@ export default function HackathonApplyForm({
     const usado = (v[name] ?? "").length;
     const tope = LIMITES[name];
     return (
-      <span className={`text-meta mt-1 block text-right tabular-nums ${usado > tope ? "text-aisc-coral" : "text-aisc-muted"}`}>
+      <span
+        className={`text-meta mt-1 block text-right tabular-nums ${usado > tope ? "text-aisc-coral" : "text-aisc-muted"}`}
+      >
         {usado} / {tope}
       </span>
     );
@@ -264,7 +299,8 @@ export default function HackathonApplyForm({
     name,
     rows,
     value: v[name],
-    onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => set(name, e.target.value),
+    onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) =>
+      set(name, e.target.value),
     className: `${INPUT} resize-y ${errores[name] ? INPUT_MAL : ""}`,
     "aria-invalid": errores[name] ? true : undefined,
     "aria-describedby": errores[name] ? `${name}-error` : undefined,
@@ -276,7 +312,8 @@ export default function HackathonApplyForm({
     type: tipo,
     maxLength: extra,
     value: v[name],
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => set(name, e.target.value),
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+      set(name, e.target.value),
     className: `${INPUT} ${errores[name] ? INPUT_MAL : ""}`,
     "aria-invalid": errores[name] ? true : undefined,
     "aria-describedby": errores[name] ? `${name}-error` : undefined,
@@ -299,7 +336,9 @@ export default function HackathonApplyForm({
       <div aria-live="polite" ref={resumen}>
         {faltantes.length > 0 ? (
           <div className="mb-8 rounded-[var(--radius)] border border-aisc-coral bg-aisc-coral/8 p-5">
-            <p className="text-body-sm font-medium text-aisc-ink">{t.resumenTitulo}</p>
+            <p className="text-body-sm font-medium text-aisc-ink">
+              {t.resumenTitulo}
+            </p>
             <ul className="text-body-sm mt-2 list-disc pl-5 text-aisc-ink">
               {faltantes.map((f) => (
                 <li key={f}>{f}</li>
@@ -310,7 +349,10 @@ export default function HackathonApplyForm({
       </div>
 
       {/* trampa para robots: si viene llena, la aplicación se descarta */}
-      <div aria-hidden="true" className="absolute h-px w-px overflow-hidden opacity-0">
+      <div
+        aria-hidden="true"
+        className="absolute h-px w-px overflow-hidden opacity-0"
+      >
         <label htmlFor="website">{t.trampa}</label>
         <input
           id="website"
@@ -324,13 +366,33 @@ export default function HackathonApplyForm({
 
       <div className="flex flex-col gap-9">
         <section className={SECCION}>
-          <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.seccionBasicos}</h2>
+          <h2 className="text-display-3 md:text-display-3-lg text-balance">
+            {t.seccionBasicos}
+          </h2>
           <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-            <Campo opcional={t.opcional} requerido name="firstName" label={t.nombre} error={errores.firstName}>
-              <input {...textProps("firstName", "text", 100)} autoComplete="given-name" />
+            <Campo
+              opcional={t.opcional}
+              requerido
+              name="firstName"
+              label={t.nombre}
+              error={errores.firstName}
+            >
+              <input
+                {...textProps("firstName", "text", 100)}
+                autoComplete="given-name"
+              />
             </Campo>
-            <Campo opcional={t.opcional} requerido name="lastName" label={t.apellidos} error={errores.lastName}>
-              <input {...textProps("lastName", "text", 100)} autoComplete="family-name" />
+            <Campo
+              opcional={t.opcional}
+              requerido
+              name="lastName"
+              label={t.apellidos}
+              error={errores.lastName}
+            >
+              <input
+                {...textProps("lastName", "text", 100)}
+                autoComplete="family-name"
+              />
             </Campo>
             <Campo
               opcional={t.opcional}
@@ -340,7 +402,10 @@ export default function HackathonApplyForm({
               ayuda={t.correoAyuda}
               error={errores.email}
             >
-              <input {...textProps("email", "email", 200)} autoComplete="email" />
+              <input
+                {...textProps("email", "email", 200)}
+                autoComplete="email"
+              />
             </Campo>
             <Campo
               opcional={t.opcional}
@@ -350,7 +415,10 @@ export default function HackathonApplyForm({
               ayuda={t.origenAyuda}
               error={errores.location}
             >
-              <input {...textProps("location", "text", 200)} placeholder={t.origenEjemplo} />
+              <input
+                {...textProps("location", "text", 200)}
+                placeholder={t.origenEjemplo}
+              />
             </Campo>
             <Campo
               opcional={t.opcional}
@@ -360,14 +428,21 @@ export default function HackathonApplyForm({
               ayuda={t.linkedinAyuda}
               error={errores.linkedin}
             >
-              <input {...textProps("linkedin", "url", 300)} placeholder="https://linkedin.com/in/..." />
+              <input
+                {...textProps("linkedin", "url", 300)}
+                placeholder="https://linkedin.com/in/..."
+              />
             </Campo>
           </div>
         </section>
 
         <section className={SECCION}>
-          <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.seccionTrayectoria}</h2>
-          <p className="text-body-sm mt-3 max-w-[640px] text-aisc-muted">{t.trayectoriaNota}</p>
+          <h2 className="text-display-3 md:text-display-3-lg text-balance">
+            {t.seccionTrayectoria}
+          </h2>
+          <p className="text-body-sm mt-3 max-w-[640px] text-aisc-muted">
+            {t.trayectoriaNota}
+          </p>
           <div className="mt-6 flex flex-col gap-6">
             <Campo
               opcional={t.opcional}
@@ -395,8 +470,12 @@ export default function HackathonApplyForm({
         </section>
 
         <section className={SECCION}>
-          <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.seccionSeleccion}</h2>
-          <p className="text-body-sm mt-3 max-w-[640px] text-aisc-muted">{t.seleccionNota}</p>
+          <h2 className="text-display-3 md:text-display-3-lg text-balance">
+            {t.seccionSeleccion}
+          </h2>
+          <p className="text-body-sm mt-3 max-w-[640px] text-aisc-muted">
+            {t.seleccionNota}
+          </p>
           <p className="text-body-sm mt-2 max-w-[640px] text-aisc-muted">
             {t.ejemplosAntes}
             <a
@@ -486,7 +565,7 @@ export default function HackathonApplyForm({
 
             {v.hubTeam === "equipo" ? (
               <Campo
-              opcional={t.opcional}
+                opcional={t.opcional}
                 requerido
                 name="hubTeamNames"
                 label={t.companeros}
@@ -532,7 +611,9 @@ export default function HackathonApplyForm({
         </section>
 
         <section className={SECCION}>
-          <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.seccionServir}</h2>
+          <h2 className="text-display-3 md:text-display-3-lg text-balance">
+            {t.seccionServir}
+          </h2>
           <div className="mt-6 flex flex-col gap-6">
             <Campo
               opcional={t.opcional}
@@ -558,7 +639,9 @@ export default function HackathonApplyForm({
         </section>
 
         <section className={SECCION}>
-          <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.seccionAntes}</h2>
+          <h2 className="text-display-3 md:text-display-3-lg text-balance">
+            {t.seccionAntes}
+          </h2>
           <label
             className="text-body-sm mt-6 flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-4 py-4 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6"
             htmlFor="aiConfirm"

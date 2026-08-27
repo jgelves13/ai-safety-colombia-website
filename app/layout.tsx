@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Bricolage_Grotesque, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -36,7 +38,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="es"
       className={`${inter.variable} ${bricolage.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        {/* Medicion de trafico y de Core Web Vitals. Sin cookies y sin datos
+            personales: cuenta visitas por ruta y mide la velocidad real. */}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }

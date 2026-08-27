@@ -43,7 +43,7 @@ export default function Aplicar() {
               Aplica al hub en Bogotá
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO} Toma alrededor de veinte minutos y no necesitas preparar nada de antemano.
+              {CIERRE_TEXTO} Toma alrededor de veinte minutos. Lo único que hay que pensar antes es qué frente te interesa y qué te gustaría trabajar en él.
             </p>
           </div>
         </div>

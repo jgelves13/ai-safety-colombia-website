@@ -13,7 +13,11 @@ import {
   HERO_SECTION,
   PAGE_SHELL,
 } from "@/components/ui";
-import { APART_SPRINT_URL, CIERRE_TEXTO_IDIOMA } from "@/app/sprint/datos";
+import {
+  APART_FELLOWSHIP_URL,
+  APART_SPRINT_URL,
+  CIERRE_TEXTO_IDIOMA,
+} from "@/app/sprint/datos";
 import { alternativas } from "@/lib/idiomas";
 
 const CIERRE_TEXTO = CIERRE_TEXTO_IDIOMA.en;
@@ -22,7 +26,10 @@ export const metadata: Metadata = {
   title: "AI Incident Response Sprint",
   description:
     "11 to 13 September 2026. Apart Research and CeSIA convene the sprint on AI incident response. We open the in-person hub in Bogotá; applications close at midnight on Sunday 6 September.",
-  alternates: { canonical: "/en/sprint", languages: alternativas("/en/sprint") },
+  alternates: {
+    canonical: "/en/sprint",
+    languages: alternativas("/en/sprint"),
+  },
 };
 
 const ENLACE =
@@ -77,6 +84,38 @@ const TRACKS = [
 
 /* Quién convoca el sprint y quién pone la plata del hub. Los logos viven en
    public/aisc/aliados/. */
+/* The three Bogotá groups opening the hub with us. The same list feeds the
+   strip under the hero and the cards in "Who is behind this?". */
+const COORGANIZAN = [
+  {
+    name: "Young AI Leaders Bogotá",
+    body: "Bogotá chapter of the Young AI Leaders network, connected to the International Telecommunication Union's AI for Good platform. It gathers the people building and researching AI in the region.",
+    logo: "/aisc/aliados/yail-v2.png",
+    clase: "max-h-[60px] max-w-[110px]",
+    ancho: 292,
+    alto: 240,
+    href: "https://www.youngaileadershub.org/",
+  },
+  {
+    name: "Semillero de Modelos Generativos UNAL",
+    body: "Student research group at Universidad Nacional. It works on deep learning, diffusion models and natural language processing, with twenty-two public repositories.",
+    logo: "/aisc/aliados/simg-unal.png",
+    clase: "max-h-[44px] max-w-[128px]",
+    ancho: 240,
+    alto: 240,
+    href: "https://wsimg-un.vercel.app/",
+  },
+  {
+    name: "IEEE Computer Society Uniandes",
+    body: "IEEE student chapter at Universidad de los Andes. It runs technical workshops, TechTalks and the CONECS conference, and works on artificial intelligence, cybersecurity and software development.",
+    logo: "/aisc/aliados/ieee-cs-uniandes.png",
+    clase: "max-h-[44px] max-w-[128px]",
+    ancho: 560,
+    alto: 167,
+    href: "https://edu.ieee.org/co-uniandes-com/",
+  },
+];
+
 const GRUPOS = [
   {
     rotulo: "Sprint organisers",
@@ -94,6 +133,10 @@ const GRUPOS = [
         href: "https://www.securite-ia.fr",
       },
     ],
+  },
+  {
+    rotulo: "Co-organising the hub in Bogotá",
+    orgs: COORGANIZAN,
   },
   {
     rotulo: "Funding the hub in Bogotá",
@@ -169,6 +212,45 @@ const MENTORES: {
   bio?: React.ReactNode;
 }[] = [
   {
+    nombre: "Diego Gómez",
+    rol: "Mentor",
+    foto: "/aisc/mentores/diego-gomez.png",
+    linkedin: "https://www.linkedin.com/in/diegoalejogm/",
+    bio: (
+      <>
+        Senior ML engineer at{" "}
+        <a
+          className={ENLACE}
+          href="https://about.google/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Google
+        </a>
+        , where he trains multimodal models for{" "}
+        <a
+          className={ENLACE}
+          href="https://www.youtube.com/howyoutubeworks/our-commitments/managing-harmful-content/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          YouTube’s safety
+        </a>
+        . In a{" "}
+        <a
+          className={ENLACE}
+          href="https://bluedot.org/courses/technical-ai-safety-project"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          BlueDot sprint
+        </a>
+        , he assessed whether the persona vectors of Qwen2.5-7B detect
+        implicitly elicited character shifts.
+      </>
+    ),
+  },
+  {
     nombre: "Camila Beltrán",
     rol: "Mentor and speaker",
     foto: "/aisc/mentores/camila-beltran.png",
@@ -204,6 +286,45 @@ const MENTORES: {
           European regulation
         </a>{" "}
         of loss-of-control scenarios.
+      </>
+    ),
+  },
+  {
+    nombre: "Liliana Fernández",
+    rol: "Mentor",
+    foto: "/aisc/mentores/liliana-fernandez.png",
+    linkedin: "https://www.linkedin.com/in/lilianafernandezict4d/",
+    bio: (
+      <>
+        An AI governance expert and a member of the{" "}
+        <a
+          className={ENLACE}
+          href="https://oecd.ai/en/community/liliana-frenandez"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          OECD expert group
+        </a>{" "}
+        on AI compute. For eight years she advised the data and AI policy of
+        Colombia’s{" "}
+        <a
+          className={ENLACE}
+          href="https://www.dnp.gov.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          National Planning Department
+        </a>
+        . In July she took part in the{" "}
+        <a
+          className={ENLACE}
+          href="https://www.successif.org/womens-retreat"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Successif retreat
+        </a>{" "}
+        for women in AI safety.
       </>
     ),
   },
@@ -290,8 +411,8 @@ const MENTORES: {
         >
           IEEE paper
         </a>{" "}
-        on cooperative resilience in multi-agent systems and a
-        participant in the{" "}
+        on cooperative resilience in multi-agent systems; in 2025 she took part
+        in the{" "}
         <a
           className={ENLACE}
           href="https://www.cooperativeai.com/summer-school/summer-school-2025"
@@ -304,6 +425,191 @@ const MENTORES: {
       </>
     ),
   },
+  {
+    nombre: "Christian Urcuqui",
+    rol: "Mentor and speaker",
+    foto: "/aisc/mentores/christian-urcuqui.png",
+    linkedin: "https://www.linkedin.com/in/christianurcuqui/",
+    bio: (
+      <>
+        Cybersecurity and AI researcher at{" "}
+        <a
+          className={ENLACE}
+          href="https://tryhackme.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          TryHackMe
+        </a>
+        . Lecturer at{" "}
+        <a
+          className={ENLACE}
+          href="https://www.icesi.edu.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Universidad Icesi
+        </a>{" "}
+        and co-author of three{" "}
+        <a
+          className={ENLACE}
+          href="https://www.icesi.edu.co/editorial/ciberseguridad-datos-caos/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          books
+        </a>{" "}
+        on cybersecurity. He published{" "}
+        <a
+          className={ENLACE}
+          href="https://github.com/urcuqui/AgentBreak"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          AgentBreak
+        </a>
+        , an indirect prompt injection lab for LLM systems.
+      </>
+    ),
+  },
+  {
+    nombre: "Leidy Aldana",
+    rol: "Mentor and speaker",
+    foto: "/aisc/mentores/leidy-aldana.png",
+    linkedin: "https://www.linkedin.com/in/l-aldana/",
+    bio: (
+      <>
+        Adversarial machine learning researcher at{" "}
+        <a
+          className={ENLACE}
+          href="https://repositorio.unal.edu.co/handle/unal/89285"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Universidad Nacional
+        </a>
+        . She broke four Android malware detectors with ten evasion attacks and
+        built a filter that catches them, with public{" "}
+        <a
+          className={ENLACE}
+          href="https://www.kaggle.com/datasets/l7032681/static-and-dynamic-features-adv"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          data
+        </a>{" "}
+        and{" "}
+        <a
+          className={ENLACE}
+          href="https://github.com/leidy-m/Adversarial-ML-Android-Malware"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          code
+        </a>
+        .
+      </>
+    ),
+  },
+  {
+    nombre: "Robert Gómez",
+    rol: "Mentor",
+    foto: "/aisc/mentores/robert-gomez.png",
+    linkedin: "https://www.linkedin.com/in/robert-gomez-6361571b6/",
+    bio: (
+      <>
+        CTO of{" "}
+        <a
+          className={ENLACE}
+          href="https://www.aimedic.com.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          AIMEDIC
+        </a>
+        , which brings generative AI to clinics and hospitals. Co-author of a{" "}
+        <a
+          className={ENLACE}
+          href="https://unal.edu.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Universidad Nacional
+        </a>{" "}
+        study on health assistants for teenagers and researches tax loopholes
+        with{" "}
+        <a
+          className={ENLACE}
+          href="https://www.mit.edu/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          MIT
+        </a>{" "}
+        at{" "}
+        <a
+          className={ENLACE}
+          href="https://socampoq.github.io/LoopholeCheck.github.io/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LoopholeCheck
+        </a>
+        .
+      </>
+    ),
+  },
+  /* Oculto temporalmente el 26-ago-2026 a peticion de Jose. Para
+     devolverlo, basta con quitar este comentario. */
+  /*
+  {
+    nombre: "Roberto García Alonso",
+    rol: "Mentor and speaker",
+    foto: "/aisc/mentores/roberto-garcia.png",
+    linkedin: "https://www.linkedin.com/in/roberto-garcia-alonso/",
+    bio: (
+      <>
+        Professor at{" "}
+        <a
+          className={ENLACE}
+          href="https://pure.unisabana.edu.co/en/persons/roberto-garcia-alonso-2/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          La Sabana
+        </a>{" "}
+        and researcher at{" "}
+        <a
+          className={ENLACE}
+          href="https://www.usal.es/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Salamanca
+        </a>
+        . He runs the Colombian side of{" "}
+        <a
+          className={ENLACE}
+          href="https://nato.usal.es/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          NATO&apos;s project
+        </a>{" "}
+        on transatlantic cooperation in AI supervision and analysed the{" "}
+        <a
+          className={ENLACE}
+          href="https://periodicos.unb.br/index.php/RDET/article/view/48974"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ethics
+        </a>{" "}
+        of Colombia&apos;s AI policy.
+      </>
+    ),
+  },
+  */
 ];
 
 function iniciales(nombre: string): string {
@@ -375,6 +681,12 @@ const PROSA =
 /* La tarjeta de contorno con la que SASH lista lo que recibe cada persona. */
 const TARJETA =
   "flex min-h-[104px] flex-col gap-3 rounded-[8px] border border-aisc-forest/55 bg-aisc-cream p-5 md:min-h-[114px] md:p-6";
+/* El recuadro del informe del incidente: bloque oscuro dentro de la seccion
+   clara, para que se vea sin sacar a nadie del hilo. */
+const AVISO =
+  "flex flex-col gap-3 rounded-[8px] bg-aisc-forest-deep px-5 py-6 text-aisc-sand md:px-7 md:py-7";
+const AVISO_ENLACE =
+  "underline underline-offset-[3px] transition-colors hover:text-aisc-coral";
 const PATRON = "/aisc/patterns/aisc-wash-lattice.svg";
 
 export default function Hackathon() {
@@ -389,9 +701,9 @@ export default function Hackathon() {
               AI Incident Response Sprint
             </h1>
             <p className="text-body md:text-body-lg max-w-[680px] text-aisc-sand/90">
-              A weekend to turn the first incidents in which an AI system acted
-              on its own against a third party into material that is useful to
-              whoever has to respond.
+              An AI agent acts on its own and harms a third party. In this
+              sprint, engineering, cybersecurity, public policy and journalism
+              come together to build the response.
             </p>
             <p className="text-body-sm mt-1 w-fit text-aisc-sand/75">
               {CIERRE_TEXTO}
@@ -409,6 +721,41 @@ export default function Hackathon() {
                 Take part online with Apart
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Los coorganizadores, en una banda de arena pegada al hero: solo las
+          marcas, en una fila baja. El nombre de cada una va en el alt y en el
+          title, que es lo que la lupa y el lector de pantalla necesitan. */}
+      <section className="bg-aisc-sand">
+        <div className={CONTENEDOR}>
+          <div className="flex flex-col gap-5 py-6 sm:flex-row sm:items-center sm:gap-10 md:py-7">
+            <p className="text-kicker whitespace-nowrap text-aisc-muted sm:flex-none">
+              Co-organising the hub in Bogotá
+            </p>
+            <ul className="flex flex-wrap items-center gap-x-12 gap-y-5 sm:ml-auto">
+              {COORGANIZAN.map((o) => (
+                <li key={o.name}>
+                  <a
+                    className="block transition-opacity hover:opacity-60"
+                    href={o.href}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    title={o.name}
+                  >
+                    <img
+                      alt={o.name}
+                      className={`w-auto object-contain ${o.clase}`}
+                      decoding="async"
+                      height={o.alto}
+                      src={o.logo}
+                      width={o.ancho}
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -463,6 +810,48 @@ export default function Hackathon() {
                   </a>{" "}
                   separately. No law obliged them to do it.
                 </p>
+                <div className={AVISO}>
+                  <p className="text-kicker text-aisc-sand/60">
+                    August 26, 2026
+                  </p>
+                  <h3 className="text-display-4 break-words">
+                    The incident report is out
+                  </h3>
+                  <p className="text-body-sm md:text-body text-aisc-sand">
+                    OpenAI published its{" "}
+                    <a
+                      className={AVISO_ENLACE}
+                      href="https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      technical report
+                    </a>{" "}
+                    and a{" "}
+                    <a
+                      className={AVISO_ENLACE}
+                      href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      note that summarizes it
+                    </a>
+                    . They reconstruct what the models did, explain why the
+                    guardrails meant to hold them failed and set out what is
+                    changing so it does not happen again.{" "}
+                    <a
+                      className={AVISO_ENLACE}
+                      href="https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      METR and Redwood Research
+                    </a>{" "}
+                    reviewed the case on their own and published their own
+                    report the same day. This is the reading to arrive at the
+                    sprint with.
+                  </p>
+                </div>
                 <p>
                   When something like that happens, almost nobody has the
                   procedure to hand: it is not written down how to contain it,
@@ -477,8 +866,26 @@ export default function Hackathon() {
                   questionnaire for a regulator, a tabletop exercise. After the
                   weekend the work is graded by judges who were not in the room.
                   Feedback arrives in writing and the report is published under
-                  your name. Apart Research and CeSIA convene the sprint
-                  worldwide; we open the in-person hub in Bogotá.
+                  your name.{" "}
+                  <a
+                    className={ENLACE}
+                    href="https://apartresearch.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Apart Research
+                  </a>{" "}
+                  and{" "}
+                  <a
+                    className={ENLACE}
+                    href="https://www.securite-ia.fr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    CeSIA
+                  </a>{" "}
+                  convene the sprint worldwide; we open the in-person hub in
+                  Bogotá.
                 </p>
               </div>
             </div>
@@ -496,10 +903,8 @@ export default function Hackathon() {
             </h2>
             <div className={COLUMNA}>
               <p className="text-body md:text-body-lg max-w-[640px] text-aisc-ink">
-                Each team picks one. In the form you tell us which one appeals
-                to you, and that tells us what profiles will be in the room and
-                which mentors we still need to invite. Apart describes each
-                track in{" "}
+                Each team picks one. In the form you tell us which one interests
+                you. Apart explains each track in more detail in{" "}
                 <a
                   className={ENLACE}
                   href={APART_SPRINT_URL}
@@ -508,7 +913,8 @@ export default function Hackathon() {
                 >
                   the sprint call
                 </a>
-                , with example projects for every one of them.
+                , where it also proposes concrete projects you can develop in
+                each one.
               </p>
             </div>
           </div>
@@ -550,16 +956,7 @@ export default function Hackathon() {
                 </p>
                 <p>
                   The venue is confirmed in the coming days. We announce it by
-                  email to whoever is selected and through the{" "}
-                  <a
-                    className={ENLACE}
-                    href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    WhatsApp group
-                  </a>
-                  .
+                  email to whoever is selected.
                 </p>
               </div>
             </div>
@@ -591,19 +988,7 @@ export default function Hackathon() {
                   Over the weekend, people who work on the subjects of the five
                   tracks come through the room. Some open with a short talk.
                   Others sit down with the teams to support whatever they are
-                  building.
-                </p>
-                <p>
-                  If you work in incident response, offensive security,
-                  regulation or risk communication and you would like to give a
-                  talk or accompany a team, write to us at{" "}
-                  <a
-                    className={ENLACE}
-                    href="mailto:contacto@aisafetycolombia.org"
-                  >
-                    contacto@aisafetycolombia.org
-                  </a>
-                  .
+                  building. We announce more mentors and speakers soon.
                 </p>
               </div>
             </div>
@@ -651,13 +1036,6 @@ export default function Hackathon() {
                 </div>
               </li>
             ))}
-            <li className="flex flex-col gap-3">
-              <div className="flex aspect-square w-full items-center justify-center rounded-[8px] border border-dashed border-aisc-forest/40 p-4 text-center">
-                <span className="text-body-sm text-aisc-muted">
-                  More names announced soon.
-                </span>
-              </div>
-            </li>
           </ul>
         </div>
       </section>
@@ -682,7 +1060,7 @@ export default function Hackathon() {
         <div className={`${CONTENEDOR} relative z-10`}>
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start lg:gap-6">
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Who can apply
+              Who can apply?
             </h2>
             <div className="flex max-w-[640px] flex-col gap-4">
               <p className="text-body md:text-body-lg text-aisc-sand/90">
@@ -690,10 +1068,6 @@ export default function Hackathon() {
                 in anything. What is required is that you can be there all three
                 days and that you arrive with an idea of what you would like to
                 work on.
-              </p>
-              <p className="text-body-sm text-aisc-sand/70">
-                The application takes about twenty minutes and you do not need
-                to prepare anything beforehand.
               </p>
             </div>
           </div>
@@ -739,9 +1113,17 @@ export default function Hackathon() {
                 </p>
                 <p>
                   Beyond the prize, the teams with the best results go on the
-                  fast track for Apart&apos;s research fellowship and stay
-                  connected to mentors in the field. Every report is published
-                  in full, with the names of its authors.
+                  fast track for{" "}
+                  <a
+                    className={ENLACE}
+                    href={APART_FELLOWSHIP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Apart&apos;s research fellowship
+                  </a>{" "}
+                  and stay connected to mentors in the field. Every report is
+                  published in full, with the names of its authors.
                 </p>
               </div>
             </div>
@@ -792,13 +1174,29 @@ export default function Hackathon() {
           <div aria-hidden="true" className={HAIRLINE} />
           <div className={ENCABEZADO}>
             <h2 className="text-display-2 md:text-display-2-lg break-words">
-              Who is behind it
+              Who is behind it?
             </h2>
             <div className={COLUMNA}>
               <p className="text-body md:text-body-lg max-w-[640px] text-aisc-ink">
-                Apart Research and CeSIA convene the sprint worldwide. We open
-                the in-person hub in Bogotá, and these are the organisations
-                that make it possible.
+                <a
+                  className={ENLACE}
+                  href="https://apartresearch.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Apart Research
+                </a>{" "}
+                and{" "}
+                <a
+                  className={ENLACE}
+                  href="https://www.securite-ia.fr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  CeSIA
+                </a>{" "}
+                convene the sprint worldwide. We open the in-person hub in
+                Bogotá, and these are the organisations that make it possible.
               </p>
             </div>
           </div>
@@ -909,10 +1307,6 @@ export default function Hackathon() {
               <h2 className="text-display-2 md:text-display-2-lg text-balance">
                 Apply to the Bogotá hub
               </h2>
-              <p className="text-body md:text-body-lg text-aisc-sand/85">
-                We are not looking for a finished proposal. We want to see how
-                you think about the problem.
-              </p>
               <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
                 <Link className={CTA_LINK_PRIMARY} href="/en/sprint/apply">
                   Apply

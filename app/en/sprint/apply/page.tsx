@@ -43,7 +43,7 @@ export default function Apply() {
               Apply to the Bogotá hub
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO_IDIOMA.en} It takes about twenty minutes and there is nothing to prepare beforehand.
+              {CIERRE_TEXTO_IDIOMA.en} It takes about twenty minutes. The only thing to think through beforehand is which track interests you and what you would like to work on in it.
             </p>
           </div>
         </div>

@@ -130,7 +130,7 @@ export default function Programas() {
           <div className="flex flex-col gap-8">
             <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
             <div className="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start md:gap-6">
-              <h2 className="text-display-2 md:text-display-2-lg break-words text-balance">Cómo los armamos</h2>
+              <h2 className="text-display-2 md:text-display-2-lg break-words text-balance">¿Cómo los armamos?</h2>
             </div>
             <div className="gap-3 md:mt-16 lg:mt-20 mt-14 grid grid-cols-1 lg:grid-cols-3">
               {PILARES.map((pilar) => (
@@ -154,7 +154,7 @@ export default function Programas() {
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 flex flex-col py-12 md:py-14 lg:py-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="grid grid-cols-1 gap-6 pt-6 lg:grid-cols-2 lg:items-start lg:gap-6 lg:pt-8">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">Qué necesitas para entrar</h2>
+            <h2 className="text-display-2 md:text-display-2-lg text-balance">¿Qué necesitas para entrar?</h2>
             <p className="text-body md:text-body-lg max-w-[470px] text-aisc-ink">
               Menos de lo que la gente cree. Si dudas si es para ti, escríbenos y lo hablamos.
             </p>

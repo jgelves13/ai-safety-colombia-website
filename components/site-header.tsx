@@ -287,6 +287,15 @@ export default function SiteHeader({ active }: { active?: string }) {
   return (
     <>
       <header className="absolute inset-x-0 top-0 z-20 px-4 py-4 xl:px-20">
+        {/* Las ilustraciones del hero suben hasta el borde superior y sus
+            líneas pasan por detrás del logo, del menú y de la pastilla de
+            idioma. Este velo las aparta sin moverlas: el encabezado es z-20 y
+            abre contexto, así que un hijo en -z-10 pinta encima del dibujo
+            (z-0) y debajo del propio encabezado. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-40 bg-linear-to-b from-aisc-forest-deep via-aisc-forest-deep/55 to-aisc-forest-deep/0"
+        />
         <div className="mx-auto flex h-12 w-full max-w-md items-center gap-4 text-aisc-sand md:h-14 md:max-w-[1440px] md:gap-8">
           <Logo idioma={idioma} />
           <Nav idioma={idioma} active={active} className="hidden items-center gap-0.5 lg:flex xl:gap-2 ml-1" />

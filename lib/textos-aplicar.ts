@@ -106,7 +106,7 @@ const es: TextosAplicar = {
   enviadoCuerpo1:
     "Te llega una confirmación al correo que nos diste. Revisamos las aplicaciones a medida que llegan y respondemos a todo el mundo antes del sprint, sin importar el resultado.",
   enviadoCuerpo2:
-    "Mientras tanto, el grupo de WhatsApp es por donde anunciamos la sede y lo que conviene leer antes.",
+    "Mientras tanto, el grupo de WhatsApp es por donde compartimos lo que conviene leer antes.",
   enviadoGrupo: "Entrar al grupo",
 
   fallaAntes:
@@ -222,7 +222,7 @@ const en: TextosAplicar = {
   enviadoCuerpo1:
     "A confirmation is on its way to the address you gave us. We review applications as they arrive and we answer everyone before the sprint, whatever the outcome.",
   enviadoCuerpo2:
-    "In the meantime, the WhatsApp group is where we announce the venue and what is worth reading beforehand.",
+    "In the meantime, the WhatsApp group is where we share what is worth reading beforehand.",
   enviadoGrupo: "Join the group",
 
   fallaAntes:
@@ -338,7 +338,7 @@ const pt: TextosAplicar = {
   enviadoCuerpo1:
     "Uma confirmação chega ao e-mail que você nos deu. Revisamos as inscrições conforme elas chegam e respondemos a todo mundo antes do sprint, qualquer que seja o resultado.",
   enviadoCuerpo2:
-    "Enquanto isso, o grupo de WhatsApp é por onde anunciamos o local e o que vale a pena ler antes.",
+    "Enquanto isso, o grupo de WhatsApp é por onde compartilhamos o que vale a pena ler antes.",
   enviadoGrupo: "Entrar no grupo",
 
   fallaAntes:

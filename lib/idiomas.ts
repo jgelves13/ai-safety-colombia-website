@@ -84,7 +84,7 @@ export const PAGINAS: Pagina[] = [
   },
   {
     ruta: { es: "/quienes-somos", en: "/en/about", pt: "/pt/quem-somos" },
-    nav: { es: "Quiénes somos", en: "About us", pt: "Quem somos" },
+    nav: { es: "¿Quiénes somos?", en: "About us", pt: "Quem somos?" },
   },
   {
     ruta: { es: "/sprint/aplicar", en: "/en/sprint/apply", pt: "/pt/sprint/inscricao" },

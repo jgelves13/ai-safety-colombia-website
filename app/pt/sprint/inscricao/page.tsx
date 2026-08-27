@@ -43,7 +43,7 @@ export default function Inscricao() {
               Inscreva-se no hub em Bogotá
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO_IDIOMA.pt} Leva cerca de vinte minutos e não é preciso preparar nada de antemão.
+              {CIERRE_TEXTO_IDIOMA.pt} Leva cerca de vinte minutos. A única coisa a pensar antes é qual track te interessa e o que você gostaria de trabalhar nele.
             </p>
           </div>
         </div>

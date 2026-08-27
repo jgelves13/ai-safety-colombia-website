@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
-import { CIERRE_ISO, EQUIPO_FORM, TRACKS_FORM, VIAJE_FORM } from "@/app/sprint/datos";
+import {
+  CIERRE_ISO,
+  EQUIPO_FORM,
+  TRACKS_FORM,
+  VIAJE_FORM,
+} from "@/app/sprint/datos";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -69,7 +74,9 @@ function texto(v: unknown): string {
   return typeof v === "string" ? v.trim() : "";
 }
 
-function validar(raw: Crudo): { ok: true; datos: Record<string, string> } | { ok: false; campo: string } {
+function validar(
+  raw: Crudo,
+): { ok: true; datos: Record<string, string> } | { ok: false; campo: string } {
   const datos: Record<string, string> = {};
 
   for (const [campo, tope] of Object.entries(LIMITES)) {
@@ -80,7 +87,8 @@ function validar(raw: Crudo): { ok: true; datos: Record<string, string> } | { ok
   for (const campo of OBLIGATORIOS) {
     if (!datos[campo]) return { ok: false, campo };
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(datos.email)) return { ok: false, campo: "email" };
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(datos.email))
+    return { ok: false, campo: "email" };
 
   const track = texto(raw.hubTrack);
   if (!TRACKS.has(track)) return { ok: false, campo: "hubTrack" };
@@ -89,7 +97,8 @@ function validar(raw: Crudo): { ok: true; datos: Record<string, string> } | { ok
   const equipo = texto(raw.hubTeam);
   if (!EQUIPOS.has(equipo)) return { ok: false, campo: "hubTeam" };
   datos.hubTeam = equipo;
-  if (equipo === "equipo" && !datos.hubTeamNames) return { ok: false, campo: "hubTeamNames" };
+  if (equipo === "equipo" && !datos.hubTeamNames)
+    return { ok: false, campo: "hubTeamNames" };
 
   const viaje = texto(raw.hubTravel);
   if (!VIAJES.has(viaje)) return { ok: false, campo: "hubTravel" };
@@ -175,9 +184,12 @@ async function confirmar(datos: Record<string, string>): Promise<void> {
   ].join("\n");
 
   try {
-    await fetch("https://api.resend.com/emails", {
+    const r = await fetch("https://api.resend.com/emails", {
       method: "POST",
-      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+      headers: {
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         from: REMITENTE,
         to: [datos.email],
@@ -186,6 +198,14 @@ async function confirmar(datos: Record<string, string>): Promise<void> {
         text: cuerpo,
       }),
     });
+    /* Resend responde 200 con un id, o un error con el motivo. Sin esta
+       revision una confirmacion rechazada se pierde sin dejar rastro. */
+    if (!r.ok)
+      console.error(
+        "[aplicar] Resend rechazo la confirmacion",
+        r.status,
+        await r.text(),
+      );
   } catch (e) {
     console.error("[aplicar] no salió la confirmación", e);
   }
@@ -198,7 +218,10 @@ async function avisarDeLaFalla(datos: Record<string, string>): Promise<void> {
   try {
     await fetch("https://api.resend.com/emails", {
       method: "POST",
-      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+      headers: {
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         from: REMITENTE,
         to: [CORREO_CONTACTO],
@@ -217,7 +240,10 @@ export async function POST(req: Request) {
   }
 
   if (!pasaElLimite(ipDeLaPeticion(req))) {
-    return NextResponse.json({ ok: false, error: "rate_limited" }, { status: 429 });
+    return NextResponse.json(
+      { ok: false, error: "rate_limited" },
+      { status: 429 },
+    );
   }
 
   let raw: Crudo;
@@ -233,13 +259,19 @@ export async function POST(req: Request) {
 
   const revisado = validar(raw);
   if (!revisado.ok) {
-    return NextResponse.json({ ok: false, error: "invalid", campo: revisado.campo }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, error: "invalid", campo: revisado.campo },
+      { status: 400 },
+    );
   }
 
   const guardado = await guardar(revisado.datos);
   if (!guardado) {
     await avisarDeLaFalla(revisado.datos);
-    return NextResponse.json({ ok: false, error: "submission_failed" }, { status: 502 });
+    return NextResponse.json(
+      { ok: false, error: "submission_failed" },
+      { status: 502 },
+    );
   }
 
   await confirmar(revisado.datos);

@@ -23,7 +23,7 @@ import {
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
-  title: "Qué es la seguridad de la IA",
+  title: "¿Qué es la seguridad de la IA?",
   description:
     "Por qué la velocidad del avance en inteligencia artificial, y no la inteligencia de las máquinas, es lo que la convierte en un problema de seguridad. Con las mediciones que lo sostienen y lo que no permiten concluir.",
   alternates: { canonical: "/seguridad-de-la-ia", languages: alternativas("/seguridad-de-la-ia") },
@@ -184,7 +184,7 @@ export default function SeguridadDeLaIA() {
         <div className={HERO_INNER}>
           <div className="flex max-w-[760px] flex-col gap-5">
             <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand text-balance">
-              Qué es la seguridad de la IA
+              ¿Qué es la seguridad de la IA?
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
               <a

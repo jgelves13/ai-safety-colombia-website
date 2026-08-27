@@ -39,7 +39,7 @@ const PUERTAS = [
   {
     href: "/pt/quem-somos",
     Icon: IconQuienesSomos,
-    title: "Quem somos",
+    title: "Quem somos?",
     body: "Quem está por trás, desde quando e com quem trabalhamos.",
   },
 ];

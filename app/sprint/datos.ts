@@ -6,6 +6,11 @@ import type { Idioma } from "@/lib/idiomas";
 export const APART_SPRINT_URL =
   "https://apartresearch.com/sprints/ai-incident-response-sprint-2026-09-11-to-2026-09-13?utm_source=aisafetycolombia";
 
+/* Apart explica ahí la ruta completa: del sprint al Studio y del Studio a la
+   beca. Va enlazado cada vez que la página nombra la beca. */
+export const APART_FELLOWSHIP_URL =
+  "https://apartresearch.com/news/explaining-the-apart-research-fellowships";
+
 /* Cierre de aplicaciones al hub en Bogotá: domingo 6 de septiembre de 2026,
    11:59 p. m. hora de Colombia (UTC-5). */
 export const CIERRE_ISO = "2026-09-07T04:59:59.999Z";
