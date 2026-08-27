@@ -16,9 +16,6 @@ export type ItemIndice = {
 /** Alto de la franja superior bajo la cual se considera que una seccion ya empezo. */
 const UMBRAL = 140;
 
-/** Ancho a partir del cual el margen izquierdo aguanta la columna del indice. */
-const RAIL = "min-[1440px]:block";
-
 /** Devuelve el id de la ultima seccion cuyo titulo ya paso por el umbral. */
 function useSeccionActiva(items: ItemIndice[]) {
   const [activo, setActivo] = useState<string>("");
@@ -122,12 +119,6 @@ function Lista({
   );
 }
 
-/**
- * Indice del ensayo. Aparece de dos formas segun el ancho: en el cuerpo del
- * texto, plegable en movil, y como columna fija en el margen izquierdo cuando
- * la pantalla da para tenerla sin robarle ancho a la lectura. La columna se
- * muestra entera, sin barra de desplazamiento propia.
- */
 /* lo unico que cambia de idioma en el riel */
 const TEXTOS: Record<Idioma, { ensayo: string; pagina: string; enEsta: string }> = {
   es: { ensayo: "Contenido del ensayo", pagina: "Contenido de la página", enEsta: "En esta página" },
@@ -135,67 +126,71 @@ const TEXTOS: Record<Idioma, { ensayo: string; pagina: string; enEsta: string }>
   pt: { ensayo: "Conteúdo do ensaio", pagina: "Conteúdo da página", enEsta: "Nesta página" },
 };
 
+/**
+ * Columna izquierda del ensayo: el indice se queda pegado mientras el texto
+ * corre por la derecha. Solo existe de escritorio en adelante; mas abajo de
+ * eso el indice va en el cuerpo, plegado, y de eso se encarga IndiceEnsayo.
+ */
+export function IndiceColumna({ items, idioma = "es" }: { items: ItemIndice[]; idioma?: Idioma }) {
+  const t = TEXTOS[idioma];
+  const activo = useSeccionActiva(items);
+
+  return (
+    <nav aria-label={t.ensayo} className="sticky top-24 hidden self-start pt-12 lg:block">
+      <p className="text-kicker text-aisc-muted">{t.enEsta}</p>
+      <Lista
+        items={items}
+        activo={activo}
+        compacta
+        className="mt-3 flex flex-col border-l border-aisc-ink/15 pl-3"
+      />
+    </nav>
+  );
+}
+
+/**
+ * El mismo indice para pantallas angostas, dentro del cuerpo del texto:
+ * plegado en movil, abierto de tablet en adelante. De escritorio en adelante
+ * lo reemplaza la columna de la izquierda.
+ */
 export default function IndiceEnsayo({ items, idioma = "es" }: { items: ItemIndice[]; idioma?: Idioma }) {
   const t = TEXTOS[idioma];
   const activo = useSeccionActiva(items);
   const [abierto, setAbierto] = useState(false);
 
   return (
-    <>
-      {/* columna fija: solo cuando sobra margen a la izquierda de la lectura */}
-      <nav
-        aria-label={t.ensayo}
-        style={{ left: "max(16px, calc((100vw - 980px) / 2 - 238px))" }}
-        className={`fixed top-24 z-10 hidden w-[210px] transition-opacity duration-300 motion-reduce:transition-none ${RAIL} ${
-          activo ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
+    <nav aria-label={t.pagina} className="mt-10 w-full lg:hidden">
+      <button
+        type="button"
+        onClick={() => setAbierto((v) => !v)}
+        aria-expanded={abierto}
+        aria-controls="indice-ensayo"
+        className="flex w-full items-center justify-between gap-3 text-left md:pointer-events-none"
       >
-        <p className="text-kicker text-aisc-muted">{t.enEsta}</p>
-        <Lista
-          items={items}
-          activo={activo}
-          compacta
-          className="mt-3 flex flex-col border-l border-aisc-ink/15 pl-3"
-        />
-      </nav>
-
-      {/* en el cuerpo: se pliega en movil, queda abierto de tablet en adelante */}
-      <nav
-        aria-label={t.pagina}
-        className="mx-auto mt-10 w-full max-w-[720px] min-[1440px]:hidden"
-      >
-        <button
-          type="button"
-          onClick={() => setAbierto((v) => !v)}
-          aria-expanded={abierto}
-          aria-controls="indice-ensayo"
-          className="flex w-full items-center justify-between gap-3 text-left md:pointer-events-none"
+        <span className="text-kicker text-aisc-muted">{t.enEsta}</span>
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          className={`h-4 w-4 shrink-0 text-aisc-muted transition-transform duration-200 motion-reduce:transition-none md:hidden ${
+            abierto ? "rotate-180" : "rotate-0"
+          }`}
         >
-          <span className="text-kicker text-aisc-muted">{t.enEsta}</span>
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-            className={`h-4 w-4 shrink-0 text-aisc-muted transition-transform duration-200 motion-reduce:transition-none md:hidden ${
-              abierto ? "rotate-180" : "rotate-0"
-            }`}
-          >
-            <path
-              d="M6 9l6 6 6-6"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-        <Lista
-          items={items}
-          activo={activo}
-          id="indice-ensayo"
-          className={`mt-4 flex-col ${abierto ? "flex" : "hidden md:flex"}`}
-        />
-      </nav>
-    </>
+          <path
+            d="M6 9l6 6 6-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+      <Lista
+        items={items}
+        activo={activo}
+        id="indice-ensayo"
+        className={`mt-4 flex-col ${abierto ? "flex" : "hidden md:flex"}`}
+      />
+    </nav>
   );
 }
