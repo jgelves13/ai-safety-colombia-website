@@ -377,6 +377,53 @@ const MENTORES: {
     ),
   },
   {
+    nombre: "Christian Urcuqui",
+    rol: "Mentor and speaker",
+    foto: "/aisc/mentores/christian-urcuqui.png",
+    linkedin: "https://www.linkedin.com/in/christianurcuqui/",
+    bio: (
+      <>
+        Cybersecurity and AI researcher at{" "}
+        <a
+          className={ENLACE}
+          href="https://tryhackme.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          TryHackMe
+        </a>
+        . Lecturer at{" "}
+        <a
+          className={ENLACE}
+          href="https://www.icesi.edu.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Universidad Icesi
+        </a>{" "}
+        and co-author of three{" "}
+        <a
+          className={ENLACE}
+          href="https://www.icesi.edu.co/editorial/ciberseguridad-datos-caos/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          books
+        </a>{" "}
+        on cybersecurity. He published{" "}
+        <a
+          className={ENLACE}
+          href="https://github.com/urcuqui/AgentBreak"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          AgentBreak
+        </a>
+        , an indirect prompt injection lab for LLM systems.
+      </>
+    ),
+  },
+  {
     nombre: "Manuela Chacón",
     rol: "Speaker",
     foto: "/aisc/mentores/manuela-chacon.png",
@@ -422,53 +469,6 @@ const MENTORES: {
           Cooperative AI Summer School
         </a>
         .
-      </>
-    ),
-  },
-  {
-    nombre: "Christian Urcuqui",
-    rol: "Mentor and speaker",
-    foto: "/aisc/mentores/christian-urcuqui.png",
-    linkedin: "https://www.linkedin.com/in/christianurcuqui/",
-    bio: (
-      <>
-        Cybersecurity and AI researcher at{" "}
-        <a
-          className={ENLACE}
-          href="https://tryhackme.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          TryHackMe
-        </a>
-        . Lecturer at{" "}
-        <a
-          className={ENLACE}
-          href="https://www.icesi.edu.co/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Universidad Icesi
-        </a>{" "}
-        and co-author of three{" "}
-        <a
-          className={ENLACE}
-          href="https://www.icesi.edu.co/editorial/ciberseguridad-datos-caos/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          books
-        </a>{" "}
-        on cybersecurity. He published{" "}
-        <a
-          className={ENLACE}
-          href="https://github.com/urcuqui/AgentBreak"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          AgentBreak
-        </a>
-        , an indirect prompt injection lab for LLM systems.
       </>
     ),
   },

@@ -378,6 +378,54 @@ const MENTORES: {
     ),
   },
   {
+    nombre: "Christian Urcuqui",
+    rol: "Mentor e palestrante",
+    foto: "/aisc/mentores/christian-urcuqui.png",
+    linkedin: "https://www.linkedin.com/in/christianurcuqui/",
+    bio: (
+      <>
+        Pesquisador de cibersegurança e IA na{" "}
+        <a
+          className={ENLACE}
+          href="https://tryhackme.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          TryHackMe
+        </a>
+        . Docente da{" "}
+        <a
+          className={ENLACE}
+          href="https://www.icesi.edu.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Universidad Icesi
+        </a>{" "}
+        e coautor de três{" "}
+        <a
+          className={ENLACE}
+          href="https://www.icesi.edu.co/editorial/ciberseguridad-datos-caos/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          livros
+        </a>{" "}
+        de cibersegurança. Publicou o{" "}
+        <a
+          className={ENLACE}
+          href="https://github.com/urcuqui/AgentBreak"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          AgentBreak
+        </a>
+        , um laboratório de injeção indireta de prompts em sistemas com
+        LLM.
+      </>
+    ),
+  },
+  {
     nombre: "Manuela Chacón",
     rol: "Palestrante",
     foto: "/aisc/mentores/manuela-chacon.png",
@@ -423,54 +471,6 @@ const MENTORES: {
           Cooperative AI Summer School
         </a>
         .
-      </>
-    ),
-  },
-  {
-    nombre: "Christian Urcuqui",
-    rol: "Mentor e palestrante",
-    foto: "/aisc/mentores/christian-urcuqui.png",
-    linkedin: "https://www.linkedin.com/in/christianurcuqui/",
-    bio: (
-      <>
-        Pesquisador de cibersegurança e IA na{" "}
-        <a
-          className={ENLACE}
-          href="https://tryhackme.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          TryHackMe
-        </a>
-        . Docente da{" "}
-        <a
-          className={ENLACE}
-          href="https://www.icesi.edu.co/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Universidad Icesi
-        </a>{" "}
-        e coautor de três{" "}
-        <a
-          className={ENLACE}
-          href="https://www.icesi.edu.co/editorial/ciberseguridad-datos-caos/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          livros
-        </a>{" "}
-        de cibersegurança. Publicou o{" "}
-        <a
-          className={ENLACE}
-          href="https://github.com/urcuqui/AgentBreak"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          AgentBreak
-        </a>
-        , um laboratório de injeção indireta de prompts em sistemas com
-        LLM.
       </>
     ),
   },

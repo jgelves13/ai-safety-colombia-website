@@ -370,6 +370,54 @@ const MENTORES: {
     ),
   },
   {
+    nombre: "Christian Urcuqui",
+    rol: "Mentor y ponente",
+    foto: "/aisc/mentores/christian-urcuqui.png",
+    linkedin: "https://www.linkedin.com/in/christianurcuqui/",
+    bio: (
+      <>
+        Investigador de ciberseguridad e IA en{" "}
+        <a
+          className={ENLACE}
+          href="https://tryhackme.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          TryHackMe
+        </a>
+        . Docente de la{" "}
+        <a
+          className={ENLACE}
+          href="https://www.icesi.edu.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Universidad Icesi
+        </a>{" "}
+        y coautor de tres{" "}
+        <a
+          className={ENLACE}
+          href="https://www.icesi.edu.co/editorial/ciberseguridad-datos-caos/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          libros
+        </a>{" "}
+        de ciberseguridad. Publicó{" "}
+        <a
+          className={ENLACE}
+          href="https://github.com/urcuqui/AgentBreak"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          AgentBreak
+        </a>
+        , un laboratorio de inyección indirecta de prompts en sistemas con
+        LLM.
+      </>
+    ),
+  },
+  {
     nombre: "Manuela Chacón",
     rol: "Ponente",
     foto: "/aisc/mentores/manuela-chacon.png",
@@ -415,54 +463,6 @@ const MENTORES: {
           Cooperative AI Summer School
         </a>
         .
-      </>
-    ),
-  },
-  {
-    nombre: "Christian Urcuqui",
-    rol: "Mentor y ponente",
-    foto: "/aisc/mentores/christian-urcuqui.png",
-    linkedin: "https://www.linkedin.com/in/christianurcuqui/",
-    bio: (
-      <>
-        Investigador de ciberseguridad e IA en{" "}
-        <a
-          className={ENLACE}
-          href="https://tryhackme.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          TryHackMe
-        </a>
-        . Docente de la{" "}
-        <a
-          className={ENLACE}
-          href="https://www.icesi.edu.co/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Universidad Icesi
-        </a>{" "}
-        y coautor de tres{" "}
-        <a
-          className={ENLACE}
-          href="https://www.icesi.edu.co/editorial/ciberseguridad-datos-caos/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          libros
-        </a>{" "}
-        de ciberseguridad. Publicó{" "}
-        <a
-          className={ENLACE}
-          href="https://github.com/urcuqui/AgentBreak"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          AgentBreak
-        </a>
-        , un laboratorio de inyección indirecta de prompts en sistemas con
-        LLM.
       </>
     ),
   },
