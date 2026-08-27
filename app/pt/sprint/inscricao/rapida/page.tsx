@@ -8,9 +8,9 @@ import { CIERRE_TEXTO_IDIOMA, aplicacionesCerradas } from "@/app/sprint/datos";
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
-  title: "Inscrição no AI Incident Response Sprint (formulário curto)",
+  title: "Inscrição no AI Incident Response Sprint (por recomendação)",
   description:
-    "Formulário curto de inscrição no hub presencial em Bogotá do AI Incident Response Sprint, de 11 a 13 de setembro de 2026.",
+    "Via de recomendação para o hub presencial em Bogotá do AI Incident Response Sprint, de 11 a 13 de setembro de 2026.",
   /* Esta dirección se manda por enlace, no se busca. Fuera del índice para que
      no compita con el formulario completo. */
   robots: { index: false, follow: false },
@@ -49,7 +49,8 @@ export default function InscricaoRapida() {
               Inscreva-se no hub em Bogotá
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO_IDIOMA.pt} Esta é a versão curta do formulário. São cinco perguntas, mais uma opcional.
+              {CIERRE_TEXTO_IDIOMA.pt} Esta via é para quem chega por recomendação de alguém da equipe ou de um
+              mentor do sprint.
             </p>
           </div>
         </div>
@@ -63,8 +64,8 @@ export default function InscricaoRapida() {
                 Durante os três dias você terá espaço de trabalho, alimentação, conectividade e mentores na sala.
               </p>
               <p className="text-body-sm text-aisc-ink">
-                Este é o formulário que enviamos a quem chega por recomendação, então não perguntamos pela sua
-                trajetória nem pelo que você quer construir. Se preferir ver primeiro do que se trata,{" "}
+                Quem recomendou você já respondeu pela sua trajetória. Por isso só pedimos como falar com você e
+                algumas linhas sobre o que te interessa do fim de semana. Se preferir ver primeiro do que se trata,{" "}
                 <Link
                   className="text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
                   href="/pt/sprint"

@@ -8,9 +8,9 @@ import { CIERRE_TEXTO_IDIOMA, aplicacionesCerradas } from "@/app/sprint/datos";
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
-  title: "Apply to the AI Incident Response Sprint (short form)",
+  title: "Apply to the AI Incident Response Sprint (by recommendation)",
   description:
-    "Short application form for the in-person Bogotá hub of the AI Incident Response Sprint, 11 to 13 September 2026.",
+    "Recommendation route for the in-person Bogotá hub of the AI Incident Response Sprint, 11 to 13 September 2026.",
   /* Esta dirección se manda por enlace, no se busca. Fuera del índice para que
      no compita con el formulario completo. */
   robots: { index: false, follow: false },
@@ -49,7 +49,8 @@ export default function ApplyQuick() {
               Apply to the Bogotá hub
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO_IDIOMA.en} This is the short version of the form. It is five questions, plus one optional.
+              {CIERRE_TEXTO_IDIOMA.en} This route is for people who reach us through someone on the team or a
+              mentor of the sprint.
             </p>
           </div>
         </div>
@@ -63,8 +64,8 @@ export default function ApplyQuick() {
                 Over the three days you get a place to work, meals, connectivity and mentors in the room.
               </p>
               <p className="text-body-sm text-aisc-ink">
-                This is the form we send to people who reach us through a recommendation, so we do not ask about your
-                background or about what you want to build. If you would rather see what it is about first,{" "}
+                Whoever recommended you has already vouched for your background. So we only ask how to reach you and
+                a few lines on what draws you to the weekend. If you would rather see what it is about first,{" "}
                 <Link
                   className="text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
                   href="/en/sprint"
