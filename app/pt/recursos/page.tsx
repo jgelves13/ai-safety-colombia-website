@@ -47,7 +47,6 @@ const LECTURAS = [
 type Grupo = {
   id: string;
   titulo: string;
-  lead: string;
   icono: () => ReactNode;
   /* La proporcion de la miniatura es del grupo, no de la pieza: asi la fila
      entera se lee pareja. Los canales y las caratulas son cuadrados; las
@@ -60,7 +59,6 @@ const GRUPOS: Grupo[] = [
   {
     id: "videos",
     titulo: "Vídeos",
-    lead: "Para entender o campo sem ler um artigo inteiro.",
     icono: IconVideos,
     forma: "cuadro",
     items: [
@@ -104,7 +102,6 @@ const GRUPOS: Grupo[] = [
   {
     id: "podcasts",
     titulo: "Podcasts",
-    lead: "Conversas longas, boas para o trajeto ou a academia.",
     icono: IconPodcasts,
     forma: "cuadro",
     items: [
@@ -141,7 +138,6 @@ const GRUPOS: Grupo[] = [
   {
     id: "libros",
     titulo: "Livros",
-    lead: "Quando você já quer o argumento completo e não um resumo.",
     icono: IconLibros,
     forma: "libro",
     items: [
@@ -178,44 +174,43 @@ const GRUPOS: Grupo[] = [
   {
     id: "cursos",
     titulo: "Cursos",
-    lead: "Com prazos, tarefas e alguém do outro lado.",
     icono: IconCursos,
     items: [
       {
         href: "https://bluedot.org/courses/agi-strategy",
         title: "AGI Strategy",
         quien: "BlueDot Impact",
-        body: "A porta de entrada que mais recomendamos. Trabalha-se em grupos de oito com um facilitador, desmontando uma ameaça passo a passo para ver em qual desses passos convém intervir.",
+        body: "A porta de entrada que mais recomendamos. Vinte e cinco horas, em grupos de oito com um facilitador, desmontando uma ameaça passo a passo para ver em qual desses passos convém intervir. Quem termina sai com uma posição sobre quais riscos importam, um plano de próximos passos e um certificado.",
       },
       {
         href: "https://bluedot.org/courses/ai-governance",
         title: "Frontier AI Governance",
         quien: "BlueDot Impact",
-        body: "Cada unidade deixa algo pronto: um relatório dirigido a quem decide, um mapa de quem manda sobre os modelos de fronteira e uma posição própria defendida por escrito.",
+        body: "Trinta horas em seis unidades, cada uma com algo pronto no final: um relatório dirigido a quem decide, um mapa de quem manda sobre os modelos de fronteira, uma posição própria defendida por escrito e um roteiro de seis meses. A BlueDot conta que seus egressos chegam a bolsas como Horizon e GovAI e a agências de governo.",
       },
       {
         href: "https://bluedot.org/courses/technical-ai-safety",
         title: "Technical AI Safety",
         quien: "BlueDot Impact",
-        body: "Percorre alinhamento, interpretabilidade, avaliações e controle para que você saiba em qual se encaixa. Quem termina pode se candidatar ao sprint de projetos da BlueDot.",
+        body: "Trinta horas de alinhamento, interpretabilidade mecanicista, avaliações, testes adversariais, controle e supervisão escalável, para saber em qual desses ramos você se encaixa. Pede que você já entenda como um modelo de linguagem é treinado. Quem termina pode se candidatar ao sprint de projetos, onde se produz uma contribuição real acompanhado por alguém do campo.",
       },
       {
         href: "https://deepmindsafetyresearch.medium.com/introducing-our-short-course-on-agi-safety-1072adb7912c",
         title: "AGI Safety Course",
         quien: "Google DeepMind",
-        body: "Setenta e cinco minutos de palestras gravadas com exercícios. Separa duas maneiras de um objetivo dar errado: o modelo explorar o critério pelo qual é premiado, ou aprender outro objetivo.",
+        body: "Setenta e cinco minutos de palestras gravadas, com exercícios, slides e um caderno. Separa duas maneiras de um objetivo dar errado: o modelo explorar o critério pelo qual é premiado, ou aprender outro objetivo. Fecha com a abordagem da própria casa: supervisão informada e avaliações de capacidades perigosas.",
       },
       {
         href: "https://aisafetybook.com/",
         title: "AI Safety, Ethics and Society",
         quien: "Center for AI Safety",
-        body: "Trata a segurança como um problema de engenharia e não só de aprendizado de máquina: leva para a IA o que a aviação e a indústria nuclear aprenderam sobre acidentes.",
+        body: "Oito capítulos, dos riscos catastróficos à governança, passando por engenharia de segurança, sistemas complexos e ação coletiva. Leva para a IA o que a aviação e a indústria nuclear aprenderam sobre acidentes. Está gratuito como livro, como audiolivro e como curso on-line.",
       },
       {
         href: "https://arena.education/curriculum",
         title: "ARENA",
-        quien: "Cinco semanas, para quem já programa",
-        body: "Programa-se desde o primeiro dia: treinar um transformador, abri-lo para ver o que calcula por dentro e montar um teste que meça um modelo.",
+        quien: "Em Londres, para quem já programa",
+        body: "Quatro ou cinco semanas presenciais em Londres. Treina-se uma rede do zero, abre-se um transformador para ver o que calcula por dentro, passa-se por aprendizado por reforço e monta-se uma bancada de testes que meça modelos. De lá saíram engenheiros para Apollo Research, Anthropic e METR.",
       },
     ],
   },
@@ -299,7 +294,6 @@ export default function Recursos() {
                   <Icono />
                   <h2 className="text-display-3 md:text-display-3-lg text-aisc-ink text-balance">{grupo.titulo}</h2>
                 </div>
-                <p className="text-body-sm text-aisc-muted">{grupo.lead}</p>
               </div>
               <ul className={`${REJILLA} ${COLUMNAS[grupo.items.length] ?? "xl:grid-cols-4"}`}>
                 {grupo.items.map((item) => (
