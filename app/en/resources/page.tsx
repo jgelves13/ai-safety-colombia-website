@@ -270,9 +270,6 @@ export default function Resources() {
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
           <div className="grid grid-cols-1 gap-6 pt-5 md:pt-7 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.92fr)] lg:gap-10">
             <h2 className="text-display-2 md:text-display-2-lg text-balance">Five readings to start with</h2>
-            <p className="text-body-sm text-aisc-muted lg:pt-3">
-              In this order. The first two assume nothing; the last one is a sequence and takes several sittings.
-            </p>
           </div>
           <ul className="mt-10 flex flex-col gap-4 md:mt-12">
             {LECTURAS.map((l, i) => (
