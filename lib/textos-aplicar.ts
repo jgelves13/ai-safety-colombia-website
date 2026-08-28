@@ -131,7 +131,7 @@ const es: TextosAplicar = {
     hubProblem: "El problema que te gustaría abordar",
     hubTrack: "El frente que te llama",
     hubTeam: "Si aplicas solo o con equipo",
-    hubAvailability: "Si puedes estar los tres días",
+    hubAvailability: "Si puedes estar el fin de semana",
     aiConfirm: "La confirmación sobre el uso de IA",
     hubTeamNames: "Con quién aplicas",
   },
@@ -202,7 +202,7 @@ const es: TextosAplicar = {
     solo: "Aplico solo y quiero que me ayuden a armar equipo",
     equipo: "Aplico con un equipo ya armado",
   },
-  disponibilidad: "¿Qué tan seguro estás de que puedes estar los tres días?",
+  disponibilidad: "¿Qué tan seguro estás de que puedes estar todo el fin de semana?",
   disponibilidadAyuda:
     "El sprint va del viernes en la tarde al domingo en la noche. Los equipos se arman contando contigo, así que preferimos saberlo desde ahora.",
   disponibilidades: {
@@ -248,7 +248,7 @@ const en: TextosAplicar = {
     hubProblem: "The problem you would like to work on",
     hubTrack: "The track that appeals to you",
     hubTeam: "Whether you apply alone or with a team",
-    hubAvailability: "Whether you can be there all three days",
+    hubAvailability: "Whether you can be there for the weekend",
     aiConfirm: "The confirmation about the use of AI",
     hubTeamNames: "Who you are applying with",
   },
@@ -319,7 +319,7 @@ const en: TextosAplicar = {
     solo: "I am applying alone and would like help finding a team",
     equipo: "I am applying with a team already formed",
   },
-  disponibilidad: "How sure are you that you can be there all three days?",
+  disponibilidad: "How sure are you that you can be there for the whole weekend?",
   disponibilidadAyuda:
     "The sprint runs from Friday afternoon to Sunday night. Teams are put together counting on you, so we would rather know now.",
   disponibilidades: {
@@ -365,7 +365,7 @@ const pt: TextosAplicar = {
     hubProblem: "O problema que você gostaria de abordar",
     hubTrack: "A frente que te chama",
     hubTeam: "Se você se inscreve sozinho ou com equipe",
-    hubAvailability: "Se você pode estar os três dias",
+    hubAvailability: "Se você pode estar o fim de semana",
     aiConfirm: "A confirmação sobre o uso de IA",
     hubTeamNames: "Com quem você se inscreve",
   },
@@ -436,7 +436,7 @@ const pt: TextosAplicar = {
     solo: "Inscrevo-me sozinho e quero ajuda para montar equipe",
     equipo: "Inscrevo-me com uma equipe já montada",
   },
-  disponibilidad: "Quão certo você está de que pode estar os três dias?",
+  disponibilidad: "Quão certo você está de que pode estar o fim de semana inteiro?",
   disponibilidadAyuda:
     "O sprint vai da sexta à tarde até domingo à noite. As equipes são formadas contando com você, então preferimos saber desde já.",
   disponibilidades: {

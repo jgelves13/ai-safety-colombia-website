@@ -160,7 +160,7 @@ const GRUPOS = [
 const HUB = [
   {
     titulo: "Alimentación",
-    body: "Cubrimos las comidas de los tres días, para que los equipos no tengan que salir de la sala a resolverlo.",
+    body: "Cubrimos las comidas del fin de semana, para que los equipos no tengan que salir de la sala a resolverlo.",
   },
   {
     titulo: "Apoyo para cómputo",
@@ -619,7 +619,7 @@ function iniciales(nombre: string): string {
 const PERFILES = [
   {
     rotulo: "Perfiles técnicos",
-    body: "Ingeniería, ciencia de datos o seguridad informática. Los frentes de contención y análisis del incidente se trabajan programando durante los tres días.",
+    body: "Ingeniería, ciencia de datos o seguridad informática. Los frentes de contención y análisis del incidente se trabajan programando durante todo el fin de semana.",
   },
   {
     rotulo: "Derecho, política pública y periodismo",
@@ -638,7 +638,7 @@ const PERFILES = [
 const FAQ = [
   {
     q: "¿Puedo aplicar si nunca he trabajado en seguridad de la IA?",
-    a: "Sí, y es el caso de buena parte de quienes participan. Los proyectos que mejor salen suelen mezclar a alguien que conoce el campo con alguien que sabe hacer muy bien otra cosa: escribir, litigar, levantar infraestructura, leerse un expediente. Lo que sí pedimos es que puedas estar los tres días.",
+    a: "Sí, y es el caso de buena parte de quienes participan. Los proyectos que mejor salen suelen mezclar a alguien que conoce el campo con alguien que sabe hacer muy bien otra cosa: escribir, litigar, levantar infraestructura, leerse un expediente. Lo que sí pedimos es que puedas estar el fin de semana completo.",
   },
   {
     q: "¿Necesito saber programar?",
@@ -855,11 +855,12 @@ export default function Hackathon() {
                 </p>
                 <p>
                   El sprint existe para llenar ese vacío con piezas concretas.
-                  Se trabaja en cinco frentes en paralelo durante tres días.
+                  Se trabaja en cinco frentes en paralelo durante un fin de
+                  semana.
                   Cada equipo entrega algo que alguien más pueda usar: un
                   estándar, un banco de pruebas, un cuestionario para un
-                  regulador, un ejercicio de mesa. Después del fin de semana los
-                  califican jurados que no estuvieron en la sala. La
+                  regulador, un ejercicio de mesa. Después los califican
+                  jurados que no estuvieron en la sala. La
                   retroalimentación llega por escrito y el reporte queda
                   publicado con tu nombre.{" "}
                   <a
@@ -945,9 +946,9 @@ export default function Hackathon() {
             <div className={COLUMNA}>
               <div className={PROSA}>
                 <p>
-                  Trabajar tres días seguidos es más fácil acompañado que solo
-                  en la casa. Por eso abrimos una sala en Bogotá durante todo el
-                  fin de semana.
+                  Trabajar un fin de semana entero es más fácil acompañado
+                  que solo en la casa. Por eso abrimos una sala en Bogotá, de
+                  viernes a domingo.
                 </p>
                 <p>
                   La sede se confirma en los próximos días. La anunciamos por
@@ -1060,7 +1061,7 @@ export default function Hackathon() {
             <div className="flex max-w-[640px] flex-col gap-4">
               <p className="text-body md:text-body-lg text-aisc-sand/90">
                 No se pide experiencia previa en seguridad de la IA ni un
-                título específico. Se pide estar los tres días y llegar con una
+                título específico. Se pide estar el fin de semana completo y llegar con
                 idea de qué quieres trabajar.
               </p>
             </div>

@@ -168,7 +168,7 @@ const GRUPOS = [
 const HUB = [
   {
     titulo: "Meals",
-    body: "We cover meals for all three days, so teams do not have to leave the room to sort it out.",
+    body: "We cover meals for the whole weekend, so teams do not have to leave the room to sort it out.",
   },
   {
     titulo: "Compute support",
@@ -625,7 +625,7 @@ function iniciales(nombre: string): string {
 const PERFILES = [
   {
     rotulo: "Technical profiles",
-    body: "Engineering, data science or information security. The containment and incident analysis tracks involve coding across the three days.",
+    body: "Engineering, data science or information security. The containment and incident analysis tracks involve coding across the whole weekend.",
   },
   {
     rotulo: "Law, public policy and journalism",
@@ -644,7 +644,7 @@ const PERFILES = [
 const FAQ = [
   {
     q: "Can I apply if I have never worked in AI safety?",
-    a: "Yes, and that is the case for a good share of the people who take part. The projects that turn out best usually mix someone who knows the field with someone who is very good at something else: writing, litigating, building infrastructure, reading a case file. What we do ask is that you can be there all three days.",
+    a: "Yes, and that is the case for a good share of the people who take part. The projects that turn out best usually mix someone who knows the field with someone who is very good at something else: writing, litigating, building infrastructure, reading a case file. What we do ask is that you can be there for the whole weekend.",
   },
   {
     q: "Do I need to know how to code?",
@@ -861,10 +861,10 @@ export default function Hackathon() {
                 </p>
                 <p>
                   The sprint exists to fill that gap with concrete pieces. Five
-                  tracks run in parallel over three days. Each team delivers
+                  tracks run in parallel over one weekend. Each team delivers
                   something someone else can use: a standard, a test bench, a
-                  questionnaire for a regulator, a tabletop exercise. After the
-                  weekend the work is graded by judges who were not in the room.
+                  questionnaire for a regulator, a tabletop exercise. The work is then
+                  graded by judges who were not in the room.
                   Feedback arrives in writing and the report is published under
                   your name.{" "}
                   <a
@@ -950,9 +950,9 @@ export default function Hackathon() {
             <div className={COLUMNA}>
               <div className={PROSA}>
                 <p>
-                  Working three days straight is easier in company than alone at
-                  home. That is why we open a room in Bogotá for the whole
-                  weekend.
+                  Working a whole weekend is easier in company than alone at
+                  home. That is why we open a room in Bogotá, from Friday to
+                  Sunday.
                 </p>
                 <p>
                   The venue is confirmed in the coming days. We announce it by
@@ -1065,7 +1065,7 @@ export default function Hackathon() {
             <div className="flex max-w-[640px] flex-col gap-4">
               <p className="text-body md:text-body-lg text-aisc-sand/90">
                 No previous experience in AI safety is required, and no
-                specific degree. You do need to be there all three days and to
+                specific degree. You do need to be there for the whole weekend and
                 arrive with an idea of what you want to work on.
               </p>
             </div>

@@ -61,7 +61,7 @@ export default function InscricaoPorIndicacao() {
           {!cerrado ? (
             <div className="mb-8 flex flex-col gap-3">
               <p className="text-body-sm text-aisc-ink">
-                Durante os três dias você terá espaço de trabalho, alimentação, conectividade e mentores na sala.
+                Durante o fim de semana você terá espaço de trabalho, alimentação, conectividade e mentores na sala.
               </p>
               <p className="text-body-sm text-aisc-ink">
                 Quem recomendou você já respondeu pela sua trajetória. Por isso só pedimos como falar com você e
