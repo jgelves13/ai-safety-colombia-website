@@ -40,7 +40,7 @@ const ENLACE =
 const DATOS = [
   {
     valor: "11 to 13 September",
-    nota: "Three days, from Friday afternoon to Sunday night",
+    nota: "One weekend, from Friday afternoon to Sunday night",
   },
   {
     valor: "Bogotá and online",

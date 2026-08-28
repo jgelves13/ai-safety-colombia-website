@@ -40,7 +40,7 @@ const ENLACE =
 const DATOS = [
   {
     valor: "11 a 13 de setembro",
-    nota: "Três dias, da sexta à tarde ao domingo à noite",
+    nota: "Um fim de semana, da sexta à tarde ao domingo à noite",
   },
   {
     valor: "Bogotá e on-line",
