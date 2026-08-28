@@ -627,19 +627,19 @@ function iniciales(nombre: string): string {
 const PERFILES = [
   {
     rotulo: "Perfis técnicos",
-    body: "Engenharia, ciência de dados ou segurança da informação: a contenção e a análise do incidente pedem mãos no teclado durante os três dias.",
+    body: "Engenharia, ciência de dados ou segurança da informação. As frentes de contenção e análise do incidente se trabalham programando durante os três dias.",
   },
   {
     rotulo: "Direito, políticas públicas e jornalismo",
-    body: "Os tracks de regulação e comunicação se ganham escrevendo bem e entendendo o processo, não programando.",
+    body: "As frentes de regulação e comunicação se trabalham escrevendo e lendo documentação. Não é preciso programar.",
   },
   {
     rotulo: "Quem já responde a incidentes",
-    body: "De bancos a saúde, a resposta a incidentes já é um ofício. Aqui se trata de ver o que muda quando quem falhou é um sistema de IA.",
+    body: "A resposta a incidentes já é um ofício em bancos, saúde e outros setores. Aqui se olha o que muda quando o sistema que falha é de IA.",
   },
   {
     rotulo: "Quem chega ao tema pela primeira vez",
-    body: "Não é preciso ter lido nada sobre segurança da IA. Você entra pelo que já sabe fazer e o que faltar se pergunta na sala. Boa parte de quem hoje trabalha no campo entrou por um fim de semana como este.",
+    body: "Não é preciso ter lido sobre segurança da IA. Você entra pelo que já sabe fazer e pergunta o que faltar durante o sprint.",
   },
 ];
 
@@ -650,7 +650,7 @@ const FAQ = [
   },
   {
     q: "Preciso saber programar?",
-    a: "Não para todos os tracks. Os de regulação e comunicação se ganham escrevendo bem e entendendo o processo. Os de contenção e análise pedem mãos no teclado, embora as equipes costumem misturar perfis.",
+    a: "Não para todas as frentes. As de regulação e comunicação se trabalham escrevendo e lendo documentação. As de contenção e análise exigem programar, embora as equipes costumem misturar perfis.",
   },
   {
     q: "Tenho que chegar com equipe?",
@@ -1066,9 +1066,9 @@ export default function Hackathon() {
             </h2>
             <div className="flex max-w-[640px] flex-col gap-4">
               <p className="text-body md:text-body-lg text-aisc-sand/90">
-                Não se pede experiência prévia em segurança da IA nem diploma em
-                nada. Pede-se que você possa estar os três dias e que chegue com
-                uma ideia do que gostaria de abordar.
+                Não se pede experiência prévia em segurança da IA nem um
+                diploma específico. Pede-se estar os três dias e chegar com uma
+                ideia do que você quer trabalhar.
               </p>
             </div>
           </div>

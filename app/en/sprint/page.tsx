@@ -625,19 +625,19 @@ function iniciales(nombre: string): string {
 const PERFILES = [
   {
     rotulo: "Technical profiles",
-    body: "Engineering, data science or information security: containment and incident analysis need hands on the keyboard for all three days.",
+    body: "Engineering, data science or information security. The containment and incident analysis tracks involve coding across the three days.",
   },
   {
     rotulo: "Law, public policy and journalism",
-    body: "The regulation and communication tracks are won by writing well and understanding the record, not by programming.",
+    body: "The regulation and communication tracks involve writing and reading documentation. No coding required.",
   },
   {
     rotulo: "People who already respond to incidents",
-    body: "From banking to health, incident response is already a trade. Here it is about seeing what changes when the thing that failed is an AI system.",
+    body: "Incident response is already a job in banking, health and other sectors. Here we look at what changes when the system that fails is an AI system.",
   },
   {
     rotulo: "People coming to the topic for the first time",
-    body: "You do not need to have read anything about AI safety. You come in through what you already know how to do, and whatever is missing you ask about in the room. A good share of the people working in the field today came in through a weekend like this one.",
+    body: "You do not need to have read about AI safety. You come in through what you already know how to do, and you ask about the rest during the sprint.",
   },
 ];
 
@@ -648,7 +648,7 @@ const FAQ = [
   },
   {
     q: "Do I need to know how to code?",
-    a: "Not for every track. Regulation and communication are won by writing well and understanding the record. Containment and analysis do need hands on the keyboard, though teams usually mix profiles.",
+    a: "Not for every track. Regulation and communication involve writing and reading documentation. Containment and analysis do require coding, though teams usually mix profiles.",
   },
   {
     q: "Do I have to arrive with a team?",
@@ -1064,10 +1064,9 @@ export default function Hackathon() {
             </h2>
             <div className="flex max-w-[640px] flex-col gap-4">
               <p className="text-body md:text-body-lg text-aisc-sand/90">
-                No previous experience in AI safety is required, and no degree
-                in anything. What is required is that you can be there all three
-                days and that you arrive with an idea of what you would like to
-                work on.
+                No previous experience in AI safety is required, and no
+                specific degree. You do need to be there all three days and to
+                arrive with an idea of what you want to work on.
               </p>
             </div>
           </div>
