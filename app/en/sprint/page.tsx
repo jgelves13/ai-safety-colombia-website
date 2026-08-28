@@ -112,7 +112,7 @@ const COORGANIZAN = [
     clase: "max-h-[44px] max-w-[128px]",
     ancho: 560,
     alto: 167,
-    href: "https://edu.ieee.org/co-uniandes-com/",
+    href: "https://www.instagram.com/csuniandes/",
   },
 ];
 
