@@ -243,6 +243,38 @@ const MENTORES: {
     ),
   },
   {
+    nombre: "Luis Montoya",
+    rol: "Mentor y ponente",
+    foto: "/aisc/mentores/luis-montoya.png",
+    linkedin: "https://www.linkedin.com/in/luismmontoya/",
+    bio: (
+      <>
+        Investigador de seguridad de IA y becario de{" "}
+        <a
+          className={ENLACE}
+          href="https://www.pivotal-research.org/fellowship"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Pivotal Research
+        </a>
+        . Es primer autor de un{" "}
+        <a
+          className={ENLACE}
+          href="https://openreview.net/forum?id=zGmgeR0f4D"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          artículo
+        </a>
+        {" "}
+        del taller de interpretabilidad de ICML 2026: un modelo puede
+        comportarse distinto cuando sabe que lo evalúan, aunque deje de
+        decirlo.
+      </>
+    ),
+  },
+  {
     nombre: "Camila Beltrán",
     rol: "Mentora y ponente",
     foto: "/aisc/mentores/camila-beltran.png",

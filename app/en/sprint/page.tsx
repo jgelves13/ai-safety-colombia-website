@@ -251,6 +251,38 @@ const MENTORES: {
     ),
   },
   {
+    nombre: "Luis Montoya",
+    rol: "Mentor and speaker",
+    foto: "/aisc/mentores/luis-montoya.png",
+    linkedin: "https://www.linkedin.com/in/luismmontoya/",
+    bio: (
+      <>
+        AI safety researcher and{" "}
+        <a
+          className={ENLACE}
+          href="https://www.pivotal-research.org/fellowship"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Pivotal Research
+        </a>
+        {" "}
+        fellow. First author of an ICML 2026 workshop{" "}
+        <a
+          className={ENLACE}
+          href="https://openreview.net/forum?id=zGmgeR0f4D"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          paper
+        </a>
+        {" "}
+        on interpretability: a model can behave differently when it knows it
+        is being evaluated, even after it stops saying so.
+      </>
+    ),
+  },
+  {
     nombre: "Camila Beltrán",
     rol: "Mentor and speaker",
     foto: "/aisc/mentores/camila-beltran.png",
