@@ -563,6 +563,37 @@ const MENTORES: {
     ),
   },
   {
+    nombre: "Gerson Quintero",
+    rol: "Palestrante",
+    foto: "/aisc/mentores/gerson-quintero.png",
+    linkedin:
+      "https://www.linkedin.com/in/gerson-david-quintero-rodriguez-2b7b9a18/",
+    bio: (
+      <>
+        Professor de cibersegurança na{" "}
+        <a
+          className={ENLACE}
+          href="https://www.escuelaing.edu.co/es/personal/gerson-david-quintero-rodriguez/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Escuela Colombiana de Ingeniería
+        </a>
+        , na graduação e na pós-graduação. Foi gestor da estratégia e da
+        arquitetura de cibersegurança da{" "}
+        <a
+          className={ENLACE}
+          href="https://agata.gov.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ágata
+        </a>
+        , a agência de analítica de dados de Bogotá.
+      </>
+    ),
+  },
+  {
     nombre: "Robert Gómez",
     rol: "Mentor",
     foto: "/aisc/mentores/robert-gomez.png",

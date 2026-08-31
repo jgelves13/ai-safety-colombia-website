@@ -560,6 +560,37 @@ const MENTORES: {
     ),
   },
   {
+    nombre: "Gerson Quintero",
+    rol: "Speaker",
+    foto: "/aisc/mentores/gerson-quintero.png",
+    linkedin:
+      "https://www.linkedin.com/in/gerson-david-quintero-rodriguez-2b7b9a18/",
+    bio: (
+      <>
+        Cybersecurity lecturer at{" "}
+        <a
+          className={ENLACE}
+          href="https://www.escuelaing.edu.co/es/personal/gerson-david-quintero-rodriguez/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Escuela Colombiana de Ingeniería
+        </a>
+        , in undergraduate and graduate programs. He ran the cybersecurity
+        strategy and architecture of{" "}
+        <a
+          className={ENLACE}
+          href="https://agata.gov.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ágata
+        </a>
+        , Bogotá&apos;s data analytics agency.
+      </>
+    ),
+  },
+  {
     nombre: "Robert Gómez",
     rol: "Mentor",
     foto: "/aisc/mentores/robert-gomez.png",
