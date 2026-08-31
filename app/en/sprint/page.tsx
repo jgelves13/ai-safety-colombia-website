@@ -567,7 +567,16 @@ const MENTORES: {
       "https://www.linkedin.com/in/gerson-david-quintero-rodriguez-2b7b9a18/",
     bio: (
       <>
-        Cybersecurity lecturer at{" "}
+        Professor of{" "}
+        <a
+          className={ENLACE}
+          href="https://www.escuelaing.edu.co/es/programas/curso-gestion-de-incidentes-y-forensia-digitall/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          incident management and digital forensics
+        </a>{" "}
+        at{" "}
         <a
           className={ENLACE}
           href="https://www.escuelaing.edu.co/es/personal/gerson-david-quintero-rodriguez/"
@@ -576,8 +585,7 @@ const MENTORES: {
         >
           Escuela Colombiana de Ingeniería
         </a>
-        , in undergraduate and graduate programs. He ran the cybersecurity
-        strategy and architecture of{" "}
+        . He ran the cybersecurity strategy and architecture of{" "}
         <a
           className={ENLACE}
           href="https://agata.gov.co/"

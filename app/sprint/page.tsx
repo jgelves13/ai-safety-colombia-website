@@ -562,7 +562,16 @@ const MENTORES: {
       "https://www.linkedin.com/in/gerson-david-quintero-rodriguez-2b7b9a18/",
     bio: (
       <>
-        Profesor de ciberseguridad, en pregrado y posgrado, en la{" "}
+        Profesor de{" "}
+        <a
+          className={ENLACE}
+          href="https://www.escuelaing.edu.co/es/programas/curso-gestion-de-incidentes-y-forensia-digitall/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          gestión de incidentes y forensia digital
+        </a>{" "}
+        en la{" "}
         <a
           className={ENLACE}
           href="https://www.escuelaing.edu.co/es/personal/gerson-david-quintero-rodriguez/"
