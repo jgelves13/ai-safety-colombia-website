@@ -68,21 +68,25 @@ const previousLuisBios = new Map([
   ],
 ]);
 
-function visibleMentorBio(source, name) {
+function mentorBlock(source, name) {
   const mentorStart = source.indexOf(`nombre: "${name}"`);
   assert.notEqual(mentorStart, -1, `Missing mentor: ${name}`);
 
   const nextMentor = source.indexOf("\n  {\n    nombre:", mentorStart + 1);
-  const mentorBlock = source.slice(
+  return source.slice(
     mentorStart,
     nextMentor === -1 ? source.length : nextMentor,
   );
-  const bioStart = mentorBlock.indexOf("<>");
-  const bioEnd = mentorBlock.indexOf("</>", bioStart);
+}
+
+function visibleMentorBio(source, name) {
+  const block = mentorBlock(source, name);
+  const bioStart = block.indexOf("<>");
+  const bioEnd = block.indexOf("</>", bioStart);
   assert.notEqual(bioStart, -1, `Missing bio start for ${name}`);
   assert.notEqual(bioEnd, -1, `Missing bio end for ${name}`);
 
-  return mentorBlock
+  return block
     .slice(bioStart + 2, bioEnd)
     .replace(/<a[\s\S]*?>/g, " ")
     .replace(/<\/a>/g, " ")
@@ -99,15 +103,32 @@ function wordCount(text) {
 test("Luis Montoya's bio explains his work in Neel Nanda's MATS stream", () => {
   for (const { page, phrases } of matsBioExpectations) {
     const source = readFileSync(page, "utf8");
-    const activeSource = source.replace(/\/\*[\s\S]*?\*\//g, "");
-    const normalizedSource = activeSource.replace(/\s+/g, " ");
+    const visibleBio = visibleMentorBio(source, "Luis Montoya");
 
     for (const phrase of phrases) {
       assert.ok(
-        normalizedSource.includes(phrase),
+        visibleBio.includes(phrase),
         `${page} must include: ${phrase}`,
       );
     }
+  }
+});
+
+test("Luis Montoya's MATS and Neel Nanda references link to official pages", () => {
+  for (const page of localePages) {
+    const source = readFileSync(page, "utf8");
+    const block = mentorBlock(source, "Luis Montoya");
+
+    assert.match(
+      block,
+      /href="https:\/\/www\.matsprogram\.org\/"[\s\S]*?>\s*MATS\s*<\/a>/,
+      `${page} must link MATS to its official site`,
+    );
+    assert.match(
+      block,
+      /href="https:\/\/www\.matsprogram\.org\/mentor\/neel"[\s\S]*?>\s*Neel Nanda\s*<\/a>/,
+      `${page} must link Neel Nanda to his official MATS mentor page`,
+    );
   }
 });
 

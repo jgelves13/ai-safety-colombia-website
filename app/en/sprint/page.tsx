@@ -265,8 +265,26 @@ const MENTORES: {
         >
           Pivotal Research
         </a>
-        {" "}fellow. At MATS, with Neel Nanda, he studied whether models recognize
-        evaluations without saying so; the work appeared at an{" "}
+        {" "}fellow. At{" "}
+        <a
+          className={ENLACE}
+          href="https://www.matsprogram.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          MATS
+        </a>
+        , with{" "}
+        <a
+          className={ENLACE}
+          href="https://www.matsprogram.org/mentor/neel"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Neel Nanda
+        </a>
+        , he studied whether models recognize evaluations without saying so; the
+        work appeared at an{" "}
         <a
           className={ENLACE}
           href="https://openreview.net/forum?id=zGmgeR0f4D"

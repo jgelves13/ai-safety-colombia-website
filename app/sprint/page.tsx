@@ -258,8 +258,26 @@ const MENTORES: {
         >
           Pivotal Research
         </a>
-        . En MATS, con Neel Nanda, estudió si un modelo reconoce que lo evalúan
-        sin decirlo; publicó el trabajo en un{" "}
+        . En{" "}
+        <a
+          className={ENLACE}
+          href="https://www.matsprogram.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          MATS
+        </a>
+        , con{" "}
+        <a
+          className={ENLACE}
+          href="https://www.matsprogram.org/mentor/neel"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Neel Nanda
+        </a>
+        , estudió si un modelo reconoce que lo evalúan sin decirlo; publicó el
+        trabajo en un{" "}
         <a
           className={ENLACE}
           href="https://openreview.net/forum?id=zGmgeR0f4D"
