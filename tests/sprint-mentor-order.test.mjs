@@ -10,9 +10,9 @@ const expectedOrder = [
   "Christian Urcuqui",
   "Luis Montoya",
   "Liliana Fernández",
+  "Gerson Quintero",
   "Leidy Aldana",
   "Manuela Chacón",
-  "Gerson Quintero",
   "Robert Gómez",
 ];
 
