@@ -250,6 +250,9 @@ const MENTORES: {
       </>
     ),
   },
+  /* Oculto temporalmente el 31-ago-2026 a peticion de Jose. Para
+     devolverlo, basta con quitar este comentario. */
+  /*
   {
     nombre: "Luis Montoya",
     rol: "Mentor and speaker",
@@ -282,6 +285,7 @@ const MENTORES: {
       </>
     ),
   },
+  */
   {
     nombre: "Camila Beltrán",
     rol: "Mentor and speaker",
