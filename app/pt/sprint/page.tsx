@@ -44,7 +44,7 @@ const DATOS = [
   },
   {
     valor: "Bogotá e on-line",
-    nota: "Hub presencial em Bogotá, sede a confirmar",
+    nota: "Hub presencial no Chicó, Bogotá",
   },
   {
     valor: "USD 2.000 em prêmios",
@@ -958,8 +958,8 @@ export default function Hackathon() {
                   de sexta a domingo.
                 </p>
                 <p>
-                  A sede se confirma nos próximos dias. Anunciamos por e-mail a
-                  quem for selecionado.
+                  A sala fica no Chicó, no norte da cidade. Enviamos o endereço
+                  exato por e-mail a quem for selecionado.
                 </p>
               </div>
             </div>

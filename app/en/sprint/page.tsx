@@ -44,7 +44,7 @@ const DATOS = [
   },
   {
     valor: "Bogotá and online",
-    nota: "In-person hub in Bogotá, venue to be confirmed",
+    nota: "In-person hub in Chicó, Bogotá",
   },
   {
     valor: "USD 2,000 in prizes",
@@ -955,8 +955,8 @@ export default function Hackathon() {
                   Sunday.
                 </p>
                 <p>
-                  The venue is confirmed in the coming days. We announce it by
-                  email to whoever is selected.
+                  The room is in Chicó, in the north of the city. We send the
+                  exact address by email to whoever is selected.
                 </p>
               </div>
             </div>

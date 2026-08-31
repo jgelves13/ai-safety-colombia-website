@@ -225,7 +225,7 @@ async function confirmar(datos: Record<string, string>): Promise<void> {
     "",
     "Recibimos tu aplicación al hub presencial del AI Incident Response Sprint, del 11 al 13 de septiembre en Bogotá.",
     "",
-    "Revisamos las aplicaciones a medida que llegan y te respondemos antes del sprint, quedes o no. Cuando confirmemos la sede la anunciamos por correo y por el grupo de WhatsApp.",
+    "Revisamos las aplicaciones a medida que llegan y te respondemos antes del sprint, quedes o no. El hub queda en el Chicó, en el norte de Bogotá; la dirección exacta va por correo a quienes queden seleccionados.",
     "",
     `Si algo cambia o quieres corregir una respuesta, escríbenos a ${CORREO_CONTACTO}.`,
     "",
