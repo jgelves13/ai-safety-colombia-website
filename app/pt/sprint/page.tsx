@@ -257,7 +257,7 @@ const MENTORES: {
     linkedin: "https://www.linkedin.com/in/luismmontoya/",
     bio: (
       <>
-        Pesquisador de segurança de IA e bolsista da{" "}
+        Pesquisador de IA e bolsista da{" "}
         <a
           className={ENLACE}
           href="https://www.pivotal-research.org/fellowship"
@@ -266,18 +266,17 @@ const MENTORES: {
         >
           Pivotal Research
         </a>
-        . É primeiro autor de um{" "}
+        . No MATS, com Neel Nanda, estudou se um modelo reconhece uma avaliação
+        sem dizê-lo; publicou o trabalho no{" "}
         <a
           className={ENLACE}
           href="https://openreview.net/forum?id=zGmgeR0f4D"
           target="_blank"
           rel="noopener noreferrer"
         >
-          artigo
+          workshop do ICML 2026
         </a>
-        {" "}
-        do workshop de interpretabilidade do ICML 2026: um modelo pode agir
-        diferente quando sabe que o avaliam, mesmo sem dizê-lo.
+        .
       </>
     ),
   },

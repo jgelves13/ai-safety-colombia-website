@@ -257,7 +257,6 @@ const MENTORES: {
     linkedin: "https://www.linkedin.com/in/luismmontoya/",
     bio: (
       <>
-        AI safety researcher and{" "}
         <a
           className={ENLACE}
           href="https://www.pivotal-research.org/fellowship"
@@ -266,19 +265,17 @@ const MENTORES: {
         >
           Pivotal Research
         </a>
-        {" "}
-        fellow. First author of an ICML 2026 workshop{" "}
+        {" "}fellow. At MATS, with Neel Nanda, he studied whether models recognize
+        evaluations without saying so; the work appeared at an{" "}
         <a
           className={ENLACE}
           href="https://openreview.net/forum?id=zGmgeR0f4D"
           target="_blank"
           rel="noopener noreferrer"
         >
-          paper
+          ICML 2026 workshop
         </a>
-        {" "}
-        on interpretability: a model can behave differently when it knows it
-        is being evaluated, even after it stops saying so.
+        .
       </>
     ),
   },
