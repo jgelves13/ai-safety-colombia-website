@@ -12,6 +12,7 @@ const expectedOrder = [
   "Liliana Fernández",
   "Leidy Aldana",
   "Manuela Chacón",
+  "Gerson Quintero",
   "Robert Gómez",
 ];
 
@@ -25,6 +26,7 @@ test("Diego stays first while the remaining sprint profiles follow relevance ord
     "Christian Urcuqui",
     "Manuela Chacón",
     "Leidy Aldana",
+    "Gerson Quintero",
     "Robert Gómez",
   ].map((nombre) => ({ nombre }));
 
