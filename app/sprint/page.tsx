@@ -15,6 +15,7 @@ import {
 } from "@/components/ui";
 import { APART_FELLOWSHIP_URL, APART_SPRINT_URL, CIERRE_TEXTO } from "./datos";
 import { alternativas } from "@/lib/idiomas";
+import { orderSprintMentors } from "@/lib/sprint-mentor-order.mjs";
 
 export const metadata: Metadata = {
   title: "AI Incident Response Sprint",
@@ -654,6 +655,8 @@ const MENTORES: {
   */
 ];
 
+const MENTORES_ORDENADOS = orderSprintMentors(MENTORES);
+
 function iniciales(nombre: string): string {
   return nombre
     .split(" ")
@@ -1039,7 +1042,7 @@ export default function Hackathon() {
             </div>
           </div>
           <ul className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:mt-14 lg:mt-16 lg:grid-cols-5">
-            {MENTORES.map((m) => (
+            {MENTORES_ORDENADOS.map((m) => (
               <li className="flex flex-col gap-3" key={m.nombre}>
                 <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[8px] bg-aisc-sand">
                   {m.foto ? (
