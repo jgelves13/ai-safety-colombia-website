@@ -1081,7 +1081,7 @@ export default function Hackathon() {
                   Durante o fim de semana passa pela sala gente que trabalha nos
                   temas dos cinco tracks. Alguns abrem com uma palestra curta.
                   Outros se sentam com as equipes para apoiar o que estiverem
-                  construindo. Em breve anunciamos mais mentores e palestrantes.
+                  construindo.
                 </p>
               </div>
             </div>

@@ -1077,7 +1077,7 @@ export default function Hackathon() {
                   Over the weekend, people who work on the subjects of the five
                   tracks come through the room. Some open with a short talk.
                   Others sit down with the teams to support whatever they are
-                  building. We announce more mentors and speakers soon.
+                  building.
                 </p>
               </div>
             </div>

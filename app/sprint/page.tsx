@@ -1075,7 +1075,7 @@ export default function Hackathon() {
                   Durante el fin de semana pasa por la sala gente que trabaja en
                   los temas de los cinco frentes. Algunos abren con una charla
                   corta. Otros se sientan con los equipos a apoyar lo que estén
-                  construyendo. Pronto anunciamos más mentores y ponentes.
+                  construyendo.
                 </p>
               </div>
             </div>
