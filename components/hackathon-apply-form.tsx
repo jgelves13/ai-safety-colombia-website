@@ -23,6 +23,7 @@ const VACIO: Campos = {
   firstName: "",
   lastName: "",
   email: "",
+  whatsapp: "",
   linkedin: "",
   career: "",
   reason: "",
@@ -44,6 +45,7 @@ const OBLIGATORIOS_LARGO = [
   "firstName",
   "lastName",
   "email",
+  "whatsapp",
   "linkedin",
   "career",
   "reason",
@@ -60,6 +62,7 @@ const OBLIGATORIOS_CORTO = [
   "firstName",
   "lastName",
   "email",
+  "whatsapp",
   "linkedin",
   "reason",
   "hubAvailability",
@@ -70,6 +73,7 @@ const LIMITES: Record<string, number> = {
   firstName: 100,
   lastName: 100,
   email: 200,
+  whatsapp: 40,
   linkedin: 300,
   career: 800,
   reason: 1500,
@@ -78,6 +82,16 @@ const LIMITES: Record<string, number> = {
   hubAccess: 800,
   hubExtra: 800,
 };
+
+/* WhatsApp: se acepta como lo escriba cada quien -espacios, guiones,
+   parentesis- y solo se exige que queden entre siete y quince digitos, que es
+   el rango de la E.164. El indicativo se pide en la ayuda, no en el formato. */
+function telefonoValido(valor: string): boolean {
+  const s = valor.trim();
+  if (!/^\+?[\d\s().-]+$/.test(s)) return false;
+  const digitos = s.replace(/\D/g, "").length;
+  return digitos >= 7 && digitos <= 15;
+}
 
 const INPUT =
   "text-body-sm w-full rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 text-aisc-ink transition-colors placeholder:text-aisc-muted/60 focus:border-aisc-forest focus:outline-2 focus:outline-offset-[1px] focus:outline-aisc-forest/35";
@@ -187,6 +201,9 @@ export default function HackathonApplyForm({
     }
     if (v.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim())) {
       nuevos.email = t.correoMal;
+    }
+    if (v.whatsapp.trim() && !telefonoValido(v.whatsapp)) {
+      nuevos.whatsapp = t.whatsappMal;
     }
     if (v.hubTeam === "equipo" && !v.hubTeamNames.trim()) {
       nuevos.hubTeamNames = t.faltaResponder;
@@ -429,6 +446,20 @@ export default function HackathonApplyForm({
               <Campo
                 opcional={t.opcional}
                 requerido
+                name="whatsapp"
+                label={t.whatsapp}
+                ayuda={t.whatsappAyuda}
+                error={errores.whatsapp}
+              >
+                <input
+                  {...textProps("whatsapp", "tel", 40)}
+                  autoComplete="tel"
+                  placeholder="+57 300 123 4567"
+                />
+              </Campo>
+              <Campo
+                opcional={t.opcional}
+                requerido
                 name="linkedin"
                 label={t.linkedin}
                 ayuda={t.linkedinAyuda}
@@ -508,6 +539,20 @@ export default function HackathonApplyForm({
                 <input
                   {...textProps("email", "email", 200)}
                   autoComplete="email"
+                />
+              </Campo>
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="whatsapp"
+                label={t.whatsapp}
+                ayuda={t.whatsappAyuda}
+                error={errores.whatsapp}
+              >
+                <input
+                  {...textProps("whatsapp", "tel", 40)}
+                  autoComplete="tel"
+                  placeholder="+57 300 123 4567"
                 />
               </Campo>
               <Campo

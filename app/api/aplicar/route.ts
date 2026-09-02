@@ -43,6 +43,7 @@ const LIMITES: Record<string, number> = {
   firstName: 100,
   lastName: 100,
   email: 200,
+  whatsapp: 40,
   linkedin: 300,
   career: 800,
   reason: 1500,
@@ -63,12 +64,13 @@ const OBLIGATORIOS: Record<string, string[]> = {
     "firstName",
     "lastName",
     "email",
+    "whatsapp",
     "linkedin",
     "career",
     "reason",
     "hubProblem",
   ],
-  corto: ["firstName", "lastName", "email", "linkedin", "reason"],
+  corto: ["firstName", "lastName", "email", "whatsapp", "linkedin", "reason"],
 };
 
 /* Lo que el formulario corto no pregunta y por tanto se guarda vacio. */
@@ -109,6 +111,16 @@ function validar(
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(datos.email))
     return { ok: false, campo: "email" };
+
+  /* Mismo criterio que el formulario: entre siete y quince digitos, escritos
+     como quiera cada quien. */
+  const digitos = datos.whatsapp.replace(/\D/g, "").length;
+  if (
+    !/^\+?[\d\s().-]+$/.test(datos.whatsapp) ||
+    digitos < 7 ||
+    digitos > 15
+  )
+    return { ok: false, campo: "whatsapp" };
 
   /* Los tres dias completos son la condicion del fin de semana, asi que la
      pregunta es obligatoria en los dos formularios. */
@@ -151,6 +163,7 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
     first_name: datos.firstName,
     last_name: datos.lastName,
     email: datos.email,
+    whatsapp: datos.whatsapp,
     /* Ni el largo ni el corto preguntan ya la ciudad. La columna es not null,
        asi que se manda vacia; las filas viejas quedan como estan. */
     location: "",
@@ -186,27 +199,47 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
       body: JSON.stringify(cuerpo),
     });
 
-  try {
-    const r = await enviar(fila);
-    if (r.ok) return true;
+  /* Estas dos preguntas llegaron al formulario antes que a la tabla. Mientras
+     no se corra el alter, la aplicacion se guarda sin esas respuestas: perder
+     al aspirante sale mucho mas caro que perder el dato. PostgREST nombra una
+     sola columna por respuesta, asi que se reintenta quitando de a una. En
+     cuanto existan las columnas, este lazo deja de entrar solo. */
+  const APLAZABLES = ["hub_availability", "whatsapp"];
 
-    const motivo = await r.text();
-    /* hub_availability llego al formulario antes que a la tabla. Mientras no
-       se corra el alter, se guarda la aplicacion sin esa respuesta: perder al
-       aspirante sale mucho mas caro que perder el dato. El log dice que falta,
-       y en cuanto exista la columna esta rama deja de entrar sola. */
-    if (motivo.includes("hub_availability")) {
-      console.error(
-        "[aplicar] falta la columna hub_availability en la tabla; se guarda sin ella. Corre: alter table public.sprint_applications add column if not exists hub_availability text;",
-      );
-      const { hub_availability: _sinColumna, ...resto } = fila;
-      const r2 = await enviar(resto);
-      if (r2.ok) return true;
-      console.error("[aplicar] Supabase respondió", r2.status, await r2.text());
-      return false;
+  try {
+    const cuerpo: Record<string, unknown> = { ...fila };
+    const quitadas: string[] = [];
+
+    for (let intento = 0; intento <= APLAZABLES.length; intento += 1) {
+      const r = await enviar(cuerpo);
+      if (r.ok) {
+        if (quitadas.length > 0) {
+          console.error(
+            `[aplicar] faltan columnas en la tabla (${quitadas.join(", ")}); se guardó sin ellas. Corre: ${quitadas
+              .map(
+                (c) =>
+                  `alter table public.sprint_applications add column if not exists ${c} text;`,
+              )
+              .join(" ")}`,
+          );
+          /* La fila quedó guardada pero incompleta, y esas respuestas no están
+             en ningún otro lado. Se mandan por correo para poder reponerlas a
+             mano; en cuanto existan las columnas esto deja de salir solo. */
+          await avisarDeLoQueNoCupo(datos, quitadas);
+        }
+        return true;
+      }
+
+      const motivo = await r.text();
+      const falta = APLAZABLES.find((c) => c in cuerpo && motivo.includes(c));
+      if (!falta) {
+        console.error("[aplicar] Supabase respondió", r.status, motivo);
+        return false;
+      }
+      delete cuerpo[falta];
+      quitadas.push(falta);
     }
 
-    console.error("[aplicar] Supabase respondió", r.status, motivo);
     return false;
   } catch (e) {
     console.error("[aplicar] falló el insert", e);
@@ -261,6 +294,52 @@ async function confirmar(datos: Record<string, string>): Promise<void> {
 }
 
 /* Aviso interno para no perder una aplicación si Supabase se cae. */
+/* Cuando una columna todavía no existe en la tabla, la aplicación se guarda
+   sin esa respuesta. El correo es la única copia que queda de lo que se cayó. */
+async function avisarDeLoQueNoCupo(
+  datos: Record<string, string>,
+  quitadas: string[],
+): Promise<void> {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) return;
+  const CAMPOS: Record<string, string> = {
+    whatsapp: "whatsapp",
+    hub_availability: "hubAvailability",
+  };
+  const perdido = quitadas
+    .map((c) => `${c}: ${datos[CAMPOS[c] ?? c] ?? ""}`)
+    .join("
+");
+  try {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: REMITENTE,
+        to: [CORREO_CONTACTO],
+        subject: `Aplicación guardada sin ${quitadas.join(" ni ")}`,
+        text: `${datos.firstName} ${datos.lastName} <${datos.email}> aplicó, pero la tabla todavía no tiene ${quitadas.join(" ni ")}. Lo que no se guardó:
+
+${perdido}
+
+Para que deje de pasar:
+${quitadas
+          .map(
+            (c) =>
+              `alter table public.sprint_applications add column if not exists ${c} text;`,
+          )
+          .join("
+")}`,
+      }),
+    });
+  } catch {
+    /* si esto también falla, ya solo quedan los logs */
+  }
+}
+
 async function avisarDeLaFalla(datos: Record<string, string>): Promise<void> {
   const key = process.env.RESEND_API_KEY;
   if (!key) return;

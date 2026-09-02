@@ -61,7 +61,7 @@ export default function ApplyByReferral() {
           {!cerrado ? (
             <div className="mb-8 flex flex-col gap-3">
               <p className="text-body-sm text-aisc-ink">
-                Over the weekend you get a place to work, meals, connectivity and mentors in the room.
+                Over the weekend you get a place to work, meals, a place to stay if you are coming from another city, connectivity and mentors in the room.
               </p>
               <p className="text-body-sm text-aisc-ink">
                 Whoever recommended you has already vouched for your background. So we only ask how to reach you and

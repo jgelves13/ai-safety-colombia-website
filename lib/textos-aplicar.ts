@@ -27,6 +27,7 @@ export type TextosAplicar = {
   resumenTitulo: string;
   faltaResponder: string;
   correoMal: string;
+  whatsappMal: string;
   limite: (tope: number) => string;
   opcional: string;
   trampa: string;
@@ -51,6 +52,8 @@ export type TextosAplicar = {
   apellidos: string;
   correo: string;
   correoAyuda: string;
+  whatsapp: string;
+  whatsappAyuda: string;
   linkedin: string;
   linkedinAyuda: string;
   carrera: string;
@@ -117,6 +120,7 @@ const es: TextosAplicar = {
   resumenTitulo: "Falta responder esto antes de enviar:",
   faltaResponder: "Falta responder.",
   correoMal: "Revisa el correo: parece que le falta algo.",
+  whatsappMal: "Revisa el número: con el indicativo del país y sin letras.",
   limite: (tope) => `Pasaste el límite de ${tope} caracteres.`,
   opcional: " (opcional)",
   trampa: "No llenes este campo",
@@ -125,6 +129,7 @@ const es: TextosAplicar = {
     firstName: "Tu nombre",
     lastName: "Tus apellidos",
     email: "Tu correo",
+    whatsapp: "Tu WhatsApp",
     linkedin: "Tu LinkedIn",
     career: "En qué andas ahora",
     reason: "Por qué quieres participar",
@@ -154,6 +159,9 @@ const es: TextosAplicar = {
   apellidos: "Apellidos",
   correo: "Correo",
   correoAyuda: "Acá te avisamos si quedaste y por acá mandamos la sede.",
+  whatsapp: "WhatsApp",
+  whatsappAyuda:
+    "Con el indicativo del país. Es por donde coordinamos el fin de semana; no lo usamos para nada más.",
   linkedin: "LinkedIn",
   linkedinAyuda: "Si no tienes, pega otro perfil donde se vea en qué has trabajado.",
   carrera: "¿En qué andas ahora?",
@@ -182,9 +190,9 @@ const es: TextosAplicar = {
   confirmacionIA:
     "Las respuestas de esta aplicación las escribí yo. Pude usar un modelo para corregir la redacción, pero el razonamiento es mío.",
   privacidadCortaAntes:
-    "Usamos la información que compartes para seleccionar a los participantes y organizar el fin de semana. Si eres seleccionado, los demás participantes podrán ver tu nombre. Tu correo y lo que escribiste acá son confidenciales. Si en algún momento quieres que eliminemos tus datos, puedes escribirnos a ",
+    "Usamos la información que compartes para seleccionar a los participantes y organizar el fin de semana. Si eres seleccionado, los demás participantes podrán ver tu nombre. Tu correo, tu WhatsApp y lo que escribiste acá son confidenciales. Si en algún momento quieres que eliminemos tus datos, puedes escribirnos a ",
   privacidadAntes:
-    "Usamos la información que compartes para seleccionar a los participantes y organizar el fin de semana. Si eres seleccionado, los demás participantes podrán ver tu nombre, en qué estás trabajando y el frente que elegiste, para facilitar la formación de equipos. Tu correo y tus respuestas a las dos últimas preguntas serán confidenciales. Si en algún momento quieres que eliminemos tus datos, puedes escribirnos a ",
+    "Usamos la información que compartes para seleccionar a los participantes y organizar el fin de semana. Si eres seleccionado, los demás participantes podrán ver tu nombre, en qué estás trabajando y el frente que elegiste, para facilitar la formación de equipos. Tu correo, tu WhatsApp y tus respuestas a las dos últimas preguntas serán confidenciales. Si en algún momento quieres que eliminemos tus datos, puedes escribirnos a ",
   privacidadDespues: ".",
   enviar: "Enviar aplicación",
   enviando: "Enviando…",
@@ -234,6 +242,7 @@ const en: TextosAplicar = {
   resumenTitulo: "These are still missing:",
   faltaResponder: "This one is missing.",
   correoMal: "Check the address: something seems to be missing.",
+  whatsappMal: "Check the number: country code included, no letters.",
   limite: (tope) => `You went over the ${tope} character limit.`,
   opcional: " (optional)",
   trampa: "Do not fill in this field",
@@ -242,6 +251,7 @@ const en: TextosAplicar = {
     firstName: "Your first name",
     lastName: "Your last name",
     email: "Your email",
+    whatsapp: "Your WhatsApp number",
     linkedin: "Your LinkedIn",
     career: "What you are doing right now",
     reason: "Why you want to take part",
@@ -271,6 +281,9 @@ const en: TextosAplicar = {
   apellidos: "Last name",
   correo: "Email",
   correoAyuda: "This is where we tell you if you got in, and where we send the venue.",
+  whatsapp: "WhatsApp",
+  whatsappAyuda:
+    "With the country code. It is how we coordinate over the weekend, and we use it for nothing else.",
   linkedin: "LinkedIn",
   linkedinAyuda: "If you do not have one, paste another profile that shows what you have worked on.",
   carrera: "What are you doing right now?",
@@ -299,9 +312,9 @@ const en: TextosAplicar = {
   confirmacionIA:
     "I wrote the answers in this application myself. I may have used a model to fix the wording, but the reasoning is mine.",
   privacidadCortaAntes:
-    "We use the information you share to select the participants and to organise the weekend. If you are selected, the other participants will see your name. Your email and what you wrote here stay confidential. If at any point you want us to delete your data, you can write to us at ",
+    "We use the information you share to select the participants and to organise the weekend. If you are selected, the other participants will see your name. Your email, your WhatsApp number and what you wrote here stay confidential. If at any point you want us to delete your data, you can write to us at ",
   privacidadAntes:
-    "We use the information you share to select the participants and to organise the weekend. If you are selected, the other participants will see your name, what you are working on and the track you chose, so that teams come together more easily. Your email and your answers to the last two questions stay confidential. If at any point you want us to delete your data, you can write to us at ",
+    "We use the information you share to select the participants and to organise the weekend. If you are selected, the other participants will see your name, what you are working on and the track you chose, so that teams come together more easily. Your email, your WhatsApp number and your answers to the last two questions stay confidential. If at any point you want us to delete your data, you can write to us at ",
   privacidadDespues: ".",
   enviar: "Send application",
   enviando: "Sending…",
@@ -351,6 +364,7 @@ const pt: TextosAplicar = {
   resumenTitulo: "Falta responder isto antes de enviar:",
   faltaResponder: "Falta responder.",
   correoMal: "Confira o e-mail: parece que falta algo.",
+  whatsappMal: "Confira o número: com o código do país e sem letras.",
   limite: (tope) => `Você passou do limite de ${tope} caracteres.`,
   opcional: " (opcional)",
   trampa: "Não preencha este campo",
@@ -359,6 +373,7 @@ const pt: TextosAplicar = {
     firstName: "Seu nome",
     lastName: "Seu sobrenome",
     email: "Seu e-mail",
+    whatsapp: "Seu WhatsApp",
     linkedin: "Seu LinkedIn",
     career: "No que você está agora",
     reason: "Por que você quer participar",
@@ -388,6 +403,9 @@ const pt: TextosAplicar = {
   apellidos: "Sobrenome",
   correo: "E-mail",
   correoAyuda: "É por aqui que avisamos se você entrou e por onde mandamos o local.",
+  whatsapp: "WhatsApp",
+  whatsappAyuda:
+    "Com o código do país. É por onde coordenamos o fim de semana; não usamos para mais nada.",
   linkedin: "LinkedIn",
   linkedinAyuda: "Se você não tiver, cole outro perfil onde dê para ver no que você trabalhou.",
   carrera: "No que você está agora?",
@@ -416,9 +434,9 @@ const pt: TextosAplicar = {
   confirmacionIA:
     "As respostas desta inscrição fui eu que escrevi. Posso ter usado um modelo para corrigir a redação, mas o raciocínio é meu.",
   privacidadCortaAntes:
-    "Usamos as informações que você compartilha para selecionar os participantes e organizar o fim de semana. Se você for selecionado, os demais participantes poderão ver seu nome. Seu e-mail e o que você escreveu aqui são confidenciais. Se em algum momento você quiser que apaguemos seus dados, pode escrever para ",
+    "Usamos as informações que você compartilha para selecionar os participantes e organizar o fim de semana. Se você for selecionado, os demais participantes poderão ver seu nome. Seu e-mail, seu WhatsApp e o que você escreveu aqui são confidenciais. Se em algum momento você quiser que apaguemos seus dados, pode escrever para ",
   privacidadAntes:
-    "Usamos as informações que você compartilha para selecionar os participantes e organizar o fim de semana. Se você for selecionado, os demais participantes poderão ver seu nome, no que você está trabalhando e a frente que escolheu, para facilitar a formação de equipes. Seu e-mail e suas respostas às duas últimas perguntas serão confidenciais. Se em algum momento você quiser que apaguemos seus dados, pode escrever para ",
+    "Usamos as informações que você compartilha para selecionar os participantes e organizar o fim de semana. Se você for selecionado, os demais participantes poderão ver seu nome, no que você está trabalhando e a frente que escolheu, para facilitar a formação de equipes. Seu e-mail, seu WhatsApp e suas respostas às duas últimas perguntas serão confidenciais. Se em algum momento você quiser que apaguemos seus dados, pode escrever para ",
   privacidadDespues: ".",
   enviar: "Enviar inscrição",
   enviando: "Enviando…",

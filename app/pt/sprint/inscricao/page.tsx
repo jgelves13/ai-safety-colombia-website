@@ -54,7 +54,7 @@ export default function Inscricao() {
           {!cerrado ? (
             <div className="mb-8 flex flex-col gap-3">
               <p className="text-body-sm text-aisc-ink">
-                Durante o fim de semana você terá espaço de trabalho, alimentação, conectividade e mentores na sala. As
+                Durante o fim de semana você terá espaço de trabalho, alimentação, hospedagem se vier de outra cidade, conectividade e mentores na sala. As
                 vagas são limitadas, então há seleção.
               </p>
               <p className="text-body-sm text-aisc-ink">
