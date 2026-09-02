@@ -705,7 +705,7 @@ const MENTORES: {
   {
     nombre: "María Lorena Flórez",
     rol: "Ponente",
-    foto: "/aisc/mentores/maria-lorena-florez-v3.png",
+    foto: "/aisc/mentores/maria-lorena-florez-v4.png",
     modalidad: "Remoto",
     linkedin:
       "https://www.linkedin.com/in/maria-lorena-florez-rojas/",
