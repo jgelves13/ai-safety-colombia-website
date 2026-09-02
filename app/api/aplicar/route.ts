@@ -308,8 +308,7 @@ async function avisarDeLoQueNoCupo(
   };
   const perdido = quitadas
     .map((c) => `${c}: ${datos[CAMPOS[c] ?? c] ?? ""}`)
-    .join("
-");
+    .join("\n");
   try {
     await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -331,8 +330,7 @@ ${quitadas
             (c) =>
               `alter table public.sprint_applications add column if not exists ${c} text;`,
           )
-          .join("
-")}`,
+          .join("\n")}`,
       }),
     });
   } catch {
