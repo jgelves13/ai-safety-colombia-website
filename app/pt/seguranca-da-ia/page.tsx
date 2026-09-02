@@ -147,7 +147,7 @@ const INDICE: ItemIndice[] = [
 ];
 
 const RESUMEN = [
-  "Os melhores sistemas de IA já não respondem perguntas: trabalham sozinhos durante horas, escrevem e executam código e usam ferramentas sem que ninguém revise cada passo. A METR, a organização que mede o que esses sistemas conseguem fazer, encontra que a duração das tarefas que completam sozinhos dobra a cada sete meses. Quando um sistema responde, um erro é uma resposta ruim que alguém descarta; quando age, um erro é algo que já aconteceu.",
+  "Os melhores sistemas de IA já não respondem perguntas: trabalham sozinhos durante horas, escrevem e executam código e usam ferramentas sem que ninguém revise cada passo. A METR, a organização que mede o que esses sistemas conseguem fazer, encontra que a duração das tarefas que completam sozinhos, medida pelo que levaria a um profissional fazê-las, dobra a cada sete meses. Quando um sistema responde, um erro é uma resposta ruim que alguém descarta; quando age, um erro é algo que já aconteceu.",
   "Ninguém sabe verificar de antemão o que um desses sistemas vai fazer, porque eles não são programados, são treinados. Em 2025 a Anthropic descobriu que seu modelo reconhecia quando estava sendo avaliado e que isso o fazia comportar-se melhor, o que colocou em dúvida suas próprias medições de segurança. Em julho de 2026, dois modelos da OpenAI saíram do ambiente isolado em que estavam sendo testados, comprometeram a infraestrutura da Hugging Face e tiraram de lá as respostas do exame que estavam fazendo. Ninguém era obrigado a reportar isso.",
   "Verificar esses sistemas e decidir sobre eles, enquanto isso, avança no ritmo de sempre. Todo o campo da segurança da IA soma cerca de 1.300 pessoas e USD 525 milhões por ano; as quatro empresas que mais investem anunciaram perto de 700.000 milhões só para 2026. O mapa mais completo do campo, com 170 organizações, não registra nenhuma na América Latina.",
 ];
@@ -565,7 +565,7 @@ export default function SegurancaDaIa() {
               </Fuente>
               . O exercício foi computacional: nada foi sintetizado e não se
               demonstrou que as variantes mantivessem a toxicidade, e Michael
-              Cohen, de Berkeley, sustenta que o desafio era fraco.
+              Cohen, de Berkeley, sustenta que esse exercício exigiu muito pouco desse software.
             </Parrafo>
             <Parrafo>
               O gargalo continua sendo o laboratório, e quanto isso dura é o que
@@ -603,8 +603,7 @@ export default function SegurancaDaIa() {
                 (AI Safety Field Map, dados até setembro de 2025)
               </Fuente>
               . Amazon, Google, Meta e Microsoft anunciaram perto de USD 700.000
-              milhões em infraestrutura de IA só para 2026, mais de 60 % acima de
-              2025{" "}
+              milhões em infraestrutura de IA só para 2026, mais de 60 % acima do investido em 2025{" "}
               <Fuente href="https://www.cnbc.com/2026/02/06/google-microsoft-meta-amazon-ai-cash.html">
                 (CNBC, 2026)
               </Fuente>
@@ -657,10 +656,10 @@ export default function SegurancaDaIa() {
             {/* ---------------------------------------------------------- */}
             <H2 id="desacuerdo">Quem discorda tem parte de razão</H2>
             <Parrafo>
-              Em 2023 perguntou-se a 2.778 pesquisadores que publicam nas
-              principais conferências de IA pela probabilidade de que a IA
-              avançada termine em extinção humana ou em uma perda de controle
-              comparável: a mediana foi 5 % e a média 16,2 %, e entre 38 % e 51 %
+              Em 2023, 2.778 pesquisadores que publicam nas principais
+              conferências de IA responderam a uma pesquisa sobre a
+              probabilidade de que a IA avançada termine em extinção humana ou
+              em uma perda de controle comparável: a mediana foi 5 % e a média 16,2 %, e entre 38 % e 51 %
               deram a esse desfecho ao menos 10 %{" "}
               <Fuente href="https://arxiv.org/abs/2401.02843">
                 (Grace et al., 2024)

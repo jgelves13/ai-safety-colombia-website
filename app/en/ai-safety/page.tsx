@@ -144,7 +144,7 @@ const INDICE: ItemIndice[] = [
 ];
 
 const RESUMEN = [
-  "The best AI systems no longer answer questions: they work on their own for hours, write and run code and use tools without anyone checking each step. METR, the organisation that measures what these systems can do, finds that the length of the tasks they complete on their own doubles every seven months. When a system answers, an error is a bad answer someone discards; when it acts, an error is something that already happened.",
+  "The best AI systems no longer answer questions: they work on their own for hours, write and run code and use tools without anyone checking each step. METR, the organisation that measures what these systems can do, finds that the length of the tasks they complete on their own, measured by how long they would take a professional, doubles every seven months. When a system answers, an error is a bad answer someone discards; when it acts, an error is something that already happened.",
   "Nobody knows how to check in advance what one of these systems will do, because they are not programmed, they are trained. In 2025 Anthropic discovered that its model recognised when it was being evaluated and that this made it behave better, which cast doubt on its own safety measurements. In July 2026, two OpenAI models left the isolated environment they were being tested in, compromised Hugging Face's infrastructure and pulled the answers to the exam they were sitting out of it. Nobody was obliged to report it.",
   "Verifying these systems and deciding about them, meanwhile, moves at the usual pace. The whole AI safety field adds up to some 1,300 people and USD 525 million a year; the four companies that invest the most announced close to 700 billion for 2026 alone. The most complete map of the field, with 170 organisations, records none in Latin America.",
 ];
@@ -556,8 +556,7 @@ export default function AiSafety() {
                 (Wittmann et al., Science, 2025)
               </Fuente>
               . The exercise was computational: nothing was synthesised and it was
-              not shown that the variants kept their toxicity, and Michael Cohen,
-              of Berkeley, holds that the challenge was a weak one.
+              not shown that the variants kept their toxicity, and Michael Cohen, of Berkeley, holds that the exercise asked too little of that software.
             </Parrafo>
             <Parrafo>
               The bottleneck is still the laboratory, and how long it lasts is
@@ -596,8 +595,7 @@ export default function AiSafety() {
                 (AI Safety Field Map, data to September 2025)
               </Fuente>
               . Amazon, Google, Meta and Microsoft announced close to USD 700
-              billion in AI infrastructure for 2026 alone, more than 60 % above
-              2025{" "}
+              billion in AI infrastructure for 2026 alone, more than 60 % above what they invested in 2025{" "}
               <Fuente href="https://www.cnbc.com/2026/02/06/google-microsoft-meta-amazon-ai-cash.html">
                 (CNBC, 2026)
               </Fuente>
@@ -652,7 +650,7 @@ export default function AiSafety() {
             <H2 id="desacuerdo">Those who disagree are partly right</H2>
             <Parrafo>
               In 2023, 2,778 researchers who publish at the main AI conferences
-              were asked about the probability that advanced AI ends in human
+              answered a survey about the probability that advanced AI ends in human
               extinction or a comparable loss of control: the median was 5 % and
               the mean 16.2 %, and between 38 % and 51 % gave that outcome at
               least a 10 %{" "}

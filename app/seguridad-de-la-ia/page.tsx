@@ -144,7 +144,7 @@ const INDICE: ItemIndice[] = [
 ];
 
 const RESUMEN = [
-  "Los mejores sistemas de IA ya no responden preguntas: trabajan solos durante horas, escriben y ejecutan código y usan herramientas sin que nadie revise cada paso. METR, la organización que mide de qué son capaces estos sistemas, encuentra que la duración de las tareas que completan solos se duplica cada siete meses. Cuando un sistema responde, un error es una respuesta mala que alguien descarta; cuando actúa, un error es algo que ya ocurrió.",
+  "Los mejores sistemas de IA ya no responden preguntas: trabajan solos durante horas, escriben y ejecutan código y usan herramientas sin que nadie revise cada paso. METR, la organización que mide de qué son capaces estos sistemas, encuentra que la duración de las tareas que completan solos, medida por lo que a un profesional le tomaría hacerlas, se duplica cada siete meses. Cuando un sistema responde, un error es una respuesta mala que alguien descarta; cuando actúa, un error es algo que ya ocurrió.",
   "Nadie sabe comprobar de antemano qué va a hacer uno de estos sistemas, porque no se programan, se entrenan. En 2025 Anthropic descubrió que su modelo reconocía cuándo lo estaban evaluando y que eso lo hacía portarse mejor, lo que dejó en duda sus propias mediciones de seguridad. En julio de 2026, dos modelos de OpenAI salieron del entorno aislado en el que los probaban, comprometieron la infraestructura de Hugging Face y sacaron de ahí las respuestas del examen que estaban presentando. Nadie estaba obligado a contarlo.",
   "Verificar estos sistemas y decidir sobre ellos, en cambio, avanza al ritmo de siempre. Todo el campo de la seguridad de la IA reúne unas 1.300 personas y 525 millones de dólares al año; las cuatro empresas que más invierten anunciaron cerca de 700.000 millones solo para 2026. El mapa más completo del campo, con 170 organizaciones, no registra ninguna en América Latina.",
 ];
@@ -558,15 +558,14 @@ export default function SeguridadDeLaIA() {
               control: los proveedores de síntesis de ADN, que revisan cada pedido
               de forma voluntaria. En octubre de 2025, un equipo dirigido por Eric
               Horvitz, director científico de Microsoft, generó 76.089 variantes de
-              72 proteínas de preocupación, entre ellas la ricina y la neurotoxina
+              72 proteínas preocupantes, entre ellas la ricina y la neurotoxina
               botulínica,             y la mayoría pasó sin que la detectara el software con el que
               esos proveedores revisan los pedidos{" "}
               <Fuente href="https://erichorvitz.com/paraphrase.htm">
                 (Wittmann et al., Science, 2025)
               </Fuente>
               . El ejercicio fue computacional: no se sintetizó nada ni se demostró
-              que las variantes conservaran su toxicidad, y Michael Cohen, de
-              Berkeley, sostiene que el reto era débil.
+              que las variantes conservaran su toxicidad, y Michael Cohen, de Berkeley, sostiene que ese ejercicio le exigió muy poco al software.
             </Parrafo>
             <Parrafo>
               El cuello de botella sigue siendo el laboratorio, y cuánto dure es lo
@@ -606,8 +605,7 @@ export default function SeguridadDeLaIA() {
                 (AI Safety Field Map, datos a septiembre de 2025)
               </Fuente>
               . Amazon, Google, Meta y Microsoft anunciaron cerca de 700.000
-              millones de dólares en infraestructura de IA solo para 2026, más de
-              un 60 % por encima de 2025{" "}
+              millones de dólares en infraestructura de IA solo para 2026, más de un 60 % por encima de lo invertido en 2025{" "}
               <Fuente href="https://www.cnbc.com/2026/02/06/google-microsoft-meta-amazon-ai-cash.html">
                 (CNBC, 2026)
               </Fuente>
@@ -661,10 +659,10 @@ export default function SeguridadDeLaIA() {
               Quienes no están de acuerdo tienen parte de razón
             </H2>
             <Parrafo>
-              En 2023 se les preguntó a 2.778 investigadores que publican en las
-              principales conferencias de IA por la probabilidad de que la IA
-              avanzada termine en la extinción humana o en una pérdida de control
-              comparable: la mediana fue 5 % y el promedio 16,2 %, y entre el 38 % y
+              En 2023, 2.778 investigadores que publican en las principales
+              conferencias de IA contestaron una encuesta sobre la probabilidad
+              de que la IA avanzada termine en la extinción humana o en una
+              pérdida de control comparable: la mediana fue 5 % y el promedio 16,2 %, y entre el 38 % y
               el 51 % le dio al menos un 10 % a ese desenlace{" "}
               <Fuente href="https://arxiv.org/abs/2401.02843">
                 (Grace et al., 2024)
