@@ -1114,7 +1114,7 @@ export default function Hackathon() {
               </p>
             </div>
           </div>
-          <ul className="mt-12 flex flex-wrap justify-center gap-3 md:mt-14 lg:mt-16">
+          <ul className="mt-12 grid grid-cols-1 gap-3 md:mt-14 lg:mt-16 lg:grid-cols-3">
             {TRACKS.map((t, i) => (
               <li className="flex" key={t.id}>
                 <article className="flex min-h-[180px] w-full flex-col gap-3 rounded-[8px] border border-aisc-forest/55 bg-aisc-cream p-6 md:min-h-[200px] md:p-7">
