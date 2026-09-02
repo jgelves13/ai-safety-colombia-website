@@ -756,7 +756,7 @@ const MENTORES: {
     nombre: "Roberto García Alonso",
     rol: "Speaker",
     foto: "/aisc/mentores/roberto-garcia.png",
-    modalidad: "In Bogotá",
+    modalidad: "Remote",
     linkedin: "https://www.linkedin.com/in/roberto-garcia-alonso/",
     bio: (
       <>
