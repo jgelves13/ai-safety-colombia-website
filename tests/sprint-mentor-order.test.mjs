@@ -5,12 +5,12 @@ import { orderSprintMentors } from "../lib/sprint-mentor-order.mjs";
 
 const expectedOrder = [
   "Diego Gómez",
+  "Luis Cosio",
+  "Luis Montoya",
   "Roberto García Alonso",
   "María Lorena Flórez",
   "Camila Beltrán",
   "Liliana Fernández",
-  "Luis Cosio",
-  "Luis Montoya",
   "Christian Urcuqui",
   "Manuela Chacón",
   "Gerson Quintero",
