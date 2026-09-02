@@ -747,13 +747,11 @@ const MENTORES: {
       </>
     ),
   },
-  /* Oculto temporalmente el 26-ago-2026 a peticion de Jose. Para
-     devolverlo, basta con quitar este comentario. */
-  /*
   {
     nombre: "Roberto García Alonso",
-    rol: "Mentor y ponente",
+    rol: "Ponente",
     foto: "/aisc/mentores/roberto-garcia.png",
+    modalidad: "En Bogotá",
     linkedin: "https://www.linkedin.com/in/roberto-garcia-alonso/",
     bio: (
       <>
@@ -797,7 +795,6 @@ const MENTORES: {
       </>
     ),
   },
-  */
 ];
 
 const MENTORES_ORDENADOS = orderSprintMentors(MENTORES);
@@ -1191,9 +1188,22 @@ export default function Hackathon() {
             </div>
           </div>
           <ul className="mt-12 flex flex-wrap justify-center gap-x-6 gap-y-8 md:mt-14 lg:mt-16">
-            {MENTORES_ORDENADOS.map((m) => (
+            {/* Con un roster impar, las filas de 2 (movil) y de 3 (sm)
+                dejarian a la ultima persona sola; las ultimas tarjetas se
+                encogen para cerrar en una fila de 3 o de 4. En lg van de a 5. */}
+            {MENTORES_ORDENADOS.map((m, i) => (
               <li
-                className="flex w-[calc((100%_-_1.5rem)/2)] flex-col gap-3 sm:w-[calc((100%_-_3rem)/3)] lg:w-[calc((100%_-_4.5rem)/4)]"
+                className={`flex flex-col gap-3 ${
+                  MENTORES_ORDENADOS.length % 2 === 1 &&
+                  i >= MENTORES_ORDENADOS.length - 3
+                    ? "w-[calc((100%_-_3rem)/3)]"
+                    : "w-[calc((100%_-_1.5rem)/2)]"
+                } ${
+                  MENTORES_ORDENADOS.length % 3 === 1 &&
+                  i >= MENTORES_ORDENADOS.length - 4
+                    ? "sm:w-[calc((100%_-_4.5rem)/4)]"
+                    : "sm:w-[calc((100%_-_3rem)/3)]"
+                } lg:w-[calc((100%_-_6rem)/5)]`}
                 key={m.nombre}
               >
                 <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[8px] bg-aisc-sand">
