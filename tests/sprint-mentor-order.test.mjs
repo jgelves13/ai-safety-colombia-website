@@ -5,38 +5,30 @@ import { orderSprintMentors } from "../lib/sprint-mentor-order.mjs";
 
 const expectedOrder = [
   "Diego Gómez",
-  "Luis Cosio",
+  "Roberto García Alonso",
+  "María Lorena Flórez",
   "Camila Beltrán",
-  "Christian Urcuqui",
-  "Luis Montoya",
   "Liliana Fernández",
-  "Gerson Quintero",
-  "Leidy Aldana",
+  "Luis Cosio",
+  "Luis Montoya",
+  "Christian Urcuqui",
   "Manuela Chacón",
+  "Gerson Quintero",
   "Robert Gómez",
+  "Leidy Aldana",
+  "Juan Cortés",
 ];
 
-test("Diego stays first while the remaining sprint profiles follow relevance order", () => {
-  const currentOrder = [
-    "Diego Gómez",
-    "Luis Montoya",
-    "Camila Beltrán",
-    "Liliana Fernández",
-    "Luis Cosio",
-    "Christian Urcuqui",
-    "Manuela Chacón",
-    "Leidy Aldana",
-    "Gerson Quintero",
-    "Robert Gómez",
-  ].map((nombre) => ({ nombre }));
+test("the cards rank by professional background, strongest first", () => {
+  const shuffled = [...expectedOrder].reverse().map((nombre) => ({ nombre }));
 
   assert.deepEqual(
-    orderSprintMentors(currentOrder).map(({ nombre }) => nombre),
+    orderSprintMentors(shuffled).map(({ nombre }) => nombre),
     expectedOrder,
   );
 });
 
-test("every sprint locale renders mentors with the shared relevance order", () => {
+test("every sprint locale renders mentors with the shared order", () => {
   const localePages = [
     "app/sprint/page.tsx",
     "app/en/sprint/page.tsx",
@@ -53,7 +45,7 @@ test("every sprint locale renders mentors with the shared relevance order", () =
       `${page} must derive the shared mentor order once`,
     );
     assert.ok(
-      source.includes("MENTORES_ORDENADOS.map((m) =>"),
+      source.includes("MENTORES_ORDENADOS.map((m, i) =>"),
       `${page} must render the shared mentor order`,
     );
   }
