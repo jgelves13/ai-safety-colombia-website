@@ -1161,7 +1161,7 @@ export default function Hackathon() {
           <ul className="mt-12 grid grid-cols-1 gap-3 md:mt-14 lg:mt-16 lg:grid-cols-3">
             {HUB.map((h) => (
               <li
-                className="flex w-full lg:w-[calc((100%_-_1.5rem)/3)]"
+                className="flex w-full"
                 key={h.titulo}
               >
                 <article className={`${TARJETA} w-full`}>
