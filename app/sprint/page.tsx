@@ -164,10 +164,6 @@ const HUB = [
     body: "Cubrimos las comidas del fin de semana, para que los equipos no tengan que salir de la sala a resolverlo.",
   },
   {
-    titulo: "Hospedaje",
-    body: "Cubrimos el hospedaje de quienes vengan de otra ciudad. En el formulario nos dices desde dónde vendrías.",
-  },
-  {
     titulo: "Apoyo para cómputo",
     body: "Cubrimos parte del gasto de cómputo de los equipos. La cifra se confirma antes del cierre de aplicaciones.",
   },

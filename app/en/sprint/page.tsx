@@ -172,10 +172,6 @@ const HUB = [
     body: "We cover meals for the whole weekend, so teams do not have to leave the room to sort it out.",
   },
   {
-    titulo: "A place to stay",
-    body: "We cover accommodation for anyone coming from another city. In the form you tell us where you would be coming from.",
-  },
-  {
     titulo: "Compute support",
     body: "We cover part of the teams' compute costs. The figure is confirmed before applications close.",
   },
