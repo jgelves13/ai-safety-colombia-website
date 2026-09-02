@@ -172,6 +172,10 @@ const HUB = [
     body: "We cover meals for the whole weekend, so teams do not have to leave the room to sort it out.",
   },
   {
+    titulo: "A place to stay",
+    body: "We cover accommodation for anyone coming from another city. In the form you tell us where you would be coming from.",
+  },
+  {
     titulo: "Compute support",
     body: "We cover part of the teams' compute costs. The figure is confirmed before applications close.",
   },
@@ -208,6 +212,7 @@ const PREMIOS = [
 const MENTORES: {
   nombre: string;
   rol: string;
+  modalidad: string;
   foto?: string;
   linkedin?: string;
   bio?: React.ReactNode;
@@ -216,6 +221,7 @@ const MENTORES: {
     nombre: "Diego Gómez",
     rol: "Mentor",
     foto: "/aisc/mentores/diego-gomez.png",
+    modalidad: "Remote",
     linkedin: "https://www.linkedin.com/in/diegoalejogm/",
     bio: (
       <>
@@ -255,6 +261,7 @@ const MENTORES: {
     nombre: "Luis Montoya",
     rol: "Mentor and speaker",
     foto: "/aisc/mentores/luis-montoya.png",
+    modalidad: "Remote",
     linkedin: "https://www.linkedin.com/in/luismmontoya/",
     bio: (
       <>
@@ -302,6 +309,7 @@ const MENTORES: {
     nombre: "Camila Beltrán",
     rol: "Mentor and speaker",
     foto: "/aisc/mentores/camila-beltran.png",
+    modalidad: "In Bogotá",
     linkedin:
       "https://www.linkedin.com/in/camila-alejandra-beltran-reyes-ab288627a/",
     bio: (
@@ -340,20 +348,30 @@ const MENTORES: {
   {
     nombre: "Liliana Fernández",
     rol: "Mentor",
-    foto: "/aisc/mentores/liliana-fernandez.png",
+    foto: "/aisc/mentores/liliana-fernandez-v2.png",
+    modalidad: "In Bogotá",
     linkedin: "https://www.linkedin.com/in/lilianafernandezict4d/",
     bio: (
       <>
-        An AI governance expert and a member of the{" "}
+        An AI governance expert, an authorized{" "}
+        <a
+          className={ENLACE}
+          href="https://standards.ieee.org/products-programs/icap/ieee-certifaied/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          IEEE CertifAIed
+        </a>{" "}
+        assessor and a member of the{" "}
         <a
           className={ENLACE}
           href="https://oecd.ai/en/community/liliana-frenandez"
           target="_blank"
           rel="noopener noreferrer"
         >
-          OECD expert group
+          OECD group
         </a>{" "}
-        on AI compute. For eight years she advised the data and AI policy of
+        on AI compute. She spent eight years on data and AI policy at
         Colombia’s{" "}
         <a
           className={ENLACE}
@@ -361,9 +379,9 @@ const MENTORES: {
           target="_blank"
           rel="noopener noreferrer"
         >
-          National Planning Department
-        </a>
-        . In July she took part in the{" "}
+          planning department
+        </a>{" "}
+        and joined the{" "}
         <a
           className={ENLACE}
           href="https://www.successif.org/womens-retreat"
@@ -380,6 +398,7 @@ const MENTORES: {
     nombre: "Luis Cosio",
     rol: "Mentor and speaker",
     foto: "/aisc/mentores/luis-cosio.png",
+    modalidad: "Remote",
     linkedin: "https://www.linkedin.com/in/luiscosio/",
     bio: (
       <>
@@ -428,6 +447,7 @@ const MENTORES: {
     nombre: "Christian Urcuqui",
     rol: "Mentor and speaker",
     foto: "/aisc/mentores/christian-urcuqui.png",
+    modalidad: "Remote",
     linkedin: "https://www.linkedin.com/in/christianurcuqui/",
     bio: (
       <>
@@ -475,6 +495,7 @@ const MENTORES: {
     nombre: "Manuela Chacón",
     rol: "Speaker",
     foto: "/aisc/mentores/manuela-chacon.png",
+    modalidad: "Remote",
     linkedin:
       "https://www.linkedin.com/in/manuela-viviana-chac%C3%B3n-chamorro-04b0621bb/",
     bio: (
@@ -524,6 +545,7 @@ const MENTORES: {
     nombre: "Leidy Aldana",
     rol: "Mentor and speaker",
     foto: "/aisc/mentores/leidy-aldana.png",
+    modalidad: "In Bogotá",
     linkedin: "https://www.linkedin.com/in/l-aldana/",
     bio: (
       <>
@@ -563,6 +585,7 @@ const MENTORES: {
     nombre: "Gerson Quintero",
     rol: "Speaker",
     foto: "/aisc/mentores/gerson-quintero.png",
+    modalidad: "In Bogotá",
     linkedin:
       "https://www.linkedin.com/in/gerson-david-quintero-rodriguez-2b7b9a18/",
     bio: (
@@ -602,6 +625,7 @@ const MENTORES: {
     nombre: "Robert Gómez",
     rol: "Mentor",
     foto: "/aisc/mentores/robert-gomez.png",
+    modalidad: "In Bogotá",
     linkedin: "https://www.linkedin.com/in/robert-gomez-6361571b6/",
     bio: (
       <>
@@ -643,6 +667,92 @@ const MENTORES: {
           LoopholeCheck
         </a>
         .
+      </>
+    ),
+  },
+  {
+    nombre: "Juan Cortés",
+    rol: "Mentor",
+    foto: "/aisc/mentores/juan-cortes.png",
+    modalidad: "Remote",
+    linkedin: "https://www.linkedin.com/in/jcortesj/",
+    bio: (
+      <>
+        A{" "}
+        <a
+          className={ENLACE}
+          href="https://velezreyesmas.com/proyectos/tech-fellowship/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Tech Fellowship
+        </a>{" "}
+        fellow at vélezreyes+ and a software developer who worked at{" "}
+        <a
+          className={ENLACE}
+          href="https://habi.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Habi
+        </a>. Co-author, in the journal{" "}
+        <a
+          className={ENLACE}
+          href="https://revistas.udistrital.edu.co/index.php/Tecnura/article/view/23438"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Tecnura
+        </a>, of a study on adversarial machine learning for the cybersecurity of AI
+        in Colombia.
+      </>
+    ),
+  },
+  {
+    nombre: "María Lorena Flórez",
+    rol: "Speaker",
+    foto: "/aisc/mentores/maria-lorena-florez-v2.png",
+    modalidad: "Remote",
+    linkedin:
+      "https://www.linkedin.com/in/maria-lorena-florez-rojas/",
+    bio: (
+      <>
+        Professor of technology law at{" "}
+        <a
+          className={ENLACE}
+          href="https://www.rug.nl/staff/m.l.florez.rojas/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Groningen
+        </a>, algorithmic governance editor at{" "}
+        <a
+          className={ENLACE}
+          href="https://www.cambridge.org/core/journals/data-and-policy/information/about-this-journal/editorial-board"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Data &amp; Policy
+        </a>{" "}
+        and a{" "}
+        <a
+          className={ENLACE}
+          href="https://www.unesco.org/en/artificial-intelligence/rule-law/network-experts"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          UNESCO
+        </a>{" "}
+        expert on AI and the rule of law. She has{" "}
+        <a
+          className={ENLACE}
+          href="https://journals.openedition.org/revestudsoc/59583"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          written
+        </a>{" "}
+        on algocracy in the courts and how it erodes trust in the justice system.
       </>
     ),
   },
@@ -745,7 +855,7 @@ const FAQ = [
   },
   {
     q: "What is the difference between applying here and taking part online?",
-    a: "The sprint is the same one and the deliverable goes to the same place. Applying here is for the in-person hub in Bogotá, which has limited capacity and therefore a selection process. At the hub we cover meals, compute support and mentorship in the room. Taking part online with Apart has no selection and no cap.",
+    a: "The sprint is the same one and the deliverable goes to the same place. Applying here is for the in-person hub in Bogotá, which has limited capacity and therefore a selection process. At the hub we cover meals, accommodation for people coming from another city, compute support and mentorship in the room. Taking part online with Apart has no selection and no cap.",
   },
   {
     q: "How long does the application take?",
@@ -753,7 +863,7 @@ const FAQ = [
   },
   {
     q: "Can I apply if I do not live in Bogotá?",
-    a: "Yes. In the form you tell us where you would be coming from. Travel to Bogotá and your stay there are on you.",
+    a: "Yes. In the form you tell us where you would be coming from. We cover accommodation for people coming from another city; travel to Bogotá is on you.",
   },
 ];
 
@@ -1007,7 +1117,7 @@ export default function Hackathon() {
               </p>
             </div>
           </div>
-          <ul className="mt-12 grid grid-cols-1 gap-3 md:mt-14 lg:mt-16 lg:grid-cols-3">
+          <ul className="mt-12 flex flex-wrap justify-center gap-3 md:mt-14 lg:mt-16">
             {TRACKS.map((t, i) => (
               <li className="flex" key={t.id}>
                 <article className="flex min-h-[180px] w-full flex-col gap-3 rounded-[8px] border border-aisc-forest/55 bg-aisc-cream p-6 md:min-h-[200px] md:p-7">
@@ -1052,7 +1162,10 @@ export default function Hackathon() {
           </div>
           <ul className="mt-12 grid grid-cols-1 gap-3 md:mt-14 lg:mt-16 lg:grid-cols-3">
             {HUB.map((h) => (
-              <li className="flex" key={h.titulo}>
+              <li
+                className="flex w-full lg:w-[calc((100%_-_1.5rem)/3)]"
+                key={h.titulo}
+              >
                 <article className={`${TARJETA} w-full`}>
                   <h3 className="text-display-4 text-balance">{h.titulo}</h3>
                   <p className="text-body-sm text-aisc-muted">{h.body}</p>
@@ -1077,14 +1190,18 @@ export default function Hackathon() {
                   Over the weekend, people who work on the subjects of the five
                   tracks come through the room. Some open with a short talk.
                   Others sit down with the teams to support whatever they are
-                  building.
+                  building. Each card says whether that person will be in the
+                  room in Bogotá or joining remotely.
                 </p>
               </div>
             </div>
           </div>
-          <ul className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:mt-14 lg:mt-16 lg:grid-cols-5">
+          <ul className="mt-12 flex flex-wrap justify-center gap-x-6 gap-y-8 md:mt-14 lg:mt-16">
             {MENTORES_ORDENADOS.map((m) => (
-              <li className="flex flex-col gap-3" key={m.nombre}>
+              <li
+                className="flex w-[calc((100%_-_1.5rem)/2)] flex-col gap-3 sm:w-[calc((100%_-_3rem)/3)] lg:w-[calc((100%_-_4.5rem)/4)]"
+                key={m.nombre}
+              >
                 <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[8px] bg-aisc-sand">
                   {m.foto ? (
                     <img
@@ -1118,7 +1235,13 @@ export default function Hackathon() {
                       m.nombre
                     )}
                   </span>
-                  <span className="text-body-sm text-aisc-muted">{m.rol}</span>
+                  <span className="text-body-sm text-aisc-muted">
+                    {m.rol}
+                    <span aria-hidden="true"> · </span>
+                    <span className="text-aisc-forest/70">
+                      {m.modalidad}
+                    </span>
+                  </span>
                   {m.bio ? (
                     <p className="text-body-sm mt-2 text-aisc-ink">{m.bio}</p>
                   ) : null}
