@@ -827,7 +827,7 @@ const PERFILES = [
   },
   {
     rotulo: "Quem já responde a incidentes",
-    body: "A resposta a incidentes já é um ofício em bancos, saúde e outros setores. Aqui o sistema que falha não é o seu: é um modelo de um laboratório de fronteira, e o atacante é o próprio modelo.",
+    body: "A resposta a incidentes já é um ofício em bancos, saúde e outros setores. Aqui o incidente acontece dentro de um laboratório de fronteira, e o atacante é o modelo que estavam avaliando.",
   },
   {
     rotulo: "Quem chega ao tema pela primeira vez",
@@ -899,9 +899,9 @@ export default function Hackathon() {
               AI Incident Response Sprint
             </h1>
             <p className="text-body md:text-body-lg max-w-[680px] text-aisc-sand/90">
-              Um agente de IA em avaliação sai do seu ambiente de testes e
-              ataca um terceiro. Neste sprint, engenharia, cibersegurança,
-              política pública e jornalismo se unem para construir a resposta.
+              Um laboratório põe um modelo à prova, o modelo escapa e ataca um
+              terceiro. Neste sprint, engenharia, cibersegurança, política
+              pública e jornalismo se unem para construir a resposta.
             </p>
             <p className="text-body-sm mt-1 w-fit text-aisc-sand/75">
               {CIERRE_TEXTO}
@@ -1009,10 +1009,11 @@ export default function Hackathon() {
                   , cada uma por seu lado. Nenhuma lei as obrigava a isso.
                 </p>
                 <p>
-                  Este sprint não se trata de proteger os agentes de IA da sua
-                  empresa. Trata-se do que deveria acontecer quando o sistema
-                  que ataca é um modelo de um laboratório de fronteira, e de
-                  quem responde por isso.
+                  Quem atacou foram modelos de um laboratório de fronteira,
+                  rodando em uma avaliação. Ninguém tinha escrito de antemão
+                  com que contenção essa avaliação deveria rodar, que
+                  informação um regulador pode exigir depois, nem quem responde
+                  pelo dano. É isso que se escreve neste fim de semana.
                 </p>
                 <div className={AVISO}>
                   <p className="text-kicker text-aisc-sand/60">

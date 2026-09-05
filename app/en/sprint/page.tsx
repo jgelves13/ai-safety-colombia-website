@@ -825,7 +825,7 @@ const PERFILES = [
   },
   {
     rotulo: "People who already respond to incidents",
-    body: "Incident response is already a job in banking, health and other sectors. Here the system that fails is not yours: it is a model from a frontier lab, and the attacker is the model itself.",
+    body: "Incident response is already a job in banking, health and other sectors. Here the incident happens inside a frontier lab, and the attacker is the model they were evaluating.",
   },
   {
     rotulo: "People coming to the topic for the first time",
@@ -897,10 +897,9 @@ export default function Hackathon() {
               AI Incident Response Sprint
             </h1>
             <p className="text-body md:text-body-lg max-w-[680px] text-aisc-sand/90">
-              An AI agent under evaluation breaks out of its test environment
-              and attacks a third party. In this sprint, engineering,
-              cybersecurity, public policy and journalism come together to
-              build the response.
+              A lab runs an evaluation, the model breaks out and attacks a
+              third party. In this sprint, engineering, cybersecurity, public
+              policy and journalism come together to build the response.
             </p>
             <p className="text-body-sm mt-1 w-fit text-aisc-sand/75">
               {CIERRE_TEXTO}
@@ -1008,10 +1007,11 @@ export default function Hackathon() {
                   separately. No law obliged them to do it.
                 </p>
                 <p>
-                  This sprint is not about securing your company&apos;s AI
-                  agents. It is about what should happen when the system doing
-                  the attacking is a model from a frontier lab, and about who
-                  answers for it.
+                  The attackers were models from a frontier lab, running in an
+                  evaluation. Nobody had written down beforehand what
+                  containment that evaluation should run under, what a
+                  regulator can demand afterwards, or who answers for the
+                  damage. That is what gets written this weekend.
                 </p>
                 <div className={AVISO}>
                   <p className="text-kicker text-aisc-sand/60">
