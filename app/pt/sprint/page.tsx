@@ -672,7 +672,7 @@ const MENTORES: {
     nombre: "Juan Cortés",
     rol: "Mentor",
     foto: "/aisc/mentores/juan-cortes.png",
-    modalidad: "Remoto",
+    modalidad: "Em Bogotá",
     linkedin: "https://www.linkedin.com/in/jcortesj/",
     bio: (
       <>
@@ -827,7 +827,7 @@ const PERFILES = [
   },
   {
     rotulo: "Quem já responde a incidentes",
-    body: "A resposta a incidentes já é um ofício em bancos, saúde e outros setores. Aqui se olha o que muda quando o sistema que falha é de IA.",
+    body: "A resposta a incidentes já é um ofício em bancos, saúde e outros setores. Aqui o sistema que falha não é o seu: é um modelo de um laboratório de fronteira, e o atacante é o próprio modelo.",
   },
   {
     rotulo: "Quem chega ao tema pela primeira vez",
@@ -855,6 +855,10 @@ const FAQ = [
   {
     q: "Quanto tempo leva a inscrição?",
     a: "Cerca de vinte minutos. Não esperamos uma proposta fechada; queremos ver como você pensa o problema.",
+  },
+  {
+    q: "Quanto custa participar?",
+    a: "Nada. Participar é grátis, aqui e on-line. No hub também cobrimos a alimentação do fim de semana e a hospedagem de quem vier de outra cidade; a única coisa por sua conta é o transporte até Bogotá.",
   },
   {
     q: "Posso me inscrever se não moro em Bogotá?",
@@ -895,9 +899,9 @@ export default function Hackathon() {
               AI Incident Response Sprint
             </h1>
             <p className="text-body md:text-body-lg max-w-[680px] text-aisc-sand/90">
-              Um agente de IA age por conta própria e causa dano a um terceiro.
-              Neste sprint, engenharia, cibersegurança, política pública e
-              jornalismo se unem para construir a resposta.
+              Um agente de IA em avaliação sai do seu ambiente de testes e
+              ataca um terceiro. Neste sprint, engenharia, cibersegurança,
+              política pública e jornalismo se unem para construir a resposta.
             </p>
             <p className="text-body-sm mt-1 w-fit text-aisc-sand/75">
               {CIERRE_TEXTO}
@@ -1003,6 +1007,12 @@ export default function Hackathon() {
                     Hugging Face
                   </a>
                   , cada uma por seu lado. Nenhuma lei as obrigava a isso.
+                </p>
+                <p>
+                  Este sprint não se trata de proteger os agentes de IA da sua
+                  empresa. Trata-se do que deveria acontecer quando o sistema
+                  que ataca é um modelo de um laboratório de fronteira, e de
+                  quem responde por isso.
                 </p>
                 <div className={AVISO}>
                   <p className="text-kicker text-aisc-sand/60">
@@ -1147,7 +1157,8 @@ export default function Hackathon() {
                 <p>
                   Trabalhar um fim de semana inteiro é mais fácil acompanhado
                   do que sozinho em casa. Por isso abrimos uma sala em Bogotá,
-                  de sexta a domingo.
+                  de sexta a domingo. Participar não custa nada: a seleção
+                  existe porque a sala tem lotação, não porque haja um preço.
                 </p>
                 <p>
                   A sala fica no Chicó, no norte da cidade. Enviamos o endereço

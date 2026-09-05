@@ -670,7 +670,7 @@ const MENTORES: {
     nombre: "Juan Cortés",
     rol: "Mentor",
     foto: "/aisc/mentores/juan-cortes.png",
-    modalidad: "Remote",
+    modalidad: "In Bogotá",
     linkedin: "https://www.linkedin.com/in/jcortesj/",
     bio: (
       <>
@@ -825,7 +825,7 @@ const PERFILES = [
   },
   {
     rotulo: "People who already respond to incidents",
-    body: "Incident response is already a job in banking, health and other sectors. Here we look at what changes when the system that fails is an AI system.",
+    body: "Incident response is already a job in banking, health and other sectors. Here the system that fails is not yours: it is a model from a frontier lab, and the attacker is the model itself.",
   },
   {
     rotulo: "People coming to the topic for the first time",
@@ -853,6 +853,10 @@ const FAQ = [
   {
     q: "How long does the application take?",
     a: "About twenty minutes. We are not expecting a finished proposal; we want to see how you think about the problem.",
+  },
+  {
+    q: "How much does it cost to take part?",
+    a: "Nothing. Taking part is free, both here and online. At the hub we also cover the weekend's meals and accommodation for people coming from another city; the only thing on you is travel to Bogotá.",
   },
   {
     q: "Can I apply if I do not live in Bogotá?",
@@ -893,9 +897,10 @@ export default function Hackathon() {
               AI Incident Response Sprint
             </h1>
             <p className="text-body md:text-body-lg max-w-[680px] text-aisc-sand/90">
-              An AI agent acts on its own and harms a third party. In this
-              sprint, engineering, cybersecurity, public policy and journalism
-              come together to build the response.
+              An AI agent under evaluation breaks out of its test environment
+              and attacks a third party. In this sprint, engineering,
+              cybersecurity, public policy and journalism come together to
+              build the response.
             </p>
             <p className="text-body-sm mt-1 w-fit text-aisc-sand/75">
               {CIERRE_TEXTO}
@@ -1001,6 +1006,12 @@ export default function Hackathon() {
                     Hugging Face
                   </a>{" "}
                   separately. No law obliged them to do it.
+                </p>
+                <p>
+                  This sprint is not about securing your company&apos;s AI
+                  agents. It is about what should happen when the system doing
+                  the attacking is a model from a frontier lab, and about who
+                  answers for it.
                 </p>
                 <div className={AVISO}>
                   <p className="text-kicker text-aisc-sand/60">
@@ -1144,7 +1155,8 @@ export default function Hackathon() {
                 <p>
                   Working a whole weekend is easier in company than alone at
                   home. That is why we open a room in Bogotá, from Friday to
-                  Sunday.
+                  Sunday. Taking part costs nothing: selection exists because
+                  the room has a capacity, not because there is a price.
                 </p>
                 <p>
                   The room is in Chicó, in the north of the city. We send the
