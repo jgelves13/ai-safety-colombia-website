@@ -979,9 +979,9 @@ export default function Hackathon() {
                 <p>
                   Ya hay casos documentados en los que un sistema de IA atacó
                   por su cuenta a un tercero. En julio de 2026, unos modelos que
-                  estaban siendo evaluados se salieron de su entorno de pruebas
-                  y encadenaron fallas hasta entrar a la infraestructura de
-                  producción de Hugging Face. Lo contaron{" "}
+                  un laboratorio de frontera estaba evaluando se salieron de su
+                  entorno de pruebas y encadenaron fallas hasta entrar a la
+                  infraestructura de producción de Hugging Face. Lo contaron{" "}
                   <a
                     className={ENLACE}
                     href="https://openai.com/index/hugging-face-model-evaluation-security-incident/"
@@ -1000,14 +1000,6 @@ export default function Hackathon() {
                     Hugging Face
                   </a>{" "}
                   cada uno por su lado. Ninguna ley los obligaba a hacerlo.
-                </p>
-                <p>
-                  Los que atacaron eran modelos de un laboratorio de frontera,
-                  corriendo en una evaluación. Nadie tenía escrito de antemano
-                  con qué contención debía correr esa evaluación, qué
-                  información puede exigir un regulador después, ni quién
-                  responde por el daño. Eso es lo que se escribe este fin de
-                  semana.
                 </p>
                 <div className={AVISO}>
                   <p className="text-kicker text-aisc-sand/60">
@@ -1055,7 +1047,7 @@ export default function Hackathon() {
                   Cuando pasa algo así, casi nadie tiene a mano el
                   procedimiento: no está escrito cómo se contiene, ni cómo se
                   reconstruye qué falló, ni qué le puede exigir un regulador al
-                  proveedor, ni cómo se cuenta el caso sin exagerar ni
+                  laboratorio, ni cómo se cuenta el caso sin exagerar ni
                   minimizar.
                 </p>
                 <p>

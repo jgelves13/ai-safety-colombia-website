@@ -985,10 +985,10 @@ export default function Hackathon() {
               <div className="text-body md:text-body-lg flex flex-col gap-5 text-aisc-ink">
                 <p>
                   Já há casos documentados em que um sistema de IA atacou por
-                  conta própria um terceiro. Em julho de 2026, modelos que
-                  estavam sendo avaliados saíram do seu ambiente de testes e
-                  encadearam falhas até entrar na infraestrutura de produção da
-                  Hugging Face. Contaram o caso a{" "}
+                  conta própria um terceiro. Em julho de 2026, modelos que um
+                  laboratório de fronteira estava avaliando saíram do seu
+                  ambiente de testes e encadearam falhas até entrar na
+                  infraestrutura de produção da Hugging Face. Contaram o caso a{" "}
                   <a
                     className={ENLACE}
                     href="https://openai.com/index/hugging-face-model-evaluation-security-incident/"
@@ -1007,13 +1007,6 @@ export default function Hackathon() {
                     Hugging Face
                   </a>
                   , cada uma por seu lado. Nenhuma lei as obrigava a isso.
-                </p>
-                <p>
-                  Quem atacou foram modelos de um laboratório de fronteira,
-                  rodando em uma avaliação. Ninguém tinha escrito de antemão
-                  com que contenção essa avaliação deveria rodar, que
-                  informação um regulador pode exigir depois, nem quem responde
-                  pelo dano. É isso que se escreve neste fim de semana.
                 </p>
                 <div className={AVISO}>
                   <p className="text-kicker text-aisc-sand/60">
@@ -1060,7 +1053,7 @@ export default function Hackathon() {
                 <p>
                   Quando algo assim acontece, quase ninguém tem o procedimento à
                   mão: não está escrito como se contém, nem como se reconstrói o
-                  que falhou, nem o que um regulador pode exigir do fornecedor,
+                  que falhou, nem o que um regulador pode exigir do laboratório,
                   nem como se conta o caso sem exagerar nem minimizar.
                 </p>
                 <p>

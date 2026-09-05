@@ -983,10 +983,10 @@ export default function Hackathon() {
               <div className="text-body md:text-body-lg flex flex-col gap-5 text-aisc-ink">
                 <p>
                   There are already documented cases in which an AI system
-                  attacked a third party on its own. In July 2026, models that
-                  were being evaluated broke out of their test environment and
-                  chained failures until they reached Hugging Face&apos;s
-                  production infrastructure. It was reported by{" "}
+                  attacked a third party on its own. In July 2026, models that a
+                  frontier lab was evaluating broke out of their test
+                  environment and chained failures until they reached Hugging
+                  Face&apos;s production infrastructure. It was reported by{" "}
                   <a
                     className={ENLACE}
                     href="https://openai.com/index/hugging-face-model-evaluation-security-incident/"
@@ -1005,13 +1005,6 @@ export default function Hackathon() {
                     Hugging Face
                   </a>{" "}
                   separately. No law obliged them to do it.
-                </p>
-                <p>
-                  The attackers were models from a frontier lab, running in an
-                  evaluation. Nobody had written down beforehand what
-                  containment that evaluation should run under, what a
-                  regulator can demand afterwards, or who answers for the
-                  damage. That is what gets written this weekend.
                 </p>
                 <div className={AVISO}>
                   <p className="text-kicker text-aisc-sand/60">
@@ -1059,7 +1052,7 @@ export default function Hackathon() {
                   When something like that happens, almost nobody has the
                   procedure to hand: it is not written down how to contain it,
                   nor how to reconstruct what failed, nor what a regulator can
-                  demand of the provider, nor how to tell the story without
+                  demand of the lab, nor how to tell the story without
                   exaggerating or playing it down.
                 </p>
                 <p>
