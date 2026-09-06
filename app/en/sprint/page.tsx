@@ -173,7 +173,7 @@ const HUB = [
   },
   {
     titulo: "Compute support",
-    body: "We cover part of the teams' compute costs. The figure is confirmed before applications close.",
+    body: "Up to USD 50 per team for compute, APIs or services the project uses. The team pays and the hub reimburses against receipts, once the deliverable is submitted to Apart.",
   },
   {
     titulo: "Mentorship in the room",

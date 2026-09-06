@@ -173,7 +173,7 @@ const HUB = [
   },
   {
     titulo: "Apoio para computação",
-    body: "Cobrimos parte do gasto de computação das equipes. O valor é confirmado antes do encerramento das inscrições.",
+    body: "Até USD 50 por equipe para computação, APIs ou serviços que o projeto use. A equipe paga e o hub reembolsa mediante recibos, depois que o entregável estiver enviado à Apart.",
   },
   {
     titulo: "Mentoria na sala",

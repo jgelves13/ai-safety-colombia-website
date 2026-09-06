@@ -165,7 +165,7 @@ const HUB = [
   },
   {
     titulo: "Apoyo para cómputo",
-    body: "Cubrimos parte del gasto de cómputo de los equipos. La cifra se confirma antes del cierre de aplicaciones.",
+    body: "Hasta USD 50 por equipo para cómputo, APIs o servicios que use el proyecto. El equipo paga y el hub reembolsa contra recibos, una vez el entregable esté subido a Apart.",
   },
   {
     titulo: "Mentoría en sala",
