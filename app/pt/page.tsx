@@ -6,6 +6,7 @@ import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { CTA_LINK, CTA_LINK_PRIMARY, FILL_IMAGE, HERO_CORNER_CLASS } from "@/components/ui";
 import { alternativas } from "@/lib/idiomas";
+import { openGraph } from "@/lib/metadatos";
 
 export const metadata: Metadata = {
   /* `absolute` para que o template do layout não cole outro
@@ -14,21 +15,9 @@ export const metadata: Metadata = {
   description:
     "Comunidade na Colômbia de pesquisadores, engenheiros e profissionais de políticas públicas dedicada a que a inteligência artificial avance de forma segura e benéfica.",
   alternates: { canonical: "/pt", languages: alternativas("/pt") },
-  /* O `title` de cima não desce sozinho às etiquetas og:; sem isto o cartão do
-     WhatsApp ou do LinkedIn fica com « AI Safety Colombia » seco, que é o valor
-     padrão do layout, e anuncia-se em espanhol a partir da rota raiz. */
-  openGraph: {
-    title: { absolute: "AI Safety Colombia — Rumo a uma inteligência artificial segura" },
-    description:
-      "Comunidade na Colômbia de pesquisadores, engenheiros e profissionais de políticas públicas dedicada a que a inteligência artificial avance de forma segura e benéfica.",
-    url: "/pt",
-    locale: "pt_BR",
-  },
-  twitter: {
-    title: { absolute: "AI Safety Colombia — Rumo a uma inteligência artificial segura" },
-    description:
-      "Comunidade na Colômbia de pesquisadores, engenheiros e profissionais de políticas públicas dedicada a que a inteligência artificial avance de forma segura e benéfica.",
-  },
+  /* Sem isto a página anunciar-se-ia em espanhol e a partir da rota raiz, que é
+     o que diz o bloco do layout. O título e a descrição descem sozinhos. */
+  openGraph: openGraph("pt", "/pt"),
 };
 
 /* Tres puertas, no una copia del menu: son las tres preguntas que el sitio tiene
