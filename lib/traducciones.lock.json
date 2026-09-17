@@ -1,14 +1,14 @@
 {
   "nota": "Huella de cada página en español el día en que sus traducciones quedaron al día. Lo escribe `pnpm idiomas --sellar`; no se edita a mano.",
   "paginas": {
-    "/": "4efd996e46d2bcf7",
+    "/": "cdf572a7423d3ba6",
     "/seguridad-de-la-ia": "ca7fdbfc5fff9229",
-    "/sprint": "601bca2a92f2f431",
+    "/sprint": "2f85f5650bcdca33",
     "/investigacion": "63fb50535bd617a9",
     "/recursos": "191b24c560b37d6e",
     "/unete": "666986eb8777b379",
     "/quienes-somos": "f8bf991ac43cc77c",
-    "/sprint/aplicar": "71ec951c5466bc60",
-    "/sprint/aplicar/recomendacion": "bfebeb2fe4ee1f7c"
+    "/sprint/aplicar": "b80b1f0c1b79c302",
+    "/sprint/aplicar/recomendacion": "4829a33bc7fa98e9"
   }
 }

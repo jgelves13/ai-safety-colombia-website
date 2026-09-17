@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CtaPanel from "@/components/cta-panel";
-import HackathonBanner from "@/components/hackathon-banner";
 import { IconActualidad, IconQuienesSomos, IconSeguridad, IconUnete } from "@/components/section-icons";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
@@ -116,14 +115,6 @@ const CARD_BASE =
 export default function Home() {
   return (
     <main lang="pt" className="aisc-page flex flex-col">
-      {/* mientras el sprint de septiembre siga abierto, manda sobre el hero */}
-      <section className="relative bg-aisc-forest-deep text-aisc-sand">
-        <SiteHeader />
-        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pt-24 md:pt-28">
-          <HackathonBanner />
-        </div>
-      </section>
-
       <section className="relative overflow-hidden bg-aisc-forest-deep text-aisc-sand">
         <img
           alt=""
@@ -134,6 +125,7 @@ export default function Home() {
           style={{ color: "transparent" }}
           src="/aisc/patterns/aisc-hero-portada.svg"
         />
+        <SiteHeader />
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 relative z-10 flex min-h-[400px] items-center pt-12 pb-20 md:min-h-[460px] md:pt-16 md:pb-24">
           <div className="flex w-full max-w-[860px] flex-col items-start gap-5 text-left md:gap-6">
             <h1 className="text-display-1 md:text-display-1-lg max-w-[900px] text-balance text-aisc-sand">
