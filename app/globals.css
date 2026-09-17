@@ -47,21 +47,24 @@ body {
 /* ------------------------------- tipografia -------------------------------
    Bricolage Grotesque para titulares (la de la marca), Inter para lectura,
    JetBrains Mono para antetitulos y metadatos. El tracking negativo es lo que
-   hace que Bricolage se lea como titular y no como texto grande.
+   hace que Bricolage se lea como titular y no como texto grande, pero tiene un
+   piso: display-1 carga frases largas en español, llenas de tildes, y con la
+   interlinea por debajo del tamaño de letra los acentos chocaban contra el
+   renglon de arriba. Interlinea por encima de 1 y tracking moderado.
    -------------------------------------------------------------------------- */
 
 @utility text-display-1 {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 3.0375rem;
-  line-height: 0.96;
-  letter-spacing: -0.035em;
+  line-height: 1.08;
+  letter-spacing: -0.012em;
 }
 
 @utility text-display-1-lg {
   font-size: 4.05rem;
-  line-height: 0.98;
-  letter-spacing: -0.038em;
+  line-height: 1.06;
+  letter-spacing: -0.015em;
 }
 
 @utility text-display-2 {
