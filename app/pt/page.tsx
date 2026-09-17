@@ -14,6 +14,21 @@ export const metadata: Metadata = {
   description:
     "Comunidade na Colômbia de pesquisadores, engenheiros e profissionais de políticas públicas dedicada a que a inteligência artificial avance de forma segura e benéfica.",
   alternates: { canonical: "/pt", languages: alternativas("/pt") },
+  /* O `title` de cima não desce sozinho às etiquetas og:; sem isto o cartão do
+     WhatsApp ou do LinkedIn fica com « AI Safety Colombia » seco, que é o valor
+     padrão do layout, e anuncia-se em espanhol a partir da rota raiz. */
+  openGraph: {
+    title: { absolute: "AI Safety Colombia — Rumo a uma inteligência artificial segura" },
+    description:
+      "Comunidade na Colômbia de pesquisadores, engenheiros e profissionais de políticas públicas dedicada a que a inteligência artificial avance de forma segura e benéfica.",
+    url: "/pt",
+    locale: "pt_BR",
+  },
+  twitter: {
+    title: { absolute: "AI Safety Colombia — Rumo a uma inteligência artificial segura" },
+    description:
+      "Comunidade na Colômbia de pesquisadores, engenheiros e profissionais de políticas públicas dedicada a que a inteligência artificial avance de forma segura e benéfica.",
+  },
 };
 
 /* Tres puertas, no una copia del menu: son las tres preguntas que el sitio tiene

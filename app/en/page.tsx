@@ -14,6 +14,21 @@ export const metadata: Metadata = {
   description:
     "A community in Colombia of researchers, engineers and public policy professionals working to make artificial intelligence advance safely and beneficially.",
   alternates: { canonical: "/en", languages: alternativas("/en") },
+  /* El `title` de arriba no baja solo a las etiquetas og:; sin esto la tarjeta
+     de WhatsApp o LinkedIn se titula « AI Safety Colombia » a secas, que es el
+     valor por defecto del layout, y se anuncia en español desde la ruta raíz. */
+  openGraph: {
+    title: { absolute: "AI Safety Colombia — Towards safe artificial intelligence" },
+    description:
+      "A community in Colombia of researchers, engineers and public policy professionals working to make artificial intelligence advance safely and beneficially.",
+    url: "/en",
+    locale: "en_US",
+  },
+  twitter: {
+    title: { absolute: "AI Safety Colombia — Towards safe artificial intelligence" },
+    description:
+      "A community in Colombia of researchers, engineers and public policy professionals working to make artificial intelligence advance safely and beneficially.",
+  },
 };
 
 /* Tres puertas, no una copia del menu: son las tres preguntas que el sitio tiene

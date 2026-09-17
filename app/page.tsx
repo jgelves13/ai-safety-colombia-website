@@ -14,6 +14,16 @@ export const metadata: Metadata = {
   description:
     "Comunidad en Colombia de investigadores, ingenieros y profesionales de política pública dedicada a que la inteligencia artificial avance de forma segura y beneficiosa.",
   alternates: { canonical: "/", languages: alternativas("/") },
+  /* El `title` de arriba no baja solo a las etiquetas og:; sin esto la tarjeta
+     de WhatsApp o LinkedIn se titula « AI Safety Colombia » a secas, que es el
+     valor por defecto del layout. */
+  openGraph: {
+    title: { absolute: "AI Safety Colombia — Hacia una inteligencia artificial segura" },
+    url: "/",
+  },
+  twitter: {
+    title: { absolute: "AI Safety Colombia — Hacia una inteligencia artificial segura" },
+  },
 };
 
 /* Tres puertas, no una copia del menu: son las tres preguntas que el sitio tiene

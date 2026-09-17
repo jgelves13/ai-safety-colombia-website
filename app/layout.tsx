@@ -40,7 +40,9 @@ export const metadata: Metadata = {
     siteName: "AI Safety Colombia",
     locale: "es_CO",
     alternateLocale: ["en_US", "pt_BR"],
-    url: "/",
+    /* Sin `url` acá a propósito: un valor por defecto lo heredarían las setenta
+       páginas del sitio y todas dirían ser la portada. Las tres portadas traen
+       el suyo; en el resto, el raspador usa la dirección que pidió. */
     title: {
       default: "AI Safety Colombia",
       template: "%s | AI Safety Colombia",
