@@ -127,7 +127,7 @@ export default function Home() {
           src="/aisc/patterns/aisc-hero-portada.svg"
         />
         <SiteHeader />
-        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 relative z-10 flex min-h-[400px] items-center pt-12 pb-20 md:min-h-[460px] md:pt-16 md:pb-24">
+        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 relative z-10 flex min-h-[400px] items-center pt-28 pb-20 md:min-h-[460px] md:pt-32 md:pb-24">
           <div className="flex w-full max-w-[860px] flex-col items-start gap-5 text-left md:gap-6">
             <h1 className="text-display-1 md:text-display-1-lg max-w-[900px] text-balance text-aisc-sand">
               La inteligencia artificial será la tecnología más determinante de nuestro tiempo. Que salga bien no está
