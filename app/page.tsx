@@ -8,7 +8,9 @@ import { CTA_LINK, CTA_LINK_PRIMARY, FILL_IMAGE, HERO_CORNER_CLASS } from "@/com
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
-  title: "AI Safety Colombia — Hacia una inteligencia artificial segura",
+  /* `absolute` para que el template del layout no le pegue otro
+     « | AI Safety Colombia » encima: el nombre ya está en el título. */
+  title: { absolute: "AI Safety Colombia — Hacia una inteligencia artificial segura" },
   description:
     "Comunidad en Colombia de investigadores, ingenieros y profesionales de política pública dedicada a que la inteligencia artificial avance de forma segura y beneficiosa.",
   alternates: { canonical: "/", languages: alternativas("/") },

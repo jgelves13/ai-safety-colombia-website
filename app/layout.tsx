@@ -30,6 +30,33 @@ export const metadata: Metadata = {
   },
   description:
     "Comunidad en Colombia de investigadores, ingenieros y profesionales de política pública dedicada a que la inteligencia artificial avance de forma segura y beneficiosa.",
+  /* Sin un bloque openGraph, Next no escribe NINGUNA etiqueta og: y quien
+     comparta el enlace queda a merced de lo que el raspador adivine: agarra el
+     primer titular de la página y lo corta a media palabra, sin imagen. Con el
+     bloque puesto, cada página hereda su propio title y description, y la
+     imagen la pone `app/opengraph-image.tsx`. */
+  openGraph: {
+    type: "website",
+    siteName: "AI Safety Colombia",
+    locale: "es_CO",
+    alternateLocale: ["en_US", "pt_BR"],
+    url: "/",
+    title: {
+      default: "AI Safety Colombia",
+      template: "%s | AI Safety Colombia",
+    },
+    description:
+      "Comunidad en Colombia de investigadores, ingenieros y profesionales de política pública dedicada a que la inteligencia artificial avance de forma segura y beneficiosa.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: {
+      default: "AI Safety Colombia",
+      template: "%s | AI Safety Colombia",
+    },
+    description:
+      "Comunidad en Colombia de investigadores, ingenieros y profesionales de política pública dedicada a que la inteligencia artificial avance de forma segura y beneficiosa.",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
