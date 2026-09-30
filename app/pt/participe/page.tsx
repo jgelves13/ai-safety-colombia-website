@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import CtaPanel from "@/components/cta-panel";
-import SiteFooter from "@/components/site-footer";
-import SiteHeader from "@/components/site-header";
-import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
+import UnetePagina, { type PasoUnete, type TextosUnete } from "@/components/unete-pagina";
 import { alternativas } from "@/lib/idiomas";
-import { cursosCerrados } from "@/lib/cursos";
 
 export const metadata: Metadata = {
   title: "Participe",
@@ -21,7 +16,7 @@ export const dynamic = "force-dynamic";
 /* La escalera: explorar sin compromiso, aprender en un curso con cohorte e
    investigar en un hackathon. Cada opción dice lo mismo en el mismo orden,
    dedicación, requisitos y costo, para que se puedan comparar de un vistazo. */
-const PASOS = [
+const PASOS: PasoUnete[] = [
   {
     id: "explora",
     numero: "01",
@@ -108,122 +103,24 @@ const PASOS = [
   },
 ];
 
-const CARD =
-  "overflow-hidden rounded-lg bg-aisc-cream text-aisc-ink border border-aisc-ink flex w-full flex-col p-6 md:p-7 lg:p-8";
-const ENLACE_CARD =
-  "text-display-4 md:text-display-4-lg text-aisc-forest transition-colors hover:text-aisc-coral";
-const CHIP =
-  "text-body-sm inline-flex rounded-full border border-aisc-sand/50 px-4 py-1.5 text-aisc-sand transition-colors hover:bg-aisc-sand hover:text-aisc-forest-deep";
+const TEXTOS: TextosUnete = {
+  h1: "Participe",
+  intro: "Três passos, conforme o tempo que você quer dedicar. Cada opção diz quanto exige, o que você precisa e quanto custa.",
+  aviso: "Inscrições abertas para os seminários até sexta-feira, 9 de outubro",
+  kickerAbierto: "Seminário · Inscrições abertas até 9 de outubro",
+  kickerCerrado: "Seminário",
+  dedicacion: "Dedicação",
+  requisitos: "Requisitos",
+  costo: "Custo",
+  cta: {
+    kicker: "Não sabe por onde começar?",
+    title: "Fale com a gente",
+    body: "Agende uma conversa curta com Jose Gelves, cofundador e diretor da AI Safety Colombia. Na conversa, vocês escolhem juntos o passo que serve, de acordo com o que você já sabe e o tempo que tem.",
+    primario: "Agendar uma conversa",
+    secundario: "Entrar no grupo de WhatsApp",
+  },
+};
 
-export default function Participe() {
-  const abiertos = !cursosCerrados();
-  return (
-    <main className={PAGE_SHELL}>
-      <section className={HERO_SECTION}>
-        <img
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          width="1697"
-          height="1415"
-          decoding="async"
-          className={HERO_CORNER_CLASS}
-          style={{ color: "transparent" }}
-          src="/aisc/patterns/aisc-hero-unete.svg"
-        />
-        <SiteHeader active="/pt/participe" />
-        <div className={HERO_INNER}>
-          <div className="flex max-w-[760px] flex-col gap-5">
-            <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand text-balance">Participe</h1>
-            <p className="text-body md:text-body-lg max-w-[640px] text-aisc-sand/90">
-              Três passos, conforme o tempo que você quer dedicar. Cada opção diz quanto exige, o que você precisa e quanto custa.
-            </p>
-            <nav aria-label="Os três passos">
-              <ul className="flex flex-wrap gap-2">
-                {PASOS.map((paso) => (
-                  <li key={paso.id}>
-                    <a className={CHIP} href={`#${paso.id}`}>
-                      {paso.numero} · {paso.titulo}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            {abiertos ? (
-              <a
-                className="text-body-sm inline-flex w-fit items-center gap-2 rounded-full bg-aisc-coral px-4 py-1.5 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85"
-                href="#aprende"
-              >
-                Inscrições abertas para os seminários até sexta-feira, 9 de outubro
-              </a>
-            ) : null}
-          </div>
-        </div>
-      </section>
-
-      {PASOS.map((paso) => (
-        <section id={paso.id} key={paso.id} className="scroll-mt-6 bg-aisc-cream">
-          <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pt-14 pb-4 md:pt-16">
-            <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-            <div className="grid grid-cols-1 gap-4 pt-5 pb-10 md:gap-10 md:pt-7 md:pb-12 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.92fr)] lg:gap-6">
-              <h2 className="text-display-2 md:text-display-2-lg text-balance">
-                <span className="text-aisc-forest">{paso.numero}</span> {paso.titulo}
-              </h2>
-              <p className="text-body md:text-body-lg self-end text-aisc-ink">{paso.entrada}</p>
-            </div>
-            <ul className="grid grid-cols-1 gap-[10px] md:grid-cols-2 xl:grid-cols-3">
-              {paso.opciones.map((item) => (
-                <li className="flex" key={item.titulo}>
-                  <article className={CARD}>
-                    <h3 className="text-display-3 md:text-display-3-lg text-balance">{item.titulo}</h3>
-                    <p className="text-body-sm mt-3 text-aisc-ink">{item.cuerpo}</p>
-                    <dl className="text-body-sm mt-6 flex flex-col gap-3 border-t border-aisc-line pt-5">
-                      <div>
-                        <dt className="text-meta text-aisc-muted">Dedicação</dt>
-                        <dd className="text-aisc-ink">{item.dedicacion}</dd>
-                      </div>
-                      <div>
-                        <dt className="text-meta text-aisc-muted">Requisitos</dt>
-                        <dd className="text-aisc-ink">{item.requisitos}</dd>
-                      </div>
-                      <div>
-                        <dt className="text-meta text-aisc-muted">Custo</dt>
-                        <dd className="text-aisc-ink">{item.costo}</dd>
-                      </div>
-                    </dl>
-                    <div className="mt-auto pt-7">
-                      {item.externo ? (
-                        <a className={ENLACE_CARD} href={item.href} target="_blank" rel="noopener noreferrer">
-                          {item.cta}
-                        </a>
-                      ) : (
-                        <Link className={ENLACE_CARD} href={item.href}>
-                          {item.cta}
-                        </Link>
-                      )}
-                    </div>
-                  </article>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      ))}
-
-      <div className="bg-aisc-cream pt-10" />
-      <CtaPanel
-        kicker="Não sabe por onde começar?"
-        title="Fale com a gente"
-        body="Agende uma conversa curta com Jose Gelves, cofundador e diretor da AI Safety Colombia. Na conversa, vocês escolhem juntos o passo que serve, de acordo com o que você já sabe e o tempo que tem."
-      >
-        <a className={CTA_LINK_PRIMARY} href="https://cal.com/josegelves/meeting" target="_blank" rel="noopener noreferrer">
-          Agendar uma conversa
-        </a>
-        <a className={CTA_LINK} href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ" target="_blank" rel="noopener noreferrer">
-          Entrar no grupo de WhatsApp
-        </a>
-      </CtaPanel>
-      <SiteFooter idioma="pt" />
-    </main>
-  );
+export default function Unete() {
+  return <UnetePagina active="/pt/participe" pasos={PASOS} t={TEXTOS} />;
 }
