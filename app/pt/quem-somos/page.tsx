@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const ENLACE =
-  "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
+  "text-aisc-forest transition-colors hover:text-aisc-coral";
 
 function iniciales(nombre: string): string {
   return nombre
@@ -58,7 +58,7 @@ function Ficha({ p }: { p: Persona }) {
         <h3 className="text-display-4 font-semibold text-aisc-forest">
           {p.linkedin ? (
             <a
-              className="underline decoration-aisc-forest/30 underline-offset-4 transition-colors hover:text-aisc-coral hover:decoration-aisc-coral"
+              className="text-aisc-forest transition-colors hover:text-aisc-coral"
               href={p.linkedin}
               target="_blank"
               rel="noopener noreferrer"

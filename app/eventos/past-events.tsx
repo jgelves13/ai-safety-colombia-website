@@ -66,7 +66,7 @@ export default function PastEvents() {
                 <span>{event.venue}</span>
                 {event.url ? (
                   <a
-                    className="text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
+                    className="text-aisc-forest transition-colors hover:text-aisc-coral"
                     href={event.url}
                     target="_blank"
                     rel="noopener noreferrer"

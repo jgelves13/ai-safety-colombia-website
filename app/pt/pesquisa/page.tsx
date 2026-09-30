@@ -207,7 +207,7 @@ const OTROS = [
 ];
 
 const ENLACE =
-  "text-aisc-forest underline underline-offset-4 transition-colors hover:text-aisc-forest-deep";
+  "text-aisc-forest transition-colors hover:text-aisc-coral";
 
 export default function Pesquisa() {
   return (
@@ -280,7 +280,7 @@ export default function Pesquisa() {
                       ))}
                     </p>
                     <p className="text-body-sm mt-4 text-aisc-ink">{p.body}</p>
-                    <span className="text-display-4 md:text-display-4-lg mt-6 text-aisc-forest underline underline-offset-4">
+                    <span className="text-display-4 md:text-display-4-lg mt-6 text-aisc-forest transition-colors hover:text-aisc-coral">
                       Ler o documento
                     </span>
                   </div>
@@ -342,7 +342,7 @@ export default function Pesquisa() {
                   <h4 className="text-display-3 md:text-display-3-lg mt-4 text-balance">{p.titulo}</h4>
                   <p className="text-body-sm mt-3 text-aisc-ink">{p.body}</p>
                   <p className="text-meta mt-5 text-aisc-muted">{p.equipo}</p>
-                  <span className="text-display-4 md:text-display-4-lg mt-7 text-aisc-forest underline underline-offset-4">
+                  <span className="text-display-4 md:text-display-4-lg mt-7 text-aisc-forest transition-colors hover:text-aisc-coral">
                     Ler o relatório
                   </span>
                 </a>

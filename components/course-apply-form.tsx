@@ -60,7 +60,7 @@ const AYUDA = "text-meta mt-1 block text-aisc-muted";
 const ERROR = "text-meta mt-1.5 block text-aisc-coral";
 const SECCION = "border-t border-aisc-line pt-8 first:border-t-0 first:pt-0";
 const ENLACE =
-  "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
+  "text-aisc-forest transition-colors hover:text-aisc-coral";
 const OPCION =
   "text-body-sm flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6";
 const BOTON_LLENO =

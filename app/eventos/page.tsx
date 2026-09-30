@@ -68,7 +68,7 @@ export default function Eventos() {
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
+                className="text-aisc-forest transition-colors hover:text-aisc-coral"
                 href="https://www.instagram.com/aisafetycolombia/"
               >
                 Instagram

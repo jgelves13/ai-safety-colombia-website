@@ -1373,7 +1373,7 @@ export function Figura({
               href={f.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline decoration-aisc-muted/40 underline-offset-4 transition-colors hover:decoration-aisc-muted"
+              className="text-aisc-forest transition-colors hover:text-aisc-coral"
             >
               {f.texto}
             </a>

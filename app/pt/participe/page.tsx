@@ -111,7 +111,7 @@ const PASOS = [
 const CARD =
   "overflow-hidden rounded-lg bg-aisc-cream text-aisc-ink border border-aisc-ink flex w-full flex-col p-6 md:p-7 lg:p-8";
 const ENLACE_CARD =
-  "text-display-4 md:text-display-4-lg text-aisc-forest underline underline-offset-4 transition-colors hover:text-aisc-forest-deep";
+  "text-display-4 md:text-display-4-lg text-aisc-forest transition-colors hover:text-aisc-coral";
 const CHIP =
   "text-body-sm inline-flex rounded-full border border-aisc-sand/50 px-4 py-1.5 text-aisc-sand transition-colors hover:bg-aisc-sand hover:text-aisc-forest-deep";
 

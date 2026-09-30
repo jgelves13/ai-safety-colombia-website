@@ -31,7 +31,7 @@ export function slugify(text: string): string {
 const CLASS = {
   h3: "text-display-3 md:text-display-3-lg mt-12 mb-4 scroll-mt-32 break-words lg:max-w-[760px] xl:max-w-[820px]",
   p: "text-body md:text-body-lg text-aisc-ink mb-6 whitespace-pre-line [overflow-wrap:anywhere]",
-  a: "decoration-aisc-forest break-words underline underline-offset-[3px] transition-colors hover:text-aisc-forest",
+  a: "text-aisc-forest break-words transition-colors hover:text-aisc-coral",
   figure: "my-10 select-none lg:max-w-[760px] xl:max-w-[820px]",
   img: "pointer-events-none h-auto w-full select-none",
   ul: "text-body md:text-body-lg text-aisc-ink mb-6 flex list-disc flex-col gap-2 pl-6",

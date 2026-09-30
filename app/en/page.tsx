@@ -185,7 +185,7 @@ export default function Home() {
                   research through to public policy.
                 </p>
                 <Link
-                  className="text-body md:text-body-lg group inline-flex min-h-11 w-fit items-center gap-2 text-aisc-forest underline underline-offset-[5px] transition-colors hover:text-aisc-forest-deep"
+                  className="text-body md:text-body-lg group inline-flex min-h-11 w-fit items-center gap-2 text-aisc-forest transition-colors hover:text-aisc-coral"
                   href="/en/ai-safety"
                 >
                   Read the long version

@@ -22,7 +22,7 @@ const SECCION = `${COLUMNA} flex flex-col gap-6 py-16 md:py-24`;
 const TITULO = "text-display-3 md:text-display-2 text-balance";
 const PROSA = "text-body flex flex-col gap-5 text-aisc-ink";
 const TARJETA = "rounded-2xl border border-aisc-line bg-white/80";
-const ENLACE = "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-coral";
+const ENLACE = "text-aisc-forest transition-colors hover:text-aisc-coral";
 const PATRON = "/aisc/patterns/aisc-wash-lattice.svg";
 /* Un icono de una sola línea por seminario, al modo de los hero-graphic de
    BlueDot: futuros que se bifurcan y un escudo con una red adentro. */

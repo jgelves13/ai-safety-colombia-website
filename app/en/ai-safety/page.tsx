@@ -43,7 +43,7 @@ function Fuente({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-aisc-forest underline decoration-aisc-forest/40 underline-offset-4 transition-colors hover:decoration-aisc-forest"
+      className="text-aisc-forest transition-colors hover:text-aisc-coral"
     >
       {children}
     </a>
@@ -191,7 +191,7 @@ export default function AiSafety() {
                 href="https://hai.stanford.edu/ai-definitions/what-is-ai-safety"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-aisc-sand underline decoration-aisc-sand/40 underline-offset-4 transition-colors hover:decoration-aisc-sand"
+                className="text-aisc-sand transition-colors hover:text-aisc-coral"
               >
                 “AI safety”
               </a>{" "}

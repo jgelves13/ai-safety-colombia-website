@@ -222,7 +222,7 @@ const CARD =
   "flex h-full flex-col overflow-hidden rounded-[12px] border border-aisc-forest-deep/20 bg-aisc-cream transition-colors hover:border-aisc-forest-deep";
 const CARD_CUERPO = "flex flex-1 flex-col gap-5 p-6 md:p-7";
 const MINIATURA = "block w-full border-b border-aisc-forest-deep/20 object-cover";
-const ENLACE = "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
+const ENLACE = "text-aisc-forest transition-colors hover:text-aisc-coral";
 
 /* La rejilla se ajusta al numero de piezas para que cada grupo quepa en una
    sola fila en pantalla ancha. Las clases van escritas enteras porque Tailwind
