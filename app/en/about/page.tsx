@@ -47,8 +47,6 @@ const GRUPOS: GrupoPersonas[] = [
   {
     id: "team",
     titulo: "The team",
-    entrada:
-      "The people who run the community.",
     personas: [
       {
         nombre: "Jose Gelves",
@@ -81,7 +79,6 @@ const GRUPOS: GrupoPersonas[] = [
   {
     id: "facilitators",
     titulo: "Facilitators",
-    entrada: "The people who run the seminars and the reading group.",
     personas: [
       {
         nombre: "Camila Beltrán",
@@ -126,7 +123,9 @@ const GRUPOS: GrupoPersonas[] = [
         linkedin: "https://www.linkedin.com/in/helen-stefany-penagos/",
         bio: (
           <>
-            Works at Mastercard. Honourable mention at Apart Research's Global South hackathon for{" "}
+            Associate consultant at Mastercard and Data Science student at{" "}
+            <Ext href="https://www.uexternado.edu.co/">Universidad Externado de Colombia</Ext>. Honourable mention at Apart
+            Research's Global South hackathon for{" "}
             <Ext href="https://apartresearch.com/project/por-qu-los-agentes-obedecen-la-direccin-de-rechazo-se-debilita-en-formato-agntico-ux70">
               "Why do agents obey?"
             </Ext>
@@ -145,7 +144,9 @@ const GRUPOS: GrupoPersonas[] = [
         linkedin: "https://www.linkedin.com/in/andresmosqueraw/",
         bio: (
           <>
-            Student at Universidad de los Andes. Latin America prize at Apart Research's Global South hackathon for{" "}
+            AI interpretability researcher at <Ext href="https://uniandes.edu.co/">Universidad de los Andes</Ext>, where he
+            is doing a master's in Computer Science; Computer Science graduate of Uniempresarial. Latin America prize at
+            Apart Research's Global South hackathon for{" "}
             <Ext href="https://apartresearch.com/project/thought-anchors-for-social-bias-which-reasoning-steps-matter-in-extended-thinking-llms-on-latin-american-scenarios-27ti">
               "Which reasoning steps produce the bias"
             </Ext>
@@ -158,7 +159,6 @@ const GRUPOS: GrupoPersonas[] = [
   {
     id: "volunteers",
     titulo: "Volunteers",
-    entrada: "The people who help keep things running.",
     personas: [
       {
         nombre: "Sofía Botia",

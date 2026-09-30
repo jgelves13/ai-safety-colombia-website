@@ -21,7 +21,7 @@ export type Persona = {
 export type GrupoPersonas = {
   id: string;
   titulo: string;
-  entrada: string;
+  entrada?: string;
   personas: Persona[];
 };
 
@@ -49,13 +49,15 @@ function iniciales(nombre: string): string {
     .join("");
 }
 
-function Encabezado({ titulo, entrada }: { titulo: string; entrada: string }) {
+function Encabezado({ titulo, entrada }: { titulo: string; entrada?: string }) {
   return (
     <div className="flex flex-col gap-8 md:gap-10">
       <div aria-hidden="true" className={HAIRLINE} />
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-start lg:gap-10">
         <h2 className="text-display-2 md:text-display-2-lg">{titulo}</h2>
-        <p className="text-body md:text-body-lg max-w-[520px] text-aisc-ink lg:justify-self-end">{entrada}</p>
+        {entrada ? (
+          <p className="text-body md:text-body-lg max-w-[520px] text-aisc-ink lg:justify-self-end">{entrada}</p>
+        ) : null}
       </div>
     </div>
   );

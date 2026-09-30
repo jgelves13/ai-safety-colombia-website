@@ -47,8 +47,6 @@ const GRUPOS: GrupoPersonas[] = [
   {
     id: "equipe",
     titulo: "A equipe",
-    entrada:
-      "As pessoas que dirigem a comunidade.",
     personas: [
       {
         nombre: "Jose Gelves",
@@ -81,7 +79,6 @@ const GRUPOS: GrupoPersonas[] = [
   {
     id: "facilitadores",
     titulo: "Facilitadores",
-    entrada: "As pessoas que conduzem os seminários e o grupo de leitura.",
     personas: [
       {
         nombre: "Camila Beltrán",
@@ -126,7 +123,9 @@ const GRUPOS: GrupoPersonas[] = [
         linkedin: "https://www.linkedin.com/in/helen-stefany-penagos/",
         bio: (
           <>
-            Trabalha na Mastercard. Menção honrosa no hackathon do Sul Global da Apart Research com{" "}
+            Consultora associada na Mastercard e estudante de Ciência de Dados na{" "}
+            <Ext href="https://www.uexternado.edu.co/">Universidad Externado de Colombia</Ext>. Menção honrosa no hackathon
+            do Sul Global da Apart Research com{" "}
             <Ext href="https://apartresearch.com/project/por-qu-los-agentes-obedecen-la-direccin-de-rechazo-se-debilita-en-formato-agntico-ux70">
               «Por que os agentes obedecem?»
             </Ext>
@@ -145,7 +144,9 @@ const GRUPOS: GrupoPersonas[] = [
         linkedin: "https://www.linkedin.com/in/andresmosqueraw/",
         bio: (
           <>
-            Estudante da Universidad de los Andes. Prêmio da América Latina no hackathon do Sul Global da Apart Research com{" "}
+            Pesquisador em interpretabilidade de IA na <Ext href="https://uniandes.edu.co/">Universidad de los Andes</Ext>,
+            onde cursa o mestrado em Computação; graduado em Ciência da Computação pela Uniempresarial. Prêmio da América
+            Latina no hackathon do Sul Global da Apart Research com{" "}
             <Ext href="https://apartresearch.com/project/thought-anchors-for-social-bias-which-reasoning-steps-matter-in-extended-thinking-llms-on-latin-american-scenarios-27ti">
               «Quais passos do raciocínio produzem o viés»
             </Ext>
@@ -158,7 +159,6 @@ const GRUPOS: GrupoPersonas[] = [
   {
     id: "voluntarios",
     titulo: "Voluntários",
-    entrada: "As pessoas que ajudam a manter a operação.",
     personas: [
       {
         nombre: "Sofía Botia",

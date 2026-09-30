@@ -47,8 +47,6 @@ const GRUPOS: GrupoPersonas[] = [
   {
     id: "equipo",
     titulo: "El equipo",
-    entrada:
-      "Quienes dirigen la comunidad.",
     personas: [
       {
         nombre: "Jose Gelves",
@@ -81,7 +79,6 @@ const GRUPOS: GrupoPersonas[] = [
   {
     id: "facilitadores",
     titulo: "Facilitadores",
-    entrada: "Quienes llevan los seminarios y el grupo de lectura.",
     personas: [
       {
         nombre: "Camila Beltrán",
@@ -127,7 +124,9 @@ const GRUPOS: GrupoPersonas[] = [
         linkedin: "https://www.linkedin.com/in/helen-stefany-penagos/",
         bio: (
           <>
-            Trabaja en Mastercard. Mención de honor en el hackathon del Sur Global de Apart Research con{" "}
+            Consultora asociada en Mastercard y estudiante de Ciencia de Datos en la{" "}
+            <Ext href="https://www.uexternado.edu.co/">Universidad Externado de Colombia</Ext>. Mención de honor en el
+            hackathon del Sur Global de Apart Research con{" "}
             <Ext href="https://apartresearch.com/project/por-qu-los-agentes-obedecen-la-direccin-de-rechazo-se-debilita-en-formato-agntico-ux70">
               «¿Por qué los agentes obedecen?»
             </Ext>
@@ -146,8 +145,9 @@ const GRUPOS: GrupoPersonas[] = [
         linkedin: "https://www.linkedin.com/in/andresmosqueraw/",
         bio: (
           <>
-            Estudiante de la Universidad de los Andes. Premio de Latinoamérica del hackathon del Sur Global de Apart Research
-            con{" "}
+            Investigador en interpretabilidad de IA en la <Ext href="https://uniandes.edu.co/">Universidad de los Andes</Ext>,
+            donde cursa la maestría en Computación; graduado en Ciencias de la Computación de Uniempresarial. Premio de
+            Latinoamérica del hackathon del Sur Global de Apart Research con{" "}
             <Ext href="https://apartresearch.com/project/thought-anchors-for-social-bias-which-reasoning-steps-matter-in-extended-thinking-llms-on-latin-american-scenarios-27ti">
               «Qué pasos del razonamiento producen el sesgo»
             </Ext>
@@ -160,7 +160,6 @@ const GRUPOS: GrupoPersonas[] = [
   {
     id: "voluntarios",
     titulo: "Voluntarios",
-    entrada: "Quienes ayudan a sostener la operación.",
     personas: [
       {
         nombre: "Sofía Botia",
