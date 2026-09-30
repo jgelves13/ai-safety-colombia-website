@@ -57,15 +57,16 @@ export const AREAS = [
   "other",
 ] as const;
 
+/* De menor a mayor: del colegio al profesional con experiencia; «otra» al final. */
 export const ETAPAS = [
-  "experienced",
-  "mid-career",
-  "early-career",
-  "postdoc-professor",
-  "phd",
-  "masters",
-  "undergraduate",
   "high-school",
+  "undergraduate",
+  "masters",
+  "phd",
+  "postdoc-professor",
+  "early-career",
+  "mid-career",
+  "experienced",
   "other",
 ] as const;
 
