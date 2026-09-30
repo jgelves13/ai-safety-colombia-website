@@ -122,7 +122,7 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
         <SiteHeader active={RUTA_CURSO[curso][idioma]} />
         <div className={`${ANCHO} relative z-10 flex flex-col pt-28 md:pt-32`}>
           <div className="flex max-w-[880px] flex-col gap-5 pb-12 md:pb-16">
-            <h1 className="text-display-2 md:text-display-2-lg text-balance text-aisc-sand">{p.metaTitulo}</h1>
+            <h1 className="text-display-2 md:text-display-2-lg max-w-[760px] text-balance text-aisc-sand">{p.metaTitulo}</h1>
             <p className="text-body max-w-[720px] text-aisc-sand/90">{p.entrada}</p>
             <p className="text-body-sm text-aisc-sand/70">{p.linea}</p>
             {cerrado ? null : (
