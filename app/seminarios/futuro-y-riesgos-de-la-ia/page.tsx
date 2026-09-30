@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/seminarios/futuro-y-riesgos-de-la-ia", languages: alternativas("/seminarios/futuro-y-riesgos-de-la-ia") },
 };
 
-/* Se renderiza en cada visita para que el cierre del 11 de octubre no quede
+/* Se renderiza en cada visita para que el cierre del 9 de octubre no quede
    congelado en un prerender. */
 export const dynamic = "force-dynamic";
 

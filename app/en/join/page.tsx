@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 /* Se renderiza en cada visita: el aviso de los cursos se apaga solo cuando
-   cierran las aplicaciones, el 11 de octubre. */
+   cierran las aplicaciones, el 9 de octubre. */
 export const dynamic = "force-dynamic";
 
 /* La escalera: explorar sin compromiso, aprender en un curso con cohorte e
@@ -64,7 +64,7 @@ const PASOS = [
     id: "aprende",
     numero: "02",
     titulo: "Learn",
-    entrada: "Cohort-based seminars with a facilitator, using BlueDot Impact's materials. Applications are open until Sunday 11 October at 11:59 pm, Colombia time.",
+    entrada: "Cohort-based seminars with a facilitator, using BlueDot Impact's materials. Applications are open until Friday 9 October at 11:59 pm, Colombia time.",
     opciones: [
       {
         titulo: "Seminar on the Future and Risks of AI",
@@ -154,7 +154,7 @@ export default function Join() {
                 className="text-body-sm inline-flex w-fit items-center gap-2 rounded-full bg-aisc-coral px-4 py-1.5 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85"
                 href="#aprende"
               >
-                Seminar applications open until Sunday 11 October →
+                Seminar applications open until Friday 9 October →
               </a>
             ) : null}
           </div>

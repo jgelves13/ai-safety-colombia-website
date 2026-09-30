@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 /* Se renderiza en cada visita: el aviso de los cursos se apaga solo cuando
-   cierran las aplicaciones, el 11 de octubre. */
+   cierran las aplicaciones, el 9 de octubre. */
 export const dynamic = "force-dynamic";
 
 /* La escalera: explorar sin compromiso, aprender en un curso con cohorte e
@@ -64,7 +64,7 @@ const PASOS = [
     id: "aprende",
     numero: "02",
     titulo: "Aprenda",
-    entrada: "Seminários em turma, com facilitador, usando os materiais da BlueDot Impact. Inscrições abertas até domingo, 11 de outubro, às 23h59, horário da Colômbia.",
+    entrada: "Seminários em turma, com facilitador, usando os materiais da BlueDot Impact. Inscrições abertas até sexta-feira, 9 de outubro, às 23h59, horário da Colômbia.",
     opciones: [
       {
         titulo: "Seminário de futuro e riscos da IA",
@@ -154,7 +154,7 @@ export default function Participe() {
                 className="text-body-sm inline-flex w-fit items-center gap-2 rounded-full bg-aisc-coral px-4 py-1.5 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85"
                 href="#aprende"
               >
-                Inscrições abertas para os seminários até domingo, 11 de outubro →
+                Inscrições abertas para os seminários até sexta-feira, 9 de outubro →
               </a>
             ) : null}
           </div>

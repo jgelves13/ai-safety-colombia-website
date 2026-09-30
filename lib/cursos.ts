@@ -15,8 +15,8 @@ export type CursoId = "agi-strategy" | "technical-ai-safety";
 
 export const CURSOS: CursoId[] = ["agi-strategy", "technical-ai-safety"];
 
-/** Domingo 11 de octubre de 2026, 23:59 en Bogotá. */
-export const CIERRE_CURSOS_ISO = "2026-10-11T23:59:59-05:00";
+/** Viernes 9 de octubre de 2026, 23:59 en Bogotá. */
+export const CIERRE_CURSOS_ISO = "2026-10-09T23:59:59-05:00";
 
 export function cursosCerrados(): boolean {
   return Date.now() > Date.parse(CIERRE_CURSOS_ISO);
@@ -210,7 +210,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     titulo: "Aplica a los seminarios",
     entrada:
       "Corremos por nuestra cuenta dos seminarios con materiales de BlueDot Impact: el Seminario de futuro y riesgos de la IA y el Seminario técnico de seguridad de la IA. Llenar el formulario toma unos 30 minutos. Puedes responder con viñetas.",
-    cierre: "Las aplicaciones cierran el domingo 11 de octubre a las 11:59 p. m., hora de Colombia.",
+    cierre: "Las aplicaciones cierran el viernes 9 de octubre a las 11:59 p. m., hora de Colombia.",
     sinIA: "Por favor no uses IA para responder: queremos leerte a ti.",
     prerrequisitoTitulo: "Antes de aplicar al Seminario técnico de seguridad de la IA deberías:",
     prerrequisitos: [
@@ -229,10 +229,10 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
 
     cerradoTitulo: "Las aplicaciones cerraron",
     cerradoCuerpo:
-      "La convocatoria cerró el domingo 11 de octubre. La próxima se anuncia primero en el grupo de WhatsApp.",
+      "La convocatoria cerró el viernes 9 de octubre. La próxima se anuncia primero en el grupo de WhatsApp.",
     enviadoTitulo: "Recibimos tu aplicación",
     enviadoCuerpo:
-      "Te llega una confirmación al correo. Revisamos las aplicaciones después del cierre, el 11 de octubre, y le respondemos a todo el mundo, quede o no.",
+      "Te llega una confirmación al correo. Revisamos las aplicaciones después del cierre, el 9 de octubre, y le respondemos a todo el mundo, quede o no.",
     enviadoGrupo: "Entrar al grupo de WhatsApp",
     volver: "Volver a Únete",
     fallaAntes: "No pudimos guardar tu aplicación. Intenta de nuevo en un momento o escríbenos a ",
@@ -439,7 +439,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     titulo: "Apply to the seminars",
     entrada:
       "We run two seminars on our own, with BlueDot Impact's materials: the Seminar on the Future and Risks of AI and the Technical AI Safety Seminar. The form takes around 30 minutes. Bullet points are fine.",
-    cierre: "Applications close on Sunday 11 October at 11:59 pm, Colombia time.",
+    cierre: "Applications close on Friday 9 October at 11:59 pm, Colombia time.",
     sinIA: "Please don't use AI to answer: we want to hear from you.",
     prerrequisitoTitulo: "Before applying to the Technical AI Safety Seminar you should:",
     prerrequisitos: [
@@ -458,10 +458,10 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
 
     cerradoTitulo: "Applications have closed",
     cerradoCuerpo:
-      "This round closed on Sunday 11 October. The next one is announced first in the WhatsApp group.",
+      "This round closed on Friday 9 October. The next one is announced first in the WhatsApp group.",
     enviadoTitulo: "We got your application",
     enviadoCuerpo:
-      "A confirmation is on its way to your inbox. We review applications after the 11 October deadline and reply to everyone, whether or not they get in.",
+      "A confirmation is on its way to your inbox. We review applications after the 9 October deadline and reply to everyone, whether or not they get in.",
     enviadoGrupo: "Join the WhatsApp group",
     volver: "Back to Join us",
     fallaAntes: "We couldn't save your application. Try again in a moment or write to ",
@@ -668,7 +668,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     titulo: "Inscreva-se nos seminários",
     entrada:
       "Oferecemos por conta própria dois seminários com materiais da BlueDot Impact: o Seminário de futuro e riscos da IA e o Seminário técnico de segurança da IA. Preencher o formulário leva uns 30 minutos. Pode responder em tópicos.",
-    cierre: "As inscrições fecham no domingo, 11 de outubro, às 23h59, horário da Colômbia.",
+    cierre: "As inscrições fecham na sexta-feira, 9 de outubro, às 23h59, horário da Colômbia.",
     sinIA: "Por favor, não use IA para responder: queremos ler você.",
     prerrequisitoTitulo: "Antes de se inscrever no Seminário técnico de segurança da IA, você deveria:",
     prerrequisitos: [
@@ -687,10 +687,10 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
 
     cerradoTitulo: "As inscrições fecharam",
     cerradoCuerpo:
-      "Esta rodada fechou no domingo, 11 de outubro. A próxima é anunciada primeiro no grupo de WhatsApp.",
+      "Esta rodada fechou na sexta-feira, 9 de outubro. A próxima é anunciada primeiro no grupo de WhatsApp.",
     enviadoTitulo: "Recebemos sua inscrição",
     enviadoCuerpo:
-      "Uma confirmação chega no seu e-mail. Revisamos as inscrições depois do encerramento, em 11 de outubro, e respondemos a todo mundo, com ou sem vaga.",
+      "Uma confirmação chega no seu e-mail. Revisamos as inscrições depois do encerramento, em 9 de outubro, e respondemos a todo mundo, com ou sem vaga.",
     enviadoGrupo: "Entrar no grupo de WhatsApp",
     volver: "Voltar para Participe",
     fallaAntes: "Não conseguimos salvar sua inscrição. Tente de novo em instantes ou escreva para ",

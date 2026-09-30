@@ -3,7 +3,7 @@ import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { CTA_LINK_PRIMARY, CTA_PANEL, CTA_PATTERN_BOTTOM, CTA_PATTERN_TOP, HERO_CORNER_CLASS, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { RUTA_APLICAR_CURSOS, cursosCerrados, type CursoId } from "@/lib/cursos";
-import { BLUEDOT_CURSO, BLUEDOT_NOMBRE, FACILITADORES, PAGINAS_CURSO, ROTULOS_CURSO, RUTA_CURSO } from "@/lib/cursos-paginas";
+import { BLUEDOT_CURSO, BLUEDOT_NOMBRE, EN_LINEA, FACILITADORES, PAGINAS_CURSO, ROTULOS_CURSO, RUTA_CURSO } from "@/lib/cursos-paginas";
 import type { Idioma } from "@/lib/idiomas";
 
 /* La página de cada seminario, con la estructura de las páginas de programa de
@@ -24,6 +24,12 @@ const PROSA = "text-body flex flex-col gap-5 text-aisc-ink";
 const TARJETA = "rounded-2xl border border-aisc-line bg-white/80";
 const ENLACE = "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-coral";
 const PATRON = "/aisc/patterns/aisc-wash-lattice.svg";
+/* Un icono de una sola línea por seminario, al modo de los hero-graphic de
+   BlueDot: futuros que se bifurcan y un escudo con una red adentro. */
+const HERO_CURSO: Record<CursoId, string> = {
+  "agi-strategy": "/aisc/patterns/aisc-hero-seminario-futuro.svg",
+  "technical-ai-safety": "/aisc/patterns/aisc-hero-seminario-tecnico.svg",
+};
 
 /* Las negritas de los textos vienen marcadas con **así**. */
 function Negritas({ texto }: { texto: string }) {
@@ -69,6 +75,21 @@ function Parrafo({ texto, curso, y }: { texto: string; curso: CursoId; y: string
   );
 }
 
+/* La salida a BlueDot: lo que va entre [corchetes] es el enlace. */
+function EnLinea({ idioma, curso }: { idioma: Idioma; curso: CursoId }) {
+  const [antes, resto] = EN_LINEA[idioma].split("[");
+  const [enlace, despues] = resto.split("]");
+  return (
+    <p>
+      {antes}
+      <a className={ENLACE} href={BLUEDOT_CURSO[curso]} target="_blank" rel="noopener noreferrer">
+        {enlace}
+      </a>
+      {despues}
+    </p>
+  );
+}
+
 export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: CursoId }) {
   const p = PAGINAS_CURSO[curso][idioma];
   const r = ROTULOS_CURSO[idioma];
@@ -91,12 +112,12 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
           alt=""
           aria-hidden="true"
           loading="lazy"
-          width="1697"
-          height="1415"
+          width="1000"
+          height="1000"
           decoding="async"
           className={HERO_CORNER_CLASS}
           style={{ color: "transparent" }}
-          src="/aisc/patterns/aisc-hero-programas.svg"
+          src={HERO_CURSO[curso]}
         />
         <SiteHeader active={RUTA_CURSO[curso][idioma]} />
         <div className={`${ANCHO} relative z-10 flex flex-col pt-28 md:pt-32`}>
@@ -146,6 +167,7 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
                 <Negritas texto={t} />
               </p>
             ))}
+            <EnLinea idioma={idioma} curso={curso} />
           </div>
         </div>
       </section>
