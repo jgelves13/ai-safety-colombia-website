@@ -69,11 +69,14 @@ const BOTON_CONTORNO =
   "text-body-sm inline-flex min-h-11 items-center rounded-full border border-aisc-ink px-6 font-medium text-aisc-ink transition-colors hover:bg-aisc-ink hover:text-aisc-cream";
 const WHATSAPP = "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ";
 
-/* Un menú desplegable donde se marcan varias opciones, hasta un tope. Lo que
-   ya se marcó se ve en el botón; el panel se cierra con Escape o al hacer clic
-   afuera. */
-function MenuMultiple({
+/* Un menú desplegable propio, para que la lista se vea igual en todos los
+   navegadores. Con `tope` mayor que 1 se marcan varias opciones y las marcadas
+   se ven como pastillas en el botón; con `tope` 1 se escoge una sola, se ve
+   como texto y el panel se cierra al escogerla. También se cierra con Escape o
+   al hacer clic afuera. */
+function Menu({
   id,
+  name,
   opciones,
   etiqueta,
   elegidas,
@@ -83,6 +86,7 @@ function MenuMultiple({
   invalido,
 }: {
   id: string;
+  name: string;
   opciones: readonly string[];
   etiqueta: (id: string) => string;
   elegidas: string[];
@@ -110,7 +114,12 @@ function MenuMultiple({
     };
   }, [abierto]);
 
+  const una = tope === 1;
   const lleno = elegidas.length >= tope;
+  const escoger = (o: string) => {
+    alternar(o);
+    if (una) setAbierto(false);
+  };
 
   return (
     <div ref={caja} className="relative">
@@ -126,6 +135,8 @@ function MenuMultiple({
       >
         {elegidas.length === 0 ? (
           <span className="text-aisc-muted/60">{vacio}</span>
+        ) : una ? (
+          <span>{etiqueta(elegidas[0])}</span>
         ) : (
           elegidas.map((e) => (
             <span key={e} className="text-meta rounded-full bg-aisc-forest/8 px-2.5 py-0.5 text-aisc-forest">
@@ -137,12 +148,12 @@ function MenuMultiple({
       {abierto ? (
         <ul
           role="listbox"
-          aria-multiselectable="true"
+          aria-multiselectable={una ? undefined : true}
           className="absolute top-full left-0 z-20 mt-1.5 max-h-72 w-full overflow-y-auto rounded-[var(--radius)] border border-aisc-line bg-white p-1.5 shadow-[0_16px_40px_-12px_rgba(33,26,18,0.25)]"
         >
           {opciones.map((o) => {
             const marcada = elegidas.includes(o);
-            const bloqueada = !marcada && lleno;
+            const bloqueada = !una && !marcada && lleno;
             return (
               <li key={o} role="option" aria-selected={marcada}>
                 <label
@@ -151,12 +162,12 @@ function MenuMultiple({
                   }${marcada ? " bg-aisc-forest/6" : ""}`}
                 >
                   <input
-                    type="checkbox"
-                    name="fields"
+                    type={una ? "radio" : "checkbox"}
+                    name={name}
                     value={o}
                     checked={marcada}
                     disabled={bloqueada}
-                    onChange={() => alternar(o)}
+                    onChange={() => escoger(o)}
                     className="mt-0.5 accent-aisc-forest"
                   />
                   <span>{etiqueta(o)}</span>
@@ -667,8 +678,9 @@ export default function CourseApplyForm({
               ayuda={t.areasAyuda}
               error={errores.fields}
             >
-              <MenuMultiple
+              <Menu
                 id="fields"
+                name="fields"
                 opciones={AREAS}
                 etiqueta={(id) => t.areasOpciones[id as (typeof AREAS)[number]]}
                 elegidas={areas}
@@ -686,24 +698,17 @@ export default function CourseApplyForm({
               label={t.etapa}
               error={errores.careerStage}
             >
-              <select
+              <Menu
                 id="careerStage"
                 name="careerStage"
-                value={v.careerStage}
-                onChange={(e) => set("careerStage", e.target.value)}
-                className={`${INPUT} ${SELECT} ${errores.careerStage ? INPUT_MAL : ""} ${v.careerStage ? "" : "text-aisc-muted/60"}`}
-                style={{ backgroundImage: `url("${FLECHA}")` }}
-                aria-invalid={errores.careerStage ? true : undefined}
-              >
-                <option value="" disabled>
-                  {t.escoger}
-                </option>
-                {ETAPAS.map((id) => (
-                  <option key={id} value={id}>
-                    {t.etapas[id]}
-                  </option>
-                ))}
-              </select>
+                opciones={ETAPAS}
+                etiqueta={(id) => t.etapas[id as (typeof ETAPAS)[number]]}
+                elegidas={v.careerStage ? [v.careerStage] : []}
+                tope={1}
+                alternar={(id) => set("careerStage", id)}
+                vacio={t.escoger}
+                invalido={Boolean(errores.careerStage)}
+              />
             </Campo>
             {v.careerStage === "other" ? (
               <Campo
