@@ -112,8 +112,8 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
           alt=""
           aria-hidden="true"
           loading="lazy"
-          width="1000"
-          height="1000"
+          width="1697"
+          height="1415"
           decoding="async"
           className={HERO_CORNER_CLASS}
           style={{ color: "transparent" }}
