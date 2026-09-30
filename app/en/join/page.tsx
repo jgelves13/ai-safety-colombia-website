@@ -105,7 +105,7 @@ const PASOS: PasoUnete[] = [
 
 const TEXTOS: TextosUnete = {
   h1: "Join us",
-  intro: "Three steps, depending on how much time you want to put in. Each option says what it takes, what you need and what it costs.",
+  intro: "There are three ways in, depending on the time you have. Start with the one closest to you: nobody arrives knowing.",
   aviso: "Seminar applications open until Friday 9 October",
   kickerAbierto: "Seminar · Applications open until 9 October",
   kickerCerrado: "Seminar",

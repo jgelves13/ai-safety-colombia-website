@@ -48,7 +48,7 @@ const GRUPOS: GrupoPersonas[] = [
     id: "equipo",
     titulo: "El equipo",
     entrada:
-      "Quienes dirigen la comunidad. Todos somos voluntarios y la organización se financia con donaciones y con los presupuestos de los programas que organizamos.",
+      "Quienes dirigen la comunidad.",
     personas: [
       {
         nombre: "Jose Gelves",
@@ -99,6 +99,7 @@ const GRUPOS: GrupoPersonas[] = [
       },
       {
         nombre: "Tomás Antolinez",
+        foto: "/aisc/equipo/tomas-antolinez.png",
         rol: (
           <Link className={ENLACE} href="/seminarios/futuro-y-riesgos">
             Seminario de futuro y riesgos de la IA
@@ -117,6 +118,7 @@ const GRUPOS: GrupoPersonas[] = [
       },
       {
         nombre: "Helen Stefany Penagos",
+        foto: "/aisc/equipo/helen-penagos.png",
         rol: (
           <Link className={ENLACE} href="/seminarios/tecnico">
             Seminario técnico de seguridad de la IA
@@ -135,6 +137,7 @@ const GRUPOS: GrupoPersonas[] = [
       },
       {
         nombre: "Andrés Mosquera",
+        foto: "/aisc/equipo/andres-mosquera.png",
         rol: (
           <Link className={ENLACE} href="/seminarios/tecnico">
             Seminario técnico de seguridad de la IA
@@ -206,7 +209,7 @@ const TEXTOS: TextosQuienesSomos = {
   h1: "¿Quiénes somos?",
   intro: "Una comunidad en Colombia que trabaja para reducir los riesgos de la inteligencia artificial avanzada.",
   sobreTitulo: "Sobre nosotros",
-  linkedin: "LinkedIn",
+  linkedin: "en LinkedIn",
   cta: {
     title: "¿Quieres ser voluntario?",
     body: "No hay membresía ni convocatoria: se llega a un evento, a un programa o a una conversación.",

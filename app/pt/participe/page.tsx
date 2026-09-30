@@ -105,7 +105,7 @@ const PASOS: PasoUnete[] = [
 
 const TEXTOS: TextosUnete = {
   h1: "Participe",
-  intro: "Três passos, conforme o tempo que você quer dedicar. Cada opção diz quanto exige, o que você precisa e quanto custa.",
+  intro: "Há três formas de entrar, conforme o tempo que você tem. Comece pela que estiver mais perto de você: ninguém chega sabendo.",
   aviso: "Inscrições abertas para os seminários até sexta-feira, 9 de outubro",
   kickerAbierto: "Seminário · Inscrições abertas até 9 de outubro",
   kickerCerrado: "Seminário",

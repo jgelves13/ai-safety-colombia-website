@@ -48,7 +48,7 @@ const GRUPOS: GrupoPersonas[] = [
     id: "team",
     titulo: "The team",
     entrada:
-      "The people who run the community. We are all volunteers, and the organisation is funded by donations and by the budgets of the programmes we run.",
+      "The people who run the community.",
     personas: [
       {
         nombre: "Jose Gelves",
@@ -98,6 +98,7 @@ const GRUPOS: GrupoPersonas[] = [
       },
       {
         nombre: "Tomás Antolinez",
+        foto: "/aisc/equipo/tomas-antolinez.png",
         rol: (
           <Link className={ENLACE} href="/en/seminars/future-and-risks">
             Seminar on the Future and Risks of AI
@@ -116,6 +117,7 @@ const GRUPOS: GrupoPersonas[] = [
       },
       {
         nombre: "Helen Stefany Penagos",
+        foto: "/aisc/equipo/helen-penagos.png",
         rol: (
           <Link className={ENLACE} href="/en/seminars/technical">
             Technical AI Safety Seminar
@@ -134,6 +136,7 @@ const GRUPOS: GrupoPersonas[] = [
       },
       {
         nombre: "Andrés Mosquera",
+        foto: "/aisc/equipo/andres-mosquera.png",
         rol: (
           <Link className={ENLACE} href="/en/seminars/technical">
             Technical AI Safety Seminar
@@ -203,7 +206,7 @@ const TEXTOS: TextosQuienesSomos = {
   h1: "About us",
   intro: "A community in Colombia working to reduce the risks of advanced artificial intelligence.",
   sobreTitulo: "About us",
-  linkedin: "LinkedIn",
+  linkedin: "on LinkedIn",
   cta: {
     title: "Want to volunteer?",
     body: "There is no membership and no open call: you turn up at an event, a programme or a conversation.",
