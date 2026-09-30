@@ -12,20 +12,26 @@ import type { CursoId } from "./cursos";
 
 export const RUTA_CURSO: Record<CursoId, Record<Idioma, string>> = {
   "agi-strategy": {
-    es: "/seminarios/agi-strategy",
-    en: "/en/seminars/agi-strategy",
-    pt: "/pt/seminarios/agi-strategy",
+    es: "/cursos/agi-strategy",
+    en: "/en/courses/agi-strategy",
+    pt: "/pt/cursos/agi-strategy",
   },
   "technical-ai-safety": {
-    es: "/seminarios/technical-ai-safety",
-    en: "/en/seminars/technical-ai-safety",
-    pt: "/pt/seminarios/technical-ai-safety",
+    es: "/cursos/technical-ai-safety",
+    en: "/en/courses/technical-ai-safety",
+    pt: "/pt/cursos/technical-ai-safety",
   },
 };
 
 export const BLUEDOT_CURSO: Record<CursoId, string> = {
-  "agi-strategy": "https://bluedot.org/seminars/agi-strategy",
-  "technical-ai-safety": "https://bluedot.org/seminars/technical-ai-safety",
+  "agi-strategy": "https://bluedot.org/courses/agi-strategy",
+  "technical-ai-safety": "https://bluedot.org/courses/technical-ai-safety",
+};
+
+/* Cómo llama BlueDot a cada temario; va junto al logo en la tira de datos. */
+export const BLUEDOT_NOMBRE: Record<CursoId, string> = {
+  "agi-strategy": "AGI Strategy",
+  "technical-ai-safety": "Technical AI Safety",
 };
 
 export type Facilitador = { nombre: string; afiliacion: string; linkedin: string };
@@ -87,10 +93,10 @@ export type PaginaCurso = {
 };
 
 const AGI_ES: PaginaCurso = {
-  metaTitulo: "AGI Strategy",
+  metaTitulo: "Seminario de futuro y riesgos de la IA",
   metaDescripcion:
     "Seminario con cohorte de cinco semanas, desde el 12 de octubre de 2026, con los materiales de BlueDot Impact. Para entender hacia dónde va la IA avanzada y encontrar tu punto de entrada. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 11 de octubre.",
-  kicker: "AGI Strategy · Seminario con cohorte",
+  kicker: "Seminario de futuro y riesgos de la IA · Cohorte de octubre de 2026",
   titular: "Entiende hacia dónde va la IA avanzada antes de decidir qué hacer con tu carrera",
   entrada:
     "Cinco semanas en línea para gente de cualquier disciplina que se toma en serio el tema: quién está construyendo la IA, qué tan rápido avanza, qué podría salir mal y dónde puedes aportar para que salga bien. Con los materiales de BlueDot Impact y facilitadores de la comunidad.",
@@ -100,7 +106,7 @@ const AGI_ES: PaginaCurso = {
     titulo: "La IA avanzada va más rápido que la gente preparada para pensarla",
     parrafos: [
       "Los laboratorios que construyen los modelos más capaces dicen abiertamente que quieren llegar a la AGI, y las decisiones sobre cómo se despliega esa tecnología se están tomando ya, con muy poca gente en Colombia que entienda qué se está construyendo y qué podría salir mal. A ese entendimiento casi nadie llega desde su formación: se llega leyendo, discutiendo y armando una opinión propia.",
-      "AGI Strategy es una **introducción a fondo a lo que está pasando con el desarrollo de la IA**: quién la está construyendo, qué impulsa el progreso, cuáles podrían ser los buenos y los malos desenlaces y qué se puede hacer para llevarla hacia futuros mejores. Las lecturas son las que diseñó **BlueDot Impact**; AI Safety Colombia corre esta cohorte por su cuenta, con facilitadores de la comunidad.",
+      "El Seminario de futuro y riesgos de la IA es una **introducción a fondo a lo que está pasando con el desarrollo de la IA**: quién la está construyendo, qué impulsa el progreso, cuáles podrían ser los buenos y los malos desenlaces y qué se puede hacer para llevarla hacia futuros mejores. Las lecturas son las que diseñó **BlueDot Impact**; AI Safety Colombia corre esta cohorte por su cuenta, con facilitadores de la comunidad.",
     ],
   },
   quien: {
@@ -156,7 +162,7 @@ const AGI_ES: PaginaCurso = {
   },
   plazo:
     "Las aplicaciones están abiertas **hasta el domingo 11 de octubre a las 11:59 p. m.**, hora de Colombia. El seminario arranca el **lunes 12 de octubre** y termina el 15 de noviembre. Es **gratis**, y quien lo complete recibe un certificado de AI Safety Colombia.",
-  otro: "Si te interesa más la parte técnica (interpretabilidad, evaluaciones, investigación en alineación), mira {curso}.",
+  otro: "Si te interesa más la parte técnica (interpretabilidad, evaluaciones, investigación en alineación), mira el {curso}.",
   cierre: "Cinco semanas. Una opinión propia. Un siguiente paso concreto.",
   faq: [
     {
@@ -177,16 +183,16 @@ const AGI_ES: PaginaCurso = {
     },
     {
       q: "¿Qué sigue después?",
-      a: "Technical AI Safety, los hackathones de investigación del hub de Bogotá o el grupo de lectura de AI Control, los viernes cada quince días.",
+      a: "El Seminario técnico de seguridad de la IA, los hackathones de investigación del hub de Bogotá o el grupo de lectura de AI Control, los viernes cada quince días.",
     },
   ],
 };
 
 const TAIS_ES: PaginaCurso = {
-  metaTitulo: "Technical AI Safety",
+  metaTitulo: "Seminario técnico de seguridad de la IA",
   metaDescripcion:
     "Seminario con cohorte de seis semanas, desde el 12 de octubre de 2026, con los materiales de BlueDot Impact: alineación, evaluaciones, interpretabilidad y AI control. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 11 de octubre.",
-  kicker: "Technical AI Safety · Seminario con cohorte",
+  kicker: "Seminario técnico de seguridad de la IA · Cohorte de octubre de 2026",
   titular: "Apunta lo que sabes de machine learning a los problemas abiertos de la seguridad de la IA",
   entrada:
     "Seis semanas en línea para gente con base técnica: cómo se entrenan modelos más seguros, cómo se evalúan, cómo se miran por dentro y cómo se limita el daño cuando algo falla. Con los materiales de BlueDot Impact y facilitadores de la comunidad.",
@@ -196,7 +202,7 @@ const TAIS_ES: PaginaCurso = {
     titulo: "Las capacidades avanzan más rápido que la seguridad",
     parrafos: [
       "Las capacidades de la IA avanzan más rápido que nuestra capacidad de hacerlas seguras, y el campo necesita más gente técnica trabajando en eso. Los problemas siguen abiertos: todavía no sabemos medir con confianza lo que un modelo puede y quiere hacer, ni entender qué calcula por dentro, ni garantizar que un sistema capaz no cause daño si algo falla.",
-      "Technical AI Safety es un **recorrido por esos problemas y por los métodos con los que hoy se intenta resolverlos**: RLHF, evaluaciones, interpretabilidad mecanicista y AI control. Las lecturas son las que diseñó **BlueDot Impact**; AI Safety Colombia corre esta cohorte por su cuenta, con facilitadores de la comunidad.",
+      "El Seminario técnico de seguridad de la IA es un **recorrido por esos problemas y por los métodos con los que hoy se intenta resolverlos**: RLHF, evaluaciones, interpretabilidad mecanicista y AI control. Las lecturas son las que diseñó **BlueDot Impact**; AI Safety Colombia corre esta cohorte por su cuenta, con facilitadores de la comunidad.",
     ],
   },
   quien: {
@@ -253,7 +259,7 @@ const TAIS_ES: PaginaCurso = {
   },
   plazo:
     "Las aplicaciones están abiertas **hasta el domingo 11 de octubre a las 11:59 p. m.**, hora de Colombia. El seminario arranca el **lunes 12 de octubre** y termina el 22 de noviembre. Es **gratis**, y quien lo complete recibe un certificado de AI Safety Colombia.",
-  otro: "Si prefieres empezar por el panorama estratégico, mira {curso}.",
+  otro: "Si prefieres empezar por el panorama estratégico, mira el {curso}.",
   cierre: "Seis semanas. Los problemas abiertos. Tu lugar en ellos.",
   faq: [
     {
@@ -261,8 +267,8 @@ const TAIS_ES: PaginaCurso = {
       a: "Deberías entender lo básico de cómo se entrenan y ajustan los LLM, que el progreso de la IA lo mueven los datos, los algoritmos y el cómputo, y que una red neuronal se optimiza con descenso de gradiente. El curso AI Foundations de BlueDot, de dos horas y a tu ritmo, te da esa base.",
     },
     {
-      q: "¿Tengo que hacer primero AGI Strategy?",
-      a: "No es obligatorio, pero ayuda: AGI Strategy da el contexto sobre el que se construye este seminario. Si aplicas a este y no quedas, en el formulario puedes pedir que te consideremos para AGI Strategy.",
+      q: "¿Tengo que hacer primero el Seminario de futuro y riesgos de la IA?",
+      a: "No es obligatorio, pero ayuda: el Seminario de futuro y riesgos de la IA da el contexto sobre el que se construye este seminario. Si aplicas a este y no quedas, en el formulario puedes pedir que te consideremos para el Seminario de futuro y riesgos de la IA.",
     },
     {
       q: "¿De verdad es gratis?",
@@ -280,10 +286,10 @@ const TAIS_ES: PaginaCurso = {
 };
 
 const AGI_EN: PaginaCurso = {
-  metaTitulo: "AGI Strategy",
+  metaTitulo: "Seminar on the Future and Risks of AI",
   metaDescripcion:
     "A five-week cohort-based seminar starting 12 October 2026, using BlueDot Impact's materials. Understand where advanced AI is heading and find your entry point. Free, with an AI Safety Colombia certificate. Applications close 11 October.",
-  kicker: "AGI Strategy · Cohort-based seminar",
+  kicker: "Seminar on the Future and Risks of AI · October 2026 cohort",
   titular: "Understand where advanced AI is heading before you decide what to do with your career",
   entrada:
     "Five weeks online for people from any discipline who take the topic seriously: who is building AI, how fast it is moving, what could go wrong, and where you can help make it go well. With BlueDot Impact's materials and facilitators from the community.",
@@ -293,7 +299,7 @@ const AGI_EN: PaginaCurso = {
     titulo: "Advanced AI is moving faster than the people prepared to think about it",
     parrafos: [
       "The labs building the most capable models say openly that they want to reach AGI, and the decisions about how that technology gets deployed are being made now, with very few people in Colombia who understand what is being built and what could go wrong. Almost nobody gets that understanding from their degree: you get it by reading, discussing, and forming your own view.",
-      "AGI Strategy is an **in-depth introduction to what is happening in AI development**: who is building it, what drives progress, what the good and bad outcomes could be, and what can be done to steer it towards better futures. The readings were designed by **BlueDot Impact**; AI Safety Colombia runs this cohort independently, with facilitators from the community.",
+      "The Seminar on the Future and Risks of AI is an **in-depth introduction to what is happening in AI development**: who is building it, what drives progress, what the good and bad outcomes could be, and what can be done to steer it towards better futures. The readings were designed by **BlueDot Impact**; AI Safety Colombia runs this cohort independently, with facilitators from the community.",
     ],
   },
   quien: {
@@ -349,7 +355,7 @@ const AGI_EN: PaginaCurso = {
   },
   plazo:
     "Applications are open **until Sunday 11 October at 11:59 pm**, Colombia time. The seminar starts on **Monday 12 October** and ends on 15 November. It is **free**, and everyone who completes it receives an AI Safety Colombia certificate.",
-  otro: "If you're more interested in the technical side (interpretability, evaluations, alignment research), see {curso}.",
+  otro: "If you're more interested in the technical side (interpretability, evaluations, alignment research), see the {curso}.",
   cierre: "Five weeks. A view of your own. A concrete next step.",
   faq: [
     {
@@ -370,16 +376,16 @@ const AGI_EN: PaginaCurso = {
     },
     {
       q: "What comes next?",
-      a: "Technical AI Safety, the research hackathons at the Bogotá hub, or the AI Control reading group, every other Friday.",
+      a: "The Technical AI Safety Seminar, the research hackathons at the Bogotá hub, or the AI Control reading group, every other Friday.",
     },
   ],
 };
 
 const TAIS_EN: PaginaCurso = {
-  metaTitulo: "Technical AI Safety",
+  metaTitulo: "Technical AI Safety Seminar",
   metaDescripcion:
     "A six-week cohort-based seminar starting 12 October 2026, using BlueDot Impact's materials: alignment, evaluations, interpretability and AI control. Free, with an AI Safety Colombia certificate. Applications close 11 October.",
-  kicker: "Technical AI Safety · Cohort-based seminar",
+  kicker: "Technical AI Safety Seminar · October 2026 cohort",
   titular: "Point what you know about machine learning at the open problems in AI safety",
   entrada:
     "Six weeks online for people with a technical background: how safer models are trained, how they are evaluated, how to look inside them, and how to limit the damage when something fails. With BlueDot Impact's materials and facilitators from the community.",
@@ -389,7 +395,7 @@ const TAIS_EN: PaginaCurso = {
     titulo: "Capabilities are advancing faster than safety",
     parrafos: [
       "AI capabilities are advancing faster than our ability to make them safe, and the field needs more technical people working on it. The problems are still open: we don't yet know how to reliably measure what a model can and wants to do, how to understand what it computes inside, or how to guarantee that a capable system won't cause harm if something fails.",
-      "Technical AI Safety is **a tour of those problems and of the methods used today to try to solve them**: RLHF, evaluations, mechanistic interpretability and AI control. The readings were designed by **BlueDot Impact**; AI Safety Colombia runs this cohort independently, with facilitators from the community.",
+      "The Technical AI Safety Seminar is **a tour of those problems and of the methods used today to try to solve them**: RLHF, evaluations, mechanistic interpretability and AI control. The readings were designed by **BlueDot Impact**; AI Safety Colombia runs this cohort independently, with facilitators from the community.",
     ],
   },
   quien: {
@@ -446,7 +452,7 @@ const TAIS_EN: PaginaCurso = {
   },
   plazo:
     "Applications are open **until Sunday 11 October at 11:59 pm**, Colombia time. The seminar starts on **Monday 12 October** and ends on 22 November. It is **free**, and everyone who completes it receives an AI Safety Colombia certificate.",
-  otro: "If you'd rather start with the strategic picture, see {curso}.",
+  otro: "If you'd rather start with the strategic picture, see the {curso}.",
   cierre: "Six weeks. The open problems. Your place in them.",
   faq: [
     {
@@ -454,8 +460,8 @@ const TAIS_EN: PaginaCurso = {
       a: "You should understand the basics of how LLMs are trained and fine-tuned, that AI progress is driven by data, algorithms and compute, and that a neural network is optimised with gradient descent. BlueDot's two-hour, self-paced AI Foundations course covers it.",
     },
     {
-      q: "Do I need to take AGI Strategy first?",
-      a: "It isn't required, but it helps: AGI Strategy gives the context this seminar builds on. If you apply to this one and aren't accepted, the form lets you ask to be considered for AGI Strategy.",
+      q: "Do I need to take the Seminar on the Future and Risks of AI first?",
+      a: "It isn't required, but it helps: the Seminar on the Future and Risks of AI gives the context this seminar builds on. If you apply to this one and aren't accepted, the form lets you ask to be considered for the Seminar on the Future and Risks of AI.",
     },
     {
       q: "Is it really free?",
@@ -473,10 +479,10 @@ const TAIS_EN: PaginaCurso = {
 };
 
 const AGI_PT: PaginaCurso = {
-  metaTitulo: "AGI Strategy",
+  metaTitulo: "Seminário de futuro e riscos da IA",
   metaDescripcion:
     "Seminário em turma de cinco semanas, a partir de 12 de outubro de 2026, com os materiais da BlueDot Impact. Para entender para onde vai a IA avançada e encontrar seu ponto de entrada. Grátis, com certificado da AI Safety Colombia. Inscrições até 11 de outubro.",
-  kicker: "AGI Strategy · Seminário em turma",
+  kicker: "Seminário de futuro e riscos da IA · Turma de outubro de 2026",
   titular: "Entenda para onde vai a IA avançada antes de decidir o que fazer com sua carreira",
   entrada:
     "Cinco semanas on-line para gente de qualquer área que leva o tema a sério: quem está construindo a IA, com que velocidade avança, o que pode dar errado e onde você pode ajudar para que dê certo. Com os materiais da BlueDot Impact e facilitadores da comunidade.",
@@ -486,7 +492,7 @@ const AGI_PT: PaginaCurso = {
     titulo: "A IA avançada anda mais rápido que as pessoas preparadas para pensá-la",
     parrafos: [
       "Os laboratórios que constroem os modelos mais capazes dizem abertamente que querem chegar à AGI, e as decisões sobre como essa tecnologia é implantada já estão sendo tomadas, com pouquíssima gente na Colômbia que entenda o que está sendo construído e o que pode dar errado. Quase ninguém chega a esse entendimento pela formação: chega-se lendo, discutindo e formando uma opinião própria.",
-      "AGI Strategy é uma **introdução aprofundada ao que está acontecendo no desenvolvimento da IA**: quem a está construindo, o que impulsiona o progresso, quais podem ser os bons e os maus desfechos e o que se pode fazer para levá-la a futuros melhores. As leituras são as criadas pela **BlueDot Impact**; a AI Safety Colombia conduz esta turma por conta própria, com facilitadores da comunidade.",
+      "O Seminário de futuro e riscos da IA é uma **introdução aprofundada ao que está acontecendo no desenvolvimento da IA**: quem a está construindo, o que impulsiona o progresso, quais podem ser os bons e os maus desfechos e o que se pode fazer para levá-la a futuros melhores. As leituras são as criadas pela **BlueDot Impact**; a AI Safety Colombia conduz esta turma por conta própria, com facilitadores da comunidade.",
     ],
   },
   quien: {
@@ -542,7 +548,7 @@ const AGI_PT: PaginaCurso = {
   },
   plazo:
     "As inscrições estão abertas **até domingo, 11 de outubro, às 23h59**, horário da Colômbia. O seminário começa na **segunda-feira, 12 de outubro**, e termina em 15 de novembro. É **grátis**, e quem o concluir recebe um certificado da AI Safety Colombia.",
-  otro: "Se você tem mais interesse na parte técnica (interpretabilidade, avaliações, pesquisa em alinhamento), veja {curso}.",
+  otro: "Se você tem mais interesse na parte técnica (interpretabilidade, avaliações, pesquisa em alinhamento), veja o {curso}.",
   cierre: "Cinco semanas. Uma opinião própria. Um próximo passo concreto.",
   faq: [
     {
@@ -563,16 +569,16 @@ const AGI_PT: PaginaCurso = {
     },
     {
       q: "O que vem depois?",
-      a: "Technical AI Safety, os hackathons de pesquisa do hub de Bogotá ou o grupo de leitura de AI Control, às sextas-feiras a cada quinze dias.",
+      a: "O Seminário técnico de segurança da IA, os hackathons de pesquisa do hub de Bogotá ou o grupo de leitura de AI Control, às sextas-feiras a cada quinze dias.",
     },
   ],
 };
 
 const TAIS_PT: PaginaCurso = {
-  metaTitulo: "Technical AI Safety",
+  metaTitulo: "Seminário técnico de segurança da IA",
   metaDescripcion:
     "Seminário em turma de seis semanas, a partir de 12 de outubro de 2026, com os materiais da BlueDot Impact: alinhamento, avaliações, interpretabilidade e AI control. Grátis, com certificado da AI Safety Colombia. Inscrições até 11 de outubro.",
-  kicker: "Technical AI Safety · Seminário em turma",
+  kicker: "Seminário técnico de segurança da IA · Turma de outubro de 2026",
   titular: "Aponte o que você sabe de machine learning para os problemas em aberto da segurança da IA",
   entrada:
     "Seis semanas on-line para gente com base técnica: como treinar modelos mais seguros, como avaliá-los, como olhar dentro deles e como limitar o dano quando algo falha. Com os materiais da BlueDot Impact e facilitadores da comunidade.",
@@ -582,7 +588,7 @@ const TAIS_PT: PaginaCurso = {
     titulo: "As capacidades avançam mais rápido que a segurança",
     parrafos: [
       "As capacidades da IA avançam mais rápido que a nossa capacidade de torná-las seguras, e o campo precisa de mais gente técnica trabalhando nisso. Os problemas continuam em aberto: ainda não sabemos medir com confiança o que um modelo pode e quer fazer, nem entender o que ele calcula por dentro, nem garantir que um sistema capaz não cause dano se algo falhar.",
-      "Technical AI Safety é um **percurso por esses problemas e pelos métodos com que hoje se tenta resolvê-los**: RLHF, avaliações, interpretabilidade mecanicista e AI control. As leituras são as criadas pela **BlueDot Impact**; a AI Safety Colombia conduz esta turma por conta própria, com facilitadores da comunidade.",
+      "O Seminário técnico de segurança da IA é um **percurso por esses problemas e pelos métodos com que hoje se tenta resolvê-los**: RLHF, avaliações, interpretabilidade mecanicista e AI control. As leituras são as criadas pela **BlueDot Impact**; a AI Safety Colombia conduz esta turma por conta própria, com facilitadores da comunidade.",
     ],
   },
   quien: {
@@ -639,7 +645,7 @@ const TAIS_PT: PaginaCurso = {
   },
   plazo:
     "As inscrições estão abertas **até domingo, 11 de outubro, às 23h59**, horário da Colômbia. O seminário começa na **segunda-feira, 12 de outubro**, e termina em 22 de novembro. É **grátis**, e quem o concluir recebe um certificado da AI Safety Colombia.",
-  otro: "Se prefere começar pelo panorama estratégico, veja {curso}.",
+  otro: "Se prefere começar pelo panorama estratégico, veja o {curso}.",
   cierre: "Seis semanas. Os problemas em aberto. Seu lugar neles.",
   faq: [
     {
@@ -647,8 +653,8 @@ const TAIS_PT: PaginaCurso = {
       a: "Você deve entender o básico de como os LLMs são treinados e ajustados, que o progresso da IA é movido por dados, algoritmos e computação, e que uma rede neural é otimizada com descida de gradiente. O curso AI Foundations da BlueDot, de duas horas e no seu ritmo, dá essa base.",
     },
     {
-      q: "Preciso fazer AGI Strategy antes?",
-      a: "Não é obrigatório, mas ajuda: AGI Strategy dá o contexto sobre o qual este seminário se constrói. Se você se inscrever neste e não for aceito, no formulário pode pedir para ser considerado para AGI Strategy.",
+      q: "Preciso fazer o Seminário de futuro e riscos da IA antes?",
+      a: "Não é obrigatório, mas ajuda: o Seminário de futuro e riscos da IA dá o contexto sobre o qual este seminário se constrói. Se você se inscrever neste e não for aceito, no formulário pode pedir para ser considerado para o Seminário de futuro e riscos da IA.",
     },
     {
       q: "É grátis mesmo?",

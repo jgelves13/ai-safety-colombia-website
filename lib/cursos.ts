@@ -23,9 +23,9 @@ export function cursosCerrados(): boolean {
 }
 
 export const RUTA_APLICAR_CURSOS: Record<Idioma, string> = {
-  es: "/seminarios/aplicar",
-  en: "/en/seminars/apply",
-  pt: "/pt/seminarios/inscricao",
+  es: "/cursos/aplicar",
+  en: "/en/courses/apply",
+  pt: "/pt/cursos/inscricao",
 };
 
 export const RUTA_UNETE: Record<Idioma, string> = {
@@ -209,17 +209,17 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     kicker: "Seminarios de BlueDot Impact · aplicaciones abiertas",
     titulo: "Aplica a los seminarios",
     entrada:
-      "Corremos por nuestra cuenta dos seminarios de BlueDot Impact: AGI Strategy y Technical AI Safety. Llenar el formulario toma unos 30 minutos. Puedes responder con viñetas.",
+      "Corremos por nuestra cuenta dos seminarios con materiales de BlueDot Impact: el Seminario de futuro y riesgos de la IA y el Seminario técnico de seguridad de la IA. Llenar el formulario toma unos 30 minutos. Puedes responder con viñetas.",
     cierre: "Las aplicaciones cierran el domingo 11 de octubre a las 11:59 p. m., hora de Colombia.",
     sinIA: "Por favor no uses IA para responder: queremos leerte a ti.",
-    prerrequisitoTitulo: "Antes de aplicar a Technical AI Safety deberías:",
+    prerrequisitoTitulo: "Antes de aplicar al Seminario técnico de seguridad de la IA deberías:",
     prerrequisitos: [
       "Entender que los sistemas de IA se entrenan, no se diseñan, y que no los entendemos del todo.",
       "Entender qué impulsa el progreso de la IA y qué efecto tiene ese progreso en distintos campos.",
       "Poder nombrar riesgos concretos de la IA, más allá de «puede ser peligrosa».",
     ],
-    prerrequisitoCierre: "Si no estás seguro de alguno, empieza por AGI Strategy.",
-    nombreCurso: { "agi-strategy": "AGI Strategy", "technical-ai-safety": "Technical AI Safety" },
+    prerrequisitoCierre: "Si no estás seguro de alguno, empieza por el Seminario de futuro y riesgos de la IA.",
+    nombreCurso: { "agi-strategy": "Seminario de futuro y riesgos de la IA", "technical-ai-safety": "Seminario técnico de seguridad de la IA" },
     resumenCurso: {
       "agi-strategy":
         "Por qué se está corriendo hacia la AGI, qué impulsa el progreso, cuáles son los riesgos y qué defensas existen.",
@@ -278,7 +278,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     curso: "¿A qué seminario aplicas?",
     formato: "¿Puedes estar todas las semanas?",
     formatoAyuda:
-      "El seminario arranca el lunes 12 de octubre y va a tiempo parcial, con una discusión en vivo cada semana. AGI Strategy dura cinco semanas y Technical AI Safety seis.",
+      "El seminario arranca el lunes 12 de octubre y va a tiempo parcial, con una discusión en vivo cada semana. El Seminario de futuro y riesgos de la IA dura cinco semanas y el Seminario técnico de seguridad de la IA seis.",
     formatos: {
       todas: "Sí, puedo estar todas las semanas",
       "casi-todas": "Casi todas: puede que falte a una",
@@ -286,8 +286,8 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     },
     alternativa: "Ubicación alternativa",
     alternativaAyuda:
-      "Puede que a alguien le sirva más empezar por AGI Strategy. Marca la casilla si estás abierto a que te ubiquemos ahí si te lo recomendamos.",
-    alternativaCheck: "Estoy abierto a hacer AGI Strategy en su lugar",
+      "Puede que a alguien le sirva más empezar por el Seminario de futuro y riesgos de la IA. Marca la casilla si estás abierto a que te ubiquemos ahí si te lo recomendamos.",
+    alternativaCheck: "Estoy abierto a hacer el Seminario de futuro y riesgos de la IA en su lugar",
 
     nombre: "Nombre",
     apellido: "Apellido",
@@ -438,17 +438,17 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     kicker: "BlueDot Impact seminars · applications open",
     titulo: "Apply to the seminars",
     entrada:
-      "We run two BlueDot Impact seminars on our own: AGI Strategy and Technical AI Safety. The form takes around 30 minutes. Bullet points are fine.",
+      "We run two seminars on our own, with BlueDot Impact's materials: the Seminar on the Future and Risks of AI and the Technical AI Safety Seminar. The form takes around 30 minutes. Bullet points are fine.",
     cierre: "Applications close on Sunday 11 October at 11:59 pm, Colombia time.",
     sinIA: "Please don't use AI to answer: we want to hear from you.",
-    prerrequisitoTitulo: "Before applying to Technical AI Safety you should:",
+    prerrequisitoTitulo: "Before applying to the Technical AI Safety Seminar you should:",
     prerrequisitos: [
       "Understand that AI systems are grown, not designed, and that we don't fully understand them.",
       "Understand what drives AI progress and the impact this has on progress in different domains.",
       "Be able to articulate specific risks AI poses (beyond just “could be dangerous”).",
     ],
-    prerrequisitoCierre: "If you are unsure about any of these, consider starting with AGI Strategy.",
-    nombreCurso: { "agi-strategy": "AGI Strategy", "technical-ai-safety": "Technical AI Safety" },
+    prerrequisitoCierre: "If you are unsure about any of these, consider starting with the Seminar on the Future and Risks of AI.",
+    nombreCurso: { "agi-strategy": "Seminar on the Future and Risks of AI", "technical-ai-safety": "Technical AI Safety Seminar" },
     resumenCurso: {
       "agi-strategy":
         "Why there is a race to AGI, what drives progress, what the risks are and what defences exist.",
@@ -507,7 +507,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     curso: "Seminar you're applying for",
     formato: "Can you make it every week?",
     formatoAyuda:
-      "The seminar starts on Monday 12 October and runs part-time, with one live discussion each week. AGI Strategy lasts five weeks and Technical AI Safety six.",
+      "The seminar starts on Monday 12 October and runs part-time, with one live discussion each week. The Seminar on the Future and Risks of AI lasts five weeks and the Technical AI Safety Seminar six.",
     formatos: {
       todas: "Yes, I can make it every week",
       "casi-todas": "Almost every week: I might miss one",
@@ -515,8 +515,8 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     },
     alternativa: "Alternative seminar placement",
     alternativaAyuda:
-      "We may identify strong applicants who would benefit from starting with the AGI Strategy seminar. Check the box if you're open to being placed there instead if recommended.",
-    alternativaCheck: "I'm open to taking AGI Strategy instead",
+      "We may identify strong applicants who would benefit from starting with the Seminar on the Future and Risks of AI. Check the box if you're open to being placed there instead if recommended.",
+    alternativaCheck: "I'm open to taking the Seminar on the Future and Risks of AI instead",
 
     nombre: "First name",
     apellido: "Last name",
@@ -667,17 +667,17 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     kicker: "Seminários da BlueDot Impact · inscrições abertas",
     titulo: "Inscreva-se nos seminários",
     entrada:
-      "Oferecemos por conta própria dois seminários da BlueDot Impact: AGI Strategy e Technical AI Safety. Preencher o formulário leva uns 30 minutos. Pode responder em tópicos.",
+      "Oferecemos por conta própria dois seminários com materiais da BlueDot Impact: o Seminário de futuro e riscos da IA e o Seminário técnico de segurança da IA. Preencher o formulário leva uns 30 minutos. Pode responder em tópicos.",
     cierre: "As inscrições fecham no domingo, 11 de outubro, às 23h59, horário da Colômbia.",
     sinIA: "Por favor, não use IA para responder: queremos ler você.",
-    prerrequisitoTitulo: "Antes de se inscrever em Technical AI Safety, você deveria:",
+    prerrequisitoTitulo: "Antes de se inscrever no Seminário técnico de segurança da IA, você deveria:",
     prerrequisitos: [
       "Entender que os sistemas de IA são treinados, não projetados, e que não os entendemos por completo.",
       "Entender o que impulsiona o progresso da IA e que efeito esse progresso tem em diferentes áreas.",
       "Saber apontar riscos concretos da IA, além de «pode ser perigosa».",
     ],
-    prerrequisitoCierre: "Se não tiver certeza de algum deles, comece por AGI Strategy.",
-    nombreCurso: { "agi-strategy": "AGI Strategy", "technical-ai-safety": "Technical AI Safety" },
+    prerrequisitoCierre: "Se não tiver certeza de algum deles, comece pelo Seminário de futuro e riscos da IA.",
+    nombreCurso: { "agi-strategy": "Seminário de futuro e riscos da IA", "technical-ai-safety": "Seminário técnico de segurança da IA" },
     resumenCurso: {
       "agi-strategy":
         "Por que existe uma corrida rumo à AGI, o que impulsiona o progresso, quais são os riscos e que defesas existem.",
@@ -736,7 +736,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     curso: "Em qual seminário você se inscreve?",
     formato: "Você consegue participar todas as semanas?",
     formatoAyuda:
-      "O seminário começa na segunda-feira, 12 de outubro, em meio período, com uma discussão ao vivo por semana. AGI Strategy dura cinco semanas e Technical AI Safety, seis.",
+      "O seminário começa na segunda-feira, 12 de outubro, em meio período, com uma discussão ao vivo por semana. O Seminário de futuro e riscos da IA dura cinco semanas e o Seminário técnico de segurança da IA, seis.",
     formatos: {
       todas: "Sim, consigo participar todas as semanas",
       "casi-todas": "Quase todas: talvez eu perca uma",
@@ -744,8 +744,8 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     },
     alternativa: "Alocação alternativa",
     alternativaAyuda:
-      "Pode ser melhor para algumas pessoas começar por AGI Strategy. Marque a caixa se estiver aberto a ser alocado lá caso a gente recomende.",
-    alternativaCheck: "Estou aberto a fazer AGI Strategy no lugar",
+      "Pode ser melhor para algumas pessoas começar pelo Seminário de futuro e riscos da IA. Marque a caixa se estiver aberto a ser alocado lá caso a gente recomende.",
+    alternativaCheck: "Estou aberto a fazer o Seminário de futuro e riscos da IA no lugar",
 
     nombre: "Nome",
     apellido: "Sobrenome",

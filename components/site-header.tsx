@@ -110,7 +110,7 @@ function Submenu({
       {/* El pt-2 es el puente invisible entre el botón y la caja, para que el
           mouse no la cierre al bajar. */}
       <div className={`absolute top-full left-0 z-30 pt-2 ${abierto ? "block" : "hidden"}`}>
-        <ul className="flex w-72 flex-col rounded-2xl bg-aisc-forest-deep p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] ring-1 ring-aisc-sand/12">
+        <ul className="flex w-[22rem] flex-col rounded-2xl bg-aisc-forest-deep p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] ring-1 ring-aisc-sand/12">
           {entrada.hijos.map((h) => (
             <li key={h.href}>
               <Link

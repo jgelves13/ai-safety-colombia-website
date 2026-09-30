@@ -3,9 +3,9 @@ import CourseApplyPage from "@/components/course-apply-page";
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
-  title: "Aplica a AGI Strategy y Technical AI Safety",
+  title: "Aplica a los seminarios",
   description:
-    "Formulario de aplicación a los cursos de BlueDot Impact que corre AI Safety Colombia: AGI Strategy y Technical AI Safety. Cierra el domingo 11 de octubre de 2026 a las 11:59 p. m.",
+    "Formulario de aplicación a los dos seminarios que corre AI Safety Colombia con materiales de BlueDot Impact: el Seminario de futuro y riesgos de la IA y el Seminario técnico de seguridad de la IA. Cierra el domingo 11 de octubre de 2026 a las 11:59 p. m.",
   alternates: { canonical: "/cursos/aplicar", languages: alternativas("/cursos/aplicar") },
 };
 

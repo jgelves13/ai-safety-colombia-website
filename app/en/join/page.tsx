@@ -10,7 +10,7 @@ import { cursosCerrados } from "@/lib/cursos";
 export const metadata: Metadata = {
   title: "Join us",
   description:
-    "Three steps into AI safety with AI Safety Colombia: explore the community, learn in the AGI Strategy and Technical AI Safety courses, and do research at the hackathons. Each with its time commitment, requirements and cost.",
+    "Three steps into AI safety with AI Safety Colombia: explore the community, learn in the Seminar on the Future and Risks of AI or the Technical AI Safety Seminar, and do research at the hackathons. Each with its time commitment, requirements and cost.",
   alternates: { canonical: "/en/join", languages: alternativas("/en/join") },
 };
 
@@ -64,26 +64,26 @@ const PASOS = [
     id: "aprende",
     numero: "02",
     titulo: "Learn",
-    entrada: "Cohort-based courses with a facilitator, using BlueDot Impact's materials. Applications are open until Sunday 11 October at 11:59 pm, Colombia time.",
+    entrada: "Cohort-based seminars with a facilitator, using BlueDot Impact's materials. Applications are open until Sunday 11 October at 11:59 pm, Colombia time.",
     opciones: [
       {
-        titulo: "AGI Strategy",
+        titulo: "Seminar on the Future and Risks of AI",
         cuerpo: "Why there is a race to AGI, what drives progress, what the risks are and what defences exist. The starting point whatever field you come from.",
         dedicacion: "Five weeks from Monday 12 October, about 5 hours a week",
         requisitos: "Apply; no technical background needed",
         costo: "Free, with an AI Safety Colombia certificate",
         href: "/en/courses/agi-strategy",
-        cta: "See the course",
+        cta: "See the seminar",
         externo: false,
       },
       {
-        titulo: "Technical AI Safety",
+        titulo: "Technical AI Safety Seminar",
         cuerpo: "How safer models are trained, how they are evaluated, mechanistic interpretability and AI control. For people who already know why the problem matters and want to get into the technical side.",
         dedicacion: "Six weeks from Monday 12 October, about 5 hours a week",
-        requisitos: "Apply; understand the basics of how models are trained. If not, start with AGI Strategy",
+        requisitos: "Apply; understand the basics of how models are trained. If not, start with the Seminar on the Future and Risks of AI",
         costo: "Free, with an AI Safety Colombia certificate",
         href: "/en/courses/technical-ai-safety",
-        cta: "See the course",
+        cta: "See the seminar",
         externo: false,
       },
     ],
@@ -154,7 +154,7 @@ export default function Join() {
                 className="text-body-sm inline-flex w-fit items-center gap-2 rounded-full bg-aisc-coral px-4 py-1.5 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85"
                 href="#aprende"
               >
-                Course applications open until Sunday 11 October →
+                Seminar applications open until Sunday 11 October →
               </a>
             ) : null}
           </div>

@@ -3,9 +3,9 @@ import CourseApplyPage from "@/components/course-apply-page";
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
-  title: "Apply to AGI Strategy and Technical AI Safety",
+  title: "Apply to the seminars",
   description:
-    "Application form for the BlueDot Impact courses run by AI Safety Colombia: AGI Strategy and Technical AI Safety. Closes on Sunday 11 October 2026 at 11:59 pm.",
+    "Application form for the two seminars AI Safety Colombia runs with BlueDot Impact's materials: the Seminar on the Future and Risks of AI and the Technical AI Safety Seminar. Closes on Sunday 11 October 2026 at 11:59 pm.",
   alternates: { canonical: "/en/courses/apply", languages: alternativas("/en/courses/apply") },
 };
 

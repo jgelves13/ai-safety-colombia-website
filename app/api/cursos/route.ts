@@ -186,13 +186,14 @@ async function guardar(d: Datos): Promise<boolean> {
   }
 }
 
-const NOMBRE: Record<CursoId, string> = {
-  "agi-strategy": "AGI Strategy",
-  "technical-ai-safety": "Technical AI Safety",
+const NOMBRE: Record<Idioma, Record<CursoId, string>> = {
+  es: { "agi-strategy": "Seminario de futuro y riesgos de la IA", "technical-ai-safety": "Seminario técnico de seguridad de la IA" },
+  en: { "agi-strategy": "Seminar on the Future and Risks of AI", "technical-ai-safety": "Technical AI Safety Seminar" },
+  pt: { "agi-strategy": "Seminário de futuro e riscos da IA", "technical-ai-safety": "Seminário técnico de segurança da IA" },
 };
 
 function correoDeConfirmacion(d: Datos): { subject: string; text: string } {
-  const curso = NOMBRE[d.course];
+  const curso = NOMBRE[d.locale][d.course];
   if (d.locale === "en") {
     return {
       subject: `We got your application to ${curso}`,
@@ -291,7 +292,7 @@ export async function POST(req: Request) {
       {
         from: REMITENTE,
         to: [CORREO_CONTACTO],
-        subject: `Falló una aplicación a ${NOMBRE[d.course]}`,
+        subject: `Falló una aplicación a ${NOMBRE[d.locale][d.course]}`,
         text: `No se pudo guardar en Supabase. Datos:\n\n${JSON.stringify(fila(d), null, 2)}`,
       },
       "el aviso de falla",

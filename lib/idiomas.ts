@@ -75,13 +75,8 @@ export const PAGINAS: Pagina[] = [
   },
   {
     ruta: { es: "/cursos/agi-strategy", en: "/en/courses/agi-strategy", pt: "/pt/cursos/agi-strategy" },
-    nav: { es: "AGI Strategy", en: "AGI Strategy", pt: "AGI Strategy" },
+    nav: { es: "Seminario de futuro y riesgos de la IA", en: "Seminar on the Future and Risks of AI", pt: "Seminário de futuro e riscos da IA" },
     grupo: "seminarios",
-    detalle: {
-      es: "5 semanas · sin formación técnica",
-      en: "5 weeks · no technical background",
-      pt: "5 semanas · sem formação técnica",
-    },
   },
   {
     ruta: {
@@ -89,13 +84,8 @@ export const PAGINAS: Pagina[] = [
       en: "/en/courses/technical-ai-safety",
       pt: "/pt/cursos/technical-ai-safety",
     },
-    nav: { es: "Technical AI Safety", en: "Technical AI Safety", pt: "Technical AI Safety" },
+    nav: { es: "Seminario técnico de seguridad de la IA", en: "Technical AI Safety Seminar", pt: "Seminário técnico de segurança da IA" },
     grupo: "seminarios",
-    detalle: {
-      es: "6 semanas · con base técnica",
-      en: "6 weeks · technical background",
-      pt: "6 semanas · com base técnica",
-    },
   },
   {
     ruta: { es: "/investigacion", en: "/en/research", pt: "/pt/pesquisa" },

@@ -10,7 +10,7 @@ import { cursosCerrados } from "@/lib/cursos";
 export const metadata: Metadata = {
   title: "Participe",
   description:
-    "Três passos para entrar em AI safety com a AI Safety Colombia: explorar a comunidade, aprender nos cursos AGI Strategy e Technical AI Safety e pesquisar nos hackathons. Cada um com sua dedicação, requisitos e custo.",
+    "Três passos para entrar em AI safety com a AI Safety Colombia: explorar a comunidade, aprender no Seminário de futuro e riscos da IA ou no Seminário técnico de segurança da IA e pesquisar nos hackathons. Cada um com sua dedicação, requisitos e custo.",
   alternates: { canonical: "/pt/participe", languages: alternativas("/pt/participe") },
 };
 
@@ -64,26 +64,26 @@ const PASOS = [
     id: "aprende",
     numero: "02",
     titulo: "Aprenda",
-    entrada: "Cursos em turma, com facilitador, usando os materiais da BlueDot Impact. Inscrições abertas até domingo, 11 de outubro, às 23h59, horário da Colômbia.",
+    entrada: "Seminários em turma, com facilitador, usando os materiais da BlueDot Impact. Inscrições abertas até domingo, 11 de outubro, às 23h59, horário da Colômbia.",
     opciones: [
       {
-        titulo: "AGI Strategy",
+        titulo: "Seminário de futuro e riscos da IA",
         cuerpo: "Por que existe uma corrida rumo à AGI, o que impulsiona o progresso, quais são os riscos e que defesas existem. É o ponto de partida venha você de qualquer área.",
         dedicacion: "Cinco semanas a partir de segunda-feira, 12 de outubro, cerca de 5 horas por semana",
         requisitos: "Inscrever-se; não precisa de formação técnica",
         costo: "Grátis, com certificado da AI Safety Colombia",
         href: "/pt/cursos/agi-strategy",
-        cta: "Ver o curso",
+        cta: "Ver o seminário",
         externo: false,
       },
       {
-        titulo: "Technical AI Safety",
+        titulo: "Seminário técnico de segurança da IA",
         cuerpo: "Como se treinam modelos mais seguros, como são avaliados, interpretabilidade mecanicista e AI control. Para quem já sabe por que o problema importa e quer entrar na parte técnica.",
         dedicacion: "Seis semanas a partir de segunda-feira, 12 de outubro, cerca de 5 horas por semana",
-        requisitos: "Inscrever-se; entender o básico de como os modelos são treinados. Se não, comece por AGI Strategy",
+        requisitos: "Inscrever-se; entender o básico de como os modelos são treinados. Se não, comece pelo Seminário de futuro e riscos da IA",
         costo: "Grátis, com certificado da AI Safety Colombia",
         href: "/pt/cursos/technical-ai-safety",
-        cta: "Ver o curso",
+        cta: "Ver o seminário",
         externo: false,
       },
     ],
@@ -154,7 +154,7 @@ export default function Participe() {
                 className="text-body-sm inline-flex w-fit items-center gap-2 rounded-full bg-aisc-coral px-4 py-1.5 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85"
                 href="#aprende"
               >
-                Inscrições abertas para os cursos até domingo, 11 de outubro →
+                Inscrições abertas para os seminários até domingo, 11 de outubro →
               </a>
             ) : null}
           </div>

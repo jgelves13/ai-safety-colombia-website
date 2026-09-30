@@ -3,7 +3,7 @@ import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { CTA_LINK_PRIMARY, CTA_PANEL, CTA_PATTERN_BOTTOM, CTA_PATTERN_TOP, HERO_CORNER_CLASS, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { RUTA_APLICAR_CURSOS, cursosCerrados, type CursoId } from "@/lib/cursos";
-import { BLUEDOT_CURSO, FACILITADORES, PAGINAS_CURSO, ROTULOS_CURSO, RUTA_CURSO } from "@/lib/cursos-paginas";
+import { BLUEDOT_CURSO, BLUEDOT_NOMBRE, FACILITADORES, PAGINAS_CURSO, ROTULOS_CURSO, RUTA_CURSO } from "@/lib/cursos-paginas";
 import type { Idioma } from "@/lib/idiomas";
 
 /* La página de cada seminario, con la estructura de las páginas de programa de
@@ -122,7 +122,7 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
             ))}
             <div className="flex flex-col gap-1.5">
               <dt className="text-kicker text-aisc-sand/60">{r.materiales}</dt>
-              <dd>
+              <dd className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
                 <a
                   className="inline-flex w-fit rounded-md bg-aisc-cream px-2.5 py-1.5"
                   href={BLUEDOT_CURSO[curso]}
@@ -131,6 +131,7 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
                 >
                   <img alt="BlueDot Impact" className="h-5 w-auto" src="/aisc/aliados/bluedot.png" />
                 </a>
+                <span className="text-body-sm text-aisc-sand/85">{BLUEDOT_NOMBRE[curso]}</span>
               </dd>
             </div>
           </dl>
