@@ -89,6 +89,19 @@ export const PAGINAS: Pagina[] = [
   {
     ruta: { es: "/sprint/aplicar", en: "/en/sprint/apply", pt: "/pt/sprint/inscricao" },
   },
+  {
+    ruta: { es: "/cursos/aplicar", en: "/en/courses/apply", pt: "/pt/cursos/inscricao" },
+  },
+  {
+    ruta: { es: "/cursos/agi-strategy", en: "/en/courses/agi-strategy", pt: "/pt/cursos/agi-strategy" },
+  },
+  {
+    ruta: {
+      es: "/cursos/technical-ai-safety",
+      en: "/en/courses/technical-ai-safety",
+      pt: "/pt/cursos/technical-ai-safety",
+    },
+  },
   /* La version corta del formulario, la que se manda por enlace a quien llega
      recomendado. No se enlaza desde ninguna pagina ni sale en buscadores, pero
      tiene que estar aca para que el selector de idioma la sepa cruzar. */
