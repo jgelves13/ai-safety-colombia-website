@@ -145,8 +145,7 @@ const GRUPOS: GrupoPersonas[] = [
         bio: (
           <>
             AI interpretability researcher at <Ext href="https://uniandes.edu.co/">Universidad de los Andes</Ext>, where he
-            is doing a master's in Computer Science; Computer Science graduate of Uniempresarial. Latin America prize at
-            Apart Research's Global South hackathon for{" "}
+            is doing a master's in Computer Science. Latin America prize at Apart Research's Global South hackathon for{" "}
             <Ext href="https://apartresearch.com/project/thought-anchors-for-social-bias-which-reasoning-steps-matter-in-extended-thinking-llms-on-latin-american-scenarios-27ti">
               "Which reasoning steps produce the bias"
             </Ext>

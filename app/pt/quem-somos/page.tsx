@@ -145,8 +145,7 @@ const GRUPOS: GrupoPersonas[] = [
         bio: (
           <>
             Pesquisador em interpretabilidade de IA na <Ext href="https://uniandes.edu.co/">Universidad de los Andes</Ext>,
-            onde cursa o mestrado em Computação; graduado em Ciência da Computação pela Uniempresarial. Prêmio da América
-            Latina no hackathon do Sul Global da Apart Research com{" "}
+            onde cursa o mestrado em Computação. Prêmio da América Latina no hackathon do Sul Global da Apart Research com{" "}
             <Ext href="https://apartresearch.com/project/thought-anchors-for-social-bias-which-reasoning-steps-matter-in-extended-thinking-llms-on-latin-american-scenarios-27ti">
               «Quais passos do raciocínio produzem o viés»
             </Ext>
