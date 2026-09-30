@@ -27,8 +27,8 @@ const PATRON = "/aisc/patterns/aisc-wash-lattice.svg";
 /* Un icono de una sola línea por seminario, al modo de los hero-graphic de
    BlueDot: futuros que se bifurcan y un escudo con una red adentro. */
 const HERO_CURSO: Record<CursoId, string> = {
-  "agi-strategy": "/aisc/patterns/aisc-hero-seminario-futuro.svg",
-  "technical-ai-safety": "/aisc/patterns/aisc-hero-seminario-tecnico.svg",
+  "agi-strategy": "/aisc/patterns/aisc-hero-seminario-futuro.svg?v=2",
+  "technical-ai-safety": "/aisc/patterns/aisc-hero-seminario-tecnico.svg?v=2",
 };
 
 /* Las negritas de los textos vienen marcadas con **así**. */
