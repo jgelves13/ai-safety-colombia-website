@@ -132,6 +132,7 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
     { rotulo: r.dedicacion, valor: p.hechos.dedicacion },
     { rotulo: r.fechas, valor: p.hechos.fechas },
     { rotulo: r.costo, valor: r.costoValor },
+    { rotulo: r.idioma, valor: r.idiomaValor },
   ];
 
   return (
@@ -162,7 +163,7 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
           </div>
 
           {/* La tira de datos clave, dentro del encabezado. */}
-          <dl className="grid grid-cols-2 gap-x-8 gap-y-6 border-t border-aisc-sand/20 py-8 md:grid-cols-5 md:py-10">
+          <dl className="grid grid-cols-2 gap-x-8 gap-y-6 border-t border-aisc-sand/20 py-8 md:grid-cols-3 md:py-10 lg:grid-cols-6">
             {hechos.map((h) => (
               <div className="flex flex-col gap-1.5" key={h.rotulo}>
                 <dt className="text-kicker text-aisc-sand/60">{h.rotulo}</dt>

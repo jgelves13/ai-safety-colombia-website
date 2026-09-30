@@ -135,12 +135,12 @@ const AGI_ES: PaginaCurso = {
         cuerpo: "Vienes de otra área, has leído por tu cuenta y quieres pasar de leer a hacer.",
       },
     ],
-    cierre: "Si no sabes si encajas, aplica igual: preferimos leer una aplicación de más.",
+    cierre: "Si no sabes si encajas, aplica igual: es mejor que sobre una aplicación a que falte la tuya.",
   },
   sala: {
     titulo: "Una cohorte pequeña que discute cada semana",
     parrafos: [
-      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **dos horas de sesión con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana. La modalidad es mixta: hay sesiones presenciales en la Universidad de los Andes y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
+      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **dos horas de sesión con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana. Todas las lecturas y videos son en inglés, tal como los publica BlueDot; la discusión es en español. La modalidad es mixta: hay sesiones presenciales en la Universidad de los Andes y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
       "El facilitador es {facilitadores}. La cohorte mezcla a propósito gente de distintas disciplinas: **la discusión es donde las lecturas se vuelven una opinión propia**, y la gente con la que discutes es la red con la que después vas a trabajar.",
     ],
   },
@@ -183,6 +183,10 @@ const AGI_ES: PaginaCurso = {
     {
       q: "¿Dónde son las sesiones presenciales?",
       a: "En la Universidad de los Andes, en Bogotá, con comida gratis. Las demás sesiones son en línea.",
+    },
+    {
+      q: "¿En qué idioma es?",
+      a: "Las discusiones son en español. Todas las lecturas, videos y podcasts son en inglés, tal como los publica BlueDot Impact, así que hace falta leer inglés con comodidad.",
     },
     {
       q: "¿Qué necesito para recibir el certificado?",
@@ -237,7 +241,7 @@ const TAIS_ES: PaginaCurso = {
   sala: {
     titulo: "Una cohorte pequeña que discute cada semana",
     parrafos: [
-      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **dos horas de sesión con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana. La modalidad es mixta: hay sesiones presenciales en Bogotá, en la Universidad Externado o en la Universidad de los Andes, y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
+      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **dos horas de sesión con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana. Todas las lecturas y videos son en inglés, tal como los publica BlueDot; la discusión es en español. La modalidad es mixta: hay sesiones presenciales en Bogotá, en la Universidad Externado o en la Universidad de los Andes, y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
       "Los facilitadores son {facilitadores}. **La discusión es donde se ponen a prueba los supuestos** y donde las lecturas se conectan con el trabajo que se hace en laboratorios y organizaciones de investigación; la gente con la que discutes es la red con la que después vas a trabajar.",
     ],
   },
@@ -281,6 +285,10 @@ const TAIS_ES: PaginaCurso = {
     {
       q: "¿Dónde son las sesiones presenciales?",
       a: "En Bogotá, en el campus de la Universidad Externado o de la Universidad de los Andes; el lugar se confirma antes de que arranque el seminario, y hay comida gratis. Las demás sesiones son en línea.",
+    },
+    {
+      q: "¿En qué idioma es?",
+      a: "Las discusiones son en español. Todas las lecturas, videos y podcasts son en inglés, tal como los publica BlueDot Impact, así que hace falta leer inglés con comodidad.",
     },
     {
       q: "¿Qué necesito para recibir el certificado?",
@@ -330,12 +338,12 @@ const AGI_EN: PaginaCurso = {
         cuerpo: "You come from another area, have read on your own, and want to move from reading to doing.",
       },
     ],
-    cierre: "If you're not sure you fit, apply anyway: we'd rather read one application too many.",
+    cierre: "If you're not sure you fit, apply anyway: we'd rather have one too many than miss yours.",
   },
   sala: {
     titulo: "A small cohort that discusses every week",
     parrafos: [
-      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **two hours of session with your cohort: close reading and discussion**. That is about three hours a week. The format is mixed: some sessions are in person at Universidad de los Andes and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
+      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **two hours of session with your cohort: close reading and discussion**. That is about three hours a week. All readings and videos are in English, as BlueDot publishes them; the discussion is in Spanish. The format is mixed: some sessions are in person at Universidad de los Andes and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
       "The facilitator is {facilitadores}. The cohort deliberately mixes people from different disciplines: **the discussion is where the readings turn into a view of your own**, and the people you discuss with are the network you'll work with afterwards.",
     ],
   },
@@ -378,6 +386,10 @@ const AGI_EN: PaginaCurso = {
     {
       q: "Where are the in-person sessions?",
       a: "At Universidad de los Andes, in Bogotá, with free food. The other sessions are online.",
+    },
+    {
+      q: "What language is it in?",
+      a: "The discussions are in Spanish. All readings, videos and podcasts are in English, as BlueDot Impact publishes them, so you need to read English comfortably.",
     },
     {
       q: "What do I need to receive the certificate?",
@@ -432,7 +444,7 @@ const TAIS_EN: PaginaCurso = {
   sala: {
     titulo: "A small cohort that discusses every week",
     parrafos: [
-      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **two hours of session with your cohort: close reading and discussion**. That is about three hours a week. The format is mixed: some sessions are in person in Bogotá, at Universidad Externado or Universidad de los Andes, and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
+      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **two hours of session with your cohort: close reading and discussion**. That is about three hours a week. All readings and videos are in English, as BlueDot publishes them; the discussion is in Spanish. The format is mixed: some sessions are in person in Bogotá, at Universidad Externado or Universidad de los Andes, and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
       "The facilitators are {facilitadores}. **The discussion is where assumptions get tested** and where the readings connect to the work being done in labs and research organisations; the people you discuss with are the network you'll work with afterwards.",
     ],
   },
@@ -476,6 +488,10 @@ const TAIS_EN: PaginaCurso = {
     {
       q: "Where are the in-person sessions?",
       a: "In Bogotá, on the campus of Universidad Externado or Universidad de los Andes; the venue is confirmed before the seminar starts, and there is free food. The other sessions are online.",
+    },
+    {
+      q: "What language is it in?",
+      a: "The discussions are in Spanish. All readings, videos and podcasts are in English, as BlueDot Impact publishes them, so you need to read English comfortably.",
     },
     {
       q: "What do I need to receive the certificate?",
@@ -525,12 +541,12 @@ const AGI_PT: PaginaCurso = {
         cuerpo: "Você vem de outra área, leu por conta própria e quer passar de ler a fazer.",
       },
     ],
-    cierre: "Se não sabe se encaixa, inscreva-se mesmo assim: preferimos ler uma inscrição a mais.",
+    cierre: "Se não sabe se encaixa, inscreva-se mesmo assim: é melhor sobrar uma inscrição do que faltar a sua.",
   },
   sala: {
     titulo: "Uma turma pequena que discute toda semana",
     parrafos: [
-      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **duas horas de sessão com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana. A modalidade é mista: há sessões presenciais na Universidad de los Andes e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
+      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **duas horas de sessão com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana. Todas as leituras e vídeos são em inglês, como a BlueDot os publica; a discussão é em espanhol. A modalidade é mista: há sessões presenciais na Universidad de los Andes e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
       "O facilitador é {facilitadores}. A turma mistura de propósito gente de áreas diferentes: **a discussão é onde as leituras viram uma opinião própria**, e as pessoas com quem você discute são a rede com a qual vai trabalhar depois.",
     ],
   },
@@ -573,6 +589,10 @@ const AGI_PT: PaginaCurso = {
     {
       q: "Onde são as sessões presenciais?",
       a: "Na Universidad de los Andes, em Bogotá, com comida grátis. As demais sessões são on-line.",
+    },
+    {
+      q: "Em que idioma é?",
+      a: "As discussões são em espanhol. Todas as leituras, vídeos e podcasts são em inglês, como a BlueDot Impact os publica, então é preciso ler inglês com conforto.",
     },
     {
       q: "O que preciso para receber o certificado?",
@@ -627,7 +647,7 @@ const TAIS_PT: PaginaCurso = {
   sala: {
     titulo: "Uma turma pequena que discute toda semana",
     parrafos: [
-      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **duas horas de sessão com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana. A modalidade é mista: há sessões presenciais em Bogotá, na Universidad Externado ou na Universidad de los Andes, e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
+      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **duas horas de sessão com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana. Todas as leituras e vídeos são em inglês, como a BlueDot os publica; a discussão é em espanhol. A modalidade é mista: há sessões presenciais em Bogotá, na Universidad Externado ou na Universidad de los Andes, e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
       "Os facilitadores são {facilitadores}. **A discussão é onde os pressupostos são postos à prova** e onde as leituras se conectam com o trabalho feito em laboratórios e organizações de pesquisa; as pessoas com quem você discute são a rede com a qual vai trabalhar depois.",
     ],
   },
@@ -673,6 +693,10 @@ const TAIS_PT: PaginaCurso = {
       a: "Em Bogotá, no campus da Universidad Externado ou da Universidad de los Andes; o local é confirmado antes de o seminário começar, e tem comida grátis. As demais sessões são on-line.",
     },
     {
+      q: "Em que idioma é?",
+      a: "As discussões são em espanhol. Todas as leituras, vídeos e podcasts são em inglês, como a BlueDot Impact os publica, então é preciso ler inglês com conforto.",
+    },
+    {
       q: "O que preciso para receber o certificado?",
       a: "Participar das sessões de discussão: você pode faltar a uma, no máximo. É a mesma regra que a BlueDot Impact usa em suas turmas. O certificado é emitido pela AI Safety Colombia pela conclusão do seminário, baseado no currículo da BlueDot Impact.",
     },
@@ -695,6 +719,8 @@ type Rotulos = {
   fechas: string;
   costo: string;
   costoValor: string;
+  idioma: string;
+  idiomaValor: string;
   materiales: string;
   /* Los rótulos pequeños sobre cada título. */
   semana: string;
@@ -719,6 +745,8 @@ export const ROTULOS_CURSO: Record<Idioma, Rotulos> = {
     fechas: "Fechas",
     costo: "Costo",
     costoValor: "Gratis, con certificado",
+    idioma: "Idioma",
+    idiomaValor: "Español, lecturas en inglés",
     materiales: "Materiales de",
     semana: "Semana",
     presencial: "Presencial",
@@ -737,6 +765,8 @@ export const ROTULOS_CURSO: Record<Idioma, Rotulos> = {
     fechas: "Dates",
     costo: "Cost",
     costoValor: "Free, with a certificate",
+    idioma: "Language",
+    idiomaValor: "Spanish, readings in English",
     materiales: "Materials by",
     semana: "Week",
     presencial: "In person",
@@ -755,6 +785,8 @@ export const ROTULOS_CURSO: Record<Idioma, Rotulos> = {
     fechas: "Datas",
     costo: "Custo",
     costoValor: "Grátis, com certificado",
+    idioma: "Idioma",
+    idiomaValor: "Espanhol, leituras em inglês",
     materiales: "Materiais da",
     semana: "Semana",
     presencial: "Presencial",
