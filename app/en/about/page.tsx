@@ -301,22 +301,22 @@ export default function About() {
             <li className="flex flex-col gap-3 border-t border-aisc-forest-deep/30 pt-6">
               <h3 className="text-display-4 md:text-display-4-lg text-aisc-forest">AI Control reading group</h3>
               <p className="text-body text-aisc-ink">Every two weeks, on Fridays, we discuss a reading on how to oversee AI systems that act on their own. Any level of background is welcome.</p>
-              <span className="text-body-sm"><a className={ENLACE} href="https://chat.whatsapp.com/DfWuuPlzqmIFN1tRtl57SB" target="_blank" rel="noopener noreferrer">Join the reading group →</a></span>
+              <span className="text-body-sm"><a className={ENLACE} href="https://chat.whatsapp.com/DfWuuPlzqmIFN1tRtl57SB" target="_blank" rel="noopener noreferrer">Join the reading group</a></span>
             </li>
             <li className="flex flex-col gap-3 border-t border-aisc-forest-deep/30 pt-6">
               <h3 className="text-display-4 md:text-display-4-lg text-aisc-forest">Research hackathons</h3>
               <p className="text-body text-aisc-ink">We host the in-person Bogotá hub for Apart Research’s hackathons. Teams leave with their own work and written feedback from outside judges.</p>
-              <span className="text-body-sm"><Link className={ENLACE} href="/en/sprint">See the sprint →</Link></span>
+              <span className="text-body-sm"><Link className={ENLACE} href="/en/sprint">See the sprint</Link></span>
             </li>
             <li className="flex flex-col gap-3 border-t border-aisc-forest-deep/30 pt-6">
               <h3 className="text-display-4 md:text-display-4-lg text-aisc-forest">Talks and workshops</h3>
               <p className="text-body text-aisc-ink">Researchers from the field present their work and take questions in person.</p>
-              <span className="text-body-sm"><a className={ENLACE} href="https://luma.com/user/usr-TMDEtNWA1TozP77" target="_blank" rel="noopener noreferrer">See upcoming events →</a></span>
+              <span className="text-body-sm"><a className={ENLACE} href="https://luma.com/user/usr-TMDEtNWA1TozP77" target="_blank" rel="noopener noreferrer">See upcoming events</a></span>
             </li>
             <li className="flex flex-col gap-3 border-t border-aisc-forest-deep/30 pt-6">
               <h3 className="text-display-4 md:text-display-4-lg text-aisc-forest">Research</h3>
               <p className="text-body text-aisc-ink">Work published by members of the community.</p>
-              <span className="text-body-sm"><Link className={ENLACE} href="/en/research">See the publications →</Link></span>
+              <span className="text-body-sm"><Link className={ENLACE} href="/en/research">See the publications</Link></span>
             </li>
           </ul>
         </div>

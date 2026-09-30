@@ -146,7 +146,7 @@ const AGI_ES: PaginaCurso = {
   },
   semanas: {
     titulo: "Cinco semanas, del mapa de la carrera a tu siguiente paso",
-    entrada: "Cada semana: una hora de material ligero y dos horas de sesión, de lectura a fondo y de discusión.",
+    entrada: "Cada semana: una hora de material ligero y dos horas de sesión, de lectura a fondo y de discusión. Las sesiones alternan: la primera semana es presencial, la segunda en línea, y así hasta el final.",
     unidades: [
       { titulo: "La carrera hacia la AGI", cuerpo: "Qué es la AGI, quién la está construyendo y por qué se corre para llegar primero." },
       { titulo: "Qué impulsa el progreso", cuerpo: "Cómputo, datos y algoritmos, y qué tan lejos puede llegar esa tendencia." },
@@ -213,7 +213,7 @@ const TAIS_ES: PaginaCurso = {
   quien: {
     titulo: "Para gente con base técnica, no para principiantes",
     intro:
-      "Basta con **entender lo básico de cómo se entrena un LLM**; si te falta, el curso AI Foundations de BlueDot, de dos horas, te da esa base. El seminario está pensado para:",
+      "Basta con **entender lo básico de cómo se entrena un LLM**; si te falta, el curso [AI Foundations](https://bluedot-impact.notion.site/AI-Foundations-293f8e69035380f29863c4c92c41fac7) de BlueDot, de dos horas, te da esa base. El seminario está pensado para:",
     perfiles: [
       {
         titulo: "Investigación en ML",
@@ -243,7 +243,7 @@ const TAIS_ES: PaginaCurso = {
   },
   semanas: {
     titulo: "Seis semanas, del problema de fondo a tu siguiente paso",
-    entrada: "Cada semana: una hora de material ligero y dos horas de sesión, de lectura a fondo y de discusión.",
+    entrada: "Cada semana: una hora de material ligero y dos horas de sesión, de lectura a fondo y de discusión. Las sesiones alternan: la primera semana es presencial, la segunda en línea, y así hasta el final.",
     unidades: [
       { titulo: "Qué hace falta para que la IA salga bien", cuerpo: "El problema de fondo y el mapa de los enfoques técnicos que intentan resolverlo." },
       { titulo: "Entrenar modelos más seguros", cuerpo: "RLHF y los métodos con los que hoy se intenta que los modelos hagan lo que se les pide, y dónde fallan." },
@@ -268,7 +268,7 @@ const TAIS_ES: PaginaCurso = {
   faq: [
     {
       q: "¿Cuánta formación técnica necesito?",
-      a: "Deberías entender lo básico de cómo se entrenan y ajustan los LLM, que el progreso de la IA lo mueven los datos, los algoritmos y el cómputo, y que una red neuronal se optimiza con descenso de gradiente. El curso AI Foundations de BlueDot, de dos horas y a tu ritmo, te da esa base.",
+      a: "Deberías entender lo básico de cómo se entrenan y ajustan los LLM, que el progreso de la IA lo mueven los datos, los algoritmos y el cómputo, y que una red neuronal se optimiza con descenso de gradiente. El curso [AI Foundations](https://bluedot-impact.notion.site/AI-Foundations-293f8e69035380f29863c4c92c41fac7) de BlueDot, de dos horas y a tu ritmo, te da esa base.",
     },
     {
       q: "¿Tengo que hacer primero el Seminario de futuro y riesgos de la IA?",
@@ -341,7 +341,7 @@ const AGI_EN: PaginaCurso = {
   },
   semanas: {
     titulo: "Five weeks, from the map of the race to your next step",
-    entrada: "Each week: an hour of light material and two hours of session, close reading and discussion.",
+    entrada: "Each week: an hour of light material and two hours of session, close reading and discussion. Sessions alternate: the first week is in person, the second online, and so on to the end.",
     unidades: [
       { titulo: "The race to AGI", cuerpo: "What AGI is, who is building it, and why there's a race to get there first." },
       { titulo: "What drives progress", cuerpo: "Compute, data and algorithms, and how far that trend could go." },
@@ -408,7 +408,7 @@ const TAIS_EN: PaginaCurso = {
   quien: {
     titulo: "For people with a technical background, not beginners",
     intro:
-      "You just need to **understand the basics of how an LLM is trained**; if you don't yet, BlueDot's two-hour AI Foundations course covers it. The seminar is designed for:",
+      "You just need to **understand the basics of how an LLM is trained**; if you don't yet, BlueDot's two-hour [AI Foundations](https://bluedot-impact.notion.site/AI-Foundations-293f8e69035380f29863c4c92c41fac7) course covers it. The seminar is designed for:",
     perfiles: [
       {
         titulo: "ML research",
@@ -438,7 +438,7 @@ const TAIS_EN: PaginaCurso = {
   },
   semanas: {
     titulo: "Six weeks, from the underlying problem to your next step",
-    entrada: "Each week: an hour of light material and two hours of session, close reading and discussion.",
+    entrada: "Each week: an hour of light material and two hours of session, close reading and discussion. Sessions alternate: the first week is in person, the second online, and so on to the end.",
     unidades: [
       { titulo: "What it takes for AI to go well", cuerpo: "The underlying problem and a map of the technical approaches trying to solve it." },
       { titulo: "Training safer models", cuerpo: "RLHF and the methods used today to get models to do what they're asked, and where they fail." },
@@ -463,7 +463,7 @@ const TAIS_EN: PaginaCurso = {
   faq: [
     {
       q: "How much technical background do I need?",
-      a: "You should understand the basics of how LLMs are trained and fine-tuned, that AI progress is driven by data, algorithms and compute, and that a neural network is optimised with gradient descent. BlueDot's two-hour, self-paced AI Foundations course covers it.",
+      a: "You should understand the basics of how LLMs are trained and fine-tuned, that AI progress is driven by data, algorithms and compute, and that a neural network is optimised with gradient descent. BlueDot's two-hour, self-paced [AI Foundations](https://bluedot-impact.notion.site/AI-Foundations-293f8e69035380f29863c4c92c41fac7) course covers it.",
     },
     {
       q: "Do I need to take the Seminar on the Future and Risks of AI first?",
@@ -536,7 +536,7 @@ const AGI_PT: PaginaCurso = {
   },
   semanas: {
     titulo: "Cinco semanas, do mapa da corrida ao seu próximo passo",
-    entrada: "Toda semana: uma hora de material leve e duas horas de sessão, de leitura aprofundada e de discussão.",
+    entrada: "Toda semana: uma hora de material leve e duas horas de sessão, de leitura aprofundada e de discussão. As sessões se alternam: a primeira semana é presencial, a segunda on-line, e assim até o fim.",
     unidades: [
       { titulo: "A corrida rumo à AGI", cuerpo: "O que é a AGI, quem a está construindo e por que há uma corrida para chegar primeiro." },
       { titulo: "O que impulsiona o progresso", cuerpo: "Computação, dados e algoritmos, e até onde essa tendência pode ir." },
@@ -603,7 +603,7 @@ const TAIS_PT: PaginaCurso = {
   quien: {
     titulo: "Para gente com base técnica, não para iniciantes",
     intro:
-      "Basta **entender o básico de como um LLM é treinado**; se ainda não entende, o curso AI Foundations da BlueDot, de duas horas, dá essa base. O seminário foi pensado para:",
+      "Basta **entender o básico de como um LLM é treinado**; se ainda não entende, o curso [AI Foundations](https://bluedot-impact.notion.site/AI-Foundations-293f8e69035380f29863c4c92c41fac7) da BlueDot, de duas horas, dá essa base. O seminário foi pensado para:",
     perfiles: [
       {
         titulo: "Pesquisa em ML",
@@ -633,7 +633,7 @@ const TAIS_PT: PaginaCurso = {
   },
   semanas: {
     titulo: "Seis semanas, do problema de fundo ao seu próximo passo",
-    entrada: "Toda semana: uma hora de material leve e duas horas de sessão, de leitura aprofundada e de discussão.",
+    entrada: "Toda semana: uma hora de material leve e duas horas de sessão, de leitura aprofundada e de discussão. As sessões se alternam: a primeira semana é presencial, a segunda on-line, e assim até o fim.",
     unidades: [
       { titulo: "O que é preciso para a IA dar certo", cuerpo: "O problema de fundo e o mapa das abordagens técnicas que tentam resolvê-lo." },
       { titulo: "Treinar modelos mais seguros", cuerpo: "RLHF e os métodos usados hoje para que os modelos façam o que se pede, e onde falham." },
@@ -658,7 +658,7 @@ const TAIS_PT: PaginaCurso = {
   faq: [
     {
       q: "Quanta formação técnica eu preciso?",
-      a: "Você deve entender o básico de como os LLMs são treinados e ajustados, que o progresso da IA é movido por dados, algoritmos e computação, e que uma rede neural é otimizada com descida de gradiente. O curso AI Foundations da BlueDot, de duas horas e no seu ritmo, dá essa base.",
+      a: "Você deve entender o básico de como os LLMs são treinados e ajustados, que o progresso da IA é movido por dados, algoritmos e computação, e que uma rede neural é otimizada com descida de gradiente. O curso [AI Foundations](https://bluedot-impact.notion.site/AI-Foundations-293f8e69035380f29863c4c92c41fac7) da BlueDot, de duas horas e no seu ritmo, dá essa base.",
     },
     {
       q: "Preciso fazer o Seminário de futuro e riscos da IA antes?",
@@ -698,6 +698,9 @@ type Rotulos = {
   materiales: string;
   /* Los rótulos pequeños sobre cada título. */
   semana: string;
+  /* La modalidad de cada semana: alternan desde una presencial. */
+  presencial: string;
+  enLinea: string;
   temarioEnlace: string;
   y: string;
   /* El panel para aplicar. */
@@ -718,6 +721,8 @@ export const ROTULOS_CURSO: Record<Idioma, Rotulos> = {
     costoValor: "Gratis, con certificado",
     materiales: "Materiales de",
     semana: "Semana",
+    presencial: "Presencial",
+    enLinea: "En línea",
     temarioEnlace: "Ver el temario completo en BlueDot",
     y: "y",
     aplicarTitulo: "Aplica a la cohorte de octubre",
@@ -734,6 +739,8 @@ export const ROTULOS_CURSO: Record<Idioma, Rotulos> = {
     costoValor: "Free, with a certificate",
     materiales: "Materials by",
     semana: "Week",
+    presencial: "In person",
+    enLinea: "Online",
     temarioEnlace: "See the full curriculum on BlueDot",
     y: "and",
     aplicarTitulo: "Apply to the October cohort",
@@ -750,6 +757,8 @@ export const ROTULOS_CURSO: Record<Idioma, Rotulos> = {
     costoValor: "Grátis, com certificado",
     materiales: "Materiais da",
     semana: "Semana",
+    presencial: "Presencial",
+    enLinea: "On-line",
     temarioEnlace: "Ver o programa completo na BlueDot",
     y: "e",
     aplicarTitulo: "Inscreva-se na turma de outubro",

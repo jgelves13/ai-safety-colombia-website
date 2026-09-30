@@ -154,7 +154,7 @@ export default function Join() {
                 className="text-body-sm inline-flex w-fit items-center gap-2 rounded-full bg-aisc-coral px-4 py-1.5 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85"
                 href="#aprende"
               >
-                Seminar applications open until Friday 9 October →
+                Seminar applications open until Friday 9 October
               </a>
             ) : null}
           </div>

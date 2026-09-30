@@ -184,13 +184,10 @@ export default function Home() {
                   regras antes que causem dano. Vai da pesquisa técnica às políticas públicas.
                 </p>
                 <Link
-                  className="text-body md:text-body-lg group inline-flex min-h-11 w-fit items-center gap-2 text-aisc-forest transition-colors hover:text-aisc-coral"
+                  className="text-body md:text-body-lg inline-flex min-h-11 w-fit items-center gap-2 text-aisc-forest transition-colors hover:text-aisc-coral"
                   href="/pt/seguranca-da-ia"
                 >
                   Ler a versão longa
-                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-                    →
-                  </span>
                 </Link>
               </div>
             </div>

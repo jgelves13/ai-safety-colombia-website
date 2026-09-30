@@ -185,13 +185,10 @@ export default function Home() {
                   research through to public policy.
                 </p>
                 <Link
-                  className="text-body md:text-body-lg group inline-flex min-h-11 w-fit items-center gap-2 text-aisc-forest transition-colors hover:text-aisc-coral"
+                  className="text-body md:text-body-lg inline-flex min-h-11 w-fit items-center gap-2 text-aisc-forest transition-colors hover:text-aisc-coral"
                   href="/en/ai-safety"
                 >
                   Read the long version
-                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-                    →
-                  </span>
                 </Link>
               </div>
             </div>

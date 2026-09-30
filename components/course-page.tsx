@@ -22,6 +22,9 @@ const SECCION = `${COLUMNA} flex flex-col gap-6 py-16 md:py-24`;
 const TITULO = "text-display-3 md:text-display-2 text-balance";
 const PROSA = "text-body flex flex-col gap-5 text-aisc-ink";
 const TARJETA = "rounded-2xl border border-aisc-line bg-white/80";
+/* La modalidad de cada semana: alternan desde una presencial (índice par). */
+const PASTILLA_PRESENCIAL = "text-meta shrink-0 rounded-full bg-aisc-forest px-2.5 py-0.5 text-aisc-sand";
+const PASTILLA_EN_LINEA = "text-meta shrink-0 rounded-full border border-aisc-forest/40 px-2.5 py-0.5 text-aisc-forest";
 const ENLACE = "text-aisc-forest transition-colors hover:text-aisc-coral";
 const PATRON = "/aisc/patterns/aisc-wash-lattice.svg";
 /* Un icono de una sola línea por seminario, al modo de los hero-graphic de
@@ -36,9 +39,35 @@ function Negritas({ texto }: { texto: string }) {
   const partes = texto.split("**");
   return (
     <>
-      {partes.map((p, i) => (i % 2 === 1 ? <strong key={i} className="font-semibold text-aisc-ink">{p}</strong> : p))}
+      {partes.map((p, i) =>
+        i % 2 === 1 ? (
+          <strong key={i} className="font-semibold text-aisc-ink">
+            <Enlaces texto={p} />
+          </strong>
+        ) : (
+          <Enlaces key={i} texto={p} />
+        ),
+      )}
     </>
   );
+}
+
+/* Un enlace escrito como [texto](url) dentro de una cadena. */
+const ENLACE_MD = /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g;
+function Enlaces({ texto }: { texto: string }) {
+  const partes: ReactNode[] = [];
+  let desde = 0;
+  for (const m of texto.matchAll(ENLACE_MD)) {
+    partes.push(texto.slice(desde, m.index));
+    partes.push(
+      <a key={m.index} className={ENLACE} href={m[2]} target="_blank" rel="noopener noreferrer">
+        {m[1]}
+      </a>,
+    );
+    desde = m.index + m[0].length;
+  }
+  partes.push(texto.slice(desde));
+  return <>{partes}</>;
 }
 
 /* Los nombres de quienes facilitan, enlazados y unidos con «y». */
@@ -226,7 +255,12 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
                   <span className="text-display-3-lg tabular-nums text-aisc-forest">{i + 1}</span>
                 </div>
                 <div className="flex flex-col gap-2 p-5 md:p-6">
-                  <h3 className="text-display-4">{u.titulo}</h3>
+                  <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+                    <h3 className="text-display-4">{u.titulo}</h3>
+                    <span className={i % 2 === 0 ? PASTILLA_PRESENCIAL : PASTILLA_EN_LINEA}>
+                      {i % 2 === 0 ? r.presencial : r.enLinea}
+                    </span>
+                  </div>
                   <p className="text-body-sm text-aisc-ink">{u.cuerpo}</p>
                 </div>
               </li>
@@ -234,7 +268,7 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
           </ol>
           <p className="text-body-sm">
             <a className={ENLACE} href={BLUEDOT_CURSO[curso]} target="_blank" rel="noopener noreferrer">
-              {r.temarioEnlace} →
+              {r.temarioEnlace}
             </a>
           </p>
         </div>
@@ -292,7 +326,7 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
                       +
                     </span>
                   </summary>
-                  <p className="text-body max-w-[680px] pb-5 text-aisc-muted">{f.a}</p>
+                  <p className="text-body max-w-[680px] pb-5 text-aisc-muted"><Negritas texto={f.a} /></p>
                 </details>
               </li>
             ))}

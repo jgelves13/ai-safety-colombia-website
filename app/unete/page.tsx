@@ -154,7 +154,7 @@ export default function Unete() {
                 className="text-body-sm inline-flex w-fit items-center gap-2 rounded-full bg-aisc-coral px-4 py-1.5 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85"
                 href="#aprende"
               >
-                Aplicaciones abiertas a los seminarios hasta el viernes 9 de octubre →
+                Aplicaciones abiertas a los seminarios hasta el viernes 9 de octubre
               </a>
             ) : null}
           </div>

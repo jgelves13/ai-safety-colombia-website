@@ -307,22 +307,22 @@ export default function QuienesSomos() {
             <li className="flex flex-col gap-3 border-t border-aisc-forest-deep/30 pt-6">
               <h3 className="text-display-4 md:text-display-4-lg text-aisc-forest">Grupo de lectura de AI Control</h3>
               <p className="text-body text-aisc-ink">Cada quince días, los viernes, se discute una lectura sobre cómo supervisar sistemas de IA que actúan por su cuenta. Se llega con cualquier nivel de conocimiento.</p>
-              <span className="text-body-sm"><a className={ENLACE} href="https://chat.whatsapp.com/DfWuuPlzqmIFN1tRtl57SB" target="_blank" rel="noopener noreferrer">Entrar al grupo de lectura →</a></span>
+              <span className="text-body-sm"><a className={ENLACE} href="https://chat.whatsapp.com/DfWuuPlzqmIFN1tRtl57SB" target="_blank" rel="noopener noreferrer">Entrar al grupo de lectura</a></span>
             </li>
             <li className="flex flex-col gap-3 border-t border-aisc-forest-deep/30 pt-6">
               <h3 className="text-display-4 md:text-display-4-lg text-aisc-forest">Hackathones de investigación</h3>
               <p className="text-body text-aisc-ink">Abrimos en Bogotá el hub presencial de los hackathones de Apart Research. Los equipos salen con un trabajo propio y retroalimentación escrita de jurados de fuera.</p>
-              <span className="text-body-sm"><Link className={ENLACE} href="/sprint">Ver el sprint →</Link></span>
+              <span className="text-body-sm"><Link className={ENLACE} href="/sprint">Ver el sprint</Link></span>
             </li>
             <li className="flex flex-col gap-3 border-t border-aisc-forest-deep/30 pt-6">
               <h3 className="text-display-4 md:text-display-4-lg text-aisc-forest">Charlas y talleres</h3>
               <p className="text-body text-aisc-ink">Investigadores del campo cuentan su trabajo y responden preguntas en persona.</p>
-              <span className="text-body-sm"><a className={ENLACE} href="https://luma.com/user/usr-TMDEtNWA1TozP77" target="_blank" rel="noopener noreferrer">Ver los próximos →</a></span>
+              <span className="text-body-sm"><a className={ENLACE} href="https://luma.com/user/usr-TMDEtNWA1TozP77" target="_blank" rel="noopener noreferrer">Ver los próximos</a></span>
             </li>
             <li className="flex flex-col gap-3 border-t border-aisc-forest-deep/30 pt-6">
               <h3 className="text-display-4 md:text-display-4-lg text-aisc-forest">Investigación</h3>
               <p className="text-body text-aisc-ink">Trabajos publicados por gente de la comunidad.</p>
-              <span className="text-body-sm"><Link className={ENLACE} href="/investigacion">Ver las publicaciones →</Link></span>
+              <span className="text-body-sm"><Link className={ENLACE} href="/investigacion">Ver las publicaciones</Link></span>
             </li>
           </ul>
         </div>
