@@ -69,7 +69,7 @@ const PASOS = [
       {
         titulo: "Seminario de futuro y riesgos de la IA",
         cuerpo: "Por qué se está corriendo hacia la AGI, qué impulsa el progreso, cuáles son los riesgos y qué defensas existen. Es el punto de partida si vienes de cualquier campo.",
-        dedicacion: "Cinco semanas desde la semana del 12 de octubre, unas 3 horas por semana; sesiones presenciales en la Universidad de los Andes y en línea",
+        dedicacion: "Cinco semanas desde el 16 de octubre, unas 3 horas por semana; sesiones presenciales en la Universidad de los Andes y en línea",
         requisitos: "Aplicar; no hace falta formación técnica",
         costo: "Gratis, con certificado de AI Safety Colombia",
         href: "/seminarios/futuro-y-riesgos",
@@ -79,7 +79,7 @@ const PASOS = [
       {
         titulo: "Seminario técnico de seguridad de la IA",
         cuerpo: "Cómo se entrenan modelos más seguros, cómo se evalúan, interpretabilidad mecanicista y AI control. Para quien ya sabe por qué importa el problema y quiere entrar a la parte técnica.",
-        dedicacion: "Seis semanas desde la semana del 12 de octubre, unas 3 horas por semana; sesiones presenciales en Bogotá y en línea",
+        dedicacion: "Seis semanas desde el 16 de octubre, unas 3 horas por semana; sesiones presenciales en Bogotá y en línea",
         requisitos: "Aplicar; entender lo básico de cómo se entrenan los modelos. Si no, empieza por el Seminario de futuro y riesgos de la IA",
         costo: "Gratis, con certificado de AI Safety Colombia",
         href: "/seminarios/tecnico",
