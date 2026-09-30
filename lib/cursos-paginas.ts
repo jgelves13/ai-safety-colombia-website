@@ -96,9 +96,9 @@ const AGI_ES: PaginaCurso = {
     "Seminario con cohorte de cinco semanas, desde la semana del 12 de octubre de 2026, con los materiales de BlueDot Impact. Para entender hacia dónde va la IA avanzada y encontrar tu punto de entrada. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 11 de octubre.",
   titular: "Entiende hacia dónde va la IA avanzada, qué puede salir mal y qué se está haciendo para evitarlo",
   entrada:
-    "Cinco semanas, con sesiones presenciales y en línea, para gente de cualquier disciplina que se toma en serio el tema: quién está construyendo la IA, qué tan rápido avanza, qué podría salir mal y dónde puedes aportar para que salga bien. Con los materiales de BlueDot Impact y facilitadores de la comunidad.",
-  linea: "Del 12 de octubre al 15 de noviembre de 2026, con sesiones presenciales en la Universidad de los Andes y sesiones en línea. Cohorte abierta, por aplicación hasta el 11 de octubre.",
-  hechos: { formato: "Presencial y en línea", dedicacion: "5 h por semana", fechas: "12 oct – 15 nov 2026" },
+    "La IA avanzada va más rápido que la gente preparada para pensarla. Cinco semanas para entender quién la construye, qué tan rápido avanza y qué podría salir mal. Desde cualquier disciplina.",
+  linea: "Del 12 de octubre al 15 de noviembre de 2026. Aplica hasta el 11 de octubre.",
+  hechos: { formato: "Presencial y en línea", dedicacion: "3 h por semana", fechas: "12 oct – 15 nov 2026" },
   porque: {
     titulo: "La IA avanzada va más rápido que la gente preparada para pensarla",
     parrafos: [
@@ -198,9 +198,9 @@ const TAIS_ES: PaginaCurso = {
     "Seminario con cohorte de seis semanas, desde la semana del 12 de octubre de 2026, con los materiales de BlueDot Impact: alineación, evaluaciones, interpretabilidad y AI control. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 11 de octubre.",
   titular: "Aprende cómo se intenta hacer segura la IA por dentro, y dónde sigue fallando",
   entrada:
-    "Seis semanas, con sesiones presenciales y en línea, para gente con base técnica: cómo se entrenan modelos más seguros, cómo se evalúan, cómo se miran por dentro y cómo se limita el daño cuando algo falla. Con los materiales de BlueDot Impact y facilitadores de la comunidad.",
-  linea: "Del 12 de octubre al 22 de noviembre de 2026, con sesiones presenciales en Bogotá y sesiones en línea. Cohorte abierta, por aplicación hasta el 11 de octubre.",
-  hechos: { formato: "Presencial y en línea", dedicacion: "5 h por semana", fechas: "12 oct – 22 nov 2026" },
+    "Las capacidades de la IA avanzan más rápido que la capacidad de hacerla segura. Seis semanas en la parte técnica: entrenar modelos más seguros, evaluarlos, mirarlos por dentro y limitar el daño cuando fallan. Para gente con base técnica.",
+  linea: "Del 12 de octubre al 22 de noviembre de 2026. Aplica hasta el 11 de octubre.",
+  hechos: { formato: "Presencial y en línea", dedicacion: "3 h por semana", fechas: "12 oct – 22 nov 2026" },
   porque: {
     titulo: "Las capacidades avanzan más rápido que la seguridad",
     parrafos: [
@@ -301,9 +301,9 @@ const AGI_EN: PaginaCurso = {
     "A five-week cohort-based seminar starting the week of 12 October 2026, using BlueDot Impact's materials. Understand where advanced AI is heading and find your entry point. Free, with an AI Safety Colombia certificate. Applications close 11 October.",
   titular: "Understand where advanced AI is heading, what can go wrong and what is being done to prevent it",
   entrada:
-    "Five weeks, with in-person and online sessions, for people from any discipline who take the topic seriously: who is building AI, how fast it is moving, what could go wrong, and where you can help make it go well. With BlueDot Impact's materials and facilitators from the community.",
-  linea: "12 October to 15 November 2026, with in-person sessions at Universidad de los Andes and online sessions. Open cohort, by application until 11 October.",
-  hechos: { formato: "In person and online", dedicacion: "5 h a week", fechas: "12 Oct – 15 Nov 2026" },
+    "Advanced AI is moving faster than the people ready to think about it. Five weeks to understand who is building it, how fast it is moving and what could go wrong. From any discipline.",
+  linea: "12 October to 15 November 2026. Apply by 11 October.",
+  hechos: { formato: "In person and online", dedicacion: "3 h a week", fechas: "12 Oct – 15 Nov 2026" },
   porque: {
     titulo: "Advanced AI is moving faster than the people prepared to think about it",
     parrafos: [
@@ -403,9 +403,9 @@ const TAIS_EN: PaginaCurso = {
     "A six-week cohort-based seminar starting the week of 12 October 2026, using BlueDot Impact's materials: alignment, evaluations, interpretability and AI control. Free, with an AI Safety Colombia certificate. Applications close 11 October.",
   titular: "Learn how AI is made safe from the inside, and where it still fails",
   entrada:
-    "Six weeks, with in-person and online sessions, for people with a technical background: how safer models are trained, how they are evaluated, how to look inside them, and how to limit the damage when something fails. With BlueDot Impact's materials and facilitators from the community.",
-  linea: "12 October to 22 November 2026, with in-person sessions in Bogotá and online sessions. Open cohort, by application until 11 October.",
-  hechos: { formato: "In person and online", dedicacion: "5 h a week", fechas: "12 Oct – 22 Nov 2026" },
+    "AI capabilities are advancing faster than our ability to make them safe. Six weeks on the technical side: training safer models, evaluating them, looking inside them and limiting the damage when they fail. For people with a technical background.",
+  linea: "12 October to 22 November 2026. Apply by 11 October.",
+  hechos: { formato: "In person and online", dedicacion: "3 h a week", fechas: "12 Oct – 22 Nov 2026" },
   porque: {
     titulo: "Capabilities are advancing faster than safety",
     parrafos: [
@@ -506,9 +506,9 @@ const AGI_PT: PaginaCurso = {
     "Seminário em turma de cinco semanas, a partir da semana de 12 de outubro de 2026, com os materiais da BlueDot Impact. Para entender para onde vai a IA avançada e encontrar seu ponto de entrada. Grátis, com certificado da AI Safety Colombia. Inscrições até 11 de outubro.",
   titular: "Entenda para onde vai a IA avançada, o que pode dar errado e o que se está fazendo para evitar",
   entrada:
-    "Cinco semanas, com sessões presenciais e on-line, para gente de qualquer área que leva o tema a sério: quem está construindo a IA, com que velocidade avança, o que pode dar errado e onde você pode ajudar para que dê certo. Com os materiais da BlueDot Impact e facilitadores da comunidade.",
-  linea: "De 12 de outubro a 15 de novembro de 2026, com sessões presenciais na Universidad de los Andes e sessões on-line. Turma aberta, por inscrição até 11 de outubro.",
-  hechos: { formato: "Presencial e on-line", dedicacion: "5 h por semana", fechas: "12 out – 15 nov 2026" },
+    "A IA avançada avança mais rápido do que as pessoas preparadas para pensá-la. Cinco semanas para entender quem a constrói, com que velocidade avança e o que pode dar errado. De qualquer área.",
+  linea: "De 12 de outubro a 15 de novembro de 2026. Inscreva-se até 11 de outubro.",
+  hechos: { formato: "Presencial e on-line", dedicacion: "3 h por semana", fechas: "12 out – 15 nov 2026" },
   porque: {
     titulo: "A IA avançada anda mais rápido que as pessoas preparadas para pensá-la",
     parrafos: [
@@ -608,9 +608,9 @@ const TAIS_PT: PaginaCurso = {
     "Seminário em turma de seis semanas, a partir da semana de 12 de outubro de 2026, com os materiais da BlueDot Impact: alinhamento, avaliações, interpretabilidade e AI control. Grátis, com certificado da AI Safety Colombia. Inscrições até 11 de outubro.",
   titular: "Aprenda como se tenta tornar a IA segura por dentro, e onde ainda falha",
   entrada:
-    "Seis semanas, com sessões presenciais e on-line, para gente com base técnica: como treinar modelos mais seguros, como avaliá-los, como olhar dentro deles e como limitar o dano quando algo falha. Com os materiais da BlueDot Impact e facilitadores da comunidade.",
-  linea: "De 12 de outubro a 22 de novembro de 2026, com sessões presenciais em Bogotá e sessões on-line. Turma aberta, por inscrição até 11 de outubro.",
-  hechos: { formato: "Presencial e on-line", dedicacion: "5 h por semana", fechas: "12 out – 22 nov 2026" },
+    "As capacidades da IA avançam mais rápido do que a capacidade de torná-la segura. Seis semanas na parte técnica: treinar modelos mais seguros, avaliá-los, olhar dentro deles e limitar o dano quando falham. Para quem tem base técnica.",
+  linea: "De 12 de outubro a 22 de novembro de 2026. Inscreva-se até 11 de outubro.",
+  hechos: { formato: "Presencial e on-line", dedicacion: "3 h por semana", fechas: "12 out – 22 nov 2026" },
   porque: {
     titulo: "As capacidades avançam mais rápido que a segurança",
     parrafos: [
