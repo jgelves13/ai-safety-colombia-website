@@ -1,33 +1,87 @@
+import type { ReactNode } from "react";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
-import { CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
+import { CTA_LINK_PRIMARY, CTA_PANEL, CTA_PATTERN_BOTTOM, CTA_PATTERN_TOP, HERO_CORNER_CLASS, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { RUTA_APLICAR_CURSOS, cursosCerrados, type CursoId } from "@/lib/cursos";
 import { BLUEDOT_CURSO, FACILITADORES, PAGINAS_CURSO, ROTULOS_CURSO, RUTA_CURSO } from "@/lib/cursos-paginas";
 import type { Idioma } from "@/lib/idiomas";
 
-/* La página de cada curso, corta: el hero con una frase y el botón, y debajo
-   una sola columna angosta con los datos, el temario por semanas, quién
-   facilita y las preguntas plegadas. Al modo del Technical Fellowship de
-   Columbia y del AISF de MIT, que caben en una pantalla y media. */
+/* La página de cada seminario, con la estructura de las páginas de programa de
+   aisecurity.sg: un encabezado cuyo titular promete algo (el nombre va en el
+   rótulo) y que cierra con la tira de datos clave; luego una columna angosta
+   y centrada, con bandas que alternan crema y arena, y una sección por
+   pregunta: por qué ahora, para quién es (cuatro perfiles en tarjetas), quién
+   está en la sala, qué vas a hacer (una tarjeta por semana, con el número en
+   grande), con qué sales (una lista), el panel para aplicar, una frase de
+   cierre en grande y las preguntas frecuentes. */
 
-const COLUMNA = "mx-auto w-full max-w-[820px] px-6 md:px-8";
-const TITULO = "text-display-3 md:text-display-3-lg text-aisc-ink";
+const COLUMNA = "mx-auto w-full max-w-[880px] px-8";
+const ANCHO = "mx-auto w-full max-w-[1448px] px-8 md:px-16";
+const SECCION = `${COLUMNA} flex flex-col gap-6 py-16 md:py-24`;
+const KICKER = "text-kicker text-aisc-forest";
+const TITULO = "text-display-3 md:text-display-2 text-balance";
+const PROSA = "text-body flex flex-col gap-5 text-aisc-ink";
+const TARJETA = "rounded-2xl border border-aisc-line bg-white/80";
 const ENLACE = "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-coral";
-const LINEA = "border-t border-aisc-ink/15";
+const PATRON = "/aisc/patterns/aisc-wash-lattice.svg";
+
+/* Las negritas de los textos vienen marcadas con **así**. */
+function Negritas({ texto }: { texto: string }) {
+  const partes = texto.split("**");
+  return (
+    <>
+      {partes.map((p, i) => (i % 2 === 1 ? <strong key={i} className="font-semibold text-aisc-ink">{p}</strong> : p))}
+    </>
+  );
+}
+
+/* Los nombres de quienes facilitan, enlazados y unidos con «y». */
+function Nombres({ curso, y }: { curso: CursoId; y: string }) {
+  const lista = FACILITADORES[curso];
+  const partes: ReactNode[] = [];
+  lista.forEach((f, i) => {
+    if (i > 0) partes.push(i === lista.length - 1 ? ` ${y} ` : ", ");
+    partes.push(
+      <span key={f.nombre}>
+        <a className={ENLACE} href={f.linkedin} target="_blank" rel="noopener noreferrer">
+          {f.nombre}
+        </a>
+        <span className="text-aisc-muted"> ({f.afiliacion})</span>
+      </span>,
+    );
+  });
+  return <>{partes}</>;
+}
+
+/* Un párrafo que puede llevar {facilitadores} en medio. */
+function Parrafo({ texto, curso, y }: { texto: string; curso: CursoId; y: string }) {
+  const [antes, despues] = texto.split("{facilitadores}");
+  return (
+    <p>
+      <Negritas texto={antes} />
+      {despues === undefined ? null : (
+        <>
+          <Nombres curso={curso} y={y} />
+          <Negritas texto={despues} />
+        </>
+      )}
+    </p>
+  );
+}
 
 export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: CursoId }) {
   const p = PAGINAS_CURSO[curso][idioma];
   const r = ROTULOS_CURSO[idioma];
   const cerrado = cursosCerrados();
   const aplicar = `${RUTA_APLICAR_CURSOS[idioma]}?curso=${curso}`;
-  const facilitan = FACILITADORES[curso];
   const otro: CursoId = curso === "agi-strategy" ? "technical-ai-safety" : "agi-strategy";
+  const [otroAntes, otroDespues] = p.otro.split("{curso}");
 
   const hechos = [
-    { rotulo: r.fechas, valor: p.fechas },
-    { rotulo: r.dedicacion, valor: p.dedicacion },
+    { rotulo: r.formato, valor: p.hechos.formato },
+    { rotulo: r.dedicacion, valor: p.hechos.dedicacion },
+    { rotulo: r.fechas, valor: p.hechos.fechas },
     { rotulo: r.costo, valor: r.costoValor },
-    { rotulo: r.plazo, valor: cerrado ? r.cerradoValor : r.plazoValor },
   ];
 
   return (
@@ -42,105 +96,193 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
           decoding="async"
           className={HERO_CORNER_CLASS}
           style={{ color: "transparent" }}
-          src="/aisc/patterns/aisc-hero-unete.svg"
+          src="/aisc/patterns/aisc-hero-programas.svg"
         />
         <SiteHeader active={RUTA_CURSO[curso][idioma]} />
-        {/* El hero arranca en la misma columna que el cuerpo. */}
-        <div className={`${COLUMNA} relative z-10 pt-28 pb-12 md:pt-32 md:pb-16`}>
-          <div className="flex flex-col gap-5">
+        <div className={`${ANCHO} relative z-10 flex flex-col pt-28 md:pt-32`}>
+          <div className="flex max-w-[880px] flex-col gap-5 pb-12 md:pb-16">
             <span className="text-kicker text-aisc-sand/70">{p.kicker}</span>
-            <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">{p.metaTitulo}</h1>
-            <p className="text-body md:text-body-lg text-aisc-sand/90">{p.entrada}</p>
+            <h1 className="text-display-2 md:text-display-2-lg text-balance text-aisc-sand">{p.titular}</h1>
+            <p className="text-body max-w-[720px] text-aisc-sand/90">{p.entrada}</p>
+            <p className="text-body-sm text-aisc-sand/70">{p.linea}</p>
             {cerrado ? null : (
               <a className={`${CTA_LINK_PRIMARY} mt-2 w-fit`} href={aplicar}>
                 {r.aplicar}
               </a>
             )}
           </div>
+
+          {/* La tira de datos clave, dentro del encabezado. */}
+          <dl className="grid grid-cols-2 gap-x-8 gap-y-6 border-t border-aisc-sand/20 py-8 md:grid-cols-5 md:py-10">
+            {hechos.map((h) => (
+              <div className="flex flex-col gap-1.5" key={h.rotulo}>
+                <dt className="text-kicker text-aisc-sand/60">{h.rotulo}</dt>
+                <dd className="text-display-4 text-aisc-sand">{h.valor}</dd>
+              </div>
+            ))}
+            <div className="flex flex-col gap-1.5">
+              <dt className="text-kicker text-aisc-sand/60">{r.materiales}</dt>
+              <dd>
+                <a
+                  className="inline-flex w-fit rounded-md bg-aisc-cream px-2.5 py-1.5"
+                  href={BLUEDOT_CURSO[curso]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img alt="BlueDot Impact" className="h-5 w-auto" src="/aisc/aliados/bluedot.png" />
+                </a>
+              </dd>
+            </div>
+          </dl>
         </div>
       </section>
 
-      <div className={`${COLUMNA} flex flex-col gap-14 py-14 md:gap-16 md:py-20`}>
-        <dl className="grid grid-cols-2 gap-x-6 gap-y-6 md:grid-cols-4">
-          {hechos.map((h) => (
-            <div className="flex flex-col gap-1" key={h.rotulo}>
-              <dt className="text-kicker text-aisc-muted">{h.rotulo}</dt>
-              <dd className="text-body font-medium text-aisc-ink">{h.valor}</dd>
-            </div>
-          ))}
-        </dl>
+      <section id="porque" className="bg-aisc-cream">
+        <div className={SECCION}>
+          <span className={KICKER}>{r.porque}</span>
+          <h2 className={TITULO}>{p.porque.titulo}</h2>
+          <div className={PROSA}>
+            {p.porque.parrafos.map((t) => (
+              <p key={t.slice(0, 40)}>
+                <Negritas texto={t} />
+              </p>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <section id="temario" className="flex scroll-mt-24 flex-col gap-6">
-          <h2 className={TITULO}>{r.temario}</h2>
-          <ol className="flex flex-col">
-            {p.unidades.map((u, i) => (
-              <li className={`${LINEA} grid grid-cols-1 gap-1 py-4 sm:grid-cols-[96px_1fr] sm:gap-6`} key={u.titulo}>
-                <span className="text-body-sm text-aisc-muted sm:pt-0.5">
-                  {r.semana} {i + 1}
-                </span>
-                <div className="flex flex-col gap-1">
-                  <h3 className="text-body md:text-body-lg font-medium text-aisc-ink">{u.titulo}</h3>
-                  <p className="text-body-sm text-aisc-muted">{u.cuerpo}</p>
+      <section id="quien" className="bg-aisc-sand">
+        <div className={SECCION}>
+          <span className={KICKER}>{r.quien}</span>
+          <h2 className={TITULO}>{p.quien.titulo}</h2>
+          <div className={PROSA}>
+            <p>
+              <Negritas texto={p.quien.intro} />
+            </p>
+          </div>
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {p.quien.perfiles.map((f) => (
+              <li className={`${TARJETA} flex flex-col gap-2 p-6`} key={f.titulo}>
+                <h3 className="text-display-4">{f.titulo}</h3>
+                <p className="text-body-sm text-aisc-ink">{f.cuerpo}</p>
+              </li>
+            ))}
+          </ul>
+          <div className={PROSA}>
+            <p>{p.quien.cierre}</p>
+            <p className="text-body-sm text-aisc-muted">
+              {otroAntes}
+              <a className={ENLACE} href={RUTA_CURSO[otro][idioma]}>
+                {PAGINAS_CURSO[otro][idioma].metaTitulo}
+              </a>
+              {otroDespues}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="sala" className="bg-aisc-cream">
+        <div className={SECCION}>
+          <span className={KICKER}>{r.sala}</span>
+          <h2 className={TITULO}>{p.sala.titulo}</h2>
+          <div className={PROSA}>
+            {p.sala.parrafos.map((t) => (
+              <Parrafo key={t.slice(0, 40)} texto={t} curso={curso} y={r.y} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="semanas" className="scroll-mt-24 bg-aisc-sand">
+        <div className={SECCION}>
+          <span className={KICKER}>{r.semanas}</span>
+          <h2 className={TITULO}>{p.semanas.titulo}</h2>
+          <div className={PROSA}>
+            <p>{p.semanas.entrada}</p>
+          </div>
+          <ol className="flex flex-col gap-3">
+            {p.semanas.unidades.map((u, i) => (
+              <li className={`${TARJETA} grid grid-cols-[72px_1fr] md:grid-cols-[88px_1fr]`} key={u.titulo}>
+                <div className="flex flex-col items-center justify-center gap-0.5 border-r border-aisc-line py-5">
+                  <span className="text-kicker text-aisc-muted">{r.semana}</span>
+                  <span className="text-display-3-lg tabular-nums text-aisc-forest">{i + 1}</span>
+                </div>
+                <div className="flex flex-col gap-2 p-5 md:p-6">
+                  <h3 className="text-display-4">{u.titulo}</h3>
+                  <p className="text-body-sm text-aisc-ink">{u.cuerpo}</p>
                 </div>
               </li>
             ))}
           </ol>
-          <p className="text-body-sm -mt-2">
+          <p className="text-body-sm">
             <a className={ENLACE} href={BLUEDOT_CURSO[curso]} target="_blank" rel="noopener noreferrer">
               {r.temarioEnlace} →
             </a>
           </p>
-        </section>
+        </div>
+      </section>
 
-        <section className="flex flex-col gap-4">
-          <h2 className={TITULO}>{facilitan.length > 1 ? r.facilitan : r.facilita}</h2>
-          <ul className="flex flex-col gap-2">
-            {facilitan.map((f) => (
-              <li className="text-body text-aisc-ink" key={f.nombre}>
-                <a className={ENLACE} href={f.linkedin} target="_blank" rel="noopener noreferrer">
-                  {f.nombre}
-                </a>
-                <span className="text-aisc-muted">, {f.afiliacion}</span>
+      <section id="resultado" className="bg-aisc-cream">
+        <div className={SECCION}>
+          <span className={KICKER}>{r.resultado}</span>
+          <h2 className={TITULO}>{p.resultado.titulo}</h2>
+          <ul className="text-body flex flex-col gap-4 text-aisc-ink">
+            {p.resultado.items.map((t) => (
+              <li className="grid grid-cols-[1.75rem_1fr]" key={t.slice(0, 40)}>
+                <span aria-hidden="true" className="pt-1 text-aisc-coral">
+                  ✱
+                </span>
+                <p>
+                  <Negritas texto={t} />
+                </p>
               </li>
             ))}
           </ul>
-          <p className="text-body mt-4 text-aisc-ink">
-            {p.otro}{" "}
-            <a className={ENLACE} href={RUTA_CURSO[otro][idioma]}>
-              {PAGINAS_CURSO[otro][idioma].metaTitulo}
-            </a>
-            .
-          </p>
-        </section>
+        </div>
+      </section>
 
-        <section id="preguntas" className="flex flex-col gap-6">
+      {/* El cierre: el panel verde con el plazo y el botón, y la frase final. */}
+      <section className="bg-aisc-cream">
+        <div className={`${COLUMNA} flex flex-col gap-16 pb-16 md:gap-24 md:pb-24`}>
+          <div className={`${CTA_PANEL} text-center`}>
+            <img alt="" aria-hidden="true" loading="lazy" width="1697" height="995" decoding="async" className={CTA_PATTERN_TOP} style={{ color: "transparent" }} src={PATRON} />
+            <img alt="" aria-hidden="true" loading="lazy" width="1697" height="995" decoding="async" className={CTA_PATTERN_BOTTOM} style={{ color: "transparent" }} src={PATRON} />
+            <div className="relative z-10 flex flex-col items-center gap-5">
+              <h2 className="text-display-3 text-balance text-aisc-sand">{cerrado ? r.cerradoTitulo : r.aplicarTitulo}</h2>
+              <p className="text-body-sm max-w-[560px] text-aisc-sand/85 [&_strong]:font-semibold [&_strong]:text-aisc-sand">
+                {cerrado ? r.cerradoFrase : <Negritas texto={p.plazo} />}
+              </p>
+              {cerrado ? null : (
+                <a className={`${CTA_LINK_PRIMARY} mt-2`} href={aplicar}>
+                  {r.aplicar}
+                </a>
+              )}
+            </div>
+          </div>
+          <p className="text-display-3 md:text-display-2 text-balance text-center text-aisc-forest-deep">{p.cierre}</p>
+        </div>
+      </section>
+
+      <section id="preguntas" className="bg-aisc-sand">
+        <div className={SECCION}>
           <h2 className={TITULO}>{r.faq}</h2>
-          <ul className="flex flex-col border-b border-aisc-ink/15">
+          <ul className="flex flex-col border-b border-aisc-forest-deep/30">
             {p.faq.map((f) => (
               <li key={f.q}>
-                <details className={`group ${LINEA}`}>
-                  <summary className="text-body md:text-body-lg flex cursor-pointer list-none items-baseline justify-between gap-6 py-4 transition-colors hover:text-aisc-forest [&::-webkit-details-marker]:hidden">
+                <details className="group border-t border-aisc-forest-deep/30">
+                  <summary className="text-body flex cursor-pointer list-none items-baseline justify-between gap-6 py-4 transition-colors hover:text-aisc-forest [&::-webkit-details-marker]:hidden">
                     <span>{f.q}</span>
-                    <span aria-hidden="true" className="shrink-0 text-aisc-muted transition-transform group-open:rotate-45">
+                    <span aria-hidden="true" className="shrink-0 text-aisc-coral transition-transform group-open:rotate-45">
                       +
                     </span>
                   </summary>
-                  <p className="text-body-sm max-w-[680px] pb-5 text-aisc-muted">{f.a}</p>
+                  <p className="text-body max-w-[680px] pb-5 text-aisc-muted">{f.a}</p>
                 </details>
               </li>
             ))}
           </ul>
-        </section>
-
-        {cerrado ? null : (
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-            <a className={CTA_LINK_PRIMARY} href={aplicar}>
-              {r.aplicar}
-            </a>
-            <span className="text-body-sm text-aisc-muted">{r.plazoValor}</span>
-          </div>
-        )}
-      </div>
+        </div>
+      </section>
       <SiteFooter idioma={idioma} />
     </main>
   );

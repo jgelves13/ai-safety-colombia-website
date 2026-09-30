@@ -48,24 +48,40 @@ type Pagina = {
   ruta: Record<Idioma, string>;
   /** Si la página está en el menú, cómo se llama en cada idioma. */
   nav?: Record<Idioma, string>;
+  /** Si va dentro de un submenú del encabezado, cuál, y la línea que la
+      describe ahí. El pie la muestra suelta, como las demás. */
+  grupo?: Grupo;
+  detalle?: Record<Idioma, string>;
 };
 
-/* El orden es el del menú: qué es el campo, qué está abierto ahora mismo, qué
-   sale de acá, con qué estudiar, cómo entrar y quiénes somos. Lo abierto ahora
-   son los dos cursos; el sprint ya pasó y sale del menú, pero su página sigue
-   en la tabla, igual que el inicio y los formularios, porque el selector tiene
-   que saber a dónde mandarlos. */
+type Grupo = "seminarios";
+
+const GRUPOS: Record<Grupo, Record<Idioma, string>> = {
+  seminarios: { es: "Seminarios", en: "Seminars", pt: "Seminários" },
+};
+
+/* El orden es el del menú: qué está abierto ahora mismo, qué sale de acá, con
+   qué estudiar, cómo entrar y quiénes somos. Lo abierto ahora son los dos
+   cursos, juntos bajo «Seminarios» como el «Get Involved» de MIT. El sprint y
+   «¿Qué es AI safety?» salieron del menú, pero sus páginas siguen en la tabla,
+   igual que el inicio y los formularios, porque el selector tiene que saber a
+   dónde mandarlas. */
 export const PAGINAS: Pagina[] = [
   {
     ruta: { es: "/", en: "/en", pt: "/pt" },
   },
   {
     ruta: { es: "/seguridad-de-la-ia", en: "/en/ai-safety", pt: "/pt/seguranca-da-ia" },
-    nav: { es: "¿Qué es AI safety?", en: "What is AI safety?", pt: "O que é AI safety?" },
   },
   {
     ruta: { es: "/cursos/agi-strategy", en: "/en/courses/agi-strategy", pt: "/pt/cursos/agi-strategy" },
     nav: { es: "AGI Strategy", en: "AGI Strategy", pt: "AGI Strategy" },
+    grupo: "seminarios",
+    detalle: {
+      es: "5 semanas · sin formación técnica",
+      en: "5 weeks · no technical background",
+      pt: "5 semanas · sem formação técnica",
+    },
   },
   {
     ruta: {
@@ -74,6 +90,12 @@ export const PAGINAS: Pagina[] = [
       pt: "/pt/cursos/technical-ai-safety",
     },
     nav: { es: "Technical AI Safety", en: "Technical AI Safety", pt: "Technical AI Safety" },
+    grupo: "seminarios",
+    detalle: {
+      es: "6 semanas · con base técnica",
+      en: "6 weeks · technical background",
+      pt: "6 semanas · com base técnica",
+    },
   },
   {
     ruta: { es: "/investigacion", en: "/en/research", pt: "/pt/pesquisa" },
@@ -118,6 +140,33 @@ export function menu(idioma: Idioma): { href: string; label: string }[] {
     href: p.ruta[idioma],
     label: p.nav![idioma],
   }));
+}
+
+export type EntradaMenu =
+  | { href: string; label: string }
+  | { label: string; hijos: { href: string; label: string; detalle?: string }[] };
+
+/** El menú del encabezado: las páginas de un mismo grupo van juntas en un
+    submenú, en el lugar de la primera. */
+export function menuAgrupado(idioma: Idioma): EntradaMenu[] {
+  const salida: EntradaMenu[] = [];
+  const vistos = new Map<Grupo, { href: string; label: string; detalle?: string }[]>();
+  for (const p of PAGINAS) {
+    if (!p.nav) continue;
+    const item = { href: p.ruta[idioma], label: p.nav[idioma] };
+    if (!p.grupo) {
+      salida.push(item);
+      continue;
+    }
+    let hijos = vistos.get(p.grupo);
+    if (!hijos) {
+      hijos = [];
+      vistos.set(p.grupo, hijos);
+      salida.push({ label: GRUPOS[p.grupo][idioma], hijos });
+    }
+    hijos.push({ ...item, detalle: p.detalle?.[idioma] });
+  }
+  return salida;
 }
 
 /** A qué idioma pertenece una dirección. Todo lo que no cuelgue de /en o /pt

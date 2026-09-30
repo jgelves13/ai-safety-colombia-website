@@ -70,10 +70,9 @@ function validar(raw: Crudo): { ok: true; datos: Datos } | { ok: false; campo: s
   const course = texto(raw.course) as CursoId;
   if (!CURSOS.includes(course)) return { ok: false, campo: "course" };
 
-  const participante = texto(raw.roleParticipant) === "si";
-  const facilitador = texto(raw.roleFacilitator) === "si";
-  if (!participante && !facilitador) return { ok: false, campo: "role" };
-  const role = participante && facilitador ? "ambos" : participante ? "participante" : "facilitador";
+  /* El formulario ya no pregunta el rol ni la ubicación: todos aplican como
+     participantes y las columnas se llenan con lo mismo para no tocar la tabla. */
+  const role = "participante";
 
   const format = texto(raw.format);
   if (!(FORMATOS as readonly string[]).includes(format)) return { ok: false, campo: "format" };
@@ -100,12 +99,10 @@ function validar(raw: Crudo): { ok: true; datos: Datos } | { ok: false; campo: s
   if (careerStage !== "other") t.careerDetail = "";
 
   const mention = texto(raw.mentionName);
-  const share = texto(raw.shareData);
   if (mention !== "si" && mention !== "no") return { ok: false, campo: "mentionName" };
-  if (share !== "si" && share !== "no") return { ok: false, campo: "shareData" };
 
   const faltantes = obligatorios(course).filter(
-    (c) => !["course", "role", "format", "fields", "careerStage", "mentionName", "shareData"].includes(c),
+    (c) => !["course", "role", "format", "fields", "careerStage", "mentionName"].includes(c),
   );
   for (const campo of faltantes) if (!t[campo]) return { ok: false, campo };
 
@@ -123,7 +120,8 @@ function validar(raw: Crudo): { ok: true; datos: Datos } | { ok: false; campo: s
       fields,
       careerStage,
       mentionName: mention === "si",
-      shareData: share === "si",
+      /* Ya no se pregunta; la columna se queda en falso. */
+      shareData: false,
       t,
     },
   };
@@ -146,7 +144,7 @@ function fila(d: Datos) {
     fields_of_study: d.fields.join(", "),
     career_stage: d.careerStage,
     career_detail: d.t.careerDetail || null,
-    location: d.t.location,
+    location: "",
     hours_ai_safety: d.t.hours || null,
     q_plan: d.t.qPlan,
     q_engagement: d.t.qEngagement,

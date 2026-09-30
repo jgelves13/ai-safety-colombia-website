@@ -24,8 +24,6 @@ type Campos = Record<string, string>;
 
 const VACIO: Campos = {
   course: "",
-  roleParticipant: "",
-  roleFacilitator: "",
   format: "",
   altPlacement: "",
   firstName: "",
@@ -36,7 +34,6 @@ const VACIO: Campos = {
   fields: "",
   careerStage: "",
   careerDetail: "",
-  location: "",
   hours: "",
   qPlan: "",
   qEngagement: "",
@@ -47,7 +44,6 @@ const VACIO: Campos = {
   nominee: "",
   mentionName: "",
   feedback: "",
-  shareData: "",
   website: "",
 };
 
@@ -56,6 +52,10 @@ const INPUT =
 const INPUT_MAL =
   "border-aisc-coral focus:border-aisc-coral focus:outline-aisc-coral/35";
 const ETIQUETA = "text-body-sm block font-medium text-aisc-ink";
+/* La flecha de los menús desplegables, dibujada a mano para que se vea igual
+   en todos los navegadores. */
+const FLECHA = "data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%235a5044%22><path d=%22M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z%22/></svg>";
+const SELECT = "cursor-pointer appearance-none bg-[length:18px_18px] bg-[position:right_12px_center] bg-no-repeat pr-10";
 const AYUDA = "text-meta mt-1 block text-aisc-muted";
 const ERROR = "text-meta mt-1.5 block text-aisc-coral";
 const SECCION = "border-t border-aisc-line pt-8 first:border-t-0 first:pt-0";
@@ -68,6 +68,107 @@ const BOTON_LLENO =
 const BOTON_CONTORNO =
   "text-body-sm inline-flex min-h-11 items-center rounded-full border border-aisc-ink px-6 font-medium text-aisc-ink transition-colors hover:bg-aisc-ink hover:text-aisc-cream";
 const WHATSAPP = "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ";
+
+/* Un menú desplegable donde se marcan varias opciones, hasta un tope. Lo que
+   ya se marcó se ve en el botón; el panel se cierra con Escape o al hacer clic
+   afuera. */
+function MenuMultiple({
+  id,
+  opciones,
+  etiqueta,
+  elegidas,
+  tope,
+  alternar,
+  vacio,
+  invalido,
+}: {
+  id: string;
+  opciones: readonly string[];
+  etiqueta: (id: string) => string;
+  elegidas: string[];
+  tope: number;
+  alternar: (id: string) => void;
+  vacio: string;
+  invalido: boolean;
+}) {
+  const [abierto, setAbierto] = useState(false);
+  const caja = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!abierto) return;
+    const fuera = (e: PointerEvent) => {
+      if (!caja.current?.contains(e.target as Node)) setAbierto(false);
+    };
+    const tecla = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setAbierto(false);
+    };
+    document.addEventListener("pointerdown", fuera);
+    document.addEventListener("keydown", tecla);
+    return () => {
+      document.removeEventListener("pointerdown", fuera);
+      document.removeEventListener("keydown", tecla);
+    };
+  }, [abierto]);
+
+  const lleno = elegidas.length >= tope;
+
+  return (
+    <div ref={caja} className="relative">
+      <button
+        type="button"
+        id={id}
+        aria-haspopup="listbox"
+        aria-expanded={abierto}
+        aria-invalid={invalido ? true : undefined}
+        onClick={() => setAbierto((a) => !a)}
+        style={{ backgroundImage: `url("${FLECHA}")` }}
+        className={`${INPUT} ${SELECT} ${invalido ? INPUT_MAL : ""} flex min-h-11 flex-wrap items-center gap-1.5 text-left`}
+      >
+        {elegidas.length === 0 ? (
+          <span className="text-aisc-muted/60">{vacio}</span>
+        ) : (
+          elegidas.map((e) => (
+            <span key={e} className="text-meta rounded-full bg-aisc-forest/8 px-2.5 py-0.5 text-aisc-forest">
+              {etiqueta(e)}
+            </span>
+          ))
+        )}
+      </button>
+      {abierto ? (
+        <ul
+          role="listbox"
+          aria-multiselectable="true"
+          className="absolute top-full left-0 z-20 mt-1.5 max-h-72 w-full overflow-y-auto rounded-[var(--radius)] border border-aisc-line bg-white p-1.5 shadow-[0_16px_40px_-12px_rgba(33,26,18,0.25)]"
+        >
+          {opciones.map((o) => {
+            const marcada = elegidas.includes(o);
+            const bloqueada = !marcada && lleno;
+            return (
+              <li key={o} role="option" aria-selected={marcada}>
+                <label
+                  className={`text-body-sm flex items-start gap-3 rounded-[10px] px-3 py-2 ${
+                    bloqueada ? "cursor-not-allowed text-aisc-muted/60" : "cursor-pointer hover:bg-aisc-forest/6"
+                  }${marcada ? " bg-aisc-forest/6" : ""}`}
+                >
+                  <input
+                    type="checkbox"
+                    name="fields"
+                    value={o}
+                    checked={marcada}
+                    disabled={bloqueada}
+                    onChange={() => alternar(o)}
+                    className="mt-0.5 accent-aisc-forest"
+                  />
+                  <span>{etiqueta(o)}</span>
+                </label>
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
 
 function Campo({
   name,
@@ -211,10 +312,7 @@ export default function CourseApplyForm({
 
   const revisar = () => {
     const nuevos: Record<string, string> = {};
-    const valor = (c: string) => {
-      if (c === "role") return v.roleParticipant || v.roleFacilitator;
-      return v[c]?.trim();
-    };
+    const valor = (c: string) => v[c]?.trim();
     for (const campo of requeridos()) {
       if (!valor(campo)) nuevos[campo] = t.faltaResponder;
     }
@@ -369,11 +467,7 @@ export default function CourseApplyForm({
         type="checkbox"
         name={name}
         checked={v[name] === "si"}
-        onChange={(e) => {
-          set(name, e.target.checked ? "si" : "");
-          if (name.startsWith("role"))
-            setErrores((prev) => (prev.role ? { ...prev, role: "" } : prev));
-        }}
+        onChange={(e) => set(name, e.target.checked ? "si" : "")}
         className="mt-0.5 accent-aisc-forest"
       />
       <span>{texto}</span>
@@ -487,11 +581,6 @@ export default function CourseApplyForm({
               </div>
             ) : null}
 
-            <Grupo label={t.rol} ayuda={t.rolAyuda} error={errores.role}>
-              {casilla("roleParticipant", t.roles.participante)}
-              {casilla("roleFacilitator", t.roles.facilitador)}
-            </Grupo>
-
             <Grupo label={t.formato} ayuda={t.formatoAyuda} error={errores.format}>
               {radios("format", FORMATOS, (id) =>
                 t.formatos[id as (typeof FORMATOS)[number]],
@@ -567,43 +656,55 @@ export default function CourseApplyForm({
             >
               <input {...textProps("otherProfile", "url")} />
             </Campo>
-            <Campo
-              opcional={t.opcional}
-              requerido
-              name="location"
-              label={t.ubicacion}
-              ayuda={t.ubicacionAyuda}
-              error={errores.location}
-            >
-              <input {...textProps("location")} />
-            </Campo>
           </div>
 
           <div className="mt-6 flex flex-col gap-6">
-            <Grupo label={t.areas} ayuda={t.areasAyuda} error={errores.fields}>
-              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                {AREAS.map((id) => (
-                  <label className={OPCION} key={id}>
-                    <input
-                      type="checkbox"
-                      name="fields"
-                      value={id}
-                      checked={areas.includes(id)}
-                      disabled={!areas.includes(id) && areas.length >= 3}
-                      onChange={() => alternarArea(id)}
-                      className="mt-0.5 accent-aisc-forest"
-                    />
-                    <span>{t.areasOpciones[id]}</span>
-                  </label>
-                ))}
-              </div>
-            </Grupo>
+            <Campo
+              opcional={t.opcional}
+              requerido
+              name="fields"
+              label={t.areas}
+              ayuda={t.areasAyuda}
+              error={errores.fields}
+            >
+              <MenuMultiple
+                id="fields"
+                opciones={AREAS}
+                etiqueta={(id) => t.areasOpciones[id as (typeof AREAS)[number]]}
+                elegidas={areas}
+                tope={3}
+                alternar={alternarArea}
+                vacio={t.escogerVarias}
+                invalido={Boolean(errores.fields)}
+              />
+            </Campo>
 
-            <Grupo label={t.etapa} error={errores.careerStage}>
-              {radios("careerStage", ETAPAS, (id) =>
-                t.etapas[id as (typeof ETAPAS)[number]],
-              )}
-            </Grupo>
+            <Campo
+              opcional={t.opcional}
+              requerido
+              name="careerStage"
+              label={t.etapa}
+              error={errores.careerStage}
+            >
+              <select
+                id="careerStage"
+                name="careerStage"
+                value={v.careerStage}
+                onChange={(e) => set("careerStage", e.target.value)}
+                className={`${INPUT} ${SELECT} ${errores.careerStage ? INPUT_MAL : ""}`}
+                style={{ backgroundImage: `url("${FLECHA}")` }}
+                aria-invalid={errores.careerStage ? true : undefined}
+              >
+                <option value="" disabled>
+                  {t.escoger}
+                </option>
+                {ETAPAS.map((id) => (
+                  <option key={id} value={id}>
+                    {t.etapas[id]}
+                  </option>
+                ))}
+              </select>
+            </Campo>
             {v.careerStage === "other" ? (
               <Campo
                 opcional={t.opcional}
@@ -704,15 +805,6 @@ export default function CourseApplyForm({
             >
               <textarea {...areaProps("feedback", 3)} />
             </Campo>
-            <Grupo
-              label={t.compartir}
-              ayuda={t.compartirAyuda}
-              error={errores.shareData}
-            >
-              {radios("shareData", ["si", "no"], (id) =>
-                id === "si" ? t.compartirSi : t.compartirNo,
-              )}
-            </Grupo>
           </div>
           <p className="text-meta mt-6 text-aisc-muted">
             {t.privacidadAntes}

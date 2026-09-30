@@ -5,14 +5,12 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import SelectorIdioma from "./selector-idioma";
 import { BANDERA } from "./banderas";
-import { IDIOMAS_LISTOS, INICIO, NOMBRE_IDIOMA, type Idioma, idiomaDe, menu, rutaEn } from "@/lib/idiomas";
+import { IDIOMAS_LISTOS, INICIO, NOMBRE_IDIOMA, type EntradaMenu, type Idioma, idiomaDe, menuAgrupado, rutaEn } from "@/lib/idiomas";
 
-/* Seis entradas, en el orden en que alguien nuevo las necesita: qué es el
-   campo, qué está abierto ahora mismo, qué sale de acá, con qué estudiar,
-   cómo entrar y quiénes somos. Eventos y blog viven dentro de esas páginas.
-   La segunda entrada lleva el nombre del sprint vigente: al cerrar el de
-   septiembre hay que renombrarla con el que siga. Los nombres y las direcciones
-   de los tres idiomas están en lib/idiomas.ts. */
+/* Cinco entradas, en el orden en que alguien nuevo las necesita: qué está
+   abierto ahora mismo (los seminarios, en un submenú como el «Get Involved» de
+   MIT), qué sale de acá, con qué estudiar, cómo entrar y quiénes somos. Los
+   nombres y las direcciones de los tres idiomas están en lib/idiomas.ts. */
 
 /* The floating header is scroll-linked rather than a toggle: opacity tracks the
    band below, and the lift and scale ride the same progress. Read off the
@@ -53,6 +51,87 @@ const MENU_TITULO: Record<Idioma, string> = {
   pt: "Menu",
 };
 
+const PILDORA = "text-body-sm whitespace-nowrap rounded-full px-3 py-1.5 text-aisc-sand transition-colors hover:bg-aisc-sand/10";
+
+/* El submenú de escritorio: abre al pasar el mouse y al hacer clic, y se
+   cierra con Escape o al hacer clic afuera. */
+function Submenu({
+  entrada,
+  active,
+}: {
+  entrada: Extract<EntradaMenu, { hijos: unknown }>;
+  active?: string;
+}) {
+  const [abierto, setAbierto] = useState(false);
+  const caja = useRef<HTMLDivElement>(null);
+  const dentro = entrada.hijos.some((h) => h.href === active);
+
+  useEffect(() => {
+    if (!abierto) return;
+    const fuera = (e: PointerEvent) => {
+      if (!caja.current?.contains(e.target as Node)) setAbierto(false);
+    };
+    const tecla = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setAbierto(false);
+    };
+    document.addEventListener("pointerdown", fuera);
+    document.addEventListener("keydown", tecla);
+    return () => {
+      document.removeEventListener("pointerdown", fuera);
+      document.removeEventListener("keydown", tecla);
+    };
+  }, [abierto]);
+
+  return (
+    <div
+      ref={caja}
+      className="relative"
+      onMouseEnter={() => setAbierto(true)}
+      onMouseLeave={() => setAbierto(false)}
+    >
+      <button
+        type="button"
+        aria-expanded={abierto}
+        onClick={() => setAbierto((v) => !v)}
+        className={`${PILDORA} inline-flex items-center gap-1${dentro ? " bg-aisc-sand/15" : ""}`}
+      >
+        {entrada.label}
+        <svg
+          viewBox="0 0 24 24"
+          width="14"
+          height="14"
+          fill="currentColor"
+          aria-hidden="true"
+          className={`transition-transform ${abierto ? "rotate-180" : ""}`}
+        >
+          <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z" />
+        </svg>
+      </button>
+      {/* El pt-2 es el puente invisible entre el botón y la caja, para que el
+          mouse no la cierre al bajar. */}
+      <div className={`absolute top-full left-0 z-30 pt-2 ${abierto ? "block" : "hidden"}`}>
+        <ul className="flex w-72 flex-col rounded-2xl bg-aisc-forest-deep p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] ring-1 ring-aisc-sand/12">
+          {entrada.hijos.map((h) => (
+            <li key={h.href}>
+              <Link
+                href={h.href}
+                aria-current={h.href === active ? "page" : undefined}
+                onClick={() => setAbierto(false)}
+                className={`flex flex-col gap-0.5 rounded-xl px-4 py-3 text-aisc-sand transition-colors hover:bg-aisc-sand/10${
+                  h.href === active ? " bg-aisc-sand/10" : ""
+                }`}
+              >
+                <span className="text-body-sm font-medium">{h.label}</span>
+                {h.detalle ? <span className="text-body-sm text-aisc-sand/60">{h.detalle}</span> : null}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 function Nav({
   idioma,
   active,
@@ -64,13 +143,14 @@ function Nav({
 }) {
   return (
     <nav className={className}>
-      {menu(idioma).map((item) => {
+      {menuAgrupado(idioma).map((item) => {
+        if ("hijos" in item) return <Submenu key={item.label} entrada={item} active={active} />;
         const current = item.href === active;
         return (
           <Link
             key={item.href}
             aria-current={current ? "page" : undefined}
-            className={`text-body-sm whitespace-nowrap rounded-full px-3 py-1.5 text-aisc-sand transition-colors hover:bg-aisc-sand/10${current ? " bg-aisc-sand/15" : ""}`}
+            className={`${PILDORA}${current ? " bg-aisc-sand/15" : ""}`}
             href={item.href}
           >
             {item.label}
@@ -183,7 +263,30 @@ function PanelMovil({
 
       <div className="flex min-h-0 flex-1 flex-col gap-8 overflow-y-auto px-4 pb-10">
         <nav aria-label={MENU_TITULO[idioma]} className="flex flex-col">
-          {menu(idioma).map((item) => {
+          {menuAgrupado(idioma).map((item) => {
+            if ("hijos" in item) {
+              return (
+                <div key={item.label} className="flex flex-col border-b border-aisc-sand/12 py-4">
+                  <span className="text-display-4">{item.label}</span>
+                  <div className="mt-2 flex flex-col">
+                    {item.hijos.map((h) => (
+                      <Link
+                        key={h.href}
+                        href={h.href}
+                        onClick={cerrar}
+                        aria-current={h.href === active ? "page" : undefined}
+                        className={`text-body flex flex-col py-2 pl-4 transition-colors hover:text-aisc-coral${
+                          h.href === active ? " text-aisc-coral" : ""
+                        }`}
+                      >
+                        {h.label}
+                        {h.detalle ? <span className="text-body-sm text-aisc-sand/60">{h.detalle}</span> : null}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
             const current = item.href === active;
             return (
               <Link
