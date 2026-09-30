@@ -7,9 +7,9 @@ import { BLUEDOT_CURSO, BLUEDOT_NOMBRE, FACILITADORES, PAGINAS_CURSO, ROTULOS_CU
 import type { Idioma } from "@/lib/idiomas";
 
 /* La página de cada seminario, con la estructura de las páginas de programa de
-   aisecurity.sg: un encabezado cuyo titular promete algo (el nombre del
-   seminario va en el <title>, en el nav y en la prosa) y que cierra con la
-   tira de datos clave; luego una columna angosta
+   aisecurity.sg y la densidad del encabezado de BlueDot: el nombre del
+   seminario como h1, tres frases (por qué, qué se aprende, para quién), la
+   línea de fechas y la tira de datos clave; luego una columna angosta
    y centrada, con bandas que alternan crema y arena, y una sección por
    pregunta: por qué ahora, para quién es (cuatro perfiles en tarjetas), quién
    está en la sala, qué vas a hacer (una tarjeta por semana, con el número en
@@ -101,7 +101,7 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
         <SiteHeader active={RUTA_CURSO[curso][idioma]} />
         <div className={`${ANCHO} relative z-10 flex flex-col pt-28 md:pt-32`}>
           <div className="flex max-w-[880px] flex-col gap-5 pb-12 md:pb-16">
-            <h1 className="text-display-2 md:text-display-2-lg text-balance text-aisc-sand">{p.titular}</h1>
+            <h1 className="text-display-2 md:text-display-2-lg text-balance text-aisc-sand">{p.metaTitulo}</h1>
             <p className="text-body max-w-[720px] text-aisc-sand/90">{p.entrada}</p>
             <p className="text-body-sm text-aisc-sand/70">{p.linea}</p>
             {cerrado ? null : (

@@ -66,8 +66,8 @@ type Bloque = { titulo: string; cuerpo: string };
 export type PaginaCurso = {
   metaTitulo: string;
   metaDescripcion: string;
-  /* El encabezado: el titular promete; el nombre del curso no va aquí. */
-  titular: string;
+  /* El encabezado: el nombre del seminario es el h1 (metaTitulo) y debajo van
+     tres frases: por qué, qué se aprende y para quién. */
   entrada: string;
   /* La línea de fechas y modalidad que cierra el encabezado. */
   linea: string;
@@ -94,7 +94,6 @@ const AGI_ES: PaginaCurso = {
   metaTitulo: "Seminario de futuro y riesgos de la IA",
   metaDescripcion:
     "Seminario con cohorte de cinco semanas, desde la semana del 12 de octubre de 2026, con los materiales de BlueDot Impact. Para entender hacia dónde va la IA avanzada y encontrar tu punto de entrada. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 11 de octubre.",
-  titular: "Entiende hacia dónde va la IA avanzada, qué puede salir mal y qué se está haciendo para evitarlo",
   entrada:
     "La IA avanzada va más rápido que la gente preparada para pensarla. Cinco semanas para entender quién la construye, qué tan rápido avanza y qué podría salir mal. Desde cualquier disciplina.",
   linea: "Del 12 de octubre al 15 de noviembre de 2026. Aplica hasta el 11 de octubre.",
@@ -196,7 +195,6 @@ const TAIS_ES: PaginaCurso = {
   metaTitulo: "Seminario técnico de seguridad de la IA",
   metaDescripcion:
     "Seminario con cohorte de seis semanas, desde la semana del 12 de octubre de 2026, con los materiales de BlueDot Impact: alineación, evaluaciones, interpretabilidad y AI control. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 11 de octubre.",
-  titular: "Aprende cómo se intenta hacer segura la IA por dentro, y dónde sigue fallando",
   entrada:
     "Las capacidades de la IA avanzan más rápido que la capacidad de hacerla segura. Seis semanas en la parte técnica: entrenar modelos más seguros, evaluarlos, mirarlos por dentro y limitar el daño cuando fallan. Para gente con base técnica.",
   linea: "Del 12 de octubre al 22 de noviembre de 2026. Aplica hasta el 11 de octubre.",
@@ -299,7 +297,6 @@ const AGI_EN: PaginaCurso = {
   metaTitulo: "Seminar on the Future and Risks of AI",
   metaDescripcion:
     "A five-week cohort-based seminar starting the week of 12 October 2026, using BlueDot Impact's materials. Understand where advanced AI is heading and find your entry point. Free, with an AI Safety Colombia certificate. Applications close 11 October.",
-  titular: "Understand where advanced AI is heading, what can go wrong and what is being done to prevent it",
   entrada:
     "Advanced AI is moving faster than the people ready to think about it. Five weeks to understand who is building it, how fast it is moving and what could go wrong. From any discipline.",
   linea: "12 October to 15 November 2026. Apply by 11 October.",
@@ -401,7 +398,6 @@ const TAIS_EN: PaginaCurso = {
   metaTitulo: "Technical AI Safety Seminar",
   metaDescripcion:
     "A six-week cohort-based seminar starting the week of 12 October 2026, using BlueDot Impact's materials: alignment, evaluations, interpretability and AI control. Free, with an AI Safety Colombia certificate. Applications close 11 October.",
-  titular: "Learn how AI is made safe from the inside, and where it still fails",
   entrada:
     "AI capabilities are advancing faster than our ability to make them safe. Six weeks on the technical side: training safer models, evaluating them, looking inside them and limiting the damage when they fail. For people with a technical background.",
   linea: "12 October to 22 November 2026. Apply by 11 October.",
@@ -504,7 +500,6 @@ const AGI_PT: PaginaCurso = {
   metaTitulo: "Seminário de futuro e riscos da IA",
   metaDescripcion:
     "Seminário em turma de cinco semanas, a partir da semana de 12 de outubro de 2026, com os materiais da BlueDot Impact. Para entender para onde vai a IA avançada e encontrar seu ponto de entrada. Grátis, com certificado da AI Safety Colombia. Inscrições até 11 de outubro.",
-  titular: "Entenda para onde vai a IA avançada, o que pode dar errado e o que se está fazendo para evitar",
   entrada:
     "A IA avançada avança mais rápido do que as pessoas preparadas para pensá-la. Cinco semanas para entender quem a constrói, com que velocidade avança e o que pode dar errado. De qualquer área.",
   linea: "De 12 de outubro a 15 de novembro de 2026. Inscreva-se até 11 de outubro.",
@@ -606,7 +601,6 @@ const TAIS_PT: PaginaCurso = {
   metaTitulo: "Seminário técnico de segurança da IA",
   metaDescripcion:
     "Seminário em turma de seis semanas, a partir da semana de 12 de outubro de 2026, com os materiais da BlueDot Impact: alinhamento, avaliações, interpretabilidade e AI control. Grátis, com certificado da AI Safety Colombia. Inscrições até 11 de outubro.",
-  titular: "Aprenda como se tenta tornar a IA segura por dentro, e onde ainda falha",
   entrada:
     "As capacidades da IA avançam mais rápido do que a capacidade de torná-la segura. Seis semanas na parte técnica: treinar modelos mais seguros, avaliá-los, olhar dentro deles e limitar o dano quando falham. Para quem tem base técnica.",
   linea: "De 12 de outubro a 22 de novembro de 2026. Inscreva-se até 11 de outubro.",

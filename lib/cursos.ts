@@ -278,7 +278,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     curso: "¿A qué seminario aplicas?",
     formato: "¿Puedes estar todas las semanas?",
     formatoAyuda:
-      "El seminario arranca la semana del 12 de octubre y va a tiempo parcial, con una discusión en vivo cada semana. El Seminario de futuro y riesgos de la IA dura cinco semanas y el Seminario técnico de seguridad de la IA seis.",
+      "El seminario pide participación completa: cada semana, una hora de material ligero y dos horas de sesión con tu cohorte. Para recibir el certificado se puede faltar a una sesión como máximo. Arranca la semana del 12 de octubre; el Seminario de futuro y riesgos de la IA dura cinco semanas y el Seminario técnico de seguridad de la IA seis.",
     formatos: {
       todas: "Sí, puedo estar todas las semanas",
       "casi-todas": "Casi todas: puede que falte a una",
@@ -507,7 +507,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     curso: "Seminar you're applying for",
     formato: "Can you make it every week?",
     formatoAyuda:
-      "The seminar starts the week of 12 October and runs part-time, with one live discussion each week. The Seminar on the Future and Risks of AI lasts five weeks and the Technical AI Safety Seminar six.",
+      "The seminar asks for full participation: each week, an hour of light material and two hours of session with your cohort. To receive the certificate you can miss at most one session. It starts the week of 12 October; the Seminar on the Future and Risks of AI lasts five weeks and the Technical AI Safety Seminar six.",
     formatos: {
       todas: "Yes, I can make it every week",
       "casi-todas": "Almost every week: I might miss one",
@@ -736,7 +736,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     curso: "Em qual seminário você se inscreve?",
     formato: "Você consegue participar todas as semanas?",
     formatoAyuda:
-      "O seminário começa na semana de 12 de outubro, em meio período, com uma discussão ao vivo por semana. O Seminário de futuro e riscos da IA dura cinco semanas e o Seminário técnico de segurança da IA, seis.",
+      "O seminário pede participação completa: toda semana, uma hora de material leve e duas horas de sessão com a turma. Para receber o certificado, pode faltar a no máximo uma sessão. Começa na semana de 12 de outubro; o Seminário de futuro e riscos da IA dura cinco semanas e o Seminário técnico de segurança da IA, seis.",
     formatos: {
       todas: "Sim, consigo participar todas as semanas",
       "casi-todas": "Quase todas: talvez eu perca uma",
