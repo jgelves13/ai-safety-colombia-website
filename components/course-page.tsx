@@ -149,6 +149,12 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
           style={{ color: "transparent" }}
           src={HERO_CURSO[curso]}
         />
+        {/* La retícula se apaga antes de la tira de datos: sus líneas son del
+            mismo color que el texto y lo volvían ilegible. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden h-72 bg-linear-to-b from-aisc-forest-deep/0 to-aisc-forest-deep to-45% md:block"
+        />
         <SiteHeader active={RUTA_CURSO[curso][idioma]} />
         <div className={`${ANCHO} relative z-10 flex flex-col pt-28 md:pt-32`}>
           <div className="flex max-w-[880px] flex-col gap-5 pb-12 md:pb-16">
