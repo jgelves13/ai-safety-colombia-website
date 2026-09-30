@@ -94,7 +94,7 @@ const AGI_ES: PaginaCurso = {
   metaTitulo: "Seminario de futuro y riesgos de la IA",
   metaDescripcion:
     "Seminario con cohorte de cinco semanas, desde la semana del 12 de octubre de 2026, con los materiales de BlueDot Impact. Para entender hacia dónde va la IA avanzada y encontrar tu punto de entrada. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 11 de octubre.",
-  titular: "Entiende hacia dónde va la IA avanzada antes de decidir qué hacer con tu carrera",
+  titular: "Entiende hacia dónde va la IA avanzada, qué puede salir mal y qué se está haciendo para evitarlo",
   entrada:
     "Cinco semanas, con sesiones presenciales y en línea, para gente de cualquier disciplina que se toma en serio el tema: quién está construyendo la IA, qué tan rápido avanza, qué podría salir mal y dónde puedes aportar para que salga bien. Con los materiales de BlueDot Impact y facilitadores de la comunidad.",
   linea: "Del 12 de octubre al 15 de noviembre de 2026, con sesiones presenciales en la Universidad de los Andes y sesiones en línea. Cohorte abierta, por aplicación hasta el 11 de octubre.",
@@ -299,7 +299,7 @@ const AGI_EN: PaginaCurso = {
   metaTitulo: "Seminar on the Future and Risks of AI",
   metaDescripcion:
     "A five-week cohort-based seminar starting the week of 12 October 2026, using BlueDot Impact's materials. Understand where advanced AI is heading and find your entry point. Free, with an AI Safety Colombia certificate. Applications close 11 October.",
-  titular: "Understand where advanced AI is heading before you decide what to do with your career",
+  titular: "Understand where advanced AI is heading, what can go wrong and what is being done to prevent it",
   entrada:
     "Five weeks, with in-person and online sessions, for people from any discipline who take the topic seriously: who is building AI, how fast it is moving, what could go wrong, and where you can help make it go well. With BlueDot Impact's materials and facilitators from the community.",
   linea: "12 October to 15 November 2026, with in-person sessions at Universidad de los Andes and online sessions. Open cohort, by application until 11 October.",
@@ -504,7 +504,7 @@ const AGI_PT: PaginaCurso = {
   metaTitulo: "Seminário de futuro e riscos da IA",
   metaDescripcion:
     "Seminário em turma de cinco semanas, a partir da semana de 12 de outubro de 2026, com os materiais da BlueDot Impact. Para entender para onde vai a IA avançada e encontrar seu ponto de entrada. Grátis, com certificado da AI Safety Colombia. Inscrições até 11 de outubro.",
-  titular: "Entenda para onde vai a IA avançada antes de decidir o que fazer com sua carreira",
+  titular: "Entenda para onde vai a IA avançada, o que pode dar errado e o que se está fazendo para evitar",
   entrada:
     "Cinco semanas, com sessões presenciais e on-line, para gente de qualquer área que leva o tema a sério: quem está construindo a IA, com que velocidade avança, o que pode dar errado e onde você pode ajudar para que dê certo. Com os materiais da BlueDot Impact e facilitadores da comunidade.",
   linea: "De 12 de outubro a 15 de novembro de 2026, com sessões presenciais na Universidad de los Andes e sessões on-line. Turma aberta, por inscrição até 11 de outubro.",
