@@ -13,14 +13,14 @@ import type { CursoId } from "./cursos";
 
 export const RUTA_CURSO: Record<CursoId, Record<Idioma, string>> = {
   "agi-strategy": {
-    es: "/seminarios/futuro-y-riesgos-de-la-ia",
-    en: "/en/seminars/future-and-risks-of-ai",
-    pt: "/pt/seminarios/futuro-e-riscos-da-ia",
+    es: "/seminarios/futuro-y-riesgos",
+    en: "/en/seminars/future-and-risks",
+    pt: "/pt/seminarios/futuro-e-riscos",
   },
   "technical-ai-safety": {
-    es: "/seminarios/tecnico-seguridad-de-la-ia",
-    en: "/en/seminars/technical-ai-safety",
-    pt: "/pt/seminarios/tecnico-seguranca-da-ia",
+    es: "/seminarios/tecnico",
+    en: "/en/seminars/technical",
+    pt: "/pt/seminarios/tecnico",
   },
 };
 

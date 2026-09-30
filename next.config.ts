@@ -39,15 +39,23 @@ const viejas: { from: string; to: string; permanent: boolean }[] = [
 
   /* Los seminarios de BlueDot vivieron un día en /cursos/<nombre de BlueDot>;
      ahora llevan el nombre con el que se anuncian. Temporales por lo mismo. */
-  { from: "/cursos/agi-strategy", to: "/seminarios/futuro-y-riesgos-de-la-ia", permanent: false },
-  { from: "/cursos/technical-ai-safety", to: "/seminarios/tecnico-seguridad-de-la-ia", permanent: false },
+  { from: "/cursos/agi-strategy", to: "/seminarios/futuro-y-riesgos", permanent: false },
+  { from: "/cursos/technical-ai-safety", to: "/seminarios/tecnico", permanent: false },
   { from: "/cursos/aplicar", to: "/seminarios/aplicar", permanent: false },
-  { from: "/en/courses/agi-strategy", to: "/en/seminars/future-and-risks-of-ai", permanent: false },
-  { from: "/en/courses/technical-ai-safety", to: "/en/seminars/technical-ai-safety", permanent: false },
+  { from: "/en/courses/agi-strategy", to: "/en/seminars/future-and-risks", permanent: false },
+  { from: "/en/courses/technical-ai-safety", to: "/en/seminars/technical", permanent: false },
   { from: "/en/courses/apply", to: "/en/seminars/apply", permanent: false },
-  { from: "/pt/cursos/agi-strategy", to: "/pt/seminarios/futuro-e-riscos-da-ia", permanent: false },
-  { from: "/pt/cursos/technical-ai-safety", to: "/pt/seminarios/tecnico-seguranca-da-ia", permanent: false },
+  { from: "/pt/cursos/agi-strategy", to: "/pt/seminarios/futuro-e-riscos", permanent: false },
+  { from: "/pt/cursos/technical-ai-safety", to: "/pt/seminarios/tecnico", permanent: false },
   { from: "/pt/cursos/inscricao", to: "/pt/seminarios/inscricao", permanent: false },
+
+  /* Y un día más con el nombre largo; ahora el slug es corto. */
+  { from: "/seminarios/futuro-y-riesgos-de-la-ia", to: "/seminarios/futuro-y-riesgos", permanent: false },
+  { from: "/seminarios/tecnico-seguridad-de-la-ia", to: "/seminarios/tecnico", permanent: false },
+  { from: "/en/seminars/future-and-risks-of-ai", to: "/en/seminars/future-and-risks", permanent: false },
+  { from: "/en/seminars/technical-ai-safety", to: "/en/seminars/technical", permanent: false },
+  { from: "/pt/seminarios/futuro-e-riscos-da-ia", to: "/pt/seminarios/futuro-e-riscos", permanent: false },
+  { from: "/pt/seminarios/tecnico-seguranca-da-ia", to: "/pt/seminarios/tecnico", permanent: false },
 ];
 
 const nextConfig: NextConfig = {

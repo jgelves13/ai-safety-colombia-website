@@ -74,15 +74,15 @@ export const PAGINAS: Pagina[] = [
     ruta: { es: "/seguridad-de-la-ia", en: "/en/ai-safety", pt: "/pt/seguranca-da-ia" },
   },
   {
-    ruta: { es: "/seminarios/futuro-y-riesgos-de-la-ia", en: "/en/seminars/future-and-risks-of-ai", pt: "/pt/seminarios/futuro-e-riscos-da-ia" },
+    ruta: { es: "/seminarios/futuro-y-riesgos", en: "/en/seminars/future-and-risks", pt: "/pt/seminarios/futuro-e-riscos" },
     nav: { es: "Seminario de futuro y riesgos de la IA", en: "Seminar on the Future and Risks of AI", pt: "Seminário de futuro e riscos da IA" },
     grupo: "seminarios",
   },
   {
     ruta: {
-      es: "/seminarios/tecnico-seguridad-de-la-ia",
-      en: "/en/seminars/technical-ai-safety",
-      pt: "/pt/seminarios/tecnico-seguranca-da-ia",
+      es: "/seminarios/tecnico",
+      en: "/en/seminars/technical",
+      pt: "/pt/seminarios/tecnico",
     },
     nav: { es: "Seminario técnico de seguridad de la IA", en: "Technical AI Safety Seminar", pt: "Seminário técnico de segurança da IA" },
     grupo: "seminarios",

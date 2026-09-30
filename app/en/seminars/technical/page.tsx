@@ -3,12 +3,12 @@ import CoursePage from "@/components/course-page";
 import { PAGINAS_CURSO } from "@/lib/cursos-paginas";
 import { alternativas } from "@/lib/idiomas";
 
-const p = PAGINAS_CURSO["technical-ai-safety"].pt;
+const p = PAGINAS_CURSO["technical-ai-safety"].en;
 
 export const metadata: Metadata = {
   title: p.metaTitulo,
   description: p.metaDescripcion,
-  alternates: { canonical: "/pt/seminarios/tecnico-seguranca-da-ia", languages: alternativas("/pt/seminarios/tecnico-seguranca-da-ia") },
+  alternates: { canonical: "/en/seminars/technical", languages: alternativas("/en/seminars/technical") },
 };
 
 /* Se renderiza en cada visita para que el cierre del 9 de octubre no quede
@@ -16,5 +16,5 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default function TechnicalAiSafety() {
-  return <CoursePage idioma="pt" curso="technical-ai-safety" />;
+  return <CoursePage idioma="en" curso="technical-ai-safety" />;
 }

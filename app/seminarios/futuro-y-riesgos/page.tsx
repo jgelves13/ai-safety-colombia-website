@@ -3,12 +3,12 @@ import CoursePage from "@/components/course-page";
 import { PAGINAS_CURSO } from "@/lib/cursos-paginas";
 import { alternativas } from "@/lib/idiomas";
 
-const p = PAGINAS_CURSO["agi-strategy"].pt;
+const p = PAGINAS_CURSO["agi-strategy"].es;
 
 export const metadata: Metadata = {
   title: p.metaTitulo,
   description: p.metaDescripcion,
-  alternates: { canonical: "/pt/seminarios/futuro-e-riscos-da-ia", languages: alternativas("/pt/seminarios/futuro-e-riscos-da-ia") },
+  alternates: { canonical: "/seminarios/futuro-y-riesgos", languages: alternativas("/seminarios/futuro-y-riesgos") },
 };
 
 /* Se renderiza en cada visita para que el cierre del 9 de octubre no quede
@@ -16,5 +16,5 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default function AgiStrategy() {
-  return <CoursePage idioma="pt" curso="agi-strategy" />;
+  return <CoursePage idioma="es" curso="agi-strategy" />;
 }
