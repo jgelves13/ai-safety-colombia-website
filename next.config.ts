@@ -36,6 +36,18 @@ const viejas: { from: string; to: string; permanent: boolean }[] = [
   { from: "/sprint/aplicar/rapido", to: "/sprint/aplicar/recomendacion", permanent: false },
   { from: "/en/sprint/apply/quick", to: "/en/sprint/apply/referral", permanent: false },
   { from: "/pt/sprint/inscricao/rapida", to: "/pt/sprint/inscricao/indicacao", permanent: false },
+
+  /* Los seminarios de BlueDot vivieron un día en /cursos/<nombre de BlueDot>;
+     ahora llevan el nombre con el que se anuncian. Temporales por lo mismo. */
+  { from: "/cursos/agi-strategy", to: "/seminarios/futuro-y-riesgos-de-la-ia", permanent: false },
+  { from: "/cursos/technical-ai-safety", to: "/seminarios/tecnico-seguridad-de-la-ia", permanent: false },
+  { from: "/cursos/aplicar", to: "/seminarios/aplicar", permanent: false },
+  { from: "/en/courses/agi-strategy", to: "/en/seminars/future-and-risks-of-ai", permanent: false },
+  { from: "/en/courses/technical-ai-safety", to: "/en/seminars/technical-ai-safety", permanent: false },
+  { from: "/en/courses/apply", to: "/en/seminars/apply", permanent: false },
+  { from: "/pt/cursos/agi-strategy", to: "/pt/seminarios/futuro-e-riscos-da-ia", permanent: false },
+  { from: "/pt/cursos/technical-ai-safety", to: "/pt/seminarios/tecnico-seguranca-da-ia", permanent: false },
+  { from: "/pt/cursos/inscricao", to: "/pt/seminarios/inscricao", permanent: false },
 ];
 
 const nextConfig: NextConfig = {

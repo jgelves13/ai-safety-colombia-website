@@ -74,15 +74,15 @@ export const PAGINAS: Pagina[] = [
     ruta: { es: "/seguridad-de-la-ia", en: "/en/ai-safety", pt: "/pt/seguranca-da-ia" },
   },
   {
-    ruta: { es: "/cursos/agi-strategy", en: "/en/courses/agi-strategy", pt: "/pt/cursos/agi-strategy" },
+    ruta: { es: "/seminarios/futuro-y-riesgos-de-la-ia", en: "/en/seminars/future-and-risks-of-ai", pt: "/pt/seminarios/futuro-e-riscos-da-ia" },
     nav: { es: "Seminario de futuro y riesgos de la IA", en: "Seminar on the Future and Risks of AI", pt: "Seminário de futuro e riscos da IA" },
     grupo: "seminarios",
   },
   {
     ruta: {
-      es: "/cursos/technical-ai-safety",
-      en: "/en/courses/technical-ai-safety",
-      pt: "/pt/cursos/technical-ai-safety",
+      es: "/seminarios/tecnico-seguridad-de-la-ia",
+      en: "/en/seminars/technical-ai-safety",
+      pt: "/pt/seminarios/tecnico-seguranca-da-ia",
     },
     nav: { es: "Seminario técnico de seguridad de la IA", en: "Technical AI Safety Seminar", pt: "Seminário técnico de segurança da IA" },
     grupo: "seminarios",
@@ -110,7 +110,7 @@ export const PAGINAS: Pagina[] = [
     ruta: { es: "/sprint/aplicar", en: "/en/sprint/apply", pt: "/pt/sprint/inscricao" },
   },
   {
-    ruta: { es: "/cursos/aplicar", en: "/en/courses/apply", pt: "/pt/cursos/inscricao" },
+    ruta: { es: "/seminarios/aplicar", en: "/en/seminars/apply", pt: "/pt/seminarios/inscricao" },
   },
   /* La version corta del formulario, la que se manda por enlace a quien llega
      recomendado. No se enlaza desde ninguna pagina ni sale en buscadores, pero

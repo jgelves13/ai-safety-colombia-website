@@ -3,18 +3,18 @@ import CoursePage from "@/components/course-page";
 import { PAGINAS_CURSO } from "@/lib/cursos-paginas";
 import { alternativas } from "@/lib/idiomas";
 
-const p = PAGINAS_CURSO["agi-strategy"].pt;
+const p = PAGINAS_CURSO["technical-ai-safety"].pt;
 
 export const metadata: Metadata = {
   title: p.metaTitulo,
   description: p.metaDescripcion,
-  alternates: { canonical: "/pt/cursos/agi-strategy", languages: alternativas("/pt/cursos/agi-strategy") },
+  alternates: { canonical: "/pt/seminarios/tecnico-seguranca-da-ia", languages: alternativas("/pt/seminarios/tecnico-seguranca-da-ia") },
 };
 
 /* Se renderiza en cada visita para que el cierre del 11 de octubre no quede
    congelado en un prerender. */
 export const dynamic = "force-dynamic";
 
-export default function AgiStrategy() {
-  return <CoursePage idioma="pt" curso="agi-strategy" />;
+export default function TechnicalAiSafety() {
+  return <CoursePage idioma="pt" curso="technical-ai-safety" />;
 }

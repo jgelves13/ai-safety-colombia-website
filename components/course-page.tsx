@@ -7,18 +7,18 @@ import { BLUEDOT_CURSO, BLUEDOT_NOMBRE, FACILITADORES, PAGINAS_CURSO, ROTULOS_CU
 import type { Idioma } from "@/lib/idiomas";
 
 /* La página de cada seminario, con la estructura de las páginas de programa de
-   aisecurity.sg: un encabezado cuyo titular promete algo (el nombre va en el
-   rótulo) y que cierra con la tira de datos clave; luego una columna angosta
+   aisecurity.sg: un encabezado cuyo titular promete algo (el nombre del
+   seminario va en el <title>, en el nav y en la prosa) y que cierra con la
+   tira de datos clave; luego una columna angosta
    y centrada, con bandas que alternan crema y arena, y una sección por
    pregunta: por qué ahora, para quién es (cuatro perfiles en tarjetas), quién
    está en la sala, qué vas a hacer (una tarjeta por semana, con el número en
-   grande), con qué sales (una lista), el panel para aplicar, una frase de
-   cierre en grande y las preguntas frecuentes. */
+   grande), con qué sales (una lista), el panel para aplicar y las preguntas
+   frecuentes. */
 
 const COLUMNA = "mx-auto w-full max-w-[880px] px-8";
 const ANCHO = "mx-auto w-full max-w-[1448px] px-8 md:px-16";
 const SECCION = `${COLUMNA} flex flex-col gap-6 py-16 md:py-24`;
-const KICKER = "text-kicker text-aisc-forest";
 const TITULO = "text-display-3 md:text-display-2 text-balance";
 const PROSA = "text-body flex flex-col gap-5 text-aisc-ink";
 const TARJETA = "rounded-2xl border border-aisc-line bg-white/80";
@@ -101,7 +101,6 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
         <SiteHeader active={RUTA_CURSO[curso][idioma]} />
         <div className={`${ANCHO} relative z-10 flex flex-col pt-28 md:pt-32`}>
           <div className="flex max-w-[880px] flex-col gap-5 pb-12 md:pb-16">
-            <span className="text-kicker text-aisc-sand/70">{p.kicker}</span>
             <h1 className="text-display-2 md:text-display-2-lg text-balance text-aisc-sand">{p.titular}</h1>
             <p className="text-body max-w-[720px] text-aisc-sand/90">{p.entrada}</p>
             <p className="text-body-sm text-aisc-sand/70">{p.linea}</p>
@@ -140,7 +139,6 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
 
       <section id="porque" className="bg-aisc-cream">
         <div className={SECCION}>
-          <span className={KICKER}>{r.porque}</span>
           <h2 className={TITULO}>{p.porque.titulo}</h2>
           <div className={PROSA}>
             {p.porque.parrafos.map((t) => (
@@ -154,7 +152,6 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
 
       <section id="quien" className="bg-aisc-sand">
         <div className={SECCION}>
-          <span className={KICKER}>{r.quien}</span>
           <h2 className={TITULO}>{p.quien.titulo}</h2>
           <div className={PROSA}>
             <p>
@@ -184,7 +181,6 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
 
       <section id="sala" className="bg-aisc-cream">
         <div className={SECCION}>
-          <span className={KICKER}>{r.sala}</span>
           <h2 className={TITULO}>{p.sala.titulo}</h2>
           <div className={PROSA}>
             {p.sala.parrafos.map((t) => (
@@ -196,7 +192,6 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
 
       <section id="semanas" className="scroll-mt-24 bg-aisc-sand">
         <div className={SECCION}>
-          <span className={KICKER}>{r.semanas}</span>
           <h2 className={TITULO}>{p.semanas.titulo}</h2>
           <div className={PROSA}>
             <p>{p.semanas.entrada}</p>
@@ -225,7 +220,6 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
 
       <section id="resultado" className="bg-aisc-cream">
         <div className={SECCION}>
-          <span className={KICKER}>{r.resultado}</span>
           <h2 className={TITULO}>{p.resultado.titulo}</h2>
           <ul className="text-body flex flex-col gap-4 text-aisc-ink">
             {p.resultado.items.map((t) => (
@@ -242,9 +236,9 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
         </div>
       </section>
 
-      {/* El cierre: el panel verde con el plazo y el botón, y la frase final. */}
+      {/* El cierre: el panel verde con el plazo y el botón. */}
       <section className="bg-aisc-cream">
-        <div className={`${COLUMNA} flex flex-col gap-16 pb-16 md:gap-24 md:pb-24`}>
+        <div className={`${COLUMNA} pb-16 md:pb-24`}>
           <div className={`${CTA_PANEL} text-center`}>
             <img alt="" aria-hidden="true" loading="lazy" width="1697" height="995" decoding="async" className={CTA_PATTERN_TOP} style={{ color: "transparent" }} src={PATRON} />
             <img alt="" aria-hidden="true" loading="lazy" width="1697" height="995" decoding="async" className={CTA_PATTERN_BOTTOM} style={{ color: "transparent" }} src={PATRON} />
@@ -260,7 +254,6 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
               )}
             </div>
           </div>
-          <p className="text-display-3 md:text-display-2 text-balance text-center text-aisc-forest-deep">{p.cierre}</p>
         </div>
       </section>
 

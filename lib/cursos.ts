@@ -4,7 +4,7 @@ import type { Idioma } from "./idiomas";
    AGI Strategy y Technical AI Safety. El formulario copia el de BlueDot
    pregunta por pregunta, traducido. Dos cambios: la pregunta por la ronda se
    volvió una de disponibilidad, porque solo hay una cohorte de cada curso, a
-   tiempo parcial desde el lunes 12 de octubre; y se quitó el consentimiento de
+   tiempo parcial desde la semana del 12 de octubre; y se quitó el consentimiento de
    datos de diversidad, porque ese formulario aparte no existe acá.
 
    Los identificadores de las opciones no se traducen: son los que viajan a la
@@ -23,9 +23,9 @@ export function cursosCerrados(): boolean {
 }
 
 export const RUTA_APLICAR_CURSOS: Record<Idioma, string> = {
-  es: "/cursos/aplicar",
-  en: "/en/courses/apply",
-  pt: "/pt/cursos/inscricao",
+  es: "/seminarios/aplicar",
+  en: "/en/seminars/apply",
+  pt: "/pt/seminarios/inscricao",
 };
 
 export const RUTA_UNETE: Record<Idioma, string> = {
@@ -69,7 +69,7 @@ export const ETAPAS = [
   "other",
 ] as const;
 
-/* Las cohortes arrancan el lunes 12 de octubre: AGI Strategy dura cinco semanas
+/* Las cohortes arrancan la semana del 12 de octubre: AGI Strategy dura cinco semanas
    y Technical AI Safety seis, ambas a tiempo parcial. */
 export const INICIO_CURSOS = "2026-10-12";
 export const FORMATOS = ["todas", "casi-todas", "no-puedo"] as const;
@@ -278,7 +278,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     curso: "¿A qué seminario aplicas?",
     formato: "¿Puedes estar todas las semanas?",
     formatoAyuda:
-      "El seminario arranca el lunes 12 de octubre y va a tiempo parcial, con una discusión en vivo cada semana. El Seminario de futuro y riesgos de la IA dura cinco semanas y el Seminario técnico de seguridad de la IA seis.",
+      "El seminario arranca la semana del 12 de octubre y va a tiempo parcial, con una discusión en vivo cada semana. El Seminario de futuro y riesgos de la IA dura cinco semanas y el Seminario técnico de seguridad de la IA seis.",
     formatos: {
       todas: "Sí, puedo estar todas las semanas",
       "casi-todas": "Casi todas: puede que falte a una",
@@ -507,7 +507,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     curso: "Seminar you're applying for",
     formato: "Can you make it every week?",
     formatoAyuda:
-      "The seminar starts on Monday 12 October and runs part-time, with one live discussion each week. The Seminar on the Future and Risks of AI lasts five weeks and the Technical AI Safety Seminar six.",
+      "The seminar starts the week of 12 October and runs part-time, with one live discussion each week. The Seminar on the Future and Risks of AI lasts five weeks and the Technical AI Safety Seminar six.",
     formatos: {
       todas: "Yes, I can make it every week",
       "casi-todas": "Almost every week: I might miss one",
@@ -736,7 +736,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     curso: "Em qual seminário você se inscreve?",
     formato: "Você consegue participar todas as semanas?",
     formatoAyuda:
-      "O seminário começa na segunda-feira, 12 de outubro, em meio período, com uma discussão ao vivo por semana. O Seminário de futuro e riscos da IA dura cinco semanas e o Seminário técnico de segurança da IA, seis.",
+      "O seminário começa na semana de 12 de outubro, em meio período, com uma discussão ao vivo por semana. O Seminário de futuro e riscos da IA dura cinco semanas e o Seminário técnico de segurança da IA, seis.",
     formatos: {
       todas: "Sim, consigo participar todas as semanas",
       "casi-todas": "Quase todas: talvez eu perca uma",
