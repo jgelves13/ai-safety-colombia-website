@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import CtaPanel from "@/components/cta-panel";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
@@ -8,7 +9,7 @@ import { alternativas } from "@/lib/idiomas";
 export const metadata: Metadata = {
   title: "Quem somos?",
   description:
-    "A primeira organização que trabalha para que na Colômbia haja gente dedicada à segurança da inteligência artificial. Formamos pessoas, apoiamos pesquisa e sustentamos a conversa pública sobre essas questões.",
+    "Comunidade na Colômbia que trabalha para reduzir os riscos da inteligência artificial avançada: formamos quem quer entrar no campo, apoiamos pesquisa e organizamos eventos abertos.",
   alternates: { canonical: "/pt/quem-somos", languages: alternativas("/pt/quem-somos") },
 };
 
@@ -232,33 +233,6 @@ const EQUIPO: Persona[] = [
 /* Cuantas fichas van arriba. El resto baja a la segunda fila. */
 const EN_PRIMERA_FILA = 2;
 
-const ALIADOS = [
-  {
-    name: "Apart Research",
-    body: "Convocam hackathons de pesquisa abertos a qualquer pessoa no mundo. Nós abrimos o hub presencial em Bogotá e acompanhamos as equipes que competem daqui.",
-    logo: "/aisc/aliados/apart.png",
-    href: "https://apartresearch.com",
-  },
-  {
-    name: "BlueDot Impact",
-    body: "Seus cursos gratuitos são a porta de entrada padrão do campo. Pelos Rapid Grants financiam trabalho concreto: 1,4 milhão de dólares concedidos e decisões em três dias.",
-    logo: "/aisc/aliados/bluedot.png",
-    href: "https://bluedot.org/grants/rapid",
-  },
-  {
-    name: "Kairos",
-    body: "Seu programa Pathfinder financia e acompanha quem constrói comunidades de segurança da IA: este ano, 69 organizadores de 50 universidades em 12 países.",
-    logo: "/aisc/aliados/kairos.png",
-    href: "https://kairos-project.org",
-  },
-  {
-    name: "Coefficient Giving",
-    body: "Respondem por boa parte do financiamento filantrópico do campo: só em 2024 comprometeram cerca de 50 milhões de dólares em pesquisa técnica de segurança da IA.",
-    logo: "/aisc/aliados/coefficient-giving.svg",
-    href: "https://www.coefficientgiving.org",
-  },
-];
-
 export default function QuemSomos() {
   return (
     <main lang="pt" className={PAGE_SHELL}>
@@ -279,37 +253,73 @@ export default function QuemSomos() {
           <div className="flex max-w-[760px] flex-col gap-5">
             <span className="text-kicker text-aisc-sand/70">Desde 2024</span>
             <h1 className="text-display-1 md:text-display-1-lg text-aisc-sand">Quem somos?</h1>
-            <p className="text-body md:text-body-lg max-w-[640px] text-aisc-sand/90">
-              A primeira organização que trabalha para que na Colômbia haja gente dedicada à segurança da inteligência
-              artificial.
-            </p>
+            <nav aria-label="Nesta página">
+              <ul className="flex flex-wrap gap-2">
+                <li>
+                  <a className="text-body-sm inline-flex rounded-full border border-aisc-sand/50 px-4 py-1.5 text-aisc-sand transition-colors hover:bg-aisc-sand hover:text-aisc-forest-deep" href="#sobre">
+                    Sobre nós
+                  </a>
+                </li>
+                <li>
+                  <a className="text-body-sm inline-flex rounded-full border border-aisc-sand/50 px-4 py-1.5 text-aisc-sand transition-colors hover:bg-aisc-sand hover:text-aisc-forest-deep" href="#que-hacemos">
+                    O que fazemos
+                  </a>
+                </li>
+                <li>
+                  <a className="text-body-sm inline-flex rounded-full border border-aisc-sand/50 px-4 py-1.5 text-aisc-sand transition-colors hover:bg-aisc-sand hover:text-aisc-forest-deep" href="#equipo">
+                    Equipe
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </section>
 
-      <section id="mision" className="bg-aisc-cream">
+      <section id="sobre" className="bg-aisc-cream">
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 flex flex-col gap-10 pt-14 pb-10 md:pt-20 md:pb-12 lg:pt-24 lg:pb-14">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-          <div className="flex flex-col gap-8 md:gap-10">
-            <h2 className="text-display-2 md:text-display-2-lg">Por que existimos?</h2>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1fr)_minmax(280px,1.4fr)] md:gap-10">
+            <h2 className="text-display-2 md:text-display-2-lg">Sobre nós</h2>
             <div className="text-body md:text-body-lg flex flex-col gap-5 text-aisc-ink">
+              <p>A AI Safety Colombia é uma comunidade, criada em 2024, que trabalha para reduzir os riscos da inteligência artificial avançada. Formamos quem quer entrar no campo, apoiamos pesquisa e organizamos eventos abertos.</p>
               <p>
-                Os sistemas de inteligência artificial ganham capacidades mais rápido do que cresce nossa compreensão
-                sobre eles, e muito pouca gente trabalha nos riscos que isso cria. Na Colômbia, quem já estava na área
-                trabalhava sobretudo por conta própria e, até 2024, nenhuma organização se dedicava a conectar esses
-                esforços.
+                A comunidade reúne estudantes, pesquisadores, engenheiros e profissionais de políticas públicas. A participação é pelo grupo de leitura, pelas palestras e pelos hackathons de pesquisa: <Link className={ENLACE} href="/pt/participe">veja como entrar</Link>.
               </p>
               <p>
-                Isso pesa num país de 52 milhões de pessoas que vão usar esses sistemas, regulá-los e ser afetadas por
-                eles. Criamos a AI Safety Colombia para que quem queira trabalhar nesses problemas tenha por onde
-                entrar, e para que, quando se decidir sobre IA, haja aqui gente que entenda o que está em jogo.
-              </p>
-              <p>
-                Somos uma organização pequena e voluntária. Nosso trabalho é concreto: formar pessoas, apoiar pesquisa
-                e sustentar a conversa pública sobre essas questões na Colômbia.
+                Trabalhamos com a <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">Apart Research</a> e a <a className={ENLACE} href="https://bluedot.org" target="_blank" rel="noopener noreferrer">BlueDot Impact</a>, com apoio da <a className={ENLACE} href="https://kairos-project.org" target="_blank" rel="noopener noreferrer">Kairos</a> e da <a className={ENLACE} href="https://www.coefficientgiving.org" target="_blank" rel="noopener noreferrer">Coefficient Giving</a>.
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="que-hacemos" className="bg-aisc-cream">
+        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 flex flex-col gap-10 pt-4 pb-14 md:pb-20 lg:pb-24">
+          <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
+          <h2 className="text-display-2 md:text-display-2-lg">O que fazemos</h2>
+          <ul className="grid grid-cols-1 gap-x-10 gap-y-10 md:grid-cols-2">
+            <li className="flex flex-col gap-3 border-t border-aisc-forest-deep/30 pt-6">
+              <h3 className="text-display-4 md:text-display-4-lg text-aisc-forest">Grupo de leitura de AI Control</h3>
+              <p className="text-body text-aisc-ink">A cada quinze dias, às sextas-feiras, discutimos uma leitura sobre como supervisionar sistemas de IA que agem por conta própria. Qualquer nível de conhecimento é bem-vindo.</p>
+              <span className="text-body-sm"><a className={ENLACE} href="https://chat.whatsapp.com/DfWuuPlzqmIFN1tRtl57SB" target="_blank" rel="noopener noreferrer">Entrar no grupo de leitura →</a></span>
+            </li>
+            <li className="flex flex-col gap-3 border-t border-aisc-forest-deep/30 pt-6">
+              <h3 className="text-display-4 md:text-display-4-lg text-aisc-forest">Hackathons de pesquisa</h3>
+              <p className="text-body text-aisc-ink">Abrimos em Bogotá o hub presencial dos hackathons da Apart Research. As equipes saem com um trabalho próprio e retorno escrito de jurados de fora.</p>
+              <span className="text-body-sm"><Link className={ENLACE} href="/pt/sprint">Ver o sprint →</Link></span>
+            </li>
+            <li className="flex flex-col gap-3 border-t border-aisc-forest-deep/30 pt-6">
+              <h3 className="text-display-4 md:text-display-4-lg text-aisc-forest">Palestras e oficinas</h3>
+              <p className="text-body text-aisc-ink">Pesquisadores da área apresentam seu trabalho e respondem perguntas pessoalmente.</p>
+              <span className="text-body-sm"><a className={ENLACE} href="https://luma.com/user/usr-TMDEtNWA1TozP77" target="_blank" rel="noopener noreferrer">Ver os próximos →</a></span>
+            </li>
+            <li className="flex flex-col gap-3 border-t border-aisc-forest-deep/30 pt-6">
+              <h3 className="text-display-4 md:text-display-4-lg text-aisc-forest">Pesquisa</h3>
+              <p className="text-body text-aisc-ink">Trabalhos publicados por pessoas da comunidade.</p>
+              <span className="text-body-sm"><Link className={ENLACE} href="/pt/pesquisa">Ver as publicações →</Link></span>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -349,40 +359,6 @@ export default function QuemSomos() {
             ))}
           </ul>
 
-        </div>
-      </section>
-
-      <section id="aliados" className="bg-aisc-cream px-6 pb-12 md:pb-14">
-        <div className="mx-auto w-full max-w-[1400px] rounded-[12px] bg-aisc-sand px-6 py-12 text-aisc-ink md:px-10 lg:py-[70px]">
-          <div className="flex flex-col gap-8">
-            <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1fr)_minmax(280px,0.92fr)] md:items-start md:gap-6">
-              <h2 className="text-display-2 md:text-display-2-lg">Com quem trabalhamos</h2>
-              <p className="text-body-sm text-aisc-ink md:text-body md:text-body-lg">
-                Quatro organizações do campo com as quais sustentamos trabalho, e das quais também recebemos
-                financiamento.
-              </p>
-            </div>
-            <div className="mt-10 grid grid-cols-1 gap-3 md:mt-14 md:grid-cols-2 lg:grid-cols-4">
-              {ALIADOS.map((aliado) => (
-                <a
-                  key={aliado.name}
-                  href={aliado.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex min-h-[190px] flex-col justify-between gap-8 rounded-[12px] border border-aisc-forest-deep bg-transparent p-7 transition-colors hover:bg-aisc-cream lg:p-9"
-                >
-                  <div className="flex h-[42px] items-center">
-                    <img src={aliado.logo} alt={aliado.name} className="max-h-[38px] w-auto object-contain" />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-display-4 md:text-display-4-lg text-balance">{aliado.name}</h3>
-                    <p className="text-body-sm text-aisc-ink">{aliado.body}</p>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
