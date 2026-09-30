@@ -101,11 +101,11 @@ export type PaginaCurso = {
 const AGI_ES: PaginaCurso = {
   metaTitulo: "Seminario de futuro y riesgos de la IA",
   metaDescripcion:
-    "Seminario con cohorte de cinco semanas, desde el 16 de octubre de 2026, con los materiales de BlueDot Impact. Para entender hacia dónde va la IA avanzada y encontrar tu punto de entrada. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 9 de octubre.",
+    "Seminario con cohorte de cinco semanas, desde la semana del 12 de octubre de 2026, con los materiales de BlueDot Impact. Para entender hacia dónde va la IA avanzada y encontrar tu punto de entrada. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 9 de octubre.",
   entrada:
     "La IA avanzada va más rápido que la gente preparada para pensarla. Cinco semanas para entender quién la construye, qué tan rápido avanza y qué podría salir mal. Desde cualquier disciplina.",
-  linea: "Del 16 de octubre al 15 de noviembre de 2026. Aplica hasta el 9 de octubre.",
-  hechos: { formato: "Presencial y en línea", dedicacion: "3 h por semana", fechas: "16 oct – 15 nov 2026" },
+  linea: "Del 12 de octubre al 15 de noviembre de 2026. Aplica hasta el 9 de octubre.",
+  hechos: { formato: "Presencial y en línea", dedicacion: "3 h por semana", fechas: "12 oct – 15 nov 2026" },
   porque: {
     titulo: "La IA avanzada va más rápido que la gente preparada para pensarla",
     parrafos: [
@@ -165,7 +165,7 @@ const AGI_ES: PaginaCurso = {
     ],
   },
   plazo:
-    "Las aplicaciones están abiertas **hasta el viernes 9 de octubre a las 11:59 p. m.**, hora de Colombia. El seminario arranca el **16 de octubre** y termina el 15 de noviembre. Es **gratis**, y quien lo complete recibe un certificado de AI Safety Colombia.",
+    "Las aplicaciones están abiertas **hasta el viernes 9 de octubre a las 11:59 p. m.**, hora de Colombia. El seminario arranca la **semana del 12 de octubre** y termina el 15 de noviembre. Es **gratis**, y quien lo complete recibe un certificado de AI Safety Colombia.",
   otro: "Si te interesa más la parte técnica (interpretabilidad, evaluaciones, investigación en alineación), mira el {curso}.",
   faq: [
     {
@@ -202,11 +202,11 @@ const AGI_ES: PaginaCurso = {
 const TAIS_ES: PaginaCurso = {
   metaTitulo: "Seminario técnico de seguridad de la IA",
   metaDescripcion:
-    "Seminario con cohorte de seis semanas, desde el 16 de octubre de 2026, con los materiales de BlueDot Impact: alineación, evaluaciones, interpretabilidad y AI control. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 9 de octubre.",
+    "Seminario con cohorte de seis semanas, desde la semana del 12 de octubre de 2026, con los materiales de BlueDot Impact: alineación, evaluaciones, interpretabilidad y AI control. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 9 de octubre.",
   entrada:
     "Las capacidades de la IA avanzan más rápido que la capacidad de hacerla segura. Seis semanas en la parte técnica: entrenar modelos más seguros, evaluarlos, mirarlos por dentro y limitar el daño cuando fallan. Para gente con base técnica.",
-  linea: "Del 16 de octubre al 22 de noviembre de 2026. Aplica hasta el 9 de octubre.",
-  hechos: { formato: "Presencial y en línea", dedicacion: "3 h por semana", fechas: "16 oct – 22 nov 2026" },
+  linea: "Del 12 de octubre al 22 de noviembre de 2026. Aplica hasta el 9 de octubre.",
+  hechos: { formato: "Presencial y en línea", dedicacion: "3 h por semana", fechas: "12 oct – 22 nov 2026" },
   porque: {
     titulo: "Las capacidades avanzan más rápido que la seguridad",
     parrafos: [
@@ -267,7 +267,7 @@ const TAIS_ES: PaginaCurso = {
     ],
   },
   plazo:
-    "Las aplicaciones están abiertas **hasta el viernes 9 de octubre a las 11:59 p. m.**, hora de Colombia. El seminario arranca el **16 de octubre** y termina el 22 de noviembre. Es **gratis**, y quien lo complete recibe un certificado de AI Safety Colombia.",
+    "Las aplicaciones están abiertas **hasta el viernes 9 de octubre a las 11:59 p. m.**, hora de Colombia. El seminario arranca la **semana del 12 de octubre** y termina el 22 de noviembre. Es **gratis**, y quien lo complete recibe un certificado de AI Safety Colombia.",
   otro: "Si prefieres empezar por el panorama estratégico, mira el {curso}.",
   faq: [
     {
@@ -304,11 +304,11 @@ const TAIS_ES: PaginaCurso = {
 const AGI_EN: PaginaCurso = {
   metaTitulo: "Seminar on the Future and Risks of AI",
   metaDescripcion:
-    "A five-week cohort-based seminar starting on 16 October 2026, using BlueDot Impact's materials. Understand where advanced AI is heading and find your entry point. Free, with an AI Safety Colombia certificate. Applications close 9 October.",
+    "A five-week cohort-based seminar starting the week of 12 October 2026, using BlueDot Impact's materials. Understand where advanced AI is heading and find your entry point. Free, with an AI Safety Colombia certificate. Applications close 9 October.",
   entrada:
     "Advanced AI is moving faster than the people ready to think about it. Five weeks to understand who is building it, how fast it is moving and what could go wrong. From any discipline.",
-  linea: "16 October to 15 November 2026. Apply by 9 October.",
-  hechos: { formato: "In person and online", dedicacion: "3 h a week", fechas: "16 Oct – 15 Nov 2026" },
+  linea: "12 October to 15 November 2026. Apply by 9 October.",
+  hechos: { formato: "In person and online", dedicacion: "3 h a week", fechas: "12 Oct – 15 Nov 2026" },
   porque: {
     titulo: "Advanced AI is moving faster than the people prepared to think about it",
     parrafos: [
@@ -368,7 +368,7 @@ const AGI_EN: PaginaCurso = {
     ],
   },
   plazo:
-    "Applications are open **until Friday 9 October at 11:59 pm**, Colombia time. The seminar starts on **16 October** and ends on 15 November. It is **free**, and everyone who completes it receives an AI Safety Colombia certificate.",
+    "Applications are open **until Friday 9 October at 11:59 pm**, Colombia time. The seminar starts the **week of 12 October** and ends on 15 November. It is **free**, and everyone who completes it receives an AI Safety Colombia certificate.",
   otro: "If you're more interested in the technical side (interpretability, evaluations, alignment research), see the {curso}.",
   faq: [
     {
@@ -405,11 +405,11 @@ const AGI_EN: PaginaCurso = {
 const TAIS_EN: PaginaCurso = {
   metaTitulo: "Technical AI Safety Seminar",
   metaDescripcion:
-    "A six-week cohort-based seminar starting on 16 October 2026, using BlueDot Impact's materials: alignment, evaluations, interpretability and AI control. Free, with an AI Safety Colombia certificate. Applications close 9 October.",
+    "A six-week cohort-based seminar starting the week of 12 October 2026, using BlueDot Impact's materials: alignment, evaluations, interpretability and AI control. Free, with an AI Safety Colombia certificate. Applications close 9 October.",
   entrada:
     "AI capabilities are advancing faster than our ability to make them safe. Six weeks on the technical side: training safer models, evaluating them, looking inside them and limiting the damage when they fail. For people with a technical background.",
-  linea: "16 October to 22 November 2026. Apply by 9 October.",
-  hechos: { formato: "In person and online", dedicacion: "3 h a week", fechas: "16 Oct – 22 Nov 2026" },
+  linea: "12 October to 22 November 2026. Apply by 9 October.",
+  hechos: { formato: "In person and online", dedicacion: "3 h a week", fechas: "12 Oct – 22 Nov 2026" },
   porque: {
     titulo: "Capabilities are advancing faster than safety",
     parrafos: [
@@ -470,7 +470,7 @@ const TAIS_EN: PaginaCurso = {
     ],
   },
   plazo:
-    "Applications are open **until Friday 9 October at 11:59 pm**, Colombia time. The seminar starts on **16 October** and ends on 22 November. It is **free**, and everyone who completes it receives an AI Safety Colombia certificate.",
+    "Applications are open **until Friday 9 October at 11:59 pm**, Colombia time. The seminar starts the **week of 12 October** and ends on 22 November. It is **free**, and everyone who completes it receives an AI Safety Colombia certificate.",
   otro: "If you'd rather start with the strategic picture, see the {curso}.",
   faq: [
     {
@@ -507,11 +507,11 @@ const TAIS_EN: PaginaCurso = {
 const AGI_PT: PaginaCurso = {
   metaTitulo: "Seminário de futuro e riscos da IA",
   metaDescripcion:
-    "Seminário em turma de cinco semanas, a partir de 16 de outubro de 2026, com os materiais da BlueDot Impact. Para entender para onde vai a IA avançada e encontrar seu ponto de entrada. Grátis, com certificado da AI Safety Colombia. Inscrições até 9 de outubro.",
+    "Seminário em turma de cinco semanas, a partir da semana de 12 de outubro de 2026, com os materiais da BlueDot Impact. Para entender para onde vai a IA avançada e encontrar seu ponto de entrada. Grátis, com certificado da AI Safety Colombia. Inscrições até 9 de outubro.",
   entrada:
     "A IA avançada avança mais rápido do que as pessoas preparadas para pensá-la. Cinco semanas para entender quem a constrói, com que velocidade avança e o que pode dar errado. De qualquer área.",
-  linea: "De 16 de outubro a 15 de novembro de 2026. Inscreva-se até 9 de outubro.",
-  hechos: { formato: "Presencial e on-line", dedicacion: "3 h por semana", fechas: "16 out – 15 nov 2026" },
+  linea: "De 12 de outubro a 15 de novembro de 2026. Inscreva-se até 9 de outubro.",
+  hechos: { formato: "Presencial e on-line", dedicacion: "3 h por semana", fechas: "12 out – 15 nov 2026" },
   porque: {
     titulo: "A IA avançada anda mais rápido que as pessoas preparadas para pensá-la",
     parrafos: [
@@ -571,7 +571,7 @@ const AGI_PT: PaginaCurso = {
     ],
   },
   plazo:
-    "As inscrições estão abertas **até sexta-feira, 9 de outubro, às 23h59**, horário da Colômbia. O seminário começa em **16 de outubro** e termina em 15 de novembro. É **grátis**, e quem o concluir recebe um certificado da AI Safety Colombia.",
+    "As inscrições estão abertas **até sexta-feira, 9 de outubro, às 23h59**, horário da Colômbia. O seminário começa na **semana de 12 de outubro** e termina em 15 de novembro. É **grátis**, e quem o concluir recebe um certificado da AI Safety Colombia.",
   otro: "Se você tem mais interesse na parte técnica (interpretabilidade, avaliações, pesquisa em alinhamento), veja o {curso}.",
   faq: [
     {
@@ -608,11 +608,11 @@ const AGI_PT: PaginaCurso = {
 const TAIS_PT: PaginaCurso = {
   metaTitulo: "Seminário técnico de segurança da IA",
   metaDescripcion:
-    "Seminário em turma de seis semanas, a partir de 16 de outubro de 2026, com os materiais da BlueDot Impact: alinhamento, avaliações, interpretabilidade e AI control. Grátis, com certificado da AI Safety Colombia. Inscrições até 9 de outubro.",
+    "Seminário em turma de seis semanas, a partir da semana de 12 de outubro de 2026, com os materiais da BlueDot Impact: alinhamento, avaliações, interpretabilidade e AI control. Grátis, com certificado da AI Safety Colombia. Inscrições até 9 de outubro.",
   entrada:
     "As capacidades da IA avançam mais rápido do que a capacidade de torná-la segura. Seis semanas na parte técnica: treinar modelos mais seguros, avaliá-los, olhar dentro deles e limitar o dano quando falham. Para quem tem base técnica.",
-  linea: "De 16 de outubro a 22 de novembro de 2026. Inscreva-se até 9 de outubro.",
-  hechos: { formato: "Presencial e on-line", dedicacion: "3 h por semana", fechas: "16 out – 22 nov 2026" },
+  linea: "De 12 de outubro a 22 de novembro de 2026. Inscreva-se até 9 de outubro.",
+  hechos: { formato: "Presencial e on-line", dedicacion: "3 h por semana", fechas: "12 out – 22 nov 2026" },
   porque: {
     titulo: "As capacidades avançam mais rápido que a segurança",
     parrafos: [
@@ -673,7 +673,7 @@ const TAIS_PT: PaginaCurso = {
     ],
   },
   plazo:
-    "As inscrições estão abertas **até sexta-feira, 9 de outubro, às 23h59**, horário da Colômbia. O seminário começa em **16 de outubro** e termina em 22 de novembro. É **grátis**, e quem o concluir recebe um certificado da AI Safety Colombia.",
+    "As inscrições estão abertas **até sexta-feira, 9 de outubro, às 23h59**, horário da Colômbia. O seminário começa na **semana de 12 de outubro** e termina em 22 de novembro. É **grátis**, e quem o concluir recebe um certificado da AI Safety Colombia.",
   otro: "Se prefere começar pelo panorama estratégico, veja o {curso}.",
   faq: [
     {

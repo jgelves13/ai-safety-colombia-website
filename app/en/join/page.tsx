@@ -69,7 +69,7 @@ const PASOS = [
       {
         titulo: "Seminar on the Future and Risks of AI",
         cuerpo: "Why there is a race to AGI, what drives progress, what the risks are and what defences exist. The starting point whatever field you come from.",
-        dedicacion: "Five weeks from 16 October, about 3 hours a week; in-person sessions at Universidad de los Andes and online",
+        dedicacion: "Five weeks from the week of 12 October, about 3 hours a week; in-person sessions at Universidad de los Andes and online",
         requisitos: "Apply; no technical background needed",
         costo: "Free, with an AI Safety Colombia certificate",
         href: "/en/seminars/future-and-risks",
@@ -79,7 +79,7 @@ const PASOS = [
       {
         titulo: "Technical AI Safety Seminar",
         cuerpo: "How safer models are trained, how they are evaluated, mechanistic interpretability and AI control. For people who already know why the problem matters and want to get into the technical side.",
-        dedicacion: "Six weeks from 16 October, about 3 hours a week; in-person sessions in Bogotá and online",
+        dedicacion: "Six weeks from the week of 12 October, about 3 hours a week; in-person sessions in Bogotá and online",
         requisitos: "Apply; understand the basics of how models are trained. If not, start with the Seminar on the Future and Risks of AI",
         costo: "Free, with an AI Safety Colombia certificate",
         href: "/en/seminars/technical",
