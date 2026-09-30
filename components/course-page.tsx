@@ -11,7 +11,7 @@ import {
   PAGE_SHELL,
 } from "@/components/ui";
 import { RUTA_APLICAR_CURSOS, RUTA_UNETE, TEXTOS_CURSOS, cursosCerrados, type CursoId } from "@/lib/cursos";
-import { BLUEDOT_CURSO, FACILITADORES, PAGINAS_CURSO, ROTULOS_CURSO } from "@/lib/cursos-paginas";
+import { BLUEDOT_CURSO, FACILITADORES, PAGINAS_CURSO, ROTULOS_CURSO, RUTA_CURSO } from "@/lib/cursos-paginas";
 import type { Idioma } from "@/lib/idiomas";
 
 /* La página de cada curso, en el molde de la del sprint: hero oscuro, tres
@@ -91,7 +91,7 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
           style={{ color: "transparent" }}
           src="/aisc/patterns/aisc-hero-unete.svg"
         />
-        <SiteHeader active={RUTA_UNETE[idioma]} />
+        <SiteHeader active={RUTA_CURSO[curso][idioma]} />
         <div className={HERO_INNER}>
           <div className="flex max-w-[860px] flex-col gap-5">
             <span className="text-kicker text-aisc-sand/70">{p.kicker}</span>

@@ -70,7 +70,7 @@ function Nav({
           <Link
             key={item.href}
             aria-current={current ? "page" : undefined}
-            className={`text-body-sm rounded-full px-3 py-1.5 text-aisc-sand transition-colors hover:bg-aisc-sand/10${current ? " bg-aisc-sand/15" : ""}`}
+            className={`text-body-sm whitespace-nowrap rounded-full px-3 py-1.5 text-aisc-sand transition-colors hover:bg-aisc-sand/10${current ? " bg-aisc-sand/15" : ""}`}
             href={item.href}
           >
             {item.label}
@@ -97,7 +97,7 @@ function MenuButton({
       aria-expanded={abierto}
       aria-controls={PANEL_ID}
       onClick={onClick}
-      className="flex h-11 w-11 items-center justify-center rounded-[var(--radius)] text-aisc-sand transition-colors hover:bg-aisc-sand/10 lg:hidden"
+      className="flex h-11 w-11 items-center justify-center rounded-[var(--radius)] text-aisc-sand transition-colors hover:bg-aisc-sand/10 xl:hidden"
     >
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" aria-hidden="true" className="remixicon">
         <path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z" />
@@ -163,7 +163,7 @@ function PanelMovil({
       tabIndex={-1}
       aria-hidden={!abierto}
       inert={!abierto ? true : undefined}
-      className={`fixed inset-0 z-[60] flex flex-col bg-aisc-forest-deep text-aisc-sand transition-opacity duration-200 ease-out lg:hidden motion-reduce:transition-none ${
+      className={`fixed inset-0 z-[60] flex flex-col bg-aisc-forest-deep text-aisc-sand transition-opacity duration-200 ease-out xl:hidden motion-reduce:transition-none ${
         abierto ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
       }`}
     >
@@ -298,7 +298,7 @@ export default function SiteHeader({ active }: { active?: string }) {
         />
         <div className="mx-auto flex h-12 w-full max-w-md items-center gap-4 text-aisc-sand md:h-14 md:max-w-[1440px] md:gap-8">
           <Logo idioma={idioma} />
-          <Nav idioma={idioma} active={active} className="hidden items-center gap-0.5 lg:flex xl:gap-2 ml-1" />
+          <Nav idioma={idioma} active={active} className="hidden items-center gap-0.5 xl:flex 2xl:gap-2 ml-1" />
           <div className="ml-auto flex items-center gap-2">
             <SelectorIdioma />
             <MenuButton idioma={idioma} abierto={abierto} onClick={() => setAbierto((v) => !v)} />
@@ -314,8 +314,8 @@ export default function SiteHeader({ active }: { active?: string }) {
       >
         <div className="mx-auto flex h-14 w-full max-w-md items-center gap-4 rounded-full px-4 text-aisc-sand shadow-[0_12px_40px_-12px_rgba(20,54,32,0.55)] md:h-[68px] md:max-w-[1400px] md:gap-8 md:px-10 bg-aisc-forest-deep">
           <Logo idioma={idioma} />
-          <Nav idioma={idioma} active={active} className="hidden items-center gap-0.5 lg:flex xl:gap-2 ml-auto" />
-          <div className="ml-auto flex items-center gap-2 lg:ml-0">
+          <Nav idioma={idioma} active={active} className="hidden items-center gap-0.5 xl:flex 2xl:gap-2 ml-auto" />
+          <div className="ml-auto flex items-center gap-2 xl:ml-0">
             <SelectorIdioma />
             <MenuButton idioma={idioma} abierto={abierto} onClick={() => setAbierto((v) => !v)} />
           </div>

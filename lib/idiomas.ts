@@ -51,9 +51,10 @@ type Pagina = {
 };
 
 /* El orden es el del menú: qué es el campo, qué está abierto ahora mismo, qué
-   sale de acá, con qué estudiar, cómo entrar y quiénes somos. El inicio y el
-   formulario del sprint van fuera del menú pero sí en la tabla, porque el
-   selector tiene que saber a dónde mandarlos. */
+   sale de acá, con qué estudiar, cómo entrar y quiénes somos. Lo abierto ahora
+   son los dos cursos; el sprint ya pasó y sale del menú, pero su página sigue
+   en la tabla, igual que el inicio y los formularios, porque el selector tiene
+   que saber a dónde mandarlos. */
 export const PAGINAS: Pagina[] = [
   {
     ruta: { es: "/", en: "/en", pt: "/pt" },
@@ -63,12 +64,16 @@ export const PAGINAS: Pagina[] = [
     nav: { es: "¿Qué es AI safety?", en: "What is AI safety?", pt: "O que é AI safety?" },
   },
   {
-    ruta: { es: "/sprint", en: "/en/sprint", pt: "/pt/sprint" },
-    nav: {
-      es: "AI Incident Response Sprint",
-      en: "AI Incident Response Sprint",
-      pt: "AI Incident Response Sprint",
+    ruta: { es: "/cursos/agi-strategy", en: "/en/courses/agi-strategy", pt: "/pt/cursos/agi-strategy" },
+    nav: { es: "AGI Strategy", en: "AGI Strategy", pt: "AGI Strategy" },
+  },
+  {
+    ruta: {
+      es: "/cursos/technical-ai-safety",
+      en: "/en/courses/technical-ai-safety",
+      pt: "/pt/cursos/technical-ai-safety",
     },
+    nav: { es: "Technical AI Safety", en: "Technical AI Safety", pt: "Technical AI Safety" },
   },
   {
     ruta: { es: "/investigacion", en: "/en/research", pt: "/pt/pesquisa" },
@@ -87,20 +92,13 @@ export const PAGINAS: Pagina[] = [
     nav: { es: "¿Quiénes somos?", en: "About us", pt: "Quem somos?" },
   },
   {
+    ruta: { es: "/sprint", en: "/en/sprint", pt: "/pt/sprint" },
+  },
+  {
     ruta: { es: "/sprint/aplicar", en: "/en/sprint/apply", pt: "/pt/sprint/inscricao" },
   },
   {
     ruta: { es: "/cursos/aplicar", en: "/en/courses/apply", pt: "/pt/cursos/inscricao" },
-  },
-  {
-    ruta: { es: "/cursos/agi-strategy", en: "/en/courses/agi-strategy", pt: "/pt/cursos/agi-strategy" },
-  },
-  {
-    ruta: {
-      es: "/cursos/technical-ai-safety",
-      en: "/en/courses/technical-ai-safety",
-      pt: "/pt/cursos/technical-ai-safety",
-    },
   },
   /* La version corta del formulario, la que se manda por enlace a quien llega
      recomendado. No se enlaza desde ninguna pagina ni sale en buscadores, pero
