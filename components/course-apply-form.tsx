@@ -691,7 +691,7 @@ export default function CourseApplyForm({
                 name="careerStage"
                 value={v.careerStage}
                 onChange={(e) => set("careerStage", e.target.value)}
-                className={`${INPUT} ${SELECT} ${errores.careerStage ? INPUT_MAL : ""}`}
+                className={`${INPUT} ${SELECT} ${errores.careerStage ? INPUT_MAL : ""} ${v.careerStage ? "" : "text-aisc-muted/60"}`}
                 style={{ backgroundImage: `url("${FLECHA}")` }}
                 aria-invalid={errores.careerStage ? true : undefined}
               >
