@@ -133,13 +133,13 @@ const AGI_ES: PaginaCurso = {
   sala: {
     titulo: "Una cohorte pequeña que discute cada semana",
     parrafos: [
-      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **dos sesiones de dos horas con tu cohorte: una de lectura a fondo y una de discusión**. La modalidad es mixta: hay sesiones presenciales en la Universidad de los Andes y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
+      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **dos horas de sesión con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana. La modalidad es mixta: hay sesiones presenciales en la Universidad de los Andes y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
       "Las discusiones las lleva {facilitadores}. La cohorte mezcla a propósito gente de distintas disciplinas: **la discusión es donde las lecturas se vuelven una opinión propia**, y la gente con la que discutes es la red con la que después vas a trabajar.",
     ],
   },
   semanas: {
     titulo: "Cinco semanas, del mapa de la carrera a tu siguiente paso",
-    entrada: "Cada semana: una hora de material ligero, una sesión de lectura a fondo y una sesión de discusión, las dos de dos horas.",
+    entrada: "Cada semana: una hora de material ligero y dos horas de sesión, de lectura a fondo y de discusión.",
     unidades: [
       { titulo: "La carrera hacia la AGI", cuerpo: "Qué es la AGI, quién la está construyendo y por qué se corre para llegar primero." },
       { titulo: "Qué impulsa el progreso", cuerpo: "Cómputo, datos y algoritmos, y qué tan lejos puede llegar esa tendencia." },
@@ -235,13 +235,13 @@ const TAIS_ES: PaginaCurso = {
   sala: {
     titulo: "Una cohorte pequeña que discute cada semana",
     parrafos: [
-      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **dos sesiones de dos horas con tu cohorte: una de lectura a fondo y una de discusión**. La modalidad es mixta: hay sesiones presenciales en Bogotá, en la Universidad Externado o en la Universidad de los Andes, y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
+      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **dos horas de sesión con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana. La modalidad es mixta: hay sesiones presenciales en Bogotá, en la Universidad Externado o en la Universidad de los Andes, y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
       "Las discusiones las llevan {facilitadores}. **La discusión es donde se ponen a prueba los supuestos** y donde las lecturas se conectan con el trabajo que se hace en laboratorios y organizaciones de investigación; la gente con la que discutes es la red con la que después vas a trabajar.",
     ],
   },
   semanas: {
     titulo: "Seis semanas, del problema de fondo a tu siguiente paso",
-    entrada: "Cada semana: una hora de material ligero, una sesión de lectura a fondo y una sesión de discusión, las dos de dos horas.",
+    entrada: "Cada semana: una hora de material ligero y dos horas de sesión, de lectura a fondo y de discusión.",
     unidades: [
       { titulo: "Qué hace falta para que la IA salga bien", cuerpo: "El problema de fondo y el mapa de los enfoques técnicos que intentan resolverlo." },
       { titulo: "Entrenar modelos más seguros", cuerpo: "RLHF y los métodos con los que hoy se intenta que los modelos hagan lo que se les pide, y dónde fallan." },
@@ -338,13 +338,13 @@ const AGI_EN: PaginaCurso = {
   sala: {
     titulo: "A small cohort that discusses every week",
     parrafos: [
-      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **two two-hour sessions with your cohort: one of close reading and one of discussion**. The format is mixed: some sessions are in person at Universidad de los Andes and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
+      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **two hours of session with your cohort: close reading and discussion**. That is about three hours a week. The format is mixed: some sessions are in person at Universidad de los Andes and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
       "Discussions are led by {facilitadores}. The cohort deliberately mixes people from different disciplines: **the discussion is where the readings turn into a view of your own**, and the people you discuss with are the network you'll work with afterwards.",
     ],
   },
   semanas: {
     titulo: "Five weeks, from the map of the race to your next step",
-    entrada: "Each week: an hour of light material, a close-reading session and a discussion session, both two hours long.",
+    entrada: "Each week: an hour of light material and two hours of session, close reading and discussion.",
     unidades: [
       { titulo: "The race to AGI", cuerpo: "What AGI is, who is building it, and why there's a race to get there first." },
       { titulo: "What drives progress", cuerpo: "Compute, data and algorithms, and how far that trend could go." },
@@ -440,13 +440,13 @@ const TAIS_EN: PaginaCurso = {
   sala: {
     titulo: "A small cohort that discusses every week",
     parrafos: [
-      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **two two-hour sessions with your cohort: one of close reading and one of discussion**. The format is mixed: some sessions are in person in Bogotá, at Universidad Externado or Universidad de los Andes, and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
+      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **two hours of session with your cohort: close reading and discussion**. That is about three hours a week. The format is mixed: some sessions are in person in Bogotá, at Universidad Externado or Universidad de los Andes, and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
       "Discussions are led by {facilitadores}. **The discussion is where assumptions get tested** and where the readings connect to the work being done in labs and research organisations; the people you discuss with are the network you'll work with afterwards.",
     ],
   },
   semanas: {
     titulo: "Six weeks, from the underlying problem to your next step",
-    entrada: "Each week: an hour of light material, a close-reading session and a discussion session, both two hours long.",
+    entrada: "Each week: an hour of light material and two hours of session, close reading and discussion.",
     unidades: [
       { titulo: "What it takes for AI to go well", cuerpo: "The underlying problem and a map of the technical approaches trying to solve it." },
       { titulo: "Training safer models", cuerpo: "RLHF and the methods used today to get models to do what they're asked, and where they fail." },
@@ -543,13 +543,13 @@ const AGI_PT: PaginaCurso = {
   sala: {
     titulo: "Uma turma pequena que discute toda semana",
     parrafos: [
-      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **duas sessões de duas horas com a turma: uma de leitura aprofundada e uma de discussão**. A modalidade é mista: há sessões presenciais na Universidad de los Andes e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
+      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **duas horas de sessão com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana. A modalidade é mista: há sessões presenciais na Universidad de los Andes e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
       "As discussões são conduzidas por {facilitadores}. A turma mistura de propósito gente de áreas diferentes: **a discussão é onde as leituras viram uma opinião própria**, e as pessoas com quem você discute são a rede com a qual vai trabalhar depois.",
     ],
   },
   semanas: {
     titulo: "Cinco semanas, do mapa da corrida ao seu próximo passo",
-    entrada: "Toda semana: uma hora de material leve, uma sessão de leitura aprofundada e uma sessão de discussão, as duas de duas horas.",
+    entrada: "Toda semana: uma hora de material leve e duas horas de sessão, de leitura aprofundada e de discussão.",
     unidades: [
       { titulo: "A corrida rumo à AGI", cuerpo: "O que é a AGI, quem a está construindo e por que há uma corrida para chegar primeiro." },
       { titulo: "O que impulsiona o progresso", cuerpo: "Computação, dados e algoritmos, e até onde essa tendência pode ir." },
@@ -645,13 +645,13 @@ const TAIS_PT: PaginaCurso = {
   sala: {
     titulo: "Uma turma pequena que discute toda semana",
     parrafos: [
-      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **duas sessões de duas horas com a turma: uma de leitura aprofundada e uma de discussão**. A modalidade é mista: há sessões presenciais em Bogotá, na Universidad Externado ou na Universidad de los Andes, e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
+      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **duas horas de sessão com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana. A modalidade é mista: há sessões presenciais em Bogotá, na Universidad Externado ou na Universidad de los Andes, e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
       "As discussões são conduzidas por {facilitadores}. **A discussão é onde os pressupostos são postos à prova** e onde as leituras se conectam com o trabalho feito em laboratórios e organizações de pesquisa; as pessoas com quem você discute são a rede com a qual vai trabalhar depois.",
     ],
   },
   semanas: {
     titulo: "Seis semanas, do problema de fundo ao seu próximo passo",
-    entrada: "Toda semana: uma hora de material leve, uma sessão de leitura aprofundada e uma sessão de discussão, as duas de duas horas.",
+    entrada: "Toda semana: uma hora de material leve e duas horas de sessão, de leitura aprofundada e de discussão.",
     unidades: [
       { titulo: "O que é preciso para a IA dar certo", cuerpo: "O problema de fundo e o mapa das abordagens técnicas que tentam resolvê-lo." },
       { titulo: "Treinar modelos mais seguros", cuerpo: "RLHF e os métodos usados hoje para que os modelos façam o que se pede, e onde falham." },
