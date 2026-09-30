@@ -184,10 +184,6 @@ const AGI_ES: PaginaCurso = {
       q: "¿Qué relación tiene con BlueDot Impact?",
       a: "BlueDot Impact diseñó el temario y publica sus materiales. AI Safety Colombia corre esta cohorte por su cuenta, con esos materiales y con facilitadores de la comunidad.",
     },
-    {
-      q: "¿Qué sigue después?",
-      a: "El Seminario técnico de seguridad de la IA, los hackathones de investigación del hub de Bogotá o el grupo de lectura de AI Control, los viernes cada quince días.",
-    },
   ],
 };
 
@@ -286,10 +282,6 @@ const TAIS_ES: PaginaCurso = {
       q: "¿Qué relación tiene con BlueDot Impact?",
       a: "BlueDot Impact diseñó el temario y publica sus materiales. AI Safety Colombia corre esta cohorte por su cuenta, con esos materiales y con facilitadores de la comunidad.",
     },
-    {
-      q: "¿Qué sigue después?",
-      a: "Los hackathones de investigación del hub de Bogotá, donde mucha gente arma su primera pieza de portafolio; fellowships como MATS, SPAR o ARENA; o el grupo de lectura de AI Control, los viernes cada quince días.",
-    },
   ],
 };
 
@@ -386,10 +378,6 @@ const AGI_EN: PaginaCurso = {
     {
       q: "How is this related to BlueDot Impact?",
       a: "BlueDot Impact designed the curriculum and publishes its materials. AI Safety Colombia runs this cohort independently, with those materials and with facilitators from the community.",
-    },
-    {
-      q: "What comes next?",
-      a: "The Technical AI Safety Seminar, the research hackathons at the Bogotá hub, or the AI Control reading group, every other Friday.",
     },
   ],
 };
@@ -489,10 +477,6 @@ const TAIS_EN: PaginaCurso = {
       q: "How is this related to BlueDot Impact?",
       a: "BlueDot Impact designed the curriculum and publishes its materials. AI Safety Colombia runs this cohort independently, with those materials and with facilitators from the community.",
     },
-    {
-      q: "What comes next?",
-      a: "The research hackathons at the Bogotá hub, where many people build their first portfolio piece; fellowships such as MATS, SPAR or ARENA; or the AI Control reading group, every other Friday.",
-    },
   ],
 };
 
@@ -589,10 +573,6 @@ const AGI_PT: PaginaCurso = {
     {
       q: "Qual a relação com a BlueDot Impact?",
       a: "A BlueDot Impact criou o programa e publica seus materiais. A AI Safety Colombia conduz esta turma por conta própria, com esses materiais e com facilitadores da comunidade.",
-    },
-    {
-      q: "O que vem depois?",
-      a: "O Seminário técnico de segurança da IA, os hackathons de pesquisa do hub de Bogotá ou o grupo de leitura de AI Control, às sextas-feiras a cada quinze dias.",
     },
   ],
 };
@@ -691,10 +671,6 @@ const TAIS_PT: PaginaCurso = {
     {
       q: "Qual a relação com a BlueDot Impact?",
       a: "A BlueDot Impact criou o programa e publica seus materiais. A AI Safety Colombia conduz esta turma por conta própria, com esses materiais e com facilitadores da comunidade.",
-    },
-    {
-      q: "O que vem depois?",
-      a: "Os hackathons de pesquisa do hub de Bogotá, onde muita gente monta sua primeira peça de portfólio; fellowships como MATS, SPAR ou ARENA; ou o grupo de leitura de AI Control, às sextas-feiras a cada quinze dias.",
     },
   ],
 };
