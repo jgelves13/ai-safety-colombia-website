@@ -134,13 +134,11 @@ export default function Home() {
         <SiteHeader />
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 relative z-10 flex min-h-[400px] items-center pt-28 pb-20 md:min-h-[460px] md:pt-32 md:pb-24">
           <div className="flex w-full max-w-[860px] flex-col items-start gap-5 text-left md:gap-6">
-            <h1 className="text-display-1 md:text-display-1-lg max-w-[900px] text-balance text-aisc-sand">
-              A inteligência artificial será a tecnologia mais determinante do nosso tempo. Que dê certo não está
-              garantido.
+            <h1 className="text-display-2 md:text-display-2-lg max-w-[900px] text-balance text-aisc-sand">
+              Somos uma comunidade na Colômbia que trabalha para reduzir os riscos da inteligência artificial avançada.
             </h1>
             <p className="text-body md:text-body-lg max-w-[640px] text-aisc-sand/90">
-              Somos a comunidade que trabalha nisso desde a Colômbia: formação, pesquisa e eventos abertos em que dá
-              para entrar hoje.
+              Formamos quem quer entrar no campo, apoiamos pesquisa e organizamos eventos abertos em que dá para entrar hoje.
             </p>
           </div>
         </div>

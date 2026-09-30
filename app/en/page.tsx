@@ -134,13 +134,11 @@ export default function Home() {
         <SiteHeader />
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 relative z-10 flex min-h-[400px] items-center pt-28 pb-20 md:min-h-[460px] md:pt-32 md:pb-24">
           <div className="flex w-full max-w-[860px] flex-col items-start gap-5 text-left md:gap-6">
-            <h1 className="text-display-1 md:text-display-1-lg max-w-[900px] text-balance text-aisc-sand">
-              Artificial intelligence will be the most consequential technology of our time. That it goes well is not
-              guaranteed.
+            <h1 className="text-display-2 md:text-display-2-lg max-w-[900px] text-balance text-aisc-sand">
+              We are a community in Colombia working to reduce the risks of advanced artificial intelligence.
             </h1>
             <p className="text-body md:text-body-lg max-w-[640px] text-aisc-sand/90">
-              We are the community working on it from Colombia: training, research and open events you can walk into
-              today.
+              We train people who want to enter the field, support research and run open events you can walk into today.
             </p>
           </div>
         </div>
