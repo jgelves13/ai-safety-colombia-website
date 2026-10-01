@@ -204,18 +204,18 @@ const TAIS_ES: PaginaCurso = {
   metaDescripcion:
     "Seminario con cohorte de seis semanas, desde la semana del 12 de octubre de 2026, con los materiales de BlueDot Impact: alineación, evaluaciones, interpretabilidad y AI control. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 9 de octubre.",
   entrada:
-    "Las capacidades de la IA avanzan más rápido que la capacidad de hacerla segura. Seis semanas en la parte técnica: entrenar modelos más seguros, evaluarlos, mirarlos por dentro y limitar el daño cuando fallan. Para gente con base técnica.",
+    "Las capacidades de la IA avanzan más rápido que la seguridad. Seis semanas sobre cómo cerrar esa brecha: entrenar modelos más seguros, evaluarlos, mirarlos por dentro y limitar el daño cuando fallan. Para gente con base técnica.",
   linea: "Del 12 de octubre al 22 de noviembre de 2026. Aplica hasta el 9 de octubre.",
   hechos: { formato: "Presencial y en línea", dedicacion: "3 h por semana", fechas: "12 oct – 22 nov 2026" },
   porque: {
     titulo: "Las capacidades avanzan más rápido que la seguridad",
     parrafos: [
-      "Las capacidades de la IA avanzan más rápido que nuestra capacidad de hacerlas seguras, y el campo necesita más gente técnica trabajando en eso. Los problemas siguen abiertos: todavía no sabemos medir con confianza lo que un modelo puede y quiere hacer, ni entender qué calcula por dentro, ni garantizar que un sistema capaz no cause daño si algo falla.",
+      "Las capacidades de la IA avanzan más rápido que la seguridad, y el campo necesita más gente técnica trabajando en eso. Los problemas siguen abiertos: todavía no sabemos medir con confianza lo que un modelo puede y quiere hacer, ni entender qué calcula por dentro, ni garantizar que un sistema capaz no cause daño si algo falla.",
       "El Seminario técnico de seguridad de la IA es un **recorrido por esos problemas y por los métodos con los que hoy se intenta resolverlos**: RLHF, evaluaciones, interpretabilidad mecanicista y AI control. Las lecturas son las que diseñó **BlueDot Impact**; AI Safety Colombia corre esta cohorte por su cuenta, con facilitadores de la comunidad.",
     ],
   },
   quien: {
-    titulo: "Para gente con base técnica, no para principiantes",
+    titulo: "Para quien ya entiende cómo se entrena un modelo y quiere trabajar en hacerlo seguro",
     intro:
       "Basta con **entender lo básico de cómo se entrena un LLM**; si te falta, el curso [AI Foundations](https://bluedot-impact.notion.site/AI-Foundations-293f8e69035380f29863c4c92c41fac7) de BlueDot, de dos horas, te da esa base. El seminario está pensado para:",
     perfiles: [
@@ -407,18 +407,18 @@ const TAIS_EN: PaginaCurso = {
   metaDescripcion:
     "A six-week cohort-based seminar starting the week of 12 October 2026, using BlueDot Impact's materials: alignment, evaluations, interpretability and AI control. Free, with an AI Safety Colombia certificate. Applications close 9 October.",
   entrada:
-    "AI capabilities are advancing faster than our ability to make them safe. Six weeks on the technical side: training safer models, evaluating them, looking inside them and limiting the damage when they fail. For people with a technical background.",
+    "AI capabilities are advancing faster than safety. Six weeks on closing that gap: training safer models, evaluating them, looking inside them and limiting the damage when they fail. For people with a technical background.",
   linea: "12 October to 22 November 2026. Apply by 9 October.",
   hechos: { formato: "In person and online", dedicacion: "3 h a week", fechas: "12 Oct – 22 Nov 2026" },
   porque: {
     titulo: "Capabilities are advancing faster than safety",
     parrafos: [
-      "AI capabilities are advancing faster than our ability to make them safe, and the field needs more technical people working on it. The problems are still open: we don't yet know how to reliably measure what a model can and wants to do, how to understand what it computes inside, or how to guarantee that a capable system won't cause harm if something fails.",
+      "AI capabilities are advancing faster than safety, and the field needs more technical people working on it. The problems are still open: we don't yet know how to reliably measure what a model can and wants to do, how to understand what it computes inside, or how to guarantee that a capable system won't cause harm if something fails.",
       "The Technical AI Safety Seminar is **a tour of those problems and of the methods used today to try to solve them**: RLHF, evaluations, mechanistic interpretability and AI control. The readings were designed by **BlueDot Impact**; AI Safety Colombia runs this cohort independently, with facilitators from the community.",
     ],
   },
   quien: {
-    titulo: "For people with a technical background, not beginners",
+    titulo: "For people who already know how a model is trained and want to work on making it safe",
     intro:
       "You just need to **understand the basics of how an LLM is trained**; if you don't yet, BlueDot's two-hour [AI Foundations](https://bluedot-impact.notion.site/AI-Foundations-293f8e69035380f29863c4c92c41fac7) course covers it. The seminar is designed for:",
     perfiles: [
@@ -610,18 +610,18 @@ const TAIS_PT: PaginaCurso = {
   metaDescripcion:
     "Seminário em turma de seis semanas, a partir da semana de 12 de outubro de 2026, com os materiais da BlueDot Impact: alinhamento, avaliações, interpretabilidade e AI control. Grátis, com certificado da AI Safety Colombia. Inscrições até 9 de outubro.",
   entrada:
-    "As capacidades da IA avançam mais rápido do que a capacidade de torná-la segura. Seis semanas na parte técnica: treinar modelos mais seguros, avaliá-los, olhar dentro deles e limitar o dano quando falham. Para quem tem base técnica.",
+    "As capacidades da IA avançam mais rápido do que a segurança. Seis semanas sobre como fechar essa lacuna: treinar modelos mais seguros, avaliá-los, olhar dentro deles e limitar o dano quando falham. Para quem tem base técnica.",
   linea: "De 12 de outubro a 22 de novembro de 2026. Inscreva-se até 9 de outubro.",
   hechos: { formato: "Presencial e on-line", dedicacion: "3 h por semana", fechas: "12 out – 22 nov 2026" },
   porque: {
     titulo: "As capacidades avançam mais rápido que a segurança",
     parrafos: [
-      "As capacidades da IA avançam mais rápido que a nossa capacidade de torná-las seguras, e o campo precisa de mais gente técnica trabalhando nisso. Os problemas continuam em aberto: ainda não sabemos medir com confiança o que um modelo pode e quer fazer, nem entender o que ele calcula por dentro, nem garantir que um sistema capaz não cause dano se algo falhar.",
+      "As capacidades da IA avançam mais rápido que a segurança, e o campo precisa de mais gente técnica trabalhando nisso. Os problemas continuam em aberto: ainda não sabemos medir com confiança o que um modelo pode e quer fazer, nem entender o que ele calcula por dentro, nem garantir que um sistema capaz não cause dano se algo falhar.",
       "O Seminário técnico de segurança da IA é um **percurso por esses problemas e pelos métodos com que hoje se tenta resolvê-los**: RLHF, avaliações, interpretabilidade mecanicista e AI control. As leituras são as criadas pela **BlueDot Impact**; a AI Safety Colombia conduz esta turma por conta própria, com facilitadores da comunidade.",
     ],
   },
   quien: {
-    titulo: "Para gente com base técnica, não para iniciantes",
+    titulo: "Para quem já entende como um modelo é treinado e quer trabalhar para torná-lo seguro",
     intro:
       "Basta **entender o básico de como um LLM é treinado**; se ainda não entende, o curso [AI Foundations](https://bluedot-impact.notion.site/AI-Foundations-293f8e69035380f29863c4c92c41fac7) da BlueDot, de duas horas, dá essa base. O seminário foi pensado para:",
     perfiles: [
