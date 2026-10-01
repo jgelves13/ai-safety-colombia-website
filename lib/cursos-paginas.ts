@@ -79,8 +79,8 @@ export type PaginaCurso = {
   entrada: string;
   /* La línea de fechas y modalidad que cierra el encabezado. */
   linea: string;
-  /* Los datos de la tira. El costo y los materiales son iguales en los dos. */
-  hechos: { formato: string; dedicacion: string; fechas: string };
+  /* Las tres tarjetas bajo el encabezado: un dato grande y una frase. */
+  tarjetas: { titulo: string; cuerpo: string }[];
   /* Por qué ahora: el problema y qué es el curso. */
   porque: { titulo: string; parrafos: string[] };
   /* Para quién es: cuatro perfiles y una frase que acota. */
@@ -105,7 +105,11 @@ const AGI_ES: PaginaCurso = {
   entrada:
     "La IA avanzada va más rápido que la gente preparada para pensarla. Cinco semanas para entender quién la construye, qué tan rápido avanza y qué podría salir mal. Desde cualquier disciplina.",
   linea: "Del 12 de octubre al 15 de noviembre de 2026. Aplica hasta el 9 de octubre.",
-  hechos: { formato: "Mixto: presencial y en línea", dedicacion: "3 h por semana", fechas: "12 oct – 15 nov 2026" },
+  tarjetas: [
+    { titulo: "Cinco semanas", cuerpo: "Del 12 de octubre al 15 de noviembre de 2026, unas tres horas por semana" },
+    { titulo: "Mixto: presencial y en línea", cuerpo: "Sesiones en la Universidad de los Andes, con comida gratis, y sesiones en línea" },
+    { titulo: "Gratis, con certificado", cuerpo: "Materiales de BlueDot Impact; discusión en español, lecturas en inglés" },
+  ],
   porque: {
     titulo: "La IA avanzada va más rápido que la gente preparada para pensarla",
     parrafos: [
@@ -210,7 +214,11 @@ const TAIS_ES: PaginaCurso = {
   entrada:
     "Las capacidades de la IA avanzan más rápido que la seguridad. Seis semanas sobre cómo cerrar esa brecha: entrenar modelos más seguros, evaluarlos, mirarlos por dentro y limitar el daño cuando fallan. Para gente con base técnica.",
   linea: "Del 12 de octubre al 22 de noviembre de 2026. Aplica hasta el 9 de octubre.",
-  hechos: { formato: "Mixto: presencial y en línea", dedicacion: "3 h por semana", fechas: "12 oct – 22 nov 2026" },
+  tarjetas: [
+    { titulo: "Seis semanas", cuerpo: "Del 12 de octubre al 22 de noviembre de 2026, unas tres horas por semana" },
+    { titulo: "Mixto: presencial y en línea", cuerpo: "Sesiones en la Universidad de los Andes, con comida gratis, y sesiones en línea" },
+    { titulo: "Gratis, con certificado", cuerpo: "Materiales de BlueDot Impact; discusión en español, lecturas en inglés" },
+  ],
   porque: {
     titulo: "Las capacidades avanzan más rápido que la seguridad",
     parrafos: [
@@ -316,7 +324,11 @@ const AGI_EN: PaginaCurso = {
   entrada:
     "Advanced AI is moving faster than the people ready to think about it. Five weeks to understand who is building it, how fast it is moving and what could go wrong. From any discipline.",
   linea: "12 October to 15 November 2026. Apply by 9 October.",
-  hechos: { formato: "Mixed: in person and online", dedicacion: "3 h a week", fechas: "12 Oct – 15 Nov 2026" },
+  tarjetas: [
+    { titulo: "Five weeks", cuerpo: "12 October to 15 November 2026, about three hours a week" },
+    { titulo: "Mixed: in person and online", cuerpo: "Sessions at Universidad de los Andes, with free food, and sessions online" },
+    { titulo: "Free, with a certificate", cuerpo: "Materials by BlueDot Impact; discussion in Spanish, readings in English" },
+  ],
   porque: {
     titulo: "Advanced AI is moving faster than the people prepared to think about it",
     parrafos: [
@@ -421,7 +433,11 @@ const TAIS_EN: PaginaCurso = {
   entrada:
     "AI capabilities are advancing faster than safety. Six weeks on closing that gap: training safer models, evaluating them, looking inside them and limiting the damage when they fail. For people with a technical background.",
   linea: "12 October to 22 November 2026. Apply by 9 October.",
-  hechos: { formato: "Mixed: in person and online", dedicacion: "3 h a week", fechas: "12 Oct – 22 Nov 2026" },
+  tarjetas: [
+    { titulo: "Six weeks", cuerpo: "12 October to 22 November 2026, about three hours a week" },
+    { titulo: "Mixed: in person and online", cuerpo: "Sessions at Universidad de los Andes, with free food, and sessions online" },
+    { titulo: "Free, with a certificate", cuerpo: "Materials by BlueDot Impact; discussion in Spanish, readings in English" },
+  ],
   porque: {
     titulo: "Capabilities are advancing faster than safety",
     parrafos: [
@@ -527,7 +543,11 @@ const AGI_PT: PaginaCurso = {
   entrada:
     "A IA avançada avança mais rápido do que as pessoas preparadas para pensá-la. Cinco semanas para entender quem a constrói, com que velocidade avança e o que pode dar errado. De qualquer área.",
   linea: "De 12 de outubro a 15 de novembro de 2026. Inscreva-se até 9 de outubro.",
-  hechos: { formato: "Misto: presencial e on-line", dedicacion: "3 h por semana", fechas: "12 out – 15 nov 2026" },
+  tarjetas: [
+    { titulo: "Cinco semanas", cuerpo: "De 12 de outubro a 15 de novembro de 2026, cerca de três horas por semana" },
+    { titulo: "Misto: presencial e on-line", cuerpo: "Sessões na Universidad de los Andes, com comida grátis, e sessões on-line" },
+    { titulo: "Grátis, com certificado", cuerpo: "Materiais da BlueDot Impact; discussão em espanhol, leituras em inglês" },
+  ],
   porque: {
     titulo: "A IA avançada anda mais rápido que as pessoas preparadas para pensá-la",
     parrafos: [
@@ -632,7 +652,11 @@ const TAIS_PT: PaginaCurso = {
   entrada:
     "As capacidades da IA avançam mais rápido do que a segurança. Seis semanas sobre como fechar essa lacuna: treinar modelos mais seguros, avaliá-los, olhar dentro deles e limitar o dano quando falham. Para quem tem base técnica.",
   linea: "De 12 de outubro a 22 de novembro de 2026. Inscreva-se até 9 de outubro.",
-  hechos: { formato: "Misto: presencial e on-line", dedicacion: "3 h por semana", fechas: "12 out – 22 nov 2026" },
+  tarjetas: [
+    { titulo: "Seis semanas", cuerpo: "De 12 de outubro a 22 de novembro de 2026, cerca de três horas por semana" },
+    { titulo: "Misto: presencial e on-line", cuerpo: "Sessões na Universidad de los Andes, com comida grátis, e sessões on-line" },
+    { titulo: "Grátis, com certificado", cuerpo: "Materiais da BlueDot Impact; discussão em espanhol, leituras em inglês" },
+  ],
   porque: {
     titulo: "As capacidades avançam mais rápido que a segurança",
     parrafos: [
@@ -737,15 +761,6 @@ export const PAGINAS_CURSO: Record<CursoId, Record<Idioma, PaginaCurso>> = {
 };
 
 type Rotulos = {
-  /* La ficha de datos del encabezado. */
-  formato: string;
-  dedicacion: string;
-  fechas: string;
-  costo: string;
-  costoValor: string;
-  idioma: string;
-  idiomaValor: string;
-  materiales: string;
   /* Los rótulos pequeños sobre cada título. */
   semana: string;
   /* La modalidad de cada semana: alternan desde una presencial. */
@@ -764,14 +779,6 @@ type Rotulos = {
 /* Los rótulos que no dependen del curso. */
 export const ROTULOS_CURSO: Record<Idioma, Rotulos> = {
   es: {
-    formato: "Formato",
-    dedicacion: "Dedicación",
-    fechas: "Fechas",
-    costo: "Costo",
-    costoValor: "Gratis, con certificado",
-    idioma: "Idioma",
-    idiomaValor: "Español, lecturas en inglés",
-    materiales: "Materiales de",
     semana: "Semana",
     presencial: "Presencial",
     enLinea: "En línea",
@@ -784,14 +791,6 @@ export const ROTULOS_CURSO: Record<Idioma, Rotulos> = {
     aplicar: "Aplicar",
   },
   en: {
-    formato: "Format",
-    dedicacion: "Commitment",
-    fechas: "Dates",
-    costo: "Cost",
-    costoValor: "Free, with a certificate",
-    idioma: "Language",
-    idiomaValor: "Spanish, readings in English",
-    materiales: "Materials by",
     semana: "Week",
     presencial: "In person",
     enLinea: "Online",
@@ -804,14 +803,6 @@ export const ROTULOS_CURSO: Record<Idioma, Rotulos> = {
     aplicar: "Apply",
   },
   pt: {
-    formato: "Formato",
-    dedicacion: "Dedicação",
-    fechas: "Datas",
-    costo: "Custo",
-    costoValor: "Grátis, com certificado",
-    idioma: "Idioma",
-    idiomaValor: "Espanhol, leituras em inglês",
-    materiales: "Materiais da",
     semana: "Semana",
     presencial: "Presencial",
     enLinea: "On-line",

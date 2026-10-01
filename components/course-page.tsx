@@ -3,14 +3,14 @@ import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { CTA_LINK_PRIMARY, CTA_PANEL, CTA_PATTERN_BOTTOM, CTA_PATTERN_TOP, HERO_CORNER_CLASS, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { RUTA_APLICAR_CURSOS, cursosCerrados, type CursoId } from "@/lib/cursos";
-import { BLUEDOT_CURSO, BLUEDOT_NOMBRE, EN_LINEA, FACILITADORES, PAGINAS_CURSO, ROTULOS_CURSO, RUTA_CURSO } from "@/lib/cursos-paginas";
+import { BLUEDOT_CURSO, EN_LINEA, FACILITADORES, PAGINAS_CURSO, ROTULOS_CURSO, RUTA_CURSO } from "@/lib/cursos-paginas";
 import type { Idioma } from "@/lib/idiomas";
 
 /* La página de cada seminario, con la estructura de las páginas de programa de
    aisecurity.sg y la densidad del encabezado de BlueDot: el nombre del
    seminario como h1, tres frases (por qué, qué se aprende, para quién), la
-   línea de fechas, el botón y los datos del seminario en una ficha
-   discreta; luego una columna angosta y centrada, con bandas que alternan
+   línea de fechas y el botón, y debajo tres tarjetas oscuras con los
+   datos del seminario; luego una columna angosta y centrada, con bandas que alternan
    crema y arena, y una sección por pregunta: por qué ahora, para quién es (cuatro perfiles en tarjetas), quién
    está en la sala, qué vas a hacer (una tarjeta por semana, con el número en
    grande), con qué sales (una lista), el panel para aplicar y las preguntas
@@ -125,14 +125,6 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
   const otro: CursoId = curso === "agi-strategy" ? "technical-ai-safety" : "agi-strategy";
   const [otroAntes, otroDespues] = p.otro.split("{curso}");
 
-  const hechos = [
-    { rotulo: r.formato, valor: p.hechos.formato },
-    { rotulo: r.dedicacion, valor: p.hechos.dedicacion },
-    { rotulo: r.fechas, valor: p.hechos.fechas },
-    { rotulo: r.costo, valor: r.costoValor },
-    { rotulo: r.idioma, valor: r.idiomaValor },
-  ];
-
   return (
     <main className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
@@ -147,12 +139,6 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
           style={{ color: "transparent" }}
           src={HERO_CURSO[curso]}
         />
-        {/* La ilustración y la retícula se apagan antes de los datos: sus
-            líneas son del mismo color que el texto y lo volvían ilegible. */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden h-[26rem] bg-linear-to-b from-aisc-forest-deep/0 to-aisc-forest-deep to-40% md:block"
-        />
         <SiteHeader active={RUTA_CURSO[curso][idioma]} />
         <div className={`${ANCHO} relative z-10 flex flex-col pt-28 md:pt-32`}>
           <div className="flex max-w-[880px] flex-col gap-5 pb-12 md:pb-16">
@@ -166,33 +152,20 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
             )}
           </div>
 
-          {/* Los datos del seminario, dentro del encabezado y bajo el botón:
-              tres columnas iguales y dos filas, rótulo pequeño en gris sobre
-              cada valor en texto normal. Sin cifras grandes, líneas ni chips:
-              es una ficha discreta, no un cartel. */}
-          <dl className="grid grid-cols-1 gap-x-8 gap-y-5 border-t border-aisc-sand/20 py-8 sm:grid-cols-3 sm:gap-y-6 md:py-10">
-            {hechos.map((h) => (
-              <div className="flex flex-col gap-1" key={h.rotulo}>
-                <dt className="text-meta text-aisc-sand/60">{h.rotulo}</dt>
-                <dd className="text-body text-aisc-sand">{h.valor}</dd>
-              </div>
-            ))}
-            <div className="flex flex-col gap-1">
-              <dt className="text-meta text-aisc-sand/60">{r.materiales}</dt>
-              <dd className="text-body text-aisc-sand">
-                <a
-                  className="transition-colors hover:text-aisc-coral"
-                  href={BLUEDOT_CURSO[curso]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  BlueDot Impact
-                </a>
-                , {BLUEDOT_NOMBRE[curso]}
-              </dd>
-            </div>
-          </dl>
         </div>
+      </section>
+
+      {/* Tres tarjetas oscuras bajo el encabezado, como las de los programas
+          de aisafety.sg: un dato grande y una frase que lo explica. */}
+      <section className="bg-aisc-cream">
+        <ul className={`${ANCHO} grid grid-cols-1 gap-4 pt-10 md:grid-cols-3 md:pt-14`}>
+          {p.tarjetas.map((t) => (
+            <li className="flex flex-col gap-2 rounded-2xl bg-aisc-forest-deep p-7 text-aisc-sand md:p-8" key={t.titulo}>
+              <h2 className="text-display-4 md:text-display-4-lg">{t.titulo}</h2>
+              <p className="text-body-sm text-aisc-sand/80">{t.cuerpo}</p>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section id="porque" className="bg-aisc-cream">
