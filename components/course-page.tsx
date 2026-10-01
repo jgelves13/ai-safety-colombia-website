@@ -22,9 +22,7 @@ const SECCION = `${COLUMNA} flex flex-col gap-6 py-16 md:py-24`;
 const TITULO = "text-display-3 md:text-display-2 text-balance";
 const PROSA = "text-body flex flex-col gap-5 text-aisc-ink";
 const TARJETA = "rounded-2xl border border-aisc-line bg-white/80";
-/* La modalidad de cada semana: alternan desde una presencial (índice par). */
-const PASTILLA_PRESENCIAL = "text-meta shrink-0 rounded-full bg-aisc-forest px-2.5 py-0.5 text-aisc-sand";
-const PASTILLA_EN_LINEA = "text-meta shrink-0 rounded-full border border-aisc-forest/40 px-2.5 py-0.5 text-aisc-forest";
+/* La modalidad de cada semana alterna desde una presencial (índice par). */
 const ENLACE = "text-aisc-forest transition-colors hover:text-aisc-coral";
 const PATRON = "/aisc/patterns/aisc-wash-lattice.svg";
 /* Un icono de una sola línea por seminario, al modo de los hero-graphic de
@@ -168,8 +166,9 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
             )}
           </div>
 
-          {/* La tira de datos clave, dentro del encabezado. */}
-          <dl className="grid grid-cols-2 gap-x-8 gap-y-6 border-t border-aisc-sand/20 py-8 md:grid-cols-3 md:py-10 lg:grid-cols-6">
+          {/* La tira de datos clave, dentro del encabezado: tres columnas iguales
+              y dos filas, para que ningún valor se parta y las celdas midan lo mismo. */}
+          <dl className="grid grid-cols-2 gap-x-8 gap-y-8 border-t border-aisc-sand/20 py-8 md:grid-cols-3 md:py-10">
             {hechos.map((h) => (
               <div className="flex flex-col gap-1.5" key={h.rotulo}>
                 <dt className="text-kicker text-aisc-sand/60">{h.rotulo}</dt>
@@ -254,21 +253,23 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
           <div className={PROSA}>
             <p>{p.semanas.entrada}</p>
           </div>
-          <ol className="flex flex-col gap-3">
+          {/* El programa va en filas separadas por una línea, como un temario:
+              semana y modalidad a la izquierda, título y una frase a la derecha. */}
+          <ol className="flex flex-col border-t border-aisc-forest-deep/30">
             {p.semanas.unidades.map((u, i) => (
-              <li className={`${TARJETA} grid grid-cols-[72px_1fr] md:grid-cols-[88px_1fr]`} key={u.titulo}>
-                <div className="flex flex-col items-center justify-center gap-0.5 border-r border-aisc-line py-5">
-                  <span className="text-kicker text-aisc-muted">{r.semana}</span>
-                  <span className="text-display-3-lg tabular-nums text-aisc-forest">{i + 1}</span>
+              <li
+                className="grid grid-cols-1 gap-x-8 gap-y-2 border-b border-aisc-forest-deep/30 py-5 md:grid-cols-[168px_1fr] md:py-6"
+                key={u.titulo}
+              >
+                <div className="flex items-baseline gap-3 md:flex-col md:gap-1">
+                  <span className="text-kicker text-aisc-forest">
+                    {r.semana} {i + 1}
+                  </span>
+                  <span className="text-body-sm text-aisc-muted">{i % 2 === 0 ? r.presencial : r.enLinea}</span>
                 </div>
-                <div className="flex flex-col gap-2 p-5 md:p-6">
-                  <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
-                    <h3 className="text-display-4">{u.titulo}</h3>
-                    <span className={i % 2 === 0 ? PASTILLA_PRESENCIAL : PASTILLA_EN_LINEA}>
-                      {i % 2 === 0 ? r.presencial : r.enLinea}
-                    </span>
-                  </div>
-                  <p className="text-body-sm text-aisc-ink">{u.cuerpo}</p>
+                <div className="flex flex-col gap-1.5">
+                  <h3 className="text-display-4">{u.titulo}</h3>
+                  <p className="text-body-sm max-w-[680px] text-aisc-ink">{u.cuerpo}</p>
                 </div>
               </li>
             ))}

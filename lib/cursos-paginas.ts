@@ -105,7 +105,7 @@ const AGI_ES: PaginaCurso = {
   entrada:
     "La IA avanzada va más rápido que la gente preparada para pensarla. Cinco semanas para entender quién la construye, qué tan rápido avanza y qué podría salir mal. Desde cualquier disciplina.",
   linea: "Del 12 de octubre al 15 de noviembre de 2026. Aplica hasta el 9 de octubre.",
-  hechos: { formato: "Presencial y en línea", dedicacion: "3 h por semana", fechas: "12 oct – 15 nov 2026" },
+  hechos: { formato: "Mixto: presencial y en línea", dedicacion: "3 h por semana", fechas: "12 oct – 15 nov 2026" },
   porque: {
     titulo: "La IA avanzada va más rápido que la gente preparada para pensarla",
     parrafos: [
@@ -140,8 +140,8 @@ const AGI_ES: PaginaCurso = {
   sala: {
     titulo: "Una cohorte pequeña que discute cada semana",
     parrafos: [
-      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **dos horas de sesión con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana. Todas las lecturas y videos son en inglés, tal como los publica BlueDot; la discusión es en español. La modalidad es mixta: hay sesiones presenciales en la Universidad de los Andes y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
-      "El facilitador es {facilitadores}. La cohorte mezcla a propósito gente de distintas disciplinas: **la discusión es donde las lecturas se vuelven una opinión propia**, y la gente con la que discutes es la red con la que después vas a trabajar.",
+      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **dos horas de sesión con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana, en un horario que se fija con los participantes seleccionados. Todas las lecturas y videos son en inglés, tal como los publica BlueDot; la discusión es en español. La modalidad es mixta: hay sesiones presenciales en la Universidad de los Andes y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
+      "El facilitador es {facilitadores}. La cohorte mezcla a propósito gente de distintas disciplinas: **la discusión es donde las lecturas se vuelven una opinión propia**, y la cohorte queda como una comunidad de pares con la que seguir explorando el campo después del seminario.",
     ],
   },
   semanas: {
@@ -185,6 +185,10 @@ const AGI_ES: PaginaCurso = {
       a: "En la Universidad de los Andes, en Bogotá, con comida gratis. Las demás sesiones son en línea.",
     },
     {
+      q: "¿En qué horario son las sesiones?",
+      a: "Se define con los participantes seleccionados: antes de arrancar les preguntamos qué franjas les sirven y se fija la que mejor le quede a la cohorte.",
+    },
+    {
       q: "¿En qué idioma es?",
       a: "Las discusiones son en español. Todas las lecturas, videos y podcasts son en inglés, tal como los publica BlueDot Impact, así que hace falta leer inglés con comodidad.",
     },
@@ -206,7 +210,7 @@ const TAIS_ES: PaginaCurso = {
   entrada:
     "Las capacidades de la IA avanzan más rápido que la seguridad. Seis semanas sobre cómo cerrar esa brecha: entrenar modelos más seguros, evaluarlos, mirarlos por dentro y limitar el daño cuando fallan. Para gente con base técnica.",
   linea: "Del 12 de octubre al 22 de noviembre de 2026. Aplica hasta el 9 de octubre.",
-  hechos: { formato: "Presencial y en línea", dedicacion: "3 h por semana", fechas: "12 oct – 22 nov 2026" },
+  hechos: { formato: "Mixto: presencial y en línea", dedicacion: "3 h por semana", fechas: "12 oct – 22 nov 2026" },
   porque: {
     titulo: "Las capacidades avanzan más rápido que la seguridad",
     parrafos: [
@@ -241,20 +245,20 @@ const TAIS_ES: PaginaCurso = {
   sala: {
     titulo: "Una cohorte pequeña que discute cada semana",
     parrafos: [
-      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **dos horas de sesión con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana. Todas las lecturas y videos son en inglés, tal como los publica BlueDot; la discusión es en español. La modalidad es mixta: hay sesiones presenciales en Bogotá, en la Universidad Externado o en la Universidad de los Andes, y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
-      "Los facilitadores son {facilitadores}. **La discusión es donde se ponen a prueba los supuestos** y donde las lecturas se conectan con el trabajo que se hace en laboratorios y organizaciones de investigación; la gente con la que discutes es la red con la que después vas a trabajar.",
+      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **dos horas de sesión con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana, en un horario que se fija con los participantes seleccionados. Todas las lecturas y videos son en inglés, tal como los publica BlueDot; la discusión es en español. La modalidad es mixta: hay sesiones presenciales en la Universidad de los Andes y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
+      "Los facilitadores son {facilitadores}. **La discusión es donde se ponen a prueba los supuestos** y donde las lecturas se conectan con el trabajo que se hace en laboratorios y organizaciones de investigación, y la cohorte queda como una comunidad de pares con la que seguir explorando el campo después del seminario.",
     ],
   },
   semanas: {
     titulo: "Seis semanas, del problema de fondo a tu siguiente paso",
     entrada: "Cada semana: una hora de material ligero y dos horas de sesión, de lectura a fondo y de discusión. Las sesiones alternan: la primera semana es presencial, la segunda en línea, y así hasta el final.",
     unidades: [
-      { titulo: "Qué hace falta para que la IA salga bien", cuerpo: "El problema de fondo y el mapa de los enfoques técnicos que intentan resolverlo." },
-      { titulo: "Entrenar modelos más seguros", cuerpo: "RLHF y los métodos con los que hoy se intenta que los modelos hagan lo que se les pide, y dónde fallan." },
-      { titulo: "Evaluaciones", cuerpo: "Lo que un modelo puede hacer frente a lo que hará, cómo se mide y cómo se detecta el engaño." },
-      { titulo: "Interpretabilidad mecanicista", cuerpo: "Mirar dentro de la red para entender qué está calculando y por qué." },
-      { titulo: "Minimizar el daño", cuerpo: "AI control, clasificadores constitucionales y cortar la cadena que lleva de un modelo capaz a un daño real." },
-      { titulo: "Cómo empezar a contribuir", cuerpo: "Dónde encajan tus habilidades y cuál es tu siguiente paso concreto." },
+      { titulo: "Qué hace falta para que la IA salga bien", cuerpo: "Por qué los modelos actuales no son seguros por defecto y qué enfoques técnicos existen para cambiarlo." },
+      { titulo: "Entrenar modelos más seguros", cuerpo: "Cómo funciona RLHF, qué otros métodos se usan para ajustar un modelo y en qué casos no bastan." },
+      { titulo: "Evaluaciones", cuerpo: "Cómo se mide lo que un modelo es capaz de hacer y cómo se busca si está ocultando algo." },
+      { titulo: "Interpretabilidad mecanicista", cuerpo: "Las técnicas para ver qué calcula una red neuronal por dentro y hasta dónde llegan hoy." },
+      { titulo: "Minimizar el daño", cuerpo: "Cómo se limita lo que un modelo puede hacer aunque esté desalineado, con AI control y clasificadores constitucionales." },
+      { titulo: "Cómo empezar a contribuir", cuerpo: "Qué problemas abiertos encajan con lo que ya sabes hacer y cómo dar el primer paso." },
     ],
   },
   resultado: {
@@ -284,7 +288,11 @@ const TAIS_ES: PaginaCurso = {
     },
     {
       q: "¿Dónde son las sesiones presenciales?",
-      a: "En Bogotá, en el campus de la Universidad Externado o de la Universidad de los Andes; el lugar se confirma antes de que arranque el seminario, y hay comida gratis. Las demás sesiones son en línea.",
+      a: "En la Universidad de los Andes, en Bogotá, con comida gratis. Las demás sesiones son en línea.",
+    },
+    {
+      q: "¿En qué horario son las sesiones?",
+      a: "Se define con los participantes seleccionados: antes de arrancar les preguntamos qué franjas les sirven y se fija la que mejor le quede a la cohorte.",
     },
     {
       q: "¿En qué idioma es?",
@@ -308,7 +316,7 @@ const AGI_EN: PaginaCurso = {
   entrada:
     "Advanced AI is moving faster than the people ready to think about it. Five weeks to understand who is building it, how fast it is moving and what could go wrong. From any discipline.",
   linea: "12 October to 15 November 2026. Apply by 9 October.",
-  hechos: { formato: "In person and online", dedicacion: "3 h a week", fechas: "12 Oct – 15 Nov 2026" },
+  hechos: { formato: "Mixed: in person and online", dedicacion: "3 h a week", fechas: "12 Oct – 15 Nov 2026" },
   porque: {
     titulo: "Advanced AI is moving faster than the people prepared to think about it",
     parrafos: [
@@ -343,8 +351,8 @@ const AGI_EN: PaginaCurso = {
   sala: {
     titulo: "A small cohort that discusses every week",
     parrafos: [
-      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **two hours of session with your cohort: close reading and discussion**. That is about three hours a week. All readings and videos are in English, as BlueDot publishes them; the discussion is in Spanish. The format is mixed: some sessions are in person at Universidad de los Andes and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
-      "The facilitator is {facilitadores}. The cohort deliberately mixes people from different disciplines: **the discussion is where the readings turn into a view of your own**, and the people you discuss with are the network you'll work with afterwards.",
+      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **two hours of session with your cohort: close reading and discussion**. That is about three hours a week, at a time set with the selected participants. All readings and videos are in English, as BlueDot publishes them; the discussion is in Spanish. The format is mixed: some sessions are in person at Universidad de los Andes and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
+      "The facilitator is {facilitadores}. The cohort deliberately mixes people from different disciplines: **the discussion is where the readings turn into a view of your own**, and the cohort stays on as a community of peers to keep exploring the field with after the seminar.",
     ],
   },
   semanas: {
@@ -388,6 +396,10 @@ const AGI_EN: PaginaCurso = {
       a: "At Universidad de los Andes, in Bogotá, with free food. The other sessions are online.",
     },
     {
+      q: "When are the sessions?",
+      a: "The time is set with the selected participants: before the start we ask which slots work for them and fix the one that suits the cohort best.",
+    },
+    {
       q: "What language is it in?",
       a: "The discussions are in Spanish. All readings, videos and podcasts are in English, as BlueDot Impact publishes them, so you need to read English comfortably.",
     },
@@ -409,7 +421,7 @@ const TAIS_EN: PaginaCurso = {
   entrada:
     "AI capabilities are advancing faster than safety. Six weeks on closing that gap: training safer models, evaluating them, looking inside them and limiting the damage when they fail. For people with a technical background.",
   linea: "12 October to 22 November 2026. Apply by 9 October.",
-  hechos: { formato: "In person and online", dedicacion: "3 h a week", fechas: "12 Oct – 22 Nov 2026" },
+  hechos: { formato: "Mixed: in person and online", dedicacion: "3 h a week", fechas: "12 Oct – 22 Nov 2026" },
   porque: {
     titulo: "Capabilities are advancing faster than safety",
     parrafos: [
@@ -444,20 +456,20 @@ const TAIS_EN: PaginaCurso = {
   sala: {
     titulo: "A small cohort that discusses every week",
     parrafos: [
-      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **two hours of session with your cohort: close reading and discussion**. That is about three hours a week. All readings and videos are in English, as BlueDot publishes them; the discussion is in Spanish. The format is mixed: some sessions are in person in Bogotá, at Universidad Externado or Universidad de los Andes, and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
-      "The facilitators are {facilitadores}. **The discussion is where assumptions get tested** and where the readings connect to the work being done in labs and research organisations; the people you discuss with are the network you'll work with afterwards.",
+      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **two hours of session with your cohort: close reading and discussion**. That is about three hours a week, at a time set with the selected participants. All readings and videos are in English, as BlueDot publishes them; the discussion is in Spanish. The format is mixed: some sessions are in person at Universidad de los Andes and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
+      "The facilitators are {facilitadores}. **The discussion is where assumptions get tested** and where the readings connect to the work being done in labs and research organisations, and the cohort stays on as a community of peers to keep exploring the field with after the seminar.",
     ],
   },
   semanas: {
     titulo: "Six weeks, from the underlying problem to your next step",
     entrada: "Each week: an hour of light material and two hours of session, close reading and discussion. Sessions alternate: the first week is in person, the second online, and so on to the end.",
     unidades: [
-      { titulo: "What it takes for AI to go well", cuerpo: "The underlying problem and a map of the technical approaches trying to solve it." },
-      { titulo: "Training safer models", cuerpo: "RLHF and the methods used today to get models to do what they're asked, and where they fail." },
-      { titulo: "Evaluations", cuerpo: "What a model can do versus what it will do, how it is measured, and how deception is detected." },
-      { titulo: "Mechanistic interpretability", cuerpo: "Looking inside the network to understand what it is computing and why." },
-      { titulo: "Minimising harm", cuerpo: "AI control, constitutional classifiers, and breaking the chain that leads from a capable model to real harm." },
-      { titulo: "How to start contributing", cuerpo: "Where your skills fit and what your concrete next step is." },
+      { titulo: "What it takes for AI to go well", cuerpo: "Why today's models are not safe by default, and which technical approaches exist to change that." },
+      { titulo: "Training safer models", cuerpo: "How RLHF works, which other methods are used to fine-tune a model, and where they fall short." },
+      { titulo: "Evaluations", cuerpo: "How to measure what a model is capable of, and how to look for whether it is hiding something." },
+      { titulo: "Mechanistic interpretability", cuerpo: "The techniques for seeing what a neural network computes on the inside, and how far they reach today." },
+      { titulo: "Minimising harm", cuerpo: "How to limit what a model can do even if it is misaligned, with AI control and constitutional classifiers." },
+      { titulo: "How to start contributing", cuerpo: "Which open problems fit what you already know how to do, and how to take the first step." },
     ],
   },
   resultado: {
@@ -487,7 +499,11 @@ const TAIS_EN: PaginaCurso = {
     },
     {
       q: "Where are the in-person sessions?",
-      a: "In Bogotá, on the campus of Universidad Externado or Universidad de los Andes; the venue is confirmed before the seminar starts, and there is free food. The other sessions are online.",
+      a: "At Universidad de los Andes, in Bogotá, with free food. The other sessions are online.",
+    },
+    {
+      q: "When are the sessions?",
+      a: "The time is set with the selected participants: before the start we ask which slots work for them and fix the one that suits the cohort best.",
     },
     {
       q: "What language is it in?",
@@ -511,7 +527,7 @@ const AGI_PT: PaginaCurso = {
   entrada:
     "A IA avançada avança mais rápido do que as pessoas preparadas para pensá-la. Cinco semanas para entender quem a constrói, com que velocidade avança e o que pode dar errado. De qualquer área.",
   linea: "De 12 de outubro a 15 de novembro de 2026. Inscreva-se até 9 de outubro.",
-  hechos: { formato: "Presencial e on-line", dedicacion: "3 h por semana", fechas: "12 out – 15 nov 2026" },
+  hechos: { formato: "Misto: presencial e on-line", dedicacion: "3 h por semana", fechas: "12 out – 15 nov 2026" },
   porque: {
     titulo: "A IA avançada anda mais rápido que as pessoas preparadas para pensá-la",
     parrafos: [
@@ -546,8 +562,8 @@ const AGI_PT: PaginaCurso = {
   sala: {
     titulo: "Uma turma pequena que discute toda semana",
     parrafos: [
-      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **duas horas de sessão com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana. Todas as leituras e vídeos são em inglês, como a BlueDot os publica; a discussão é em espanhol. A modalidade é mista: há sessões presenciais na Universidad de los Andes e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
-      "O facilitador é {facilitadores}. A turma mistura de propósito gente de áreas diferentes: **a discussão é onde as leituras viram uma opinião própria**, e as pessoas com quem você discute são a rede com a qual vai trabalhar depois.",
+      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **duas horas de sessão com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana, em um horário definido com os participantes selecionados. Todas as leituras e vídeos são em inglês, como a BlueDot os publica; a discussão é em espanhol. A modalidade é mista: há sessões presenciais na Universidad de los Andes e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
+      "O facilitador é {facilitadores}. A turma mistura de propósito gente de áreas diferentes: **a discussão é onde as leituras viram uma opinião própria**, e a turma fica como uma comunidade de pares com quem seguir explorando o campo depois do seminário.",
     ],
   },
   semanas: {
@@ -591,6 +607,10 @@ const AGI_PT: PaginaCurso = {
       a: "Na Universidad de los Andes, em Bogotá, com comida grátis. As demais sessões são on-line.",
     },
     {
+      q: "Em que horário são as sessões?",
+      a: "É definido com os participantes selecionados: antes de começar, perguntamos quais faixas servem para eles e fixamos a que melhor atende à turma.",
+    },
+    {
       q: "Em que idioma é?",
       a: "As discussões são em espanhol. Todas as leituras, vídeos e podcasts são em inglês, como a BlueDot Impact os publica, então é preciso ler inglês com conforto.",
     },
@@ -612,7 +632,7 @@ const TAIS_PT: PaginaCurso = {
   entrada:
     "As capacidades da IA avançam mais rápido do que a segurança. Seis semanas sobre como fechar essa lacuna: treinar modelos mais seguros, avaliá-los, olhar dentro deles e limitar o dano quando falham. Para quem tem base técnica.",
   linea: "De 12 de outubro a 22 de novembro de 2026. Inscreva-se até 9 de outubro.",
-  hechos: { formato: "Presencial e on-line", dedicacion: "3 h por semana", fechas: "12 out – 22 nov 2026" },
+  hechos: { formato: "Misto: presencial e on-line", dedicacion: "3 h por semana", fechas: "12 out – 22 nov 2026" },
   porque: {
     titulo: "As capacidades avançam mais rápido que a segurança",
     parrafos: [
@@ -647,20 +667,20 @@ const TAIS_PT: PaginaCurso = {
   sala: {
     titulo: "Uma turma pequena que discute toda semana",
     parrafos: [
-      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **duas horas de sessão com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana. Todas as leituras e vídeos são em inglês, como a BlueDot os publica; a discussão é em espanhol. A modalidade é mista: há sessões presenciais em Bogotá, na Universidad Externado ou na Universidad de los Andes, e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
-      "Os facilitadores são {facilitadores}. **A discussão é onde os pressupostos são postos à prova** e onde as leituras se conectam com o trabalho feito em laboratórios e organizações de pesquisa; as pessoas com quem você discute são a rede com a qual vai trabalhar depois.",
+      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **duas horas de sessão com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana, em um horário definido com os participantes selecionados. Todas as leituras e vídeos são em inglês, como a BlueDot os publica; a discussão é em espanhol. A modalidade é mista: há sessões presenciais na Universidad de los Andes e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
+      "Os facilitadores são {facilitadores}. **A discussão é onde os pressupostos são postos à prova** e onde as leituras se conectam com o trabalho feito em laboratórios e organizações de pesquisa, e a turma fica como uma comunidade de pares com quem seguir explorando o campo depois do seminário.",
     ],
   },
   semanas: {
     titulo: "Seis semanas, do problema de fundo ao seu próximo passo",
     entrada: "Toda semana: uma hora de material leve e duas horas de sessão, de leitura aprofundada e de discussão. As sessões se alternam: a primeira semana é presencial, a segunda on-line, e assim até o fim.",
     unidades: [
-      { titulo: "O que é preciso para a IA dar certo", cuerpo: "O problema de fundo e o mapa das abordagens técnicas que tentam resolvê-lo." },
-      { titulo: "Treinar modelos mais seguros", cuerpo: "RLHF e os métodos usados hoje para que os modelos façam o que se pede, e onde falham." },
-      { titulo: "Avaliações", cuerpo: "O que um modelo pode fazer frente ao que ele fará, como se mede e como se detecta o engano." },
-      { titulo: "Interpretabilidade mecanicista", cuerpo: "Olhar dentro da rede para entender o que ela está calculando e por quê." },
-      { titulo: "Minimizar o dano", cuerpo: "AI control, classificadores constitucionais e cortar a cadeia que leva de um modelo capaz a um dano real." },
-      { titulo: "Como começar a contribuir", cuerpo: "Onde suas habilidades se encaixam e qual é seu próximo passo concreto." },
+      { titulo: "O que é preciso para a IA dar certo", cuerpo: "Por que os modelos atuais não são seguros por padrão e quais abordagens técnicas existem para mudar isso." },
+      { titulo: "Treinar modelos mais seguros", cuerpo: "Como funciona o RLHF, que outros métodos se usam para ajustar um modelo e em que casos não bastam." },
+      { titulo: "Avaliações", cuerpo: "Como se mede o que um modelo é capaz de fazer e como se procura saber se ele está escondendo algo." },
+      { titulo: "Interpretabilidade mecanicista", cuerpo: "As técnicas para ver o que uma rede neural calcula por dentro e até onde chegam hoje." },
+      { titulo: "Minimizar o dano", cuerpo: "Como se limita o que um modelo pode fazer mesmo que esteja desalinhado, com AI control e classificadores constitucionais." },
+      { titulo: "Como começar a contribuir", cuerpo: "Quais problemas em aberto combinam com o que você já sabe fazer e como dar o primeiro passo." },
     ],
   },
   resultado: {
@@ -690,7 +710,11 @@ const TAIS_PT: PaginaCurso = {
     },
     {
       q: "Onde são as sessões presenciais?",
-      a: "Em Bogotá, no campus da Universidad Externado ou da Universidad de los Andes; o local é confirmado antes de o seminário começar, e tem comida grátis. As demais sessões são on-line.",
+      a: "Na Universidad de los Andes, em Bogotá, com comida grátis. As demais sessões são on-line.",
+    },
+    {
+      q: "Em que horário são as sessões?",
+      a: "É definido com os participantes selecionados: antes de começar, perguntamos quais faixas servem para eles e fixamos a que melhor atende à turma.",
     },
     {
       q: "Em que idioma é?",
