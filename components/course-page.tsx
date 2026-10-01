@@ -9,9 +9,9 @@ import type { Idioma } from "@/lib/idiomas";
 /* La página de cada seminario, con la estructura de las páginas de programa de
    aisecurity.sg y la densidad del encabezado de BlueDot: el nombre del
    seminario como h1, tres frases (por qué, qué se aprende, para quién), la
-   línea de fechas y la tira de datos clave; luego una columna angosta
-   y centrada, con bandas que alternan crema y arena, y una sección por
-   pregunta: por qué ahora, para quién es (cuatro perfiles en tarjetas), quién
+   línea de fechas y el botón; luego una columna angosta y centrada, con
+   bandas que alternan crema y arena, y una sección por pregunta: la caja
+   «De un vistazo» con los datos del seminario, por qué ahora, para quién es (cuatro perfiles en tarjetas), quién
    está en la sala, qué vas a hacer (una tarjeta por semana, con el número en
    grande), con qué sales (una lista), el panel para aplicar y las preguntas
    frecuentes. */
@@ -24,9 +24,6 @@ const PROSA = "text-body flex flex-col gap-5 text-aisc-ink";
 const TARJETA = "rounded-2xl border border-aisc-line bg-white/80";
 /* La modalidad de cada semana alterna desde una presencial (índice par). */
 const ENLACE = "text-aisc-forest transition-colors hover:text-aisc-coral";
-/* Cada fila de la ficha del encabezado: rótulo de ancho fijo y valor al lado. */
-const FILA_FICHA = "grid grid-cols-[112px_1fr] items-baseline gap-x-4 border-b border-aisc-sand/15 py-3.5 md:grid-cols-[128px_1fr] md:gap-x-6";
-const ROTULO_FICHA = "text-body-sm text-aisc-sand/60";
 const PATRON = "/aisc/patterns/aisc-wash-lattice.svg";
 /* Un icono de una sola línea por seminario, al modo de los hero-graphic de
    BlueDot: futuros que se bifurcan y un escudo con una red adentro. */
@@ -150,12 +147,6 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
           style={{ color: "transparent" }}
           src={HERO_CURSO[curso]}
         />
-        {/* La retícula se apaga antes de la tira de datos: sus líneas son del
-            mismo color que el texto y lo volvían ilegible. */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden h-[26rem] bg-linear-to-b from-aisc-forest-deep/0 to-aisc-forest-deep to-40% md:block"
-        />
         <SiteHeader active={RUTA_CURSO[curso][idioma]} />
         <div className={`${ANCHO} relative z-10 flex flex-col pt-28 md:pt-32`}>
           <div className="flex max-w-[880px] flex-col gap-5 pb-12 md:pb-16">
@@ -168,36 +159,34 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
               </a>
             )}
           </div>
-
-          {/* La ficha del seminario, dentro del encabezado: filas de rótulo y
-              valor separadas por una línea fina, en dos columnas de tres filas.
-              Todo en el mismo tamaño de texto: es una ficha, no un cartel. */}
-          <dl className="mb-12 grid grid-cols-1 border-t border-aisc-sand/25 md:mb-16 md:grid-cols-2 md:gap-x-16">
-            {hechos.map((h) => (
-              <div className={FILA_FICHA} key={h.rotulo}>
-                <dt className={ROTULO_FICHA}>{h.rotulo}</dt>
-                <dd className="text-body-sm text-aisc-sand">{h.valor}</dd>
-              </div>
-            ))}
-            <div className={FILA_FICHA}>
-              <dt className={ROTULO_FICHA}>{r.materiales}</dt>
-              <dd className="text-body-sm text-aisc-sand">
-                <a
-                  className="transition-colors hover:text-aisc-coral"
-                  href={BLUEDOT_CURSO[curso]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  BlueDot Impact · {BLUEDOT_NOMBRE[curso]}
-                </a>
-              </dd>
-            </div>
-          </dl>
         </div>
       </section>
 
       <section id="porque" className="bg-aisc-cream">
         <div className={SECCION}>
+          {/* «De un vistazo»: los datos del seminario en una caja aparte, en el
+              cuerpo y no en el encabezado, como la sección «How the course
+              works» de BlueDot. Rótulo pequeño sobre cada valor, sin líneas. */}
+          <div className={`${TARJETA} mb-6 flex flex-col gap-6 p-6 md:mb-10 md:p-8`}>
+            <h2 className="text-display-4">{r.vistazo}</h2>
+            <dl className="grid grid-cols-1 gap-x-10 gap-y-5 sm:grid-cols-2">
+              {hechos.map((h) => (
+                <div className="flex flex-col gap-1" key={h.rotulo}>
+                  <dt className="text-meta text-aisc-muted">{h.rotulo}</dt>
+                  <dd className="text-body text-aisc-ink">{h.valor}</dd>
+                </div>
+              ))}
+              <div className="flex flex-col gap-1">
+                <dt className="text-meta text-aisc-muted">{r.materiales}</dt>
+                <dd className="text-body text-aisc-ink">
+                  <a className={ENLACE} href={BLUEDOT_CURSO[curso]} target="_blank" rel="noopener noreferrer">
+                    BlueDot Impact
+                  </a>
+                  , {BLUEDOT_NOMBRE[curso]}
+                </dd>
+              </div>
+            </dl>
+          </div>
           <h2 className={TITULO}>{p.porque.titulo}</h2>
           <div className={PROSA}>
             {p.porque.parrafos.map((t) => (
