@@ -104,7 +104,7 @@ const AGI_ES: PaginaCurso = {
     "Seminario con cohorte de cinco semanas, desde la semana del 12 de octubre de 2026, con los materiales de BlueDot Impact. Para entender hacia dónde va la IA avanzada y encontrar tu punto de entrada. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 9 de octubre.",
   entrada:
     "La IA avanzada va más rápido que la gente preparada para pensarla. Cinco semanas para entender quién la construye, qué tan rápido avanza y qué podría salir mal. Desde cualquier disciplina.",
-  linea: "Del 12 de octubre al 15 de noviembre de 2026. Aplica hasta el 9 de octubre.",
+  linea: "Del 12 de octubre al 15 de noviembre de 2026. Cupos limitados: aplica hasta el 9 de octubre.",
   tarjetas: [
     { titulo: "Cinco semanas", cuerpo: "Del 12 de octubre al 15 de noviembre de 2026, unas tres horas por semana" },
     { titulo: "Mixto: presencial y en línea", cuerpo: "Sesiones en la Universidad de los Andes, con comida gratis, y sesiones en línea" },
@@ -169,7 +169,7 @@ const AGI_ES: PaginaCurso = {
     ],
   },
   plazo:
-    "Las aplicaciones están abiertas **hasta el viernes 9 de octubre a las 11:59 p. m.**, hora de Colombia. El seminario arranca la **semana del 12 de octubre** y termina el 15 de noviembre. Es **gratis**, y quien lo complete recibe un certificado de AI Safety Colombia.",
+    "Las aplicaciones están abiertas **hasta el viernes 9 de octubre a las 11:59 p. m.**, hora de Colombia. El seminario arranca la **semana del 12 de octubre** y termina el 15 de noviembre. Es **gratis**, y quien lo complete recibe un certificado de AI Safety Colombia. **Los cupos son limitados y hay selección**: leemos cada aplicación y avisamos a todos, queden o no, antes de que arranque la cohorte.",
   otro: "Si te interesa más la parte técnica (interpretabilidad, evaluaciones, investigación en alineación), mira el {curso}.",
   faq: [
     {
@@ -187,6 +187,10 @@ const AGI_ES: PaginaCurso = {
     {
       q: "¿Dónde son las sesiones presenciales?",
       a: "En la Universidad de los Andes, en Bogotá, con comida gratis. Las demás sesiones son en línea.",
+    },
+    {
+      q: "¿Hay selección o entra todo el que aplica?",
+      a: "Hay selección: los cupos son limitados. Leemos cada aplicación y escogemos según lo que escribas y el encaje con el perfil que describe esta página. Avisamos a todos, queden o no, antes de que arranque la cohorte.",
     },
     {
       q: "¿En qué horario son las sesiones?",
@@ -213,7 +217,7 @@ const TAIS_ES: PaginaCurso = {
     "Seminario con cohorte de seis semanas, desde la semana del 12 de octubre de 2026, con los materiales de BlueDot Impact: alineación, evaluaciones, interpretabilidad y AI control. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 9 de octubre.",
   entrada:
     "Las capacidades de la IA avanzan más rápido que la seguridad. Seis semanas sobre cómo cerrar esa brecha: entrenar modelos más seguros, evaluarlos, mirarlos por dentro y limitar el daño cuando fallan. Para gente con base técnica.",
-  linea: "Del 12 de octubre al 22 de noviembre de 2026. Aplica hasta el 9 de octubre.",
+  linea: "Del 12 de octubre al 22 de noviembre de 2026. Cupos limitados: aplica hasta el 9 de octubre.",
   tarjetas: [
     { titulo: "Seis semanas", cuerpo: "Del 12 de octubre al 22 de noviembre de 2026, unas tres horas por semana" },
     { titulo: "Mixto: presencial y en línea", cuerpo: "Sesiones en la Universidad de los Andes, con comida gratis, y sesiones en línea" },
@@ -279,7 +283,7 @@ const TAIS_ES: PaginaCurso = {
     ],
   },
   plazo:
-    "Las aplicaciones están abiertas **hasta el viernes 9 de octubre a las 11:59 p. m.**, hora de Colombia. El seminario arranca la **semana del 12 de octubre** y termina el 22 de noviembre. Es **gratis**, y quien lo complete recibe un certificado de AI Safety Colombia.",
+    "Las aplicaciones están abiertas **hasta el viernes 9 de octubre a las 11:59 p. m.**, hora de Colombia. El seminario arranca la **semana del 12 de octubre** y termina el 22 de noviembre. Es **gratis**, y quien lo complete recibe un certificado de AI Safety Colombia. **Los cupos son limitados y hay selección**: leemos cada aplicación y avisamos a todos, queden o no, antes de que arranque la cohorte.",
   otro: "Si prefieres empezar por el panorama estratégico, mira el {curso}.",
   faq: [
     {
@@ -297,6 +301,10 @@ const TAIS_ES: PaginaCurso = {
     {
       q: "¿Dónde son las sesiones presenciales?",
       a: "En la Universidad de los Andes, en Bogotá, con comida gratis. Las demás sesiones son en línea.",
+    },
+    {
+      q: "¿Hay selección o entra todo el que aplica?",
+      a: "Hay selección: los cupos son limitados. Leemos cada aplicación y escogemos según lo que escribas y el encaje con el perfil que describe esta página. Avisamos a todos, queden o no, antes de que arranque la cohorte.",
     },
     {
       q: "¿En qué horario son las sesiones?",
@@ -323,7 +331,7 @@ const AGI_EN: PaginaCurso = {
     "A five-week cohort-based seminar starting the week of 12 October 2026, using BlueDot Impact's materials. Understand where advanced AI is heading and find your entry point. Free, with an AI Safety Colombia certificate. Applications close 9 October.",
   entrada:
     "Advanced AI is moving faster than the people ready to think about it. Five weeks to understand who is building it, how fast it is moving and what could go wrong. From any discipline.",
-  linea: "12 October to 15 November 2026. Apply by 9 October.",
+  linea: "12 October to 15 November 2026. Places are limited: apply by 9 October.",
   tarjetas: [
     { titulo: "Five weeks", cuerpo: "12 October to 15 November 2026, about three hours a week" },
     { titulo: "Mixed: in person and online", cuerpo: "Sessions at Universidad de los Andes, with free food, and sessions online" },
@@ -388,7 +396,7 @@ const AGI_EN: PaginaCurso = {
     ],
   },
   plazo:
-    "Applications are open **until Friday 9 October at 11:59 pm**, Colombia time. The seminar starts the **week of 12 October** and ends on 15 November. It is **free**, and everyone who completes it receives an AI Safety Colombia certificate.",
+    "Applications are open **until Friday 9 October at 11:59 pm**, Colombia time. The seminar starts the **week of 12 October** and ends on 15 November. It is **free**, and everyone who completes it receives an AI Safety Colombia certificate. **Places are limited and there is a selection process**: we read every application and let everyone know, accepted or not, before the cohort starts.",
   otro: "If you're more interested in the technical side (interpretability, evaluations, alignment research), see the {curso}.",
   faq: [
     {
@@ -406,6 +414,10 @@ const AGI_EN: PaginaCurso = {
     {
       q: "Where are the in-person sessions?",
       a: "At Universidad de los Andes, in Bogotá, with free food. The other sessions are online.",
+    },
+    {
+      q: "Is there a selection process, or does everyone who applies get in?",
+      a: "There is a selection process: places are limited. We read every application and choose based on what you write and how well you fit the profile this page describes. We let everyone know, accepted or not, before the cohort starts.",
     },
     {
       q: "When are the sessions?",
@@ -432,7 +444,7 @@ const TAIS_EN: PaginaCurso = {
     "A six-week cohort-based seminar starting the week of 12 October 2026, using BlueDot Impact's materials: alignment, evaluations, interpretability and AI control. Free, with an AI Safety Colombia certificate. Applications close 9 October.",
   entrada:
     "AI capabilities are advancing faster than safety. Six weeks on closing that gap: training safer models, evaluating them, looking inside them and limiting the damage when they fail. For people with a technical background.",
-  linea: "12 October to 22 November 2026. Apply by 9 October.",
+  linea: "12 October to 22 November 2026. Places are limited: apply by 9 October.",
   tarjetas: [
     { titulo: "Six weeks", cuerpo: "12 October to 22 November 2026, about three hours a week" },
     { titulo: "Mixed: in person and online", cuerpo: "Sessions at Universidad de los Andes, with free food, and sessions online" },
@@ -498,7 +510,7 @@ const TAIS_EN: PaginaCurso = {
     ],
   },
   plazo:
-    "Applications are open **until Friday 9 October at 11:59 pm**, Colombia time. The seminar starts the **week of 12 October** and ends on 22 November. It is **free**, and everyone who completes it receives an AI Safety Colombia certificate.",
+    "Applications are open **until Friday 9 October at 11:59 pm**, Colombia time. The seminar starts the **week of 12 October** and ends on 22 November. It is **free**, and everyone who completes it receives an AI Safety Colombia certificate. **Places are limited and there is a selection process**: we read every application and let everyone know, accepted or not, before the cohort starts.",
   otro: "If you'd rather start with the strategic picture, see the {curso}.",
   faq: [
     {
@@ -516,6 +528,10 @@ const TAIS_EN: PaginaCurso = {
     {
       q: "Where are the in-person sessions?",
       a: "At Universidad de los Andes, in Bogotá, with free food. The other sessions are online.",
+    },
+    {
+      q: "Is there a selection process, or does everyone who applies get in?",
+      a: "There is a selection process: places are limited. We read every application and choose based on what you write and how well you fit the profile this page describes. We let everyone know, accepted or not, before the cohort starts.",
     },
     {
       q: "When are the sessions?",
@@ -542,7 +558,7 @@ const AGI_PT: PaginaCurso = {
     "Seminário em turma de cinco semanas, a partir da semana de 12 de outubro de 2026, com os materiais da BlueDot Impact. Para entender para onde vai a IA avançada e encontrar seu ponto de entrada. Grátis, com certificado da AI Safety Colombia. Inscrições até 9 de outubro.",
   entrada:
     "A IA avançada avança mais rápido do que as pessoas preparadas para pensá-la. Cinco semanas para entender quem a constrói, com que velocidade avança e o que pode dar errado. De qualquer área.",
-  linea: "De 12 de outubro a 15 de novembro de 2026. Inscreva-se até 9 de outubro.",
+  linea: "De 12 de outubro a 15 de novembro de 2026. Vagas limitadas: inscreva-se até 9 de outubro.",
   tarjetas: [
     { titulo: "Cinco semanas", cuerpo: "De 12 de outubro a 15 de novembro de 2026, cerca de três horas por semana" },
     { titulo: "Misto: presencial e on-line", cuerpo: "Sessões na Universidad de los Andes, com comida grátis, e sessões on-line" },
@@ -607,7 +623,7 @@ const AGI_PT: PaginaCurso = {
     ],
   },
   plazo:
-    "As inscrições estão abertas **até sexta-feira, 9 de outubro, às 23h59**, horário da Colômbia. O seminário começa na **semana de 12 de outubro** e termina em 15 de novembro. É **grátis**, e quem o concluir recebe um certificado da AI Safety Colombia.",
+    "As inscrições estão abertas **até sexta-feira, 9 de outubro, às 23h59**, horário da Colômbia. O seminário começa na **semana de 12 de outubro** e termina em 15 de novembro. É **grátis**, e quem o concluir recebe um certificado da AI Safety Colombia. **As vagas são limitadas e há seleção**: lemos cada inscrição e avisamos a todos, aprovados ou não, antes de a turma começar.",
   otro: "Se você tem mais interesse na parte técnica (interpretabilidade, avaliações, pesquisa em alinhamento), veja o {curso}.",
   faq: [
     {
@@ -625,6 +641,10 @@ const AGI_PT: PaginaCurso = {
     {
       q: "Onde são as sessões presenciais?",
       a: "Na Universidad de los Andes, em Bogotá, com comida grátis. As demais sessões são on-line.",
+    },
+    {
+      q: "Há seleção ou entra todo mundo que se inscreve?",
+      a: "Há seleção: as vagas são limitadas. Lemos cada inscrição e escolhemos pelo que você escrever e pelo encaixe com o perfil que esta página descreve. Avisamos a todos, aprovados ou não, antes de a turma começar.",
     },
     {
       q: "Em que horário são as sessões?",
@@ -651,7 +671,7 @@ const TAIS_PT: PaginaCurso = {
     "Seminário em turma de seis semanas, a partir da semana de 12 de outubro de 2026, com os materiais da BlueDot Impact: alinhamento, avaliações, interpretabilidade e AI control. Grátis, com certificado da AI Safety Colombia. Inscrições até 9 de outubro.",
   entrada:
     "As capacidades da IA avançam mais rápido do que a segurança. Seis semanas sobre como fechar essa lacuna: treinar modelos mais seguros, avaliá-los, olhar dentro deles e limitar o dano quando falham. Para quem tem base técnica.",
-  linea: "De 12 de outubro a 22 de novembro de 2026. Inscreva-se até 9 de outubro.",
+  linea: "De 12 de outubro a 22 de novembro de 2026. Vagas limitadas: inscreva-se até 9 de outubro.",
   tarjetas: [
     { titulo: "Seis semanas", cuerpo: "De 12 de outubro a 22 de novembro de 2026, cerca de três horas por semana" },
     { titulo: "Misto: presencial e on-line", cuerpo: "Sessões na Universidad de los Andes, com comida grátis, e sessões on-line" },
@@ -717,7 +737,7 @@ const TAIS_PT: PaginaCurso = {
     ],
   },
   plazo:
-    "As inscrições estão abertas **até sexta-feira, 9 de outubro, às 23h59**, horário da Colômbia. O seminário começa na **semana de 12 de outubro** e termina em 22 de novembro. É **grátis**, e quem o concluir recebe um certificado da AI Safety Colombia.",
+    "As inscrições estão abertas **até sexta-feira, 9 de outubro, às 23h59**, horário da Colômbia. O seminário começa na **semana de 12 de outubro** e termina em 22 de novembro. É **grátis**, e quem o concluir recebe um certificado da AI Safety Colombia. **As vagas são limitadas e há seleção**: lemos cada inscrição e avisamos a todos, aprovados ou não, antes de a turma começar.",
   otro: "Se prefere começar pelo panorama estratégico, veja o {curso}.",
   faq: [
     {
@@ -735,6 +755,10 @@ const TAIS_PT: PaginaCurso = {
     {
       q: "Onde são as sessões presenciais?",
       a: "Na Universidad de los Andes, em Bogotá, com comida grátis. As demais sessões são on-line.",
+    },
+    {
+      q: "Há seleção ou entra todo mundo que se inscreve?",
+      a: "Há seleção: as vagas são limitadas. Lemos cada inscrição e escolhemos pelo que você escrever e pelo encaixe com o perfil que esta página descreve. Avisamos a todos, aprovados ou não, antes de a turma começar.",
     },
     {
       q: "Em que horário são as sessões?",
