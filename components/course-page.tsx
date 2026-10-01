@@ -253,19 +253,16 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
           <div className={PROSA}>
             <p>{p.semanas.entrada}</p>
           </div>
-          {/* El programa va en filas separadas por una línea, como un temario:
-              semana y modalidad a la izquierda, título y una frase a la derecha. */}
-          <ol className="flex flex-col border-t border-aisc-forest-deep/30">
+          {/* Una tarjeta por semana, con el mismo patrón de las tarjetas de perfiles:
+              a la izquierda la semana y la modalidad, a la derecha el título y una frase. */}
+          <ol className="flex flex-col gap-3">
             {p.semanas.unidades.map((u, i) => (
-              <li
-                className="grid grid-cols-1 gap-x-8 gap-y-2 border-b border-aisc-forest-deep/30 py-5 md:grid-cols-[168px_1fr] md:py-6"
-                key={u.titulo}
-              >
+              <li className={`${TARJETA} grid grid-cols-1 gap-x-8 gap-y-2 p-6 md:grid-cols-[168px_1fr]`} key={u.titulo}>
                 <div className="flex items-baseline gap-3 md:flex-col md:gap-1">
-                  <span className="text-kicker text-aisc-forest">
+                  <span className="text-kicker text-aisc-muted">
                     {r.semana} {i + 1}
                   </span>
-                  <span className="text-body-sm text-aisc-muted">{i % 2 === 0 ? r.presencial : r.enLinea}</span>
+                  <span className="text-body-sm text-aisc-forest">{i % 2 === 0 ? r.presencial : r.enLinea}</span>
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <h3 className="text-display-4">{u.titulo}</h3>
