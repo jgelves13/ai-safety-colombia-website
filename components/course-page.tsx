@@ -24,6 +24,9 @@ const PROSA = "text-body flex flex-col gap-5 text-aisc-ink";
 const TARJETA = "rounded-2xl border border-aisc-line bg-white/80";
 /* La modalidad de cada semana alterna desde una presencial (índice par). */
 const ENLACE = "text-aisc-forest transition-colors hover:text-aisc-coral";
+/* Cada fila de la ficha del encabezado: rótulo de ancho fijo y valor al lado. */
+const FILA_FICHA = "grid grid-cols-[112px_1fr] items-baseline gap-x-4 border-b border-aisc-sand/15 py-3.5 md:grid-cols-[128px_1fr] md:gap-x-6";
+const ROTULO_FICHA = "text-body-sm text-aisc-sand/60";
 const PATRON = "/aisc/patterns/aisc-wash-lattice.svg";
 /* Un icono de una sola línea por seminario, al modo de los hero-graphic de
    BlueDot: futuros que se bifurcan y un escudo con una red adentro. */
@@ -151,7 +154,7 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
             mismo color que el texto y lo volvían ilegible. */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden h-72 bg-linear-to-b from-aisc-forest-deep/0 to-aisc-forest-deep to-45% md:block"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden h-[26rem] bg-linear-to-b from-aisc-forest-deep/0 to-aisc-forest-deep to-40% md:block"
         />
         <SiteHeader active={RUTA_CURSO[curso][idioma]} />
         <div className={`${ANCHO} relative z-10 flex flex-col pt-28 md:pt-32`}>
@@ -166,27 +169,27 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
             )}
           </div>
 
-          {/* La tira de datos clave, dentro del encabezado: tres columnas iguales
-              y dos filas, para que ningún valor se parta y las celdas midan lo mismo. */}
-          <dl className="grid grid-cols-2 gap-x-8 gap-y-8 border-t border-aisc-sand/20 py-8 md:grid-cols-3 md:py-10">
+          {/* La ficha del seminario, dentro del encabezado: filas de rótulo y
+              valor separadas por una línea fina, en dos columnas de tres filas.
+              Todo en el mismo tamaño de texto: es una ficha, no un cartel. */}
+          <dl className="mb-12 grid grid-cols-1 border-t border-aisc-sand/25 md:mb-16 md:grid-cols-2 md:gap-x-16">
             {hechos.map((h) => (
-              <div className="flex flex-col gap-1.5" key={h.rotulo}>
-                <dt className="text-kicker text-aisc-sand/60">{h.rotulo}</dt>
-                <dd className="text-display-4 text-aisc-sand">{h.valor}</dd>
+              <div className={FILA_FICHA} key={h.rotulo}>
+                <dt className={ROTULO_FICHA}>{h.rotulo}</dt>
+                <dd className="text-body-sm text-aisc-sand">{h.valor}</dd>
               </div>
             ))}
-            <div className="flex flex-col gap-1.5">
-              <dt className="text-kicker text-aisc-sand/60">{r.materiales}</dt>
-              <dd className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
+            <div className={FILA_FICHA}>
+              <dt className={ROTULO_FICHA}>{r.materiales}</dt>
+              <dd className="text-body-sm text-aisc-sand">
                 <a
-                  className="inline-flex w-fit rounded-md bg-aisc-cream px-2.5 py-1.5"
+                  className="transition-colors hover:text-aisc-coral"
                   href={BLUEDOT_CURSO[curso]}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img alt="BlueDot Impact" className="h-5 w-auto" src="/aisc/aliados/bluedot.png" />
+                  BlueDot Impact · {BLUEDOT_NOMBRE[curso]}
                 </a>
-                <span className="text-body-sm text-aisc-sand/85">{BLUEDOT_NOMBRE[curso]}</span>
               </dd>
             </div>
           </dl>
