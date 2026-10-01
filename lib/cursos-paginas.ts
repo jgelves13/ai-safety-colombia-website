@@ -737,8 +737,7 @@ export const PAGINAS_CURSO: Record<CursoId, Record<Idioma, PaginaCurso>> = {
 };
 
 type Rotulos = {
-  /* La caja «De un vistazo» del cuerpo. */
-  vistazo: string;
+  /* La ficha de datos del encabezado. */
   formato: string;
   dedicacion: string;
   fechas: string;
@@ -773,7 +772,6 @@ export const ROTULOS_CURSO: Record<Idioma, Rotulos> = {
     idioma: "Idioma",
     idiomaValor: "Español, lecturas en inglés",
     materiales: "Materiales de",
-    vistazo: "De un vistazo",
     semana: "Semana",
     presencial: "Presencial",
     enLinea: "En línea",
@@ -794,7 +792,6 @@ export const ROTULOS_CURSO: Record<Idioma, Rotulos> = {
     idioma: "Language",
     idiomaValor: "Spanish, readings in English",
     materiales: "Materials by",
-    vistazo: "At a glance",
     semana: "Week",
     presencial: "In person",
     enLinea: "Online",
@@ -815,7 +812,6 @@ export const ROTULOS_CURSO: Record<Idioma, Rotulos> = {
     idioma: "Idioma",
     idiomaValor: "Espanhol, leituras em inglês",
     materiales: "Materiais da",
-    vistazo: "Em resumo",
     semana: "Semana",
     presencial: "Presencial",
     enLinea: "On-line",

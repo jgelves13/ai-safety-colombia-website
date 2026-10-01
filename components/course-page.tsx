@@ -9,9 +9,9 @@ import type { Idioma } from "@/lib/idiomas";
 /* La página de cada seminario, con la estructura de las páginas de programa de
    aisecurity.sg y la densidad del encabezado de BlueDot: el nombre del
    seminario como h1, tres frases (por qué, qué se aprende, para quién), la
-   línea de fechas y el botón; luego una columna angosta y centrada, con
-   bandas que alternan crema y arena, y una sección por pregunta: la caja
-   «De un vistazo» con los datos del seminario, por qué ahora, para quién es (cuatro perfiles en tarjetas), quién
+   línea de fechas, el botón y los datos del seminario en una ficha
+   discreta; luego una columna angosta y centrada, con bandas que alternan
+   crema y arena, y una sección por pregunta: por qué ahora, para quién es (cuatro perfiles en tarjetas), quién
    está en la sala, qué vas a hacer (una tarjeta por semana, con el número en
    grande), con qué sales (una lista), el panel para aplicar y las preguntas
    frecuentes. */
@@ -147,6 +147,12 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
           style={{ color: "transparent" }}
           src={HERO_CURSO[curso]}
         />
+        {/* La ilustración y la retícula se apagan antes de los datos: sus
+            líneas son del mismo color que el texto y lo volvían ilegible. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden h-[26rem] bg-linear-to-b from-aisc-forest-deep/0 to-aisc-forest-deep to-40% md:block"
+        />
         <SiteHeader active={RUTA_CURSO[curso][idioma]} />
         <div className={`${ANCHO} relative z-10 flex flex-col pt-28 md:pt-32`}>
           <div className="flex max-w-[880px] flex-col gap-5 pb-12 md:pb-16">
@@ -159,34 +165,38 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
               </a>
             )}
           </div>
+
+          {/* Los datos del seminario, dentro del encabezado y bajo el botón:
+              tres columnas iguales y dos filas, rótulo pequeño en gris sobre
+              cada valor en texto normal. Sin cifras grandes, líneas ni chips:
+              es una ficha discreta, no un cartel. */}
+          <dl className="grid grid-cols-1 gap-x-8 gap-y-5 border-t border-aisc-sand/20 py-8 sm:grid-cols-3 sm:gap-y-6 md:py-10">
+            {hechos.map((h) => (
+              <div className="flex flex-col gap-1" key={h.rotulo}>
+                <dt className="text-meta text-aisc-sand/60">{h.rotulo}</dt>
+                <dd className="text-body text-aisc-sand">{h.valor}</dd>
+              </div>
+            ))}
+            <div className="flex flex-col gap-1">
+              <dt className="text-meta text-aisc-sand/60">{r.materiales}</dt>
+              <dd className="text-body text-aisc-sand">
+                <a
+                  className="transition-colors hover:text-aisc-coral"
+                  href={BLUEDOT_CURSO[curso]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  BlueDot Impact
+                </a>
+                , {BLUEDOT_NOMBRE[curso]}
+              </dd>
+            </div>
+          </dl>
         </div>
       </section>
 
       <section id="porque" className="bg-aisc-cream">
         <div className={SECCION}>
-          {/* «De un vistazo»: los datos del seminario en una caja aparte, en el
-              cuerpo y no en el encabezado, como la sección «How the course
-              works» de BlueDot. Rótulo pequeño sobre cada valor, sin líneas. */}
-          <div className={`${TARJETA} mb-6 flex flex-col gap-6 p-6 md:mb-10 md:p-8`}>
-            <h2 className="text-display-4">{r.vistazo}</h2>
-            <dl className="grid grid-cols-1 gap-x-10 gap-y-5 sm:grid-cols-2">
-              {hechos.map((h) => (
-                <div className="flex flex-col gap-1" key={h.rotulo}>
-                  <dt className="text-meta text-aisc-muted">{h.rotulo}</dt>
-                  <dd className="text-body text-aisc-ink">{h.valor}</dd>
-                </div>
-              ))}
-              <div className="flex flex-col gap-1">
-                <dt className="text-meta text-aisc-muted">{r.materiales}</dt>
-                <dd className="text-body text-aisc-ink">
-                  <a className={ENLACE} href={BLUEDOT_CURSO[curso]} target="_blank" rel="noopener noreferrer">
-                    BlueDot Impact
-                  </a>
-                  , {BLUEDOT_NOMBRE[curso]}
-                </dd>
-              </div>
-            </dl>
-          </div>
           <h2 className={TITULO}>{p.porque.titulo}</h2>
           <div className={PROSA}>
             {p.porque.parrafos.map((t) => (
