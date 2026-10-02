@@ -181,20 +181,8 @@ const AGI_ES: PaginaCurso = {
       a: "Para eso es el seminario. Sales con una opinión sobre qué problemas importan más y qué camino encaja con tus habilidades: investigación técnica, gobernanza, bioseguridad o construir algo nuevo.",
     },
     {
-      q: "¿De verdad es gratis?",
-      a: "Sí. No hay costos ocultos, y el certificado de AI Safety Colombia también es gratis.",
-    },
-    {
-      q: "¿Dónde son las sesiones presenciales?",
-      a: "En la Universidad de los Andes, en Bogotá, con comida gratis. Las demás sesiones son en línea.",
-    },
-    {
       q: "¿Hay selección o entra todo el que aplica?",
       a: "Hay selección: los cupos son limitados. Leemos cada aplicación y escogemos según lo que escribas y el encaje con el perfil que describe esta página. Avisamos a todos, queden o no, antes de que arranque la cohorte.",
-    },
-    {
-      q: "¿En qué horario son las sesiones?",
-      a: "Se define con los participantes seleccionados: antes de arrancar les preguntamos qué franjas les sirven y se fija la que mejor le quede a la cohorte.",
     },
     {
       q: "¿En qué idioma es?",
@@ -295,20 +283,8 @@ const TAIS_ES: PaginaCurso = {
       a: "No es obligatorio, pero ayuda: el Seminario de futuro y riesgos de la IA da el contexto sobre el que se construye este seminario. Si aplicas a este y no quedas, en el formulario puedes pedir que te consideremos para el Seminario de futuro y riesgos de la IA.",
     },
     {
-      q: "¿De verdad es gratis?",
-      a: "Sí. No hay costos ocultos, y el certificado de AI Safety Colombia también es gratis.",
-    },
-    {
-      q: "¿Dónde son las sesiones presenciales?",
-      a: "En la Universidad de los Andes, en Bogotá, con comida gratis. Las demás sesiones son en línea.",
-    },
-    {
       q: "¿Hay selección o entra todo el que aplica?",
       a: "Hay selección: los cupos son limitados. Leemos cada aplicación y escogemos según lo que escribas y el encaje con el perfil que describe esta página. Avisamos a todos, queden o no, antes de que arranque la cohorte.",
-    },
-    {
-      q: "¿En qué horario son las sesiones?",
-      a: "Se define con los participantes seleccionados: antes de arrancar les preguntamos qué franjas les sirven y se fija la que mejor le quede a la cohorte.",
     },
     {
       q: "¿En qué idioma es?",
@@ -408,20 +384,8 @@ const AGI_EN: PaginaCurso = {
       a: "That's what the seminar is for. You leave with a view on which problems matter most and which path fits your skills: technical research, governance, biosecurity, or building something new.",
     },
     {
-      q: "Is it really free?",
-      a: "Yes. There are no hidden costs, and the AI Safety Colombia certificate is free too.",
-    },
-    {
-      q: "Where are the in-person sessions?",
-      a: "At Universidad de los Andes, in Bogotá, with free food. The other sessions are online.",
-    },
-    {
       q: "Is there a selection process, or does everyone who applies get in?",
       a: "There is a selection process: places are limited. We read every application and choose based on what you write and how well you fit the profile this page describes. We let everyone know, accepted or not, before the cohort starts.",
-    },
-    {
-      q: "When are the sessions?",
-      a: "The time is set with the selected participants: before the start we ask which slots work for them and fix the one that suits the cohort best.",
     },
     {
       q: "What language is it in?",
@@ -522,20 +486,8 @@ const TAIS_EN: PaginaCurso = {
       a: "It isn't required, but it helps: the Seminar on the Future and Risks of AI gives the context this seminar builds on. If you apply to this one and aren't accepted, the form lets you ask to be considered for the Seminar on the Future and Risks of AI.",
     },
     {
-      q: "Is it really free?",
-      a: "Yes. There are no hidden costs, and the AI Safety Colombia certificate is free too.",
-    },
-    {
-      q: "Where are the in-person sessions?",
-      a: "At Universidad de los Andes, in Bogotá, with free food. The other sessions are online.",
-    },
-    {
       q: "Is there a selection process, or does everyone who applies get in?",
       a: "There is a selection process: places are limited. We read every application and choose based on what you write and how well you fit the profile this page describes. We let everyone know, accepted or not, before the cohort starts.",
-    },
-    {
-      q: "When are the sessions?",
-      a: "The time is set with the selected participants: before the start we ask which slots work for them and fix the one that suits the cohort best.",
     },
     {
       q: "What language is it in?",
@@ -635,20 +587,8 @@ const AGI_PT: PaginaCurso = {
       a: "É para isso que serve o seminário. Você sai com uma opinião sobre quais problemas importam mais e qual caminho combina com suas habilidades: pesquisa técnica, governança, biossegurança ou construir algo novo.",
     },
     {
-      q: "É grátis mesmo?",
-      a: "Sim. Não há custos ocultos, e o certificado da AI Safety Colombia também é grátis.",
-    },
-    {
-      q: "Onde são as sessões presenciais?",
-      a: "Na Universidad de los Andes, em Bogotá, com comida grátis. As demais sessões são on-line.",
-    },
-    {
       q: "Há seleção ou entra todo mundo que se inscreve?",
       a: "Há seleção: as vagas são limitadas. Lemos cada inscrição e escolhemos pelo que você escrever e pelo encaixe com o perfil que esta página descreve. Avisamos a todos, aprovados ou não, antes de a turma começar.",
-    },
-    {
-      q: "Em que horário são as sessões?",
-      a: "É definido com os participantes selecionados: antes de começar, perguntamos quais faixas servem para eles e fixamos a que melhor atende à turma.",
     },
     {
       q: "Em que idioma é?",
@@ -749,20 +689,8 @@ const TAIS_PT: PaginaCurso = {
       a: "Não é obrigatório, mas ajuda: o Seminário de futuro e riscos da IA dá o contexto sobre o qual este seminário se constrói. Se você se inscrever neste e não for aceito, no formulário pode pedir para ser considerado para o Seminário de futuro e riscos da IA.",
     },
     {
-      q: "É grátis mesmo?",
-      a: "Sim. Não há custos ocultos, e o certificado da AI Safety Colombia também é grátis.",
-    },
-    {
-      q: "Onde são as sessões presenciais?",
-      a: "Na Universidad de los Andes, em Bogotá, com comida grátis. As demais sessões são on-line.",
-    },
-    {
       q: "Há seleção ou entra todo mundo que se inscreve?",
       a: "Há seleção: as vagas são limitadas. Lemos cada inscrição e escolhemos pelo que você escrever e pelo encaixe com o perfil que esta página descreve. Avisamos a todos, aprovados ou não, antes de a turma começar.",
-    },
-    {
-      q: "Em que horário são as sessões?",
-      a: "É definido com os participantes selecionados: antes de começar, perguntamos quais faixas servem para eles e fixamos a que melhor atende à turma.",
     },
     {
       q: "Em que idioma é?",
