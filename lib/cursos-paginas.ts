@@ -185,6 +185,10 @@ const AGI_ES: PaginaCurso = {
       a: "Hay selección: los cupos son limitados. Leemos cada aplicación y escogemos según lo que escribas y el encaje con el perfil que describe esta página. Avisamos a todos, queden o no, antes de que arranque la cohorte.",
     },
     {
+      q: "¿En qué horario son las sesiones?",
+      a: "Se define con los participantes seleccionados: antes de arrancar les preguntamos qué franjas les sirven y se fija la que mejor le quede a la cohorte.",
+    },
+    {
       q: "¿En qué idioma es?",
       a: "Las discusiones son en español. Todas las lecturas, videos y podcasts son en inglés, tal como los publica BlueDot Impact, así que hace falta leer inglés con comodidad.",
     },
@@ -287,6 +291,10 @@ const TAIS_ES: PaginaCurso = {
       a: "Hay selección: los cupos son limitados. Leemos cada aplicación y escogemos según lo que escribas y el encaje con el perfil que describe esta página. Avisamos a todos, queden o no, antes de que arranque la cohorte.",
     },
     {
+      q: "¿En qué horario son las sesiones?",
+      a: "Se define con los participantes seleccionados: antes de arrancar les preguntamos qué franjas les sirven y se fija la que mejor le quede a la cohorte.",
+    },
+    {
       q: "¿En qué idioma es?",
       a: "Las discusiones son en español. Todas las lecturas, videos y podcasts son en inglés, tal como los publica BlueDot Impact, así que hace falta leer inglés con comodidad.",
     },
@@ -386,6 +394,10 @@ const AGI_EN: PaginaCurso = {
     {
       q: "Is there a selection process, or does everyone who applies get in?",
       a: "There is a selection process: places are limited. We read every application and choose based on what you write and how well you fit the profile this page describes. We let everyone know, accepted or not, before the cohort starts.",
+    },
+    {
+      q: "When are the sessions?",
+      a: "The time is set with the selected participants: before the start we ask which slots work for them and fix the one that suits the cohort best.",
     },
     {
       q: "What language is it in?",
@@ -490,6 +502,10 @@ const TAIS_EN: PaginaCurso = {
       a: "There is a selection process: places are limited. We read every application and choose based on what you write and how well you fit the profile this page describes. We let everyone know, accepted or not, before the cohort starts.",
     },
     {
+      q: "When are the sessions?",
+      a: "The time is set with the selected participants: before the start we ask which slots work for them and fix the one that suits the cohort best.",
+    },
+    {
       q: "What language is it in?",
       a: "The discussions are in Spanish. All readings, videos and podcasts are in English, as BlueDot Impact publishes them, so you need to read English comfortably.",
     },
@@ -589,6 +605,10 @@ const AGI_PT: PaginaCurso = {
     {
       q: "Há seleção ou entra todo mundo que se inscreve?",
       a: "Há seleção: as vagas são limitadas. Lemos cada inscrição e escolhemos pelo que você escrever e pelo encaixe com o perfil que esta página descreve. Avisamos a todos, aprovados ou não, antes de a turma começar.",
+    },
+    {
+      q: "Em que horário são as sessões?",
+      a: "O horário é definido com os participantes selecionados: antes de começar perguntamos quais faixas funcionam para eles e fixamos a que melhor atende à turma.",
     },
     {
       q: "Em que idioma é?",
@@ -691,6 +711,10 @@ const TAIS_PT: PaginaCurso = {
     {
       q: "Há seleção ou entra todo mundo que se inscreve?",
       a: "Há seleção: as vagas são limitadas. Lemos cada inscrição e escolhemos pelo que você escrever e pelo encaixe com o perfil que esta página descreve. Avisamos a todos, aprovados ou não, antes de a turma começar.",
+    },
+    {
+      q: "Em que horário são as sessões?",
+      a: "O horário é definido com os participantes selecionados: antes de começar perguntamos quais faixas funcionam para eles e fixamos a que melhor atende à turma.",
     },
     {
       q: "Em que idioma é?",
