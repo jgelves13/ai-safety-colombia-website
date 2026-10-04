@@ -106,7 +106,7 @@ const AGI_ES: PaginaCurso = {
     "La IA avanzada va más rápido que la gente preparada para pensarla. Cinco semanas para entender quién la construye, qué tan rápido avanza y qué podría salir mal. Desde cualquier disciplina.",
   linea: "Del 12 de octubre al 15 de noviembre de 2026. Cupos limitados: aplica hasta el 9 de octubre.",
   tarjetas: [
-    { titulo: "Cinco semanas", cuerpo: "Del 12 de octubre al 15 de noviembre de 2026, unas tres horas por semana" },
+    { titulo: "Cinco semanas", cuerpo: "Del 12 de octubre al 15 de noviembre de 2026, una sesión de dos horas por semana más una hora de material por tu cuenta" },
     { titulo: "Mixto: presencial y en línea", cuerpo: "Sesiones en la Universidad de los Andes, con comida gratis, y sesiones en línea" },
     { titulo: "Gratis, con certificado", cuerpo: "Materiales de BlueDot Impact; discusión en español, lecturas en inglés" },
   ],
@@ -144,13 +144,13 @@ const AGI_ES: PaginaCurso = {
   sala: {
     titulo: "Una cohorte pequeña que discute cada semana",
     parrafos: [
-      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **dos horas de sesión con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana, en un horario que se fija con los participantes seleccionados. Todas las lecturas y videos son en inglés, tal como los publica BlueDot; la discusión es en español. La modalidad es mixta: hay sesiones presenciales en la Universidad de los Andes y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
+      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **una sesión de dos horas con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana, en un horario que se fija con los participantes seleccionados. Todas las lecturas y videos son en inglés, tal como los publica BlueDot; la discusión es en español. La modalidad es mixta: hay sesiones presenciales en la Universidad de los Andes y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
       "El facilitador es {facilitadores}. La cohorte mezcla a propósito gente de distintas disciplinas: **la discusión es donde las lecturas se vuelven una opinión propia**, y la cohorte queda como una comunidad de pares con la que seguir explorando el campo después del seminario.",
     ],
   },
   semanas: {
     titulo: "Cinco semanas, del mapa de la carrera a tu siguiente paso",
-    entrada: "Cada semana: una hora de material ligero y dos horas de sesión, de lectura a fondo y de discusión. Las sesiones alternan: la primera semana es presencial, la segunda en línea, y así hasta el final.",
+    entrada: "Cada semana: una hora de material ligero y una sesión de dos horas, de lectura a fondo y de discusión. Las sesiones alternan: la primera semana es presencial, la segunda en línea, y así hasta el final.",
     unidades: [
       { titulo: "La carrera hacia la AGI", cuerpo: "Qué es la AGI, quién la está construyendo y por qué se corre para llegar primero." },
       { titulo: "Qué impulsa el progreso", cuerpo: "Cómputo, datos y algoritmos, y qué tan lejos puede llegar esa tendencia." },
@@ -211,7 +211,7 @@ const TAIS_ES: PaginaCurso = {
     "Las capacidades de la IA avanzan más rápido que la seguridad. Seis semanas sobre cómo cerrar esa brecha: entrenar modelos más seguros, evaluarlos, mirarlos por dentro y limitar el daño cuando fallan. Para gente con base técnica.",
   linea: "Del 12 de octubre al 22 de noviembre de 2026. Cupos limitados: aplica hasta el 9 de octubre.",
   tarjetas: [
-    { titulo: "Seis semanas", cuerpo: "Del 12 de octubre al 22 de noviembre de 2026, unas tres horas por semana" },
+    { titulo: "Seis semanas", cuerpo: "Del 12 de octubre al 22 de noviembre de 2026, una sesión de dos horas por semana más una hora de material por tu cuenta" },
     { titulo: "Mixto: presencial y en línea", cuerpo: "Sesiones en la Universidad de los Andes, con comida gratis, y sesiones en línea" },
     { titulo: "Gratis, con certificado", cuerpo: "Materiales de BlueDot Impact; discusión en español, lecturas en inglés" },
   ],
@@ -249,13 +249,13 @@ const TAIS_ES: PaginaCurso = {
   sala: {
     titulo: "Una cohorte pequeña que discute cada semana",
     parrafos: [
-      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **dos horas de sesión con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana, en un horario que se fija con los participantes seleccionados. Todas las lecturas y videos son en inglés, tal como los publica BlueDot; la discusión es en español. La modalidad es mixta: hay sesiones presenciales en la Universidad de los Andes y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
+      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **una sesión de dos horas con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana, en un horario que se fija con los participantes seleccionados. Todas las lecturas y videos son en inglés, tal como los publica BlueDot; la discusión es en español. La modalidad es mixta: hay sesiones presenciales en la Universidad de los Andes y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
       "Los facilitadores son {facilitadores}. **La discusión es donde se ponen a prueba los supuestos** y donde las lecturas se conectan con el trabajo que se hace en laboratorios y organizaciones de investigación, y la cohorte queda como una comunidad de pares con la que seguir explorando el campo después del seminario.",
     ],
   },
   semanas: {
     titulo: "Seis semanas, del problema de fondo a tu siguiente paso",
-    entrada: "Cada semana: una hora de material ligero y dos horas de sesión, de lectura a fondo y de discusión. Las sesiones alternan: la primera semana es presencial, la segunda en línea, y así hasta el final.",
+    entrada: "Cada semana: una hora de material ligero y una sesión de dos horas, de lectura a fondo y de discusión. Las sesiones alternan: la primera semana es presencial, la segunda en línea, y así hasta el final.",
     unidades: [
       { titulo: "Qué hace falta para que la IA salga bien", cuerpo: "Por qué los modelos actuales no son seguros por defecto y qué enfoques técnicos existen para cambiarlo." },
       { titulo: "Entrenar modelos más seguros", cuerpo: "Cómo funciona RLHF, qué otros métodos se usan para ajustar un modelo y en qué casos no bastan." },
@@ -317,7 +317,7 @@ const AGI_EN: PaginaCurso = {
     "Advanced AI is moving faster than the people ready to think about it. Five weeks to understand who is building it, how fast it is moving and what could go wrong. From any discipline.",
   linea: "12 October to 15 November 2026. Places are limited: apply by 9 October.",
   tarjetas: [
-    { titulo: "Five weeks", cuerpo: "12 October to 15 November 2026, about three hours a week" },
+    { titulo: "Five weeks", cuerpo: "12 October to 15 November 2026, one two-hour session a week plus an hour of material on your own" },
     { titulo: "Mixed: in person and online", cuerpo: "Sessions at Universidad de los Andes, with free food, and sessions online" },
     { titulo: "Free, with a certificate", cuerpo: "Materials by BlueDot Impact; discussion in Spanish, readings in English" },
   ],
@@ -355,13 +355,13 @@ const AGI_EN: PaginaCurso = {
   sala: {
     titulo: "A small cohort that discusses every week",
     parrafos: [
-      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **two hours of session with your cohort: close reading and discussion**. That is about three hours a week, at a time set with the selected participants. All readings and videos are in English, as BlueDot publishes them; the discussion is in Spanish. The format is mixed: some sessions are in person at Universidad de los Andes and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
+      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **one two-hour session with your cohort: close reading and discussion**. That is about three hours a week, at a time set with the selected participants. All readings and videos are in English, as BlueDot publishes them; the discussion is in Spanish. The format is mixed: some sessions are in person at Universidad de los Andes and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
       "The facilitator is {facilitadores}. The cohort deliberately mixes people from different disciplines: **the discussion is where the readings turn into a view of your own**, and the cohort stays on as a community of peers to keep exploring the field with after the seminar.",
     ],
   },
   semanas: {
     titulo: "Five weeks, from the map of the race to your next step",
-    entrada: "Each week: an hour of light material and two hours of session, close reading and discussion. Sessions alternate: the first week is in person, the second online, and so on to the end.",
+    entrada: "Each week: an hour of light material and one two-hour session, close reading and discussion. Sessions alternate: the first week is in person, the second online, and so on to the end.",
     unidades: [
       { titulo: "The race to AGI", cuerpo: "What AGI is, who is building it, and why there's a race to get there first." },
       { titulo: "What drives progress", cuerpo: "Compute, data and algorithms, and how far that trend could go." },
@@ -422,7 +422,7 @@ const TAIS_EN: PaginaCurso = {
     "AI capabilities are advancing faster than safety. Six weeks on closing that gap: training safer models, evaluating them, looking inside them and limiting the damage when they fail. For people with a technical background.",
   linea: "12 October to 22 November 2026. Places are limited: apply by 9 October.",
   tarjetas: [
-    { titulo: "Six weeks", cuerpo: "12 October to 22 November 2026, about three hours a week" },
+    { titulo: "Six weeks", cuerpo: "12 October to 22 November 2026, one two-hour session a week plus an hour of material on your own" },
     { titulo: "Mixed: in person and online", cuerpo: "Sessions at Universidad de los Andes, with free food, and sessions online" },
     { titulo: "Free, with a certificate", cuerpo: "Materials by BlueDot Impact; discussion in Spanish, readings in English" },
   ],
@@ -460,13 +460,13 @@ const TAIS_EN: PaginaCurso = {
   sala: {
     titulo: "A small cohort that discusses every week",
     parrafos: [
-      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **two hours of session with your cohort: close reading and discussion**. That is about three hours a week, at a time set with the selected participants. All readings and videos are in English, as BlueDot publishes them; the discussion is in Spanish. The format is mixed: some sessions are in person at Universidad de los Andes and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
+      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **one two-hour session with your cohort: close reading and discussion**. That is about three hours a week, at a time set with the selected participants. All readings and videos are in English, as BlueDot publishes them; the discussion is in Spanish. The format is mixed: some sessions are in person at Universidad de los Andes and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
       "The facilitators are {facilitadores}. **The discussion is where assumptions get tested** and where the readings connect to the work being done in labs and research organisations, and the cohort stays on as a community of peers to keep exploring the field with after the seminar.",
     ],
   },
   semanas: {
     titulo: "Six weeks, from the underlying problem to your next step",
-    entrada: "Each week: an hour of light material and two hours of session, close reading and discussion. Sessions alternate: the first week is in person, the second online, and so on to the end.",
+    entrada: "Each week: an hour of light material and one two-hour session, close reading and discussion. Sessions alternate: the first week is in person, the second online, and so on to the end.",
     unidades: [
       { titulo: "What it takes for AI to go well", cuerpo: "Why today's models are not safe by default, and which technical approaches exist to change that." },
       { titulo: "Training safer models", cuerpo: "How RLHF works, which other methods are used to fine-tune a model, and where they fall short." },
@@ -528,7 +528,7 @@ const AGI_PT: PaginaCurso = {
     "A IA avançada avança mais rápido do que as pessoas preparadas para pensá-la. Cinco semanas para entender quem a constrói, com que velocidade avança e o que pode dar errado. De qualquer área.",
   linea: "De 12 de outubro a 15 de novembro de 2026. Vagas limitadas: inscreva-se até 9 de outubro.",
   tarjetas: [
-    { titulo: "Cinco semanas", cuerpo: "De 12 de outubro a 15 de novembro de 2026, cerca de três horas por semana" },
+    { titulo: "Cinco semanas", cuerpo: "De 12 de outubro a 15 de novembro de 2026, uma sessão de duas horas por semana mais uma hora de material por conta própria" },
     { titulo: "Misto: presencial e on-line", cuerpo: "Sessões na Universidad de los Andes, com comida grátis, e sessões on-line" },
     { titulo: "Grátis, com certificado", cuerpo: "Materiais da BlueDot Impact; discussão em espanhol, leituras em inglês" },
   ],
@@ -566,13 +566,13 @@ const AGI_PT: PaginaCurso = {
   sala: {
     titulo: "Uma turma pequena que discute toda semana",
     parrafos: [
-      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **duas horas de sessão com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana, em um horário definido com os participantes selecionados. Todas as leituras e vídeos são em inglês, como a BlueDot os publica; a discussão é em espanhol. A modalidade é mista: há sessões presenciais na Universidad de los Andes e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
+      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **uma sessão de duas horas com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana, em um horário definido com os participantes selecionados. Todas as leituras e vídeos são em inglês, como a BlueDot os publica; a discussão é em espanhol. A modalidade é mista: há sessões presenciais na Universidad de los Andes e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
       "O facilitador é {facilitadores}. A turma mistura de propósito gente de áreas diferentes: **a discussão é onde as leituras viram uma opinião própria**, e a turma fica como uma comunidade de pares com quem seguir explorando o campo depois do seminário.",
     ],
   },
   semanas: {
     titulo: "Cinco semanas, do mapa da corrida ao seu próximo passo",
-    entrada: "Toda semana: uma hora de material leve e duas horas de sessão, de leitura aprofundada e de discussão. As sessões se alternam: a primeira semana é presencial, a segunda on-line, e assim até o fim.",
+    entrada: "Toda semana: uma hora de material leve e uma sessão de duas horas, de leitura aprofundada e de discussão. As sessões se alternam: a primeira semana é presencial, a segunda on-line, e assim até o fim.",
     unidades: [
       { titulo: "A corrida rumo à AGI", cuerpo: "O que é a AGI, quem a está construindo e por que há uma corrida para chegar primeiro." },
       { titulo: "O que impulsiona o progresso", cuerpo: "Computação, dados e algoritmos, e até onde essa tendência pode ir." },
@@ -633,7 +633,7 @@ const TAIS_PT: PaginaCurso = {
     "As capacidades da IA avançam mais rápido do que a segurança. Seis semanas sobre como fechar essa lacuna: treinar modelos mais seguros, avaliá-los, olhar dentro deles e limitar o dano quando falham. Para quem tem base técnica.",
   linea: "De 12 de outubro a 22 de novembro de 2026. Vagas limitadas: inscreva-se até 9 de outubro.",
   tarjetas: [
-    { titulo: "Seis semanas", cuerpo: "De 12 de outubro a 22 de novembro de 2026, cerca de três horas por semana" },
+    { titulo: "Seis semanas", cuerpo: "De 12 de outubro a 22 de novembro de 2026, uma sessão de duas horas por semana mais uma hora de material por conta própria" },
     { titulo: "Misto: presencial e on-line", cuerpo: "Sessões na Universidad de los Andes, com comida grátis, e sessões on-line" },
     { titulo: "Grátis, com certificado", cuerpo: "Materiais da BlueDot Impact; discussão em espanhol, leituras em inglês" },
   ],
@@ -671,13 +671,13 @@ const TAIS_PT: PaginaCurso = {
   sala: {
     titulo: "Uma turma pequena que discute toda semana",
     parrafos: [
-      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **duas horas de sessão com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana, em um horário definido com os participantes selecionados. Todas as leituras e vídeos são em inglês, como a BlueDot os publica; a discussão é em espanhol. A modalidade é mista: há sessões presenciais na Universidad de los Andes e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
+      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **uma sessão de duas horas com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana, em um horário definido com os participantes selecionados. Todas as leituras e vídeos são em inglês, como a BlueDot os publica; a discussão é em espanhol. A modalidade é mista: há sessões presenciais na Universidad de los Andes e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
       "Os facilitadores são {facilitadores}. **A discussão é onde os pressupostos são postos à prova** e onde as leituras se conectam com o trabalho feito em laboratórios e organizações de pesquisa, e a turma fica como uma comunidade de pares com quem seguir explorando o campo depois do seminário.",
     ],
   },
   semanas: {
     titulo: "Seis semanas, do problema de fundo ao seu próximo passo",
-    entrada: "Toda semana: uma hora de material leve e duas horas de sessão, de leitura aprofundada e de discussão. As sessões se alternam: a primeira semana é presencial, a segunda on-line, e assim até o fim.",
+    entrada: "Toda semana: uma hora de material leve e uma sessão de duas horas, de leitura aprofundada e de discussão. As sessões se alternam: a primeira semana é presencial, a segunda on-line, e assim até o fim.",
     unidades: [
       { titulo: "O que é preciso para a IA dar certo", cuerpo: "Por que os modelos atuais não são seguros por padrão e quais abordagens técnicas existem para mudar isso." },
       { titulo: "Treinar modelos mais seguros", cuerpo: "Como funciona o RLHF, que outros métodos se usam para ajustar um modelo e em que casos não bastam." },
