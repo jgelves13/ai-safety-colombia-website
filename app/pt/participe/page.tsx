@@ -29,7 +29,7 @@ const PASOS: PasoUnete[] = [
         dedicacion: "A que você quiser",
         requisitos: "Nenhum",
         costo: "Grátis",
-        href: "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ",
+        href: "https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF",
         cta: "Entrar no grupo",
         externo: true,
       },

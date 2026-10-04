@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CTA_LINK_PRIMARY } from "./ui";
 import { type Idioma, menu } from "@/lib/idiomas";
 
-const WHATSAPP = "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ";
+const WHATSAPP = "https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF";
 
 /* Las mismas seis entradas del encabezado, en el mismo orden y del mismo
    archivo. Programas, Eventos y Actualidad no están en el menú, así que

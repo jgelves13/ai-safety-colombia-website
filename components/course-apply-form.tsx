@@ -67,7 +67,7 @@ const BOTON_LLENO =
   "text-body-sm inline-flex min-h-11 items-center rounded-full bg-aisc-coral px-6 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85";
 const BOTON_CONTORNO =
   "text-body-sm inline-flex min-h-11 items-center rounded-full border border-aisc-ink px-6 font-medium text-aisc-ink transition-colors hover:bg-aisc-ink hover:text-aisc-cream";
-const WHATSAPP = "https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ";
+const WHATSAPP = "https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF";
 
 /* Un menú desplegable propio, para que la lista se vea igual en todos los
    navegadores. Con `tope` mayor que 1 se marcan varias opciones y las marcadas

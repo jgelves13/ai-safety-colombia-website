@@ -333,7 +333,7 @@ export default function Home() {
         title="Quer entrar?"
         body="Não é preciso ser pesquisador nem ter estudado inteligência artificial."
       >
-        <a className={CTA_LINK_PRIMARY} href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ" target="_blank" rel="noopener noreferrer">
+        <a className={CTA_LINK_PRIMARY} href="https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF" target="_blank" rel="noopener noreferrer">
           Entrar no grupo de WhatsApp
         </a>
         <a className={CTA_LINK} href="https://cal.com/josegelves/meeting" target="_blank" rel="noopener noreferrer">
