@@ -38,7 +38,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
   es: {
     hero: {
       titulo: "De Colombia a la frontera de la seguridad de la IA",
-      texto: "Si quieres dedicarte a que la inteligencia artificial avance de forma segura, acá encuentras con quién estudiar y en qué empezar a investigar.",
+      texto: "Si te interesa que la inteligencia artificial avance de forma segura, acá encuentras con quién estudiar y por dónde empezar a investigar.",
       programas: "Ver los programas",
       unete: "Únete a la comunidad",
     },
@@ -104,7 +104,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
   en: {
     hero: {
       titulo: "From Colombia to the frontier of AI safety",
-      texto: "If you want to work on making artificial intelligence go well, this is where you find people to study with and a place to start doing research.",
+      texto: "If you care about artificial intelligence going well, this is where you find people to study with and a place to start doing research.",
       programas: "See the programs",
       unete: "Join the community",
     },
@@ -170,7 +170,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
   pt: {
     hero: {
       titulo: "Da Colômbia à fronteira da segurança da IA",
-      texto: "Se você quer se dedicar a que a inteligência artificial avance de forma segura, aqui encontra com quem estudar e por onde começar a pesquisar.",
+      texto: "Se te interessa que a inteligência artificial avance de forma segura, aqui você encontra com quem estudar e por onde começar a pesquisar.",
       programas: "Ver os programas",
       unete: "Entre na comunidade",
     },
@@ -348,14 +348,14 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
       <section className="border-b border-aisc-line">
         <div className={`${COLUMNA} flex flex-col gap-6 py-9 md:flex-row md:items-center md:gap-16 md:py-10`}>
           <span className="text-kicker shrink-0 text-aisc-muted">{t.aliados}</span>
-          <ul className="grid flex-1 grid-cols-2 items-center gap-x-10 gap-y-7 md:flex md:justify-between">
+          <ul className="flex flex-wrap items-center gap-x-10 gap-y-6 md:gap-x-14">
             {ALIADOS.map((a) => (
               <li key={a.name}>
                 <a href={a.href} target="_blank" rel="noopener noreferrer" className="block w-fit">
                   <img
                     src={a.logo}
                     alt={a.name}
-                    className={`${a.alto} w-auto max-w-[170px] object-contain opacity-75 grayscale transition hover:opacity-100 hover:grayscale-0`}
+                    className={`${a.alto} w-auto max-w-[170px] object-contain`}
                   />
                 </a>
               </li>
