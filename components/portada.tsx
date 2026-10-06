@@ -9,8 +9,10 @@ import { type Idioma, rutaEn } from "@/lib/idiomas";
 
 /* La portada, en los tres idiomas. La estructura es la de apartresearch.com
    (tesis, quién nos apoya, lo que se ha publicado, los programas, la comunidad
-   y con quién trabajamos) y la estética la de aisafety.sg: serif fina, papel
-   blanco, verde muy oscuro, dibujos de líneas finas e íconos de puntos.
+   y con quién trabajamos) y la estética la de aisafety.sg: papel blanco, verde
+   muy oscuro, dibujos de líneas finas e íconos de puntos. La letra, el ancho de
+   columna, los bordes y el ritmo entre secciones son los de las páginas
+   interiores, para que la portada no se lea como otro sitio.
    Las tres app/…/page.tsx solo ponen los metadatos y llaman a esta. */
 
 const WHATSAPP = "https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF";
@@ -315,7 +317,7 @@ const FOTOS = [
   "/aisc/eventos/cena-politica.jpg",
 ];
 
-const COLUMNA = "mx-auto w-full max-w-[1400px] px-6 md:px-12 lg:px-16";
+const COLUMNA = "mx-auto w-full max-w-[1448px] px-8 md:px-16";
 const ENLACE = "text-aisc-forest transition-colors hover:text-aisc-coral";
 const ENLACE_SERIF = "text-display-4 md:text-display-4-lg transition-colors hover:text-aisc-coral";
 
@@ -367,7 +369,7 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
           className="pointer-events-none absolute top-0 -right-[55%] h-full w-auto max-w-none select-none opacity-35 sm:-right-[30%] md:-right-[14%] md:opacity-100 xl:right-0"
         />
         <SiteHeader />
-        <div className={`${COLUMNA} relative z-10 flex min-h-[620px] flex-col justify-end pt-36 pb-20 md:min-h-[700px] md:pb-24`}>
+        <div className={`${COLUMNA} relative z-10 flex min-h-[540px] flex-col justify-end pt-32 pb-16 md:min-h-[600px] md:pb-20`}>
           <h1 className="text-display-1 md:text-display-1-lg max-w-[720px] text-balance">{t.hero.titulo}</h1>
           <p className="text-body md:text-body-lg mt-6 max-w-[540px] text-aisc-sand/80">{t.hero.texto}</p>
           <div className="mt-9 flex flex-wrap gap-3">
@@ -402,12 +404,12 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
       </section>
 
       {/* --------------------------------------------------- investigación */}
-      <section className="pt-20 md:pt-28">
+      <section className="pt-14 md:pt-16">
         <div className={COLUMNA}>
           <Cabecera titulo={t.investigacion.titulo}>
             <Frase partes={t.investigacion.texto} href={ruta("/investigacion")} />
           </Cabecera>
-          <ul className="mt-12 grid gap-5 md:mt-16 md:grid-cols-3">
+          <ul className="mt-10 grid gap-5 md:mt-12 md:grid-cols-3">
             {PUBLICACIONES.map((p, i) => {
               const d = t.investigacion.piezas[i];
               return (
@@ -416,9 +418,9 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
                     href={p.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex w-full flex-col overflow-hidden rounded-[var(--radius)] border border-aisc-ink/60 transition-colors hover:border-aisc-forest"
+                    className="group flex w-full flex-col overflow-hidden rounded-[var(--radius)] border border-aisc-forest-deep/25 transition-colors hover:border-aisc-forest-deep/60"
                   >
-                    <img src={p.arte} alt="" aria-hidden="true" width={600} height={340} className="aspect-[600/340] w-full border-b border-aisc-ink/60 object-cover" />
+                    <img src={p.arte} alt="" aria-hidden="true" width={600} height={340} className="aspect-[600/340] w-full border-b border-aisc-forest-deep/25 object-cover" />
                     <div className="flex flex-1 flex-col p-6 md:p-7">
                       <span className="text-meta text-aisc-muted">
                         {d.tipo} · {d.fecha}
@@ -440,12 +442,12 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
       </section>
 
       {/* ------------------------------------------------------- programas */}
-      <section id="programas" className="scroll-mt-24 pt-20 md:pt-28">
+      <section id="programas" className="scroll-mt-24 pt-14 md:pt-16">
         <div className={COLUMNA}>
           <Cabecera titulo={t.programas.titulo}>
             <Frase partes={t.programas.texto} href={ruta("/unete")} />
           </Cabecera>
-          <ul className="mt-12 grid gap-5 md:mt-16 md:grid-cols-2 xl:grid-cols-4">
+          <ul className="mt-10 grid gap-5 md:mt-12 md:grid-cols-2 xl:grid-cols-4">
             {PROGRAMAS.map((p, i) => {
               const d = t.programas.tarjetas[i];
               const oscura = i === 0;
@@ -453,11 +455,11 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
                 <li
                   key={p.patron}
                   className={`flex flex-col rounded-[var(--radius)] p-7 md:p-8 ${
-                    oscura ? "bg-aisc-forest-deep text-aisc-sand" : "border border-aisc-forest/45"
+                    oscura ? "bg-aisc-forest-deep text-aisc-sand" : "border border-aisc-forest-deep/25"
                   }`}
                 >
                   <Puntos patron={p.patron} className={`size-9 ${oscura ? "text-aisc-mint" : "text-aisc-forest"}`} />
-                  <span className={`text-kicker mt-12 ${oscura ? "text-aisc-mint" : "text-aisc-muted"}`}>{d.kicker}</span>
+                  <span className={`text-kicker mt-8 ${oscura ? "text-aisc-mint" : "text-aisc-muted"}`}>{d.kicker}</span>
                   <h3 className="text-display-3 md:text-display-3-lg mt-3">{d.titulo}</h3>
                   <p className={`text-body-sm mt-3 ${oscura ? "text-aisc-sand/80" : "text-aisc-ink/80"}`}>{d.texto}</p>
                   <div className="mt-auto flex flex-wrap gap-x-6 gap-y-1 pt-8">
@@ -475,8 +477,8 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
       </section>
 
       {/* ------------------------------------------------------- comunidad */}
-      <section className="pt-20 md:pt-28">
-        <div className="mx-auto w-full max-w-[1432px] px-2 md:px-4">
+      <section className="pt-14 md:pt-16">
+        <div className="mx-auto w-full max-w-[1448px] px-4 md:px-8">
           <div className="grid items-center gap-10 rounded-[var(--radius)] bg-aisc-sand px-4 py-10 md:px-8 md:py-14 lg:grid-cols-2 lg:gap-16 lg:px-12 lg:py-16">
             <ul className="grid grid-cols-2 gap-3 md:gap-4">
               {FOTOS.map((src, i) => (
@@ -506,16 +508,16 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
       </section>
 
       {/* --------------------------------------------- trabaja con nosotros */}
-      <section className="pt-20 pb-20 md:pt-28 md:pb-24">
+      <section className="pt-14 pb-14 md:pt-16 md:pb-16">
         <div className={COLUMNA}>
           <Cabecera titulo={t.trabaja.titulo}>{t.trabaja.texto}</Cabecera>
-          <ul className="mt-12 grid gap-5 md:mt-16 md:grid-cols-2 xl:grid-cols-4">
+          <ul className="mt-10 grid gap-5 md:mt-12 md:grid-cols-2 xl:grid-cols-4">
             {PUERTAS.map((patron, i) => {
               const d = t.trabaja.tarjetas[i];
               return (
-                <li key={patron} className="flex flex-col rounded-[var(--radius)] border border-aisc-ink/60 p-7 md:p-8">
+                <li key={patron} className="flex flex-col rounded-[var(--radius)] border border-aisc-forest-deep/25 p-7 md:p-8">
                   <Puntos patron={patron} className="size-9 text-aisc-forest" />
-                  <h3 className="text-display-4 md:text-display-4-lg mt-12">{d.titulo}</h3>
+                  <h3 className="text-display-4 md:text-display-4-lg mt-8">{d.titulo}</h3>
                   <p className="text-body-sm mt-3 text-aisc-ink/80">{d.texto}</p>
                   <a href={AGENDAR} target="_blank" rel="noopener noreferrer" className={`${ENLACE_SERIF} mt-auto pt-8 text-aisc-forest`}>
                     {t.trabaja.agendar}

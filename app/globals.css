@@ -20,8 +20,8 @@
   --color-aisc-line: #d9e2db;         /* filete suave sobre papel */
   --color-aisc-muted: #4d5a52;        /* texto secundario */
 
-  --font-display: var(--font-fraunces), Georgia, ui-serif, serif;
-  --font-serif: var(--font-fraunces), Georgia, ui-serif, serif;
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -48,67 +48,68 @@ body {
 }
 
 /* ------------------------------- tipografia -------------------------------
-   Fraunces para titulares, en peso fino y con el eje óptico suelto: a tamaño
-   grande se afila sola, a tamaño de tarjeta se ensancha para leerse. Instrument
-   Sans para lectura. El tracking casi neutro: una serif fina no necesita que la
-   aprieten para leerse como titular, y las tildes del español piden interlinea
-   por encima de 1.
+   Bricolage Grotesque para titulares (la de la marca), Inter para lectura,
+   JetBrains Mono para antetitulos y metadatos. El tracking negativo es lo que
+   hace que Bricolage se lea como titular y no como texto grande, pero tiene un
+   piso: display-1 carga frases largas en español, llenas de tildes, y con la
+   interlinea por debajo del tamaño de letra los acentos chocaban contra el
+   renglon de arriba. Interlinea por encima de 1 y tracking moderado.
    -------------------------------------------------------------------------- */
 
 @utility text-display-1 {
   font-family: var(--font-display);
-  font-weight: 360;
+  font-weight: 800;
   font-size: 3.0375rem;
-  line-height: 1.06;
+  line-height: 1.08;
   letter-spacing: -0.012em;
 }
 
 @utility text-display-1-lg {
-  font-size: 4.25rem;
-  line-height: 1.04;
+  font-size: 4.05rem;
+  line-height: 1.06;
   letter-spacing: -0.015em;
 }
 
 @utility text-display-2 {
   font-family: var(--font-display);
-  font-weight: 380;
-  font-size: 2.5rem;
-  line-height: 1.08;
-  letter-spacing: -0.012em;
+  font-weight: 800;
+  font-size: 2.475rem;
+  line-height: 1;
+  letter-spacing: -0.033em;
 }
 
 @utility text-display-2-lg {
-  font-size: 3.25rem;
-  line-height: 1.05;
-  letter-spacing: -0.015em;
+  font-size: 3.2rem;
+  line-height: 0.99;
+  letter-spacing: -0.035em;
 }
 
 @utility text-display-3 {
   font-family: var(--font-display);
-  font-weight: 420;
+  font-weight: 700;
   font-size: 1.575rem;
-  line-height: 1.15;
-  letter-spacing: -0.008em;
+  line-height: 1.06;
+  letter-spacing: -0.028em;
 }
 
 @utility text-display-3-lg {
   font-size: 1.8rem;
-  line-height: 1.12;
-  letter-spacing: -0.01em;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
 }
 
 @utility text-display-4 {
   font-family: var(--font-display);
-  font-weight: 450;
+  font-weight: 700;
   font-size: 1.25rem;
-  line-height: 1.2;
-  letter-spacing: -0.005em;
+  line-height: 1.12;
+  letter-spacing: -0.024em;
 }
 
 @utility text-display-4-lg {
   font-size: 1.5rem;
-  line-height: 1.16;
-  letter-spacing: -0.008em;
+  line-height: 1.05;
+  letter-spacing: -0.026em;
 }
 
 @utility text-body {

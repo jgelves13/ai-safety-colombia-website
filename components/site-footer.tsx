@@ -80,7 +80,7 @@ const REDES = [
 /* Al modo de aisafety.sg: tres franjas de verde, de la más oscura a la más
    clara. La primera lleva la marca y el menú, la segunda el contacto y las
    redes, la tercera solo el aviso de derechos. Los títulos de columna van en
-   la serif de los titulares. */
+   la letra de los titulares. */
 const TITULO = "text-display-4 text-aisc-sand";
 const ENLACE = "text-body-sm block py-1.5 text-aisc-sand/75 transition-colors hover:text-aisc-coral";
 const COLUMNA = "mx-auto w-full max-w-[1400px] px-6 md:px-12 lg:px-16";
