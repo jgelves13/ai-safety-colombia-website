@@ -233,7 +233,7 @@ function Fila({
                 </svg>
                 {evento.lugar}
               </span>
-              {!proximo && evento.url ? (
+              {evento.url ? (
                 <a className={`${LINK} font-medium`} href={evento.url} {...externo}>
                   {evento.enlace}
                 </a>

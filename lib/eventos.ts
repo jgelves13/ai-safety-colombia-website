@@ -257,7 +257,7 @@ function renglones(nodo: NodoProse, salida: Tramo[][] = [[]]): Tramo[][] {
   return salida;
 }
 
-/** La descripción de Luma en párrafos, sin renglones vacíos ni logística. */
+/** El comienzo de la descripción de Luma, sin renglones vacíos ni logística. */
 function descripcion(doc: NodoProse | null | undefined): Parrafo[] | null {
   const parrafos: Parrafo[] = [];
   const recorrer = (nodo: NodoProse) => {
@@ -272,9 +272,11 @@ function descripcion(doc: NodoProse | null | undefined): Parrafo[] | null {
     } else (nodo.content ?? []).forEach(recorrer);
   };
   if (doc) recorrer(doc);
-  /* Un rótulo suelto al final no titula nada. */
-  while (parrafos.length && parrafos[parrafos.length - 1].rotulo) parrafos.pop();
-  return parrafos.length ? parrafos : null;
+  /* Basta el arranque: los dos primeros párrafos de prosa, que en Luma son el
+     planteamiento. Lo demás (ponentes, programa) queda en «Ver en Luma». */
+  const fin = parrafos.findIndex((p) => p.rotulo || p.renglones.length > 1);
+  const resumen = parrafos.slice(0, fin === -1 ? parrafos.length : fin).slice(0, 2);
+  return resumen.length ? resumen : null;
 }
 
 function desdeLuma(e: LumaEntry): Evento {
