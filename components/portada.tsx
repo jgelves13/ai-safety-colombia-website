@@ -5,6 +5,7 @@ import SiteFooter from "./site-footer";
 import SiteHeader from "./site-header";
 import { CTA_LINK, CTA_LINK_PRIMARY, CTA_LINK_VERDE } from "./ui";
 import { type Idioma, rutaEn } from "@/lib/idiomas";
+import { PORTADAS } from "@/lib/portadas";
 
 /* La portada, en los tres idiomas. La estructura es la de apartresearch.com
    (tesis, quién nos apoya, los programas, la comunidad y lo que se ha
@@ -244,17 +245,14 @@ const PUBLICACIONES = [
   {
     titulo: "AI Benefit-Sharing Framework: Balancing Access and Safety",
     href: "https://aigi.ox.ac.uk/publications/ai-benefit-sharing-framework-balancing-access-and-safety/",
-    arte: "/aisc/patterns/aisc-investigacion-1.svg",
   },
   {
     titulo: "Approximating Human Preferences Using a Multi-Judge Learned System",
     href: "https://arxiv.org/abs/2510.25884",
-    arte: "/aisc/patterns/aisc-investigacion-2.svg",
   },
   {
     titulo: "La securitización de la inteligencia artificial: un análisis de sus impulsores y sus consecuencias",
     href: "https://revistas.uniandes.edu.co/index.php/res/article/view/10754",
-    arte: "/aisc/patterns/aisc-investigacion-3.svg",
   },
 ];
 
@@ -408,7 +406,18 @@ export default function Portada({ idioma }: { idioma: Idioma }) {
                     rel="noopener noreferrer"
                     className="group flex w-full flex-col overflow-hidden rounded-[var(--radius)] border border-aisc-forest-deep/25 transition-colors hover:border-aisc-forest-deep/60"
                   >
-                    <img src={p.arte} alt="" aria-hidden="true" width={600} height={340} className="aspect-[600/340] w-full border-b border-aisc-forest-deep/25 object-cover" />
+                    {/* la primera página del documento, como una hoja sobre la mesa:
+                        se ve el título y el resto se va por debajo del borde */}
+                    <div aria-hidden="true" className="relative aspect-[600/340] w-full overflow-hidden border-b border-aisc-forest-deep/25 bg-aisc-sand">
+                      <img
+                        src={PORTADAS[p.href]}
+                        alt=""
+                        width={900}
+                        height={1165}
+                        loading="lazy"
+                        className="absolute top-[14%] left-1/2 w-[58%] -translate-x-1/2 shadow-[0_10px_30px_-8px_rgba(20,54,32,0.35)] ring-1 ring-aisc-forest-deep/10 transition-transform duration-300 group-hover:-translate-y-1.5"
+                      />
+                    </div>
                     <div className="flex flex-1 flex-col p-6 md:p-7">
                       <span className="text-meta text-aisc-muted">
                         {d.tipo} · {d.fecha}

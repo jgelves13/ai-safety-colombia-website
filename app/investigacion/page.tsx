@@ -5,6 +5,7 @@ import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { alternativas } from "@/lib/idiomas";
+import { PORTADAS } from "@/lib/portadas";
 
 export const metadata: Metadata = {
   title: "Investigación",
@@ -263,6 +264,17 @@ export default function Investigacion() {
                     <span className="text-kicker text-aisc-forest">{p.tipo}</span>
                     <span className="text-meta text-aisc-muted">{p.editor}</span>
                     <span className="text-meta text-aisc-muted">{p.fecha}</span>
+                    {PORTADAS[p.href] ? (
+                      <img
+                        src={PORTADAS[p.href]}
+                        alt=""
+                        aria-hidden="true"
+                        width={900}
+                        height={1165}
+                        loading="lazy"
+                        className="mt-5 hidden w-full max-w-[200px] shadow-[0_10px_30px_-8px_rgba(20,54,32,0.35)] ring-1 ring-aisc-forest-deep/10 lg:block"
+                      />
+                    ) : null}
                   </div>
                   <div className="flex flex-col">
                     <h3 className="text-display-3 md:text-display-3-lg text-balance">{p.titulo}</h3>
