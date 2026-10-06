@@ -25,7 +25,6 @@ const viejas: { from: string; to: string; permanent: boolean }[] = [
   { from: "/confirmar", to: "/eventos", permanent: false },
   { from: "/en/apply", to: "/en/sprint/apply", permanent: true },
   { from: "/en/contact", to: "/en/join", permanent: true },
-  { from: "/en/events", to: "/eventos", permanent: false },
   { from: "/en/groups", to: "/en/join", permanent: true },
   { from: "/en/hackathon", to: "/en/sprint", permanent: false },
 

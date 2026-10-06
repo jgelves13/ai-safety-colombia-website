@@ -1,0 +1,855 @@
+{
+  "calendar": "cal-K1XAPsokjf8C20J",
+  "fetched_at": "2026-10-06T04:09:25+00:00",
+  "entries": [
+    {
+      "api_id": "evt-JCgDtNwA5D1xoyk",
+      "slug": "z5akx0st",
+      "name": "AI Safety Talks: Agentes de IA, negociación y supervisión",
+      "start_at": "2026-10-07T23:00:00.000Z",
+      "end_at": "2026-10-08T00:30:00.000Z",
+      "timezone": "America/Bogota",
+      "location_type": "meet",
+      "city": null,
+      "cover_url": "https://images.lumacdn.com/uploads/k4/aea286b5-7f6d-4f25-85de-8b96cdd2ce35.png",
+      "guest_count": 33,
+      "descripcion": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "AI Safety Talks",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": " es una serie de encuentros para explorar distintos problemas y líneas de investigación en seguridad de inteligencia artificial, con personas trabajando directamente en el campo.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "En esta primera edición exploraremos ",
+                "type": "text"
+              },
+              {
+                "text": "cómo se comportan los agentes de IA cuando interactúan entre sí",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ", y los desafíos que esto plantea para entenderlos y mantenerlos bajo control.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Charlas",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "1. Laura Gomezjurado González (Universidad de Stanford",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ")",
+                "type": "text"
+              },
+              {
+                "type": "hard_break"
+              },
+              {
+                "text": "A partir del incidente de OpenAI y Hugging Face, Laura hablará sobre ",
+                "type": "text"
+              },
+              {
+                "text": "Chain-of-Thought monitorability",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "italic"
+                  }
+                ]
+              },
+              {
+                "text": ", ",
+                "type": "text"
+              },
+              {
+                "text": "ambitious interpretability",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "italic"
+                  }
+                ]
+              },
+              {
+                "text": " y los desafíos de supervisar modelos que saben que están siendo observados.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "2. Carlos Gorostiza Ibáñez (Universidad Autónoma de Nuevo León)",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "type": "hard_break"
+              },
+              {
+                "text": "Carlos presentará resultados de experimentos sobre negociación entre agentes de IA y los comportamientos estratégicos que pueden emerger durante sus interacciones.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "3. Antonio Badilla-Olivas (Independiente)",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "type": "hard_break"
+              },
+              {
+                "text": "Antonio explorará qué cambia para AI control cuando múltiples agentes coordinan sus acciones y distribuyen tareas entre sí.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "No necesitas experiencia previa en AI Safety para participar. La sesión será en español y habrá espacio para preguntas al final.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "📅 ",
+                "type": "text"
+              },
+              {
+                "text": "Miércoles 7 de octubre",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "type": "hard_break"
+              },
+              {
+                "text": "🕕 ",
+                "type": "text"
+              },
+              {
+                "text": "6:00 p. m. (Colombia)",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "type": "hard_break"
+              },
+              {
+                "text": "💻 ",
+                "type": "text"
+              },
+              {
+                "text": "Virtual",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "type": "hard_break"
+              },
+              {
+                "text": "🎟️ ",
+                "type": "text"
+              },
+              {
+                "text": "Entrada libre, con registro previo",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Organiza ",
+                "type": "text"
+              },
+              {
+                "text": "AI Safety Colombia",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ".",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "api_id": "evt-VP3IZhKXFsdZxBJ",
+      "slug": "c36amemk",
+      "name": "En camino a detectar y entender la Evaluation Awareness no verbalizada",
+      "start_at": "2026-09-13T19:00:00.000Z",
+      "end_at": "2026-09-13T19:30:00.000Z",
+      "timezone": "America/Bogota",
+      "location_type": "meet",
+      "city": null,
+      "cover_url": "https://images.lumacdn.com/uploads/mm/96e4bdb0-9bd1-405e-ac93-d6ef4b1c5b07.png",
+      "guest_count": 21,
+      "descripcion": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "¿Qué pasa si un modelo ",
+                "type": "text"
+              },
+              {
+                "text": "se comporta distinto porque detecta que está siendo evaluado",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ", incluso sin decirlo explícitamente?",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Eso podría volver mucho más difícil confiar en nuestras evaluaciones: un sistema podría parecer seguro durante una prueba y comportarse de otra manera fuera de ella.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "En esta charla del ",
+                "type": "text"
+              },
+              {
+                "text": "AI Incident Response Sprint",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "link",
+                    "attrs": {
+                      "href": "https://aisafetycolombia.org/sprint"
+                    }
+                  },
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ", ",
+                "type": "text"
+              },
+              {
+                "text": "Luis Miguel Montoya ",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": "presentará un trabajo aceptado como póster en el ",
+                "type": "text"
+              },
+              {
+                "text": "workshop de Interpretabilidad Mecanística de ",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "link",
+                    "attrs": {
+                      "href": "https://openreview.net/forum?id=zGmgeR0f4D"
+                    }
+                  }
+                ]
+              },
+              {
+                "text": "ICML 2026",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "link",
+                    "attrs": {
+                      "href": "https://openreview.net/forum?id=zGmgeR0f4D"
+                    }
+                  },
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ". En experimentos controlados, encontraron que el comportamiento condicionado por la evaluación puede persistir ",
+                "type": "text"
+              },
+              {
+                "text": "incluso después de suprimir las verbalizaciones detectadas sobre ella",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ".",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "¿Qué nos dice esto sobre lo que ocurre internamente en los modelos y sobre nuestra capacidad para supervisar agentes cada vez más autónomos?",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "api_id": "evt-TDBvr31wxVFU5Td",
+      "slug": "vb88ho9c",
+      "name": "Resiliencia cooperativa para sistemas multiagente",
+      "start_at": "2026-09-12T20:00:00.000Z",
+      "end_at": "2026-09-12T20:30:00.000Z",
+      "timezone": "America/Bogota",
+      "location_type": "meet",
+      "city": null,
+      "cover_url": "https://images.lumacdn.com/uploads/z8/ed8fa464-94b3-4bcc-8564-2ee9c536517d.png",
+      "guest_count": 68,
+      "descripcion": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Cuando varios agentes de IA trabajan juntos, ",
+                "type": "text"
+              },
+              {
+                "text": "el problema no es solo que uno falle, sino si el resto del sistema puede seguir funcionando sin que ese fallo se propague",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ".",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "En esta charla del ",
+                "type": "text"
+              },
+              {
+                "text": "AI Incident Response Sprint",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "link",
+                    "attrs": {
+                      "href": "https://aisafetycolombia.org/sprint"
+                    }
+                  },
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ", Manuela Chacón presentará el concepto de ",
+                "type": "text"
+              },
+              {
+                "text": "resiliencia cooperativa",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ": la capacidad de un sistema multiagente para anticipar, resistir, recuperarse y adaptarse ante perturbaciones.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "A partir de experimentos con agentes de aprendizaje por refuerzo, agentes basados en modelos de lenguaje y participantes humanos, mostrará cómo ",
+                "type": "text"
+              },
+              {
+                "text": "medir esa resiliencia y usarla para diseñar sistemas que respondan mejor cuando algo sale mal",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ".",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "api_id": "evt-uw3G4zTgkZNKben",
+      "slug": "8u5ymrfe",
+      "name": "SL5: ¿cómo proteger los modelos de IA contra los ataques más sofisticados?",
+      "start_at": "2026-09-12T19:30:00.000Z",
+      "end_at": "2026-09-12T20:00:00.000Z",
+      "timezone": "America/Bogota",
+      "location_type": "meet",
+      "city": null,
+      "cover_url": "https://images.lumacdn.com/uploads/c0/1c9c08e8-9eae-4cb9-917f-c37cd24c0cb2.png",
+      "guest_count": 33,
+      "descripcion": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Los pesos de un modelo de IA pueden concentrar ",
+                "type": "text"
+              },
+              {
+                "text": "años de investigación, enormes costos de entrenamiento y capacidades que no están disponibles públicamente",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ". Si un adversario logra robarlos, no está accediendo solo a datos: está llevándose el modelo mismo.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Pero ¿cómo se protege un activo así cuando el atacante puede tener ",
+                "type": "text"
+              },
+              {
+                "text": "infraestructura estatal, equipos altamente especializados y presupuestos de hasta mil millones de dólares",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": "?",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "En esta charla del ",
+                "type": "text"
+              },
+              {
+                "text": "AI Incident Response Sprint",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ", ",
+                "type": "text"
+              },
+              {
+                "text": "Luis Cosio",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": " presentará ",
+                "type": "text"
+              },
+              {
+                "text": "SL5",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ": un umbral de seguridad pensado para proteger modelos de IA frente a operaciones prioritarias de actores con capacidad de Estado-nación.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Una conversación sobre qué significa hacer seguridad cuando el adversario está muy por encima de las amenazas convencionales.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "api_id": "evt-3iYmlVqIu1iVehD",
+      "slug": "60o0v4o1",
+      "name": "Hackeando agentes de IA",
+      "start_at": "2026-09-12T19:00:00.000Z",
+      "end_at": "2026-09-12T19:30:00.000Z",
+      "timezone": "America/Bogota",
+      "location_type": "meet",
+      "city": null,
+      "cover_url": "https://images.lumacdn.com/uploads/i0/9c5c055b-38f1-4eca-b37e-dd75059eca65.png",
+      "guest_count": 90,
+      "descripcion": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Los agentes de IA ya no solo responden preguntas: también consultan información, usan herramientas y ejecutan acciones. Eso abre capacidades muy útiles, pero también nuevas superficies de ataque.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "En esta charla del ",
+                "type": "text"
+              },
+              {
+                "text": "AI Incident Response Sprint",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "link",
+                    "attrs": {
+                      "href": "https://aisafetycolombia.org/sprint"
+                    }
+                  }
+                ]
+              },
+              {
+                "text": ", Christian Urcuqui mostrará cómo pueden comprometerse agentes mediante prompt injection, abuso de RAG, manipulación de decisiones y uso indebido de herramientas conectadas, y qué controles pueden reducir estos riesgos en producción.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "También presentará una metodología práctica de pentesting para sistemas de IA, aplicable en escenarios de caja negra, gris y blanca.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "api_id": "evt-jlhhGpkPQGOzWwI",
+      "slug": "8lqrcnmx",
+      "name": "Del principio a la práctica: cómo operacionalizar la rendición de cuentas de la IA",
+      "start_at": "2026-09-12T17:30:00.000Z",
+      "end_at": "2026-09-12T18:00:00.000Z",
+      "timezone": "America/Bogota",
+      "location_type": "meet",
+      "city": null,
+      "cover_url": "https://images.lumacdn.com/uploads/8o/cf15fd52-90f5-4144-a440-ec188df61f1f.png",
+      "guest_count": 19,
+      "descripcion": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "La rendición de cuentas en IA suele sonar bien en el papel. El problema empieza cuando hay que responder preguntas concretas: ",
+                "type": "text"
+              },
+              {
+                "text": "¿quién debía actuar, qué evidencia demuestra que lo hizo y quién puede exigir correcciones si algo falla?",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "En esta charla del ",
+                "type": "text"
+              },
+              {
+                "text": "AI Incident Response Sprint",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ", ",
+                "type": "text"
+              },
+              {
+                "text": "María Flórez",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "link",
+                    "attrs": {
+                      "href": "https://www.linkedin.com/in/maria-lorena-florez-rojas/"
+                    }
+                  }
+                ]
+              },
+              {
+                "text": " presentará una matriz para volver esas preguntas operativas a partir de tres elementos: ",
+                "type": "text"
+              },
+              {
+                "text": "deber, artefacto y foro",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": ".",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "El objetivo es detectar vacíos de responsabilidad ",
+                "type": "text"
+              },
+              {
+                "text": "antes, durante y después",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": " del uso de sistemas de IA, y hacer que la rendición de cuentas pase de ser un principio general a algo que pueda realmente verificarse.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "api_id": "evt-4BSKzSExXfNt1CF",
+      "slug": "w6c6i9b4",
+      "name": "Gobernar la IA: del principio ético a la responsabilidad jurídica",
+      "start_at": "2026-09-12T15:00:00.000Z",
+      "end_at": "2026-09-12T15:30:00.000Z",
+      "timezone": "America/Bogota",
+      "location_type": "meet",
+      "city": null,
+      "cover_url": "https://images.lumacdn.com/uploads/mt/11c88d96-bf12-45db-bfa6-174cfbdcc807.png",
+      "guest_count": 23,
+      "descripcion": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "Hablar de una IA “ética” sirve de poco si no está claro quién supervisa el sistema, qué debe cumplir y quién responde cuando algo sale mal.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "En esta charla del AI Incident Response Sprint, ",
+                "type": "text"
+              },
+              {
+                "text": "Roberto Garcia",
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "link",
+                    "attrs": {
+                      "href": "https://www.linkedin.com/preload/?_bprMode=vanilla#"
+                    }
+                  },
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": " abordará cómo traducir principios éticos en mecanismos concretos de gobernanza, cumplimiento, supervisión y responsabilidad jurídica.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "text": "También explorará qué capacidades necesitan las instituciones para auditar, corregir y responder ante riesgos derivados del uso de sistemas de IA.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

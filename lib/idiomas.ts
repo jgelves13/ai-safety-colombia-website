@@ -88,6 +88,10 @@ export const PAGINAS: Pagina[] = [
     grupo: "seminarios",
   },
   {
+    ruta: { es: "/eventos", en: "/en/events", pt: "/pt/eventos" },
+    nav: { es: "Eventos", en: "Events", pt: "Eventos" },
+  },
+  {
     ruta: { es: "/investigacion", en: "/en/research", pt: "/pt/pesquisa" },
     nav: { es: "Investigación", en: "Research", pt: "Pesquisa" },
   },
