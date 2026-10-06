@@ -2,8 +2,8 @@ import { PORTADAS } from "@/lib/portadas";
 
 /* Los proyectos premiados de un hackathon, al modo de los «Highlighted papers»
    de MAIA: la primera página del reporte casi entera arriba, dentro de una
-   tarjeta de fondo suave, y debajo el premio, el título y el equipo. En
-   pantalla ancha van los cinco en una fila. */
+   tarjeta de fondo suave, y debajo solo el título, el premio y el equipo, sin
+   resumen. En pantalla ancha van los cinco en una fila. */
 
 export type Premiado = {
   titulo: string;
@@ -36,13 +36,12 @@ export default function PremiadosHackathon({ premiados }: { premiados: Premiado[
                 className="aspect-[4/5] w-full bg-white object-cover object-top ring-1 ring-aisc-forest-deep/10 transition-transform duration-300 group-hover:-translate-y-1"
               />
             ) : null}
-            <span className="text-kicker mt-5 text-aisc-coral">{p.premio}</span>
-            <h3 className="font-display mt-2 text-[1.2rem] leading-snug font-semibold text-balance text-aisc-ink transition-colors group-hover:text-aisc-forest">
+            <h3 className="font-display mt-5 text-[1.2rem] leading-snug font-semibold text-balance text-aisc-forest transition-colors group-hover:text-aisc-coral">
               {p.titulo}
             </h3>
-            <p className="text-body-sm mt-2 text-aisc-ink/85">{p.body}</p>
+            <p className="text-body-sm mt-1.5 font-semibold text-aisc-ink">{p.premio}</p>
             <p className="text-meta mt-auto line-clamp-2 pt-4 text-aisc-muted" title={p.equipo}>
-              {p.ciudad} · {p.equipo}
+              {p.equipo}
             </p>
           </a>
         </li>
