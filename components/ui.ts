@@ -8,6 +8,8 @@ const CTA_BUTTON =
   "inline-flex min-h-[46px] shrink-0 items-center justify-center rounded-full px-6 text-center transition-colors outline-none select-none focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-aisc-sand text-body-sm font-medium";
 export const CTA_LINK_PRIMARY = `${CTA_BUTTON} bg-aisc-coral text-aisc-cream hover:bg-aisc-coral/85`;
 export const CTA_LINK = `${CTA_BUTTON} border border-aisc-sand/45 text-aisc-sand hover:border-aisc-sand hover:bg-aisc-sand hover:text-aisc-forest-deep`;
+/** el lleno sobre papel claro: verde oscuro, para no gastar el coral */
+export const CTA_LINK_VERDE = `${CTA_BUTTON} bg-aisc-forest-deep text-aisc-sand hover:bg-aisc-night`;
 
 /** the "Learn More" affordance inside program cards, which take their colour
     from the card rather than the panel */

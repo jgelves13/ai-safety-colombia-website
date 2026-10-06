@@ -3,8 +3,7 @@ import CtaPanel from "./cta-panel";
 import Puntos, { type Patron } from "./puntos";
 import SiteFooter from "./site-footer";
 import SiteHeader from "./site-header";
-import { CTA_LINK, CTA_LINK_PRIMARY } from "./ui";
-import { cargarEventos, fechaLarga, partirEventos } from "@/lib/eventos";
+import { CTA_LINK, CTA_LINK_PRIMARY, CTA_LINK_VERDE } from "./ui";
 import { type Idioma, rutaEn } from "@/lib/idiomas";
 
 /* La portada, en los tres idiomas. La estructura es la de apartresearch.com
@@ -18,9 +17,6 @@ import { type Idioma, rutaEn } from "@/lib/idiomas";
 const WHATSAPP = "https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF";
 const AGENDAR = "https://cal.com/josegelves/meeting";
 
-/** Una frase con un enlace colgado del sustantivo: [antes, enlace, después]. */
-type ConEnlace = readonly [string, string, string];
-
 type Textos = {
   hero: { titulo: string; texto: string; programas: string; unete: string };
   aliados: string;
@@ -30,7 +26,7 @@ type Textos = {
     texto: string;
     tarjetas: { kicker: string; titulo: string; texto: string; enlaces: string[] }[];
   };
-  comunidad: { titulo: string; texto: string; proximo: (titulo: string, fecha: string) => ConEnlace; fotos: string[] };
+  comunidad: { titulo: string; texto: string; eventos: string; fotos: string[] };
   cierre: { titulo: string; texto: string; whatsapp: string; agendar: string; escribir: string };
 };
 
@@ -85,7 +81,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
     comunidad: {
       titulo: "Comunidad y eventos",
       texto: "Charlas, cenas de discusión y paneles en Bogotá, para conocer a quienes trabajan en esto y discutir con ellos.",
-      proximo: (titulo, fecha) => ["El próximo es ", titulo, `, el ${fecha}.`],
+      eventos: "Ver los eventos",
       fotos: [
         "Panel sobre gobernanza de la IA en Colombia",
         "Encuentro AI Safety Connect LATAM",
@@ -151,7 +147,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
     comunidad: {
       titulo: "Community and events",
       texto: "Talks, discussion dinners and panels in Bogotá, to meet the people working on this and argue with them.",
-      proximo: (titulo, fecha) => ["Next up is ", titulo, `, on ${fecha}.`],
+      eventos: "See the events",
       fotos: [
         "Panel on AI governance in Colombia",
         "AI Safety Connect LATAM gathering",
@@ -217,7 +213,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
     comunidad: {
       titulo: "Comunidade e eventos",
       texto: "Palestras, jantares de discussão e painéis em Bogotá, para conhecer quem trabalha nisso e discutir com essas pessoas.",
-      proximo: (titulo, fecha) => ["O próximo é ", titulo, `, em ${fecha}.`],
+      eventos: "Ver os eventos",
       fotos: [
         "Painel sobre governança da IA na Colômbia",
         "Encontro AI Safety Connect LATAM",
@@ -279,27 +275,7 @@ const FOTOS = [
 ];
 
 const COLUMNA = "mx-auto w-full max-w-[1448px] px-8 md:px-16";
-const ENLACE = "text-aisc-forest transition-colors hover:text-aisc-coral";
 const ENLACE_SERIF = "text-display-4 md:text-display-4-lg transition-colors hover:text-aisc-coral";
-
-function Frase({ partes, href, externo = false }: { partes: ConEnlace; href: string; externo?: boolean }) {
-  const [antes, enlace, despues] = partes;
-  return (
-    <>
-      {antes}
-      {externo ? (
-        <a className={ENLACE} href={href} target="_blank" rel="noopener noreferrer">
-          {enlace}
-        </a>
-      ) : (
-        <Link className={ENLACE} href={href}>
-          {enlace}
-        </Link>
-      )}
-      {despues}
-    </>
-  );
-}
 
 /** El encabezado de sección de aisafety.sg: filete arriba, título a la izquierda, texto a la derecha. */
 function Cabecera({ titulo, children }: { titulo: string; children: React.ReactNode }) {
@@ -311,11 +287,9 @@ function Cabecera({ titulo, children }: { titulo: string; children: React.ReactN
   );
 }
 
-export default async function Portada({ idioma }: { idioma: Idioma }) {
+export default function Portada({ idioma }: { idioma: Idioma }) {
   const t = TEXTOS[idioma];
   const ruta = (r: string) => rutaEn(idioma, r);
-  const { proximos } = partirEventos(await cargarEventos());
-  const proximo = proximos[0];
 
   return (
     <main className="aisc-page flex flex-col">
@@ -411,15 +385,9 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
             <div className="border-t border-aisc-forest/50 pt-8">
               <h2 className="text-display-2 md:text-display-2-lg text-balance">{t.comunidad.titulo}</h2>
               <p className="text-body md:text-body-lg mt-5 max-w-[520px] text-aisc-ink/85">{t.comunidad.texto}</p>
-              {proximo ? (
-                <p className="text-body md:text-body-lg mt-4 max-w-[520px] text-aisc-ink/85">
-                  <Frase
-                    partes={t.comunidad.proximo(proximo.titulo, fechaLarga(proximo.inicio, idioma))}
-                    href={proximo.url ?? ruta("/eventos")}
-                    externo={Boolean(proximo.url)}
-                  />
-                </p>
-              ) : null}
+              <Link className={`${CTA_LINK_VERDE} mt-8`} href={ruta("/eventos")}>
+                {t.comunidad.eventos}
+              </Link>
             </div>
           </div>
         </div>
