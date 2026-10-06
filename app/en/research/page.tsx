@@ -86,7 +86,7 @@ const PREMIADOS = [
     premio: "Latin America prize",
     ciudad: "Bogotá",
     equipo: "Leonardo Párraga, Angie Giraldo and Víctor Gelves",
-    body: "Illegal armed groups in Colombia already attack with modified commercial drones. The team built an open dataset of 42 documented attacks to answer the question this regulation hinges on: who picks the target and who pulls the trigger.",
+    body: "An open dataset of 42 commercial drone attacks in Colombia, to establish who picks the target and who pulls the trigger.",
     href: "https://apartresearch.com/project/coldron-lj2w",
   },
   {
@@ -95,7 +95,7 @@ const PREMIADOS = [
     ciudad: "Cali",
     equipo:
       "Gilber Alexis Corrales Gallego, Pablo Santiago Potes Velasco, Jhoan Stevan Mosquera Ortiz, Nicolás Lozano Mazuera, María del Mar García Matabanchoy and Óscar Julián Pérez Ladino",
-    body: "A model can infer things about whoever writes to it that nobody told it. The team measured whether Qwen2.5-7B internally represents Colombian identity and social class from speech cues, and whether that drags stereotypes along.",
+    body: "Measures whether Qwen2.5-7B internally infers the Colombian identity and social class of whoever writes to it, and whether that carries stereotypes.",
     href: "https://apartresearch.com/project/probing-latent-colombian-identity-inferences-in-qwen257b-with-natural-language-autoencoders-mucf",
   },
   {
@@ -103,7 +103,7 @@ const PREMIADOS = [
     premio: "Latin America prize",
     ciudad: "Bogotá",
     equipo: "Andres Felipe Mosquera Hernandez",
-    body: "Models that reason out loud leave a trail of intermediate steps. The work identifies which of those steps end up producing stereotyped answers in Latin American scenarios, instead of measuring only the final output.",
+    body: "Identifies which intermediate reasoning steps produce stereotyped answers in Latin American scenarios.",
     href: "https://apartresearch.com/project/thought-anchors-for-social-bias-which-reasoning-steps-matter-in-extended-thinking-llms-on-latin-american-scenarios-27ti",
   },
   {
@@ -111,7 +111,7 @@ const PREMIADOS = [
     premio: "Honourable mention",
     ciudad: "Bogotá",
     equipo: "Helen Stefany Penagos and Juan Esteban Leiva",
-    body: "A model refuses a harmful request in a chat and carries it out when it operates as an agent with tools. The team measured what changes inside: the internal refusal mechanism weakens in agentic format.",
+    body: "Shows that a model's internal refusal mechanism weakens when it operates as an agent with tools.",
     href: "https://apartresearch.com/project/por-qu-los-agentes-obedecen-la-direccin-de-rechazo-se-debilita-en-formato-agntico-ux70",
   },
   {
@@ -119,7 +119,7 @@ const PREMIADOS = [
     premio: "Honourable mention",
     ciudad: "Bogotá",
     equipo: "Lina Gomez, Brenda Barahona and Ernesto Duarte",
-    body: "A test for Colombian transitional justice: six models are asked to recommend a sentence and a single piece of context is changed, the region, the armed actor or the victim's profile, leaving what is legally relevant untouched. What is measured is how much the answer moves.",
+    body: "A transitional justice test: change a single piece of context and measure how far the sentence recommended by six models moves.",
     href: "https://apartresearch.com/project/justicia-a-counterfactual-benchmark-for-auditing-contextual-biases-in-language-models-for-transitional-justice-jjvl",
   },
 ];
@@ -306,70 +306,56 @@ export default function Research() {
       <section id="hackathons" className="bg-aisc-cream">
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-          <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">What comes out of the hackathons</h2>
-            <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
-              <p>
-                <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
-                  Apart Research
-                </a>{" "}
-                convenes these hackathons globally. We open the in-person hub in Bogotá so people can take part from
-                here. It is a weekend that ends with work of your own: teams form on Friday night, a report is
-                submitted on Sunday night, and the following week outside judges grade it.
-              </p>
-              <p>
-                Most of those who turn up had never worked on AI safety. They leave with a piece of work signed,
-                published and with written feedback.
-              </p>
-              <p>
-                The latest edition was the{" "}
-                <a
-                  className={ENLACE}
-                  href="https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Global South AI Safety Hackathon, 19 to 21 June 2026
-                </a>
-                . The judges were external and graded projects from across Latin America blind. Every report is
-                published in full on Apart&rsquo;s site.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 gap-8 pt-5 pb-10 md:gap-10 md:pt-7 md:pb-12 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
+            <h2 className="text-display-2 md:text-display-2-lg text-balance">Hackathon projects</h2>
+            <p className="text-body md:text-body-lg text-aisc-ink">
+              Community teams in the hackathons run by{" "}
+              <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
+                Apart Research
+              </a>
+              , each with a published report and an evaluation by external judges.
+            </p>
           </div>
 
-          <h3 className="text-display-3 md:text-display-3-lg pb-6 text-balance md:pb-7">The award-winning work</h3>
-          <ul className="grid grid-cols-1 gap-[10px] md:grid-cols-2">
+          <a
+            className="text-meta text-aisc-muted transition-colors hover:text-aisc-forest"
+            href="https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Global South AI Safety Hackathon · June 2026
+          </a>
+          <ul className="mt-3 border-t border-aisc-forest-deep/15">
             {PREMIADOS.map((p) => (
-              <li className="flex" key={p.href}>
+              <li key={p.href} className="border-b border-aisc-forest-deep/15">
                 <a
-                  className="focus-visible:outline-aisc-forest flex w-full flex-col rounded-lg border border-aisc-ink bg-aisc-cream p-6 transition-colors hover:bg-aisc-sand focus-visible:outline-2 focus-visible:outline-offset-[3px] md:p-7 lg:p-8"
+                  className="group grid grid-cols-1 gap-2 py-5 md:grid-cols-[minmax(0,1fr)_minmax(0,220px)] md:gap-10"
                   href={p.href}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span className="text-kicker text-aisc-coral">
-                    {p.premio} · {p.ciudad}
-                  </span>
-                  <h4 className="text-display-3 md:text-display-3-lg mt-4 text-balance">{p.titulo}</h4>
-                  <p className="text-body-sm mt-3 text-aisc-ink">{p.body}</p>
-                  <p className="text-meta mt-5 text-aisc-muted">{p.equipo}</p>
-                  <span className="text-display-4 md:text-display-4-lg mt-7 text-aisc-forest transition-colors hover:text-aisc-coral">
-                    Read the report
+                  <div>
+                    <h3 className="font-display text-[1.15rem] leading-snug font-semibold text-balance text-aisc-ink transition-colors group-hover:text-aisc-forest">
+                      {p.titulo}
+                    </h3>
+                    <p className="text-body-sm mt-1.5 max-w-[68ch] text-aisc-ink">{p.body}</p>
+                    <p className="text-meta mt-2 text-aisc-muted">
+                      {p.equipo} · {p.ciudad}
+                    </p>
+                  </div>
+                  <span className="text-kicker order-first text-aisc-coral md:order-none md:pt-1.5 md:text-right">
+                    {p.premio}
                   </span>
                 </a>
               </li>
             ))}
           </ul>
 
-          <div className="mt-14 md:mt-16">
-            <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep/25" />
-            <div className="flex flex-col gap-2 pt-5 pb-4 md:flex-row md:items-baseline md:justify-between md:gap-10 md:pt-6">
-              <h3 className="text-display-4 md:text-display-4-lg text-balance">The other Colombian teams</h3>
-              <p className="text-body-sm text-aisc-muted">
-                Thirteen more projects from that same edition, in person and remote.
-              </p>
-            </div>
-            <ul className="grid grid-cols-1 gap-x-10 md:grid-cols-2">
+          <details className="mt-6">
+            <summary className="font-display inline-block cursor-pointer list-none text-[1.05rem] font-semibold text-aisc-forest transition-colors hover:text-aisc-coral [&::-webkit-details-marker]:hidden">
+              See the other {OTROS.length} Colombian projects from this edition
+            </summary>
+            <ul className="mt-4 grid grid-cols-1 gap-x-10 md:grid-cols-2">
               {OTROS.map((o) => (
                 <li key={o.href} className="border-t border-aisc-forest-deep/15">
                   <a
@@ -386,53 +372,22 @@ export default function Research() {
                 </li>
               ))}
             </ul>
-          </div>
+          </details>
         </div>
       </section>
 
-      <section id="lo-que-viene" className="bg-aisc-cream">
-        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
-          <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-          <div className="grid grid-cols-1 gap-8 pt-5 md:gap-10 md:pt-7 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">The next edition</h2>
-            <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
-              <p>
-                From 11 to 13 September 2026 we open the hub in Bogotá for the{" "}
-                <Link className={ENLACE} href="/en/sprint">
-                  AI incident response
-                </Link>{" "}
-                sprint. The subject is what you do when an AI system fails in production and someone has to react.
-              </p>
-              <p>
-                No previous experience is needed, and no coding. Teams form on the spot and there is mentoring
-                throughout the weekend.
-              </p>
-              <p>
-                <Link className={ENLACE} href="/en/sprint/apply">
-                  Applications to the Bogotá hub are open
-                </Link>{" "}
-                and close on 6 September.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <CtaPanel
-        title="Take part in the next one"
-        body="From 11 to 13 September is the AI Incident Response Sprint, convened by Apart Research. We open the hub in Bogotá and applications close on 6 September."
-      >
-        <Link className={CTA_LINK_PRIMARY} href="/en/sprint">
-          See the hackathon
-        </Link>
+      <CtaPanel title="Take part in the next hackathon" body="We open the Bogotá hub for every Apart Research hackathon and announce it first in the WhatsApp group.">
         <a
-          className={CTA_LINK}
+          className={CTA_LINK_PRIMARY}
           href="https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF"
           target="_blank"
           rel="noopener noreferrer"
         >
           Join the WhatsApp group
         </a>
+        <Link className={CTA_LINK} href="/en/join">
+          See how to join
+        </Link>
       </CtaPanel>
       <SiteFooter idioma="en" />
     </main>

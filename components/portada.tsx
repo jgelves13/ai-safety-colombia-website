@@ -36,7 +36,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
   es: {
     hero: {
       titulo: "De Colombia a la frontera de la seguridad de la IA",
-      texto: "Si te interesa que la inteligencia artificial avance de forma segura, acá encuentras con quién estudiar y por dónde empezar a investigar.",
+      texto: "Si te interesa que la inteligencia artificial avance de forma segura, acá encuentras apoyo para acelerar tu carrera en este campo.",
       programas: "Ver los programas",
       unete: "Únete a la comunidad",
     },
@@ -96,7 +96,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
   en: {
     hero: {
       titulo: "From Colombia to the frontier of AI safety",
-      texto: "If you care about artificial intelligence going well, this is where you find people to study with and a place to start doing research.",
+      texto: "If you care about artificial intelligence going well, this is where you find support to accelerate your career in the field.",
       programas: "See the programs",
       unete: "Join the community",
     },
@@ -156,7 +156,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
   pt: {
     hero: {
       titulo: "Da Colômbia à fronteira da segurança da IA",
-      texto: "Se te interessa que a inteligência artificial avance de forma segura, aqui você encontra com quem estudar e por onde começar a pesquisar.",
+      texto: "Se te interessa que a inteligência artificial avance de forma segura, aqui você encontra apoio para acelerar sua carreira nesta área.",
       programas: "Ver os programas",
       unete: "Entre na comunidade",
     },
@@ -354,22 +354,16 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
       <section className="pt-14 md:pt-16">
         <div className="mx-auto w-full max-w-[1448px] px-4 md:px-8">
           <div className="grid items-center gap-10 rounded-[var(--radius)] bg-aisc-sand px-4 py-10 md:px-8 md:py-14 lg:grid-cols-2 lg:gap-16 lg:px-12 lg:py-16">
-            <ul className="grid gap-3 sm:grid-cols-2 md:gap-4">
+            <ul className="grid grid-cols-2 gap-2 md:gap-3">
               {destacados.map((e) => (
-                <li key={e.id} className="flex">
+                <li key={e.id}>
                   <Link
                     href={`${ruta("/eventos")}#evento-${e.id}`}
-                    className="group flex w-full flex-col overflow-hidden rounded-xl border border-aisc-forest-deep/15 bg-aisc-cream transition-colors hover:border-aisc-forest-deep/50"
+                    aria-label={`${e.titulo}, ${fechaLarga(e.inicio, idioma)}`}
+                    title={e.titulo}
+                    className="group block aspect-[16/9] overflow-hidden rounded-xl bg-aisc-forest-deep"
                   >
-                    <div aria-hidden="true" className="aspect-[16/9] w-full overflow-hidden bg-aisc-forest-deep">
-                      <img src={e.portada} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
-                    </div>
-                    <div className="flex flex-1 flex-col p-4">
-                      <span className="text-meta text-aisc-muted">{fechaLarga(e.inicio, idioma)}</span>
-                      <h3 className="font-display mt-1.5 text-[1.05rem] leading-snug font-semibold text-balance transition-colors group-hover:text-aisc-forest">
-                        {e.titulo}
-                      </h3>
-                    </div>
+                    <img src={e.portada} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
                   </Link>
                 </li>
               ))}

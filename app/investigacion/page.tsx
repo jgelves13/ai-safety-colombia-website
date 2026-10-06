@@ -85,7 +85,7 @@ const PREMIADOS = [
     premio: "Premio de Latinoamérica",
     ciudad: "Bogotá",
     equipo: "Leonardo Párraga, Angie Giraldo y Víctor Gelves",
-    body: "Los grupos armados ilegales en Colombia ya atacan con drones comerciales modificados. El equipo armó un conjunto de datos abierto con 42 ataques documentados para responder la pregunta de la que depende cómo se regula esto: quién escoge el blanco y quién aprieta el gatillo.",
+    body: "Un conjunto de datos abierto con 42 ataques con drones comerciales en Colombia, para saber quién escoge el blanco y quién dispara.",
     href: "https://apartresearch.com/project/coldron-lj2w",
   },
   {
@@ -94,7 +94,7 @@ const PREMIADOS = [
     ciudad: "Cali",
     equipo:
       "Gilber Alexis Corrales Gallego, Pablo Santiago Potes Velasco, Jhoan Stevan Mosquera Ortiz, Nicolás Lozano Mazuera, María del Mar García Matabanchoy y Óscar Julián Pérez Ladino",
-    body: "Un modelo puede deducir de quién le escribe cosas que nadie le dijo. El equipo midió si Qwen2.5-7B representa por dentro la identidad colombiana y el estrato social a partir de pistas del habla, y si eso arrastra estereotipos.",
+    body: "Mide si Qwen2.5-7B infiere por dentro la identidad colombiana y el estrato de quien le escribe, y si eso arrastra estereotipos.",
     href: "https://apartresearch.com/project/probing-latent-colombian-identity-inferences-in-qwen257b-with-natural-language-autoencoders-mucf",
   },
   {
@@ -102,7 +102,7 @@ const PREMIADOS = [
     premio: "Premio de Latinoamérica",
     ciudad: "Bogotá",
     equipo: "Andres Felipe Mosquera Hernandez",
-    body: "Los modelos que razonan en voz alta dejan un rastro de pasos intermedios. El trabajo identifica cuáles de esos pasos son los que terminan produciendo respuestas estereotipadas en escenarios latinoamericanos, en vez de medir solo el resultado final.",
+    body: "Identifica qué pasos intermedios del razonamiento producen respuestas estereotipadas en escenarios latinoamericanos.",
     href: "https://apartresearch.com/project/thought-anchors-for-social-bias-which-reasoning-steps-matter-in-extended-thinking-llms-on-latin-american-scenarios-27ti",
   },
   {
@@ -110,7 +110,7 @@ const PREMIADOS = [
     premio: "Mención de honor",
     ciudad: "Bogotá",
     equipo: "Helen Stefany Penagos y Juan Esteban Leiva",
-    body: "Un modelo rechaza una petición dañina en un chat y la cumple cuando opera como agente con herramientas. El equipo midió por dentro qué cambia: el mecanismo interno de rechazo se debilita en formato agéntico.",
+    body: "Muestra que el mecanismo interno de rechazo de un modelo se debilita cuando opera como agente con herramientas.",
     href: "https://apartresearch.com/project/por-qu-los-agentes-obedecen-la-direccin-de-rechazo-se-debilita-en-formato-agntico-ux70",
   },
   {
@@ -118,7 +118,7 @@ const PREMIADOS = [
     premio: "Mención de honor",
     ciudad: "Bogotá",
     equipo: "Lina Gomez, Brenda Barahona y Ernesto Duarte",
-    body: "Una prueba para justicia transicional colombiana: se le pide a seis modelos una recomendación de sanción y se cambia un solo dato de contexto, la región, el actor armado o el perfil de la víctima, dejando intacto lo jurídicamente relevante. Se mide cuánto cambia la respuesta.",
+    body: "Una prueba para justicia transicional: cambia un solo dato de contexto y mide cuánto se mueve la sanción que recomiendan seis modelos.",
     href: "https://apartresearch.com/project/justicia-a-counterfactual-benchmark-for-auditing-contextual-biases-in-language-models-for-transitional-justice-jjvl",
   },
 ];
@@ -305,71 +305,56 @@ export default function Investigacion() {
       <section id="hackathons" className="bg-aisc-cream">
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
           <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-          <div className="grid grid-cols-1 gap-8 pt-5 pb-12 md:gap-10 md:pt-7 md:pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">Lo que sale de los hackathons</h2>
-            <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
-              <p>
-                <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
-                  Apart Research
-                </a>{" "}
-                convoca estos hackathons a nivel global. Nosotros abrimos el hub presencial en Bogotá para
-                participar desde acá. Es un fin de semana para salir con un trabajo propio: viernes en la noche se
-                arman los equipos, domingo en la noche se entrega un reporte, y la semana siguiente lo califican
-                jurados de fuera.
-              </p>
-              <p>
-                La mayoría de quienes llegan nunca había trabajado en seguridad de la IA. Salen con un trabajo firmado,
-                publicado y con retroalimentación escrita.
-              </p>
-              <p>
-                La última edición fue el{" "}
-                <a
-                  className={ENLACE}
-                  href="https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Global South AI Safety Hackathon, del 19 al 21 de junio de 2026
-                </a>
-                . Los jurados eran externos y evaluaron a ciegas los proyectos de toda Latinoamérica. Cada reporte
-                está publicado completo en el sitio de Apart.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 gap-8 pt-5 pb-10 md:gap-10 md:pt-7 md:pb-12 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
+            <h2 className="text-display-2 md:text-display-2-lg text-balance">Proyectos de hackathon</h2>
+            <p className="text-body md:text-body-lg text-aisc-ink">
+              Equipos de la comunidad en los hackathons de{" "}
+              <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
+                Apart Research
+              </a>
+              , con el reporte publicado y la evaluación de jurados externos.
+            </p>
           </div>
 
-          <h3 className="text-display-3 md:text-display-3-lg pb-6 text-balance md:pb-7">Los trabajos premiados</h3>
-          <ul className="grid grid-cols-1 gap-[10px] md:grid-cols-2">
+          <a
+            className="text-meta text-aisc-muted transition-colors hover:text-aisc-forest"
+            href="https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Global South AI Safety Hackathon · junio de 2026
+          </a>
+          <ul className="mt-3 border-t border-aisc-forest-deep/15">
             {PREMIADOS.map((p) => (
-              <li className="flex" key={p.href}>
+              <li key={p.href} className="border-b border-aisc-forest-deep/15">
                 <a
-                  className="focus-visible:outline-aisc-forest flex w-full flex-col rounded-lg border border-aisc-ink bg-aisc-cream p-6 transition-colors hover:bg-aisc-sand focus-visible:outline-2 focus-visible:outline-offset-[3px] md:p-7 lg:p-8"
+                  className="group grid grid-cols-1 gap-2 py-5 md:grid-cols-[minmax(0,1fr)_minmax(0,220px)] md:gap-10"
                   href={p.href}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span className="text-kicker text-aisc-coral">
-                    {p.premio} · {p.ciudad}
-                  </span>
-                  <h4 className="text-display-3 md:text-display-3-lg mt-4 text-balance">{p.titulo}</h4>
-                  <p className="text-body-sm mt-3 text-aisc-ink">{p.body}</p>
-                  <p className="text-meta mt-5 text-aisc-muted">{p.equipo}</p>
-                  <span className="text-display-4 md:text-display-4-lg mt-7 text-aisc-forest transition-colors hover:text-aisc-coral">
-                    Leer el reporte
+                  <div>
+                    <h3 className="font-display text-[1.15rem] leading-snug font-semibold text-balance text-aisc-ink transition-colors group-hover:text-aisc-forest">
+                      {p.titulo}
+                    </h3>
+                    <p className="text-body-sm mt-1.5 max-w-[68ch] text-aisc-ink">{p.body}</p>
+                    <p className="text-meta mt-2 text-aisc-muted">
+                      {p.equipo} · {p.ciudad}
+                    </p>
+                  </div>
+                  <span className="text-kicker order-first text-aisc-coral md:order-none md:pt-1.5 md:text-right">
+                    {p.premio}
                   </span>
                 </a>
               </li>
             ))}
           </ul>
 
-          <div className="mt-14 md:mt-16">
-            <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep/25" />
-            <div className="flex flex-col gap-2 pt-5 pb-4 md:flex-row md:items-baseline md:justify-between md:gap-10 md:pt-6">
-              <h3 className="text-display-4 md:text-display-4-lg text-balance">Los demás equipos colombianos</h3>
-              <p className="text-body-sm text-aisc-muted">
-                Trece proyectos más de esa misma edición, entre presenciales y remotos.
-              </p>
-            </div>
-            <ul className="grid grid-cols-1 gap-x-10 md:grid-cols-2">
+          <details className="mt-6">
+            <summary className="font-display inline-block cursor-pointer list-none text-[1.05rem] font-semibold text-aisc-forest transition-colors hover:text-aisc-coral [&::-webkit-details-marker]:hidden">
+              Ver los otros {OTROS.length} proyectos colombianos de esta edición
+            </summary>
+            <ul className="mt-4 grid grid-cols-1 gap-x-10 md:grid-cols-2">
               {OTROS.map((o) => (
                 <li key={o.href} className="border-t border-aisc-forest-deep/15">
                   <a
@@ -386,53 +371,22 @@ export default function Investigacion() {
                 </li>
               ))}
             </ul>
-          </div>
+          </details>
         </div>
       </section>
 
-      <section id="lo-que-viene" className="bg-aisc-cream">
-        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16 pb-14 md:pb-16">
-          <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-          <div className="grid grid-cols-1 gap-8 pt-5 md:gap-10 md:pt-7 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">La próxima edición</h2>
-            <div className="text-body md:text-body-lg flex flex-col gap-4 text-aisc-ink">
-              <p>
-                Del 11 al 13 de septiembre de 2026 abrimos el hub en Bogotá para el sprint de{" "}
-                <Link className={ENLACE} href="/sprint">
-                  respuesta a incidentes de IA
-                </Link>
-                . El tema es qué se hace cuando un sistema de IA falla en producción y hay que reaccionar.
-              </p>
-              <p>
-                No hace falta experiencia previa ni saber programar. Los equipos se arman ahí y hay mentoría durante
-                todo el fin de semana.
-              </p>
-              <p>
-                <Link className={ENLACE} href="/sprint/aplicar">
-                  Las aplicaciones al hub en Bogotá están abiertas
-                </Link>{" "}
-                y cierran el 6 de septiembre.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <CtaPanel
-        title="Participa en el próximo"
-        body="Del 11 al 13 de septiembre es el AI Incident Response Sprint, que convoca Apart Research. Abrimos el hub en Bogotá y las aplicaciones cierran el 6 de septiembre."
-      >
-        <Link className={CTA_LINK_PRIMARY} href="/sprint">
-          Ver el hackathon
-        </Link>
+      <CtaPanel title="Participa en el próximo hackathon" body="Abrimos el hub en Bogotá para cada hackathon de Apart Research y lo anunciamos primero en el grupo de WhatsApp.">
         <a
-          className={CTA_LINK}
+          className={CTA_LINK_PRIMARY}
           href="https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF"
           target="_blank"
           rel="noopener noreferrer"
         >
           Entrar al grupo de WhatsApp
         </a>
+        <Link className={CTA_LINK} href="/unete">
+          Ver cómo unirte
+        </Link>
       </CtaPanel>
       <SiteFooter />
     </main>
