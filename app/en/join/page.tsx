@@ -33,7 +33,7 @@ const PASOS: PasoUnete[] = [
       {
         titulo: "Reading group: AI Control",
         cuerpo: "A reading every two weeks on how to oversee an AI system that acts on its own. You can come just to listen.",
-        datos: "Fridays at 6:30 pm Colombia time, online, one hour. Free, no requirements.",
+        datos: "Every other Friday at 6:30 pm Colombia time, online, one hour. Free, no requirements.",
         href: "https://chat.whatsapp.com/DfWuuPlzqmIFN1tRtl57SB",
         cta: "Join the reading group",
         externo: true,
@@ -92,8 +92,7 @@ const TEXTOS: TextosUnete = {
   h1: "Join us",
   intro: "There are three ways in, depending on the time you have. Start with the one closest to you: nobody arrives knowing.",
   aviso: "Seminar applications open until Friday 9 October",
-  kickerAbierto: "Seminar · Applications open until 9 October",
-  kickerCerrado: "Seminar",
+  kickerAbierto: "Applications open until 9 October",
   cta: {
     kicker: "Not sure where to start?",
     title: "Talk to us",

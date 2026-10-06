@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CtaPanel from "@/components/cta-panel";
 import SiteFooter from "@/components/site-footer";
+import PremiadosHackathon, { type Premiado } from "@/components/premiados-hackathon";
 import SiteHeader from "@/components/site-header";
 import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { alternativas } from "@/lib/idiomas";
@@ -80,7 +81,7 @@ const PUBLICACIONES = [
 
 /* Lo premiado. Cada tarjeta enlaza al reporte publico en Apart, que es donde se
    puede comprobar el premio y leer el trabajo completo. */
-const PREMIADOS = [
+const PREMIADOS: Premiado[] = [
   {
     titulo: "ColDron",
     premio: "Prêmio da América Latina",
@@ -325,31 +326,9 @@ export default function Pesquisa() {
           >
             Global South AI Safety Hackathon · junho de 2026
           </a>
-          <ul className="mt-3 border-t border-aisc-forest-deep/15">
-            {PREMIADOS.map((p) => (
-              <li key={p.href} className="border-b border-aisc-forest-deep/15">
-                <a
-                  className="group grid grid-cols-1 gap-2 py-5 md:grid-cols-[minmax(0,1fr)_minmax(0,220px)] md:gap-10"
-                  href={p.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <div>
-                    <h3 className="font-display text-[1.15rem] leading-snug font-semibold text-balance text-aisc-ink transition-colors group-hover:text-aisc-forest">
-                      {p.titulo}
-                    </h3>
-                    <p className="text-body-sm mt-1.5 max-w-[68ch] text-aisc-ink">{p.body}</p>
-                    <p className="text-meta mt-2 text-aisc-muted">
-                      {p.equipo} · {p.ciudad}
-                    </p>
-                  </div>
-                  <span className="text-kicker order-first text-aisc-coral md:order-none md:pt-1.5 md:text-right">
-                    {p.premio}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-4">
+            <PremiadosHackathon premiados={PREMIADOS} />
+          </div>
 
           <details className="mt-6">
             <summary className="font-display inline-block cursor-pointer list-none text-[1.05rem] font-semibold text-aisc-forest transition-colors hover:text-aisc-coral [&::-webkit-details-marker]:hidden">

@@ -33,7 +33,7 @@ const PASOS: PasoUnete[] = [
       {
         titulo: "Grupo de leitura: AI Control",
         cuerpo: "Uma leitura a cada quinze dias sobre como supervisionar um sistema de IA que age por conta própria. Você pode vir só para ouvir.",
-        datos: "Sextas às 18h30, horário da Colômbia, on-line, uma hora. Grátis e sem requisitos.",
+        datos: "Sexta-feira sim, sexta não, às 18h30, horário da Colômbia, on-line, uma hora. Grátis e sem requisitos.",
         href: "https://chat.whatsapp.com/DfWuuPlzqmIFN1tRtl57SB",
         cta: "Entrar no grupo de leitura",
         externo: true,
@@ -92,8 +92,7 @@ const TEXTOS: TextosUnete = {
   h1: "Participe",
   intro: "Há três formas de entrar, conforme o tempo que você tem. Comece pela que estiver mais perto de você: ninguém chega sabendo.",
   aviso: "Inscrições abertas para os seminários até sexta-feira, 9 de outubro",
-  kickerAbierto: "Seminário · Inscrições abertas até 9 de outubro",
-  kickerCerrado: "Seminário",
+  kickerAbierto: "Inscrições abertas até 9 de outubro",
   cta: {
     kicker: "Não sabe por onde começar?",
     title: "Fale com a gente",
