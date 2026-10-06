@@ -8,8 +8,8 @@ import { cargarEventos, fechaLarga, partirEventos } from "@/lib/eventos";
 import { type Idioma, rutaEn } from "@/lib/idiomas";
 
 /* La portada, en los tres idiomas. La estructura es la de apartresearch.com
-   (tesis, quién nos apoya, lo que se ha publicado, los programas, la comunidad
-   y con quién trabajamos) y la estética la de aisafety.sg: papel blanco, verde
+   (tesis, quién nos apoya, los programas, la comunidad y lo que se ha
+   publicado) y la estética la de aisafety.sg: papel blanco, verde
    muy oscuro, dibujos de líneas finas e íconos de puntos. La letra, el ancho de
    columna, los bordes y el ritmo entre secciones son los de las páginas
    interiores, para que la portada no se lea como otro sitio.
@@ -24,14 +24,13 @@ type ConEnlace = readonly [string, string, string];
 type Textos = {
   hero: { titulo: string; texto: string; programas: string; unete: string };
   aliados: string;
-  investigacion: { titulo: string; texto: ConEnlace; piezas: { tipo: string; fecha: string; venue: string; autores: string }[] };
+  investigacion: { titulo: string; texto: string; piezas: { tipo: string; fecha: string; venue: string; autores: string }[] };
   programas: {
     titulo: string;
-    texto: ConEnlace;
+    texto: string;
     tarjetas: { kicker: string; titulo: string; texto: string; enlaces: string[] }[];
   };
-  comunidad: { titulo: string; texto: string; proximo: (titulo: string, fecha: string) => ConEnlace; calendario: ConEnlace; fotos: string[] };
-  trabaja: { titulo: string; texto: string; agendar: string; tarjetas: { titulo: string; texto: string }[] };
+  comunidad: { titulo: string; texto: string; proximo: (titulo: string, fecha: string) => ConEnlace; fotos: string[] };
   cierre: { titulo: string; texto: string; whatsapp: string; agendar: string; escribir: string };
 };
 
@@ -46,7 +45,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
     aliados: "Trabajamos con",
     investigacion: {
       titulo: "Investigación",
-      texto: ["Lo que ha publicado gente de la comunidad, de Oxford a NeurIPS. La lista completa, con los proyectos premiados en los hackatones, está en ", "investigación", "."],
+      texto: "Miembros de la comunidad han publicado con la Oxford Martin AI Governance Initiative, en talleres de NeurIPS y en revistas con revisión de pares.",
       piezas: [
         { tipo: "Documento de trabajo", fecha: "Diciembre de 2025", venue: "Oxford Martin AI Governance Initiative", autores: "Camila Beltran y 18 coautores" },
         { tipo: "Artículo aceptado en taller", fecha: "Octubre de 2025", venue: "Dos talleres de NeurIPS 2025", autores: "Fernando Avalos y 5 coautores" },
@@ -55,7 +54,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
     },
     programas: {
       titulo: "Programas",
-      texto: ["Puedes empezar por cualquiera de los cuatro. Las fechas y la forma de inscribirte están en ", "Únete", "."],
+      texto: "Para estudiar el campo en grupo, sacar adelante un primer proyecto o escuchar a quienes ya investigan.",
       tarjetas: [
         {
           kicker: "Con BlueDot Impact",
@@ -87,23 +86,11 @@ export const TEXTOS: Record<Idioma, Textos> = {
       titulo: "Comunidad y eventos",
       texto: "Charlas, cenas de discusión y paneles en Bogotá, para conocer a quienes trabajan en esto y discutir con ellos.",
       proximo: (titulo, fecha) => ["El próximo es ", titulo, `, el ${fecha}.`],
-      calendario: ["Lo que viene y lo que ya pasó está en ", "eventos", "."],
       fotos: [
         "Panel sobre gobernanza de la IA en Colombia",
         "Encuentro AI Safety Connect LATAM",
         "Sesión Del algoritmo a la ley",
         "Cena de discusión sobre IA y política pública",
-      ],
-    },
-    trabaja: {
-      titulo: "Trabaja con nosotros",
-      texto: "Si quieres hacer algo con la comunidad, agenda veinte minutos y lo conversamos.",
-      agendar: "Agendar 20 minutos",
-      tarjetas: [
-        { titulo: "Universidades", texto: "Seminarios, charlas y grupos de estudio con tus estudiantes, en tu campus o en línea." },
-        { titulo: "Gobierno y política pública", texto: "Espacios técnicos sobre los riesgos de la IA para quienes diseñan política pública." },
-        { titulo: "Financiadores y aliados", texto: "Apoya un programa concreto o coorganiza el próximo con nosotros." },
-        { titulo: "Investigadores", texto: "Mentorías, una charla en la serie mensual o un proyecto con gente de la comunidad." },
       ],
     },
     cierre: {
@@ -124,7 +111,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
     aliados: "We work with",
     investigacion: {
       titulo: "Research",
-      texto: ["What people in the community have published, from Oxford to NeurIPS. The full list, with the award-winning hackathon projects, is on the ", "research", " page."],
+      texto: "Community members have published with the Oxford Martin AI Governance Initiative, at NeurIPS workshops and in peer-reviewed journals.",
       piezas: [
         { tipo: "Working paper", fecha: "December 2025", venue: "Oxford Martin AI Governance Initiative", autores: "Camila Beltran and 18 co-authors" },
         { tipo: "Workshop paper", fecha: "October 2025", venue: "Two NeurIPS 2025 workshops", autores: "Fernando Avalos and 5 co-authors" },
@@ -133,7 +120,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
     },
     programas: {
       titulo: "Programs",
-      texto: ["You can start with any of the four. Dates and how to sign up are on ", "Join us", "."],
+      texto: "To study the field in a group, get a first project done, or hear from the people already doing research.",
       tarjetas: [
         {
           kicker: "With BlueDot Impact",
@@ -165,23 +152,11 @@ export const TEXTOS: Record<Idioma, Textos> = {
       titulo: "Community and events",
       texto: "Talks, discussion dinners and panels in Bogotá, to meet the people working on this and argue with them.",
       proximo: (titulo, fecha) => ["Next up is ", titulo, `, on ${fecha}.`],
-      calendario: ["What is coming and what has already happened is on ", "events", "."],
       fotos: [
         "Panel on AI governance in Colombia",
         "AI Safety Connect LATAM gathering",
         "From the Algorithm to the Law session",
         "Discussion dinner on AI and public policy",
-      ],
-    },
-    trabaja: {
-      titulo: "Work with us",
-      texto: "If you want to do something with the community, book twenty minutes and we will talk it through.",
-      agendar: "Book 20 minutes",
-      tarjetas: [
-        { titulo: "Universities", texto: "Seminars, talks and study groups with your students, on your campus or online." },
-        { titulo: "Government and policy", texto: "Technical sessions on AI risks for the people who design public policy." },
-        { titulo: "Funders and allies", texto: "Back a specific program or co-organize the next one with us." },
-        { titulo: "Researchers", texto: "Mentoring, a talk in the monthly series or a project with people in the community." },
       ],
     },
     cierre: {
@@ -202,7 +177,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
     aliados: "Trabalhamos com",
     investigacion: {
       titulo: "Pesquisa",
-      texto: ["O que pessoas da comunidade publicaram, de Oxford à NeurIPS. A lista completa, com os projetos premiados nos hackathons, está em ", "pesquisa", "."],
+      texto: "Membros da comunidade publicaram com a Oxford Martin AI Governance Initiative, em workshops da NeurIPS e em revistas com revisão por pares.",
       piezas: [
         { tipo: "Documento de trabalho", fecha: "Dezembro de 2025", venue: "Oxford Martin AI Governance Initiative", autores: "Camila Beltran e 18 coautores" },
         { tipo: "Artigo aceito em workshop", fecha: "Outubro de 2025", venue: "Dois workshops da NeurIPS 2025", autores: "Fernando Avalos e 5 coautores" },
@@ -211,7 +186,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
     },
     programas: {
       titulo: "Programas",
-      texto: ["Você pode começar por qualquer um dos quatro. As datas e a forma de se inscrever estão em ", "Participe", "."],
+      texto: "Para estudar a área em grupo, tirar do papel um primeiro projeto ou ouvir quem já pesquisa.",
       tarjetas: [
         {
           kicker: "Com a BlueDot Impact",
@@ -243,23 +218,11 @@ export const TEXTOS: Record<Idioma, Textos> = {
       titulo: "Comunidade e eventos",
       texto: "Palestras, jantares de discussão e painéis em Bogotá, para conhecer quem trabalha nisso e discutir com essas pessoas.",
       proximo: (titulo, fecha) => ["O próximo é ", titulo, `, em ${fecha}.`],
-      calendario: ["O que vem por aí e o que já aconteceu está em ", "eventos", "."],
       fotos: [
         "Painel sobre governança da IA na Colômbia",
         "Encontro AI Safety Connect LATAM",
         "Sessão Do algoritmo à lei",
         "Jantar de discussão sobre IA e políticas públicas",
-      ],
-    },
-    trabaja: {
-      titulo: "Trabalhe conosco",
-      texto: "Se você quer fazer algo com a comunidade, agende vinte minutos e conversamos.",
-      agendar: "Agendar 20 minutos",
-      tarjetas: [
-        { titulo: "Universidades", texto: "Seminários, palestras e grupos de estudo com seus alunos, no seu campus ou online." },
-        { titulo: "Governo e políticas públicas", texto: "Espaços técnicos sobre os riscos da IA para quem desenha políticas públicas." },
-        { titulo: "Financiadores e aliados", texto: "Apoie um programa concreto ou coorganize o próximo conosco." },
-        { titulo: "Pesquisadores", texto: "Mentorias, uma palestra na série mensal ou um projeto com pessoas da comunidade." },
       ],
     },
     cierre: {
@@ -306,8 +269,6 @@ const PROGRAMAS: { patron: Patron; rutas: string[] }[] = [
   { patron: "lectura", rutas: ["/unete"] },
   { patron: "charlas", rutas: ["/eventos"] },
 ];
-
-const PUERTAS: Patron[] = ["universidades", "gobierno", "aliados", "investigadores"];
 
 /* Mientras llegan las fotos de los encuentros, los flyers de esos mismos eventos. */
 const FOTOS = [
@@ -403,50 +364,10 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
         </div>
       </section>
 
-      {/* --------------------------------------------------- investigación */}
-      <section className="pt-14 md:pt-16">
-        <div className={COLUMNA}>
-          <Cabecera titulo={t.investigacion.titulo}>
-            <Frase partes={t.investigacion.texto} href={ruta("/investigacion")} />
-          </Cabecera>
-          <ul className="mt-10 grid gap-5 md:mt-12 md:grid-cols-3">
-            {PUBLICACIONES.map((p, i) => {
-              const d = t.investigacion.piezas[i];
-              return (
-                <li key={p.href} className="flex">
-                  <a
-                    href={p.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex w-full flex-col overflow-hidden rounded-[var(--radius)] border border-aisc-forest-deep/25 transition-colors hover:border-aisc-forest-deep/60"
-                  >
-                    <img src={p.arte} alt="" aria-hidden="true" width={600} height={340} className="aspect-[600/340] w-full border-b border-aisc-forest-deep/25 object-cover" />
-                    <div className="flex flex-1 flex-col p-6 md:p-7">
-                      <span className="text-meta text-aisc-muted">
-                        {d.tipo} · {d.fecha}
-                      </span>
-                      <h3 className="text-display-4 md:text-display-4-lg mt-3 text-balance transition-colors group-hover:text-aisc-forest">
-                        {p.titulo}
-                      </h3>
-                      <div className="text-body-sm mt-auto flex flex-col gap-0.5 pt-6 text-aisc-muted">
-                        <span>{d.venue}</span>
-                        <span>{d.autores}</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </section>
-
       {/* ------------------------------------------------------- programas */}
       <section id="programas" className="scroll-mt-24 pt-14 md:pt-16">
         <div className={COLUMNA}>
-          <Cabecera titulo={t.programas.titulo}>
-            <Frase partes={t.programas.texto} href={ruta("/unete")} />
-          </Cabecera>
+          <Cabecera titulo={t.programas.titulo}>{t.programas.texto}</Cabecera>
           <ul className="mt-10 grid gap-5 md:mt-12 md:grid-cols-2 xl:grid-cols-4">
             {PROGRAMAS.map((p, i) => {
               const d = t.programas.tarjetas[i];
@@ -499,28 +420,39 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
                   />
                 </p>
               ) : null}
-              <p className="text-body md:text-body-lg mt-4 max-w-[520px] text-aisc-ink/85">
-                <Frase partes={t.comunidad.calendario} href={ruta("/eventos")} />
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* --------------------------------------------- trabaja con nosotros */}
+      {/* --------------------------------------------------- investigación */}
       <section className="pt-14 pb-14 md:pt-16 md:pb-16">
         <div className={COLUMNA}>
-          <Cabecera titulo={t.trabaja.titulo}>{t.trabaja.texto}</Cabecera>
-          <ul className="mt-10 grid gap-5 md:mt-12 md:grid-cols-2 xl:grid-cols-4">
-            {PUERTAS.map((patron, i) => {
-              const d = t.trabaja.tarjetas[i];
+          <Cabecera titulo={t.investigacion.titulo}>{t.investigacion.texto}</Cabecera>
+          <ul className="mt-10 grid gap-5 md:mt-12 md:grid-cols-3">
+            {PUBLICACIONES.map((p, i) => {
+              const d = t.investigacion.piezas[i];
               return (
-                <li key={patron} className="flex flex-col rounded-[var(--radius)] border border-aisc-forest-deep/25 p-7 md:p-8">
-                  <Puntos patron={patron} className="size-9 text-aisc-forest" />
-                  <h3 className="text-display-4 md:text-display-4-lg mt-8">{d.titulo}</h3>
-                  <p className="text-body-sm mt-3 text-aisc-ink/80">{d.texto}</p>
-                  <a href={AGENDAR} target="_blank" rel="noopener noreferrer" className={`${ENLACE_SERIF} mt-auto pt-8 text-aisc-forest`}>
-                    {t.trabaja.agendar}
+                <li key={p.href} className="flex">
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex w-full flex-col overflow-hidden rounded-[var(--radius)] border border-aisc-forest-deep/25 transition-colors hover:border-aisc-forest-deep/60"
+                  >
+                    <img src={p.arte} alt="" aria-hidden="true" width={600} height={340} className="aspect-[600/340] w-full border-b border-aisc-forest-deep/25 object-cover" />
+                    <div className="flex flex-1 flex-col p-6 md:p-7">
+                      <span className="text-meta text-aisc-muted">
+                        {d.tipo} · {d.fecha}
+                      </span>
+                      <h3 className="text-display-4 md:text-display-4-lg mt-3 text-balance transition-colors group-hover:text-aisc-forest">
+                        {p.titulo}
+                      </h3>
+                      <div className="text-body-sm mt-auto flex flex-col gap-0.5 pt-6 text-aisc-muted">
+                        <span>{d.venue}</span>
+                        <span>{d.autores}</span>
+                      </div>
+                    </div>
                   </a>
                 </li>
               );
