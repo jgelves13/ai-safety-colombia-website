@@ -1,7 +1,7 @@
 {
   "nota": "Huella de cada página en español el día en que sus traducciones quedaron al día. Lo escribe `pnpm idiomas --sellar`; no se edita a mano.",
   "paginas": {
-    "/": "7aefb05a8533d515",
+    "/": "2bf8871bc90ccf8c",
     "/seguridad-de-la-ia": "362e2fcd4e1d7de9",
     "/seminarios/futuro-y-riesgos": "c4ec749486ba53de",
     "/seminarios/tecnico": "9560df48db14f87c",

@@ -1,24 +1,27 @@
 @import "tailwindcss";
 
 /* ----------------------------- AI Safety Colombia -----------------------------
-   Paleta de la marca (brand/BRAND.md del sitio actual). Reemplaza la paleta
-   blanco/midnight/frost que traia el port: papel crema, verde bosque, coral.
+   Paleta de la marca. Desde oct-2026 el papel es blanco y el verde va muy
+   oscuro, al modo de aisafety.sg: nada de crema ni de beige. Los nombres
+   viejos se quedan (cream, sand) para no tocar las setenta páginas que los
+   usan; lo que cambia es el valor. El coral es acento corto y nada más.
    ---------------------------------------------------------------------------- */
 
 @theme {
-  --color-aisc-ink: #211a12;          /* negro calido, nunca #000 */
-  --color-aisc-cream: #fbf6ec;        /* el papel del sitio */
-  --color-aisc-sand: #f3ead8;         /* tinte sobre el papel; y texto sobre verde */
+  --color-aisc-ink: #13201a;          /* casi negro, con un punto de verde */
+  --color-aisc-cream: #ffffff;        /* el papel del sitio */
+  --color-aisc-sand: #edf3ee;         /* tinte verde muy claro; y texto sobre verde */
   --color-aisc-forest: #1f4d32;       /* primario: filetes, enlaces, bordes */
   --color-aisc-forest-deep: #143620;  /* bloques oscuros */
   --color-aisc-night: #0d2617;        /* hover sobre bloques oscuros */
   --color-aisc-sage: #3e7256;         /* banda del pie, apoyos sobre oscuro */
+  --color-aisc-mint: #5f9f77;         /* las líneas de los dibujos sobre verde */
   --color-aisc-coral: #e5604d;        /* acento corto: antetitulos, cifras */
-  --color-aisc-line: #e4d9c4;         /* filete suave sobre papel */
-  --color-aisc-muted: #5a5044;        /* texto secundario */
+  --color-aisc-line: #d9e2db;         /* filete suave sobre papel */
+  --color-aisc-muted: #4d5a52;        /* texto secundario */
 
-  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, ui-serif, serif;
+  --font-serif: var(--font-fraunces), Georgia, ui-serif, serif;
 }
 
 :root {
@@ -45,68 +48,67 @@ body {
 }
 
 /* ------------------------------- tipografia -------------------------------
-   Bricolage Grotesque para titulares (la de la marca), Inter para lectura,
-   JetBrains Mono para antetitulos y metadatos. El tracking negativo es lo que
-   hace que Bricolage se lea como titular y no como texto grande, pero tiene un
-   piso: display-1 carga frases largas en español, llenas de tildes, y con la
-   interlinea por debajo del tamaño de letra los acentos chocaban contra el
-   renglon de arriba. Interlinea por encima de 1 y tracking moderado.
+   Fraunces para titulares, en peso fino y con el eje óptico suelto: a tamaño
+   grande se afila sola, a tamaño de tarjeta se ensancha para leerse. Instrument
+   Sans para lectura. El tracking casi neutro: una serif fina no necesita que la
+   aprieten para leerse como titular, y las tildes del español piden interlinea
+   por encima de 1.
    -------------------------------------------------------------------------- */
 
 @utility text-display-1 {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 360;
   font-size: 3.0375rem;
-  line-height: 1.08;
+  line-height: 1.06;
   letter-spacing: -0.012em;
 }
 
 @utility text-display-1-lg {
-  font-size: 4.05rem;
-  line-height: 1.06;
+  font-size: 4.25rem;
+  line-height: 1.04;
   letter-spacing: -0.015em;
 }
 
 @utility text-display-2 {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 2.475rem;
-  line-height: 1;
-  letter-spacing: -0.033em;
+  font-weight: 380;
+  font-size: 2.5rem;
+  line-height: 1.08;
+  letter-spacing: -0.012em;
 }
 
 @utility text-display-2-lg {
-  font-size: 3.2rem;
-  line-height: 0.99;
-  letter-spacing: -0.035em;
+  font-size: 3.25rem;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
 }
 
 @utility text-display-3 {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 420;
   font-size: 1.575rem;
-  line-height: 1.06;
-  letter-spacing: -0.028em;
+  line-height: 1.15;
+  letter-spacing: -0.008em;
 }
 
 @utility text-display-3-lg {
   font-size: 1.8rem;
-  line-height: 1.02;
-  letter-spacing: -0.03em;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
 }
 
 @utility text-display-4 {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 450;
   font-size: 1.25rem;
-  line-height: 1.12;
-  letter-spacing: -0.024em;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
 }
 
 @utility text-display-4-lg {
   font-size: 1.5rem;
-  line-height: 1.05;
-  letter-spacing: -0.026em;
+  line-height: 1.16;
+  letter-spacing: -0.008em;
 }
 
 @utility text-body {

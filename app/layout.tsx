@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Bricolage_Grotesque, Inter } from "next/font/google";
+import { Fraunces, Instrument_Sans } from "next/font/google";
 import { openGraph } from "@/lib/metadatos";
 import "./globals.css";
 
-/** titulares: la grotesca de la marca */
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+/** titulares: una serif fina, variable en peso y en tamaño óptico */
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  axes: ["opsz"],
   display: "swap",
 });
 
 /** lectura */
-const inter = Inter({
+const instrumentSans = Instrument_Sans({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
@@ -54,7 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${inter.variable} ${bricolage.variable} h-full antialiased`}
+      className={`${instrumentSans.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {children}
