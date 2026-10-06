@@ -77,22 +77,17 @@ const REDES = [
   },
 ];
 
-/* Al modo de aisafety.sg: tres franjas de verde, de la más oscura a la más
-   clara. La primera lleva la marca y el menú, la segunda el contacto y las
-   redes, la tercera solo el aviso de derechos. Los títulos de columna van en
-   la letra de los titulares. */
-const TITULO = "text-display-4 text-aisc-sand";
+const TITULO = "text-kicker text-aisc-sand";
 const ENLACE = "text-body-sm block py-1.5 text-aisc-sand/75 transition-colors hover:text-aisc-coral";
-const COLUMNA = "mx-auto w-full max-w-[1400px] px-6 md:px-12 lg:px-16";
 
 export default function SiteFooter({ idioma = "es" }: { idioma?: Idioma }) {
   const t = TEXTOS[idioma];
   const navegacion = menu(idioma);
   return (
-    <footer className="text-aisc-sand">
-      <div className="bg-aisc-forest-deep">
-        <div className={`${COLUMNA} grid grid-cols-1 gap-12 pt-16 pb-16 md:pt-20 lg:grid-cols-[2fr_1fr_1fr]`}>
-          <div className="max-w-[380px]">
+    <footer className="border-aisc-sand/15 bg-aisc-forest-deep border-t text-aisc-sand">
+      <div className="mx-auto w-full max-w-[1400px] px-6 pt-16 pb-8 md:px-12 md:pt-20 lg:px-16">
+        <div className="grid grid-cols-1 gap-10 md:gap-12 lg:grid-cols-[2fr_1fr_1fr]">
+          <div className="max-w-[360px]">
             <img
               src="/aisc/logo-lockup-crema.png"
               alt="AI Safety Colombia"
@@ -100,11 +95,11 @@ export default function SiteFooter({ idioma = "es" }: { idioma?: Idioma }) {
               height={420}
               className="h-11 w-auto md:h-12"
             />
-            <p className="text-display-4 md:text-display-4-lg mt-7 text-aisc-sand/90">
+            <p className="text-body-sm mt-5 text-aisc-sand/75">
               {t.lema}
             </p>
             <a
-              className={`${CTA_LINK_PRIMARY} mt-8`}
+              className={`${CTA_LINK_PRIMARY} mt-7`}
               href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
@@ -131,40 +126,40 @@ export default function SiteFooter({ idioma = "es" }: { idioma?: Idioma }) {
             <ul className="mt-4 flex flex-col">
               {COMUNIDAD.map((l) => (
                 <li key={l.label}>
-                  <a className={ENLACE} href={l.href}>
+                  <a
+                    className={ENLACE}
+                    href={l.href}
+                    target={l.href.startsWith("mailto:") ? undefined : "_blank"}
+                    rel={l.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                  >
                     {l.label}
+                  </a>
+                </li>
+              ))}
+              {REDES.map((r) => (
+                <li key={r.label}>
+                  <a
+                    className={`${ENLACE} inline-flex items-center gap-2`}
+                    href={r.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-3.5 flex-none">
+                      <path d={r.d} />
+                    </svg>
+                    {r.label === "whatsapp" ? t.whatsappRed : r.label}
                   </a>
                 </li>
               ))}
             </ul>
           </nav>
         </div>
-      </div>
 
-      <div className="bg-aisc-forest">
-        <ul className={`${COLUMNA} flex flex-wrap gap-x-8 gap-y-2 py-5`}>
-          {REDES.map((r) => (
-            <li key={r.label}>
-              <a
-                className={`${ENLACE} inline-flex items-center gap-2`}
-                href={r.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-3.5 flex-none">
-                  <path d={r.d} />
-                </svg>
-                {r.label === "whatsapp" ? t.whatsappRed : r.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="bg-aisc-sage">
-        <p className={`${COLUMNA} text-meta py-4 text-aisc-sand/80`}>
-          {t.derechos}
-        </p>
+        <div className="border-aisc-sand/15 mt-14 border-t pt-6">
+          <p className="text-meta text-aisc-sand/60">
+            {t.derechos}
+          </p>
+        </div>
       </div>
     </footer>
   );

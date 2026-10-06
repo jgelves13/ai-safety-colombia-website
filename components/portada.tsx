@@ -346,9 +346,9 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
 
       {/* --------------------------------------------------------- aliados */}
       <section className="border-b border-aisc-line">
-        <div className={`${COLUMNA} flex flex-col gap-6 py-9 md:flex-row md:items-center md:gap-16 md:py-10`}>
+        <div className={`${COLUMNA} flex flex-col gap-6 py-9 md:flex-row md:items-center md:gap-10 md:py-10`}>
           <span className="text-kicker shrink-0 text-aisc-muted">{t.aliados}</span>
-          <ul className="flex flex-wrap items-center gap-x-10 gap-y-6 md:gap-x-14">
+          <ul className="flex flex-wrap items-center gap-x-8 gap-y-6 md:gap-x-10">
             {ALIADOS.map((a) => (
               <li key={a.name}>
                 <a href={a.href} target="_blank" rel="noopener noreferrer" className="block w-fit">
