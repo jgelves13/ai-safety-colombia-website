@@ -13,37 +13,36 @@ export const metadata: Metadata = {
    cierran las aplicaciones, el 9 de octubre. */
 export const dynamic = "force-dynamic";
 
-/* La escalera: explorar sin compromiso, aprender en un curso con cohorte e
-   investigar en un hackathon. Cada opción cierra con una línea de datos:
-   cuánto tiempo pide, qué hace falta y cuánto cuesta. */
+/* La escalera: explorar sin compromiso, aprender en un seminario con cohorte e
+   investigar en un hackathon. Cada opción es una tarjeta con su ilustración,
+   una línea de cuándo y dónde, y otra de requisitos y costo. */
 const PASOS: PasoUnete[] = [
   {
     id: "explora",
     titulo: "Explore",
-    entrada: "Para conhecer o campo e as pessoas sem compromisso.",
     opciones: [
       {
         titulo: "O grupo de WhatsApp",
-        cuerpo: "Onde você pergunta o que não entende e onde as sessões, os eventos e as chamadas são anunciados primeiro.",
-        datos: "Grátis e sem requisitos.",
+        linea: "Avisos, perguntas e chamadas",
+        condiciones: "Grátis e sem requisitos",
+        imagen: "/aisc/patterns/aisc-hero-quienes-somos.svg",
         href: "https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF",
-        cta: "Entrar no grupo",
         externo: true,
       },
       {
         titulo: "Grupo de leitura: AI Control",
-        cuerpo: "Uma leitura a cada quinze dias sobre como supervisionar um sistema de IA que age por conta própria. Você pode vir só para ouvir.",
-        datos: "Sexta-feira sim, sexta não, às 18h30, horário da Colômbia, on-line, uma hora. Grátis e sem requisitos.",
+        linea: "Sexta-feira sim, sexta não, às 18h30, on-line",
+        condiciones: "Grátis e sem requisitos",
+        imagen: "/aisc/patterns/aisc-hero-recursos.svg",
         href: "https://chat.whatsapp.com/DfWuuPlzqmIFN1tRtl57SB",
-        cta: "Entrar no grupo de leitura",
         externo: true,
       },
       {
         titulo: "Palestras e oficinas",
-        cuerpo: "Você ouve em primeira mão alguém que trabalha no tema e conhece as pessoas da comunidade.",
-        datos: "Uma ou duas horas por evento, com inscrição no Luma. Grátis.",
+        linea: "Uma ou duas horas, em Bogotá",
+        condiciones: "Grátis, com inscrição no Luma",
+        imagen: "/aisc/patterns/aisc-hero-eventos.svg",
         href: "https://luma.com/user/usr-TMDEtNWA1TozP77",
-        cta: "Ver os próximos",
         externo: true,
       },
     ],
@@ -51,22 +50,21 @@ const PASOS: PasoUnete[] = [
   {
     id: "aprende",
     titulo: "Aprenda",
-    entrada: "Seminários em turma, com facilitador, usando os materiais da BlueDot Impact.",
     opciones: [
       {
         titulo: "Seminário de futuro e riscos da IA",
-        cuerpo: "Por que existe uma corrida rumo à AGI, quais são os riscos e que defesas existem. O ponto de partida venha você de qualquer área.",
-        datos: "Cinco semanas, 3 horas por semana, nos Andes ou on-line. Sem formação técnica. Grátis, com certificado.",
+        linea: "Cinco semanas, nos Andes ou on-line",
+        condiciones: "Sem formação técnica. Grátis, com certificado",
+        imagen: "/aisc/patterns/aisc-hero-seminario-futuro.svg",
         href: "/pt/seminarios/futuro-e-riscos",
-        cta: "Ver o seminário",
         externo: false,
       },
       {
         titulo: "Seminário técnico de segurança da IA",
-        cuerpo: "Como se treinam e avaliam modelos mais seguros, interpretabilidade mecanicista e AI control. Para quem quer entrar na parte técnica.",
-        datos: "Seis semanas, 3 horas por semana, em Bogotá ou on-line. Pede saber o básico de como os modelos são treinados. Grátis, com certificado.",
+        linea: "Seis semanas, em Bogotá ou on-line",
+        condiciones: "Pede o básico de como os modelos são treinados. Grátis, com certificado",
+        imagen: "/aisc/patterns/aisc-hero-seminario-tecnico.svg",
         href: "/pt/seminarios/tecnico",
-        cta: "Ver o seminário",
         externo: false,
       },
     ],
@@ -74,14 +72,13 @@ const PASOS: PasoUnete[] = [
   {
     id: "investiga",
     titulo: "Pesquise",
-    entrada: "Para sair com um trabalho próprio que você possa mostrar.",
     opciones: [
       {
         titulo: "Hackathons de pesquisa",
-        cuerpo: "O hub presencial em Bogotá dos hackathons da Apart Research. As equipes saem com um trabalho publicado e retorno de jurados.",
-        datos: "Um fim de semana, de sexta a domingo, no hub de Bogotá, com seleção prévia. Grátis.",
+        linea: "Um fim de semana no hub de Bogotá",
+        condiciones: "Com seleção prévia. Grátis",
+        imagen: "/aisc/patterns/aisc-hero-hackathon.svg",
         href: "/pt/sprint",
-        cta: "Ver o último sprint",
         externo: false,
       },
     ],

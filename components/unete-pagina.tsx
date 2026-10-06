@@ -6,24 +6,25 @@ import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION
 import { cursosCerrados } from "@/lib/cursos";
 
 /* La página de Únete en sus tres idiomas: cada página trae sus textos y sus
-   pasos, y esta pieza los dibuja igual. Los tres pasos comparten una sola
-   forma: el nombre del paso a la izquierda y sus opciones a la derecha, en una
-   lista con filetes, sin tarjetas ni iconos. */
+   pasos, y esta pieza los dibuja igual. Las seis opciones van en una sola
+   grilla de tarjetas, al modo de los papers destacados de MAIA: la ilustración
+   arriba, y debajo el paso, el nombre y dos líneas cortas. */
 
 export type OpcionUnete = {
   titulo: string;
-  cuerpo: string;
-  /** una sola línea, sin rótulos: tiempo, requisitos y costo */
-  datos: string;
+  /** cuándo y dónde, en una línea corta */
+  linea: string;
+  /** requisitos y costo, en una línea corta */
+  condiciones: string;
+  /** una de las ilustraciones de `public/aisc/patterns/` */
+  imagen: string;
   href: string;
-  cta: string;
   externo: boolean;
 };
 
 export type PasoUnete = {
   id: string;
   titulo: string;
-  entrada: string;
   opciones: OpcionUnete[];
 };
 
@@ -39,54 +40,42 @@ export type TextosUnete = {
   cta: { kicker: string; title: string; body: string; primario: string; secundario: string };
 };
 
-const ENLACE =
-  "font-display inline-flex w-fit text-[1.05rem] font-semibold text-aisc-forest transition-colors hover:text-aisc-coral";
+const TARJETA =
+  "group flex w-full flex-col rounded-[var(--radius)] bg-aisc-sand p-5 transition-colors hover:bg-aisc-sand/60";
 
-function Enlace({ o }: { o: OpcionUnete }) {
+function Tarjeta({ o, paso, aviso }: { o: OpcionUnete; paso: string; aviso?: string }) {
+  const cuerpo = (
+    <>
+      <div aria-hidden="true" className="relative aspect-[16/10] w-full overflow-hidden bg-aisc-forest-deep">
+        <img
+          src={o.imagen}
+          alt=""
+          loading="lazy"
+          className="absolute top-[-12%] right-[-22%] w-[125%] max-w-none transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+      </div>
+      <span className={`text-kicker mt-5 ${aviso ? "text-aisc-coral" : "text-aisc-muted"}`}>{aviso ?? paso}</span>
+      <h3 className="font-display mt-2 text-[1.3rem] leading-snug font-semibold text-balance text-aisc-forest transition-colors group-hover:text-aisc-coral">
+        {o.titulo}
+      </h3>
+      <p className="text-body-sm mt-1.5 font-semibold text-aisc-ink">{o.linea}</p>
+      <p className="text-meta mt-auto pt-4 text-aisc-muted">{o.condiciones}</p>
+    </>
+  );
   return o.externo ? (
-    <a className={ENLACE} href={o.href} target="_blank" rel="noopener noreferrer">
-      {o.cta}
+    <a className={TARJETA} href={o.href} target="_blank" rel="noopener noreferrer">
+      {cuerpo}
     </a>
   ) : (
-    <Link className={ENLACE} href={o.href}>
-      {o.cta}
+    <Link className={TARJETA} href={o.href}>
+      {cuerpo}
     </Link>
-  );
-}
-
-/* Un paso: el nombre y su frase a la izquierda, las opciones a la derecha. */
-function Paso({ paso, kicker }: { paso: PasoUnete; kicker?: string }) {
-  return (
-    <section id={paso.id} className="scroll-mt-6 bg-aisc-cream">
-      <div className="mx-auto w-full max-w-[1448px] px-8 pt-14 md:px-16 md:pt-20">
-        <div aria-hidden="true" className="h-px w-full flex-none bg-aisc-forest-deep" />
-        <div className="grid grid-cols-1 gap-8 pt-6 md:pt-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] lg:gap-16">
-          <div className="flex flex-col gap-4 lg:sticky lg:top-8 lg:self-start">
-            <h2 className="text-display-2 md:text-display-2-lg text-balance">{paso.titulo}</h2>
-            <p className="text-body md:text-body-lg max-w-[420px] text-aisc-ink/85">{paso.entrada}</p>
-          </div>
-          <ul>
-            {paso.opciones.map((o) => (
-              <li key={o.titulo} className="flex flex-col border-b border-aisc-forest-deep/15 py-7 first:pt-0 md:py-8 md:first:pt-0">
-                {kicker ? <span className="text-kicker mb-3 text-aisc-coral">{kicker}</span> : null}
-                <h3 className="text-display-4 md:text-display-4-lg text-balance">{o.titulo}</h3>
-                <p className="text-body-sm mt-2.5 max-w-[62ch] text-aisc-ink">{o.cuerpo}</p>
-                <p className="text-meta mt-2 max-w-[62ch] text-aisc-muted">{o.datos}</p>
-                <div className="mt-4">
-                  <Enlace o={o} />
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
   );
 }
 
 export default function UnetePagina({ active, pasos, t }: { active: string; pasos: PasoUnete[]; t: TextosUnete }) {
   const abiertos = !cursosCerrados();
-  const [explora, aprende, investiga] = pasos;
+  const aprende = pasos[1];
   return (
     <main className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
@@ -118,11 +107,20 @@ export default function UnetePagina({ active, pasos, t }: { active: string; paso
         </div>
       </section>
 
-      <Paso paso={explora} />
-      <Paso paso={aprende} kicker={abiertos ? t.kickerAbierto : undefined} />
-      <Paso paso={investiga} />
+      <section className="bg-aisc-cream">
+        <div className="mx-auto w-full max-w-[1448px] px-8 pt-14 pb-14 md:px-16 md:pt-16 md:pb-16">
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {pasos.flatMap((paso) =>
+              paso.opciones.map((o) => (
+                <li key={o.titulo} id={paso.opciones[0] === o ? paso.id : undefined} className="flex scroll-mt-6">
+                  <Tarjeta o={o} paso={paso.titulo} aviso={paso === aprende && abiertos ? t.kickerAbierto : undefined} />
+                </li>
+              )),
+            )}
+          </ul>
+        </div>
+      </section>
 
-      <div className="bg-aisc-cream pt-14 md:pt-20" />
       <CtaPanel kicker={t.cta.kicker} title={t.cta.title} body={t.cta.body}>
         <a className={CTA_LINK_PRIMARY} href="https://cal.com/josegelves/meeting" target="_blank" rel="noopener noreferrer">
           {t.cta.primario}

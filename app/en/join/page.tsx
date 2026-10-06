@@ -13,37 +13,36 @@ export const metadata: Metadata = {
    cierran las aplicaciones, el 9 de octubre. */
 export const dynamic = "force-dynamic";
 
-/* La escalera: explorar sin compromiso, aprender en un curso con cohorte e
-   investigar en un hackathon. Cada opción cierra con una línea de datos:
-   cuánto tiempo pide, qué hace falta y cuánto cuesta. */
+/* La escalera: explorar sin compromiso, aprender en un seminario con cohorte e
+   investigar en un hackathon. Cada opción es una tarjeta con su ilustración,
+   una línea de cuándo y dónde, y otra de requisitos y costo. */
 const PASOS: PasoUnete[] = [
   {
     id: "explora",
     titulo: "Explore",
-    entrada: "To get to know the field and the people, with no commitment.",
     opciones: [
       {
         titulo: "The WhatsApp group",
-        cuerpo: "Where you ask what you don't understand and where sessions, events and calls are announced first.",
-        datos: "Free, no requirements.",
+        linea: "Announcements, questions and calls",
+        condiciones: "Free, no requirements",
+        imagen: "/aisc/patterns/aisc-hero-quienes-somos.svg",
         href: "https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF",
-        cta: "Join the group",
         externo: true,
       },
       {
         titulo: "Reading group: AI Control",
-        cuerpo: "A reading every two weeks on how to oversee an AI system that acts on its own. You can come just to listen.",
-        datos: "Every other Friday at 6:30 pm Colombia time, online, one hour. Free, no requirements.",
+        linea: "Every other Friday, 6:30 pm Colombia time, online",
+        condiciones: "Free, no requirements",
+        imagen: "/aisc/patterns/aisc-hero-recursos.svg",
         href: "https://chat.whatsapp.com/DfWuuPlzqmIFN1tRtl57SB",
-        cta: "Join the reading group",
         externo: true,
       },
       {
         titulo: "Talks and workshops",
-        cuerpo: "You hear first-hand from someone working on the problem and meet the people in the community.",
-        datos: "One or two hours per event, with registration on Luma. Free.",
+        linea: "One or two hours, in Bogotá",
+        condiciones: "Free, with registration on Luma",
+        imagen: "/aisc/patterns/aisc-hero-eventos.svg",
         href: "https://luma.com/user/usr-TMDEtNWA1TozP77",
-        cta: "See upcoming events",
         externo: true,
       },
     ],
@@ -51,22 +50,21 @@ const PASOS: PasoUnete[] = [
   {
     id: "aprende",
     titulo: "Learn",
-    entrada: "Cohort-based seminars with a facilitator, using BlueDot Impact's materials.",
     opciones: [
       {
         titulo: "Seminar on the Future and Risks of AI",
-        cuerpo: "Why there is a race to AGI, what the risks are and what defences exist. The starting point whatever field you come from.",
-        datos: "Five weeks, 3 hours a week, at Los Andes or online. No technical background needed. Free, with a certificate.",
+        linea: "Five weeks, at Los Andes or online",
+        condiciones: "No technical background needed. Free, with a certificate",
+        imagen: "/aisc/patterns/aisc-hero-seminario-futuro.svg",
         href: "/en/seminars/future-and-risks",
-        cta: "See the seminar",
         externo: false,
       },
       {
         titulo: "Technical AI Safety Seminar",
-        cuerpo: "How safer models are trained and evaluated, mechanistic interpretability and AI control. For people who want the technical side.",
-        datos: "Six weeks, 3 hours a week, in Bogotá or online. You should know the basics of how models are trained. Free, with a certificate.",
+        linea: "Six weeks, in Bogotá or online",
+        condiciones: "Requires the basics of how models are trained. Free, with a certificate",
+        imagen: "/aisc/patterns/aisc-hero-seminario-tecnico.svg",
         href: "/en/seminars/technical",
-        cta: "See the seminar",
         externo: false,
       },
     ],
@@ -74,14 +72,13 @@ const PASOS: PasoUnete[] = [
   {
     id: "investiga",
     titulo: "Research",
-    entrada: "To leave with your own work that you can show.",
     opciones: [
       {
         titulo: "Research hackathons",
-        cuerpo: "The in-person Bogotá hub for Apart Research's hackathons. Teams leave with published work and feedback from judges.",
-        datos: "A full weekend, Friday to Sunday, at the Bogotá hub, with prior selection. Free.",
+        linea: "A weekend at the Bogotá hub",
+        condiciones: "With prior selection. Free",
+        imagen: "/aisc/patterns/aisc-hero-hackathon.svg",
         href: "/en/sprint",
-        cta: "See the latest sprint",
         externo: false,
       },
     ],
