@@ -3,17 +3,27 @@ import CtaPanel from "@/components/cta-panel";
 import Puntos, { type Patron } from "@/components/puntos";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
-import { CTA_LINK, CTA_LINK_PRIMARY, CTA_LINK_VERDE, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
+import {
+  CTA_LINK,
+  CTA_LINK_PRIMARY,
+  CTA_LINK_VERDE,
+  CTA_PATTERN_BOTTOM,
+  HERO_CORNER_CLASS,
+  HERO_INNER,
+  HERO_SECTION,
+  PAGE_SHELL,
+} from "@/components/ui";
 import { type CursoId, RUTA_APLICAR_CURSOS, cursosCerrados } from "@/lib/cursos";
-import { PAGINAS_CURSO } from "@/lib/cursos-paginas";
+import { PAGINAS_CURSO, ROTULOS_CURSO } from "@/lib/cursos-paginas";
 import type { Idioma } from "@/lib/idiomas";
 
 /* La página de Únete en sus tres idiomas: cada página trae sus textos y sus
    pasos, y esta pieza los dibuja igual. Va al modo del «Get Involved» de MAIA:
-   una columna de lectura con una sección por paso, el ícono junto al título, y
-   cada opción con su párrafo, sus datos y un botón. En los seminarios van los
-   temas semana a semana, y mientras las aplicaciones están abiertas, un
-   recuadro para aplicar. */
+   una sección por paso, el ícono junto al título, y cada opción con su
+   párrafo, sus datos y un botón. Como en las páginas de los seminarios, cada
+   paso tiene su banda y su forma: Explora en tarjetas suaves sobre el papel,
+   Aprende en la banda oscura con los temas semana a semana y la franja para
+   aplicar, e Investiga en arena con las portadas de los reportes premiados. */
 
 export type OpcionUnete = {
   titulo: string;
@@ -45,13 +55,21 @@ export type TextosUnete = {
   aviso: string;
   /* La frase que abre la lista de temas de cada seminario. */
   temas: string;
-  /* El recuadro para aplicar, mientras las aplicaciones están abiertas. */
+  /* La franja para aplicar, mientras las aplicaciones están abiertas. */
   aplicar: { titulo: string; linea: string };
   /* El panel final. */
   cta: { kicker: string; title: string; body: string; primario: string; secundario: string };
 };
 
-const SECUNDARIO = "text-body-sm font-semibold text-aisc-forest transition-colors hover:text-aisc-coral";
+const ANCHO = "mx-auto w-full max-w-[1200px] px-8 md:px-12";
+const BANDA = "scroll-mt-6 py-16 md:py-24";
+const TITULO_OPCION = "font-display text-[1.35rem] leading-snug font-semibold text-balance text-aisc-forest md:text-[1.5rem]";
+/* Las portadas de tres reportes premiados del último hackathon. */
+const PORTADAS_HACKATHON = [
+  "/aisc/hackathon/coldron.jpg",
+  "/aisc/hackathon/identidad-colombiana.jpg",
+  "/aisc/hackathon/pasos-del-razonamiento.jpg",
+];
 
 function Enlace({ href, externo, className, children }: { href: string; externo: boolean; className: string; children: React.ReactNode }) {
   return externo ? (
@@ -65,34 +83,149 @@ function Enlace({ href, externo, className, children }: { href: string; externo:
   );
 }
 
-function Opcion({ o, idioma, temas }: { o: OpcionUnete; idioma: Idioma; temas: string }) {
-  const unidades = o.curso ? PAGINAS_CURSO[o.curso][idioma].semanas.unidades : [];
+function Encabezado({ paso, oscuro = false }: { paso: PasoUnete; oscuro?: boolean }) {
   return (
-    <article className="border-t border-aisc-forest-deep/12 pt-8">
-      <h3 className="font-display text-[1.45rem] leading-snug font-semibold text-balance text-aisc-forest md:text-[1.6rem]">{o.titulo}</h3>
-      <p className="text-body md:text-body-lg mt-3 text-aisc-ink">{o.cuerpo}</p>
-      {unidades.length ? (
-        <>
-          <p className="text-body mt-5 text-aisc-ink">{temas}</p>
-          <ul className="text-body mt-2 list-disc space-y-1 pl-6 text-aisc-ink marker:text-aisc-forest">
-            {unidades.map((u) => (
-              <li key={u.titulo}>{u.titulo}</li>
-            ))}
-          </ul>
-        </>
-      ) : null}
-      <p className="text-body mt-5 font-semibold text-aisc-ink">{o.datos}</p>
-      <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-        <Enlace href={o.href} externo={o.externo} className={CTA_LINK_VERDE}>
-          {o.cta}
-        </Enlace>
-        {o.secundario ? (
-          <Link className={SECUNDARIO} href={o.secundario.href}>
-            {o.secundario.texto}
-          </Link>
+    <div className="max-w-[760px]">
+      <div className="flex items-center gap-4">
+        <Puntos patron={paso.patron} className={`size-10 shrink-0 ${oscuro ? "text-aisc-mint" : "text-aisc-forest"}`} />
+        <h2 className={`text-display-2 md:text-display-2-lg ${oscuro ? "text-aisc-sand" : "text-aisc-forest-deep"}`}>{paso.titulo}</h2>
+      </div>
+      <p className={`text-body md:text-body-lg mt-4 ${oscuro ? "text-aisc-sand/80" : "text-aisc-muted"}`}>{paso.entrada}</p>
+    </div>
+  );
+}
+
+/* Explora: tres tarjetas de fondo suave sobre el papel. */
+function Explora({ paso }: { paso: PasoUnete }) {
+  return (
+    <section id={paso.id} className={`${BANDA} bg-aisc-cream`}>
+      <div className={ANCHO}>
+        <Encabezado paso={paso} />
+        <ul className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
+          {paso.opciones.map((o) => (
+            <li key={o.titulo} className="flex flex-col rounded-[var(--radius)] bg-aisc-sand p-7">
+              <h3 className={TITULO_OPCION}>{o.titulo}</h3>
+              <p className="text-body mt-3 text-aisc-ink">{o.cuerpo}</p>
+              <p className="text-body-sm mt-4 font-semibold text-aisc-ink">{o.datos}</p>
+              <div className="mt-auto pt-6">
+                <Enlace href={o.href} externo={o.externo} className={CTA_LINK_VERDE}>
+                  {o.cta}
+                </Enlace>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+/* Aprende: la banda oscura, con los dos seminarios en tarjetas blancas y,
+   mientras las aplicaciones están abiertas, una franja para aplicar. */
+function Aprende({ paso, idioma, t, abiertos }: { paso: PasoUnete; idioma: Idioma; t: TextosUnete; abiertos: boolean }) {
+  return (
+    <section id={paso.id} className={`${BANDA} relative overflow-hidden bg-aisc-forest-deep text-aisc-sand`}>
+      <img
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        width="1697"
+        height="995"
+        decoding="async"
+        className={CTA_PATTERN_BOTTOM}
+        src="/aisc/patterns/aisc-wash-lattice.svg"
+      />
+      <div className={`${ANCHO} relative z-10`}>
+        <Encabezado paso={paso} oscuro />
+        <ul className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+          {paso.opciones.map((o) => {
+            const unidades = o.curso ? PAGINAS_CURSO[o.curso][idioma].semanas.unidades : [];
+            return (
+              <li key={o.titulo} className="flex flex-col rounded-[var(--radius)] bg-aisc-cream p-7 text-aisc-ink md:p-8">
+                <h3 className={TITULO_OPCION}>{o.titulo}</h3>
+                <p className="text-body mt-3">{o.cuerpo}</p>
+                {unidades.length ? (
+                  <>
+                    <p className="text-body-sm mt-5 text-aisc-muted">{t.temas}</p>
+                    <ol className="mt-2 flex flex-col border-t border-aisc-line">
+                      {unidades.map((u, i) => (
+                        <li key={u.titulo} className="text-body-sm grid grid-cols-[2rem_1fr] border-b border-aisc-line py-2">
+                          <span className="font-display font-semibold text-aisc-coral">{i + 1}</span>
+                          <span>{u.titulo}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  </>
+                ) : null}
+                <p className="text-body-sm mt-5 font-semibold">{o.datos}</p>
+                <div className="mt-auto pt-6">
+                  <Enlace href={o.href} externo={o.externo} className={CTA_LINK_VERDE}>
+                    {o.cta}
+                  </Enlace>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+        {abiertos ? (
+          <div className="mt-10 flex flex-col gap-5 border-t border-aisc-sand/20 pt-8 md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-col gap-1.5">
+              <span className="font-display text-[1.4rem] leading-snug font-semibold text-aisc-sand">{t.aplicar.titulo}</span>
+              <span className="text-body text-aisc-sand/85">{t.aplicar.linea}</span>
+            </div>
+            <Link className={`${CTA_LINK_PRIMARY} shrink-0`} href={RUTA_APLICAR_CURSOS[idioma]}>
+              {ROTULOS_CURSO[idioma].aplicar}
+            </Link>
+          </div>
         ) : null}
       </div>
-    </article>
+    </section>
+  );
+}
+
+/* Investiga: la banda arena, el texto a la izquierda y a la derecha las
+   portadas de tres reportes premiados. */
+function Investiga({ paso }: { paso: PasoUnete }) {
+  return (
+    <section id={paso.id} className={`${BANDA} bg-aisc-sand`}>
+      <div className={ANCHO}>
+        <Encabezado paso={paso} />
+        {paso.opciones.map((o) => (
+          <div key={o.titulo} className="mt-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-14">
+            <div>
+              <h3 className={TITULO_OPCION}>{o.titulo}</h3>
+              <p className="text-body md:text-body-lg mt-3 text-aisc-ink">{o.cuerpo}</p>
+              <p className="text-body mt-5 font-semibold text-aisc-ink">{o.datos}</p>
+              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+                <Enlace href={o.href} externo={o.externo} className={CTA_LINK_VERDE}>
+                  {o.cta}
+                </Enlace>
+                {o.secundario ? (
+                  <Link className="text-body-sm font-semibold text-aisc-forest transition-colors hover:text-aisc-coral" href={o.secundario.href}>
+                    {o.secundario.texto}
+                  </Link>
+                ) : null}
+              </div>
+            </div>
+            <Link href={o.secundario?.href ?? o.href} aria-hidden="true" tabIndex={-1} className="group grid grid-cols-3 gap-3 md:gap-4">
+              {PORTADAS_HACKATHON.map((src, i) => (
+                <img
+                  key={src}
+                  src={src}
+                  alt=""
+                  width={900}
+                  height={1165}
+                  loading="lazy"
+                  className={`aspect-[4/5] w-full bg-white object-cover object-top shadow-sm ring-1 ring-aisc-forest-deep/10 transition-transform duration-300 ${
+                    i === 1 ? "lg:-translate-y-4 group-hover:-translate-y-5" : "group-hover:-translate-y-1"
+                  }`}
+                />
+              ))}
+            </Link>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -140,53 +273,24 @@ export default function UnetePagina({
         </div>
       </section>
 
-      <section className="bg-aisc-cream">
-        <nav className="border-b border-aisc-forest-deep/12">
-          <ul className="mx-auto flex w-full max-w-[820px] flex-wrap justify-center gap-x-10 gap-y-2 px-8 py-5">
-            {pasos.map((paso) => (
-              <li key={paso.id}>
-                <a className="font-display text-[1.1rem] font-semibold text-aisc-forest transition-colors hover:text-aisc-coral" href={`#${paso.id}`}>
-                  {paso.titulo}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="mx-auto w-full max-w-[820px] px-8 pt-6 pb-20 md:pb-24">
+      <nav className="border-b border-aisc-line bg-aisc-cream">
+        <ul className="mx-auto flex w-full max-w-[820px] flex-wrap justify-center gap-x-10 gap-y-2 px-8 py-5">
           {pasos.map((paso) => (
-            <section key={paso.id} id={paso.id} className="scroll-mt-6 pt-14 md:pt-16">
-              <div className="flex items-center gap-4">
-                <Puntos patron={paso.patron} className="size-10 shrink-0 text-aisc-forest" />
-                <h2 className="text-display-2 md:text-display-2-lg text-aisc-forest-deep">{paso.titulo}</h2>
-              </div>
-              <p className="text-body md:text-body-lg mt-4 text-aisc-muted">{paso.entrada}</p>
-
-              <div className="mt-10 flex flex-col gap-12">
-                {paso.opciones.map((o) => (
-                  <Opcion key={o.titulo} o={o} idioma={idioma} temas={t.temas} />
-                ))}
-              </div>
-
-              {paso === aprende && abiertos ? (
-                <Link
-                  href={RUTA_APLICAR_CURSOS[idioma]}
-                  className="group mt-12 flex items-start gap-5 rounded-[var(--radius)] border-2 border-aisc-forest p-6 transition-colors hover:border-aisc-coral md:p-7"
-                >
-                  <Puntos patron="seminarios" className="mt-1 size-9 shrink-0 text-aisc-coral" />
-                  <span className="flex flex-col gap-1.5">
-                    <span className="font-display text-[1.3rem] leading-snug font-semibold text-aisc-forest transition-colors group-hover:text-aisc-coral">
-                      {t.aplicar.titulo}
-                    </span>
-                    <span className="text-body text-aisc-ink">{t.aplicar.linea}</span>
-                  </span>
-                </Link>
-              ) : null}
-            </section>
+            <li key={paso.id}>
+              <a className="font-display text-[1.1rem] font-semibold text-aisc-forest transition-colors hover:text-aisc-coral" href={`#${paso.id}`}>
+                {paso.titulo}
+              </a>
+            </li>
           ))}
-        </div>
-      </section>
+        </ul>
+      </nav>
 
+      <Explora paso={pasos[0]} />
+      <Aprende paso={aprende} idioma={idioma} t={t} abiertos={abiertos} />
+      <Investiga paso={pasos[2]} />
+
+      {/* El panel final va sobre el papel; este hueco lo separa de la banda arena. */}
+      <div aria-hidden="true" className="h-14 bg-aisc-cream md:h-16" />
       <CtaPanel kicker={t.cta.kicker} title={t.cta.title} body={t.cta.body}>
         <a className={CTA_LINK_PRIMARY} href="https://cal.com/josegelves/meeting" target="_blank" rel="noopener noreferrer">
           {t.cta.primario}
