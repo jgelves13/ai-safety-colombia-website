@@ -6,6 +6,7 @@ import SiteHeader from "./site-header";
 import { CTA_LINK, CTA_LINK_PRIMARY, CTA_LINK_VERDE } from "./ui";
 import { type Idioma, rutaEn } from "@/lib/idiomas";
 import { PORTADAS } from "@/lib/portadas";
+import { cargarEventos, fechaLarga, partirEventos } from "@/lib/eventos";
 
 /* La portada, en los tres idiomas. La estructura es la de apartresearch.com
    (tesis, quién nos apoya, los programas, la comunidad y lo que se ha
@@ -27,7 +28,7 @@ type Textos = {
     texto: string;
     tarjetas: { kicker: string; titulo: string; texto: string; enlaces: string[] }[];
   };
-  comunidad: { titulo: string; texto: string; eventos: string; fotos: string[] };
+  comunidad: { titulo: string; texto: string; eventos: string };
   cierre: { titulo: string; texto: string; whatsapp: string; agendar: string; escribir: string };
 };
 
@@ -54,28 +55,28 @@ export const TEXTOS: Record<Idioma, Textos> = {
       texto: "Para estudiar el campo en grupo, sacar adelante un primer proyecto o escuchar a quienes ya investigan.",
       tarjetas: [
         {
-          kicker: "Con BlueDot Impact",
+          kicker: "Cinco o seis semanas",
           titulo: "Seminarios",
           texto: "Lees los cursos de BlueDot y los discutes cada semana en grupo, con facilitación en español.",
-          enlaces: ["Técnico", "Futuro y riesgos"],
+          enlaces: ["Ver el técnico", "Ver futuro y riesgos"],
         },
         {
-          kicker: "Con Apart Research",
+          kicker: "Un fin de semana",
           titulo: "Sprints y hackatones",
-          texto: "Un fin de semana para pasar de leer sobre seguridad de la IA a terminar un proyecto propio, desde el hub presencial de Bogotá.",
-          enlaces: ["Proyectos premiados"],
+          texto: "Con Apart Research pasas de leer sobre seguridad de la IA a terminar un proyecto propio, desde el hub presencial de Bogotá.",
+          enlaces: ["Ver los proyectos"],
         },
         {
-          kicker: "Todos los viernes",
+          kicker: "Cada quince días",
           titulo: "Grupo de lectura",
-          texto: "Leemos y discutimos trabajos recientes de seguridad técnica. Abierto, en español y sin requisitos previos.",
-          enlaces: ["Cómo unirte"],
+          texto: "Leemos y discutimos trabajos sobre AI Control: cómo supervisar a un sistema de IA que actúa por su cuenta. Abierto y sin requisitos previos.",
+          enlaces: ["Ver el grupo"],
         },
         {
           kicker: "Una vez al mes",
           titulo: "Charlas de investigación",
           texto: "Alguien que investiga en seguridad de la IA presenta su trabajo en quince minutos y después responde preguntas.",
-          enlaces: ["Ver el calendario"],
+          enlaces: ["Ver las charlas"],
         },
       ],
     },
@@ -83,12 +84,6 @@ export const TEXTOS: Record<Idioma, Textos> = {
       titulo: "Comunidad y eventos",
       texto: "Charlas, cenas de discusión y paneles en Bogotá, para conocer a quienes trabajan en esto y discutir con ellos.",
       eventos: "Ver los eventos",
-      fotos: [
-        "Panel sobre gobernanza de la IA en Colombia",
-        "Encuentro AI Safety Connect LATAM",
-        "Sesión Del algoritmo a la ley",
-        "Cena de discusión sobre IA y política pública",
-      ],
     },
     cierre: {
       titulo: "¿Quieres entrar?",
@@ -120,28 +115,28 @@ export const TEXTOS: Record<Idioma, Textos> = {
       texto: "To study the field in a group, get a first project done, or hear from the people already doing research.",
       tarjetas: [
         {
-          kicker: "With BlueDot Impact",
+          kicker: "Five or six weeks",
           titulo: "Seminars",
           texto: "You read the BlueDot courses and discuss them every week in a group, facilitated in Spanish.",
-          enlaces: ["Technical", "Future and risks"],
+          enlaces: ["See Technical", "See Future and Risks"],
         },
         {
-          kicker: "With Apart Research",
+          kicker: "One weekend",
           titulo: "Sprints and hackathons",
-          texto: "A weekend to go from reading about AI safety to finishing a project of your own, from the in-person hub in Bogotá.",
-          enlaces: ["Award-winning projects"],
+          texto: "With Apart Research you go from reading about AI safety to finishing a project of your own, from the in-person hub in Bogotá.",
+          enlaces: ["See the projects"],
         },
         {
-          kicker: "Every Friday",
+          kicker: "Every two weeks",
           titulo: "Reading group",
-          texto: "We read and discuss recent technical safety work. Open, in Spanish and with no prerequisites.",
-          enlaces: ["How to join"],
+          texto: "We read and discuss work on AI control: how to oversee an AI system that acts on its own. Open, with no prerequisites.",
+          enlaces: ["See the group"],
         },
         {
           kicker: "Once a month",
           titulo: "Research talks",
           texto: "Someone doing AI safety research presents their work in fifteen minutes and then takes questions.",
-          enlaces: ["See the calendar"],
+          enlaces: ["See the talks"],
         },
       ],
     },
@@ -149,12 +144,6 @@ export const TEXTOS: Record<Idioma, Textos> = {
       titulo: "Community and events",
       texto: "Talks, discussion dinners and panels in Bogotá, to meet the people working on this and argue with them.",
       eventos: "See the events",
-      fotos: [
-        "Panel on AI governance in Colombia",
-        "AI Safety Connect LATAM gathering",
-        "From the Algorithm to the Law session",
-        "Discussion dinner on AI and public policy",
-      ],
     },
     cierre: {
       titulo: "Want in?",
@@ -186,28 +175,28 @@ export const TEXTOS: Record<Idioma, Textos> = {
       texto: "Para estudar a área em grupo, tirar do papel um primeiro projeto ou ouvir quem já pesquisa.",
       tarjetas: [
         {
-          kicker: "Com a BlueDot Impact",
+          kicker: "Cinco ou seis semanas",
           titulo: "Seminários",
           texto: "Você lê os cursos da BlueDot e os discute toda semana em grupo, com facilitação em espanhol.",
-          enlaces: ["Técnico", "Futuro e riscos"],
+          enlaces: ["Ver o técnico", "Ver futuro e riscos"],
         },
         {
-          kicker: "Com a Apart Research",
+          kicker: "Um fim de semana",
           titulo: "Sprints e hackathons",
-          texto: "Um fim de semana para passar de ler sobre segurança da IA a terminar um projeto próprio, a partir do hub presencial de Bogotá.",
-          enlaces: ["Projetos premiados"],
+          texto: "Com a Apart Research você passa de ler sobre segurança da IA a terminar um projeto próprio, a partir do hub presencial de Bogotá.",
+          enlaces: ["Ver os projetos"],
         },
         {
-          kicker: "Toda sexta-feira",
+          kicker: "A cada quinze dias",
           titulo: "Grupo de leitura",
-          texto: "Lemos e discutimos trabalhos recentes de segurança técnica. Aberto, em espanhol e sem pré-requisitos.",
-          enlaces: ["Como participar"],
+          texto: "Lemos e discutimos trabalhos sobre AI Control: como supervisionar um sistema de IA que age por conta própria. Aberto e sem pré-requisitos.",
+          enlaces: ["Ver o grupo"],
         },
         {
           kicker: "Uma vez por mês",
           titulo: "Palestras de pesquisa",
           texto: "Alguém que pesquisa segurança da IA apresenta seu trabalho em quinze minutos e depois responde perguntas.",
-          enlaces: ["Ver o calendário"],
+          enlaces: ["Ver as palestras"],
         },
       ],
     },
@@ -215,12 +204,6 @@ export const TEXTOS: Record<Idioma, Textos> = {
       titulo: "Comunidade e eventos",
       texto: "Palestras, jantares de discussão e painéis em Bogotá, para conhecer quem trabalha nisso e discutir com essas pessoas.",
       eventos: "Ver os eventos",
-      fotos: [
-        "Painel sobre governança da IA na Colômbia",
-        "Encontro AI Safety Connect LATAM",
-        "Sessão Do algoritmo à lei",
-        "Jantar de discussão sobre IA e políticas públicas",
-      ],
     },
     cierre: {
       titulo: "Quer entrar?",
@@ -259,17 +242,9 @@ const PUBLICACIONES = [
 /** Para cada programa, su ícono y a dónde lleva cada enlace (rutas en español; se traducen abajo). */
 const PROGRAMAS: { patron: Patron; rutas: string[] }[] = [
   { patron: "seminarios", rutas: ["/seminarios/tecnico", "/seminarios/futuro-y-riesgos"] },
-  { patron: "sprints", rutas: ["/investigacion"] },
+  { patron: "sprints", rutas: ["/investigacion#hackathons"] },
   { patron: "lectura", rutas: ["/unete"] },
   { patron: "charlas", rutas: ["/eventos"] },
-];
-
-/* Mientras llegan las fotos de los encuentros, los flyers de esos mismos eventos. */
-const FOTOS = [
-  "/aisc/eventos/panel-gobernanza.jpg",
-  "/aisc/eventos/connect-latam.jpg",
-  "/aisc/eventos/algoritmo-a-la-ley.jpg",
-  "/aisc/eventos/cena-politica.jpg",
 ];
 
 const COLUMNA = "mx-auto w-full max-w-[1448px] px-8 md:px-16";
@@ -285,9 +260,15 @@ function Cabecera({ titulo, children }: { titulo: string; children: React.ReactN
   );
 }
 
-export default function Portada({ idioma }: { idioma: Idioma }) {
+export default async function Portada({ idioma }: { idioma: Idioma }) {
   const t = TEXTOS[idioma];
   const ruta = (r: string) => rutaEn(idioma, r);
+  const conAncla = (r: string) => {
+    const [base, ancla] = r.split("#");
+    return ancla ? `${ruta(base)}#${ancla}` : ruta(base);
+  };
+  /* Los mismos destacados de /eventos, en el mismo orden: del más reciente al más viejo. */
+  const destacados = partirEventos(await cargarEventos()).pasados.filter((e) => e.destacado && e.portada).slice(0, 4);
 
   return (
     <main className="aisc-page flex flex-col">
@@ -357,7 +338,7 @@ export default function Portada({ idioma }: { idioma: Idioma }) {
                   <p className={`text-body-sm mt-3 ${oscura ? "text-aisc-sand/80" : "text-aisc-ink/80"}`}>{d.texto}</p>
                   <div className="mt-auto flex flex-wrap gap-x-6 gap-y-1 pt-8">
                     {p.rutas.map((r, j) => (
-                      <Link key={r} href={ruta(r)} className={`${ENLACE_SERIF} ${oscura ? "text-aisc-sand" : "text-aisc-forest"}`}>
+                      <Link key={r} href={conAncla(r)} className={`${ENLACE_SERIF} ${oscura ? "text-aisc-sand" : "text-aisc-forest"}`}>
                         {d.enlaces[j]}
                       </Link>
                     ))}
@@ -373,10 +354,23 @@ export default function Portada({ idioma }: { idioma: Idioma }) {
       <section className="pt-14 md:pt-16">
         <div className="mx-auto w-full max-w-[1448px] px-4 md:px-8">
           <div className="grid items-center gap-10 rounded-[var(--radius)] bg-aisc-sand px-4 py-10 md:px-8 md:py-14 lg:grid-cols-2 lg:gap-16 lg:px-12 lg:py-16">
-            <ul className="grid grid-cols-2 gap-3 md:gap-4">
-              {FOTOS.map((src, i) => (
-                <li key={src} className="relative aspect-[4/3] overflow-hidden rounded-xl bg-aisc-forest-deep">
-                  <img src={src} alt={t.comunidad.fotos[i]} className="absolute inset-0 h-full w-full object-cover" />
+            <ul className="grid gap-3 sm:grid-cols-2 md:gap-4">
+              {destacados.map((e) => (
+                <li key={e.id} className="flex">
+                  <Link
+                    href={`${ruta("/eventos")}#evento-${e.id}`}
+                    className="group flex w-full flex-col overflow-hidden rounded-xl border border-aisc-forest-deep/15 bg-aisc-cream transition-colors hover:border-aisc-forest-deep/50"
+                  >
+                    <div aria-hidden="true" className="aspect-[16/9] w-full overflow-hidden bg-aisc-forest-deep">
+                      <img src={e.portada} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+                    </div>
+                    <div className="flex flex-1 flex-col p-4">
+                      <span className="text-meta text-aisc-muted">{fechaLarga(e.inicio, idioma)}</span>
+                      <h3 className="font-display mt-1.5 text-[1.05rem] leading-snug font-semibold text-balance transition-colors group-hover:text-aisc-forest">
+                        {e.titulo}
+                      </h3>
+                    </div>
+                  </Link>
                 </li>
               ))}
             </ul>
