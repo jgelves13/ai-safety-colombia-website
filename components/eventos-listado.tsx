@@ -315,8 +315,8 @@ export default function EventosListado({
   const pasa = (e: EventoVista) => filtro === "todos" || e.grupo === filtro;
   const proximosVisibles = proximos.filter(pasa);
   const pasadosVisibles = pasados.filter(pasa);
-  /* Los pasados llegan del más reciente al más viejo; los destacados van al revés, como en MAIA. */
-  const destacados = pasados.filter((e) => e.destacado).slice(0, 4).reverse();
+  /* Los pasados llegan del más reciente al más viejo, y así se quedan los destacados. */
+  const destacados = pasados.filter((e) => e.destacado).slice(0, 4);
   const anios = [...new Set(pasadosVisibles.map((e) => e.anio))];
 
   /* Un destacado lleva a su fila: se abren el año y el detalle que la guardan. */

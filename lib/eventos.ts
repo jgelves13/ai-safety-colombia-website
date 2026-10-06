@@ -57,8 +57,8 @@ const LUMA_EXTRAS: Record<string, { tipo?: Tipo; resumen?: Record<Idioma, string
       pt: "Primeira palestra de pesquisa da série mensal: agentes de IA, negociação e supervisão. Quinze minutos de apresentação e depois perguntas.",
     },
   },
-  "60o0v4o1": { destacado: true, portada: "/aisc/eventos/destacados/hackeando-agentes.jpg" },
-  vb88ho9c: { destacado: true, portada: "/aisc/eventos/destacados/resiliencia-cooperativa.jpg" },
+  c36amemk: { destacado: true, portada: "/aisc/eventos/destacados/evaluation-awareness.jpg" },
+  "8u5ymrfe": { destacado: true, portada: "/aisc/eventos/destacados/sl5.jpg" },
 };
 
 const SPRINT_RESUMEN: Record<Idioma, string> = {
@@ -66,6 +66,9 @@ const SPRINT_RESUMEN: Record<Idioma, string> = {
   en: "Open talk from the September 2026 research sprint, streamed online.",
   pt: "Palestra aberta do sprint de pesquisa de setembro de 2026, transmitida online.",
 };
+
+/** Párrafos llanos, para las descripciones escritas a mano desde el flyer y el post de Instagram. */
+const prosa = (...textos: string[]): Parrafo[] => textos.map((texto) => ({ renglones: [[{ texto }]] }));
 
 export const EVENTOS_MANUALES: Evento[] = [
   {
@@ -79,13 +82,17 @@ export const EVENTOS_MANUALES: Evento[] = [
       en: "In-person event organized with the Generative Models Research Group (SIMG) at Universidad Nacional.",
       pt: "Encontro presencial organizado com o Grupo de Pesquisa em Modelos Generativos (SIMG) da Universidad Nacional.",
     },
-    lugar: { es: "Teusaquillo, Bogotá", en: "Teusaquillo, Bogotá", pt: "Teusaquillo, Bogotá" },
+    lugar: { es: "Centro de Innovación CCB, Hilton Corferias, Bogotá", en: "CCB Innovation Center, Hilton Corferias, Bogotá", pt: "Centro de Inovação CCB, Hilton Corferias, Bogotá" },
     enLinea: false,
     url: "https://luma.com/04s63gm5",
     inscritos: 217,
     imagen: "https://images.lumacdn.com/uploads/61/5a6733ec-055c-406e-8a73-64a90a1834a2.png",
     destacado: true,
     portada: "/aisc/eventos/destacados/openai-bogota.jpg",
+    descripcion: prosa(
+      "Colombia está construyendo su lugar en la conversación global sobre inteligencia artificial. Reunimos en Bogotá a investigadores, builders y comunidades locales para conversar sobre los retos técnicos y éticos de construir IA más segura.",
+      "Juan Felipe Cerón, investigador de alineación en OpenAI, compartió desde remoto una mirada técnica a los principales retos de seguridad en sistemas avanzados de IA. Siguieron tres charlas relámpago de Robert Gómez Pachón (AIMedic, SIMG), Eric Manganaro (Young AI Leaders) y Jose Gelves (AI Safety Colombia).",
+    ),
   },
   {
     id: "cena-politica-2026",
@@ -103,13 +110,18 @@ export const EVENTOS_MANUALES: Evento[] = [
     url: "https://www.instagram.com/aisafetycolombia/p/DXNOo7DljSh/",
     inscritos: null,
     imagen: "/aisc/eventos/cena-politica.jpg",
-    destacado: false,
+    destacado: true,
+    portada: "/aisc/eventos/destacados/cena-politica.jpg",
+    descripcion: prosa(
+      "Colombia aprobó en 2025 su política nacional de inteligencia artificial. Pero una política no se escribe sola: detrás hay años de mesas técnicas, tensiones entre lo político y lo técnico y apuestas sobre el futuro digital del país.",
+      "En esta cena conversamos con Viviana Vanegas, ex-directora de Desarrollo Digital del DNP, y Hugo Arenas, ex-coordinador del CONPES de IA, dos de las personas en el centro de ese proceso: cómo se construyó la política, qué viene y dónde están las oportunidades para quienes quieran incidir.",
+    ),
   },
   {
     id: "algoritmo-a-la-ley-2025",
     inicio: "2025-08-15T22:00:00.000Z",
     fin: null,
-    tipo: "Charla",
+    tipo: "Conversatorio",
     titulo: "Del algoritmo a la ley: beneficios, riesgos y cómo auditar la IA",
     resumen: {
       es: "Conversatorio sobre los beneficios, riesgos técnicos y efectos legales del uso de la IA, con Catalina Bernal y Melissa Robles (Quantil) y Natalia Alarcón (Posse Herrera Ruiz).",
@@ -122,6 +134,10 @@ export const EVENTOS_MANUALES: Evento[] = [
     inscritos: null,
     imagen: "/aisc/eventos/algoritmo-a-la-ley.jpg",
     destacado: false,
+    descripcion: prosa(
+      "¿Cómo aprovechar el potencial de la IA sin perder de vista sus riesgos técnicos y legales? A partir de ejemplos reales, el conversatorio recorrió beneficios, sesgos, falta de transparencia, usos indebidos, métodos de auditoría y sus implicaciones jurídicas.",
+      "Conversaron Catalina Bernal y Melissa Robles, subdirectoras de Minería de Datos en Quantil, y Natalia Alarcón, directora de Innovación Legal en Posse Herrera Ruiz.",
+    ),
   },
   {
     id: "connect-latam-2025",
@@ -140,6 +156,10 @@ export const EVENTOS_MANUALES: Evento[] = [
     inscritos: null,
     imagen: "/aisc/eventos/connect-latam.jpg",
     destacado: false,
+    descripcion: prosa(
+      "Un encuentro para conectar, colaborar y hacer crecer la comunidad de AI safety en Latinoamérica y más allá, abierto a cualquier persona interesada. La discusión fue en inglés.",
+      "Luis Enrique Urtubey, director en Good Judgement, habló de gobernanza de la IA en Brasil, y Nikolaus Howe, candidato a PhD en Mila e investigador de FAR AI, de cómo el escalamiento de los modelos afecta su seguridad.",
+    ),
   },
   {
     id: "cena-juan-david-2025",
@@ -158,6 +178,10 @@ export const EVENTOS_MANUALES: Evento[] = [
     inscritos: null,
     imagen: "/aisc/eventos/cena-juan-david.jpg",
     destacado: false,
+    descripcion: prosa(
+      "Una cena para compartir un espacio de diálogo y reflexión con Juan David Gutiérrez, experto en regulación de la inteligencia artificial y política pública.",
+      "Juan David es profesor asociado en la Escuela de Gobierno de la Universidad de los Andes, con PhD y MSc en política pública de Oxford. Colidera la Mesa de Trabajo Multiactor sobre Regulación de Inteligencia Artificial y forma parte del grupo de expertos del Global Partnership on AI.",
+    ),
   },
   {
     id: "panel-gobernanza-2024",
@@ -175,8 +199,11 @@ export const EVENTOS_MANUALES: Evento[] = [
     url: "https://www.instagram.com/aisafetycolombia/p/DCAiVLnvGpN/",
     inscritos: null,
     imagen: "/aisc/eventos/panel-gobernanza.jpg",
-    destacado: true,
-    portada: "/aisc/eventos/destacados/gobernanza.jpg",
+    destacado: false,
+    descripcion: prosa(
+      "¿Cómo asegurar un desarrollo ético y responsable de la IA en Colombia? El panel exploró los desafíos y oportunidades de la inteligencia artificial en el contexto nacional.",
+      "Participaron María Antonia Carvajal, fundadora de IN SITU y LLM de Stanford; María Paula Mujica, asesora de IA en el UNDP y LLM de UCL, y Valeria Soler, embajadora de Women in AI y politóloga de Uniandes.",
+    ),
   },
   {
     id: "cena-maria-paula-2024",
@@ -193,13 +220,17 @@ export const EVENTOS_MANUALES: Evento[] = [
     enLinea: false,
     url: "https://www.instagram.com/aisafetycolombia/p/DAttjF_Ro76/",
     inscritos: null,
-    imagen: null,
+    imagen: "/aisc/eventos/cena-maria-paula.jpg",
     destacado: false,
+    descripcion: prosa(
+      "Una cena para compartir con María Paula Mujica un espacio de diálogo y reflexión sobre los retos y oportunidades que presenta la inteligencia artificial en Colombia.",
+      "María Paula, LLM de UCL, es asesora en políticas de IA en el UNDP. Antes fue asesora de la Presidencia en Transformación Digital e Inteligencia Artificial, participó en el AI Task-Force y es autora del Marco Ético para la Inteligencia Artificial en Colombia.",
+    ),
   },
   {
     id: "superinteligencia-2024",
     inicio: "2024-09-20T23:00:00.000Z",
-    fin: null,
+    fin: "2024-09-21T00:30:00.000Z",
     tipo: "Charla",
     titulo: "El valor de la humanidad ante la superinteligencia artificial",
     resumen: {
@@ -209,10 +240,14 @@ export const EVENTOS_MANUALES: Evento[] = [
     },
     lugar: { es: "Universidad de los Andes", en: "Universidad de los Andes", pt: "Universidad de los Andes" },
     enLinea: false,
-    url: "https://www.instagram.com/aisafetycolombia/p/C_0sc3mOlfX/",
+    url: "https://www.instagram.com/aeuniandes/p/C_0sc3mOlfX/",
     inscritos: null,
-    imagen: null,
+    imagen: "/aisc/eventos/superinteligencia.jpg",
     destacado: false,
+    descripcion: prosa(
+      "Primera charla del semestre de AE en Acción, con AE Uniandes, sobre los dilemas éticos del desarrollo de superinteligencias: ¿debe la humanidad ser el principal factor en su avance? Discutimos sus riesgos y beneficios y cómo alinear su desarrollo con los intereses de la sociedad.",
+      "Said Saillant es PhD en Filosofía del MIT, investigador postdoctoral en la Universidad de Harvard y director ejecutivo de Societas Sapiens.",
+    ),
   },
 ];
 
