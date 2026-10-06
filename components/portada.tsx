@@ -43,7 +43,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
     aliados: "Trabajamos con",
     investigacion: {
       titulo: "Investigación",
-      texto: "Miembros de la comunidad han publicado con la Oxford Martin AI Governance Initiative, en talleres de NeurIPS y en revistas con revisión de pares.",
+      texto: "Artículos y documentos de trabajo firmados por miembros de la comunidad.",
       piezas: [
         { tipo: "Documento de trabajo", fecha: "Diciembre de 2025", venue: "Oxford Martin AI Governance Initiative", autores: "Camila Beltran y 18 coautores" },
         { tipo: "Artículo aceptado en taller", fecha: "Octubre de 2025", venue: "Dos talleres de NeurIPS 2025", autores: "Fernando Avalos y 5 coautores" },
@@ -103,7 +103,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
     aliados: "We work with",
     investigacion: {
       titulo: "Research",
-      texto: "Community members have published with the Oxford Martin AI Governance Initiative, at NeurIPS workshops and in peer-reviewed journals.",
+      texto: "Papers and working papers by members of the community.",
       piezas: [
         { tipo: "Working paper", fecha: "December 2025", venue: "Oxford Martin AI Governance Initiative", autores: "Camila Beltran and 18 co-authors" },
         { tipo: "Workshop paper", fecha: "October 2025", venue: "Two NeurIPS 2025 workshops", autores: "Fernando Avalos and 5 co-authors" },
@@ -163,7 +163,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
     aliados: "Trabalhamos com",
     investigacion: {
       titulo: "Pesquisa",
-      texto: "Membros da comunidade publicaram com a Oxford Martin AI Governance Initiative, em workshops da NeurIPS e em revistas com revisão por pares.",
+      texto: "Artigos e documentos de trabalho assinados por membros da comunidade.",
       piezas: [
         { tipo: "Documento de trabalho", fecha: "Dezembro de 2025", venue: "Oxford Martin AI Governance Initiative", autores: "Camila Beltran e 18 coautores" },
         { tipo: "Artigo aceito em workshop", fecha: "Outubro de 2025", venue: "Dois workshops da NeurIPS 2025", autores: "Fernando Avalos e 5 coautores" },

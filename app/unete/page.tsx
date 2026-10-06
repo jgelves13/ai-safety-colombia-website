@@ -14,21 +14,18 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 /* La escalera: explorar sin compromiso, aprender en un curso con cohorte e
-   investigar en un hackathon. Cada opción dice lo mismo en el mismo orden,
-   dedicación, requisitos y costo, para que se puedan comparar de un vistazo. */
+   investigar en un hackathon. Cada opción cierra con una línea de datos:
+   cuánto tiempo pide, qué hace falta y cuánto cuesta. */
 const PASOS: PasoUnete[] = [
   {
     id: "explora",
-    numero: "01",
     titulo: "Explora",
     entrada: "Para conocer el campo y a la gente sin comprometerte a nada.",
     opciones: [
       {
         titulo: "El grupo de WhatsApp",
         cuerpo: "Donde preguntas lo que no entiendes y donde se anuncian primero las sesiones, los eventos y las convocatorias.",
-        dedicacion: "La que quieras",
-        requisitos: "Ninguno",
-        costo: "Gratis",
+        datos: "Gratis y sin requisitos.",
         href: "https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF",
         cta: "Entrar al grupo",
         externo: true,
@@ -36,9 +33,7 @@ const PASOS: PasoUnete[] = [
       {
         titulo: "Grupo de lectura: AI Control",
         cuerpo: "Una lectura cada quince días sobre cómo se supervisa a un sistema de IA que actúa por su cuenta. Puedes venir solo a escuchar.",
-        dedicacion: "Viernes a las 6:30 p. m., en línea, una hora",
-        requisitos: "Ninguno",
-        costo: "Gratis",
+        datos: "Viernes a las 6:30 p. m., en línea, una hora. Gratis y sin requisitos.",
         href: "https://chat.whatsapp.com/DfWuuPlzqmIFN1tRtl57SB",
         cta: "Entrar al grupo de lectura",
         externo: true,
@@ -46,9 +41,7 @@ const PASOS: PasoUnete[] = [
       {
         titulo: "Charlas y talleres",
         cuerpo: "Oyes de primera mano a alguien que trabaja en el tema y conoces a la gente de la comunidad.",
-        dedicacion: "Una o dos horas por evento",
-        requisitos: "Inscribirte en Luma",
-        costo: "Gratis",
+        datos: "Una o dos horas por evento, con inscripción en Luma. Gratis.",
         href: "https://luma.com/user/usr-TMDEtNWA1TozP77",
         cta: "Ver los próximos",
         externo: true,
@@ -57,16 +50,13 @@ const PASOS: PasoUnete[] = [
   },
   {
     id: "aprende",
-    numero: "02",
     titulo: "Aprende",
     entrada: "Seminarios con cohorte y facilitador, con los materiales de BlueDot Impact.",
     opciones: [
       {
         titulo: "Seminario de futuro y riesgos de la IA",
         cuerpo: "Por qué se corre hacia la AGI, cuáles son los riesgos y qué defensas existen. El punto de partida desde cualquier campo.",
-        dedicacion: "Cinco semanas desde el 12 de octubre, 3 horas por semana, en los Andes o en línea",
-        requisitos: "Aplicar; sin formación técnica",
-        costo: "Gratis, con certificado",
+        datos: "Cinco semanas, 3 horas por semana, en los Andes o en línea. Sin formación técnica. Gratis, con certificado.",
         href: "/seminarios/futuro-y-riesgos",
         cta: "Ver el seminario",
         externo: false,
@@ -74,9 +64,7 @@ const PASOS: PasoUnete[] = [
       {
         titulo: "Seminario técnico de seguridad de la IA",
         cuerpo: "Cómo se entrenan y evalúan modelos más seguros, interpretabilidad mecanicista y AI control. Para quien quiere entrar a la parte técnica.",
-        dedicacion: "Seis semanas desde el 12 de octubre, 3 horas por semana, en Bogotá o en línea",
-        requisitos: "Aplicar; saber lo básico de cómo se entrenan los modelos",
-        costo: "Gratis, con certificado",
+        datos: "Seis semanas, 3 horas por semana, en Bogotá o en línea. Pide saber lo básico de cómo se entrenan los modelos. Gratis, con certificado.",
         href: "/seminarios/tecnico",
         cta: "Ver el seminario",
         externo: false,
@@ -85,16 +73,13 @@ const PASOS: PasoUnete[] = [
   },
   {
     id: "investiga",
-    numero: "03",
     titulo: "Investiga",
     entrada: "Para salir con un trabajo propio que puedas mostrar.",
     opciones: [
       {
         titulo: "Hackathones de investigación",
         cuerpo: "El hub presencial en Bogotá de los hackathones de Apart Research. Los equipos salen con un trabajo publicado y retroalimentación de jurados.",
-        dedicacion: "Un fin de semana, de viernes a domingo",
-        requisitos: "Aplicar al hub de Bogotá; hay selección",
-        costo: "Gratis",
+        datos: "Un fin de semana, de viernes a domingo, en el hub de Bogotá, con selección previa. Gratis.",
         href: "/sprint",
         cta: "Ver el último sprint",
         externo: false,
@@ -109,9 +94,6 @@ const TEXTOS: TextosUnete = {
   aviso: "Aplicaciones abiertas a los seminarios hasta el viernes 9 de octubre",
   kickerAbierto: "Seminario · Aplicaciones abiertas hasta el 9 de octubre",
   kickerCerrado: "Seminario",
-  dedicacion: "Dedicación",
-  requisitos: "Requisitos",
-  costo: "Costo",
   cta: {
     kicker: "¿No sabes por dónde empezar?",
     title: "Habla con nosotros",

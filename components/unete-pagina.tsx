@@ -16,9 +16,8 @@ import { cursosCerrados } from "@/lib/cursos";
 export type OpcionUnete = {
   titulo: string;
   cuerpo: string;
-  dedicacion: string;
-  requisitos: string;
-  costo: string;
+  /** una sola línea, sin rótulos: tiempo, requisitos y costo */
+  datos: string;
   href: string;
   cta: string;
   externo: boolean;
@@ -26,7 +25,6 @@ export type OpcionUnete = {
 
 export type PasoUnete = {
   id: string;
-  numero: string;
   titulo: string;
   entrada: string;
   opciones: OpcionUnete[];
@@ -41,10 +39,6 @@ export type TextosUnete = {
   aviso: string;
   kickerAbierto: string;
   kickerCerrado: string;
-  /* Los rótulos de los tres datos. */
-  dedicacion: string;
-  requisitos: string;
-  costo: string;
   /* El panel final. */
   cta: { kicker: string; title: string; body: string; primario: string; secundario: string };
 };
@@ -106,7 +100,7 @@ function Encabezado({ paso }: { paso: PasoUnete }) {
       <div aria-hidden="true" className={HAIRLINE} />
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:items-start lg:gap-6">
         <h2 className="text-display-2 md:text-display-2-lg text-balance">
-          <span className="text-aisc-forest">{paso.numero}</span> {paso.titulo}
+          {paso.titulo}
         </h2>
         <p className="text-body md:text-body-lg max-w-[520px] text-aisc-ink lg:justify-self-end">{paso.entrada}</p>
       </div>
@@ -114,27 +108,9 @@ function Encabezado({ paso }: { paso: PasoUnete }) {
   );
 }
 
-/* Los tres datos de una opción, en una columna o en tres. */
-function Datos({ o, t, columnas, oscuro }: { o: OpcionUnete; t: TextosUnete; columnas: boolean; oscuro: boolean }) {
-  const filas = [
-    [t.dedicacion, o.dedicacion],
-    [t.requisitos, o.requisitos],
-    [t.costo, o.costo],
-  ];
-  return (
-    <dl
-      className={`text-body-sm grid grid-cols-1 gap-x-6 gap-y-3 border-t pt-5 ${
-        columnas ? "md:grid-cols-2" : ""
-      } ${oscuro ? "border-aisc-sand/20" : "border-aisc-forest-deep/15"}`}
-    >
-      {filas.map(([k, v], i) => (
-        <div key={k} className={`flex flex-col gap-0.5 ${columnas && i === 0 ? "md:col-span-2" : ""}`}>
-          <dt className={`text-meta ${oscuro ? "text-aisc-sand/60" : "text-aisc-muted"}`}>{k}</dt>
-          <dd className={oscuro ? "text-aisc-sand/90" : "text-aisc-ink"}>{v}</dd>
-        </div>
-      ))}
-    </dl>
-  );
+/* Los datos de una opción: una línea tenue, sin rótulos. */
+function Datos({ o, oscuro }: { o: OpcionUnete; oscuro: boolean }) {
+  return <p className={`text-meta ${oscuro ? "text-aisc-sand/70" : "text-aisc-muted"}`}>{o.datos}</p>;
 }
 
 function Enlace({ o, className }: { o: OpcionUnete; className: string }) {
@@ -164,7 +140,7 @@ function Panel({ paso, t }: { paso: PasoUnete; t: TextosUnete }) {
                   <h3 className="text-display-4 md:text-display-4-lg text-balance">{o.titulo}</h3>
                   <p className="text-body-sm text-aisc-ink">{o.cuerpo}</p>
                   <div className="pt-2">
-                    <Datos o={o} t={t} columnas={false} oscuro={false} />
+                    <Datos o={o} oscuro={false} />
                   </div>
                 </div>
                 <div className="mt-auto pt-6">
@@ -202,7 +178,7 @@ function Destacado({ paso, t, abiertos }: { paso: PasoUnete; t: TextosUnete; abi
                   <span className="text-body-sm block max-w-[600px] text-aisc-sand/90">{o.cuerpo}</span>
                 </span>
                 <span className="block pt-6">
-                  <Datos o={o} t={t} columnas oscuro />
+                  <Datos o={o} oscuro />
                 </span>
                 <span className="text-display-4 md:text-display-4-lg mt-8 w-fit self-start text-aisc-sand transition-colors group-hover:text-aisc-sand/72">
                   {o.cta}
@@ -230,9 +206,9 @@ function Fila({ paso, t }: { paso: PasoUnete; t: TextosUnete }) {
                   {ICONOS[ICONO_DE[2][i]]}
                   <h3 className="text-display-3 md:text-display-3-lg pt-4 text-balance">{o.titulo}</h3>
                   <p className="text-body-sm max-w-[560px] text-aisc-ink">{o.cuerpo}</p>
+                  <Datos o={o} oscuro={false} />
                 </div>
-                <div className="flex flex-col gap-6 lg:justify-end">
-                  <Datos o={o} t={t} columnas={false} oscuro={false} />
+                <div className="flex flex-col gap-6 lg:items-end lg:justify-end">
                   <Enlace o={o} className={ENLACE} />
                 </div>
               </article>
