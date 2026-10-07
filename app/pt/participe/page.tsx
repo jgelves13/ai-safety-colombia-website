@@ -20,7 +20,7 @@ const PASOS: PasoUnete[] = [
   {
     id: "explora",
     titulo: "Explore",
-    entrada: "Para conhecer o campo e as pessoas sem compromisso.",
+    entrada: "Para conhecer o campo e as pessoas, no seu ritmo.",
     patron: "charlas",
     opciones: [
       {
