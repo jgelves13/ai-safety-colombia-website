@@ -217,7 +217,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
 
 /** Los logos van en el idioma que sea: son nombres propios. */
 const ALIADOS = [
-  { name: "Apart Research", logo: "/aisc/aliados/apart.png", href: "https://apartresearch.com", alto: "h-9" },
+  { name: "Apart Research", logo: "/aisc/aliados/apart.png", href: "https://apartresearch.com", alto: "h-6" },
   { name: "BlueDot Impact", logo: "/aisc/aliados/bluedot.png", href: "https://bluedot.org", alto: "h-6" },
   { name: "Kairos", logo: "/aisc/aliados/kairos.png", href: "https://kairos-project.org", alto: "h-7" },
   { name: "Coefficient Giving", logo: "/aisc/aliados/coefficient-giving.svg", href: "https://www.coefficientgiving.org", alto: "h-7" },
