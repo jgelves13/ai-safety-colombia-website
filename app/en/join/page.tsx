@@ -25,7 +25,7 @@ const PASOS: PasoUnete[] = [
     opciones: [
       {
         titulo: "The WhatsApp group",
-        cuerpo: "Where you ask what you don't understand and where sessions, events and calls are announced first.",
+        cuerpo: "Where the topic is discussed and questions get answered, and where sessions, events and calls are announced first.",
         datos: "Free, no requirements.",
         cta: "Join the group",
         href: "https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF",
