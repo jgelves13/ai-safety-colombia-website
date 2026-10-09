@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CTA_LINK_PRIMARY } from "./ui";
 import { type Idioma, menu } from "@/lib/idiomas";
+import { RUTA_POLITICA, TEXTOS_POLITICA } from "@/lib/politica-datos";
 
 const WHATSAPP = "https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF";
 
@@ -155,10 +156,16 @@ export default function SiteFooter({ idioma = "es" }: { idioma?: Idioma }) {
           </nav>
         </div>
 
-        <div className="border-aisc-sand/15 mt-14 border-t pt-6">
+        <div className="border-aisc-sand/15 mt-14 flex flex-col gap-2 border-t pt-6 md:flex-row md:items-center md:justify-between">
           <p className="text-meta text-aisc-sand/60">
             {t.derechos}
           </p>
+          <Link
+            className="text-meta text-aisc-sand/60 transition-colors hover:text-aisc-coral"
+            href={RUTA_POLITICA[idioma]}
+          >
+            {TEXTOS_POLITICA[idioma].enlacePie}
+          </Link>
         </div>
       </div>
     </footer>

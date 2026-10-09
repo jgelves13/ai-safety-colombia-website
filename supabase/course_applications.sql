@@ -32,7 +32,14 @@ create table if not exists public.course_applications (
   mention_name boolean not null,
   feedback text,
   share_data boolean not null,
-  status text not null default 'nueva'
+  status text not null default 'nueva',
+  -- Prueba de la autorización (Ley 1581 de 2012): cuándo se marcó la casilla y
+  -- qué versión de /privacidad se aceptó.
+  consent_at timestamptz,
+  policy_version text
 );
+
+alter table public.course_applications add column if not exists consent_at timestamptz;
+alter table public.course_applications add column if not exists policy_version text;
 
 alter table public.course_applications enable row level security;

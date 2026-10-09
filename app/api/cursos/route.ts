@@ -11,6 +11,7 @@ import {
   obligatorios,
   type CursoId,
 } from "@/lib/cursos";
+import { POLITICA_VERSION, RUTA_POLITICA } from "@/lib/politica-datos";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -61,6 +62,7 @@ type Datos = {
   careerStage: string;
   mentionName: boolean;
   shareData: boolean;
+  consentAt: string;
   t: Record<string, string>;
 };
 
@@ -101,8 +103,12 @@ function validar(raw: Crudo): { ok: true; datos: Datos } | { ok: false; campo: s
   const mention = texto(raw.mentionName);
   if (mention !== "si" && mention !== "no") return { ok: false, campo: "mentionName" };
 
+  /* Sin la casilla de autorización marcada no se guarda nada (Ley 1581 de
+     2012, art. 9). */
+  if (texto(raw.authorization) !== "si") return { ok: false, campo: "authorization" };
+
   const faltantes = obligatorios(course).filter(
-    (c) => !["course", "role", "format", "fields", "careerStage", "mentionName"].includes(c),
+    (c) => !["course", "role", "format", "fields", "careerStage", "mentionName", "authorization"].includes(c),
   );
   for (const campo of faltantes) if (!t[campo]) return { ok: false, campo };
 
@@ -122,6 +128,7 @@ function validar(raw: Crudo): { ok: true; datos: Datos } | { ok: false; campo: s
       mentionName: mention === "si",
       /* Ya no se pregunta; la columna se queda en falso. */
       shareData: false,
+      consentAt: new Date().toISOString(),
       t,
     },
   };
@@ -156,6 +163,10 @@ function fila(d: Datos) {
     mention_name: d.mentionName,
     feedback: d.t.feedback || null,
     share_data: d.shareData,
+    /* La prueba de la autorización: cuándo marcó la casilla y qué versión de
+       la política tenía a la vista. */
+    consent_at: d.consentAt,
+    policy_version: POLITICA_VERSION,
   };
 }
 
@@ -178,7 +189,26 @@ async function guardar(d: Datos): Promise<boolean> {
       body: JSON.stringify(fila(d)),
     });
     if (r.ok) return true;
-    console.error("[cursos] Supabase respondió", r.status, await r.text());
+    const error = await r.text();
+    console.error("[cursos] Supabase respondió", r.status, error);
+    /* Si la tabla todavía no tiene las columnas de la autorización, se guarda
+       la aplicación sin ellas antes que perderla; el aviso de falla de abajo
+       no salta y la autorización queda en los registros de Vercel. */
+    if (/consent_at|policy_version/.test(error)) {
+      const { consent_at, policy_version, ...resto } = fila(d);
+      console.error("[cursos] autorización sin columna", { email: d.t.email, consent_at, policy_version });
+      const r2 = await fetch(`${url}/rest/v1/${TABLA}`, {
+        method: "POST",
+        headers: {
+          apikey: key,
+          Authorization: `Bearer ${key}`,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify(resto),
+      });
+      return r2.ok;
+    }
     return false;
   } catch (e) {
     console.error("[cursos] falló el insert", e);
@@ -204,7 +234,7 @@ function correoDeConfirmacion(d: Datos): { subject: string; text: string } {
         "",
         "Applications close on Friday 9 October at 11:59 pm, Colombia time. We review them after that and reply to everyone, whether or not they get in, with the next steps. The seminar starts the week of 12 October.",
         "",
-        `If you want to correct an answer, reply to this email or write to ${CORREO_CONTACTO}.`,
+        `If you want to correct an answer, reply to this email or write to ${CORREO_CONTACTO}. How we handle your data: https://aisafetycolombia.org${RUTA_POLITICA.en}`,
         "",
         "Jose Gelves",
         "AI Safety Colombia",
@@ -221,7 +251,7 @@ function correoDeConfirmacion(d: Datos): { subject: string; text: string } {
         "",
         "As inscrições fecham na sexta-feira, 9 de outubro, às 23h59, horário da Colômbia. Revisamos depois disso e respondemos a todo mundo, com ou sem vaga, com os próximos passos. O seminário começa na semana de 12 de outubro.",
         "",
-        `Se quiser corrigir alguma resposta, responda a este e-mail ou escreva para ${CORREO_CONTACTO}.`,
+        `Se quiser corrigir alguma resposta, responda a este e-mail ou escreva para ${CORREO_CONTACTO}. Como tratamos seus dados: https://aisafetycolombia.org${RUTA_POLITICA.pt}`,
         "",
         "Jose Gelves",
         "AI Safety Colombia",
@@ -237,7 +267,7 @@ function correoDeConfirmacion(d: Datos): { subject: string; text: string } {
       "",
       "Las aplicaciones cierran el viernes 9 de octubre a las 11:59 p. m., hora de Colombia. Las revisamos después y le respondemos a todo el mundo, quede o no, con los siguientes pasos. El seminario arranca la semana del 12 de octubre.",
       "",
-      `Si quieres corregir una respuesta, responde este correo o escríbenos a ${CORREO_CONTACTO}.`,
+      `Si quieres corregir una respuesta, responde este correo o escríbenos a ${CORREO_CONTACTO}. Cómo tratamos tus datos: https://aisafetycolombia.org${RUTA_POLITICA.es}`,
       "",
       "Jose Gelves",
       "AI Safety Colombia",

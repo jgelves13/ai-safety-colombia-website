@@ -126,6 +126,11 @@ export const PAGINAS: Pagina[] = [
       pt: "/pt/sprint/inscricao/indicacao",
     },
   },
+  /* La política de datos personales. No va en el menú: la enlazan el pie y la
+     casilla de autorización de cada formulario. */
+  {
+    ruta: { es: "/privacidad", en: "/en/privacy", pt: "/pt/privacidade" },
+  },
 ];
 
 /** Las entradas del menú, ya en el idioma que se pida. */

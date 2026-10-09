@@ -15,6 +15,7 @@ import {
   obligatorios,
   type CursoId,
 } from "@/lib/cursos";
+import { RUTA_POLITICA, TEXTOS_POLITICA } from "@/lib/politica-datos";
 
 /* Borrador local, igual que en el formulario del sprint: quien cierra la
    pestaña a mitad de camino no pierde lo que llevaba. Se borra al enviar. */
@@ -44,6 +45,9 @@ const VACIO: Campos = {
   nominee: "",
   mentionName: "",
   feedback: "",
+  /* La casilla de autorización de datos. No se guarda en el borrador: quien
+     vuelve tiene que marcarla otra vez, con el texto a la vista. */
+  authorization: "",
   website: "",
 };
 
@@ -260,6 +264,7 @@ export default function CourseApplyForm({
   cursoInicial?: CursoId;
 }) {
   const t = TEXTOS_CURSOS[idioma];
+  const tp = TEXTOS_POLITICA[idioma];
   const [v, setV] = useState<Campos>({ ...VACIO, course: cursoInicial ?? "" });
   const [errores, setErrores] = useState<Record<string, string>>({});
   const [estado, setEstado] = useState<
@@ -279,6 +284,7 @@ export default function CourseApplyForm({
         setV({
           ...VACIO,
           ...previo,
+          authorization: "",
           course: cursoInicial ?? previo.course ?? "",
         });
       }
@@ -293,7 +299,7 @@ export default function CourseApplyForm({
     try {
       window.localStorage.setItem(
         BORRADOR,
-        JSON.stringify({ ...v, website: "" }),
+        JSON.stringify({ ...v, website: "", authorization: "" }),
       );
     } catch {
       /* idem */
@@ -327,6 +333,7 @@ export default function CourseApplyForm({
     for (const campo of requeridos()) {
       if (!valor(campo)) nuevos[campo] = t.faltaResponder;
     }
+    if (v.authorization !== "si") nuevos.authorization = tp.casillaFalta;
     if (v.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim())) {
       nuevos.email = t.correoMal;
     }
@@ -352,7 +359,7 @@ export default function CourseApplyForm({
     if (Object.keys(nuevos).some((k) => nuevos[k])) {
       const pendientes = requeridos()
         .filter((c) => nuevos[c])
-        .map((c) => t.falta[c]);
+        .map((c) => (c === "authorization" ? tp.faltaCasilla : t.falta[c]));
       if (nuevos.careerDetail) pendientes.push(t.falta.careerStage);
       setFaltantes(pendientes.length ? pendientes : [t.faltaResponder]);
       requestAnimationFrame(() =>
@@ -818,6 +825,34 @@ export default function CourseApplyForm({
             </a>
             {t.privacidadDespues}
           </p>
+          <div className="mt-4">
+            <label className={OPCION}>
+              <input
+                type="checkbox"
+                name="authorization"
+                checked={v.authorization === "si"}
+                onChange={(e) => set("authorization", e.target.checked ? "si" : "")}
+                className="mt-0.5 accent-aisc-forest"
+              />
+              <span>
+                {tp.casilla}
+                <a
+                  className={ENLACE}
+                  href={RUTA_POLITICA[idioma]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {tp.casillaEnlace}
+                </a>
+                .<span className="text-aisc-coral"> *</span>
+              </span>
+            </label>
+            {errores.authorization ? (
+              <span className={ERROR} role="alert">
+                {errores.authorization}
+              </span>
+            ) : null}
+          </div>
         </section>
       </div>
 

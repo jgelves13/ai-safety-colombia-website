@@ -116,6 +116,7 @@ export function obligatorios(curso: CursoId): string[] {
     "source",
     "nominee",
     "mentionName",
+    "authorization",
   ];
 }
 
@@ -424,14 +425,15 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
       "Lo mencionaron en el grupo de WhatsApp de AI Safety Colombia",
     ],
     nominado: "¿A quién es la persona más excepcional que nominarías para este seminario? Incluye su correo.",
-    nominadoAyuda: "Puedes nominar a más de una. Si creemos que encajan, puede que les escribamos.",
+    nominadoAyuda:
+      "Puedes nominar a más de una. Antes de darnos su correo, cuéntale que lo vas a hacer y pregúntale si está de acuerdo: al enviarlo declaras que lo hiciste. Si creemos que encaja, le escribimos una sola vez para invitarla y, si no aplica, borramos su correo a los 60 días.",
     mencion: "¿Podemos mencionar tu nombre si les escribimos?",
     si: "Sí",
     no: "No",
     comentarios: "¿Tienes comentarios sobre este formulario?",
     comentariosAyuda: "Si necesitas una respuesta, escríbenos.",
     privacidadAntes:
-      "Usamos tus respuestas solo para decidir las cohortes y escribirte sobre el seminario. Para corregir o borrar tus datos, escribe a ",
+      "Usamos tus respuestas solo para decidir las cohortes y escribirte sobre el seminario. Quedan guardadas en Supabase y los correos salen por Resend, dos proveedores en Estados Unidos. Los programas son para mayores de 18 años; si eres menor de edad, escríbenos antes de aplicar. Para consultar, corregir o borrar tus datos, escribe a ",
     privacidadDespues: ".",
   },
 
@@ -653,14 +655,15 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
       "It was mentioned in the AI Safety Colombia WhatsApp group",
     ],
     nominado: "Who is the most exceptional person you would nominate for this seminar? Please include their email.",
-    nominadoAyuda: "You can nominate more than one. If we think they're a good fit, we may reach out to them.",
+    nominadoAyuda:
+      "You can nominate more than one. Before giving us their email, tell them you're doing it and ask if they're okay with it: by submitting you confirm you did. If we think they're a good fit, we write to them once to invite them and, if they don't apply, we delete their email after 60 days.",
     mencion: "Can we mention your name if we reach out to them?",
     si: "Yes",
     no: "No",
     comentarios: "Do you have any feedback on this application form?",
     comentariosAyuda: "If you need a response from us, please contact us.",
     privacidadAntes:
-      "We only use your answers to form the cohorts and to write to you about the seminar. To correct or delete your data, write to ",
+      "We only use your answers to form the cohorts and to write to you about the seminar. They are stored in Supabase and emails go out through Resend, two providers in the United States. The programmes are for people over 18; if you are a minor, write to us before applying. To access, correct or delete your data, write to ",
     privacidadDespues: ".",
   },
 
@@ -882,14 +885,15 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
       "Mencionaram no grupo de WhatsApp da AI Safety Colombia",
     ],
     nominado: "Quem é a pessoa mais excepcional que você indicaria para este seminário? Inclua o e-mail dela.",
-    nominadoAyuda: "Pode indicar mais de uma. Se acharmos que se encaixam, podemos escrever para elas.",
+    nominadoAyuda:
+      "Pode indicar mais de uma. Antes de nos passar o e-mail, conte à pessoa que vai fazer isso e pergunte se ela concorda: ao enviar, você declara que fez isso. Se acharmos que ela se encaixa, escrevemos uma única vez para convidá-la e, se não se inscrever, apagamos o e-mail após 60 dias.",
     mencion: "Podemos mencionar seu nome se escrevermos para elas?",
     si: "Sim",
     no: "Não",
     comentarios: "Você tem comentários sobre este formulário?",
     comentariosAyuda: "Se precisar de resposta, escreva para nós.",
     privacidadAntes:
-      "Usamos suas respostas só para montar as turmas e escrever para você sobre o seminário. Para corrigir ou apagar seus dados, escreva para ",
+      "Usamos suas respostas só para montar as turmas e escrever para você sobre o seminário. Elas ficam guardadas no Supabase e os e-mails saem pelo Resend, dois fornecedores nos Estados Unidos. Os programas são para maiores de 18 anos; se você for menor de idade, escreva para nós antes de se inscrever. Para consultar, corrigir ou apagar seus dados, escreva para ",
     privacidadDespues: ".",
   },
 };
