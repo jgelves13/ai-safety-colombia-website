@@ -169,7 +169,7 @@ const AGI_ES: PaginaCurso = {
     ],
   },
   plazo:
-    "Las aplicaciones están abiertas **hasta el viernes 9 de octubre a las 11:59 p. m.**, hora de Colombia. El seminario arranca la **semana del 12 de octubre** y termina el 15 de noviembre. Es **gratis**, y quien lo complete recibe un certificado de AI Safety Colombia. **Los cupos son limitados y hay selección**: leemos cada aplicación y avisamos a todos, queden o no, antes de que arranque la cohorte.",
+    "Aplica **hasta el viernes 9 de octubre a las 11:59 p. m.** Los cupos son limitados y le respondemos a todos antes de arrancar.",
   otro: "Si te interesa más la parte técnica (interpretabilidad, evaluaciones, investigación en alineación), mira el {curso}.",
   faq: [
     {
@@ -275,7 +275,7 @@ const TAIS_ES: PaginaCurso = {
     ],
   },
   plazo:
-    "Las aplicaciones están abiertas **hasta el viernes 9 de octubre a las 11:59 p. m.**, hora de Colombia. El seminario arranca la **semana del 12 de octubre** y termina el 22 de noviembre. Es **gratis**, y quien lo complete recibe un certificado de AI Safety Colombia. **Los cupos son limitados y hay selección**: leemos cada aplicación y avisamos a todos, queden o no, antes de que arranque la cohorte.",
+    "Aplica **hasta el viernes 9 de octubre a las 11:59 p. m.** Los cupos son limitados y le respondemos a todos antes de arrancar.",
   otro: "Si prefieres empezar por el panorama estratégico, mira el {curso}.",
   faq: [
     {
@@ -380,7 +380,7 @@ const AGI_EN: PaginaCurso = {
     ],
   },
   plazo:
-    "Applications are open **until Friday 9 October at 11:59 pm**, Colombia time. The seminar starts the **week of 12 October** and ends on 15 November. It is **free**, and everyone who completes it receives an AI Safety Colombia certificate. **Places are limited and there is a selection process**: we read every application and let everyone know, accepted or not, before the cohort starts.",
+    "Apply **by Friday 9 October at 11:59 pm**, Colombia time. Places are limited, and we reply to everyone before we start.",
   otro: "If you're more interested in the technical side (interpretability, evaluations, alignment research), see the {curso}.",
   faq: [
     {
@@ -486,7 +486,7 @@ const TAIS_EN: PaginaCurso = {
     ],
   },
   plazo:
-    "Applications are open **until Friday 9 October at 11:59 pm**, Colombia time. The seminar starts the **week of 12 October** and ends on 22 November. It is **free**, and everyone who completes it receives an AI Safety Colombia certificate. **Places are limited and there is a selection process**: we read every application and let everyone know, accepted or not, before the cohort starts.",
+    "Apply **by Friday 9 October at 11:59 pm**, Colombia time. Places are limited, and we reply to everyone before we start.",
   otro: "If you'd rather start with the strategic picture, see the {curso}.",
   faq: [
     {
@@ -591,7 +591,7 @@ const AGI_PT: PaginaCurso = {
     ],
   },
   plazo:
-    "As inscrições estão abertas **até sexta-feira, 9 de outubro, às 23h59**, horário da Colômbia. O seminário começa na **semana de 12 de outubro** e termina em 15 de novembro. É **grátis**, e quem o concluir recebe um certificado da AI Safety Colombia. **As vagas são limitadas e há seleção**: lemos cada inscrição e avisamos a todos, aprovados ou não, antes de a turma começar.",
+    "Inscreva-se **até sexta-feira, 9 de outubro, às 23h59**, horário da Colômbia. As vagas são limitadas e respondemos a todos antes do início.",
   otro: "Se você tem mais interesse na parte técnica (interpretabilidade, avaliações, pesquisa em alinhamento), veja o {curso}.",
   faq: [
     {
@@ -697,7 +697,7 @@ const TAIS_PT: PaginaCurso = {
     ],
   },
   plazo:
-    "As inscrições estão abertas **até sexta-feira, 9 de outubro, às 23h59**, horário da Colômbia. O seminário começa na **semana de 12 de outubro** e termina em 22 de novembro. É **grátis**, e quem o concluir recebe um certificado da AI Safety Colombia. **As vagas são limitadas e há seleção**: lemos cada inscrição e avisamos a todos, aprovados ou não, antes de a turma começar.",
+    "Inscreva-se **até sexta-feira, 9 de outubro, às 23h59**, horário da Colômbia. As vagas são limitadas e respondemos a todos antes do início.",
   otro: "Se prefere começar pelo panorama estratégico, veja o {curso}.",
   faq: [
     {
