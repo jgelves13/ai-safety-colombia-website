@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import SiteFooter from "@/components/site-footer";
+import IndicePolitica from "@/components/indice-politica";
 import SiteHeader from "@/components/site-header";
 import { HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import type { Idioma } from "@/lib/idiomas";
@@ -71,25 +72,11 @@ export default function PoliticaDatosPagina({ idioma }: { idioma: Idioma }) {
       </section>
 
       <section className="bg-aisc-sand">
-        <div className="mx-auto grid w-full max-w-[1180px] grid-cols-1 gap-12 px-6 py-14 md:px-8 md:py-20 lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-20">
-          <nav aria-label={t.indice} className="hidden lg:block">
-            <div className="sticky top-28">
-              <h2 className="text-kicker text-aisc-muted">{t.indice}</h2>
-              <ol className="mt-4 flex flex-col border-l border-aisc-line">
-                {t.secciones.map((s, i) => (
-                  <li key={s.titulo}>
-                    <a
-                      href={`#${ancla(i + 1)}`}
-                      className="text-body-sm -ml-px flex gap-3 border-l border-transparent py-1.5 pl-4 text-aisc-muted transition-colors hover:border-aisc-coral hover:text-aisc-ink"
-                    >
-                      <span className="w-5 shrink-0 tabular-nums">{i + 1}.</span>
-                      <span>{s.titulo}</span>
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </nav>
+        <div className="mx-auto grid w-full max-w-[1180px] grid-cols-1 gap-12 px-6 py-14 md:px-8 md:py-20 lg:grid-cols-[270px_minmax(0,1fr)] lg:gap-20">
+          <IndicePolitica
+            titulo={t.indice}
+            secciones={t.secciones.map((s, i) => ({ id: ancla(i + 1), titulo: s.titulo }))}
+          />
 
           <article className="max-w-[720px]">
             {t.secciones.map((s, i) => (
