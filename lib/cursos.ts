@@ -167,8 +167,6 @@ export type TextosCursos = {
   formato: string;
   formatoAyuda: string;
   formatos: Record<(typeof FORMATOS)[number], string>;
-  alternativa: string;
-  alternativaAyuda: string;
   alternativaCheck: string;
 
   nombre: string;
@@ -280,16 +278,13 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     curso: "¿A qué seminario aplicas?",
     formato: "¿Puedes estar todas las semanas?",
     formatoAyuda:
-      "El seminario pide participación completa: cada semana, una hora de material ligero y dos horas de sesión con tu cohorte. Para recibir el certificado se puede faltar a una sesión como máximo. Arranca la semana del 12 de octubre; el Seminario de futuro y riesgos de la IA dura cinco semanas y el Seminario técnico de seguridad de la IA seis.",
+      "Son tres horas a la semana desde el 12 de octubre: una de lecturas y dos de sesión con tu cohorte. Para el certificado puedes faltar a una sesión como máximo.",
     formatos: {
       todas: "Sí, puedo estar todas las semanas",
       "casi-todas": "Casi todas: puede que falte a una",
       "no-puedo": "No puedo en estas fechas; avísenme de la próxima cohorte",
     },
-    alternativa: "Ubicación alternativa",
-    alternativaAyuda:
-      "Puede que a alguien le sirva más empezar por el Seminario de futuro y riesgos de la IA. Marca la casilla si estás abierto a que te ubiquemos ahí si te lo recomendamos.",
-    alternativaCheck: "Estoy abierto a hacer el Seminario de futuro y riesgos de la IA en su lugar",
+    alternativaCheck: "Si les parece mejor, estoy abierto a hacer el Seminario de futuro y riesgos de la IA en su lugar",
 
     nombre: "Nombre",
     apellido: "Apellido",
@@ -426,14 +421,14 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     ],
     nominado: "¿A quién es la persona más excepcional que nominarías para este seminario? Incluye su correo.",
     nominadoAyuda:
-      "Puedes nominar a más de una. Antes de darnos su correo, cuéntale que lo vas a hacer y pregúntale si está de acuerdo: al enviarlo declaras que lo hiciste. Si creemos que encaja, le escribimos una sola vez para invitarla y, si no aplica, borramos su correo a los 60 días.",
+      "Puedes nominar a más de una. Pídeles permiso antes de darnos su correo. Les escribimos una sola vez y, si no aplican, borramos el correo a los 60 días.",
     mencion: "¿Podemos mencionar tu nombre si les escribimos?",
     si: "Sí",
     no: "No",
     comentarios: "¿Tienes comentarios sobre este formulario?",
     comentariosAyuda: "Si necesitas una respuesta, escríbenos.",
     privacidadAntes:
-      "Usamos tus respuestas solo para decidir las cohortes y escribirte sobre el seminario. Quedan guardadas en Supabase y los correos salen por Resend, dos proveedores en Estados Unidos. Los programas son para mayores de 18 años; si eres menor de edad, escríbenos antes de aplicar. Para consultar, corregir o borrar tus datos, escribe a ",
+      "Para consultar, corregir o borrar tus datos, escribe a ",
     privacidadDespues: ".",
   },
 
@@ -510,16 +505,13 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     curso: "Seminar you're applying for",
     formato: "Can you make it every week?",
     formatoAyuda:
-      "The seminar asks for full participation: each week, an hour of light material and two hours of session with your cohort. To receive the certificate you can miss at most one session. It starts the week of 12 October; the Seminar on the Future and Risks of AI lasts five weeks and the Technical AI Safety Seminar six.",
+      "Three hours a week from 12 October: one of reading and two of session with your cohort. To get the certificate you can miss at most one session.",
     formatos: {
       todas: "Yes, I can make it every week",
       "casi-todas": "Almost every week: I might miss one",
       "no-puedo": "I can't make these dates; let me know about the next cohort",
     },
-    alternativa: "Alternative seminar placement",
-    alternativaAyuda:
-      "We may identify strong applicants who would benefit from starting with the Seminar on the Future and Risks of AI. Check the box if you're open to being placed there instead if recommended.",
-    alternativaCheck: "I'm open to taking the Seminar on the Future and Risks of AI instead",
+    alternativaCheck: "If you think it suits me better, I'm open to taking the Seminar on the Future and Risks of AI instead",
 
     nombre: "First name",
     apellido: "Last name",
@@ -656,14 +648,14 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     ],
     nominado: "Who is the most exceptional person you would nominate for this seminar? Please include their email.",
     nominadoAyuda:
-      "You can nominate more than one. Before giving us their email, tell them you're doing it and ask if they're okay with it: by submitting you confirm you did. If we think they're a good fit, we write to them once to invite them and, if they don't apply, we delete their email after 60 days.",
+      "You can nominate more than one. Ask them first before giving us their email. We write to them once and, if they don't apply, delete the email after 60 days.",
     mencion: "Can we mention your name if we reach out to them?",
     si: "Yes",
     no: "No",
     comentarios: "Do you have any feedback on this application form?",
     comentariosAyuda: "If you need a response from us, please contact us.",
     privacidadAntes:
-      "We only use your answers to form the cohorts and to write to you about the seminar. They are stored in Supabase and emails go out through Resend, two providers in the United States. The programmes are for people over 18; if you are a minor, write to us before applying. To access, correct or delete your data, write to ",
+      "To access, correct or delete your data, write to ",
     privacidadDespues: ".",
   },
 
@@ -740,16 +732,13 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     curso: "Em qual seminário você se inscreve?",
     formato: "Você consegue participar todas as semanas?",
     formatoAyuda:
-      "O seminário pede participação completa: toda semana, uma hora de material leve e duas horas de sessão com a turma. Para receber o certificado, pode faltar a no máximo uma sessão. Começa na semana de 12 de outubro; o Seminário de futuro e riscos da IA dura cinco semanas e o Seminário técnico de segurança da IA, seis.",
+      "São três horas por semana a partir de 12 de outubro: uma de leituras e duas de sessão com a turma. Para o certificado, pode faltar a no máximo uma sessão.",
     formatos: {
       todas: "Sim, consigo participar todas as semanas",
       "casi-todas": "Quase todas: talvez eu perca uma",
       "no-puedo": "Não consigo nessas datas; me avisem da próxima turma",
     },
-    alternativa: "Alocação alternativa",
-    alternativaAyuda:
-      "Pode ser melhor para algumas pessoas começar pelo Seminário de futuro e riscos da IA. Marque a caixa se estiver aberto a ser alocado lá caso a gente recomende.",
-    alternativaCheck: "Estou aberto a fazer o Seminário de futuro e riscos da IA no lugar",
+    alternativaCheck: "Se acharem melhor para mim, estou aberto a fazer o Seminário de futuro e riscos da IA no lugar",
 
     nombre: "Nome",
     apellido: "Sobrenome",
@@ -886,14 +875,14 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     ],
     nominado: "Quem é a pessoa mais excepcional que você indicaria para este seminário? Inclua o e-mail dela.",
     nominadoAyuda:
-      "Pode indicar mais de uma. Antes de nos passar o e-mail, conte à pessoa que vai fazer isso e pergunte se ela concorda: ao enviar, você declara que fez isso. Se acharmos que ela se encaixa, escrevemos uma única vez para convidá-la e, se não se inscrever, apagamos o e-mail após 60 dias.",
+      "Pode indicar mais de uma. Peça permissão antes de nos passar o e-mail. Escrevemos uma única vez e, se a pessoa não se inscrever, apagamos o e-mail após 60 dias.",
     mencion: "Podemos mencionar seu nome se escrevermos para elas?",
     si: "Sim",
     no: "Não",
     comentarios: "Você tem comentários sobre este formulário?",
     comentariosAyuda: "Se precisar de resposta, escreva para nós.",
     privacidadAntes:
-      "Usamos suas respostas só para montar as turmas e escrever para você sobre o seminário. Elas ficam guardadas no Supabase e os e-mails saem pelo Resend, dois fornecedores nos Estados Unidos. Os programas são para maiores de 18 anos; se você for menor de idade, escreva para nós antes de se inscrever. Para consultar, corrigir ou apagar seus dados, escreva para ",
+      "Para consultar, corrigir ou apagar seus dados, escreva para ",
     privacidadDespues: ".",
   },
 };

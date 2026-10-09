@@ -606,16 +606,7 @@ export default function CourseApplyForm({
             </Grupo>
 
             {curso === "technical-ai-safety" ? (
-              <fieldset>
-                <legend className={ETIQUETA}>
-                  {t.alternativa}
-                  <span className="text-aisc-muted">{t.opcional}</span>
-                </legend>
-                <span className={AYUDA}>{t.alternativaAyuda}</span>
-                <div className="mt-3">
-                  {casilla("altPlacement", t.alternativaCheck)}
-                </div>
-              </fieldset>
+              <div>{casilla("altPlacement", t.alternativaCheck)}</div>
             ) : null}
           </div>
         </section>
