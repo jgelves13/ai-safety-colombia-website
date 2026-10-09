@@ -228,6 +228,12 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
           <div className={PROSA}>
             <p>{p.semanas.entrada}</p>
           </div>
+          {/* El aviso del horario va en una caja propia para que no se pierda en la prosa. */}
+          <div className="text-body rounded-2xl border-l-4 border-aisc-forest bg-white/80 px-6 py-5 text-aisc-ink">
+            <p>
+              <Negritas texto={p.semanas.nota} />
+            </p>
+          </div>
           {/* Una tarjeta por semana, con el mismo patrón de las tarjetas de perfiles:
               a la izquierda la semana y la modalidad, a la derecha el título y una frase. */}
           <ol className="flex flex-col gap-3">
