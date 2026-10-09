@@ -89,8 +89,9 @@ export type PaginaCurso = {
      {facilitadores} es donde van los nombres enlazados. */
   sala: { titulo: string; parrafos: string[] };
   /* Qué vas a hacer: una tarjeta por semana. */
-  /* nota: el aviso destacado sobre el horario, entre la entrada y las tarjetas. */
-  semanas: { titulo: string; entrada: string; nota: string; unidades: Bloque[] };
+  /* nota: el aviso del horario, con la forma de una tarjeta de semana más,
+     entre la entrada y las tarjetas. */
+  semanas: { titulo: string; entrada: string; nota: Bloque & { etiqueta: string }; unidades: Bloque[] };
   /* Con qué sales. */
   resultado: { titulo: string; items: string[] };
   plazo: string;
@@ -152,7 +153,7 @@ const AGI_ES: PaginaCurso = {
   semanas: {
     titulo: "Cinco semanas, del mapa de la carrera a tu siguiente paso",
     entrada: "Cada semana: una hora de material ligero y una sesión de dos horas, de lectura a fondo y de discusión. Las sesiones alternan: la primera semana es presencial, la segunda en línea, y así hasta el final.",
-    nota: "**El horario de las sesiones se define según la disponibilidad de los participantes seleccionados.** Antes de arrancar les preguntamos qué franjas les sirven y fijamos la que mejor le quede a la cohorte.",
+    nota: { etiqueta: "Horario", titulo: "El horario se define con los participantes seleccionados", cuerpo: "Antes de arrancar les preguntamos qué franjas les sirven y fijamos la que mejor le quede a la cohorte." },
     unidades: [
       { titulo: "La carrera hacia la AGI", cuerpo: "Qué es la AGI, quién la está construyendo y por qué se corre para llegar primero." },
       { titulo: "Qué impulsa el progreso", cuerpo: "Cómputo, datos y algoritmos, y qué tan lejos puede llegar esa tendencia." },
@@ -258,7 +259,7 @@ const TAIS_ES: PaginaCurso = {
   semanas: {
     titulo: "Seis semanas, del problema de fondo a tu siguiente paso",
     entrada: "Cada semana: una hora de material ligero y una sesión de dos horas, de lectura a fondo y de discusión. Las sesiones alternan: la primera semana es presencial, la segunda en línea, y así hasta el final.",
-    nota: "**El horario de las sesiones se define según la disponibilidad de los participantes seleccionados.** Antes de arrancar les preguntamos qué franjas les sirven y fijamos la que mejor le quede a la cohorte.",
+    nota: { etiqueta: "Horario", titulo: "El horario se define con los participantes seleccionados", cuerpo: "Antes de arrancar les preguntamos qué franjas les sirven y fijamos la que mejor le quede a la cohorte." },
     unidades: [
       { titulo: "Qué hace falta para que la IA salga bien", cuerpo: "Por qué los modelos actuales no son seguros por defecto y qué enfoques técnicos existen para cambiarlo." },
       { titulo: "Entrenar modelos más seguros", cuerpo: "Cómo funciona RLHF, qué otros métodos se usan para ajustar un modelo y en qué casos no bastan." },
@@ -365,7 +366,7 @@ const AGI_EN: PaginaCurso = {
   semanas: {
     titulo: "Five weeks, from the map of the race to your next step",
     entrada: "Each week: an hour of light material and one two-hour session, close reading and discussion. Sessions alternate: the first week is in person, the second online, and so on to the end.",
-    nota: "**Session times are set around the availability of the selected participants.** Before we start, we ask which time slots work for them and pick the one that suits the cohort best.",
+    nota: { etiqueta: "Schedule", titulo: "Session times are set with the selected participants", cuerpo: "Before we start, we ask which time slots work for them and pick the one that suits the cohort best." },
     unidades: [
       { titulo: "The race to AGI", cuerpo: "What AGI is, who is building it, and why there's a race to get there first." },
       { titulo: "What drives progress", cuerpo: "Compute, data and algorithms, and how far that trend could go." },
@@ -471,7 +472,7 @@ const TAIS_EN: PaginaCurso = {
   semanas: {
     titulo: "Six weeks, from the underlying problem to your next step",
     entrada: "Each week: an hour of light material and one two-hour session, close reading and discussion. Sessions alternate: the first week is in person, the second online, and so on to the end.",
-    nota: "**Session times are set around the availability of the selected participants.** Before we start, we ask which time slots work for them and pick the one that suits the cohort best.",
+    nota: { etiqueta: "Schedule", titulo: "Session times are set with the selected participants", cuerpo: "Before we start, we ask which time slots work for them and pick the one that suits the cohort best." },
     unidades: [
       { titulo: "What it takes for AI to go well", cuerpo: "Why today's models are not safe by default, and which technical approaches exist to change that." },
       { titulo: "Training safer models", cuerpo: "How RLHF works, which other methods are used to fine-tune a model, and where they fall short." },
@@ -578,7 +579,7 @@ const AGI_PT: PaginaCurso = {
   semanas: {
     titulo: "Cinco semanas, do mapa da corrida ao seu próximo passo",
     entrada: "Toda semana: uma hora de material leve e uma sessão de duas horas, de leitura aprofundada e de discussão. As sessões se alternam: a primeira semana é presencial, a segunda on-line, e assim até o fim.",
-    nota: "**O horário das sessões é definido de acordo com a disponibilidade dos participantes selecionados.** Antes de começar, perguntamos quais horários funcionam para eles e escolhemos o que melhor serve à coorte.",
+    nota: { etiqueta: "Horário", titulo: "O horário é definido com os participantes selecionados", cuerpo: "Antes de começar, perguntamos quais horários funcionam para eles e escolhemos o que melhor serve à coorte." },
     unidades: [
       { titulo: "A corrida rumo à AGI", cuerpo: "O que é a AGI, quem a está construindo e por que há uma corrida para chegar primeiro." },
       { titulo: "O que impulsiona o progresso", cuerpo: "Computação, dados e algoritmos, e até onde essa tendência pode ir." },
@@ -684,7 +685,7 @@ const TAIS_PT: PaginaCurso = {
   semanas: {
     titulo: "Seis semanas, do problema de fundo ao seu próximo passo",
     entrada: "Toda semana: uma hora de material leve e uma sessão de duas horas, de leitura aprofundada e de discussão. As sessões se alternam: a primeira semana é presencial, a segunda on-line, e assim até o fim.",
-    nota: "**O horário das sessões é definido de acordo com a disponibilidade dos participantes selecionados.** Antes de começar, perguntamos quais horários funcionam para eles e escolhemos o que melhor serve à coorte.",
+    nota: { etiqueta: "Horário", titulo: "O horário é definido com os participantes selecionados", cuerpo: "Antes de começar, perguntamos quais horários funcionam para eles e escolhemos o que melhor serve à coorte." },
     unidades: [
       { titulo: "O que é preciso para a IA dar certo", cuerpo: "Por que os modelos atuais não são seguros por padrão e quais abordagens técnicas existem para mudar isso." },
       { titulo: "Treinar modelos mais seguros", cuerpo: "Como funciona o RLHF, que outros métodos se usam para ajustar um modelo e em que casos não bastam." },
