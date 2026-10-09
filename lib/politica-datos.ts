@@ -48,8 +48,8 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
     kicker: "Datos personales",
     titulo: "Política de tratamiento de datos personales",
     entrada:
-      "Cuando aplicas a un seminario o a un sprint, confirmas tu asistencia, te nominan o te inscribes a un evento, nos das datos tuyos. Este documento explica quién los guarda, para qué, con quién los compartimos y cómo puedes pedir que los corrijamos o los borremos. Esta política cumple la Ley 1581 de 2012 y el Decreto 1074 de 2015.",
-    vigencia: "Versión 2026-10-09 · Vigente desde el 9 de octubre de 2026",
+      "Cuando aplicas, te inscribes o te nominan a una de nuestras actividades, nos das datos tuyos. Este documento explica quién los guarda, para qué y cómo pedir que los corrijamos o los borremos.",
+    vigencia: "Versión 2026-10-09 · Vigente desde el 9 de octubre de 2026 · Ley 1581 de 2012 y Decreto 1074 de 2015",
     indice: "Contenido",
     ficha: [
       { etiqueta: "Responsable", valor: "Jose Angel Gelves Cabrera" },
@@ -188,8 +188,8 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
     kicker: "Personal data",
     titulo: "Personal data policy",
     entrada:
-      "When you apply to a seminar or a sprint, confirm your attendance, get nominated or sign up for an event, you give us data about yourself. This page explains who keeps it, what for, who we share it with and how you can ask us to correct or delete it. This policy follows Colombia's Law 1581 of 2012 and Decree 1074 of 2015.",
-    vigencia: "Version 2026-10-09 · In force since 9 October 2026",
+      "When you apply, sign up or are nominated for one of our activities, you give us data about yourself. This document explains who keeps it, what for and how to ask us to correct or delete it.",
+    vigencia: "Version 2026-10-09 · In force since 9 October 2026 · Colombian Law 1581 of 2012 and Decree 1074 of 2015",
     indice: "Contents",
     ficha: [
       { etiqueta: "Controller", valor: "Jose Angel Gelves Cabrera" },
@@ -328,8 +328,8 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
     kicker: "Dados pessoais",
     titulo: "Política de tratamento de dados pessoais",
     entrada:
-      "Quando você se inscreve em um seminário ou em um sprint, confirma presença, é indicado ou se registra em um evento, nos passa dados seus. Este documento explica quem os guarda, para quê, com quem os compartilhamos e como você pode pedir que os corrijamos ou apaguemos. Esta política segue a Lei 1581 de 2012 e o Decreto 1074 de 2015 da Colômbia e a Lei 13.709 de 2018 (LGPD) do Brasil.",
-    vigencia: "Versão 2026-10-09 · Em vigor desde 9 de outubro de 2026",
+      "Quando você se inscreve ou é indicado para uma de nossas atividades, nos passa dados seus. Este documento explica quem os guarda, para quê e como pedir que os corrijamos ou apaguemos.",
+    vigencia: "Versão 2026-10-09 · Em vigor desde 9 de outubro de 2026 · Lei 1581 de 2012 e Decreto 1074 de 2015 da Colômbia",
     indice: "Conteúdo",
     ficha: [
       { etiqueta: "Responsável", valor: "Jose Angel Gelves Cabrera" },
