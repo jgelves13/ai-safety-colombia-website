@@ -353,7 +353,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
         qSkills: {
           label: "¿Qué habilidades vas a aportar?",
           ayuda:
-            "Política pública, técnica, investigación, comunicación, operaciones: creemos que todas cuentan para que a la IA le vaya bien. ¿Dónde has demostrado las tuyas?",
+            "Todas cuentan: técnicas, de investigación, de política pública, de comunicación o de operaciones. Cuéntanos dónde las has usado.",
         },
         qAchievement: {
           label: "Cuéntanos de algo que hayas construido, lanzado o hecho que pasara.",
@@ -580,7 +580,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
         qSkills: {
           label: "What skills will you contribute?",
           ayuda:
-            "Policy, technical, research, communications, operations: we believe all matter in the fight to make AI go well. Where have you demonstrated yours?",
+            "They all count: technical, research, policy, communications or operations. Tell us where you've used them.",
         },
         qAchievement: {
           label: "Tell us about something you've built, shipped, or made happen.",
@@ -807,7 +807,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
         qSkills: {
           label: "Que habilidades você vai trazer?",
           ayuda:
-            "Políticas públicas, técnica, pesquisa, comunicação, operações: acreditamos que todas contam para a IA dar certo. Onde você demonstrou as suas?",
+            "Todas contam: técnicas, de pesquisa, de políticas públicas, de comunicação ou de operações. Conte onde você as usou.",
         },
         qAchievement: {
           label: "Conte algo que você construiu, lançou ou fez acontecer.",
