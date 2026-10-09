@@ -211,8 +211,8 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     kicker: "Seminarios de BlueDot Impact · aplicaciones abiertas",
     titulo: "Aplica a los seminarios",
     entrada:
-      "Corremos por nuestra cuenta dos seminarios con materiales de BlueDot Impact: el Seminario de futuro y riesgos de la IA y el Seminario técnico de seguridad de la IA. Llenar el formulario toma unos 30 minutos. Puedes responder con viñetas.",
-    cierre: "Las aplicaciones cierran el viernes 9 de octubre a las 11:59 p. m., hora de Colombia.",
+      "El formulario toma unos 30 minutos y puedes responder con viñetas.",
+    cierre: "Cierra el viernes 9 de octubre a las 11:59 p. m.",
     sinIA: "Por favor no uses IA para responder: queremos leerte a ti.",
     prerrequisitoTitulo: "Antes de aplicar al Seminario técnico de seguridad de la IA deberías:",
     prerrequisitos: [
@@ -441,8 +441,8 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     kicker: "BlueDot Impact seminars · applications open",
     titulo: "Apply to the seminars",
     entrada:
-      "We run two seminars on our own, with BlueDot Impact's materials: the Seminar on the Future and Risks of AI and the Technical AI Safety Seminar. The form takes around 30 minutes. Bullet points are fine.",
-    cierre: "Applications close on Friday 9 October at 11:59 pm, Colombia time.",
+      "The form takes about 30 minutes, and bullet points are fine.",
+    cierre: "Closes Friday 9 October at 11:59 pm, Colombia time.",
     sinIA: "Please don't use AI to answer: we want to hear from you.",
     prerrequisitoTitulo: "Before applying to the Technical AI Safety Seminar you should:",
     prerrequisitos: [
@@ -671,8 +671,8 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     kicker: "Seminários da BlueDot Impact · inscrições abertas",
     titulo: "Inscreva-se nos seminários",
     entrada:
-      "Oferecemos por conta própria dois seminários com materiais da BlueDot Impact: o Seminário de futuro e riscos da IA e o Seminário técnico de segurança da IA. Preencher o formulário leva uns 30 minutos. Pode responder em tópicos.",
-    cierre: "As inscrições fecham na sexta-feira, 9 de outubro, às 23h59, horário da Colômbia.",
+      "O formulário leva uns 30 minutos e você pode responder em tópicos.",
+    cierre: "Fecha na sexta-feira, 9 de outubro, às 23h59, horário da Colômbia.",
     sinIA: "Por favor, não use IA para responder: queremos ler você.",
     prerrequisitoTitulo: "Antes de se inscrever no Seminário técnico de segurança da IA, você deveria:",
     prerrequisitos: [
