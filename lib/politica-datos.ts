@@ -28,6 +28,11 @@ export type TextosPolitica = {
   kicker: string;
   titulo: string;
   entrada: string;
+  /* La línea de versión del encabezado, el título del índice y la ficha del
+     responsable que abre la primera sección. */
+  vigencia: string;
+  indice: string;
+  ficha: { etiqueta: string; valor: string }[];
   secciones: { titulo: string; bloques: Bloque[] }[];
   /* Lo que va junto a la casilla de los formularios y el enlace a esta página. */
   casilla: string;
@@ -43,17 +48,25 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
     kicker: "Datos personales",
     titulo: "Política de tratamiento de datos personales",
     entrada:
-      "Cuando aplicas a un seminario o a un sprint, confirmas tu asistencia, te nominan o te inscribes a un evento, nos das datos tuyos. Acá explicamos quién los guarda, para qué, con quién los compartimos y cómo puedes pedir que los corrijamos o los borremos. Esta política cumple la Ley 1581 de 2012 y el Decreto 1074 de 2015.",
+      "Cuando aplicas a un seminario o a un sprint, confirmas tu asistencia, te nominan o te inscribes a un evento, nos das datos tuyos. Este documento explica quién los guarda, para qué, con quién los compartimos y cómo puedes pedir que los corrijamos o los borremos. Esta política cumple la Ley 1581 de 2012 y el Decreto 1074 de 2015.",
+    vigencia: "Versión 2026-10-09 · Vigente desde el 9 de octubre de 2026",
+    indice: "Contenido",
+    ficha: [
+      { etiqueta: "Responsable", valor: "Jose Angel Gelves Cabrera" },
+      { etiqueta: "Naturaleza", valor: "Persona natural" },
+      { etiqueta: "Domicilio", valor: "Bogotá, Colombia" },
+      { etiqueta: "Canal de atención", valor: "contacto@aisafetycolombia.org" },
+    ],
     secciones: [
       {
-        titulo: "Quién es el responsable",
+        titulo: "Responsable del tratamiento",
         bloques: [
           "AI Safety Colombia es una comunidad sin personería jurídica. Por eso el responsable del tratamiento de los datos es **Jose Angel Gelves Cabrera**, persona natural que la coordina, con domicilio en Bogotá, Colombia.",
-          "Para todo lo que tenga que ver con tus datos, escribe a **contacto@aisafetycolombia.org**. Él mismo atiende las consultas y los reclamos.",
+          "Para todo lo que tenga que ver con tus datos, escribe a **contacto@aisafetycolombia.org**. Por ese canal se atienden las consultas y los reclamos.",
         ],
       },
       {
-        titulo: "Qué datos recogemos",
+        titulo: "Datos que recolectamos",
         bloques: [
           "Solo los que pide cada formulario, y nada más:",
           [
@@ -68,7 +81,7 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
         ],
       },
       {
-        titulo: "Para qué los usamos",
+        titulo: "Finalidades del tratamiento",
         bloques: [
           [
             "Revisar tu aplicación y decidir quién entra a cada cohorte, sprint o actividad.",
@@ -81,27 +94,27 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
         ],
       },
       {
-        titulo: "Datos sensibles y menores de edad",
+        titulo: "Datos sensibles y datos de menores",
         bloques: [
           "La información sobre tu salud, como una alergia o una necesidad de accesibilidad, es un dato sensible. Nunca es obligatoria: no tienes que darla para aplicar ni para participar. Si nos la das, la usamos solo para que la actividad te funcione y solo la ven quienes organizan.",
           "Nuestros programas son para personas mayores de 18 años. Si eres menor de edad, tu madre, tu padre o tu representante legal tiene que autorizar el tratamiento de tus datos antes de que apliques; escríbenos y lo resolvemos con ellos.",
         ],
       },
       {
-        titulo: "Si nominas a alguien",
+        titulo: "Datos de personas nominadas",
         bloques: [
           "Cuando nos das el nombre y el correo de otra persona, declaras que le contaste que lo ibas a hacer y que estuvo de acuerdo. Le escribimos una sola vez para invitarla, le decimos quién la nominó si nos diste permiso y le explicamos cómo pedir que borremos su correo. Si no aplica en los 60 días siguientes, lo borramos.",
         ],
       },
       {
-        titulo: "Qué se ve en público",
+        titulo: "Información visible para otros participantes",
         bloques: [
           "Si eres seleccionado para un sprint, los demás participantes pueden ver tu nombre, tu afiliación, tu LinkedIn y en qué piensas trabajar, para que puedan formar equipos. Tu correo, tu WhatsApp y tus respuestas sobre logística y salud nunca se publican.",
           "El nombre y la foto de quienes forman el equipo, los mentores y los ponentes aparecen en el sitio con su permiso.",
         ],
       },
       {
-        titulo: "Con quién los compartimos",
+        titulo: "Encargados y transferencia internacional",
         bloques: [
           "Tus datos los ven solo quienes organizan la actividad a la que aplicaste. Además, los guardan y procesan por nuestra cuenta estos proveedores, que están en Estados Unidos, un país que la Superintendencia de Industria y Comercio reconoce con un nivel adecuado de protección (Circular Externa 005 de 2017):",
           [
@@ -114,13 +127,13 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
         ],
       },
       {
-        titulo: "Cuánto tiempo los guardamos",
+        titulo: "Conservación de los datos",
         bloques: [
           "Guardamos los datos de una aplicación hasta tres años después de la actividad, para medir el resultado de los programas y para tenerte en cuenta en las siguientes. Pasado ese tiempo los borramos o los dejamos anónimos. Los correos de personas nominadas que no aplican se borran a los 60 días.",
         ],
       },
       {
-        titulo: "Tus derechos",
+        titulo: "Derechos del titular",
         bloques: [
           "Como titular de los datos tienes derecho a:",
           [
@@ -134,7 +147,7 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
         ],
       },
       {
-        titulo: "Cómo ejercerlos",
+        titulo: "Procedimiento para consultas y reclamos",
         bloques: [
           "Escribe a **contacto@aisafetycolombia.org** desde el correo con el que nos diste tus datos, con tu nombre, lo que pides y, si es un reclamo, los hechos y cualquier documento que lo sustente.",
           [
@@ -150,13 +163,13 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
         ],
       },
       {
-        titulo: "Seguridad",
+        titulo: "Seguridad de la información",
         bloques: [
           "Las aplicaciones quedan en una base de datos cerrada al público, a la que solo se entra con una llave del servidor. Solo quienes organizan cada actividad tienen acceso, y solo a lo que necesitan.",
         ],
       },
       {
-        titulo: "Vigencia y cambios",
+        titulo: "Vigencia y modificaciones",
         bloques: [
           "Esta política rige desde el 9 de octubre de 2026 y las bases de datos estarán vigentes mientras AI Safety Colombia funcione. Si la cambiamos en algo importante, como una finalidad nueva o un nuevo destinatario, lo publicamos acá y se lo avisamos por correo a quienes nos han dado sus datos.",
           "Si vives en Brasil, también tienes los derechos de la Ley 13.709 de 2018 (LGPD) y los atendemos por el mismo canal.",
@@ -176,16 +189,24 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
     titulo: "Personal data policy",
     entrada:
       "When you apply to a seminar or a sprint, confirm your attendance, get nominated or sign up for an event, you give us data about yourself. This page explains who keeps it, what for, who we share it with and how you can ask us to correct or delete it. This policy follows Colombia's Law 1581 of 2012 and Decree 1074 of 2015.",
+    vigencia: "Version 2026-10-09 · In force since 9 October 2026",
+    indice: "Contents",
+    ficha: [
+      { etiqueta: "Controller", valor: "Jose Angel Gelves Cabrera" },
+      { etiqueta: "Status", valor: "Natural person" },
+      { etiqueta: "Domicile", valor: "Bogotá, Colombia" },
+      { etiqueta: "Contact", valor: "contacto@aisafetycolombia.org" },
+    ],
     secciones: [
       {
-        titulo: "Who is responsible",
+        titulo: "Data controller",
         bloques: [
           "AI Safety Colombia is a community without legal personhood. That is why the data controller is **Jose Angel Gelves Cabrera**, the individual who coordinates it, domiciled in Bogotá, Colombia.",
-          "For anything to do with your data, write to **contacto@aisafetycolombia.org**. He handles enquiries and complaints himself.",
+          "For anything to do with your data, write to **contacto@aisafetycolombia.org**. Enquiries and complaints are handled through that address.",
         ],
       },
       {
-        titulo: "What data we collect",
+        titulo: "Data we collect",
         bloques: [
           "Only what each form asks for, and nothing else:",
           [
@@ -200,7 +221,7 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
         ],
       },
       {
-        titulo: "What we use it for",
+        titulo: "Purposes of processing",
         bloques: [
           [
             "Reviewing your application and deciding who joins each cohort, sprint or activity.",
@@ -220,20 +241,20 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
         ],
       },
       {
-        titulo: "If you nominate someone",
+        titulo: "Data about people you nominate",
         bloques: [
           "When you give us another person's name and email, you confirm that you told them you would and that they agreed. We write to them once to invite them, tell them who nominated them if you allowed it, and explain how to ask us to delete their email. If they don't apply within 60 days, we delete it.",
         ],
       },
       {
-        titulo: "What is shown publicly",
+        titulo: "Information visible to other participants",
         bloques: [
           "If you are selected for a sprint, the other participants can see your name, affiliation, LinkedIn and what you plan to work on, so they can form teams. Your email, WhatsApp and your answers about logistics and health are never published.",
           "The names and photos of the team, mentors and speakers appear on the site with their permission.",
         ],
       },
       {
-        titulo: "Who we share it with",
+        titulo: "Processors and international transfers",
         bloques: [
           "Your data is seen only by the people organising the activity you applied to. It is also stored and processed on our behalf by these providers, located in the United States, a country Colombia's Superintendence of Industry and Commerce recognises as having an adequate level of protection (External Circular 005 of 2017):",
           [
@@ -246,13 +267,13 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
         ],
       },
       {
-        titulo: "How long we keep it",
+        titulo: "Retention",
         bloques: [
           "We keep application data for up to three years after the activity, to measure the results of our programmes and to consider you for future ones. After that we delete or anonymise it. Emails of nominees who don't apply are deleted after 60 days.",
         ],
       },
       {
-        titulo: "Your rights",
+        titulo: "Your rights as data subject",
         bloques: [
           "As the owner of the data you have the right to:",
           [
@@ -266,7 +287,7 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
         ],
       },
       {
-        titulo: "How to exercise them",
+        titulo: "Procedure for enquiries and complaints",
         bloques: [
           "Write to **contacto@aisafetycolombia.org** from the email you gave us, with your name, what you are asking for and, if it is a complaint, the facts and any supporting documents.",
           [
@@ -282,13 +303,13 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
         ],
       },
       {
-        titulo: "Security",
+        titulo: "Information security",
         bloques: [
           "Applications are kept in a database closed to the public, which can only be accessed with a server key. Only the people organising each activity have access, and only to what they need.",
         ],
       },
       {
-        titulo: "Validity and changes",
+        titulo: "Effective date and changes",
         bloques: [
           "This policy applies from 9 October 2026 and the databases will remain in force for as long as AI Safety Colombia operates. If we change it in any important way, such as a new purpose or a new recipient, we will publish it here and email the people who have given us their data.",
           "If you live in Brazil, you also have the rights under Law 13.709 of 2018 (LGPD), and we handle them through the same channel.",
@@ -307,17 +328,25 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
     kicker: "Dados pessoais",
     titulo: "Política de tratamento de dados pessoais",
     entrada:
-      "Quando você se inscreve em um seminário ou em um sprint, confirma presença, é indicado ou se registra em um evento, nos passa dados seus. Aqui explicamos quem os guarda, para quê, com quem os compartilhamos e como você pode pedir que os corrijamos ou apaguemos. Esta política segue a Lei 1581 de 2012 e o Decreto 1074 de 2015 da Colômbia e a Lei 13.709 de 2018 (LGPD) do Brasil.",
+      "Quando você se inscreve em um seminário ou em um sprint, confirma presença, é indicado ou se registra em um evento, nos passa dados seus. Este documento explica quem os guarda, para quê, com quem os compartilhamos e como você pode pedir que os corrijamos ou apaguemos. Esta política segue a Lei 1581 de 2012 e o Decreto 1074 de 2015 da Colômbia e a Lei 13.709 de 2018 (LGPD) do Brasil.",
+    vigencia: "Versão 2026-10-09 · Em vigor desde 9 de outubro de 2026",
+    indice: "Conteúdo",
+    ficha: [
+      { etiqueta: "Responsável", valor: "Jose Angel Gelves Cabrera" },
+      { etiqueta: "Natureza", valor: "Pessoa física" },
+      { etiqueta: "Domicílio", valor: "Bogotá, Colômbia" },
+      { etiqueta: "Canal de atendimento", valor: "contacto@aisafetycolombia.org" },
+    ],
     secciones: [
       {
-        titulo: "Quem é o responsável",
+        titulo: "Responsável pelo tratamento",
         bloques: [
           "A AI Safety Colombia é uma comunidade sem personalidade jurídica. Por isso o controlador dos dados é **Jose Angel Gelves Cabrera**, pessoa física que a coordena, com domicílio em Bogotá, Colômbia.",
-          "Para qualquer assunto sobre seus dados, escreva para **contacto@aisafetycolombia.org**. Ele mesmo atende as consultas e as reclamações.",
+          "Para qualquer assunto sobre seus dados, escreva para **contacto@aisafetycolombia.org**. As consultas e reclamações são atendidas por esse canal.",
         ],
       },
       {
-        titulo: "Que dados coletamos",
+        titulo: "Dados que coletamos",
         bloques: [
           "Só os que cada formulário pede, e nada mais:",
           [
@@ -332,7 +361,7 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
         ],
       },
       {
-        titulo: "Para que os usamos",
+        titulo: "Finalidades do tratamento",
         bloques: [
           [
             "Avaliar sua inscrição e decidir quem entra em cada turma, sprint ou atividade.",
@@ -345,27 +374,27 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
         ],
       },
       {
-        titulo: "Dados sensíveis e menores de idade",
+        titulo: "Dados sensíveis e de menores",
         bloques: [
           "Informações sobre sua saúde, como uma alergia ou uma necessidade de acessibilidade, são dados sensíveis. Nunca são obrigatórias: você não precisa informá-las para se inscrever nem para participar. Se informar, usamos só para que a atividade funcione para você, e só a organização as vê.",
           "Nossos programas são para maiores de 18 anos. Se você for menor de idade, sua mãe, seu pai ou seu representante legal precisa autorizar o tratamento dos seus dados antes da inscrição; escreva para nós e resolvemos com eles.",
         ],
       },
       {
-        titulo: "Se você indicar alguém",
+        titulo: "Dados de pessoas indicadas",
         bloques: [
           "Quando nos passa o nome e o e-mail de outra pessoa, você declara que contou a ela que faria isso e que ela concordou. Escrevemos uma única vez para convidá-la, dizemos quem a indicou se você permitiu e explicamos como pedir que apaguemos o e-mail dela. Se ela não se inscrever em 60 dias, apagamos.",
         ],
       },
       {
-        titulo: "O que fica público",
+        titulo: "Informações visíveis para outros participantes",
         bloques: [
           "Se você for selecionado para um sprint, os demais participantes podem ver seu nome, sua afiliação, seu LinkedIn e no que pretende trabalhar, para formar equipes. Seu e-mail, seu WhatsApp e suas respostas sobre logística e saúde nunca são publicados.",
           "O nome e a foto da equipe, dos mentores e dos palestrantes aparecem no site com a permissão deles.",
         ],
       },
       {
-        titulo: "Com quem compartilhamos",
+        titulo: "Operadores e transferência internacional",
         bloques: [
           "Seus dados são vistos só por quem organiza a atividade em que você se inscreveu. Além disso, são guardados e processados em nosso nome por estes fornecedores, nos Estados Unidos, país que a Superintendência de Indústria e Comércio da Colômbia reconhece com nível adequado de proteção (Circular Externa 005 de 2017):",
           [
@@ -378,13 +407,13 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
         ],
       },
       {
-        titulo: "Por quanto tempo os guardamos",
+        titulo: "Conservação dos dados",
         bloques: [
           "Guardamos os dados de uma inscrição por até três anos depois da atividade, para medir o resultado dos programas e considerar você nas próximas. Depois disso, apagamos ou anonimizamos. Os e-mails de pessoas indicadas que não se inscrevem são apagados após 60 dias.",
         ],
       },
       {
-        titulo: "Seus direitos",
+        titulo: "Direitos do titular",
         bloques: [
           "Como titular dos dados, você tem direito a:",
           [
@@ -398,7 +427,7 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
         ],
       },
       {
-        titulo: "Como exercê-los",
+        titulo: "Procedimento para consultas e reclamações",
         bloques: [
           "Escreva para **contacto@aisafetycolombia.org** do e-mail com que nos passou seus dados, com seu nome, o que você pede e, se for uma reclamação, os fatos e qualquer documento que a sustente.",
           [
@@ -414,13 +443,13 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
         ],
       },
       {
-        titulo: "Segurança",
+        titulo: "Segurança da informação",
         bloques: [
           "As inscrições ficam em um banco de dados fechado ao público, ao qual só se acessa com uma chave do servidor. Só quem organiza cada atividade tem acesso, e só ao que precisa.",
         ],
       },
       {
-        titulo: "Vigência e mudanças",
+        titulo: "Vigência e alterações",
         bloques: [
           "Esta política vale desde 9 de outubro de 2026 e os bancos de dados ficam vigentes enquanto a AI Safety Colombia funcionar. Se a mudarmos em algo importante, como uma nova finalidade ou um novo destinatário, publicamos aqui e avisamos por e-mail quem nos passou seus dados.",
         ],
