@@ -33,7 +33,8 @@ export type TextosPolitica = {
   vigencia: string;
   indice: string;
   ficha: { etiqueta: string; valor: string }[];
-  secciones: { titulo: string; bloques: Bloque[] }[];
+  /* ficha: la sección del responsable, que lleva debajo la ficha con sus datos. */
+  secciones: { titulo: string; bloques: Bloque[]; ficha?: boolean }[];
   /* Lo que va junto a la casilla de los formularios y el enlace a esta página. */
   casilla: string;
   casillaEnlace: string;
@@ -59,7 +60,17 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
     ],
     secciones: [
       {
+        titulo: "Autorización",
+        bloques: [
+          "Al marcar la casilla de autorización en cualquiera de nuestros formularios, el titular declara lo siguiente:",
+          "En virtud de los artículos 9 y 12 de la Ley 1581 de 2012, autorizo a AI Safety Colombia para que recolecte, almacene, use, actualice, organice y, cuando haga falta, comparta con los encargados descritos en esta política mis datos personales, de forma total o parcial, con las finalidades que esta política describe: revisar mi aplicación, organizar la actividad y escribirme por correo sobre ella y sobre otras actividades de AI Safety Colombia, como eventos, convocatorias, resultados de nominaciones y nuevas publicaciones.",
+          "Declaro que conozco los derechos que me asisten como titular, consagrados en el artículo 8 de la Ley 1581 de 2012, y doy mi consentimiento previo, expreso e informado.",
+          "Esta autorización rige mientras se cumplan esas finalidades y se puede revocar en cualquier momento, como explica la [sección de derechos del titular](#seccion-10).",
+        ],
+      },
+      {
         titulo: "Responsable del tratamiento",
+        ficha: true,
         bloques: [
           "AI Safety Colombia es una comunidad sin personería jurídica. Por eso el responsable del tratamiento de los datos es **Jose Angel Gelves Cabrera**, persona natural que la coordina, con domicilio en Bogotá, Colombia.",
           "Para todo lo que tenga que ver con tus datos, escribe a **contacto@aisafetycolombia.org**. Por ese canal se atienden las consultas y los reclamos.",
@@ -116,7 +127,7 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
       {
         titulo: "Encargados y transferencia internacional",
         bloques: [
-          "Tus datos los ven solo quienes organizan la actividad a la que aplicaste. Además, los guardan y procesan por nuestra cuenta estos proveedores, que están en Estados Unidos, un país que la Superintendencia de Industria y Comercio reconoce con un nivel adecuado de protección (Circular Externa 005 de 2017):",
+          "Tus datos los ven solo quienes organizan la actividad a la que aplicaste. Además, los guardan y procesan por nuestra cuenta estos proveedores, que están en Estados Unidos, un país que la Superintendencia de Industria y Comercio reconoce con un nivel adecuado de protección (Circular Externa 005 de 2017, con los criterios que reitera la Circular Externa 002 de 2025):",
           [
             "**Supabase:** la base de datos donde quedan las aplicaciones.",
             "**Vercel:** el servidor del sitio y su analítica.",
@@ -177,7 +188,7 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
       },
     ],
     casilla:
-      "Autorizo a Jose Angel Gelves Cabrera, responsable de AI Safety Colombia, a tratar mis datos para revisar mi aplicación, escribirme sobre esta actividad y organizarla, como explica la ",
+      "De forma previa, expresa e informada, y conforme a los artículos 9 y 12 de la Ley 1581 de 2012, autorizo a AI Safety Colombia a tratar mis datos para revisar mi aplicación, organizar la actividad y escribirme sobre ella y sobre sus otras actividades. Conozco mis derechos como titular (artículo 8 de esa ley), explicados en la ",
     casillaEnlace: "política de tratamiento de datos",
     casillaFalta: "Para enviar tu aplicación tienes que autorizar el tratamiento de tus datos.",
     enlacePie: "Política de datos personales",
@@ -199,7 +210,17 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
     ],
     secciones: [
       {
+        titulo: "Authorisation",
+        bloques: [
+          "By ticking the authorisation box on any of our forms, the data subject declares the following:",
+          "Under articles 9 and 12 of Colombian Law 1581 of 2012, I authorise AI Safety Colombia to collect, store, use, update, organise and, where needed, share with the processors described in this policy my personal data, in whole or in part, for the purposes this policy describes: reviewing my application, organising the activity and emailing me about it and about other AI Safety Colombia activities, such as events, calls for applications, nomination results and new publications.",
+          "I declare that I know my rights as a data subject under article 8 of Law 1581 of 2012, and I give my prior, express and informed consent.",
+          "This authorisation lasts as long as those purposes apply and can be revoked at any time, as explained in the [section on the data subject's rights](#seccion-10).",
+        ],
+      },
+      {
         titulo: "Data controller",
+        ficha: true,
         bloques: [
           "AI Safety Colombia is a community without legal personhood. That is why the data controller is **Jose Angel Gelves Cabrera**, the individual who coordinates it, domiciled in Bogotá, Colombia.",
           "For anything to do with your data, write to **contacto@aisafetycolombia.org**. Enquiries and complaints are handled through that address.",
@@ -256,7 +277,7 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
       {
         titulo: "Processors and international transfers",
         bloques: [
-          "Your data is seen only by the people organising the activity you applied to. It is also stored and processed on our behalf by these providers, located in the United States, a country Colombia's Superintendence of Industry and Commerce recognises as having an adequate level of protection (External Circular 005 of 2017):",
+          "Your data is seen only by the people organising the activity you applied to. It is also stored and processed on our behalf by these providers, located in the United States, a country Colombia's Superintendence of Industry and Commerce recognises as having an adequate level of protection (External Circular 005 of 2017, with the criteria restated in External Circular 002 of 2025):",
           [
             "**Supabase:** the database where applications are kept.",
             "**Vercel:** the site's server and its analytics.",
@@ -317,7 +338,7 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
       },
     ],
     casilla:
-      "I authorise Jose Angel Gelves Cabrera, who is responsible for AI Safety Colombia, to process my data to review my application, write to me about this activity and organise it, as explained in the ",
+      "Under articles 9 and 12 of Colombian Law 1581 of 2012, I give my prior, express and informed authorisation for AI Safety Colombia to process my data to review my application, organise the activity and write to me about it and about its other activities. I know my rights as a data subject (article 8 of that law), explained in the ",
     casillaEnlace: "personal data policy",
     casillaFalta: "To submit your application you need to authorise the processing of your data.",
     enlacePie: "Personal data policy",
@@ -339,7 +360,17 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
     ],
     secciones: [
       {
+        titulo: "Autorização",
+        bloques: [
+          "Ao marcar a caixa de autorização em qualquer um dos nossos formulários, o titular declara o seguinte:",
+          "Nos termos dos artigos 9 e 12 da Lei 1581 de 2012 da Colômbia, autorizo a AI Safety Colombia a coletar, armazenar, usar, atualizar, organizar e, quando necessário, compartilhar com os operadores descritos nesta política meus dados pessoais, total ou parcialmente, para as finalidades que esta política descreve: avaliar minha inscrição, organizar a atividade e me escrever por e-mail sobre ela e sobre outras atividades da AI Safety Colombia, como eventos, chamadas, resultados de indicações e novas publicações.",
+          "Declaro que conheço os direitos que tenho como titular, previstos no artigo 8 da Lei 1581 de 2012, e dou meu consentimento prévio, expresso e informado.",
+          "Esta autorização vale enquanto essas finalidades se aplicarem e pode ser revogada a qualquer momento, como explica a [seção de direitos do titular](#seccion-10).",
+        ],
+      },
+      {
         titulo: "Responsável pelo tratamento",
+        ficha: true,
         bloques: [
           "A AI Safety Colombia é uma comunidade sem personalidade jurídica. Por isso o controlador dos dados é **Jose Angel Gelves Cabrera**, pessoa física que a coordena, com domicílio em Bogotá, Colômbia.",
           "Para qualquer assunto sobre seus dados, escreva para **contacto@aisafetycolombia.org**. As consultas e reclamações são atendidas por esse canal.",
@@ -396,7 +427,7 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
       {
         titulo: "Operadores e transferência internacional",
         bloques: [
-          "Seus dados são vistos só por quem organiza a atividade em que você se inscreveu. Além disso, são guardados e processados em nosso nome por estes fornecedores, nos Estados Unidos, país que a Superintendência de Indústria e Comércio da Colômbia reconhece com nível adequado de proteção (Circular Externa 005 de 2017):",
+          "Seus dados são vistos só por quem organiza a atividade em que você se inscreveu. Além disso, são guardados e processados em nosso nome por estes fornecedores, nos Estados Unidos, país que a Superintendência de Indústria e Comércio da Colômbia reconhece com nível adequado de proteção (Circular Externa 005 de 2017, com os critérios reiterados na Circular Externa 002 de 2025):",
           [
             "**Supabase:** o banco de dados onde ficam as inscrições.",
             "**Vercel:** o servidor do site e sua análise de visitas.",
@@ -456,7 +487,7 @@ export const TEXTOS_POLITICA: Record<Idioma, TextosPolitica> = {
       },
     ],
     casilla:
-      "Autorizo Jose Angel Gelves Cabrera, responsável pela AI Safety Colombia, a tratar meus dados para avaliar minha inscrição, me escrever sobre esta atividade e organizá-la, como explica a ",
+      "De forma prévia, expressa e informada, e conforme os artigos 9 e 12 da Lei 1581 de 2012 da Colômbia, autorizo a AI Safety Colombia a tratar meus dados para avaliar minha inscrição, organizar a atividade e me escrever sobre ela e sobre suas outras atividades. Conheço meus direitos como titular (artigo 8 dessa lei), explicados na ",
     casillaEnlace: "política de tratamento de dados",
     casillaFalta: "Para enviar sua inscrição você precisa autorizar o tratamento dos seus dados.",
     enlacePie: "Política de dados pessoais",

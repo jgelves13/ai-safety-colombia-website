@@ -11,7 +11,7 @@ import { CORREO_DATOS, RUTA_POLITICA, TEXTOS_POLITICA, type Bloque } from "@/lib
 
    Es un documento legal y se ve como tal: encabezado sobrio sin ilustración,
    la versión a la vista, un índice numerado que acompaña la lectura en
-   pantallas anchas y la ficha del responsable al abrir la primera sección. */
+   pantallas anchas y la ficha del responsable bajo su sección. */
 
 const ENLACE = "text-aisc-forest transition-colors hover:text-aisc-coral";
 
@@ -92,7 +92,7 @@ export default function PoliticaDatosPagina({ idioma }: { idioma: Idioma }) {
                 <div className="text-body mt-5 flex flex-col gap-4 text-aisc-ink/85">
                   <Bloques bloques={s.bloques} />
                 </div>
-                {i === 0 && (
+                {s.ficha && (
                   <dl className="mt-8">
                     {t.ficha.map((f) => (
                       <div
