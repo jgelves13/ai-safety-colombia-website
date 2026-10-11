@@ -107,7 +107,7 @@ const AGI_ES: PaginaCurso = {
   linea: "Del 19 de octubre al 22 de noviembre de 2026. Cupos limitados: aplica hasta el 9 de octubre.",
   tarjetas: [
     { titulo: "Cinco semanas", cuerpo: "Del 19 de octubre al 22 de noviembre de 2026, una sesión de dos horas por semana más una hora de material por tu cuenta" },
-    { titulo: "Mixto: presencial y en línea", cuerpo: "Sesiones en la Universidad de los Andes, con comida gratis, y sesiones en línea" },
+    { titulo: "Mixto: presencial y en línea", cuerpo: "Sesiones en la Universidad de los Andes, con refrigerio gratis, y sesiones en línea" },
     { titulo: "Gratis, con certificado", cuerpo: "Materiales de BlueDot Impact; discusión en español, lecturas en inglés" },
   ],
   porque: {
@@ -144,7 +144,7 @@ const AGI_ES: PaginaCurso = {
   sala: {
     titulo: "Una cohorte pequeña que discute cada semana",
     parrafos: [
-      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **una sesión de dos horas con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana, en un horario que se fija con los participantes seleccionados. Todas las lecturas y videos son en inglés, tal como los publica BlueDot; la discusión es en español. La modalidad es mixta: hay sesiones presenciales en la Universidad de los Andes y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
+      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **una sesión de dos horas con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana, en un horario que se fija con los participantes seleccionados. Todas las lecturas y videos son en inglés, tal como los publica BlueDot; la discusión es en español. La modalidad es mixta: hay sesiones presenciales en la Universidad de los Andes y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay refrigerio gratis.**",
       "El facilitador es {facilitadores}. La cohorte mezcla a propósito gente de distintas disciplinas: **la discusión es donde las lecturas se vuelven una opinión propia**, y la cohorte queda como una comunidad de pares con la que seguir explorando el campo después del seminario.",
     ],
   },
@@ -212,7 +212,7 @@ const TAIS_ES: PaginaCurso = {
   linea: "Del 19 de octubre al 29 de noviembre de 2026. Cupos limitados: aplica hasta el 9 de octubre.",
   tarjetas: [
     { titulo: "Seis semanas", cuerpo: "Del 19 de octubre al 29 de noviembre de 2026, una sesión de dos horas por semana más una hora de material por tu cuenta" },
-    { titulo: "Mixto: presencial y en línea", cuerpo: "Sesiones en la Universidad de los Andes, con comida gratis, y sesiones en línea" },
+    { titulo: "Mixto: presencial y en línea", cuerpo: "Sesiones en la Universidad de los Andes, con refrigerio gratis, y sesiones en línea" },
     { titulo: "Gratis, con certificado", cuerpo: "Materiales de BlueDot Impact; discusión en español, lecturas en inglés" },
   ],
   porque: {
@@ -249,7 +249,7 @@ const TAIS_ES: PaginaCurso = {
   sala: {
     titulo: "Una cohorte pequeña que discute cada semana",
     parrafos: [
-      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **una sesión de dos horas con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana, en un horario que se fija con los participantes seleccionados. Todas las lecturas y videos son en inglés, tal como los publica BlueDot; la discusión es en español. La modalidad es mixta: hay sesiones presenciales en la Universidad de los Andes y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay comida gratis.**",
+      "Cada semana arranca con **una hora de material ligero** (videos y podcasts) y sigue con **una sesión de dos horas con tu cohorte: lectura a fondo y discusión**. Son unas tres horas por semana, en un horario que se fija con los participantes seleccionados. Todas las lecturas y videos son en inglés, tal como los publica BlueDot; la discusión es en español. La modalidad es mixta: hay sesiones presenciales en la Universidad de los Andes y sesiones en línea, y cabe al lado de un trabajo o de la universidad. **En las sesiones presenciales hay refrigerio gratis.**",
       "Los facilitadores son {facilitadores}. **La discusión es donde se ponen a prueba los supuestos** y donde las lecturas se conectan con el trabajo que se hace en laboratorios y organizaciones de investigación, y la cohorte queda como una comunidad de pares con la que seguir explorando el campo después del seminario.",
     ],
   },
@@ -318,7 +318,7 @@ const AGI_EN: PaginaCurso = {
   linea: "19 October to 22 November 2026. Places are limited: apply by 9 October.",
   tarjetas: [
     { titulo: "Five weeks", cuerpo: "19 October to 22 November 2026, one two-hour session a week plus an hour of material on your own" },
-    { titulo: "Mixed: in person and online", cuerpo: "Sessions at Universidad de los Andes, with free food, and sessions online" },
+    { titulo: "Mixed: in person and online", cuerpo: "Sessions at Universidad de los Andes, with free snacks, and sessions online" },
     { titulo: "Free, with a certificate", cuerpo: "Materials by BlueDot Impact; discussion in Spanish, readings in English" },
   ],
   porque: {
@@ -355,7 +355,7 @@ const AGI_EN: PaginaCurso = {
   sala: {
     titulo: "A small cohort that discusses every week",
     parrafos: [
-      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **one two-hour session with your cohort: close reading and discussion**. That is about three hours a week, at a time set with the selected participants. All readings and videos are in English, as BlueDot publishes them; the discussion is in Spanish. The format is mixed: some sessions are in person at Universidad de los Andes and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
+      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **one two-hour session with your cohort: close reading and discussion**. That is about three hours a week, at a time set with the selected participants. All readings and videos are in English, as BlueDot publishes them; the discussion is in Spanish. The format is mixed: some sessions are in person at Universidad de los Andes and some are online, and it fits alongside a job or university. **The in-person sessions come with free snacks.**",
       "The facilitator is {facilitadores}. The cohort deliberately mixes people from different disciplines: **the discussion is where the readings turn into a view of your own**, and the cohort stays on as a community of peers to keep exploring the field with after the seminar.",
     ],
   },
@@ -423,7 +423,7 @@ const TAIS_EN: PaginaCurso = {
   linea: "19 October to 29 November 2026. Places are limited: apply by 9 October.",
   tarjetas: [
     { titulo: "Six weeks", cuerpo: "19 October to 29 November 2026, one two-hour session a week plus an hour of material on your own" },
-    { titulo: "Mixed: in person and online", cuerpo: "Sessions at Universidad de los Andes, with free food, and sessions online" },
+    { titulo: "Mixed: in person and online", cuerpo: "Sessions at Universidad de los Andes, with free snacks, and sessions online" },
     { titulo: "Free, with a certificate", cuerpo: "Materials by BlueDot Impact; discussion in Spanish, readings in English" },
   ],
   porque: {
@@ -460,7 +460,7 @@ const TAIS_EN: PaginaCurso = {
   sala: {
     titulo: "A small cohort that discusses every week",
     parrafos: [
-      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **one two-hour session with your cohort: close reading and discussion**. That is about three hours a week, at a time set with the selected participants. All readings and videos are in English, as BlueDot publishes them; the discussion is in Spanish. The format is mixed: some sessions are in person at Universidad de los Andes and some are online, and it fits alongside a job or university. **The in-person sessions come with free food.**",
+      "Each week starts with **an hour of light material** (videos and podcasts) and continues with **one two-hour session with your cohort: close reading and discussion**. That is about three hours a week, at a time set with the selected participants. All readings and videos are in English, as BlueDot publishes them; the discussion is in Spanish. The format is mixed: some sessions are in person at Universidad de los Andes and some are online, and it fits alongside a job or university. **The in-person sessions come with free snacks.**",
       "The facilitators are {facilitadores}. **The discussion is where assumptions get tested** and where the readings connect to the work being done in labs and research organisations, and the cohort stays on as a community of peers to keep exploring the field with after the seminar.",
     ],
   },
@@ -529,7 +529,7 @@ const AGI_PT: PaginaCurso = {
   linea: "De 19 de outubro a 22 de novembro de 2026. Vagas limitadas: inscreva-se até 9 de outubro.",
   tarjetas: [
     { titulo: "Cinco semanas", cuerpo: "De 19 de outubro a 22 de novembro de 2026, uma sessão de duas horas por semana mais uma hora de material por conta própria" },
-    { titulo: "Misto: presencial e on-line", cuerpo: "Sessões na Universidad de los Andes, com comida grátis, e sessões on-line" },
+    { titulo: "Misto: presencial e on-line", cuerpo: "Sessões na Universidad de los Andes, com lanche grátis, e sessões on-line" },
     { titulo: "Grátis, com certificado", cuerpo: "Materiais da BlueDot Impact; discussão em espanhol, leituras em inglês" },
   ],
   porque: {
@@ -566,7 +566,7 @@ const AGI_PT: PaginaCurso = {
   sala: {
     titulo: "Uma turma pequena que discute toda semana",
     parrafos: [
-      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **uma sessão de duas horas com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana, em um horário definido com os participantes selecionados. Todas as leituras e vídeos são em inglês, como a BlueDot os publica; a discussão é em espanhol. A modalidade é mista: há sessões presenciais na Universidad de los Andes e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
+      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **uma sessão de duas horas com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana, em um horário definido com os participantes selecionados. Todas as leituras e vídeos são em inglês, como a BlueDot os publica; a discussão é em espanhol. A modalidade é mista: há sessões presenciais na Universidad de los Andes e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem lanche grátis.**",
       "O facilitador é {facilitadores}. A turma mistura de propósito gente de áreas diferentes: **a discussão é onde as leituras viram uma opinião própria**, e a turma fica como uma comunidade de pares com quem seguir explorando o campo depois do seminário.",
     ],
   },
@@ -634,7 +634,7 @@ const TAIS_PT: PaginaCurso = {
   linea: "De 19 de outubro a 29 de novembro de 2026. Vagas limitadas: inscreva-se até 9 de outubro.",
   tarjetas: [
     { titulo: "Seis semanas", cuerpo: "De 19 de outubro a 29 de novembro de 2026, uma sessão de duas horas por semana mais uma hora de material por conta própria" },
-    { titulo: "Misto: presencial e on-line", cuerpo: "Sessões na Universidad de los Andes, com comida grátis, e sessões on-line" },
+    { titulo: "Misto: presencial e on-line", cuerpo: "Sessões na Universidad de los Andes, com lanche grátis, e sessões on-line" },
     { titulo: "Grátis, com certificado", cuerpo: "Materiais da BlueDot Impact; discussão em espanhol, leituras em inglês" },
   ],
   porque: {
@@ -671,7 +671,7 @@ const TAIS_PT: PaginaCurso = {
   sala: {
     titulo: "Uma turma pequena que discute toda semana",
     parrafos: [
-      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **uma sessão de duas horas com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana, em um horário definido com os participantes selecionados. Todas as leituras e vídeos são em inglês, como a BlueDot os publica; a discussão é em espanhol. A modalidade é mista: há sessões presenciais na Universidad de los Andes e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem comida grátis.**",
+      "Toda semana começa com **uma hora de material leve** (vídeos e podcasts) e segue com **uma sessão de duas horas com a turma: leitura aprofundada e discussão**. São cerca de três horas por semana, em um horário definido com os participantes selecionados. Todas as leituras e vídeos são em inglês, como a BlueDot os publica; a discussão é em espanhol. A modalidade é mista: há sessões presenciais na Universidad de los Andes e sessões on-line, e cabe junto com o trabalho ou a faculdade. **Nas sessões presenciais tem lanche grátis.**",
       "Os facilitadores são {facilitadores}. **A discussão é onde os pressupostos são postos à prova** e onde as leituras se conectam com o trabalho feito em laboratórios e organizações de pesquisa, e a turma fica como uma comunidade de pares com quem seguir explorando o campo depois do seminário.",
     ],
   },

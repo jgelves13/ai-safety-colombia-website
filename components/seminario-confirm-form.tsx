@@ -216,7 +216,7 @@ export default function SeminarioConfirmForm({
                 <h2 className={TITULO}>Modalidad</h2>
                 <span className={AYUDA}>
                   Una de las cohortes es solo en línea. Las presenciales son en la Universidad de
-                  los Andes, y los domingos en un café cerca, con comida gratis.
+                  los Andes, y los domingos en un café cerca, con refrigerio gratis.
                 </span>
                 <div className="mt-4 space-y-2.5">
                   {MODALIDADES.map((opcion) => (
@@ -245,7 +245,7 @@ export default function SeminarioConfirmForm({
                 las cohortes.
                 {remoto
                   ? null
-                  : " Las sesiones son presenciales en la Universidad de los Andes, y los domingos en un café cerca, con comida gratis."}
+                  : " Las sesiones son presenciales en la Universidad de los Andes, y los domingos en un café cerca, con refrigerio gratis."}
               </span>
               <div className="mt-5">
                 <SeminarioHorariosGrid
@@ -266,7 +266,7 @@ export default function SeminarioConfirmForm({
             </h2>
             <span className={AYUDA}>
               {toma === "si"
-                ? "Si ninguna sesión te sirve, cuéntanos cuándo sí puedes. También alergias para la comida o lo que necesites."
+                ? "Si ninguna sesión te sirve, cuéntanos cuándo sí puedes. También alergias alimentarias o lo que necesites."
                 : "Opcional."}
             </span>
             <textarea
