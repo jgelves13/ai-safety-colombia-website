@@ -183,9 +183,8 @@ export default function SeminarioConfirmForm({
               <section>
                 <h2 className={TITULO}>Modalidad</h2>
                 <span className={AYUDA}>
-                  Como parece que no estás en Bogotá, puedes ir en la cohorte solo en línea. Las
-                  presenciales son en la Universidad de los Andes, y los domingos en un café cerca,
-                  con comida gratis.
+                  Una de las cohortes es solo en línea. Las presenciales son en la Universidad de
+                  los Andes, y los domingos en un café cerca, con comida gratis.
                 </span>
                 <div className="mt-4 space-y-2.5">
                   {MODALIDADES.map((opcion) => (

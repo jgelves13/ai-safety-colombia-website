@@ -206,7 +206,7 @@ export default function SeminarioHorariosGrid({
         </span>
         <span className="inline-flex items-center gap-2">
           <span className={`size-3.5 rounded-[3px] border border-aisc-line ${RAYADO}`} />
-          No hay sesión
+          Horario no disponible
         </span>
       </div>
 
