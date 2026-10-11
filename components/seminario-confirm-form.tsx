@@ -8,10 +8,11 @@ import { DATOS_SEMINARIO, MODALIDADES, type SeminarioId } from "@/lib/seminarios
 /* Confirmación de cupo en los seminarios, con la votación de horarios.
 
    La identidad y el seminario vienen firmados en el token; acá solo se pregunta
-   si toma el cupo, la modalidad, los horarios y una nota. Con los horarios y la
-   modalidad se arman las cohortes después: tres en el técnico, una de ellas
-   solo en línea. Por eso se pide marcar en la cuadrícula todas las sesiones
-   que sirvan y no escoger una. */
+   si toma el cupo, los horarios y una nota. Con los horarios se arman después
+   cuatro cohortes: tres en el técnico, una de ellas solo en línea, y una en
+   futuro y riesgos. Por eso se pide marcar en la cuadrícula todas las sesiones
+   que sirvan y no escoger una. La modalidad solo se le pregunta a quien vive
+   fuera de Bogotá (remoto, firmado en el token); el resto va presencial. */
 
 const INPUT =
   "text-body-sm w-full rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 text-aisc-ink transition-colors placeholder:text-aisc-muted/60 focus:border-aisc-forest focus:outline-2 focus:outline-offset-[1px] focus:outline-aisc-forest/35";
@@ -32,10 +33,12 @@ export default function SeminarioConfirmForm({
   token,
   nombre,
   seminario,
+  remoto,
 }: {
   token: string;
   nombre: string;
   seminario: SeminarioId;
+  remoto: boolean;
 }) {
   const d = DATOS_SEMINARIO[seminario];
   const [toma, setToma] = useState<"" | "si" | "no">("");
@@ -54,7 +57,7 @@ export default function SeminarioConfirmForm({
     if (!toma) e.toma = "Dinos si tomas el cupo.";
     if (toma === "si") {
       if (!compromiso) e.compromiso = "Marca la casilla para confirmar.";
-      if (!modalidad) e.modalidad = "Escoge una modalidad.";
+      if (remoto && !modalidad) e.modalidad = "Escoge una modalidad.";
       /* Sin horarios se puede enviar solo si la nota dice cuándo sí: es el
          caso de quien no puede en ninguno y no debería quedarse sin confirmar. */
       if (horarios.length === 0 && !nota.trim())
@@ -78,7 +81,7 @@ export default function SeminarioConfirmForm({
           token,
           toma: toma === "si",
           compromiso,
-          modalidad,
+          modalidad: remoto ? modalidad : "",
           horarios,
           nota,
           website: trampa,
@@ -157,8 +160,8 @@ export default function SeminarioConfirmForm({
             <section>
               <h2 className={TITULO}>Tu compromiso</h2>
               <span className={AYUDA}>
-                Son unas tres horas por semana: una de material por tu cuenta y dos de sesión con
-                tu cohorte. Para el certificado puedes faltar a una sesión como máximo.
+                Son unas tres horas por semana: una de material por tu cuenta y dos de sesión con tu
+                cohorte. Para el certificado puedes faltar a una sesión como máximo.
               </span>
               <label className={`${CASILLA} mt-4`} htmlFor="compromiso">
                 <input
@@ -176,29 +179,32 @@ export default function SeminarioConfirmForm({
               {errores.compromiso ? <span className={ERROR}>{errores.compromiso}</span> : null}
             </section>
 
-            <section>
-              <h2 className={TITULO}>Modalidad</h2>
-              <span className={AYUDA}>
-                Una de las cohortes es solo en línea. Las presenciales son en la Universidad de los
-                Andes, y los domingos en un café cerca. En las presenciales hay comida gratis.
-              </span>
-              <div className="mt-4 space-y-2.5">
-                {MODALIDADES.map((opcion) => (
-                  <label className={CASILLA} key={opcion.id} htmlFor={`modalidad-${opcion.id}`}>
-                    <input
-                      id={`modalidad-${opcion.id}`}
-                      type="radio"
-                      name="modalidad"
-                      checked={modalidad === opcion.id}
-                      onChange={() => setModalidad(opcion.id)}
-                      className="mt-0.5 accent-aisc-forest"
-                    />
-                    <span>{opcion.label}</span>
-                  </label>
-                ))}
-              </div>
-              {errores.modalidad ? <span className={ERROR}>{errores.modalidad}</span> : null}
-            </section>
+            {remoto ? (
+              <section>
+                <h2 className={TITULO}>Modalidad</h2>
+                <span className={AYUDA}>
+                  Como parece que no estás en Bogotá, puedes ir en la cohorte solo en línea. Las
+                  presenciales son en la Universidad de los Andes, y los domingos en un café cerca,
+                  con comida gratis.
+                </span>
+                <div className="mt-4 space-y-2.5">
+                  {MODALIDADES.map((opcion) => (
+                    <label className={CASILLA} key={opcion.id} htmlFor={`modalidad-${opcion.id}`}>
+                      <input
+                        id={`modalidad-${opcion.id}`}
+                        type="radio"
+                        name="modalidad"
+                        checked={modalidad === opcion.id}
+                        onChange={() => setModalidad(opcion.id)}
+                        className="mt-0.5 accent-aisc-forest"
+                      />
+                      <span>{opcion.label}</span>
+                    </label>
+                  ))}
+                </div>
+                {errores.modalidad ? <span className={ERROR}>{errores.modalidad}</span> : null}
+              </section>
+            ) : null}
 
             <section>
               <h2 className={TITULO}>¿En qué horarios puedes?</h2>
@@ -206,6 +212,9 @@ export default function SeminarioConfirmForm({
                 Cada casilla es una sesión de dos horas, hora de Bogotá. Haz clic o arrastra sobre
                 todas las que te sirvan todas las semanas: mientras más marques, más fácil es armar
                 las cohortes.
+                {remoto
+                  ? null
+                  : " Las sesiones son presenciales en la Universidad de los Andes, y los domingos en un café cerca, con comida gratis."}
               </span>
               <div className="mt-5">
                 <SeminarioHorariosGrid

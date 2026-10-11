@@ -61,7 +61,7 @@ const NOMBRE_MODALIDAD: Record<string, string> = Object.fromEntries(
 function resumen(r: Respuesta): string[] {
   if (!r.toma) return ["No toma el cupo.", r.nota ? `Nota: ${r.nota}` : ""];
   return [
-    `Modalidad: ${NOMBRE_MODALIDAD[r.modalidad] ?? r.modalidad}`,
+    r.remoto ? `Modalidad: ${NOMBRE_MODALIDAD[r.modalidad] ?? r.modalidad}` : "",
     "Sesiones en que puedes:",
     ...(r.horarios.length
       ? ordenarHorarios(r.horarios).map((h) => `  ${etiquetaHorario(h)}`)
@@ -116,7 +116,10 @@ async function correo(para: string, asunto: string, cuerpo: string): Promise<voi
   try {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
-      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+      headers: {
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         from: REMITENTE,
         to: [para],
@@ -206,7 +209,9 @@ export async function POST(req: Request) {
 
   const toma = crudo.toma === true;
   const nota = texto(crudo.nota, 1200);
-  const modalidad = texto(crudo.modalidad, 20);
+  /* Solo quien está fuera de Bogotá escoge modalidad; el resto va presencial
+     diga lo que diga la petición. */
+  const modalidad = persona.remoto ? texto(crudo.modalidad, 20) : "presencial";
 
   /* Los horarios se filtran contra los del seminario de la persona: un id que
      no exista, o uno del otro seminario, se descarta en silencio. */

@@ -7,6 +7,9 @@ import type { SeminarioId } from "./seminarios-confirmar";
    seminario, y la firma va sobre "seminario." + cuerpo. Ese prefijo hace que un
    enlace del sprint no sirva acá ni uno de acá sirva en el sprint.
 
+   Quien parece vivir fuera de Bogotá lleva además v: 1, y solo a esa persona
+   se le pregunta si prefiere la cohorte en línea. Los demás van presenciales.
+
    Vive aparte de lib/seminarios-confirmar.ts porque ese lo importa el
    navegador, y la llave no puede terminar allá. */
 
@@ -17,6 +20,8 @@ export type Seleccionada = {
   nombre: string;
   correo: string;
   seminario: SeminarioId;
+  /** Fuera de Bogotá: puede escoger la cohorte en línea. */
+  remoto: boolean;
 };
 
 function base64url(buf: Buffer): string {
@@ -29,14 +34,23 @@ function desdeBase64url(texto: string): Buffer {
 }
 
 function firma(cuerpo: string): string {
-  return base64url(createHmac("sha256", SECRETO).update(PREFIJO + cuerpo).digest());
+  return base64url(
+    createHmac("sha256", SECRETO)
+      .update(PREFIJO + cuerpo)
+      .digest(),
+  );
 }
 
 export function firmarSeleccionada(p: Seleccionada): string {
   if (!SECRETO) throw new Error("Falta CONFIRM_LINK_SECRET");
   const cuerpo = base64url(
     Buffer.from(
-      JSON.stringify({ n: p.nombre, c: p.correo.toLowerCase(), s: p.seminario }),
+      JSON.stringify({
+        n: p.nombre,
+        c: p.correo.toLowerCase(),
+        s: p.seminario,
+        ...(p.remoto ? { v: 1 } : {}),
+      }),
       "utf8",
     ),
   );
@@ -60,12 +74,13 @@ export function verificarSeleccionada(token: string | undefined | null): Selecci
       n?: unknown;
       c?: unknown;
       s?: unknown;
+      v?: unknown;
     };
     const nombre = typeof datos.n === "string" ? datos.n.trim() : "";
     const correo = typeof datos.c === "string" ? datos.c.trim().toLowerCase() : "";
     const seminario = datos.s === "tecnico" || datos.s === "futuro" ? datos.s : null;
     if (!nombre || !correo.includes("@") || !seminario) return null;
-    return { nombre, correo, seminario };
+    return { nombre, correo, seminario, remoto: datos.v === 1 };
   } catch {
     return null;
   }

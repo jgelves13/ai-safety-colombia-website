@@ -153,6 +153,7 @@ export default async function Confirmar({
         token={t ?? ""}
         nombre={persona.nombre}
         seminario={persona.seminario}
+        remoto={persona.remoto}
       />
     </Marco>
   );

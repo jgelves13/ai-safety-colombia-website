@@ -8,8 +8,9 @@
    de dos horas, alineados entre días para que la cuadrícula tenga pocas filas.
    El técnico lo facilitan Andrés y Helen, que nunca coinciden, así que sus
    bloques se suman; el de futuro y riesgos lo facilita Tomás. Con lo marcado
-   y la modalidad se arman las cohortes. En el técnico son tres, una de ellas
-   solo en línea.
+   y la modalidad se arman cuatro cohortes: tres en el técnico, una de ellas
+   solo en línea, y una en futuro y riesgos. La modalidad solo se le pregunta a
+   quien vive fuera de Bogotá.
 
    Este módulo lo importa un componente de cliente. La llave de los enlaces vive
    aparte, en lib/firma-seminario.ts. */

@@ -16,7 +16,8 @@ create table if not exists public.seminar_confirmations (
   email text not null,
   -- false es quien avisó que no puede: su cupo se libera.
   takes_spot boolean not null,
-  -- 'presencial', 'en-linea' o 'cualquiera'. Nula si no toma el cupo.
+  -- 'presencial', 'en-linea' o 'cualquiera'. Nula si no toma el cupo. Solo la
+  -- escoge quien vive fuera de Bogotá; el resto queda 'presencial'.
   modality text,
   -- Las sesiones de dos horas que marcó en la cuadrícula, como 'sab-14:00' (día y hora de inicio,
   -- hora de Bogotá). Con esto y la modalidad se arman las cohortes.
