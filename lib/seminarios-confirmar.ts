@@ -6,8 +6,8 @@
    Las sesiones salen del when2meet que llenaron quienes facilitan
    (when2meet.com/?38943082-hSryD): dentro de cada ventana se escogió un bloque
    de dos horas, alineados entre días para que la cuadrícula tenga pocas filas.
-   El técnico lo facilitan Andrés y Helen, que nunca coinciden, así que sus
-   bloques se suman; el de futuro y riesgos lo facilita Tomás. Con lo marcado
+   El técnico lo facilitan Andrés y Helen, así que sus bloques se suman; el de
+   futuro y riesgos lo facilita Tomás. Con lo marcado
    y la modalidad se arman cuatro cohortes: tres en el técnico, una de ellas
    solo en línea, y una en futuro y riesgos. La modalidad solo se le pregunta a
    quien vive fuera de Bogotá.
@@ -68,17 +68,17 @@ export const DATOS_SEMINARIO: Record<SeminarioId, Seminario> = {
     fechas: "Del 19 de octubre al 29 de noviembre",
     semanas: "seis semanas",
     facilitan: "Andrés Mosquera y Helen Penagos",
-    /* Helen: martes y jueves de 1:00 a 4:00, sábado de 1:30 a 5:00. Andrés:
-       miércoles de 3:45 a 6:45, viernes de 3:30 a 6:30, sábado de 8:00 a 10:00
-       y domingo de 1:00 a 6:30. Helen también puede lunes y miércoles de 10:15
-       a 12:00, pero no alcanza para dos horas. */
+    /* Andrés: de 10:00 a 1:00 todos los días, y de 2:00 a 5:00 todos menos
+       martes y miércoles. Helen: miércoles de 3:45 a 6:45, viernes de 3:30 a
+       6:30, sábado de 8:00 a 10:00 y domingo de 1:00 a 6:30. */
     horarios: {
-      mar: ["14:00"],
-      mie: ["16:00"],
-      jue: ["14:00"],
-      vie: ["16:00"],
-      sab: ["08:00", "14:00"],
-      dom: ["14:00", "16:00"],
+      lun: ["10:00", "14:00"],
+      mar: ["10:00"],
+      mie: ["10:00", "16:00"],
+      jue: ["10:00", "14:00"],
+      vie: ["10:00", "14:00", "16:00"],
+      sab: ["08:00", "10:00", "14:00"],
+      dom: ["10:00", "14:00", "16:00"],
     },
   },
   futuro: {
@@ -86,16 +86,13 @@ export const DATOS_SEMINARIO: Record<SeminarioId, Seminario> = {
     fechas: "Del 19 de octubre al 22 de noviembre",
     semanas: "cinco semanas",
     facilitan: "Tomás Antolinez",
-    /* Tomás: de 10:00 a 1:00 todos los días, y de 2:00 a 5:00 todos menos
-       martes y miércoles. */
+    /* Tomás: martes y jueves de 1:00 a 4:00, sábado de 1:30 a 5:00. También
+       puede lunes y miércoles de 10:15 a 12:00, pero no alcanza para dos
+       horas. */
     horarios: {
-      lun: ["10:00", "14:00"],
-      mar: ["10:00"],
-      mie: ["10:00"],
-      jue: ["10:00", "14:00"],
-      vie: ["10:00", "14:00"],
-      sab: ["10:00", "14:00"],
-      dom: ["10:00", "14:00"],
+      mar: ["14:00"],
+      jue: ["14:00"],
+      sab: ["14:00"],
     },
   },
 };
