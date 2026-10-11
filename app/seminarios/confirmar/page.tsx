@@ -63,26 +63,9 @@ function Marco({
               Confirma tu cupo
             </h1>
             {d ? (
-              <>
-                <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-                  Quedaste en el seminario. Confírmanos que vas y marca los horarios en que puedes;
-                  con eso armamos las cohortes.
-                </p>
-                <dl className="mt-2 flex flex-wrap gap-x-12 gap-y-5">
-                  <div>
-                    <dt className="text-kicker text-aisc-sand/60">Cuándo</dt>
-                    <dd className="text-body-sm mt-1.5 text-aisc-sand">
-                      {d.fechas}, una sesión de dos horas por semana
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="text-kicker text-aisc-sand/60">Confirma hasta</dt>
-                    <dd className="text-body-sm mt-1.5 text-aisc-sand">
-                      {CIERRE_CONFIRMACION.replace(/^el /, "El ")}
-                    </dd>
-                  </div>
-                </dl>
-              </>
+              <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
+                Responde antes {CIERRE_CONFIRMACION.replace(/^el /, "del ")}.
+              </p>
             ) : null}
           </div>
         </div>
