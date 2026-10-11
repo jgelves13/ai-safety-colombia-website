@@ -101,12 +101,12 @@ export type PaginaCurso = {
 const AGI_ES: PaginaCurso = {
   metaTitulo: "Seminario de futuro y riesgos de la IA",
   metaDescripcion:
-    "Seminario con cohorte de cinco semanas, desde la semana del 12 de octubre de 2026, con los materiales de BlueDot Impact. Para entender hacia dónde va la IA avanzada y encontrar tu punto de entrada. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 9 de octubre.",
+    "Seminario con cohorte de cinco semanas, desde la semana del 19 de octubre de 2026, con los materiales de BlueDot Impact. Para entender hacia dónde va la IA avanzada y encontrar tu punto de entrada. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 9 de octubre.",
   entrada:
     "La IA avanzada va más rápido que la gente preparada para pensarla. Cinco semanas para entender quién la construye, qué tan rápido avanza y qué podría salir mal. Desde cualquier disciplina.",
-  linea: "Del 12 de octubre al 15 de noviembre de 2026. Cupos limitados: aplica hasta el 9 de octubre.",
+  linea: "Del 19 de octubre al 22 de noviembre de 2026. Cupos limitados: aplica hasta el 9 de octubre.",
   tarjetas: [
-    { titulo: "Cinco semanas", cuerpo: "Del 12 de octubre al 15 de noviembre de 2026, una sesión de dos horas por semana más una hora de material por tu cuenta" },
+    { titulo: "Cinco semanas", cuerpo: "Del 19 de octubre al 22 de noviembre de 2026, una sesión de dos horas por semana más una hora de material por tu cuenta" },
     { titulo: "Mixto: presencial y en línea", cuerpo: "Sesiones en la Universidad de los Andes, con comida gratis, y sesiones en línea" },
     { titulo: "Gratis, con certificado", cuerpo: "Materiales de BlueDot Impact; discusión en español, lecturas en inglés" },
   ],
@@ -206,12 +206,12 @@ const AGI_ES: PaginaCurso = {
 const TAIS_ES: PaginaCurso = {
   metaTitulo: "Seminario técnico de seguridad de la IA",
   metaDescripcion:
-    "Seminario con cohorte de seis semanas, desde la semana del 12 de octubre de 2026, con los materiales de BlueDot Impact: alineación, evaluaciones, interpretabilidad y AI control. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 9 de octubre.",
+    "Seminario con cohorte de seis semanas, desde la semana del 19 de octubre de 2026, con los materiales de BlueDot Impact: alineación, evaluaciones, interpretabilidad y AI control. Gratis, con certificado de AI Safety Colombia. Aplicaciones hasta el 9 de octubre.",
   entrada:
     "Las capacidades de la IA avanzan más rápido que la seguridad. Seis semanas sobre cómo cerrar esa brecha: entrenar modelos más seguros, evaluarlos, mirarlos por dentro y limitar el daño cuando fallan. Para gente con base técnica.",
-  linea: "Del 12 de octubre al 22 de noviembre de 2026. Cupos limitados: aplica hasta el 9 de octubre.",
+  linea: "Del 19 de octubre al 29 de noviembre de 2026. Cupos limitados: aplica hasta el 9 de octubre.",
   tarjetas: [
-    { titulo: "Seis semanas", cuerpo: "Del 12 de octubre al 22 de noviembre de 2026, una sesión de dos horas por semana más una hora de material por tu cuenta" },
+    { titulo: "Seis semanas", cuerpo: "Del 19 de octubre al 29 de noviembre de 2026, una sesión de dos horas por semana más una hora de material por tu cuenta" },
     { titulo: "Mixto: presencial y en línea", cuerpo: "Sesiones en la Universidad de los Andes, con comida gratis, y sesiones en línea" },
     { titulo: "Gratis, con certificado", cuerpo: "Materiales de BlueDot Impact; discusión en español, lecturas en inglés" },
   ],
@@ -312,12 +312,12 @@ const TAIS_ES: PaginaCurso = {
 const AGI_EN: PaginaCurso = {
   metaTitulo: "Seminar on the Future and Risks of AI",
   metaDescripcion:
-    "A five-week cohort-based seminar starting the week of 12 October 2026, using BlueDot Impact's materials. Understand where advanced AI is heading and find your entry point. Free, with an AI Safety Colombia certificate. Applications close 9 October.",
+    "A five-week cohort-based seminar starting the week of 19 October 2026, using BlueDot Impact's materials. Understand where advanced AI is heading and find your entry point. Free, with an AI Safety Colombia certificate. Applications close 9 October.",
   entrada:
     "Advanced AI is moving faster than the people ready to think about it. Five weeks to understand who is building it, how fast it is moving and what could go wrong. From any discipline.",
-  linea: "12 October to 15 November 2026. Places are limited: apply by 9 October.",
+  linea: "19 October to 22 November 2026. Places are limited: apply by 9 October.",
   tarjetas: [
-    { titulo: "Five weeks", cuerpo: "12 October to 15 November 2026, one two-hour session a week plus an hour of material on your own" },
+    { titulo: "Five weeks", cuerpo: "19 October to 22 November 2026, one two-hour session a week plus an hour of material on your own" },
     { titulo: "Mixed: in person and online", cuerpo: "Sessions at Universidad de los Andes, with free food, and sessions online" },
     { titulo: "Free, with a certificate", cuerpo: "Materials by BlueDot Impact; discussion in Spanish, readings in English" },
   ],
@@ -417,12 +417,12 @@ const AGI_EN: PaginaCurso = {
 const TAIS_EN: PaginaCurso = {
   metaTitulo: "Technical AI Safety Seminar",
   metaDescripcion:
-    "A six-week cohort-based seminar starting the week of 12 October 2026, using BlueDot Impact's materials: alignment, evaluations, interpretability and AI control. Free, with an AI Safety Colombia certificate. Applications close 9 October.",
+    "A six-week cohort-based seminar starting the week of 19 October 2026, using BlueDot Impact's materials: alignment, evaluations, interpretability and AI control. Free, with an AI Safety Colombia certificate. Applications close 9 October.",
   entrada:
     "AI capabilities are advancing faster than safety. Six weeks on closing that gap: training safer models, evaluating them, looking inside them and limiting the damage when they fail. For people with a technical background.",
-  linea: "12 October to 22 November 2026. Places are limited: apply by 9 October.",
+  linea: "19 October to 29 November 2026. Places are limited: apply by 9 October.",
   tarjetas: [
-    { titulo: "Six weeks", cuerpo: "12 October to 22 November 2026, one two-hour session a week plus an hour of material on your own" },
+    { titulo: "Six weeks", cuerpo: "19 October to 29 November 2026, one two-hour session a week plus an hour of material on your own" },
     { titulo: "Mixed: in person and online", cuerpo: "Sessions at Universidad de los Andes, with free food, and sessions online" },
     { titulo: "Free, with a certificate", cuerpo: "Materials by BlueDot Impact; discussion in Spanish, readings in English" },
   ],
@@ -523,12 +523,12 @@ const TAIS_EN: PaginaCurso = {
 const AGI_PT: PaginaCurso = {
   metaTitulo: "Seminário de futuro e riscos da IA",
   metaDescripcion:
-    "Seminário em turma de cinco semanas, a partir da semana de 12 de outubro de 2026, com os materiais da BlueDot Impact. Para entender para onde vai a IA avançada e encontrar seu ponto de entrada. Grátis, com certificado da AI Safety Colombia. Inscrições até 9 de outubro.",
+    "Seminário em turma de cinco semanas, a partir da semana de 19 de outubro de 2026, com os materiais da BlueDot Impact. Para entender para onde vai a IA avançada e encontrar seu ponto de entrada. Grátis, com certificado da AI Safety Colombia. Inscrições até 9 de outubro.",
   entrada:
     "A IA avançada avança mais rápido do que as pessoas preparadas para pensá-la. Cinco semanas para entender quem a constrói, com que velocidade avança e o que pode dar errado. De qualquer área.",
-  linea: "De 12 de outubro a 15 de novembro de 2026. Vagas limitadas: inscreva-se até 9 de outubro.",
+  linea: "De 19 de outubro a 22 de novembro de 2026. Vagas limitadas: inscreva-se até 9 de outubro.",
   tarjetas: [
-    { titulo: "Cinco semanas", cuerpo: "De 12 de outubro a 15 de novembro de 2026, uma sessão de duas horas por semana mais uma hora de material por conta própria" },
+    { titulo: "Cinco semanas", cuerpo: "De 19 de outubro a 22 de novembro de 2026, uma sessão de duas horas por semana mais uma hora de material por conta própria" },
     { titulo: "Misto: presencial e on-line", cuerpo: "Sessões na Universidad de los Andes, com comida grátis, e sessões on-line" },
     { titulo: "Grátis, com certificado", cuerpo: "Materiais da BlueDot Impact; discussão em espanhol, leituras em inglês" },
   ],
@@ -628,12 +628,12 @@ const AGI_PT: PaginaCurso = {
 const TAIS_PT: PaginaCurso = {
   metaTitulo: "Seminário técnico de segurança da IA",
   metaDescripcion:
-    "Seminário em turma de seis semanas, a partir da semana de 12 de outubro de 2026, com os materiais da BlueDot Impact: alinhamento, avaliações, interpretabilidade e AI control. Grátis, com certificado da AI Safety Colombia. Inscrições até 9 de outubro.",
+    "Seminário em turma de seis semanas, a partir da semana de 19 de outubro de 2026, com os materiais da BlueDot Impact: alinhamento, avaliações, interpretabilidade e AI control. Grátis, com certificado da AI Safety Colombia. Inscrições até 9 de outubro.",
   entrada:
     "As capacidades da IA avançam mais rápido do que a segurança. Seis semanas sobre como fechar essa lacuna: treinar modelos mais seguros, avaliá-los, olhar dentro deles e limitar o dano quando falham. Para quem tem base técnica.",
-  linea: "De 12 de outubro a 22 de novembro de 2026. Vagas limitadas: inscreva-se até 9 de outubro.",
+  linea: "De 19 de outubro a 29 de novembro de 2026. Vagas limitadas: inscreva-se até 9 de outubro.",
   tarjetas: [
-    { titulo: "Seis semanas", cuerpo: "De 12 de outubro a 22 de novembro de 2026, uma sessão de duas horas por semana mais uma hora de material por conta própria" },
+    { titulo: "Seis semanas", cuerpo: "De 19 de outubro a 29 de novembro de 2026, uma sessão de duas horas por semana mais uma hora de material por conta própria" },
     { titulo: "Misto: presencial e on-line", cuerpo: "Sessões na Universidad de los Andes, com comida grátis, e sessões on-line" },
     { titulo: "Grátis, com certificado", cuerpo: "Materiais da BlueDot Impact; discussão em espanhol, leituras em inglês" },
   ],

@@ -4,7 +4,7 @@ import type { Idioma } from "./idiomas";
    AGI Strategy y Technical AI Safety. El formulario copia el de BlueDot
    pregunta por pregunta, traducido. Dos cambios: la pregunta por la ronda se
    volvió una de disponibilidad, porque solo hay una cohorte de cada curso, a
-   tiempo parcial desde la semana del 12 de octubre; y se quitó el consentimiento de
+   tiempo parcial desde la semana del 19 de octubre; y se quitó el consentimiento de
    datos de diversidad, porque ese formulario aparte no existe acá.
 
    Los identificadores de las opciones no se traducen: son los que viajan a la
@@ -70,9 +70,9 @@ export const ETAPAS = [
   "other",
 ] as const;
 
-/* Las cohortes arrancan la semana del 12 de octubre: AGI Strategy dura cinco semanas
+/* Las cohortes arrancan la semana del 19 de octubre: AGI Strategy dura cinco semanas
    y Technical AI Safety seis, ambas a tiempo parcial. */
-export const INICIO_CURSOS = "2026-10-12";
+export const INICIO_CURSOS = "2026-10-19";
 export const FORMATOS = ["todas", "casi-todas", "no-puedo"] as const;
 
 /** Tope de caracteres por campo; el mismo en el formulario y en la ruta. */
@@ -278,7 +278,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     curso: "¿A qué seminario aplicas?",
     formato: "¿Puedes estar todas las semanas?",
     formatoAyuda:
-      "Son tres horas a la semana desde el 12 de octubre: una de lecturas y dos de sesión con tu cohorte. Para el certificado puedes faltar a una sesión como máximo.",
+      "Son tres horas a la semana desde el 19 de octubre: una de lecturas y dos de sesión con tu cohorte. Para el certificado puedes faltar a una sesión como máximo.",
     formatos: {
       todas: "Sí, puedo estar todas las semanas",
       "casi-todas": "Casi todas: puede que falte a una",
@@ -505,7 +505,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     curso: "Seminar you're applying for",
     formato: "Can you make it every week?",
     formatoAyuda:
-      "Three hours a week from 12 October: one of reading and two of session with your cohort. To get the certificate you can miss at most one session.",
+      "Three hours a week from 19 October: one of reading and two of session with your cohort. To get the certificate you can miss at most one session.",
     formatos: {
       todas: "Yes, I can make it every week",
       "casi-todas": "Almost every week: I might miss one",
@@ -732,7 +732,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     curso: "Em qual seminário você se inscreve?",
     formato: "Você consegue participar todas as semanas?",
     formatoAyuda:
-      "São três horas por semana a partir de 12 de outubro: uma de leituras e duas de sessão com a turma. Para o certificado, pode faltar a no máximo uma sessão.",
+      "São três horas por semana a partir de 19 de outubro: uma de leituras e duas de sessão com a turma. Para o certificado, pode faltar a no máximo uma sessão.",
     formatos: {
       todas: "Sim, consigo participar todas as semanas",
       "casi-todas": "Quase todas: talvez eu perca uma",
