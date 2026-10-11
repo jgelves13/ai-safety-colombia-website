@@ -160,6 +160,16 @@ export function ordenarHorarios(ids: string[]): string[] {
   return [...ids].sort((x, y) => clave(x) - clave(y));
 }
 
+/* WhatsApp, para el grupo de cada cohorte. Se acepta como lo escriba cada
+   quien (espacios, guiones, paréntesis) y solo se exige que queden entre siete
+   y quince dígitos, el rango de la E.164, como en la aplicación al sprint. */
+export function whatsappValido(valor: string): boolean {
+  const s = valor.trim();
+  if (!/^\+?[\d\s().-]+$/.test(s)) return false;
+  const digitos = s.replace(/\D/g, "").length;
+  return digitos >= 7 && digitos <= 15;
+}
+
 export const MODALIDADES = [
   { id: "presencial", label: "Presencial, en Bogotá." },
   { id: "en-linea", label: "En línea. No puedo ir en persona." },

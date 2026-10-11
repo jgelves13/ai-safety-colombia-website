@@ -16,6 +16,9 @@ create table if not exists public.seminar_confirmations (
   email text not null,
   -- false es quien avisó que no puede: su cupo se libera.
   takes_spot boolean not null,
+  -- Para el grupo de WhatsApp de la cohorte, tal como lo escribió. Nulo si no
+  -- toma el cupo.
+  whatsapp text,
   -- 'presencial', 'en-linea' o 'cualquiera'. Nula si no toma el cupo. Solo la
   -- escoge quien vive fuera de Bogotá; el resto queda 'presencial'.
   modality text,
@@ -24,6 +27,9 @@ create table if not exists public.seminar_confirmations (
   slots text[] not null default '{}',
   note text
 );
+
+-- Por si la tabla ya existía sin la columna.
+alter table public.seminar_confirmations add column if not exists whatsapp text;
 
 create unique index if not exists seminar_confirmations_seminar_email_idx
   on public.seminar_confirmations (seminar, email);

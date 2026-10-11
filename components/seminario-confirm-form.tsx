@@ -3,12 +3,18 @@
 import { useState } from "react";
 
 import SeminarioHorariosGrid from "@/components/seminario-horarios-grid";
-import { DATOS_SEMINARIO, MODALIDADES, type SeminarioId } from "@/lib/seminarios-confirmar";
+import {
+  DATOS_SEMINARIO,
+  MODALIDADES,
+  whatsappValido,
+  type SeminarioId,
+} from "@/lib/seminarios-confirmar";
 
 /* Confirmación de cupo en los seminarios, con la votación de horarios.
 
    La identidad y el seminario vienen firmados en el token; acá solo se pregunta
-   si toma el cupo, los horarios y una nota. Con los horarios se arman después
+   si toma el cupo, el WhatsApp para el grupo de la cohorte, los horarios y una
+   nota. Con los horarios se arman después
    cuatro cohortes: tres en el técnico, una de ellas solo en línea, y una en
    futuro y riesgos. Por eso se pide marcar en la cuadrícula todas las sesiones
    que sirvan y no escoger una. La modalidad solo se le pregunta a quien vive
@@ -43,6 +49,7 @@ export default function SeminarioConfirmForm({
   const d = DATOS_SEMINARIO[seminario];
   const [toma, setToma] = useState<"" | "si" | "no">("");
   const [compromiso, setCompromiso] = useState(false);
+  const [whatsapp, setWhatsapp] = useState("");
   const [modalidad, setModalidad] = useState("");
   const [horarios, setHorarios] = useState<string[]>([]);
   const [nota, setNota] = useState("");
@@ -57,6 +64,9 @@ export default function SeminarioConfirmForm({
     if (!toma) e.toma = "Dinos si tomas el cupo.";
     if (toma === "si") {
       if (!compromiso) e.compromiso = "Marca la casilla para confirmar.";
+      if (!whatsapp.trim()) e.whatsapp = "Escribe tu número de WhatsApp.";
+      else if (!whatsappValido(whatsapp))
+        e.whatsapp = "Revisa el número: solo dígitos, con el indicativo si no es de Colombia.";
       if (remoto && !modalidad) e.modalidad = "Escoge una modalidad.";
       /* Sin horarios se puede enviar solo si la nota dice cuándo sí: es el
          caso de quien no puede en ninguno y no debería quedarse sin confirmar. */
@@ -81,6 +91,7 @@ export default function SeminarioConfirmForm({
           token,
           toma: toma === "si",
           compromiso,
+          whatsapp: toma === "si" ? whatsapp : "",
           modalidad: remoto ? modalidad : "",
           horarios,
           nota,
@@ -177,6 +188,27 @@ export default function SeminarioConfirmForm({
                 </span>
               </label>
               {errores.compromiso ? <span className={ERROR}>{errores.compromiso}</span> : null}
+            </section>
+
+            <section>
+              <h2 className={TITULO}>
+                <label htmlFor="whatsapp">Tu WhatsApp</label>
+              </h2>
+              <span className={AYUDA}>
+                Para el grupo de tu cohorte. Con el indicativo si tu número no es de Colombia.
+              </span>
+              <input
+                id="whatsapp"
+                type="tel"
+                inputMode="tel"
+                autoComplete="tel"
+                placeholder="300 123 4567"
+                value={whatsapp}
+                onChange={(e) => setWhatsapp(e.target.value)}
+                maxLength={40}
+                className={`${INPUT} mt-4 max-w-sm`}
+              />
+              {errores.whatsapp ? <span className={ERROR}>{errores.whatsapp}</span> : null}
             </section>
 
             {remoto ? (

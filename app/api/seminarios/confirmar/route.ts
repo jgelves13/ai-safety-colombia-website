@@ -7,6 +7,7 @@ import {
   etiquetaHorario,
   horariosValidos,
   ordenarHorarios,
+  whatsappValido,
 } from "@/lib/seminarios-confirmar";
 
 export const runtime = "nodejs";
@@ -47,6 +48,7 @@ function texto(valor: unknown, tope: number): string {
 
 type Respuesta = Seleccionada & {
   toma: boolean;
+  whatsapp: string;
   modalidad: string;
   horarios: string[];
   nota: string;
@@ -61,6 +63,7 @@ const NOMBRE_MODALIDAD: Record<string, string> = Object.fromEntries(
 function resumen(r: Respuesta): string[] {
   if (!r.toma) return ["No toma el cupo.", r.nota ? `Nota: ${r.nota}` : ""];
   return [
+    `WhatsApp: ${r.whatsapp}`,
     r.remoto ? `Modalidad: ${NOMBRE_MODALIDAD[r.modalidad] ?? r.modalidad}` : "",
     "Sesiones en que puedes:",
     ...(r.horarios.length
@@ -96,6 +99,7 @@ async function guardar(r: Respuesta): Promise<boolean> {
         name: r.nombre,
         email: r.correo,
         takes_spot: r.toma,
+        whatsapp: r.toma ? r.whatsapp : null,
         modality: r.toma ? r.modalidad : null,
         slots: r.toma ? r.horarios : [],
         note: r.nota || null,
@@ -209,6 +213,7 @@ export async function POST(req: Request) {
 
   const toma = crudo.toma === true;
   const nota = texto(crudo.nota, 1200);
+  const whatsapp = texto(crudo.whatsapp, 40);
   /* Solo quien está fuera de Bogotá escoge modalidad; el resto va presencial
      diga lo que diga la petición. */
   const modalidad = persona.remoto ? texto(crudo.modalidad, 20) : "presencial";
@@ -225,13 +230,15 @@ export async function POST(req: Request) {
   if (toma) {
     if (crudo.compromiso !== true)
       return NextResponse.json({ error: "compromiso" }, { status: 400 });
+    if (!whatsappValido(whatsapp))
+      return NextResponse.json({ error: "whatsapp" }, { status: 400 });
     if (!MODALIDADES.some((m) => m.id === modalidad))
       return NextResponse.json({ error: "modalidad" }, { status: 400 });
     if (horarios.length === 0 && !nota)
       return NextResponse.json({ error: "horarios" }, { status: 400 });
   }
 
-  const respuesta: Respuesta = { ...persona, toma, modalidad, horarios, nota };
+  const respuesta: Respuesta = { ...persona, toma, whatsapp, modalidad, horarios, nota };
 
   if (!(await guardar(respuesta))) {
     await avisarDeLaFalla(respuesta);
