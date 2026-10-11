@@ -239,14 +239,15 @@ export default function SeminarioConfirmForm({
 
             <section>
               <h2 className={TITULO}>¿En qué horarios puedes?</h2>
-              <span className={AYUDA}>
-                Cada casilla es una sesión de dos horas, hora de Bogotá. Haz clic o arrastra sobre
-                todas las que te sirvan todas las semanas: mientras más marques, más fácil es armar
-                las cohortes.
-                {remoto
-                  ? null
-                  : " Las sesiones son presenciales en la Universidad de los Andes, y los domingos en un café cerca, con refrigerio gratis."}
-              </span>
+              {/* Quien está fuera de Bogotá ya leyó dónde son en Modalidad. Futuro y
+                  riesgos no tiene sesiones el domingo. */}
+              {remoto ? null : (
+                <span className={AYUDA}>
+                  {seminario === "futuro"
+                    ? "Las sesiones son presenciales en la Universidad de los Andes, con refrigerio gratis."
+                    : "Las sesiones son presenciales en la Universidad de los Andes, y los domingos en un café cerca, con refrigerio gratis."}
+                </span>
+              )}
               <div className="mt-5">
                 <SeminarioHorariosGrid
                   seminario={seminario}
