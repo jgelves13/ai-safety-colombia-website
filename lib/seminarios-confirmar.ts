@@ -1,12 +1,15 @@
 /* Lo que necesita la página de confirmación de los seminarios: las fechas, el
-   cierre y los horarios que se pueden votar.
+   cierre y la cuadrícula semanal donde cada persona marca cuándo puede.
 
-   Los horarios salen del when2meet que llenaron quienes facilitan
-   (when2meet.com/?38943082-hSryD), recortados a bloques de dos horas que caben
-   enteros en la disponibilidad de cada uno. El técnico lo facilitan Andrés y
-   Helen, que nunca coinciden, así que sus horarios se suman; el de futuro y
-   riesgos lo facilita Tomás. Las cohortes se arman después, con los votos: tres
-   en el técnico, una de ellas solo en línea.
+   La cuadrícula es como la de when2meet, pero cada casilla es una sesión
+   entera de dos horas, para que quede claro desde ya qué espacio se aparta.
+   Las sesiones salen del when2meet que llenaron quienes facilitan
+   (when2meet.com/?38943082-hSryD): dentro de cada ventana se escogió un bloque
+   de dos horas, alineados entre días para que la cuadrícula tenga pocas filas.
+   El técnico lo facilitan Andrés y Helen, que nunca coinciden, así que sus
+   bloques se suman; el de futuro y riesgos lo facilita Tomás. Con lo marcado
+   y la modalidad se arman las cohortes. En el técnico son tres, una de ellas
+   solo en línea.
 
    Este módulo lo importa un componente de cliente. La llave de los enlaces vive
    aparte, en lib/firma-seminario.ts. */
@@ -36,13 +39,25 @@ export const NOMBRE_DIA: Record<Dia, string> = {
   dom: "Domingo",
 };
 
+export const DIA_CORTO: Record<Dia, string> = {
+  lun: "Lun",
+  mar: "Mar",
+  mie: "Mié",
+  jue: "Jue",
+  vie: "Vie",
+  sab: "Sáb",
+  dom: "Dom",
+};
+
+const DURACION_MIN = 120;
+
 type Seminario = {
   nombre: string;
-  /** Lo que va en el kicker y en el acuse: del lunes de arranque al domingo de cierre. */
+  /** Del lunes de arranque al domingo de cierre. */
   fechas: string;
   semanas: string;
   facilitan: string;
-  /** Hora de inicio de cada bloque, en formato 24 h, por día. */
+  /** Hora de inicio, en 24 h y hora de Bogotá, de cada sesión de dos horas posible. */
   horarios: Partial<Record<Dia, string[]>>;
 };
 
@@ -52,13 +67,17 @@ export const DATOS_SEMINARIO: Record<SeminarioId, Seminario> = {
     fechas: "Del 19 de octubre al 29 de noviembre",
     semanas: "seis semanas",
     facilitan: "Andrés Mosquera y Helen Penagos",
+    /* Helen: martes y jueves de 1:00 a 4:00, sábado de 1:30 a 5:00. Andrés:
+       miércoles de 3:45 a 6:45, viernes de 3:30 a 6:30, sábado de 8:00 a 10:00
+       y domingo de 1:00 a 6:30. Helen también puede lunes y miércoles de 10:15
+       a 12:00, pero no alcanza para dos horas. */
     horarios: {
-      mar: ["13:00", "14:00"],
+      mar: ["14:00"],
       mie: ["16:00"],
-      jue: ["13:00", "14:00"],
-      vie: ["15:30", "16:00"],
-      sab: ["08:00", "13:30", "14:00", "15:00"],
-      dom: ["13:00", "14:00", "15:00", "16:00"],
+      jue: ["14:00"],
+      vie: ["16:00"],
+      sab: ["08:00", "14:00"],
+      dom: ["14:00", "16:00"],
     },
   },
   futuro: {
@@ -66,19 +85,21 @@ export const DATOS_SEMINARIO: Record<SeminarioId, Seminario> = {
     fechas: "Del 19 de octubre al 22 de noviembre",
     semanas: "cinco semanas",
     facilitan: "Tomás Antolinez",
+    /* Tomás: de 10:00 a 1:00 todos los días, y de 2:00 a 5:00 todos menos
+       martes y miércoles. */
     horarios: {
-      lun: ["10:00", "11:00", "14:00", "15:00"],
-      mar: ["10:00", "11:00"],
-      mie: ["10:00", "11:00"],
-      jue: ["10:00", "11:00", "14:00", "15:00"],
-      vie: ["10:00", "11:00", "14:00", "15:00"],
-      sab: ["10:00", "11:00", "14:00", "15:00"],
-      dom: ["10:00", "11:00", "14:00", "15:00"],
+      lun: ["10:00", "14:00"],
+      mar: ["10:00"],
+      mie: ["10:00"],
+      jue: ["10:00", "14:00"],
+      vie: ["10:00", "14:00"],
+      sab: ["10:00", "14:00"],
+      dom: ["10:00", "14:00"],
     },
   },
 };
 
-/** El id que viaja a la base: día y hora de inicio, p. ej. "sab-13:30". */
+/** El id de una sesión: día y hora de inicio, p. ej. "sab-14:00". */
 export function idHorario(dia: Dia, inicio: string): string {
   return `${dia}-${inicio}`;
 }
@@ -90,28 +111,52 @@ export function horariosValidos(s: SeminarioId): Set<string> {
   return ids;
 }
 
+/** Los días que tienen alguna sesión, de lunes a domingo: las columnas. */
+export function diasDe(s: SeminarioId): Dia[] {
+  return DIAS.filter((d) => DATOS_SEMINARIO[s].horarios[d]?.length);
+}
+
+/** Las horas de inicio que aparecen en algún día, en orden: las filas. */
+export function filasDe(s: SeminarioId): string[] {
+  const todas = Object.values(DATOS_SEMINARIO[s].horarios).flat() as string[];
+  return [...new Set(todas)].sort((a, b) => aMinutos(a) - aMinutos(b));
+}
+
+function aMinutos(hora: string): number {
+  const [h, m] = hora.split(":").map(Number);
+  return h * 60 + m;
+}
+
 function hora12(minutos: number): string {
   const h = Math.floor(minutos / 60);
   const m = minutos % 60;
-  const h12 = h % 12 === 0 ? 12 : h % 12;
-  return m === 0 ? `${h12}:00` : `${h12}:${String(m).padStart(2, "0")}`;
+  return `${h % 12 === 0 ? 12 : h % 12}:${String(m).padStart(2, "0")}`;
 }
 
-/** "1:30 a 3:30 p. m.", "11:00 a. m. a 1:00 p. m." */
+const sufijo = (min: number) => (min < 12 * 60 ? "a. m." : "p. m.");
+
+/** "2:00 a 4:00 p. m.", "11:00 a. m. a 1:00 p. m." */
 export function rangoHorario(inicio: string): string {
-  const [h, m] = inicio.split(":").map(Number);
-  const a = h * 60 + m;
-  const b = a + 120;
-  const sufijo = (min: number) => (min < 12 * 60 ? "a. m." : "p. m.");
+  const a = aMinutos(inicio);
+  const b = a + DURACION_MIN;
   return sufijo(a) === sufijo(b)
     ? `${hora12(a)} a ${hora12(b)} ${sufijo(b)}`
     : `${hora12(a)} ${sufijo(a)} a ${hora12(b)} ${sufijo(b)}`;
 }
 
-/** "Sábado, 1:30 a 3:30 p. m." a partir del id. */
+/** "Sábado, 2:00 a 4:00 p. m." */
 export function etiquetaHorario(id: string): string {
   const [dia, inicio] = id.split("-") as [Dia, string];
-  return `${NOMBRE_DIA[dia]}, ${rangoHorario(inicio)}`;
+  return NOMBRE_DIA[dia] ? `${NOMBRE_DIA[dia]}, ${rangoHorario(inicio)}` : id;
+}
+
+/** Ordena ids de lunes a domingo y de la mañana a la tarde. */
+export function ordenarHorarios(ids: string[]): string[] {
+  const clave = (id: string) => {
+    const [dia, inicio] = id.split("-");
+    return DIAS.indexOf(dia as Dia) * 24 * 60 + aMinutos(inicio);
+  };
+  return [...ids].sort((x, y) => clave(x) - clave(y));
 }
 
 export const MODALIDADES = [

@@ -2,23 +2,16 @@
 
 import { useState } from "react";
 
-import {
-  DATOS_SEMINARIO,
-  DIAS,
-  MODALIDADES,
-  NOMBRE_DIA,
-  idHorario,
-  rangoHorario,
-  type SeminarioId,
-} from "@/lib/seminarios-confirmar";
+import SeminarioHorariosGrid from "@/components/seminario-horarios-grid";
+import { DATOS_SEMINARIO, MODALIDADES, type SeminarioId } from "@/lib/seminarios-confirmar";
 
 /* Confirmación de cupo en los seminarios, con la votación de horarios.
 
    La identidad y el seminario vienen firmados en el token; acá solo se pregunta
    si toma el cupo, la modalidad, los horarios y una nota. Con los horarios y la
    modalidad se arman las cohortes después: tres en el técnico, una de ellas
-   solo en línea. Por eso se pide marcar todos los horarios que sirvan y no
-   escoger uno. */
+   solo en línea. Por eso se pide marcar en la cuadrícula todas las sesiones
+   que sirvan y no escoger una. */
 
 const INPUT =
   "text-body-sm w-full rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 text-aisc-ink transition-colors placeholder:text-aisc-muted/60 focus:border-aisc-forest focus:outline-2 focus:outline-offset-[1px] focus:outline-aisc-forest/35";
@@ -28,21 +21,10 @@ const ERROR = "text-meta mt-2 block text-aisc-coral";
 const ENLACE = "text-aisc-forest transition-colors hover:text-aisc-coral";
 const CASILLA =
   "text-body-sm flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-4 py-4 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6";
-/* La casilla de cada horario es más chica: van varias por fila. */
-const FICHA =
-  "text-body-sm flex cursor-pointer items-center gap-2.5 rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6";
-
 const TOMA = [
   { id: "si", label: "Sí, tomo el cupo." },
   { id: "no", label: "No voy a poder esta vez." },
 ] as const;
-
-/* El lugar solo se anota en el fin de semana, que es donde cambia: el sábado
-   hay salón en los Andes y el domingo la universidad está cerrada. */
-const LUGAR_FIN_DE_SEMANA: Partial<Record<(typeof DIAS)[number], string>> = {
-  sab: "En los Andes",
-  dom: "En un café cerca de los Andes",
-};
 
 type Estado = "listo" | "enviando" | "enviado" | "falla";
 
@@ -67,12 +49,6 @@ export default function SeminarioConfirmForm({
 
   const tarjeta = "rounded-lg border border-aisc-ink bg-aisc-cream p-6 md:p-9 lg:p-11";
 
-  function alternar(id: string) {
-    setHorarios((previos) =>
-      previos.includes(id) ? previos.filter((h) => h !== id) : [...previos, id],
-    );
-  }
-
   function revisar(): boolean {
     const e: Record<string, string> = {};
     if (!toma) e.toma = "Dinos si tomas el cupo.";
@@ -83,7 +59,7 @@ export default function SeminarioConfirmForm({
          caso de quien no puede en ninguno y no debería quedarse sin confirmar. */
       if (horarios.length === 0 && !nota.trim())
         e.horarios =
-          "Marca al menos un horario. Si ninguno te sirve, cuéntanos abajo cuándo sí puedes.";
+          "Marca al menos una sesión. Si ninguna te sirve, cuéntanos abajo cuándo sí puedes.";
     }
     setErrores(e);
     return Object.keys(e).length === 0;
@@ -227,40 +203,16 @@ export default function SeminarioConfirmForm({
             <section>
               <h2 className={TITULO}>¿En qué horarios puedes?</h2>
               <span className={AYUDA}>
-                Marca todos los que te sirvan todas las semanas. Mientras más marques, más fácil es
-                armar las cohortes. Hora de Bogotá.
+                Cada casilla es una sesión de dos horas, hora de Bogotá. Haz clic o arrastra sobre
+                todas las que te sirvan todas las semanas: mientras más marques, más fácil es armar
+                las cohortes.
               </span>
-              <div className="mt-5 space-y-5">
-                {DIAS.filter((dia) => d.horarios[dia]?.length).map((dia) => (
-                  <div key={dia} className="md:flex md:items-start md:gap-6">
-                    <p className="text-body-sm font-medium text-aisc-ink md:w-36 md:shrink-0 md:pt-2.5">
-                      {NOMBRE_DIA[dia]}
-                      {/* El lugar solo le importa a quien puede ir en persona. */}
-                      {modalidad !== "en-linea" && LUGAR_FIN_DE_SEMANA[dia] ? (
-                        <span className="text-meta block font-normal text-aisc-muted">
-                          {LUGAR_FIN_DE_SEMANA[dia]}
-                        </span>
-                      ) : null}
-                    </p>
-                    <div className="mt-2 flex flex-wrap gap-2.5 md:mt-0">
-                      {(d.horarios[dia] ?? []).map((inicio) => {
-                        const id = idHorario(dia, inicio);
-                        return (
-                          <label className={FICHA} key={id} htmlFor={`h-${id}`}>
-                            <input
-                              id={`h-${id}`}
-                              type="checkbox"
-                              checked={horarios.includes(id)}
-                              onChange={() => alternar(id)}
-                              className="accent-aisc-forest"
-                            />
-                            <span>{rangoHorario(inicio)}</span>
-                          </label>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
+              <div className="mt-5">
+                <SeminarioHorariosGrid
+                  seminario={seminario}
+                  marcados={horarios}
+                  onChange={setHorarios}
+                />
               </div>
               {errores.horarios ? <span className={ERROR}>{errores.horarios}</span> : null}
             </section>
@@ -274,7 +226,7 @@ export default function SeminarioConfirmForm({
             </h2>
             <span className={AYUDA}>
               {toma === "si"
-                ? "Si ningún horario te sirve, cuéntanos cuándo sí puedes. También alergias para la comida o lo que necesites."
+                ? "Si ninguna sesión te sirve, cuéntanos cuándo sí puedes. También alergias para la comida o lo que necesites."
                 : "Opcional."}
             </span>
             <textarea

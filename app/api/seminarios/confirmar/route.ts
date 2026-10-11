@@ -6,6 +6,7 @@ import {
   confirmacionCerrada,
   etiquetaHorario,
   horariosValidos,
+  ordenarHorarios,
 } from "@/lib/seminarios-confirmar";
 
 export const runtime = "nodejs";
@@ -61,8 +62,10 @@ function resumen(r: Respuesta): string[] {
   if (!r.toma) return ["No toma el cupo.", r.nota ? `Nota: ${r.nota}` : ""];
   return [
     `Modalidad: ${NOMBRE_MODALIDAD[r.modalidad] ?? r.modalidad}`,
-    "Horarios:",
-    ...(r.horarios.length ? r.horarios.map((h) => `  ${etiquetaHorario(h)}`) : ["  (ninguno)"]),
+    "Sesiones en que puedes:",
+    ...(r.horarios.length
+      ? ordenarHorarios(r.horarios).map((h) => `  ${etiquetaHorario(h)}`)
+      : ["  (ninguna)"]),
     r.nota ? `Nota: ${r.nota}` : "",
   ];
 }
