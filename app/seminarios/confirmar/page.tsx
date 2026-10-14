@@ -5,9 +5,9 @@ import SiteHeader from "@/components/site-header";
 import { HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { verificarSeleccionada } from "@/lib/firma-seminario";
 import {
-  CIERRE_CONFIRMACION,
   DATOS_SEMINARIO,
   confirmacionCerrada,
+  textoCierre,
   type SeminarioId,
 } from "@/lib/seminarios-confirmar";
 
@@ -33,9 +33,11 @@ const RUTA: Record<SeminarioId, string> = {
 
 function Marco({
   seminario,
+  hasta,
   children,
 }: {
   seminario: SeminarioId | null;
+  hasta?: string;
   children: React.ReactNode;
 }) {
   const d = seminario ? DATOS_SEMINARIO[seminario] : null;
@@ -64,7 +66,7 @@ function Marco({
             </h1>
             {d ? (
               <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-                Responde antes {CIERRE_CONFIRMACION.replace(/^el /, "del ")}.
+                Responde antes {textoCierre(hasta).replace(/^el /, "del ")}.
               </p>
             ) : null}
           </div>
@@ -119,19 +121,19 @@ export default async function Confirmar({
     );
   }
 
-  if (confirmacionCerrada()) {
+  if (confirmacionCerrada(persona.hasta)) {
     return (
-      <Marco seminario={persona.seminario}>
+      <Marco seminario={persona.seminario} hasta={persona.hasta}>
         <Aviso
           titulo="La confirmación ya cerró."
-          texto={`Cerró ${CIERRE_CONFIRMACION} y las cohortes ya están armadas. Si todavía quieres tu cupo, escríbenos y miramos si queda espacio.`}
+          texto={`Cerró ${textoCierre(persona.hasta)} y las cohortes ya están armadas. Si todavía quieres tu cupo, escríbenos y miramos si queda espacio.`}
         />
       </Marco>
     );
   }
 
   return (
-    <Marco seminario={persona.seminario}>
+    <Marco seminario={persona.seminario} hasta={persona.hasta}>
       <SeminarioConfirmForm
         token={t ?? ""}
         nombre={persona.nombre}

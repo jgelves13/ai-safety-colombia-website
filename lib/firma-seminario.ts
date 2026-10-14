@@ -22,6 +22,8 @@ export type Seleccionada = {
   seminario: SeminarioId;
   /** Fuera de Bogotá: puede escoger la cohorte en línea. */
   remoto: boolean;
+  /** Cierre propio, en ISO, para quien entra después del cierre general. */
+  hasta?: string;
 };
 
 function base64url(buf: Buffer): string {
@@ -50,6 +52,7 @@ export function firmarSeleccionada(p: Seleccionada): string {
         c: p.correo.toLowerCase(),
         s: p.seminario,
         ...(p.remoto ? { v: 1 } : {}),
+        ...(p.hasta ? { h: p.hasta } : {}),
       }),
       "utf8",
     ),
@@ -75,12 +78,16 @@ export function verificarSeleccionada(token: string | undefined | null): Selecci
       c?: unknown;
       s?: unknown;
       v?: unknown;
+      h?: unknown;
     };
     const nombre = typeof datos.n === "string" ? datos.n.trim() : "";
     const correo = typeof datos.c === "string" ? datos.c.trim().toLowerCase() : "";
     const seminario = datos.s === "tecnico" || datos.s === "futuro" ? datos.s : null;
     if (!nombre || !correo.includes("@") || !seminario) return null;
-    return { nombre, correo, seminario, remoto: datos.v === 1 };
+    /* h va firmado como el resto, así que solo lo trae un enlace que hicimos
+       a propósito para alguien que entra tarde. */
+    const hasta = typeof datos.h === "string" && !Number.isNaN(Date.parse(datos.h)) ? datos.h : undefined;
+    return { nombre, correo, seminario, remoto: datos.v === 1, ...(hasta ? { hasta } : {}) };
   } catch {
     return null;
   }

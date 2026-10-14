@@ -23,8 +23,31 @@ export const SEMINARIOS: SeminarioId[] = ["tecnico", "futuro"];
 export const CIERRE_CONFIRMACION_ISO = "2026-10-14T23:59:59-05:00";
 export const CIERRE_CONFIRMACION = "el miércoles 14 de octubre a las 11:59 p. m.";
 
-export function confirmacionCerrada(): boolean {
-  return Date.now() > Date.parse(CIERRE_CONFIRMACION_ISO);
+/* Un enlace puede traer su propio cierre (h en el token) para quien
+   aceptamos después del cierre general; sin él rige el de todos. */
+export function confirmacionCerrada(hasta?: string): boolean {
+  return Date.now() > Date.parse(hasta ?? CIERRE_CONFIRMACION_ISO);
+}
+
+/** "el jueves 15 de octubre a las 12:00 m.", en hora de Bogotá. */
+export function textoCierre(hasta?: string): string {
+  if (!hasta) return CIERRE_CONFIRMACION;
+  const p = Object.fromEntries(
+    new Intl.DateTimeFormat("es-CO", {
+      timeZone: "America/Bogota",
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    })
+      .formatToParts(new Date(hasta))
+      .map((x) => [x.type, x.value]),
+  );
+  const mediodia = /p/i.test(p.dayPeriod ?? "") && Number(p.hour) === 12;
+  const sufijo = mediodia && p.minute === "00" ? "m." : /p/i.test(p.dayPeriod ?? "") ? "p. m." : "a. m.";
+  return `el ${p.weekday} ${p.day} de ${p.month} a las ${p.hour}:${p.minute} ${sufijo}`;
 }
 
 export const DIAS = ["lun", "mar", "mie", "jue", "vie", "sab", "dom"] as const;

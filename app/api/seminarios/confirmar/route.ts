@@ -209,7 +209,7 @@ export async function POST(req: Request) {
 
   if (texto(crudo.website, 100)) return NextResponse.json({ ok: true });
 
-  if (confirmacionCerrada()) return NextResponse.json({ error: "cerrado" }, { status: 410 });
+  if (confirmacionCerrada(persona.hasta)) return NextResponse.json({ error: "cerrado" }, { status: 410 });
 
   const toma = crudo.toma === true;
   const nota = texto(crudo.nota, 1200);
