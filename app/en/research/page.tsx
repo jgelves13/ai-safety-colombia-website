@@ -85,7 +85,7 @@ const PUBLICACIONES = [
    puntaje de los jurados. */
 const INCIDENTES: Premiado[] = [
   {
-    titulo: "CanaryForge",
+    titulo: "Detecting Sandbox Escape in LLM Agents: Time to Detection, and What the Measurement Hides",
     premio: "Top 10% of 235 submissions",
     ciudad: "Bogotá",
     equipo: "Sergio Alejandro Castaño Arcila, Angie Camila Gutierrez Trujillo, Juan Esteban Triviño Nieves, Sofia Rodriguez Chaparro and Daniel Felipe Diab Gonzalez",
@@ -215,7 +215,7 @@ const OTROS_INCIDENTES = [
    puede comprobar el premio y leer el trabajo completo. */
 const PREMIADOS: Premiado[] = [
   {
-    titulo: "ColDron",
+    titulo: "Gobernar el uso de drones hoy, las armas autónomas mañana",
     premio: "Latin America prize",
     ciudad: "Bogotá",
     equipo: "Leonardo Párraga, Angie Giraldo and Víctor Gelves",
