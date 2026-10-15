@@ -31,7 +31,11 @@ export type Evento = {
   portada?: string;
   /** La descripción que el evento tiene en Luma, en español, sin la logística. */
   descripcion?: Parrafo[] | null;
+  /** Las charlas que quedaron grabadas, una por video de YouTube. */
+  grabaciones?: Grabacion[];
 };
+
+export type Grabacion = { ponente: string; titulo: string; url: string };
 
 /** Un tramo de texto con su negrita y su enlace, como lo escribe el editor de Luma. */
 export type Tramo = { texto: string; negrita?: boolean; href?: string };
@@ -48,7 +52,10 @@ const EN_LINEA: Record<Idioma, string> = { es: "En línea", en: "Online", pt: "O
 
 /** Categoría y resumen de los eventos que vienen de Luma, por slug. Lo que no
  *  esté aquí entra como «Charla» sin resumen. */
-const LUMA_EXTRAS: Record<string, { tipo?: Tipo; resumen?: Record<Idioma, string>; destacado?: boolean; portada?: string }> = {
+const LUMA_EXTRAS: Record<
+  string,
+  { tipo?: Tipo; resumen?: Record<Idioma, string>; destacado?: boolean; portada?: string; grabaciones?: Grabacion[] }
+> = {
   z5akx0st: {
     tipo: "Charla",
     resumen: {
@@ -56,6 +63,11 @@ const LUMA_EXTRAS: Record<string, { tipo?: Tipo; resumen?: Record<Idioma, string
       en: "First research talk of the monthly series: AI agents, negotiation and oversight. Fifteen minutes of presentation, then questions.",
       pt: "Primeira palestra de pesquisa da série mensal: agentes de IA, negociação e supervisão. Quinze minutos de apresentação e depois perguntas.",
     },
+    grabaciones: [
+      { ponente: "Laura Gomezjurado", titulo: "El auge y la caída de las civilizaciones de agentes", url: "https://youtu.be/O4juiFbjyYk" },
+      { ponente: "Carlos Gorostiza Ibáñez", titulo: "Interacción estratégica entre agentes de IA", url: "https://youtu.be/9sxFfO_6v8k" },
+      { ponente: "Antonio Badilla-Olivas", titulo: "Control de IA cuando los agentes se encuentran", url: "https://youtu.be/bIYXcG1fDG8" },
+    ],
   },
   c36amemk: { destacado: true, portada: "/aisc/eventos/destacados/evaluation-awareness.jpg" },
   "8u5ymrfe": { destacado: true, portada: "/aisc/eventos/destacados/sl5.jpg" },
@@ -334,6 +346,7 @@ function desdeLuma(e: LumaEntry): Evento {
     destacado: extra.destacado ?? false,
     portada: extra.portada,
     descripcion: descripcion(e.descripcion),
+    grabaciones: extra.grabaciones,
   };
 }
 

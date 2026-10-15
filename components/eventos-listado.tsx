@@ -3,7 +3,7 @@
 import { type ReactNode, useEffect, useState } from "react";
 
 import { ACENTO, COLUMNA, FILETE, FOCO, LINK, SUMMARY, TENUE } from "@/components/eventos-estilos";
-import type { Parrafo } from "@/lib/eventos";
+import type { Grabacion, Parrafo } from "@/lib/eventos";
 
 /* La parte que se mueve de la página de eventos, calcada de la de MAIA
    (aialignment.mit.edu/events): el menú de categoría, la línea de tiempo con
@@ -32,6 +32,8 @@ export type EventoVista = {
   destacado: boolean;
   /** Recorte 16:9 que llena la caja del destacado; si no hay, va el flyer entero. */
   portada: string | null;
+  /** Los videos de las charlas, a la vista en la fila de un evento pasado. */
+  grabaciones: Grabacion[];
   /** «7 oct». */
   fecha: string;
   /** «18 ago 2026», para los destacados. */
@@ -60,6 +62,7 @@ export type TextosListado = {
   verEvento: string;
   /** «Pasados» en «Pasados · 2026». */
   anio: string;
+  grabaciones: string;
   ampliar: string;
   cerrar: string;
 };
@@ -121,6 +124,38 @@ function Asistencia({ evento, className = "" }: { evento: EventoVista; className
       </svg>
       <span>{evento.inscritos}</span>
     </span>
+  );
+}
+
+/* Las grabaciones de un evento pasado, una por charla: el botón de play de
+   YouTube, quién habla y de qué. Van fuera del detalle plegable porque son lo
+   que alguien viene a buscar de un evento que ya pasó. */
+function Grabaciones({ grabaciones, rotulo }: { grabaciones: Grabacion[]; rotulo: string }) {
+  return (
+    <div className="mt-3.5">
+      <p className={`text-[.75rem] font-semibold tracking-[.08em] uppercase ${TENUE}`}>{rotulo}</p>
+      <ul className="mt-1.5 space-y-0.5">
+        {grabaciones.map((g) => (
+          <li key={g.url}>
+            <a
+              href={g.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group/video -mx-2 flex items-start gap-2.5 rounded-md px-2 py-1.5 transition-colors hover:bg-aisc-sand/[.06] ${FOCO}`}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" className="mt-[.15rem] flex-none text-aisc-coral">
+                <rect x="1.5" y="4.5" width="21" height="15" rx="4.5" fill="currentColor" />
+                <path d="M10 8.75v6.5L15.5 12Z" fill="var(--color-aisc-night)" />
+              </svg>
+              <span className="min-w-0 text-[.95rem] leading-snug">
+                <span className="font-semibold text-aisc-sand transition-colors group-hover/video:text-[#8cc9a0]">{g.titulo}</span>
+                <span className={`block text-[.85rem] ${TENUE}`}>{g.ponente}</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -206,6 +241,7 @@ function Fila({
                 {t.inscribirse}
               </a>
             ) : null}
+            {!proximo && evento.grabaciones.length ? <Grabaciones grabaciones={evento.grabaciones} rotulo={t.grabaciones} /> : null}
           </div>
           {evento.imagen ? (
             <button
