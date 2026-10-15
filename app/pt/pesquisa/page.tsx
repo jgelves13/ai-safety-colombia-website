@@ -85,27 +85,128 @@ const PUBLICACIONES = [
 const INCIDENTES: Premiado[] = [
   {
     titulo: "CanaryForge",
-    premio: "Top 10% dos projetos",
+    premio: "Top 10% de 235 projetos",
     ciudad: "Bogotá",
     equipo: "Sergio Alejandro Castaño Arcila, Angie Camila Gutierrez Trujillo, Juan Esteban Triviño Nieves, Sofia Rodriguez Chaparro e Daniel Felipe Diab Gonzalez",
     body: "Mede quanto tempo leva para perceber que um agente saiu do seu sandbox. Em 183 de 197 vazamentos o dado saiu por nomes de arquivos e pastas, um canal que um proxy de rede não vê.",
     href: "https://apartresearch.com/project/canaryforge-xi71",
   },
   {
-    titulo: "Cooperar quando custa",
-    premio: "Top 10% dos projetos",
+    titulo: "Rare Once It Costs Anything: Costly Cooperation Between LLM Agents",
+    premio: "Top 10% de 235 projetos",
     ciudad: "Bogotá",
     equipo: "David José Daza Jaimes, Andres Felipe Mosquera Hernandez e Víctor Gelves",
     body: "Um experimento em que ajudar outro agente sempre custa a quem ajuda, para medir quando os modelos cooperam mesmo assim e quanto pesa o preço.",
     href: "https://apartresearch.com/project/rare-once-it-costs-anything-costly-cooperation-between-llm-agents-loz0",
   },
   {
-    titulo: "O efeito do certificado",
-    premio: "Top 10% dos projetos",
+    titulo: "The Certified Effect: Why Testing AI Agents at Onboarding Shifts Risk Instead of Reducing It",
+    premio: "Top 10% de 235 projetos",
     ciudad: "Bogotá",
     equipo: "Carlos Eduardo Sinuco Agudelo e Juan David Rengifo Traslaviña",
     body: "Simula o que acontece quando passar na avaliação de entrada dá mais permissões a um agente: o vazamento de dados sobe de duas a três vezes frente a avaliar sem premiar.",
     href: "https://apartresearch.com/project/the-certified-effect-why-testing-ai-agents-at-onboarding-shifts-risk-instead-of-reducing-it-9eyr",
+  },
+];
+
+/* Los otros proyectos del AI Incident Response Sprint con integrantes en
+   Colombia, ordenados por el puntaje de los jurados. */
+const OTROS_INCIDENTES = [
+  {
+    titulo: "Declared Isolation Is Not Verified Isolation",
+    ciudad: "Bogotá",
+    href: "https://apartresearch.com/project/declared-isolation-is-not-verified-isolation-uity",
+    equipo: "Marlon Naranjo e Carlos Andrés Romero Orduz",
+  },
+  {
+    titulo: "Containment Does Not Compose: Provenance Graphs for Tracing Collective Escape in Multi-Agent Systems",
+    ciudad: "Bogotá",
+    href: "https://apartresearch.com/project/containment-does-not-compose-provenance-graphs-for-tracing-collective-escape-in-multiagent-systems-pm4n",
+    equipo: "Camilo Andres Cuello Romero, Elkin Rafael Cuello Romero, Carlos Santiago Sandoval Casallas e David Fernando Adames Rondon",
+  },
+  {
+    titulo: "Sensing Disruption: Output Entropy as a Channel-Agnostic Monitor for LLM Agents",
+    ciudad: "Bogotá",
+    href: "https://apartresearch.com/project/sensing-disruption-output-entropy-as-a-channelagnostic-monitor-for-llm-agents-n2j2",
+    equipo: "Daniel Libardo Diaz Gonzalez, Roger Palomeque, Alejandro Sanchez Poveda, Sergio Montoya Ramirez e Juan Camilo Melgarejo Gómez",
+  },
+  {
+    titulo: "Verifiable Containment for AI Agents: An Attestation Schema a Third Party Can Check",
+    ciudad: "Bogotá",
+    href: "https://apartresearch.com/project/verifiable-containment-for-ai-agents-an-attestation-schema-a-third-party-can-check-sx4m",
+    equipo: "Santiago Contreras Bustos e Silvana Alvarez Basto",
+  },
+  {
+    titulo: "The Judge Does Not Want the Flag: Reward-Blind Action Gating Stopped a Larger Agent One Step Before the Environment Changed",
+    ciudad: "Bogotá",
+    href: "https://apartresearch.com/project/the-judge-does-not-want-the-flag-rewardblind-action-gating-stopped-a-larger-agent-one-step-before-the-environment-changed-og9v",
+    equipo: "Helen Stefany Penagos, Juan Esteban Leiva, Jhon Bedoya e Valentina Rodriguez",
+  },
+  {
+    titulo: "Observer-Cheat Test: Containment Adequacy under Opaque Intent for Guardrails-Off Agent Evaluations",
+    ciudad: "Bogotá",
+    href: "https://apartresearch.com/project/observercheat-test-containment-adequacy-under-opaque-intent-for-guardrailsoff-agent-evaluations-ook9",
+    equipo: "José Armando Son Rojas",
+  },
+  {
+    titulo: "Limitations in Existing Regulatory Mechanisms When Applied to Attacks by AI Agents",
+    ciudad: "Bogotá",
+    href: "https://apartresearch.com/project/limitations-in-existing-regulatory-mechanisms-when-applied-to-attacks-by-ai-agents-5olx",
+    equipo: "Juan Jeronimo Manriquez e Tomás Cifuentes Clavijo",
+  },
+  {
+    titulo: "AI in the First Person Micro Course",
+    ciudad: "Bogotá",
+    href: "https://apartresearch.com/project/ai-in-the-first-person-micro-course-jhxo",
+    equipo: "Erick Santos",
+  },
+  {
+    titulo: "Secure-maxxing.txt: A Way for a Website to Say No to a Misused Agent",
+    ciudad: "Bogotá",
+    href: "https://apartresearch.com/project/securemaxxingtxt-a-way-for-a-website-to-say-no-to-a-misused-agent-m23i",
+    equipo: "María José Beltrán Losada, Jairo Torregrosa e Maryury Alexandra Muñoz Burbano",
+  },
+  {
+    titulo: "Convention for Early Notification of AI Incidents",
+    ciudad: "Bogotá",
+    href: "https://apartresearch.com/project/convention-for-early-notification-of-ai-incidents-x055",
+    equipo: "Tomas Antolinez e Mariana Zuluaga Abril",
+  },
+  {
+    titulo: "BUDGET-NLA: Risk-Weighted Adaptive Monitoring for Pre-Harm Sabotage Containment",
+    ciudad: "Cali",
+    href: "https://apartresearch.com/project/budgetnla-riskweighted-adaptive-monitoring-for-preharm-sabotage-containment-x08q",
+    equipo: "Juan Felipe Plata Barbosa",
+  },
+  {
+    titulo: "IntegrityGym: Does the Watcher Change the Agent? External Flight Recording, Evaluation Integrity, and the Observer Effect in Autonomous Cyber Agents",
+    ciudad: "Bogotá",
+    href: "https://apartresearch.com/project/integritygym-does-the-watcher-change-the-agent-external-flight-recording-evaluation-integrity-and-the-observer-effect-in-autonomous-cyber-agents-k1ez",
+    equipo: "Alejandro Ortiz Tique",
+  },
+  {
+    titulo: "Reading an Agent’s Report Before It Exists: A Pre-Execution Monitor at the ReAct Commit Point, and Why Most of Its Signal Was an Artifact",
+    ciudad: "Cali",
+    href: "https://apartresearch.com/project/reading-an-agents-report-before-it-exists-a-preexecution-monitor-at-the-react-commit-point-and-why-most-of-its-signal-was-an-artifac-6zdr",
+    equipo: "Juan Camilo Meléndez Torres e Gilber Alexis Corrales Gallego",
+  },
+  {
+    titulo: "The Agent Incident Registry: A Compliance Verifiability Schema and an Article 91 Instrument for Autonomous Agent Incidents",
+    ciudad: "Bogotá",
+    href: "https://apartresearch.com/project/the-agent-incident-registry-a-compliance-verifiability-schema-and-an-article-91-instrument-for-autonomous-agent-incidents1-h6ew",
+    equipo: "Angie Paola Giraldo Ramirez",
+  },
+  {
+    titulo: "Minimum Viable Cross-Border Response Protocol for Agentic AI Incidents (MVCRP)",
+    ciudad: "Colombia",
+    href: "https://apartresearch.com/project/minimum-viable-crossborder-response-protocol-for-agentic-ai-incidents-mvcrp-qsj8",
+    equipo: "Andrés Mogollón e Isabel Salazar",
+  },
+  {
+    titulo: "Evaluación holística y multi-metodológica de propuestas de seguridad en IA",
+    ciudad: "Bogotá",
+    href: "https://apartresearch.com/project/evaluacin-holstica-y-multimetodolgica-de-propuestas-de-seguridad-en-ia-j9pf",
+    equipo: "Mateo Acosta",
   },
 ];
 
@@ -121,7 +222,7 @@ const PREMIADOS: Premiado[] = [
     href: "https://apartresearch.com/project/coldron-lj2w",
   },
   {
-    titulo: "Identidade colombiana nas representações internas de um modelo",
+    titulo: "Probing Latent Colombian Identity Inferences in Qwen2.5-7B with Natural Language Autoencoders",
     premio: "Prêmio da América Latina",
     ciudad: "Cali",
     equipo:
@@ -130,7 +231,7 @@ const PREMIADOS: Premiado[] = [
     href: "https://apartresearch.com/project/probing-latent-colombian-identity-inferences-in-qwen257b-with-natural-language-autoencoders-mucf",
   },
   {
-    titulo: "Que passos do raciocínio produzem o viés",
+    titulo: "Thought Anchors for Social Bias: Which Reasoning Steps Matter in Extended Thinking LLMs on Latin American Scenarios",
     premio: "Prêmio da América Latina",
     ciudad: "Bogotá",
     equipo: "Andres Felipe Mosquera Hernandez",
@@ -138,7 +239,7 @@ const PREMIADOS: Premiado[] = [
     href: "https://apartresearch.com/project/thought-anchors-for-social-bias-which-reasoning-steps-matter-in-extended-thinking-llms-on-latin-american-scenarios-27ti",
   },
   {
-    titulo: "Por que os agentes obedecem?",
+    titulo: "¿Por qué los agentes obedecen? La dirección de rechazo se debilita en formato agéntico",
     premio: "Menção honrosa",
     ciudad: "Bogotá",
     equipo: "Helen Stefany Penagos e Juan Esteban Leiva",
@@ -146,7 +247,7 @@ const PREMIADOS: Premiado[] = [
     href: "https://apartresearch.com/project/por-qu-los-agentes-obedecen-la-direccin-de-rechazo-se-debilita-en-formato-agntico-ux70",
   },
   {
-    titulo: "JusticIA",
+    titulo: "JusticIA: A Counterfactual Benchmark for Auditing Contextual Biases in Language Models for Transitional Justice",
     premio: "Menção honrosa",
     ciudad: "Bogotá",
     equipo: "Lina Gomez, Brenda Barahona e Ernesto Duarte",
@@ -159,19 +260,19 @@ const PREMIADOS: Premiado[] = [
    en el catalogo publico de Apart. */
 const OTROS = [
   {
-    titulo: "Marco ético para IA aplicada à língua guna do Panamá",
+    titulo: "Marco ético para IA aplicada a la preservación lingüística guna de Panamá",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/marco-tico-para-ia-aplicada-a-la-preservacin-lingstica-guna-de-panam-6uxw",
     equipo: "Ana María González Aldana, Kelvin Alvarado e Mariana Zuluaga Abril",
   },
   {
-    titulo: "Governance Drift Evaluation Framework",
+    titulo: "Governance Drift Evaluation Framework (GDEF)",
     ciudad: "Colômbia",
     href: "https://apartresearch.com/project/governance-drift-evaluation-framework-gdef-vfzj",
     equipo: "Andrés Mogollón, Juan Manuel Cortes Jimenez, Oscar Poveda, Devesh Sawant e Liliana Isabel Salazar",
   },
   {
-    titulo: "Sistema de dois classificadores para segurança em modelos de linguagem",
+    titulo: "MnM: Real-Time Behavioral Detection of Prompt Injection via Reasoning Stream Monitoring",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/dualclassifier-system-for-llm-security-s491",
     equipo: "Nicolás David Galindo, Daniel Libardo Diaz Gonzalez, Juan Jacobo Izquierdo Becerra e David Andrés Ramírez",
@@ -183,13 +284,13 @@ const OTROS = [
     equipo: "Mongui Rogers",
   },
   {
-    titulo: "Contestabilidade algorítmica no Estado colombiano",
+    titulo: "Contestabilidad algorítmica en el Estado colombiano: un canal de objeción asistido por IA",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/contestabilidad-algortmica-en-el-estado-colombiano-un-canal-de-objecin-asistido-por-ia-lbsm",
     equipo: "Emely Condor e Federico Perez",
   },
   {
-    titulo: "Comércio agêntico e proteção ao consumidor",
+    titulo: "Agentic Commerce and Consumer Protection: Emerging Risks and Regulatory Gaps",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/agentic-commerce-and-consumer-protection-emerging-risks-and-regulatory-gaps-be7b",
     equipo: "Francely Carreño, Sofía Botía e Vanessa Reyes",
@@ -207,31 +308,31 @@ const OTROS = [
     equipo: "Yoel Alfonso",
   },
   {
-    titulo: "Mapeamento de ferramentas de IA nos call centers colombianos",
+    titulo: "Mapeo de herramientas (IA) en contextos laborales: el caso de los call centers en Colombia",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/mapeo-de-herramientas-ia-en-contextos-laborales-el-caso-de-los-call-centers-en-colombia-k1kk",
     equipo: "Daniel Bravo",
   },
   {
-    titulo: "Confía-CO",
+    titulo: "Confía-CO: A Reliability Evaluation for an AI Customer-Service Assistant Operating in Colombian Spanish",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/confaco-a-reliability-evaluation-for-an-ai-customerservice-assistant-operating-in-colombian-spanish-vfxt",
     equipo: "Marlon Naranjo",
   },
   {
-    titulo: "Avaliação de uso responsável de IA em pequenas empresas latino-americanas",
+    titulo: "Herramienta de evaluación y recomendación para la promoción de uso responsable de IA en pymes latinoamericanas",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/herramienta-de-evaluacin-y-recomendacin-para-la-promocin-de-uso-responsable-de-ia-en-pymes-latinoamericanas-1gvb",
     equipo: "Diana Marcela Daza Jaimes, David José Daza Jaimes, Juan Camilo Medina Moreno, Luis Carlos Ordoñez Montenegro e Ángela Pinilla Parra",
   },
   {
-    titulo: "Jailbreaks estruturais em espanhol",
+    titulo: "Beyond English: Assessing the Robustness of LLM Safety Mechanisms Against Structural Jailbreaks in Spanish",
     ciudad: "Cali",
     href: "https://apartresearch.com/project/beyond-english-assessing-the-robustness-of-llm-safety-mechanisms-against-structural-jailbreaks-in-spanish-s4zk",
     equipo: "Jonathan Narvaez",
   },
   {
-    titulo: "Guardian LATAM",
+    titulo: "Guardian LATAM: Early Detection of Hallucination Risk in Spanish-Speaking Multi-Agent AI Systems Using Consensus Geometry",
     ciudad: "Armenia",
     href: "https://apartresearch.com/project/guardian-latam-early-detection-of-hallucination-risk-in-spanishspeaking-multiagent-ai-systems-using-consensus-geometry-5lzw",
     equipo: "Edwin Hernan Cedeño Vargas",
@@ -356,9 +457,32 @@ export default function Pesquisa() {
           >
             AI Incident Response Sprint · setembro de 2026
           </a>
-          <div className="mt-4 mb-12 md:mb-14">
+          <div className="mt-4">
             <PremiadosHackathon premiados={INCIDENTES} />
           </div>
+
+          <details className="mt-6 mb-12 md:mb-14">
+            <summary className="font-display inline-block cursor-pointer list-none text-[1.05rem] font-semibold text-aisc-forest transition-colors hover:text-aisc-coral [&::-webkit-details-marker]:hidden">
+              Ver os outros {OTROS_INCIDENTES.length} projetos colombianos desta edição
+            </summary>
+            <ul className="mt-4 grid grid-cols-1 gap-x-10 md:grid-cols-2">
+              {OTROS_INCIDENTES.map((o) => (
+                <li key={o.href} className="border-t border-aisc-forest-deep/15">
+                  <a
+                    className="flex flex-col gap-1 py-3.5 transition-colors hover:text-aisc-forest"
+                    href={o.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="text-body-sm">{o.titulo}</span>
+                    <span className="text-meta text-aisc-muted">
+                      {o.equipo} · {o.ciudad}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
 
           <a
             className="text-meta text-aisc-muted transition-colors hover:text-aisc-forest"
