@@ -3,6 +3,7 @@ import Link from "next/link";
 import CtaPanel from "@/components/cta-panel";
 import SiteFooter from "@/components/site-footer";
 import PremiadosHackathon, { type Premiado } from "@/components/premiados-hackathon";
+import OtrosProyectos from "@/components/otros-proyectos";
 import SiteHeader from "@/components/site-header";
 import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { alternativas } from "@/lib/idiomas";
@@ -460,28 +461,11 @@ export default function Investigacion() {
             <PremiadosHackathon premiados={INCIDENTES} />
           </div>
 
-          <details className="mt-6 mb-12 md:mb-14">
-            <summary className="font-display inline-block cursor-pointer list-none text-[1.05rem] font-semibold text-aisc-forest transition-colors hover:text-aisc-coral [&::-webkit-details-marker]:hidden">
-              Ver los otros {OTROS_INCIDENTES.length} proyectos colombianos de esta edición
-            </summary>
-            <ul className="mt-4 grid grid-cols-1 gap-x-10 md:grid-cols-2">
-              {OTROS_INCIDENTES.map((o) => (
-                <li key={o.href} className="border-t border-aisc-forest-deep/15">
-                  <a
-                    className="flex flex-col gap-1 py-3.5 transition-colors hover:text-aisc-forest"
-                    href={o.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="text-body-sm">{o.titulo}</span>
-                    <span className="text-meta text-aisc-muted">
-                      {o.equipo} · {o.ciudad}
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </details>
+          <OtrosProyectos
+            className="mt-6 mb-12 md:mb-14"
+            etiqueta={`Ver los otros ${OTROS_INCIDENTES.length} proyectos colombianos de esta edición`}
+            proyectos={OTROS_INCIDENTES}
+          />
 
           <a
             className="text-meta text-aisc-muted transition-colors hover:text-aisc-forest"
@@ -495,28 +479,11 @@ export default function Investigacion() {
             <PremiadosHackathon premiados={PREMIADOS} />
           </div>
 
-          <details className="mt-6">
-            <summary className="font-display inline-block cursor-pointer list-none text-[1.05rem] font-semibold text-aisc-forest transition-colors hover:text-aisc-coral [&::-webkit-details-marker]:hidden">
-              Ver los otros {OTROS.length} proyectos colombianos de esta edición
-            </summary>
-            <ul className="mt-4 grid grid-cols-1 gap-x-10 md:grid-cols-2">
-              {OTROS.map((o) => (
-                <li key={o.href} className="border-t border-aisc-forest-deep/15">
-                  <a
-                    className="flex flex-col gap-1 py-3.5 transition-colors hover:text-aisc-forest"
-                    href={o.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="text-body-sm">{o.titulo}</span>
-                    <span className="text-meta text-aisc-muted">
-                      {o.equipo} · {o.ciudad}
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </details>
+          <OtrosProyectos
+            className="mt-6"
+            etiqueta={`Ver los otros ${OTROS.length} proyectos colombianos de esta edición`}
+            proyectos={OTROS}
+          />
         </div>
       </section>
 
