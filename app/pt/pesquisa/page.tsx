@@ -79,6 +79,36 @@ const PUBLICACIONES = [
   },
 ];
 
+/* AI Incident Response Sprint, septiembre de 2026. Ningun equipo colombiano
+   quedo entre los premiados; van los tres que quedaron en el 10 % mejor por el
+   puntaje de los jurados. */
+const INCIDENTES: Premiado[] = [
+  {
+    titulo: "CanaryForge",
+    premio: "Top 10% dos projetos",
+    ciudad: "Bogotá",
+    equipo: "Sergio Alejandro Castaño Arcila, Angie Camila Gutierrez Trujillo, Juan Esteban Triviño Nieves, Sofia Rodriguez Chaparro e Daniel Felipe Diab Gonzalez",
+    body: "Mede quanto tempo leva para perceber que um agente saiu do seu sandbox. Em 183 de 197 vazamentos o dado saiu por nomes de arquivos e pastas, um canal que um proxy de rede não vê.",
+    href: "https://apartresearch.com/project/canaryforge-xi71",
+  },
+  {
+    titulo: "Cooperar quando custa",
+    premio: "Top 10% dos projetos",
+    ciudad: "Bogotá",
+    equipo: "David José Daza Jaimes, Andres Felipe Mosquera Hernandez e Víctor Gelves",
+    body: "Um experimento em que ajudar outro agente sempre custa a quem ajuda, para medir quando os modelos cooperam mesmo assim e quanto pesa o preço.",
+    href: "https://apartresearch.com/project/rare-once-it-costs-anything-costly-cooperation-between-llm-agents-loz0",
+  },
+  {
+    titulo: "O efeito do certificado",
+    premio: "Top 10% dos projetos",
+    ciudad: "Bogotá",
+    equipo: "Carlos Eduardo Sinuco Agudelo e Juan David Rengifo Traslaviña",
+    body: "Simula o que acontece quando passar na avaliação de entrada dá mais permissões a um agente: o vazamento de dados sobe de duas a três vezes frente a avaliar sem premiar.",
+    href: "https://apartresearch.com/project/the-certified-effect-why-testing-ai-agents-at-onboarding-shifts-risk-instead-of-reducing-it-9eyr",
+  },
+];
+
 /* Lo premiado. Cada tarjeta enlaza al reporte publico en Apart, que es donde se
    puede comprobar el premio y leer el trabajo completo. */
 const PREMIADOS: Premiado[] = [
@@ -316,6 +346,18 @@ export default function Pesquisa() {
               </a>
               , com o relatório publicado e a avaliação de jurados externos.
             </p>
+          </div>
+
+          <a
+            className="text-meta text-aisc-muted transition-colors hover:text-aisc-forest"
+            href="https://apartresearch.com/sprints/ai-incident-response-sprint-2026-09-11-to-2026-09-13"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            AI Incident Response Sprint · setembro de 2026
+          </a>
+          <div className="mt-4 mb-12 md:mb-14">
+            <PremiadosHackathon premiados={INCIDENTES} />
           </div>
 
           <a
