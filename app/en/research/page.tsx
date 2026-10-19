@@ -81,7 +81,7 @@ const PUBLICACIONES = [
 ];
 
 /* AI Incident Response Sprint, septiembre de 2026. Ningun equipo colombiano
-   quedo entre los premiados; van los cuatro que quedaron en el 10 % mejor por el
+   quedo entre los premiados; van los tres que quedaron en el 10 % mejor por el
    puntaje de los jurados. */
 const INCIDENTES: Premiado[] = [
   {
@@ -91,14 +91,6 @@ const INCIDENTES: Premiado[] = [
     equipo: "Sergio Castaño, Angie Gutierrez, Juan Triviño, Sofia Rodriguez and Daniel Diab",
     body: "Measures how long it takes to notice that an agent has left its sandbox. In 183 of 197 leaks the data left through file and folder names, a channel a network proxy cannot see.",
     href: "https://apartresearch.com/project/canaryforge-xi71",
-  },
-  {
-    titulo: "Rare Once It Costs Anything: Costly Cooperation Between LLM Agents",
-    premio: "Top 10% of 235 submissions",
-    ciudad: "Bogotá",
-    equipo: "David Daza, Andres Mosquera and Víctor Gelves",
-    body: "An experiment in which helping another agent always costs the helper, to measure when models cooperate anyway and how much the price matters.",
-    href: "https://apartresearch.com/project/rare-once-it-costs-anything-costly-cooperation-between-llm-agents-loz0",
   },
   {
     titulo: "The Certified Effect: Why Testing AI Agents at Onboarding Shifts Risk Instead of Reducing It",
@@ -121,6 +113,12 @@ const INCIDENTES: Premiado[] = [
 /* Los otros proyectos del AI Incident Response Sprint con integrantes en
    Colombia, ordenados por el puntaje de los jurados. */
 const OTROS_INCIDENTES = [
+  {
+    titulo: "Rare Once It Costs Anything: Costly Cooperation Between LLM Agents",
+    ciudad: "Bogotá",
+    href: "https://apartresearch.com/project/rare-once-it-costs-anything-costly-cooperation-between-llm-agents-loz0",
+    equipo: "David José Daza Jaimes, Andres Felipe Mosquera Hernandez and Víctor Gelves",
+  },
   {
     titulo: "Declared Isolation Is Not Verified Isolation",
     ciudad: "Bogotá",
