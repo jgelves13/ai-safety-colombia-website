@@ -81,7 +81,7 @@ const PUBLICACIONES = [
 ];
 
 /* AI Incident Response Sprint, septiembre de 2026. Ningun equipo colombiano
-   quedo entre los premiados; van los tres que quedaron en el 10 % mejor por el
+   quedo entre los premiados; van los cuatro que quedaron en el 10 % mejor por el
    puntaje de los jurados. */
 const INCIDENTES: Premiado[] = [
   {
@@ -108,6 +108,14 @@ const INCIDENTES: Premiado[] = [
     body: "Simulates what happens when passing the onboarding evaluation gives an agent more privileges: data exfiltration rises two to three times compared with evaluating without a reward.",
     href: "https://apartresearch.com/project/the-certified-effect-why-testing-ai-agents-at-onboarding-shifts-risk-instead-of-reducing-it-9eyr",
   },
+  {
+    titulo: "Containment Does Not Compose: Provenance Graphs for Tracing Collective Escape in Multi-Agent Systems",
+    premio: "Top 10% of 235 submissions",
+    ciudad: "Bogotá",
+    equipo: "Camilo Andres Cuello Romero, Elkin Rafael Cuello Romero, Carlos Santiago Sandoval Casallas and David Fernando Adames Rondon",
+    body: "Every agent passes the audit of its own container, yet together they assemble a credential none of them holds: 48 escapes in 95 episodes. A provenance graph traces each one back to the containers and messages behind it.",
+    href: "https://apartresearch.com/project/containment-does-not-compose-provenance-graphs-for-tracing-collective-escape-in-multiagent-systems-pm4n",
+  },
 ];
 
 /* Los otros proyectos del AI Incident Response Sprint con integrantes en
@@ -118,12 +126,6 @@ const OTROS_INCIDENTES = [
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/declared-isolation-is-not-verified-isolation-uity",
     equipo: "Marlon Naranjo and Carlos Andrés Romero Orduz",
-  },
-  {
-    titulo: "Containment Does Not Compose: Provenance Graphs for Tracing Collective Escape in Multi-Agent Systems",
-    ciudad: "Bogotá",
-    href: "https://apartresearch.com/project/containment-does-not-compose-provenance-graphs-for-tracing-collective-escape-in-multiagent-systems-pm4n",
-    equipo: "Camilo Andres Cuello Romero, Elkin Rafael Cuello Romero, Carlos Santiago Sandoval Casallas and David Fernando Adames Rondon",
   },
   {
     titulo: "Sensing Disruption: Output Entropy as a Channel-Agnostic Monitor for LLM Agents",
