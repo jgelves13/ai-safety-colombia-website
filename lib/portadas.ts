@@ -18,11 +18,13 @@ export const PORTADAS: Record<string, string> = {
     "/aisc/hackathon/agentes-obedecen.jpg",
   "https://apartresearch.com/project/justicia-a-counterfactual-benchmark-for-auditing-contextual-biases-in-language-models-for-transitional-justice-jjvl":
     "/aisc/hackathon/justicia.jpg",
-  /* Los tres del AI Incident Response Sprint de septiembre de 2026 que quedaron en
+  /* Los cuatro del AI Incident Response Sprint de septiembre de 2026 que quedaron en
      el 10 % mejor. */
   "https://apartresearch.com/project/canaryforge-xi71": "/aisc/hackathon/canaryforge.jpg",
   "https://apartresearch.com/project/rare-once-it-costs-anything-costly-cooperation-between-llm-agents-loz0":
     "/aisc/hackathon/cooperacion-costosa.jpg",
   "https://apartresearch.com/project/the-certified-effect-why-testing-ai-agents-at-onboarding-shifts-risk-instead-of-reducing-it-9eyr":
     "/aisc/hackathon/efecto-certificado.jpg",
+  "https://apartresearch.com/project/containment-does-not-compose-provenance-graphs-for-tracing-collective-escape-in-multiagent-systems-pm4n":
+    "/aisc/hackathon/procedencia.jpg",
 };

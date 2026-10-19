@@ -40,7 +40,7 @@ export default function PremiadosHackathon({ premiados }: { premiados: Premiado[
               {p.titulo}
             </h3>
             <p className="text-body-sm mt-1.5 font-semibold text-aisc-ink">{p.premio}</p>
-            <p className="text-meta mt-auto line-clamp-2 pt-4 text-aisc-muted" title={p.equipo}>
+            <p className="mt-auto pt-4 text-[0.8125rem] leading-[1.35] text-aisc-muted">
               {p.equipo}
             </p>
           </a>
