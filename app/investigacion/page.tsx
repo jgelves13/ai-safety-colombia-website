@@ -80,32 +80,56 @@ const PUBLICACIONES = [
 ];
 
 /* AI Incident Response Sprint, septiembre de 2026. Ningun equipo colombiano
-   quedo entre los premiados; van los tres que quedaron en el 10 % mejor por el
-   puntaje de los jurados. */
+   quedo entre los premiados; van los seis que quedaron en el 25 % mejor segun las
+   bandas oficiales de Apart (19 oct 2026), y solo uno en el 10 %. */
 const INCIDENTES: Premiado[] = [
   {
-    titulo: "Detecting Sandbox Escape in LLM Agents: Time to Detection, and What the Measurement Hides",
+    titulo: "Containment Does Not Compose: Provenance Graphs for Tracing Collective Escape in Multi-Agent Systems",
     premio: "Top 10 % de 235 proyectos",
+    ciudad: "Bogotá",
+    equipo: "Camilo Cuello, Elkin Cuello, Carlos Sandoval y David Adames",
+    body: "Cada agente pasa la auditoría de su contenedor, pero entre todos arman una credencial que ninguno tiene completa: 48 escapes en 95 episodios. Un grafo de procedencia rastrea de qué contenedores y mensajes salió cada uno.",
+    href: "https://apartresearch.com/project/containment-does-not-compose-provenance-graphs-for-tracing-collective-escape-in-multiagent-systems-pm4n",
+  },
+  {
+    titulo: "Detecting Sandbox Escape in LLM Agents: Time to Detection, and What the Measurement Hides",
+    premio: "Top 25 % de 235 proyectos",
     ciudad: "Bogotá",
     equipo: "Sergio Castaño, Angie Gutierrez, Juan Triviño, Sofia Rodriguez y Daniel Diab",
     body: "Mide cuánto tarda en detectarse que un agente se salió de su sandbox. En 183 de 197 fugas el dato salió por nombres de archivos y carpetas, un canal que un proxy de red no ve.",
     href: "https://apartresearch.com/project/canaryforge-xi71",
   },
   {
+    titulo: "Rare Once It Costs Anything: Costly Cooperation Between LLM Agents",
+    premio: "Top 25 % de 235 proyectos",
+    ciudad: "Bogotá",
+    equipo: "David Daza, Andres Mosquera y Víctor Gelves",
+    body: "Un experimento en el que ayudar a otro agente siempre le cuesta al que ayuda, para medir cuándo los modelos cooperan de todas formas y cuánto pesa el precio.",
+    href: "https://apartresearch.com/project/rare-once-it-costs-anything-costly-cooperation-between-llm-agents-loz0",
+  },
+  {
     titulo: "The Certified Effect: Why Testing AI Agents at Onboarding Shifts Risk Instead of Reducing It",
-    premio: "Top 10 % de 235 proyectos",
+    premio: "Top 25 % de 235 proyectos",
     ciudad: "Bogotá",
     equipo: "Carlos Sinuco y Juan Rengifo",
     body: "Simula qué pasa cuando aprobar la evaluación de entrada le da más permisos a un agente: la fuga de datos sube entre dos y tres veces frente a evaluar sin premiar.",
     href: "https://apartresearch.com/project/the-certified-effect-why-testing-ai-agents-at-onboarding-shifts-risk-instead-of-reducing-it-9eyr",
   },
   {
-    titulo: "Containment Does Not Compose: Provenance Graphs for Tracing Collective Escape in Multi-Agent Systems",
-    premio: "Top 10 % de 235 proyectos",
+    titulo: "Sensing Disruption: Output Entropy as a Channel-Agnostic Monitor for LLM Agents",
+    premio: "Top 25 % de 235 proyectos",
     ciudad: "Bogotá",
-    equipo: "Camilo Cuello, Elkin Cuello, Carlos Sandoval y David Adames",
-    body: "Cada agente pasa la auditoría de su contenedor, pero entre todos arman una credencial que ninguno tiene completa: 48 escapes en 95 episodios. Un grafo de procedencia rastrea de qué contenedores y mensajes salió cada uno.",
-    href: "https://apartresearch.com/project/containment-does-not-compose-provenance-graphs-for-tracing-collective-escape-in-multiagent-systems-pm4n",
+    equipo: "Daniel Diaz, Roger Palomeque, Alejandro Sanchez, Sergio Montoya y Juan Melgarejo",
+    body: "Mide la entropía de lo que responde un agente para notar cuándo le llega texto que no debía, sin leer sus registros ni su razonamiento. En 539 corridas con tres modelos, la señal funcionó en algunos y no en otros.",
+    href: "https://apartresearch.com/project/sensing-disruption-output-entropy-as-a-channelagnostic-monitor-for-llm-agents-n2j2",
+  },
+  {
+    titulo: "Verifiable Containment for AI Agents: An Attestation Schema a Third Party Can Check",
+    premio: "Top 25 % de 235 proyectos",
+    ciudad: "Bogotá",
+    equipo: "Santiago Contreras y Silvana Alvarez",
+    body: "Propone una declaración firmada de lo que se le permitió al entorno de un agente, que un tercero puede revisar sin entrar a la red del laboratorio. En el incidente de OpenAI y Hugging Face no evita la fuga, pero acota cuánto tiempo pasa sin que nadie de afuera la vea.",
+    href: "https://apartresearch.com/project/verifiable-containment-for-ai-agents-an-attestation-schema-a-third-party-can-check-sx4m",
   },
 ];
 
@@ -113,28 +137,10 @@ const INCIDENTES: Premiado[] = [
    Colombia, ordenados por el puntaje de los jurados. */
 const OTROS_INCIDENTES = [
   {
-    titulo: "Rare Once It Costs Anything: Costly Cooperation Between LLM Agents",
-    ciudad: "Bogotá",
-    href: "https://apartresearch.com/project/rare-once-it-costs-anything-costly-cooperation-between-llm-agents-loz0",
-    equipo: "David José Daza Jaimes, Andres Felipe Mosquera Hernandez y Víctor Gelves",
-  },
-  {
     titulo: "Declared Isolation Is Not Verified Isolation",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/declared-isolation-is-not-verified-isolation-uity",
     equipo: "Marlon Naranjo y Carlos Andrés Romero Orduz",
-  },
-  {
-    titulo: "Sensing Disruption: Output Entropy as a Channel-Agnostic Monitor for LLM Agents",
-    ciudad: "Bogotá",
-    href: "https://apartresearch.com/project/sensing-disruption-output-entropy-as-a-channelagnostic-monitor-for-llm-agents-n2j2",
-    equipo: "Daniel Libardo Diaz Gonzalez, Roger Palomeque, Alejandro Sanchez Poveda, Sergio Montoya Ramirez y Juan Camilo Melgarejo Gómez",
-  },
-  {
-    titulo: "Verifiable Containment for AI Agents: An Attestation Schema a Third Party Can Check",
-    ciudad: "Bogotá",
-    href: "https://apartresearch.com/project/verifiable-containment-for-ai-agents-an-attestation-schema-a-third-party-can-check-sx4m",
-    equipo: "Santiago Contreras Bustos y Silvana Alvarez Basto",
   },
   {
     titulo: "The Judge Does Not Want the Flag: Reward-Blind Action Gating Stopped a Larger Agent One Step Before the Environment Changed",
@@ -155,12 +161,6 @@ const OTROS_INCIDENTES = [
     equipo: "Juan Jeronimo Manriquez y Tomás Cifuentes Clavijo",
   },
   {
-    titulo: "AI in the First Person Micro Course",
-    ciudad: "Bogotá",
-    href: "https://apartresearch.com/project/ai-in-the-first-person-micro-course-jhxo",
-    equipo: "Erick Santos",
-  },
-  {
     titulo: "Secure-maxxing.txt: A Way for a Website to Say No to a Misused Agent",
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/securemaxxingtxt-a-way-for-a-website-to-say-no-to-a-misused-agent-m23i",
@@ -171,6 +171,12 @@ const OTROS_INCIDENTES = [
     ciudad: "Bogotá",
     href: "https://apartresearch.com/project/convention-for-early-notification-of-ai-incidents-x055",
     equipo: "Tomas Antolinez y Mariana Zuluaga Abril",
+  },
+  {
+    titulo: "AI in the First Person Micro Course",
+    ciudad: "Bogotá",
+    href: "https://apartresearch.com/project/ai-in-the-first-person-micro-course-jhxo",
+    equipo: "Erick Santos",
   },
   {
     titulo: "BUDGET-NLA: Risk-Weighted Adaptive Monitoring for Pre-Harm Sabotage Containment",
