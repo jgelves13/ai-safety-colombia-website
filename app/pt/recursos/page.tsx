@@ -354,7 +354,7 @@ export default function Recursos() {
       >
         <a
           className={CTA_LINK_PRIMARY}
-          href="https://chat.whatsapp.com/DfWuuPlzqmIFN1tRtl57SB"
+          href="https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF"
           target="_blank"
           rel="noopener noreferrer"
         >

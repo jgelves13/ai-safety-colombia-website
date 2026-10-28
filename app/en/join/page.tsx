@@ -36,7 +36,7 @@ const PASOS: PasoUnete[] = [
         cuerpo: "A reading every two weeks on how to oversee an AI system that acts on its own. You can come just to listen.",
         datos: "Every other Friday at 6:30 pm Colombia time, online, one hour. Free, no requirements.",
         cta: "Join the reading group",
-        href: "https://chat.whatsapp.com/DfWuuPlzqmIFN1tRtl57SB",
+        href: "https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF",
         externo: true,
       },
       {

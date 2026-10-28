@@ -36,7 +36,7 @@ const PASOS: PasoUnete[] = [
         cuerpo: "Una lectura cada quince días sobre cómo se supervisa a un sistema de IA que actúa por su cuenta. Puedes venir solo a escuchar.",
         datos: "Un viernes de por medio, a las 6:30 p. m., en línea, una hora. Gratis y sin requisitos.",
         cta: "Entrar al grupo de lectura",
-        href: "https://chat.whatsapp.com/DfWuuPlzqmIFN1tRtl57SB",
+        href: "https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF",
         externo: true,
       },
       {
