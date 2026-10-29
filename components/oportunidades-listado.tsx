@@ -34,7 +34,8 @@ export type TextosListado = {
   facetas: Record<Faceta, string>;
   opciones: Record<string, string>;
   limpiar: string;
-  conteo: (n: number, vista: "upcoming" | "recurring") => string;
+  /** Singular y plural, con {n} en lugar del número. */
+  conteo: Record<"upcoming" | "recurring", [string, string]>;
   grupos: Record<"open" | "notYetOpen" | "closed", string>;
   sinResultados: string;
   sinProgramas: Record<"upcoming" | "recurring", string>;
@@ -256,7 +257,7 @@ export default function OportunidadesListado({
           </button>
         )}
       </div>
-      <p className={`mt-4 text-[0.95rem] ${TENUE}`}>{t.conteo(filtrados.length, vista)}</p>
+      <p className={`mt-4 text-[0.95rem] ${TENUE}`}>{t.conteo[vista][filtrados.length === 1 ? 0 : 1].replace("{n}", String(filtrados.length))}</p>
 
       {todos.length === 0 ? (
         <p className={`mt-8 ${TENUE}`}>{t.sinProgramas[vista]}</p>
