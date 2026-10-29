@@ -1,14 +1,16 @@
-import { COLUMNA, FILETE, LINK, TENUE } from "@/components/eventos-estilos";
-import OportunidadesListado, { type Faceta, type ProgramaVista, type TextosListado } from "@/components/oportunidades-listado";
+import { FOCO, LINK, TENUE } from "@/components/eventos-estilos";
+import { ANCHO, Icono as IconoSvg, type Icono } from "@/components/oportunidades-iconos";
+import OportunidadesListado, { type Detalle, type Faceta, type ProgramaVista, type TextosListado } from "@/components/oportunidades-listado";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import type { Idioma } from "@/lib/idiomas";
 import { FUENTE, type Programa, actualizado, cargarOportunidades } from "@/lib/oportunidades";
+import traducciones from "@/lib/oportunidades-traducciones.json";
 
 /* La página de oportunidades en los tres idiomas, calcada de
    aisafety.com/training: mismas secciones, filtros, tarjetas y orden, con los
-   colores y letras del sitio. Los programas se quedan en inglés, como llegan de
-   AISafety.com; los rótulos, filtros y fechas van en el idioma de la página. */
+   colores y letras del sitio. Todo va en el idioma de la página, también las
+   descripciones de los programas, traducidas aparte. */
 
 const LOCALES: Record<Idioma, string> = { es: "es-CO", en: "en-GB", pt: "pt-BR" };
 
@@ -27,12 +29,13 @@ const AIRTABLE = {
 type Textos = {
   titulo: string;
   descripcion: string;
-  intro: string;
+  intro: [string, string];
   eventos: [string, string];
-  boletin: string;
+  boletin: [string, string];
   credito: (hace: string) => [string, string];
   fechas: {
     empieza: (x: string) => string;
+    el: (x: string) => string;
     meses: (n: number) => string;
     anios: (n: number) => string;
     semanas: (n: number) => string;
@@ -57,12 +60,13 @@ export const TEXTOS: Record<Idioma, Textos> = {
     titulo: "Oportunidades",
     descripcion:
       "Becas, bootcamps y cursos de seguridad de la IA en todo el mundo, en línea y presenciales, con sus fechas y convocatorias. Listado de AISafety.com, sincronizado automáticamente.",
-    intro: "Becas, bootcamps y cursos de seguridad de la IA para formarte y construir tu carrera. En línea y presenciales.",
+    intro: ["Becas, bootcamps y cursos", " de seguridad de la IA para formarte y construir tu carrera. En línea y presenciales."],
     eventos: ["Para conferencias, charlas, talleres y más, ve a ", "Eventos"],
-    boletin: "Recibe cada semana un resumen de los programas nuevos en AISafety.com",
+    boletin: ["Recibe cada semana un resumen de los programas nuevos en AISafety.com.", "Suscríbete en AISafety.com"],
     credito: (hace) => [`Actualizado ${hace} · Listado de `, ", sincronizado automáticamente."],
     fechas: {
       empieza: (x) => `Empieza ${x}`,
+      el: (x) => `el ${x}`,
       meses: (n) => plural(n, "mes", "meses"),
       anios: (n) => plural(n, "año", "años"),
       semanas: (n) => plural(n, "semana", "semanas"),
@@ -75,7 +79,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
       hasta: (x) => `Postula hasta el ${x}`,
       cerradas: "Convocatoria cerrada",
     },
-    destacado: (tipo) => (tipo ? `Destacado · ${tipo}` : "Programa destacado"),
+    destacado: (tipo) =>
+      ({ Fellowship: "Beca destacada", Course: "Curso destacado", Bootcamp: "Bootcamp destacado", "Immersive workshop": "Taller inmersivo destacado" })[tipo ?? ""] ??
+      "Programa destacado",
     contribuir: {
       titulo: "Contribuye a este listado",
       agregar: "Agregar un programa",
@@ -132,12 +138,13 @@ export const TEXTOS: Record<Idioma, Textos> = {
     titulo: "Opportunities",
     descripcion:
       "AI safety fellowships, bootcamps and courses worldwide, online and in person, with dates and application deadlines. Listing from AISafety.com, synced automatically.",
-    intro: "Fellowships, bootcamps, and courses in AI safety to upskill and build career capital. Both online and in person.",
+    intro: ["Fellowships, bootcamps, and courses", " in AI safety to upskill and build career capital. Both online and in person."],
     eventos: ["For conferences, talks, workshops, and more go to ", "Events"],
-    boletin: "Get a weekly summary of all new training programs on AISafety.com",
+    boletin: ["Get a weekly summary of all new training programs on AISafety.com.", "Subscribe on AISafety.com"],
     credito: (hace) => [`Updated ${hace} · Listing from `, ", synced automatically."],
     fechas: {
       empieza: (x) => `Starts ${x}`,
+      el: (x) => `on ${x}`,
       meses: (n) => plural(n, "month", "months"),
       anios: (n) => plural(n, "year", "years"),
       semanas: (n) => plural(n, "week", "weeks"),
@@ -150,7 +157,7 @@ export const TEXTOS: Record<Idioma, Textos> = {
       hasta: (x) => `Apply by ${x}`,
       cerradas: "Applications closed",
     },
-    destacado: (tipo) => (tipo ? `Featured ${tipo}` : "Featured program"),
+    destacado: (tipo) => `Featured ${(tipo ?? "program").toLowerCase()}`,
     contribuir: {
       titulo: "Contribute to this page",
       agregar: "Add a program",
@@ -182,12 +189,13 @@ export const TEXTOS: Record<Idioma, Textos> = {
     titulo: "Oportunidades",
     descripcion:
       "Bolsas, bootcamps e cursos de segurança da IA no mundo todo, online e presenciais, com datas e prazos de inscrição. Lista do AISafety.com, sincronizada automaticamente.",
-    intro: "Bolsas, bootcamps e cursos de segurança da IA para se capacitar e construir sua carreira. Online e presenciais.",
+    intro: ["Bolsas, bootcamps e cursos", " de segurança da IA para se capacitar e construir sua carreira. Online e presenciais."],
     eventos: ["Para conferências, palestras, oficinas e mais, vá para ", "Eventos"],
-    boletin: "Receba toda semana um resumo dos novos programas no AISafety.com",
+    boletin: ["Receba toda semana um resumo dos novos programas no AISafety.com.", "Inscreva-se no AISafety.com"],
     credito: (hace) => [`Atualizado ${hace} · Lista do `, ", sincronizada automaticamente."],
     fechas: {
       empieza: (x) => `Começa ${x}`,
+      el: (x) => `em ${x}`,
       meses: (n) => plural(n, "mês", "meses"),
       anios: (n) => plural(n, "ano", "anos"),
       semanas: (n) => plural(n, "semana", "semanas"),
@@ -200,7 +208,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
       hasta: (x) => `Inscrições até ${x}`,
       cerradas: "Inscrições encerradas",
     },
-    destacado: (tipo) => (tipo ? `Destaque · ${tipo}` : "Programa em destaque"),
+    destacado: (tipo) =>
+      ({ Fellowship: "Bolsa em destaque", Course: "Curso em destaque", Bootcamp: "Bootcamp em destaque", "Immersive workshop": "Oficina imersiva em destaque" })[tipo ?? ""] ??
+      "Programa em destaque",
     contribuir: {
       titulo: "Contribua com esta lista",
       agregar: "Adicionar um programa",
@@ -263,6 +273,113 @@ function fecha(iso: string, idioma: Idioma) {
     .format(d)
     .replace(/ de /g, " ")
     .replace(/\./g, "");
+}
+
+/* Los datos llegan en inglés; lo que se puede traducir sin ayuda (meses,
+   duraciones, países y ciudades) se traduce acá, y las descripciones salen de
+   oportunidades-traducciones.json mientras su inglés siga siendo el mismo. Un
+   programa nuevo o reescrito en AISafety.com se ve en inglés hasta que se
+   vuelva a traducir. */
+const MESES_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const MESES: Record<"es" | "pt", string[]> = {
+  es: ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
+  pt: ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"],
+};
+
+const DESCRIPCIONES = traducciones as Record<string, { en: string; es?: string; pt?: string }>;
+
+function descripcion(p: Programa, idioma: Idioma) {
+  if (idioma === "en" || !p.description) return p.description;
+  const t = DESCRIPCIONES[p.id];
+  return t && t.en === p.description && t[idioma] ? t[idioma]! : p.description;
+}
+
+/* «January 2027», «in April 2027», «early 2027», «beginning of October 2026»: ya con su preposición, «en enero de 2027». */
+function inicioAprox(x: string, idioma: Idioma) {
+  if (idioma === "en") return x;
+  const meses = MESES[idioma];
+  const mes = (m: string) => {
+    const i = MESES_EN.findIndex((n) => n.toLowerCase() === m.toLowerCase());
+    return i < 0 ? null : meses[i];
+  };
+  const en = idioma === "es" ? "en" : "em";
+  const s = x.trim();
+  let m = s.match(/^(?:in\s+)?([A-Za-z]+)\s+(\d{4})$/i);
+  if (m && mes(m[1])) return `${en} ${mes(m[1])} de ${m[2]}`;
+  m = s.match(/^(?:in\s+)?(\d{4})$/i);
+  if (m) return `${en} ${m[1]}`;
+  m = s.match(/^(early|beginning of|start of|mid|middle of|late|end of)\s+(?:([A-Za-z]+)\s+)?(\d{4})$/i);
+  if (m && (!m[2] || mes(m[2]))) {
+    const cuando = /^(early|beginning|start)/i.test(m[1]) ? 0 : /^mid/i.test(m[1]) ? 1 : 2;
+    const giro = (idioma === "es" ? ["a principios de", "a mediados de", "a finales de"] : ["no início de", "em meados de", "no fim de"])[cuando];
+    return `${giro} ${m[2] ? `${mes(m[2])} de ` : ""}${m[3]}`;
+  }
+  return s.replace(/\b[A-Z][a-z]+\b/g, (n) => mes(n) ?? n).replace(/^in\s+/i, `${en} `);
+}
+
+/* «4 weeks», «1–5 weeks», «Up to 2 years». */
+const UNIDADES: Record<"es" | "pt", [RegExp, string][]> = {
+  es: [
+    [/\bUp to\b/i, "Hasta"],
+    [/\bweeks\b/g, "semanas"],
+    [/\bweek\b/g, "semana"],
+    [/\bmonths\b/g, "meses"],
+    [/\bmonth\b/g, "mes"],
+    [/\byears\b/g, "años"],
+    [/\byear\b/g, "año"],
+    [/\bdays\b/g, "días"],
+    [/\bday\b/g, "día"],
+  ],
+  pt: [
+    [/\bUp to\b/i, "Até"],
+    [/\bweeks\b/g, "semanas"],
+    [/\bweek\b/g, "semana"],
+    [/\bmonths\b/g, "meses"],
+    [/\bmonth\b/g, "mês"],
+    [/\byears\b/g, "anos"],
+    [/\byear\b/g, "ano"],
+    [/\bdays\b/g, "dias"],
+    [/\bday\b/g, "dia"],
+  ],
+};
+
+function largoTipico(x: string, idioma: Idioma) {
+  return idioma === "en" ? x : UNIDADES[idioma].reduce((s, [re, por]) => s.replace(re, por), x);
+}
+
+/* Los lugares, de lo más largo a lo más corto para que «New York» no se lea como «New». */
+const LUGARES: [RegExp, string, string][] = [
+  [/\bNew city each cohort\b/i, "una ciudad distinta en cada cohorte", "uma cidade diferente a cada turma"],
+  [/\bNew country each year\b/i, "un país distinto cada año", "um país diferente a cada ano"],
+  [/\bWashington D\.C\./g, "Washington D. C.", "Washington, D.C."],
+  [/\bBay Area\b/g, "Área de la Bahía", "Área da Baía"],
+  [/\bNew York\b/g, "Nueva York", "Nova York"],
+  [/\bCape Town\b/g, "Ciudad del Cabo", "Cidade do Cabo"],
+  [/\bSouth Africa\b/g, "Sudáfrica", "África do Sul"],
+  [/\bCzech Republic\b/g, "República Checa", "República Tcheca"],
+  [/\bNew Zealand\b/g, "Nueva Zelanda", "Nova Zelândia"],
+  [/\bLondon\b/g, "Londres", "Londres"],
+  [/\bPrague\b/g, "Praga", "Praga"],
+  [/\bBrussels\b/g, "Bruselas", "Bruxelas"],
+  [/\bBerlin\b/g, "Berlín", "Berlim"],
+  [/\bBeijing\b/g, "Pekín", "Pequim"],
+  [/\bGermany\b/g, "Alemania", "Alemanha"],
+  [/\bBelgium\b/g, "Bélgica", "Bélgica"],
+  [/\bFrance\b/g, "Francia", "França"],
+  [/\bAustralia\b/g, "Australia", "Austrália"],
+  [/\bAsia\b/g, "Asia", "Ásia"],
+  [/\bUSA\b/g, "EE. UU.", "EUA"],
+  [/\bUK\b/g, "Reino Unido", "Reino Unido"],
+  [/\bOnline\b/g, "en línea", "online"],
+  [/\bVarious\b/g, "varios lugares", "vários lugares"],
+  [/\+ more\b/g, "+ más", "+ outros"],
+];
+
+function lugar(x: string, idioma: Idioma) {
+  if (idioma === "en") return x;
+  const i = idioma === "es" ? 1 : 2;
+  const s = LUGARES.reduce((s, fila) => s.replace(fila[0], fila[i]), x).replace(/\s*&\s*/g, " · ");
+  return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
 /* La duración a partir de las fechas, con las mismas reglas de AISafety.com. */
@@ -328,6 +445,8 @@ function ordenarProximos(ps: Programa[]) {
   });
 }
 
+const ICONO_NIVEL: Record<string, Detalle["icono"]> = { Low: "nivelBajo", Mid: "nivelMedio", High: "nivelAlto" };
+
 function vista(p: Programa, idioma: Idioma, t: Textos, proximo: boolean): ProgramaVista {
   const o = t.listado.opciones;
   const tr = (x: string) => o[x] ?? x;
@@ -338,20 +457,21 @@ function vista(p: Programa, idioma: Idioma, t: Textos, proximo: boolean): Progra
 
   let fechas: string | null = null;
   if (proximo) {
-    const empieza = p.startDateApprox || (p.startDate ? fecha(p.startDate, idioma) : null);
+    const empieza = p.startDateApprox ? inicioAprox(p.startDateApprox, idioma) : p.startDate ? t.fechas.el(fecha(p.startDate, idioma)) : null;
     const largo = duracion(p.startDate, p.endDate, t);
     fechas = [largo, empieza ? t.fechas.empieza(empieza) : null].filter(Boolean).join(" · ") || null;
-  } else fechas = p.typicalLength || null;
+  } else fechas = p.typicalLength ? largoTipico(p.typicalLength, idioma) : null;
 
-  const meta = [
-    p.stipend && tr(p.stipend),
-    p.timeCommitment && tr(p.timeCommitment),
-    p.entryBar && t.meta.nivel(minus(p.entryBar)),
-    p.focus.length ? t.meta.enfoque(p.focus.map(minus).join(", ")) : null,
+  const detalles: (Detalle | null)[] = [
+    p.stipend ? { icono: p.stipend === "No stipend" ? "sinDinero" : "dinero", texto: tr(p.stipend) } : null,
+    p.timeCommitment ? { icono: p.timeCommitment === "Part-time" ? "relojMedio" : "reloj", texto: tr(p.timeCommitment) } : null,
+    p.entryBar ? { icono: ICONO_NIVEL[p.entryBar] ?? "nivelMedio", texto: t.meta.nivel(minus(p.entryBar)) } : null,
+    p.focus.length ? { icono: "enfoque", texto: t.meta.enfoque(p.focus.map(minus).join(", ")) } : null,
   ];
   if (proximo) {
-    if (p.notYetOpen) meta.push(t.meta.aunNo);
-    else if (p.applicationsClose) meta.push(p.applicationStatus === "Open" ? t.meta.hasta(fecha(p.applicationsClose, idioma)) : t.meta.cerradas);
+    if (p.notYetOpen) detalles.push({ icono: "papel", texto: t.meta.aunNo });
+    else if (p.applicationsClose)
+      detalles.push({ icono: "papel", texto: p.applicationStatus === "Open" ? t.meta.hasta(fecha(p.applicationsClose, idioma)) : t.meta.cerradas });
   }
 
   const valores: Record<Faceta, string[]> = {
@@ -367,15 +487,15 @@ function vista(p: Programa, idioma: Idioma, t: Textos, proximo: boolean): Progra
   return {
     id: p.id,
     name: p.name,
-    description: p.description,
+    description: descripcion(p, idioma),
     href: conUtm(p.url),
     logo: p.logo,
     types: p.type,
-    destacado: destaca ? t.destacado(p.type[0] ? minus(p.type[0]) : null) : null,
+    destacado: destaca ? t.destacado(p.type[0] ?? null) : null,
     grupo: proximo ? grupo(p) : null,
-    lugar: p.mode === "Online" ? tr("Online") : p.location || null,
+    lugar: p.mode === "Online" ? tr("Online") : p.location ? lugar(p.location, idioma) : null,
     fechas,
-    meta: meta.filter((x): x is string => !!x),
+    detalles: detalles.filter((x): x is Detalle => !!x),
     valores,
   };
 }
@@ -385,6 +505,18 @@ function hace(iso: string | null, idioma: Idioma, ahora: Date) {
   if (!iso) return "";
   const dias = Math.max(0, Math.floor((ahora.getTime() - Date.parse(iso.slice(0, 10))) / 864e5));
   return new Intl.RelativeTimeFormat(LOCALES[idioma], { numeric: "auto" }).format(-dias, "day");
+}
+
+/* Un renglón de la caja de contribuir: el ícono en su círculo y el texto. */
+function Contribuir({ href, icono, children }: { href: string; icono: Icono; children: React.ReactNode }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={`flex items-center gap-2.5 ${LINK} ${FOCO}`}>
+      <span className="grid size-6 flex-none place-items-center rounded-full bg-[#8cc9a0]/12">
+        <IconoSvg nombre={icono} className="size-3.5" />
+      </span>
+      {children}
+    </a>
+  );
 }
 
 export default async function OportunidadesPagina({ idioma, active }: { idioma: Idioma; active: string }) {
@@ -403,37 +535,68 @@ export default async function OportunidadesPagina({ idioma, active }: { idioma: 
   const proximos = ordenarProximos(datos.programs);
   const recurrentes = datos.recurring;
 
+  const lateral = (
+    <>
+      <div className="rounded-2xl border border-aisc-sand/15 px-4 pt-3 pb-4 text-[13px] font-light">
+        <p className={TENUE}>{t.contribuir.titulo}</p>
+        <div className="mt-3 grid gap-2.5">
+          <Contribuir href={AIRTABLE.agregar.upcoming} icono="mas">
+            {t.contribuir.agregar}
+          </Contribuir>
+          <Contribuir href={AIRTABLE.corregir} icono="lapiz">
+            {t.contribuir.corregir}
+          </Contribuir>
+        </div>
+      </div>
+      <div className="mt-4 rounded-2xl border border-aisc-sand/15 px-4 py-3 text-[13px] font-light">
+        <Contribuir href={AIRTABLE.datos.upcoming} icono="tabla">
+          <span>
+            {t.contribuir.datos} <span className={TENUE}>{t.contribuir.pasados}</span>
+          </span>
+        </Contribuir>
+      </div>
+    </>
+  );
+
   return (
     <main className="aisc-page min-h-screen" style={{ background: "var(--color-aisc-night)", color: "var(--color-aisc-sand)" }}>
-      <section className="relative bg-aisc-night pt-32 pb-10 md:pt-40">
+      <section className="relative bg-aisc-night pt-32 pb-14 md:pt-40">
         <SiteHeader active={active} />
-        <div className={COLUMNA}>
-          <h1 className="font-display text-[clamp(2.75rem,7vw,4rem)] leading-[1.05] font-semibold">{t.titulo}</h1>
-          <p className={`mt-3 text-[0.9rem] ${TENUE}`}>
+        <div className={ANCHO}>
+          <h1 className="font-display text-[clamp(3rem,7vw,4.5rem)] leading-[1.15] font-semibold">{t.titulo}</h1>
+          <p className={`mt-2 mb-10 text-[15px] font-light ${TENUE}`}>
             {antes}
             <a className={LINK} href={FUENTE} target="_blank" rel="noopener noreferrer">
               AISafety.com
             </a>
             {despues}
           </p>
-          <p className="mt-5 max-w-[640px] text-[1.05rem] leading-relaxed text-aisc-sand/85">{t.intro}</p>
-          <p className={`mt-2 text-[1rem] ${TENUE}`}>
-            {t.eventos[0]}
-            <a className={LINK} href={eventos}>
-              {t.eventos[1]} →
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-14">
+            <div className="lg:col-span-8">
+              <p className="max-w-[690px] text-[clamp(1.375rem,2.6vw,1.75rem)] leading-[1.2] font-light">
+                <span className="text-[#8cc9a0]">{t.intro[0]}</span>
+                {t.intro[1]}
+              </p>
+              <p className={`mt-5 text-[15px] font-light ${TENUE}`}>
+                {t.eventos[0]}
+                <a className={LINK} href={eventos}>
+                  {t.eventos[1]} →
+                </a>
+              </p>
+            </div>
+            <a
+              href={FUENTE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`block rounded-2xl border border-[#8cc9a0]/30 p-4 text-[15px] font-light transition-colors hover:border-[#8cc9a0]/70 lg:col-span-4 ${FOCO}`}
+            >
+              <span className="block">{t.boletin[0]}</span>
+              <span className="mt-3 flex items-center justify-between rounded-full border border-[#1f4d32] bg-[#143620] px-4 py-2 text-[13px] font-semibold text-[#8cc9a0]">
+                {t.boletin[1]}
+                <span aria-hidden>→</span>
+              </span>
             </a>
-          </p>
-          <a
-            href={FUENTE}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`mt-6 inline-flex items-center gap-2 rounded-xl border ${FILETE} bg-white/[0.03] px-4 py-3 text-[0.95rem] transition-colors hover:border-[#8cc9a0]/60`}
-          >
-            <span>{t.boletin}</span>
-            <span className="text-[#8cc9a0]" aria-hidden>
-              →
-            </span>
-          </a>
+          </div>
         </div>
       </section>
 
@@ -447,39 +610,8 @@ export default async function OportunidadesPagina({ idioma, active }: { idioma: 
           recurrentes,
         )}
         t={t.listado}
+        lateral={lateral}
       />
-
-      <aside className={`${COLUMNA} pb-24`}>
-        <div className={`rounded-2xl border ${FILETE} p-6`}>
-          <h2 className="font-display text-[1.3rem] font-semibold">{t.contribuir.titulo}</h2>
-          <ul className="mt-3 grid gap-2 text-[0.95rem]">
-            <li>
-              <a className={LINK} href={AIRTABLE.agregar.upcoming} target="_blank" rel="noopener noreferrer">
-                {t.contribuir.agregar} ({t.listado.pestanas.upcoming.toLowerCase()})
-              </a>
-              {" · "}
-              <a className={LINK} href={AIRTABLE.agregar.recurring} target="_blank" rel="noopener noreferrer">
-                {t.listado.pestanas.recurring.toLowerCase()}
-              </a>
-            </li>
-            <li>
-              <a className={LINK} href={AIRTABLE.corregir} target="_blank" rel="noopener noreferrer">
-                {t.contribuir.corregir}
-              </a>
-            </li>
-            <li>
-              <a className={LINK} href={AIRTABLE.datos.upcoming} target="_blank" rel="noopener noreferrer">
-                {t.contribuir.datos} ({t.listado.pestanas.upcoming.toLowerCase()})
-              </a>{" "}
-              <span className={TENUE}>{t.contribuir.pasados}</span>
-              {" · "}
-              <a className={LINK} href={AIRTABLE.datos.recurring} target="_blank" rel="noopener noreferrer">
-                {t.listado.pestanas.recurring.toLowerCase()}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </aside>
       <SiteFooter idioma={idioma} />
     </main>
   );

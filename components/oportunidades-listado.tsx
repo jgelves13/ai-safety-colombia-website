@@ -2,15 +2,20 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import { ACENTO, FILETE, FOCO, LINK, TENUE } from "@/components/eventos-estilos";
+import { FOCO, LINK, TENUE } from "@/components/eventos-estilos";
+import { ANCHO, Icono } from "@/components/oportunidades-iconos";
 
 /* La parte que se mueve de /oportunidades, calcada del listado de
-   aisafety.com/training: pestañas Próximos/Recurrentes, los destacados arriba,
-   filtros de selección múltiple con su conteo (O dentro de cada faceta, Y entre
-   facetas) y la lista agrupada por estado de la convocatoria. Los textos de cada
-   tarjeta llegan ya escritos desde el servidor para no romper la hidratación. */
+   aisafety.com/training: pestañas Próximos/Recurrentes, los dos destacados
+   arriba, y debajo una columna ancha con los filtros y las tarjetas en dos
+   columnas, más una lateral angosta que llega desde el servidor. Filtros de
+   selección múltiple con su conteo (O dentro de cada faceta, Y entre facetas) y
+   la lista agrupada por estado de la convocatoria. Los textos de cada tarjeta
+   llegan ya escritos desde el servidor para no romper la hidratación. */
 
 export type Faceta = "applications" | "type" | "focus" | "entryBar" | "stipend" | "length" | "location";
+
+export type Detalle = { icono: Icono; texto: string };
 
 export type ProgramaVista = {
   id: string;
@@ -19,12 +24,12 @@ export type ProgramaVista = {
   href: string | null;
   logo: string | null;
   types: string[];
-  /** «Featured fellowship», o null si no va en los destacados. */
+  /** «Beca destacada», o null si no va en los destacados. */
   destacado: string | null;
   grupo: "open" | "notYetOpen" | "closed" | null;
   lugar: string | null;
   fechas: string | null;
-  meta: string[];
+  detalles: Detalle[];
   /** Valores con los que filtra cada faceta. */
   valores: Record<Faceta, string[]>;
 };
@@ -52,14 +57,17 @@ const OPCIONES: Record<Faceta, string[]> = {
   location: ["Online", "In person", "Hybrid"],
 };
 
-/* El color de cada tipo, del verde al coral del sitio, en lugar del naranja, rosa y azul de AISafety.com. */
+/* La etiqueta de cada tipo con su tinte, como las de AISafety.com pero con los
+   colores del sitio: coral, durazno, verde, azul y arena. */
 const COLOR_TIPO: Record<string, string> = {
-  Fellowship: "text-aisc-coral",
-  Bootcamp: "text-[#f0b27a]",
-  Course: "text-[#8cc9a0]",
-  "Immersive workshop": "text-[#9cc7d8]",
-  Other: "text-aisc-sand/80",
+  Fellowship: "text-[#f08a78] bg-[#e5604d]/12 border-[#e5604d]/30",
+  Bootcamp: "text-[#f0b27a] bg-[#f0b27a]/12 border-[#f0b27a]/30",
+  Course: "text-[#8cc9a0] bg-[#8cc9a0]/12 border-[#8cc9a0]/30",
+  "Immersive workshop": "text-[#9cc7d8] bg-[#9cc7d8]/12 border-[#9cc7d8]/30",
+  Other: "text-aisc-sand/80 bg-aisc-sand/8 border-aisc-sand/25",
 };
+
+const PILDORA ="inline-flex items-center gap-1.5 rounded-full border px-2 text-[13px] leading-[22px] font-semibold";
 
 type Vista = "upcoming" | "recurring";
 type Seleccion = Partial<Record<Faceta, string[]>>;
@@ -71,47 +79,69 @@ function pasa(p: ProgramaVista, sel: Seleccion, salvo?: Faceta) {
 function Tarjeta({ p, grande, t }: { p: ProgramaVista; grande?: boolean; t: TextosListado }) {
   const cuerpo = (
     <>
-      <div className="flex flex-wrap items-center gap-2 text-[0.8rem] font-semibold">
+      {grande && (
+        <svg viewBox="0 0 16 24" aria-hidden className="absolute top-0 right-10 h-6 w-4 fill-aisc-coral">
+          <path d="M0 0h16v24l-8-6-8 6z" />
+        </svg>
+      )}
+      <div className="flex flex-wrap gap-2">
         {grande ? (
-          <span className={`${ACENTO} uppercase tracking-[0.08em]`}>{p.destacado}</span>
+          <span className={`${PILDORA} border-aisc-coral/30 bg-aisc-coral/12 text-[#f08a78]`}>
+            <span className="size-1.5 rounded-full bg-current" aria-hidden />
+            {p.destacado}
+          </span>
         ) : (
           p.types.map((tipo) => (
-            <span key={tipo} className={`inline-flex items-center gap-1.5 rounded-full border ${FILETE} px-2.5 py-0.5 ${COLOR_TIPO[tipo] ?? COLOR_TIPO.Other}`}>
+            <span key={tipo} className={`${PILDORA} ${COLOR_TIPO[tipo] ?? COLOR_TIPO.Other}`}>
               <span className="size-1.5 rounded-full bg-current" aria-hidden />
               {t.opciones[tipo] ?? tipo}
             </span>
           ))
         )}
       </div>
-      <div className="mt-3 flex items-start gap-4">
+      <div className="flex items-start gap-4 py-6">
         {p.logo && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={p.logo} alt="" width={48} height={48} loading="lazy" className="size-12 flex-none rounded-lg bg-white object-contain" />
+          <img src={p.logo} alt="" width={64} height={64} loading="lazy" className="size-16 flex-none rounded-[4px] bg-white object-contain" />
         )}
         <div className="min-w-0">
-          <h3 className={`font-display font-semibold leading-snug ${grande ? "text-[1.35rem]" : "text-[1.15rem]"}`}>{p.name}</h3>
+          <h3 className="text-[22px] leading-[1.25] font-light text-aisc-sand">{p.name}</h3>
           {(p.lugar || p.fechas) && (
-            <p className={`mt-1 text-[0.9rem] ${TENUE}`}>
-              {[p.lugar, p.fechas].filter(Boolean).map((x, i) => (
-                <span key={i} className="block">
-                  {x}
-                </span>
-              ))}
-            </p>
+            <ul className={`mt-2 grid gap-1 text-[13px] leading-[1.4] font-light ${TENUE}`}>
+              {p.lugar && (
+                <li className="flex items-start gap-2">
+                  <Icono nombre="lugar" />
+                  {p.lugar}
+                </li>
+              )}
+              {p.fechas && (
+                <li className="flex items-start gap-2">
+                  <Icono nombre="fecha" />
+                  {p.fechas}
+                </li>
+              )}
+            </ul>
           )}
         </div>
       </div>
-      {p.description && <p className="mt-3 text-[0.95rem] leading-relaxed text-aisc-sand/85">{p.description}</p>}
-      {p.meta.length > 0 && (
-        <p className={`mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[0.85rem] ${ACENTO}`}>
-          {p.meta.map((m) => (
-            <span key={m}>{m}</span>
+      {p.description && (
+        <p className={`pb-6 font-light text-aisc-sand ${grande ? "text-[17px] leading-[1.5]" : "text-[15px] leading-[1.5]"}`}>{p.description}</p>
+      )}
+      {p.detalles.length > 0 && (
+        <ul className={`mt-auto grid gap-2 text-[13px] leading-[1.4] font-light ${TENUE}`}>
+          {p.detalles.map((d) => (
+            <li key={d.texto} className="flex items-start gap-2">
+              <Icono nombre={d.icono} />
+              {d.texto}
+            </li>
           ))}
-        </p>
+        </ul>
       )}
     </>
   );
-  const clases = `block rounded-2xl border ${FILETE} bg-white/[0.03] p-5 transition-colors hover:border-[#8cc9a0]/60 hover:bg-white/[0.06] ${FOCO} ${grande ? "md:p-6" : ""}`;
+  const clases = `relative flex flex-col rounded-2xl border border-transparent transition-colors hover:border-[#8cc9a0]/40 ${FOCO} ${
+    grande ? "p-8 md:p-14 bg-[radial-gradient(at_0%_0%,#245a3b_0%,#143620_100%)]" : "p-7 md:p-10 bg-[#143620]"
+  }`;
   return p.href ? (
     <a href={p.href} target="_blank" rel="noopener noreferrer" className={clases}>
       {cuerpo}
@@ -139,22 +169,20 @@ function Filtro({
   return (
     <details className="group relative">
       <summary
-        className={`flex cursor-pointer list-none items-center gap-2 rounded-full border px-3.5 py-1.5 text-[0.9rem] [&::-webkit-details-marker]:hidden ${FOCO} ${
-          elegidos.length ? "border-[#8cc9a0] text-[#8cc9a0]" : `${FILETE} text-aisc-sand/85 hover:border-aisc-sand/40`
+        className={`flex cursor-pointer list-none items-center gap-1.5 rounded-full border bg-[#143620] py-[7px] pr-3 pl-4 text-[13px] font-semibold transition-colors [&::-webkit-details-marker]:hidden ${FOCO} ${
+          elegidos.length ? "border-[#8cc9a0]/70 text-[#8cc9a0]" : "border-[#1f4d32] text-aisc-sand/65 hover:text-aisc-sand"
         }`}
       >
         {t.facetas[faceta]}
-        {elegidos.length > 0 && <span className="rounded-full bg-[#8cc9a0] px-1.5 text-[0.75rem] font-semibold text-aisc-night">{elegidos.length}</span>}
-        <span aria-hidden className="text-[0.7rem] transition-transform group-open:rotate-180">
-          ▾
-        </span>
+        {elegidos.length > 0 && <span className="rounded-full bg-[#8cc9a0] px-1.5 text-[11px] leading-4 text-aisc-night">{elegidos.length}</span>}
+        <Icono nombre="flecha" className="size-4 transition-transform group-open:rotate-180" />
       </summary>
-      <div className={`absolute left-0 z-20 mt-2 min-w-[14rem] rounded-xl border ${FILETE} bg-aisc-night p-2 shadow-xl`}>
+      <div className="absolute left-0 z-20 mt-2 min-w-[14rem] rounded-xl border border-[#1f4d32] bg-[#143620] p-2 shadow-xl">
         {opciones.map((v) => (
-          <label key={v} className="flex cursor-pointer items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-[0.9rem] hover:bg-white/[0.06]">
+          <label key={v} className="flex cursor-pointer items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-[13px] hover:bg-white/[0.06]">
             <input type="checkbox" checked={elegidos.includes(v)} onChange={() => alternar(faceta, v)} className="accent-[#8cc9a0]" />
             <span className="flex-1">{t.opciones[v] ?? v}</span>
-            <span className={`text-[0.8rem] ${TENUE}`}>{conteos[v] ?? 0}</span>
+            <span className={TENUE}>{conteos[v] ?? 0}</span>
           </label>
         ))}
       </div>
@@ -166,10 +194,12 @@ export default function OportunidadesListado({
   upcoming,
   recurring,
   t,
+  lateral,
 }: {
   upcoming: ProgramaVista[];
   recurring: ProgramaVista[];
   t: TextosListado;
+  lateral?: React.ReactNode;
 }) {
   const [vista, setVista] = useState<Vista>("upcoming");
   const [sel, setSel] = useState<Seleccion>({});
@@ -219,27 +249,28 @@ export default function OportunidadesListado({
       : [{ g: null, items: lista }];
 
   return (
-    <section className="mx-auto w-full max-w-[60rem] px-6 pb-20 md:px-8">
-      <div role="tablist" className={`flex gap-6 border-b ${FILETE}`}>
+    <section className={`${ANCHO} pb-24`}>
+      <div role="tablist" className="flex gap-2">
         {(["upcoming", "recurring"] as const).map((v) => (
           <button
             key={v}
             role="tab"
             aria-selected={vista === v}
             onClick={() => cambiar(v)}
-            className={`-mb-px border-b-2 pb-3 text-[1.05rem] font-semibold transition-colors ${FOCO} ${
-              vista === v ? "border-[#8cc9a0] text-aisc-sand" : "border-transparent text-aisc-sand/60 hover:text-aisc-sand"
+            className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[15px] font-semibold transition-colors ${FOCO} ${
+              vista === v ? "border-[#8cc9a0]/30 text-aisc-sand" : "border-transparent text-aisc-sand/60 hover:text-aisc-sand"
             }`}
           >
+            <Icono nombre={v === "upcoming" ? "fecha" : "repetir"} />
             {t.pestanas[v]}
           </button>
         ))}
       </div>
 
       {destacados.length > 0 && (
-        <div className="mt-8">
+        <div className="mt-10">
           <h2 className="sr-only">{t.destacados}</h2>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-2 lg:gap-14">
             {destacados.map((p) => (
               <Tarjeta key={p.id} p={p} grande t={t} />
             ))}
@@ -247,34 +278,39 @@ export default function OportunidadesListado({
         </div>
       )}
 
-      <div className="mt-8 flex flex-wrap items-center gap-2">
-        {facetas.map((f) => (
-          <Filtro key={f} faceta={f} opciones={OPCIONES[f]} elegidos={sel[f] ?? []} conteos={conteos[f]} t={t} alternar={alternar} />
-        ))}
-        {hayFiltros && (
-          <button onClick={() => setSel({})} className={`ml-1 text-[0.9rem] ${LINK} ${FOCO}`}>
-            {t.limpiar}
-          </button>
-        )}
-      </div>
-      <p className={`mt-4 text-[0.95rem] ${TENUE}`}>{t.conteo[vista][filtrados.length === 1 ? 0 : 1].replace("{n}", String(filtrados.length))}</p>
-
-      {todos.length === 0 ? (
-        <p className={`mt-8 ${TENUE}`}>{t.sinProgramas[vista]}</p>
-      ) : lista.length === 0 ? (
-        <p className={`mt-8 ${TENUE}`}>{t.sinResultados}</p>
-      ) : (
-        grupos.map(({ g, items }) => (
-          <div key={g ?? "todos"} className="mt-8">
-            {g && grupos.length > 1 && <h2 className="mb-4 font-display text-[1.4rem] font-semibold">{t.grupos[g]}</h2>}
-            <div className="grid gap-4">
-              {items.map((p) => (
-                <Tarjeta key={p.id} p={p} t={t} />
-              ))}
-            </div>
+      <div className="mt-14 flex flex-col gap-14 lg:flex-row">
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            {facetas.map((f) => (
+              <Filtro key={f} faceta={f} opciones={OPCIONES[f]} elegidos={sel[f] ?? []} conteos={conteos[f]} t={t} alternar={alternar} />
+            ))}
+            {hayFiltros && (
+              <button onClick={() => setSel({})} className={`px-2 text-[13px] font-semibold ${LINK} ${FOCO}`}>
+                {t.limpiar}
+              </button>
+            )}
+            <p className={`ml-2 text-[15px] font-light ${TENUE}`}>{t.conteo[vista][filtrados.length === 1 ? 0 : 1].replace("{n}", String(filtrados.length))}</p>
           </div>
-        ))
-      )}
+
+          {todos.length === 0 ? (
+            <p className={`mt-10 text-[15px] font-light ${TENUE}`}>{t.sinProgramas[vista]}</p>
+          ) : lista.length === 0 ? (
+            <p className={`mt-10 text-[15px] font-light ${TENUE}`}>{t.sinResultados}</p>
+          ) : (
+            grupos.map(({ g, items }) => (
+              <div key={g ?? "todos"} className="mt-10">
+                {g && <h2 className={`pb-6 text-[15px] font-light ${TENUE}`}>{t.grupos[g]}</h2>}
+                <div className="grid gap-6 md:grid-cols-2 md:gap-10">
+                  {items.map((p) => (
+                    <Tarjeta key={p.id} p={p} t={t} />
+                  ))}
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+        {lateral && <aside className="flex-none lg:w-[222px]">{lateral}</aside>}
+      </div>
     </section>
   );
 }

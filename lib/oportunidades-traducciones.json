@@ -1,0 +1,502 @@
+{
+  "rec7qmCUn4F2NOH10": {
+    "en": "Weekly sessions working through a condensed version of the ARENA curriculum, plus paper reading. Participants reproduce one paper and learn how to write grants to get research funding.",
+    "es": "Sesiones semanales en las que se trabaja una versión condensada del currículo de ARENA, además de lectura de papers. Reproduces un paper y aprendes a escribir propuestas para conseguir financiamiento para investigación.",
+    "pt": "Sessões semanais trabalhando uma versão condensada do currículo do ARENA, além de leitura de artigos. Você reproduz um artigo e aprende a escrever propostas para conseguir financiamento para pesquisa."
+  },
+  "recTr46OnNJaEP5Or": {
+    "en": "For content creators and people interested in AI safety comms. Fellows produce three to four short-form videos a week, with workshops, mentor feedback, and placement support for AI safety comms roles.",
+    "es": "Para creadores de contenido y personas interesadas en la comunicación sobre seguridad de la IA. Los becarios producen de tres a cuatro videos cortos por semana, con talleres, retroalimentación de mentores y apoyo para conseguir roles en comunicación sobre seguridad de la IA.",
+    "pt": "Para criadores de conteúdo e pessoas interessadas em comunicação sobre segurança da IA. Os bolsistas produzem de três a quatro vídeos curtos por semana, com workshops, feedback de mentores e apoio para conseguir vagas em comunicação sobre segurança da IA."
+  },
+  "recSFgeeUvCzMacrJ": {
+    "en": "Run by Safe AI Germany (SAIGE) for PhDs, postdocs, and faculty members to explore problems in AI safety and form collaborations. Includes sessions linking areas of math to open problems and small-group work.",
+    "es": "Organizado por Safe AI Germany (SAIGE) para doctorandos, posdoctorados y profesores que quieran explorar problemas de seguridad de la IA y formar colaboraciones. Incluye sesiones que conectan áreas de las matemáticas con problemas abiertos y trabajo en grupos pequeños.",
+    "pt": "Organizado pela Safe AI Germany (SAIGE) para doutorandos, pós-doutorandos e professores explorarem problemas de segurança da IA e formarem colaborações. Inclui sessões que conectam áreas da matemática a problemas em aberto e trabalho em pequenos grupos."
+  },
+  "recnzBbOEFj3E6aCa": {
+    "en": "Students work in teams of 2–4 on an AI safety project with a mentor. Tracks cover technical AI safety, AI governance and strategy, and AI ecosystem building – ending with a report reviewed by field experts.",
+    "es": "Estudiantes trabajan en equipos de 2 a 4 en un proyecto de seguridad de la IA con un mentor. Las líneas cubren seguridad técnica de la IA, gobernanza y estrategia de la IA, y construcción del ecosistema de IA, y terminan con un informe revisado por expertos del campo.",
+    "pt": "Estudantes trabalham em equipes de 2 a 4 em um projeto de segurança da IA com um mentor. As trilhas cobrem segurança técnica da IA, governança e estratégia da IA e construção do ecossistema de IA, terminando com um relatório revisado por especialistas da área."
+  },
+  "rec49jAS52g5yVWfz": {
+    "en": "Matching program by Successif pairing professionals who have built or scaled organizations with AI safety organizations needing a COO, chief of staff, or similar. Includes a peer group and a path to a permanent role.",
+    "es": "Programa de emparejamiento de Successif que conecta a profesionales que han creado o escalado organizaciones con organizaciones de seguridad de la IA que necesitan un COO, jefe de gabinete o rol similar. Incluye un grupo de pares y un camino hacia un cargo permanente.",
+    "pt": "Programa de conexão da Successif que une profissionais que criaram ou escalaram organizações a organizações de segurança da IA que precisam de um COO, chefe de gabinete ou função semelhante. Inclui um grupo de pares e um caminho para uma vaga permanente."
+  },
+  "rec58GDhrbEyeGEi4": {
+    "en": "Interdisciplinary research program connecting PhD and postdoctoral researchers from fields like mathematics, neuroscience, physics, and philosophy with mentors to work on projects at the intersection of their field and AI safety.",
+    "es": "Programa de investigación interdisciplinario que conecta a investigadores doctorales y posdoctorales de campos como matemáticas, neurociencia, física y filosofía con mentores para trabajar en proyectos en la intersección entre su campo y la seguridad de la IA.",
+    "pt": "Programa de pesquisa interdisciplinar que conecta pesquisadores de doutorado e pós-doutorado de áreas como matemática, neurociência, física e filosofia a mentores para trabalhar em projetos na interseção entre sua área e a segurança da IA."
+  },
+  "recrnDhWB8oWPxvKA": {
+    "en": "Program by the Council on Strategic Risks (CSR) for mid-career national security professionals on human control over AI. Includes topic modules, scenario exercises, a matrix game, and a trip to frontier AI companies.",
+    "es": "Programa del Council on Strategic Risks (CSR) para profesionales de seguridad nacional de mitad de carrera sobre el control humano de la IA. Incluye módulos temáticos, ejercicios de escenarios, un juego de matriz y un viaje a empresas de IA de frontera.",
+    "pt": "Programa do Council on Strategic Risks (CSR) para profissionais de segurança nacional em meio de carreira sobre o controle humano da IA. Inclui módulos temáticos, exercícios de cenários, um jogo de matriz e uma viagem a empresas de IA de fronteira."
+  },
+  "recz6mc7JE9It3Lpg": {
+    "en": "Program by the Mercial AI Safety Initiative where fellows work on an open AI safety problem with a facilitator – ending in a blog write-up. Streams range from AI agent collusion to compute governance.",
+    "es": "Programa de Mercial AI Safety Initiative en el que los becarios trabajan en un problema abierto de seguridad de la IA con un facilitador y terminan con una publicación en un blog. Las líneas van desde la colusión entre agentes de IA hasta la gobernanza del cómputo.",
+    "pt": "Programa da Mercial AI Safety Initiative em que os bolsistas trabalham em um problema em aberto de segurança da IA com um facilitador, terminando com um texto em blog. As trilhas vão da colusão entre agentes de IA à governança de computação."
+  },
+  "rec57F6plvq5PGXMZ": {
+    "en": "Funding and mentorship for technical talent entering empirical AI safety research. Fellows work with a mentor on a full-time project in scalable oversight, adversarial robustness, interpretability, or model organisms, producing a public output.",
+    "es": "Financiamiento y mentoría para talento técnico que entra a la investigación empírica en seguridad de la IA. Los becarios trabajan con un mentor en un proyecto de tiempo completo en supervisión escalable, robustez adversarial, interpretabilidad u organismos modelo, y producen un resultado público.",
+    "pt": "Financiamento e mentoria para talentos técnicos que estão entrando na pesquisa empírica em segurança da IA. Os bolsistas trabalham com um mentor em um projeto em tempo integral em supervisão escalável, robustez adversarial, interpretabilidade ou organismos-modelo, produzindo um resultado público."
+  },
+  "recemEiXpiIVamkuO": {
+    "en": "Introduction to technical alignment, with an emphasis on broad coverage of the field. Aims to advance foundational research in AI safety by folding mathematical expertise into the field. Applicants are selected on the basis of estimated mathematical strength.",
+    "es": "Introducción a la alineación técnica, con énfasis en una cobertura amplia del campo. Busca impulsar la investigación fundamental en seguridad de la IA incorporando experiencia matemática al campo. Los postulantes se seleccionan según su nivel matemático estimado.",
+    "pt": "Introdução ao alinhamento técnico, com ênfase em uma cobertura ampla da área. Busca impulsionar a pesquisa fundamental em segurança da IA incorporando conhecimento matemático à área. Os candidatos são selecionados com base em sua força matemática estimada."
+  },
+  "recvJcWbGGAkVH34x": {
+    "en": "Mentored research fellowship in applied mathematics for AI alignment, resulting in a fleshed-out research proposal. Fellows are then given support applying to funders to continue their research outside the program.",
+    "es": "Beca de investigación con mentoría en matemáticas aplicadas para la alineación de la IA, que termina en una propuesta de investigación bien desarrollada. Luego los becarios reciben apoyo para postular a financiadores y continuar su investigación fuera del programa.",
+    "pt": "Bolsa de pesquisa com mentoria em matemática aplicada para o alinhamento da IA, que resulta em uma proposta de pesquisa bem desenvolvida. Depois, os bolsistas recebem apoio para se candidatar a financiadores e continuar a pesquisa fora do programa."
+  },
+  "recJHQN57Aig7IWxY": {
+    "en": "Residential program by Kairos exploring foundational arguments around risks from advanced AI, for working professionals with 2+ years of experience. Includes guest speakers, career planning sessions, and 1-1s.",
+    "es": "Programa residencial de Kairos que explora los argumentos fundamentales sobre los riesgos de la IA avanzada, para profesionales con más de 2 años de experiencia. Incluye charlas de invitados, sesiones de planeación de carrera y reuniones 1-1.",
+    "pt": "Programa residencial da Kairos que explora os argumentos fundamentais sobre os riscos da IA avançada, para profissionais com mais de 2 anos de experiência. Inclui palestrantes convidados, sessões de planejamento de carreira e conversas 1-1."
+  },
+  "recsJfo7aYmOXAVm9": {
+    "en": "Program by the European Network for AI Safety (ENAIS) on making the post-AGI future good, not just survivable, based on Forethought's Better Futures research. Includes facilitated discussions and a guided project.",
+    "es": "Programa de la European Network for AI Safety (ENAIS) sobre cómo hacer que el futuro post-AGI sea bueno y no solo sobrevivible, basado en la investigación Better Futures de Forethought. Incluye discusiones facilitadas y un proyecto guiado.",
+    "pt": "Programa da European Network for AI Safety (ENAIS) sobre como tornar o futuro pós-AGI bom, e não apenas sobrevivível, com base na pesquisa Better Futures da Forethought. Inclui discussões facilitadas e um projeto guiado."
+  },
+  "recDiYHjwmtDBnVvC": {
+    "en": "Small-group mastermind by CURRENT for mid-career women from any field who want to move into AI safety. Includes an overview of the AI safety ecosystem, pathway working sessions with a mentor, and a public panel.",
+    "es": "Mastermind en grupo pequeño de CURRENT para mujeres de mitad de carrera de cualquier campo que quieran pasarse a la seguridad de la IA. Incluye un panorama del ecosistema de seguridad de la IA, sesiones de trabajo sobre trayectorias con una mentora y un panel público.",
+    "pt": "Mastermind em pequeno grupo da CURRENT para mulheres em meio de carreira de qualquer área que queiram migrar para a segurança da IA. Inclui uma visão geral do ecossistema de segurança da IA, sessões de trabalho sobre trajetórias com uma mentora e um painel público."
+  },
+  "recTjEbmpb8YX6Cjr": {
+    "en": "Mentored research fellowship in applied mathematics for AI alignment, resulting in a fleshed-out research proposal. Fellows are then given support applying to funders to continue their research outside the program.",
+    "es": "Beca de investigación con mentoría en matemáticas aplicadas para la alineación de la IA, que termina en una propuesta de investigación bien desarrollada. Luego los becarios reciben apoyo para postular a financiadores y continuar su investigación fuera del programa.",
+    "pt": "Bolsa de pesquisa com mentoria em matemática aplicada para o alinhamento da IA, que resulta em uma proposta de pesquisa bem desenvolvida. Depois, os bolsistas recebem apoio para se candidatar a financiadores e continuar a pesquisa fora do programa."
+  },
+  "recbsb5HfklzmvHTb": {
+    "en": "Explores the threat landscape of frontier AI systems for security professionals, covering adversarial attacks, LLM security, weight security, and AI control. Includes demos and hands-on red/blue team exercises.",
+    "es": "Explora el panorama de amenazas de los sistemas de IA de frontera para profesionales de seguridad, cubriendo ataques adversariales, seguridad de LLM, seguridad de pesos y control de la IA. Incluye demostraciones y ejercicios prácticos de red team y blue team.",
+    "pt": "Explora o cenário de ameaças dos sistemas de IA de fronteira para profissionais de segurança, cobrindo ataques adversariais, segurança de LLMs, segurança de pesos e controle da IA. Inclui demonstrações e exercícios práticos de red team e blue team."
+  },
+  "recbJHVaz3vyoyJic": {
+    "en": "Connects people with ties to Italy entering AI safety and governance with mentors in the field. Includes a career orientation track and a projects track on model interpretability and evaluation, governance and policy.",
+    "es": "Conecta a personas con vínculos con Italia que están entrando a la seguridad y gobernanza de la IA con mentores del campo. Incluye una línea de orientación profesional y una línea de proyectos sobre interpretabilidad y evaluación de modelos, gobernanza y políticas públicas.",
+    "pt": "Conecta pessoas com vínculos com a Itália que estão entrando na segurança e governança da IA a mentores da área. Inclui uma trilha de orientação de carreira e uma trilha de projetos sobre interpretabilidade e avaliação de modelos, governança e políticas públicas."
+  },
+  "recl5GSpHbhheCVh8": {
+    "en": "For experienced researchers independently pursuing their own AI safety agenda. Tracks cover placement support, a staff researcher role, and founding a new research organization.",
+    "es": "Para investigadores con experiencia que desarrollan de forma independiente su propia agenda de seguridad de la IA. Las líneas incluyen apoyo para conseguir un puesto, un rol de investigador de planta y la fundación de una nueva organización de investigación.",
+    "pt": "Para pesquisadores experientes que desenvolvem de forma independente sua própria agenda de segurança da IA. As trilhas incluem apoio para colocação profissional, uma vaga de pesquisador da equipe e a fundação de uma nova organização de pesquisa."
+  },
+  "recou3Ia7BYOSMxfd": {
+    "en": "Funding and mentorship for technical talent entering empirical AI safety research. Fellows work on a project in scalable oversight, adversarial robustness, interpretability, or model organisms.",
+    "es": "Financiamiento y mentoría para talento técnico que entra a la investigación empírica en seguridad de la IA. Los becarios trabajan en un proyecto de supervisión escalable, robustez adversarial, interpretabilidad u organismos modelo.",
+    "pt": "Financiamento e mentoria para talentos técnicos que estão entrando na pesquisa empírica em segurança da IA. Os bolsistas trabalham em um projeto de supervisão escalável, robustez adversarial, interpretabilidade ou organismos-modelo."
+  },
+  "recvHLbYPoTIE2iaE": {
+    "en": "Helps early-career scientists, engineers, and innovators improve their ability to advance AI safety (and other areas). Fellows receive networking, platforms to share their work, and knowledge exchange with experts.",
+    "es": "Ayuda a científicos, ingenieros e innovadores al inicio de su carrera a mejorar su capacidad de impulsar la seguridad de la IA (y otras áreas). Los becarios reciben networking, plataformas para compartir su trabajo e intercambio de conocimiento con expertos.",
+    "pt": "Ajuda cientistas, engenheiros e inovadores em início de carreira a ampliar sua capacidade de impulsionar a segurança da IA (e outras áreas). Os bolsistas recebem networking, plataformas para divulgar seu trabalho e troca de conhecimento com especialistas."
+  },
+  "recwlJRlFwTkmEU5E": {
+    "en": "Places fellows at host organizations working on AI, biotechnology, and emerging technology policy. Includes 10 weeks of part-time training in policy writing and analysis, mentorship, and 6–24 month placements in the executive branch, Congress, or think tanks.",
+    "es": "Ubica a los becarios en organizaciones anfitrionas que trabajan en políticas de IA, biotecnología y tecnologías emergentes. Incluye 10 semanas de formación a tiempo parcial en redacción y análisis de políticas, mentoría y colocaciones de 6 a 24 meses en el poder ejecutivo, el Congreso o think tanks.",
+    "pt": "Coloca os bolsistas em organizações anfitriãs que trabalham com políticas de IA, biotecnologia e tecnologias emergentes. Inclui 10 semanas de formação em meio período em redação e análise de políticas, mentoria e colocações de 6 a 24 meses no Poder Executivo, no Congresso ou em think tanks."
+  },
+  "rec49VTc9xWkCdxwB": {
+    "en": "Individual, mentored research in applied mathematics for alignment, with each fellow paired with an established research mentor. For PhD students, postdocs, and researchers with equivalent experience.",
+    "es": "Investigación individual con mentoría en matemáticas aplicadas para la alineación, en la que cada becario trabaja con un mentor de investigación reconocido. Para doctorandos, posdoctorados e investigadores con experiencia equivalente.",
+    "pt": "Pesquisa individual com mentoria em matemática aplicada para o alinhamento, com cada bolsista acompanhado por um mentor de pesquisa reconhecido. Para doutorandos, pós-doutorandos e pesquisadores com experiência equivalente."
+  },
+  "rec5Nm1iL4lUnEytz": {
+    "en": "Explores the philosophical foundations of alignment through carefully designed workshops, conversations with mentors, and peer-driven learning.",
+    "es": "Explora los fundamentos filosóficos de la alineación a través de talleres cuidadosamente diseñados, conversaciones con mentores y aprendizaje entre pares.",
+    "pt": "Explora os fundamentos filosóficos do alinhamento por meio de workshops cuidadosamente planejados, conversas com mentores e aprendizado entre pares."
+  },
+  "recLia2EkaxCEDKQT": {
+    "en": "Program by the Cambridge Boston Alignment Initiative (CBAI) building technical skills for AI safety research. Based on the ARENA curriculum, covering transformers, interpretability, evals, and alignment science.",
+    "es": "Programa de la Cambridge Boston Alignment Initiative (CBAI) para desarrollar habilidades técnicas para la investigación en seguridad de la IA. Basado en el currículo de ARENA, cubre transformers, interpretabilidad, evaluaciones y ciencia de la alineación.",
+    "pt": "Programa da Cambridge Boston Alignment Initiative (CBAI) para desenvolver habilidades técnicas para pesquisa em segurança da IA. Baseado no currículo do ARENA, cobre transformers, interpretabilidade, avaliações e ciência do alinhamento."
+  },
+  "receJJSp6ohRkOpot": {
+    "en": "Course on foundational alignment research for researchers with math, physics, or computer science backgrounds. Covers deep learning theory, agent foundations, interpretability, and safety guarantees and their limits.",
+    "es": "Curso de investigación fundamental en alineación para investigadores con formación en matemáticas, física o ciencias de la computación. Cubre teoría del aprendizaje profundo, fundamentos de agentes, interpretabilidad, y garantías de seguridad y sus límites.",
+    "pt": "Curso de pesquisa fundamental em alinhamento para pesquisadores com formação em matemática, física ou ciência da computação. Cobre teoria do aprendizado profundo, fundamentos de agentes, interpretabilidade e garantias de segurança e seus limites."
+  },
+  "reckWsALZPAMuVINC": {
+    "en": "Small teams work on concrete AI safety projects, each guided by a project lead who brings the idea and plan. Approaches include technical, governance, advocacy, and theoretical foundations work.",
+    "es": "Equipos pequeños trabajan en proyectos concretos de seguridad de la IA, cada uno guiado por un líder de proyecto que aporta la idea y el plan. Los enfoques incluyen trabajo técnico, de gobernanza, de incidencia y de fundamentos teóricos.",
+    "pt": "Pequenas equipes trabalham em projetos concretos de segurança da IA, cada uma guiada por um líder de projeto que traz a ideia e o plano. As abordagens incluem trabalho técnico, de governança, de advocacy e de fundamentos teóricos."
+  },
+  "recQ5pIn2gTZxAoFt": {
+    "en": "For security professionals looking to secure frontier AI systems. Covers threat modeling, LLM and infrastructure security, weight security, and AI control through demos, lectures, and hands-on red/blue team exercises.",
+    "es": "Para profesionales de seguridad que quieren proteger sistemas de IA de frontera. Cubre modelado de amenazas, seguridad de LLM y de infraestructura, seguridad de pesos y control de la IA mediante demostraciones, clases y ejercicios prácticos de red team y blue team.",
+    "pt": "Para profissionais de segurança que querem proteger sistemas de IA de fronteira. Cobre modelagem de ameaças, segurança de LLMs e de infraestrutura, segurança de pesos e controle da IA por meio de demonstrações, aulas e exercícios práticos de red team e blue team."
+  },
+  "recc0b6orAeG1978N": {
+    "en": "Program by Global AI Youth Network SSA (GAIN SSA) for African researchers, engineers, and students mapping AI safety work and career pathways. Includes pre-reading, live group calls, and a portfolio project proposal.",
+    "es": "Programa de Global AI Youth Network SSA (GAIN SSA) para investigadores, ingenieros y estudiantes africanos que quieren mapear el trabajo y las trayectorias profesionales en seguridad de la IA. Incluye lecturas previas, llamadas grupales en vivo y una propuesta de proyecto para portafolio.",
+    "pt": "Programa da Global AI Youth Network SSA (GAIN SSA) para pesquisadores, engenheiros e estudantes africanos mapearem o trabalho e as trajetórias de carreira em segurança da IA. Inclui leituras prévias, chamadas em grupo ao vivo e uma proposta de projeto para portfólio."
+  },
+  "recq5FQB7BoM9CY0X": {
+    "en": "Technical AI safety research program by London AI Safety Research (LASR) Labs. Teams of 3–4 write a technical paper with a supervisor, on topics like scalable oversight and evaluation awareness.",
+    "es": "Programa de investigación técnica en seguridad de la IA de London AI Safety Research (LASR) Labs. Equipos de 3 a 4 personas escriben un paper técnico con un supervisor, sobre temas como supervisión escalable y conciencia de evaluación.",
+    "pt": "Programa de pesquisa técnica em segurança da IA da London AI Safety Research (LASR) Labs. Equipes de 3 a 4 pessoas escrevem um artigo técnico com um supervisor, sobre temas como supervisão escalável e consciência de avaliação."
+  },
+  "rec7m9fEo5bW9wuni": {
+    "en": "Research program for people with technical or domain expertise to develop a project with expert mentors – across tracks in technical AI safety, technical AI governance, and AI governance.",
+    "es": "Programa de investigación para personas con experiencia técnica o en un dominio específico, para desarrollar un proyecto con mentores expertos en líneas de seguridad técnica de la IA, gobernanza técnica de la IA y gobernanza de la IA.",
+    "pt": "Programa de pesquisa para pessoas com experiência técnica ou em uma área específica desenvolverem um projeto com mentores especialistas, nas trilhas de segurança técnica da IA, governança técnica da IA e governança da IA."
+  },
+  "recC6FXdC99TnIIHW": {
+    "en": "Program by Kairos and Constellation for AI safety generalists to pitch, build, and ship projects. Residents lead their own project or embed with an organization or mentor, backed by weekly advising and job support.",
+    "es": "Programa de Kairos y Constellation para generalistas en seguridad de la IA que quieran proponer, construir y lanzar proyectos. Los residentes lideran su propio proyecto o se integran a una organización o con un mentor, con asesoría semanal y apoyo para conseguir empleo.",
+    "pt": "Programa da Kairos e da Constellation para generalistas em segurança da IA proporem, construírem e lançarem projetos. Os residentes lideram o próprio projeto ou se integram a uma organização ou a um mentor, com orientação semanal e apoio para conseguir emprego."
+  },
+  "recVssCexSfrCNMpR": {
+    "en": "Bipartisan fellowship by the Centre for the Governance of AI (GovAI) for individuals launching or advancing careers in American AI governance and policy. Fellows conduct independent research under expert mentorship, with Q&A sessions, workshops, and seminars.",
+    "es": "Beca bipartidista del Centre for the Governance of AI (GovAI) para personas que inician o impulsan su carrera en gobernanza y políticas de IA en Estados Unidos. Los becarios hacen investigación independiente con mentoría de expertos, con sesiones de preguntas y respuestas, talleres y seminarios.",
+    "pt": "Bolsa bipartidária do Centre for the Governance of AI (GovAI) para pessoas que estão iniciando ou avançando na carreira em governança e políticas de IA nos Estados Unidos. Os bolsistas fazem pesquisa independente com mentoria de especialistas, com sessões de perguntas e respostas, workshops e seminários."
+  },
+  "rece9VkITUyIxSRPR": {
+    "en": "Fellowship by the Centre for the Governance of AI (GovAI) where fellows conduct independent research on a topic of their choice with mentorship. Includes expert Q&As, weekly seminars, skill-building workshops, and peer feedback meetings.",
+    "es": "Beca del Centre for the Governance of AI (GovAI) en la que los becarios hacen investigación independiente sobre un tema de su elección con mentoría. Incluye sesiones de preguntas y respuestas con expertos, seminarios semanales, talleres de habilidades y reuniones de retroalimentación entre pares.",
+    "pt": "Bolsa do Centre for the Governance of AI (GovAI) em que os bolsistas fazem pesquisa independente sobre um tema de sua escolha com mentoria. Inclui sessões de perguntas e respostas com especialistas, seminários semanais, workshops de habilidades e reuniões de feedback entre pares."
+  },
+  "recnaKTdZ4PnnNYoL": {
+    "en": "AI safety research program pairing fellows with mentors from Anthropic, Google DeepMind, the UK AI Security Institute (AISI), and Apollo Research for weekly 1-1s. Includes research managers, workshops, and expert Q&As.",
+    "es": "Programa de investigación en seguridad de la IA que empareja a los becarios con mentores de Anthropic, Google DeepMind, el UK AI Security Institute (AISI) y Apollo Research para reuniones 1-1 semanales. Incluye gestores de investigación, talleres y sesiones de preguntas y respuestas con expertos.",
+    "pt": "Programa de pesquisa em segurança da IA que conecta os bolsistas a mentores da Anthropic, do Google DeepMind, do UK AI Security Institute (AISI) e da Apollo Research para conversas 1-1 semanais. Inclui gestores de pesquisa, workshops e sessões de perguntas e respostas com especialistas."
+  },
+  "reczKLnWDO0rswYMQ": {
+    "en": "Program by the Centre for the Governance of AI (GovAI) for those pursuing non-research careers in AI governance. Includes applied projects pitched by GovAI or partner organizations, expert Q&As, weekly seminars, skills workshops, and networking.",
+    "es": "Programa del Centre for the Governance of AI (GovAI) para quienes buscan carreras no investigativas en gobernanza de la IA. Incluye proyectos aplicados propuestos por GovAI u organizaciones aliadas, sesiones de preguntas y respuestas con expertos, seminarios semanales, talleres de habilidades y networking.",
+    "pt": "Programa do Centre for the Governance of AI (GovAI) para quem busca carreiras fora da pesquisa em governança da IA. Inclui projetos aplicados propostos pelo GovAI ou por organizações parceiras, sessões de perguntas e respostas com especialistas, seminários semanais, workshops de habilidades e networking."
+  },
+  "recYtOVOnv2DW5XTv": {
+    "en": "Research program connecting fellows with mentors across empirical, theory, strategy and forecasting, policy and governance, and systems security tracks. Includes workshops, talks, and office hours.",
+    "es": "Programa de investigación que conecta a los becarios con mentores en líneas empíricas, de teoría, de estrategia y pronósticos, de políticas y gobernanza, y de seguridad de sistemas. Incluye talleres, charlas y horas de consulta.",
+    "pt": "Programa de pesquisa que conecta os bolsistas a mentores nas trilhas empírica, de teoria, de estratégia e previsão, de políticas e governança e de segurança de sistemas. Inclui workshops, palestras e horários de atendimento."
+  },
+  "recxhCFVGCiknMMGC": {
+    "en": "Program from the Institute for Law & AI supporting law students, professionals, and academics researching EU law and the EU AI Act. Fellows receive mentorship, join meetings, present their research, and give feedback on others' work.",
+    "es": "Programa del Institute for Law & AI que apoya a estudiantes de derecho, profesionales y académicos que investigan el derecho de la UE y la Ley de IA de la UE (EU AI Act). Los becarios reciben mentoría, participan en reuniones, presentan su investigación y dan retroalimentación sobre el trabajo de otros.",
+    "pt": "Programa do Institute for Law & AI que apoia estudantes de direito, profissionais e acadêmicos que pesquisam o direito da UE e o Regulamento de IA da UE (EU AI Act). Os bolsistas recebem mentoria, participam de reuniões, apresentam sua pesquisa e dão feedback sobre o trabalho dos colegas."
+  },
+  "recCZvh8vhqrHGE52": {
+    "en": "Equips professionals from varied technical and policy backgrounds with practical policy skills for securing a positive future with powerful AI. Fellows work with a mentor on research or applied policy projects.",
+    "es": "Da a profesionales con diversos perfiles técnicos y de políticas habilidades prácticas en políticas públicas para asegurar un futuro positivo con IA poderosa. Los becarios trabajan con un mentor en proyectos de investigación o de políticas aplicadas.",
+    "pt": "Oferece a profissionais com diferentes perfis técnicos e de políticas habilidades práticas em políticas públicas para garantir um futuro positivo com IA poderosa. Os bolsistas trabalham com um mentor em projetos de pesquisa ou de políticas aplicadas."
+  },
+  "recINM5v18BMhVMgb": {
+    "en": "Program at Tsinghua University's Beijing AI Safety Hub (BASH) for researchers working on alignment, evaluations, scalable oversight, or control. Residents bring their own agenda and work with counterparts in China.",
+    "es": "Programa en el Beijing AI Safety Hub (BASH) de la Universidad Tsinghua para investigadores que trabajan en alineación, evaluaciones, supervisión escalable o control. Los residentes traen su propia agenda y trabajan con contrapartes en China.",
+    "pt": "Programa no Beijing AI Safety Hub (BASH) da Universidade Tsinghua para pesquisadores que trabalham com alinhamento, avaliações, supervisão escalável ou controle. Os residentes trazem sua própria agenda e trabalham com parceiros na China."
+  },
+  "recasd40e7gOSeWL0": {
+    "en": "Technical AI safety research program. Teams of three to four, supervised by an experienced researcher, take a project from proposal to publication.",
+    "es": "Programa de investigación técnica en seguridad de la IA. Equipos de tres a cuatro personas, supervisados por un investigador con experiencia, llevan un proyecto desde la propuesta hasta la publicación.",
+    "pt": "Programa de pesquisa técnica em segurança da IA. Equipes de três a quatro pessoas, supervisionadas por um pesquisador experiente, levam um projeto da proposta à publicação."
+  },
+  "recIF4ANGSOnLYALg": {
+    "en": "Program by Legal Advocates for Safe Science and Technology (LASST) for law students and attorneys. Fellows research legal issues in advanced science and technology, mentored by attorneys, and write a white paper or memo.",
+    "es": "Programa de Legal Advocates for Safe Science and Technology (LASST) para estudiantes de derecho y abogados. Los becarios investigan cuestiones jurídicas en ciencia y tecnología avanzadas, con mentoría de abogados, y escriben un white paper o un memorando.",
+    "pt": "Programa da Legal Advocates for Safe Science and Technology (LASST) para estudantes de direito e advogados. Os bolsistas pesquisam questões jurídicas em ciência e tecnologia avançadas, com mentoria de advogados, e escrevem um white paper ou um memorando."
+  },
+  "recTy9j92gePxQhGh": {
+    "en": "Program by the Tarbell Center for AI Journalism for journalists covering AI and people with AI expertise moving into journalism. Includes a course on AI and journalism fundamentals, a summit, and a newsroom placement.",
+    "es": "Programa del Tarbell Center for AI Journalism para periodistas que cubren IA y personas con experiencia en IA que quieren pasarse al periodismo. Incluye un curso sobre fundamentos de IA y periodismo, una cumbre y una colocación en una sala de redacción.",
+    "pt": "Programa do Tarbell Center for AI Journalism para jornalistas que cobrem IA e pessoas com experiência em IA que querem migrar para o jornalismo. Inclui um curso sobre fundamentos de IA e jornalismo, uma cúpula e uma colocação em uma redação."
+  },
+  "rec8cDskP0hGF5EdU": {
+    "en": "For law students, professionals, and academics working on US AI law and policy. Fellows collaborate with a mentor on a project, with considerable discretion over outputs such as a law review article or policy brief.",
+    "es": "Para estudiantes de derecho, profesionales y académicos que trabajan en derecho y políticas de IA en Estados Unidos. Los becarios colaboran con un mentor en un proyecto, con amplia libertad sobre los resultados, como un artículo de revista jurídica o un policy brief.",
+    "pt": "Para estudantes de direito, profissionais e acadêmicos que trabalham com direito e políticas de IA nos Estados Unidos. Os bolsistas colaboram com um mentor em um projeto, com bastante liberdade sobre os resultados, como um artigo para revista jurídica ou um policy brief."
+  },
+  "reczs50ey1ZdjHFFl": {
+    "en": "Pairs law students, professionals, and academics with a mentor to develop a research project on AI law and policy. Focus areas include law-following AI and automated governance and the rule of law.",
+    "es": "Empareja a estudiantes de derecho, profesionales y académicos con un mentor para desarrollar un proyecto de investigación sobre derecho y políticas de IA. Las áreas de enfoque incluyen la IA que cumple la ley, y la gobernanza automatizada y el Estado de derecho.",
+    "pt": "Conecta estudantes de direito, profissionais e acadêmicos a um mentor para desenvolver um projeto de pesquisa sobre direito e políticas de IA. As áreas de foco incluem a IA que cumpre a lei e a governança automatizada e o Estado de direito."
+  },
+  "reczVCvb1kKciPJ7r": {
+    "en": "Program by the Foresight Institute helping early-career scientists, engineers, and innovators advance AI safety and other areas. Fellows get networking, platforms to share their work, and knowledge exchange with experts.",
+    "es": "Programa del Foresight Institute que ayuda a científicos, ingenieros e innovadores al inicio de su carrera a impulsar la seguridad de la IA y otras áreas. Los becarios reciben networking, plataformas para compartir su trabajo e intercambio de conocimiento con expertos.",
+    "pt": "Programa do Foresight Institute que ajuda cientistas, engenheiros e inovadores em início de carreira a impulsionar a segurança da IA e outras áreas. Os bolsistas recebem networking, plataformas para divulgar seu trabalho e troca de conhecimento com especialistas."
+  },
+  "recydfEpm2p9tW6oF": {
+    "en": "Introduction to technical alignment for people with strong math backgrounds. Modules span deep learning theory, interpretability, agent foundations, and safety guarantees.",
+    "es": "Introducción a la alineación técnica para personas con una sólida formación matemática. Los módulos abarcan teoría del aprendizaje profundo, interpretabilidad, fundamentos de agentes y garantías de seguridad.",
+    "pt": "Introdução ao alinhamento técnico para pessoas com sólida formação em matemática. Os módulos abrangem teoria do aprendizado profundo, interpretabilidade, fundamentos de agentes e garantias de segurança."
+  },
+  "recraUtUpAHxmv1FL": {
+    "en": "Supports mentored research in applied mathematics for alignment, culminating in a research proposal. Aimed at PhD, postdoctoral, and similarly experienced researchers in math, physics, and related fields.",
+    "es": "Apoya investigación con mentoría en matemáticas aplicadas para la alineación, que culmina en una propuesta de investigación. Dirigido a doctorandos, posdoctorados e investigadores con experiencia similar en matemáticas, física y campos afines.",
+    "pt": "Apoia pesquisa com mentoria em matemática aplicada para o alinhamento, culminando em uma proposta de pesquisa. Voltado a doutorandos, pós-doutorandos e pesquisadores com experiência semelhante em matemática, física e áreas afins."
+  },
+  "recdQ969YmHCnhV29": {
+    "en": "Range from a short self-paced introduction to multi-week curricula on technical safety, AGI strategy, and frontier AI governance. Each week combines reading, writing, and a peer discussion meeting. Shorter intensive versions are also available.",
+    "es": "Van desde una introducción corta a tu propio ritmo hasta currículos de varias semanas sobre seguridad técnica, estrategia de AGI y gobernanza de la IA de frontera. Cada semana combina lectura, escritura y una reunión de discusión entre pares. También hay versiones intensivas más cortas.",
+    "pt": "Vão de uma introdução curta no seu próprio ritmo a currículos de várias semanas sobre segurança técnica, estratégia de AGI e governança da IA de fronteira. Cada semana combina leitura, escrita e um encontro de discussão entre pares. Também há versões intensivas mais curtas."
+  },
+  "recCleOyyfQGkBZIJ": {
+    "en": "Mathematical AI safety research program with Dovetail, an agent foundations research group. Participants (must be UK-based) work solo or in small groups on pure-math problems – drawing on probability theory, information theory, and dynamical systems.",
+    "es": "Programa de investigación matemática en seguridad de la IA con Dovetail, un grupo de investigación en fundamentos de agentes. Los participantes (deben residir en el Reino Unido) trabajan solos o en grupos pequeños en problemas de matemática pura, con base en teoría de la probabilidad, teoría de la información y sistemas dinámicos.",
+    "pt": "Programa de pesquisa matemática em segurança da IA com a Dovetail, um grupo de pesquisa em fundamentos de agentes. Os participantes (que devem morar no Reino Unido) trabalham sozinhos ou em pequenos grupos em problemas de matemática pura, com base em teoria da probabilidade, teoria da informação e sistemas dinâmicos."
+  },
+  "recLdJIkptiztPH6P": {
+    "en": "Provides funding, compute, and Anthropic mentorship for technical talent entering empirical AI safety research. Fellows work full-time on projects in scalable oversight, interpretability, and AI control, aiming to produce a paper. No PhD or prior ML experience required.",
+    "es": "Ofrece financiamiento, cómputo y mentoría de Anthropic a talento técnico que entra a la investigación empírica en seguridad de la IA. Los becarios trabajan tiempo completo en proyectos de supervisión escalable, interpretabilidad y control de la IA, con el objetivo de producir un paper. No se requiere doctorado ni experiencia previa en ML.",
+    "pt": "Oferece financiamento, poder computacional e mentoria da Anthropic a talentos técnicos que estão entrando na pesquisa empírica em segurança da IA. Os bolsistas trabalham em tempo integral em projetos de supervisão escalável, interpretabilidade e controle da IA, com o objetivo de produzir um artigo. Não é preciso ter doutorado nem experiência prévia em ML."
+  },
+  "receOAca5S5nHnSpU": {
+    "en": "Research program connecting researchers with top mentors in alignment, interpretability, governance, and security. Participants can also apply for a 6–12 month funded extension.",
+    "es": "Programa de investigación que conecta a investigadores con mentores destacados en alineación, interpretabilidad, gobernanza y seguridad. Los participantes también pueden postular a una extensión financiada de 6 a 12 meses.",
+    "pt": "Programa de pesquisa que conecta pesquisadores a mentores de destaque em alinhamento, interpretabilidade, governança e segurança. Os participantes também podem se candidatar a uma extensão financiada de 6 a 12 meses."
+  },
+  "recgJR95d981CYpGv": {
+    "en": "Helps newcomers acquire a deep understanding of the core problems of superintelligence alignment, explored from several perspectives. Includes workshops, lectures, debates, peer tutoring, and 1-1s with mentors.",
+    "es": "Ayuda a quienes recién llegan a entender a fondo los problemas centrales de la alineación de la superinteligencia, explorados desde varias perspectivas. Incluye talleres, clases, debates, tutorías entre pares y reuniones 1-1 con mentores.",
+    "pt": "Ajuda iniciantes a compreender a fundo os problemas centrais do alinhamento da superinteligência, explorados a partir de várias perspectivas. Inclui workshops, aulas, debates, tutoria entre pares e conversas 1-1 com mentores."
+  },
+  "recoyRTtlcaDUUQdL": {
+    "en": "Research program where participants form teams around preselected projects addressing AI risk. Research leads propose projects, then selected projects open for team member applications. Teams work together for about three months and present results at the end.",
+    "es": "Programa de investigación en el que los participantes forman equipos alrededor de proyectos preseleccionados que abordan el riesgo de la IA. Los líderes de investigación proponen proyectos y luego los seleccionados abren convocatoria para miembros del equipo. Los equipos trabajan juntos unos tres meses y presentan resultados al final.",
+    "pt": "Programa de pesquisa em que os participantes formam equipes em torno de projetos pré-selecionados que abordam o risco da IA. Os líderes de pesquisa propõem projetos e, depois, os selecionados abrem inscrições para membros da equipe. As equipes trabalham juntas por cerca de três meses e apresentam os resultados no final."
+  },
+  "rec3OM4l8WhLjbD2I": {
+    "en": "Intensive program covering current questions in technical alignment research and the broader framings that shape them – involving talks, workshops, expert panels, and discussions. Aimed at researchers, PhD students, and talented students familiar with alignment basics.",
+    "es": "Programa intensivo que cubre preguntas actuales de la investigación en alineación técnica y los marcos más amplios que las moldean, con charlas, talleres, paneles de expertos y discusiones. Dirigido a investigadores, doctorandos y estudiantes talentosos que conocen las bases de la alineación.",
+    "pt": "Programa intensivo que cobre questões atuais da pesquisa em alinhamento técnico e os enquadramentos mais amplos que as moldam, com palestras, workshops, painéis de especialistas e discussões. Voltado a pesquisadores, doutorandos e estudantes talentosos que conhecem os fundamentos do alinhamento."
+  },
+  "rectGGLf3xNBjG27m": {
+    "en": "Program at the Center on Long-Term Risk (CLR) exploring how to reduce suffering in the long-term future (s-risks) and related technical AI safety ideas. Participants join CLR's team for a supervised research project, with an emphasis on career development.",
+    "es": "Programa del Center on Long-Term Risk (CLR) que explora cómo reducir el sufrimiento en el futuro a largo plazo (s-risks) e ideas relacionadas de seguridad técnica de la IA. Los participantes se unen al equipo de CLR para un proyecto de investigación supervisado, con énfasis en el desarrollo profesional.",
+    "pt": "Programa do Center on Long-Term Risk (CLR) que explora como reduzir o sofrimento no futuro de longo prazo (s-risks) e ideias relacionadas de segurança técnica da IA. Os participantes se juntam à equipe do CLR em um projeto de pesquisa supervisionado, com ênfase no desenvolvimento de carreira."
+  },
+  "recZwEHdV8QpMrVCR": {
+    "en": "For students and professionals interested in research in human-compatible AI. Interns work on a research project supervised by – and often proposed by – a mentor at the Center for Human-Compatible AI (CHAI), which is typically then published as a first-author workshop paper.",
+    "es": "Para estudiantes y profesionales interesados en investigar sobre IA compatible con los humanos. Los pasantes trabajan en un proyecto de investigación supervisado, y a menudo propuesto, por un mentor del Center for Human-Compatible AI (CHAI), que normalmente se publica luego como paper de workshop como primer autor.",
+    "pt": "Para estudantes e profissionais interessados em pesquisa sobre IA compatível com humanos. Os estagiários trabalham em um projeto de pesquisa supervisionado, e muitas vezes proposto, por um mentor do Center for Human-Compatible AI (CHAI), que normalmente é publicado depois como artigo de workshop como primeiro autor."
+  },
+  "recpQsYl8ToL43DQa": {
+    "en": "Program by the Tarbell Center for AI Journalism for journalists covering AI and people with AI expertise moving into journalism. Includes a course on AI and journalism fundamentals, a summit, and a newsroom placement.",
+    "es": "Programa del Tarbell Center for AI Journalism para periodistas que cubren IA y personas con experiencia en IA que quieren pasarse al periodismo. Incluye un curso sobre fundamentos de IA y periodismo, una cumbre y una colocación en una sala de redacción.",
+    "pt": "Programa do Tarbell Center for AI Journalism para jornalistas que cobrem IA e pessoas com experiência em IA que querem migrar para o jornalismo. Inclui um curso sobre fundamentos de IA e jornalismo, uma cúpula e uma colocação em uma redação."
+  },
+  "recRaWeq7OdXbMxbq": {
+    "en": "Helps people ages 14–20 launch research projects tackling the world's most pressing problems – including AI safety. Includes guided activities, facilitator mentorship, and scholarships and project grants for top scholars.",
+    "es": "Ayuda a jóvenes de 14 a 20 años a lanzar proyectos de investigación que abordan los problemas más urgentes del mundo, incluida la seguridad de la IA. Incluye actividades guiadas, mentoría de facilitadores, y becas y fondos para proyectos para los mejores participantes.",
+    "pt": "Ajuda jovens de 14 a 20 anos a lançar projetos de pesquisa que enfrentam os problemas mais urgentes do mundo, incluindo a segurança da IA. Inclui atividades guiadas, mentoria de facilitadores e bolsas de estudo e financiamento de projetos para os melhores participantes."
+  },
+  "recE7CZjmNxsF2DNR": {
+    "en": "Run by the Institute for Law & AI (LawAI), these paid placements let law students, professionals, and academics work at the frontier of AI law and policy. Cohorts run each summer and winter across US Law, EU Law, and Legal Frontiers tracks. Includes mentorship and expert Q&As.",
+    "es": "Organizadas por el Institute for Law & AI (LawAI), estas colocaciones pagadas permiten a estudiantes de derecho, profesionales y académicos trabajar en la frontera del derecho y las políticas de IA. Las cohortes se realizan cada verano e invierno en las líneas de derecho de EE. UU., derecho de la UE y Legal Frontiers. Incluye mentoría y sesiones de preguntas y respuestas con expertos.",
+    "pt": "Organizadas pelo Institute for Law & AI (LawAI), essas colocações remuneradas permitem que estudantes de direito, profissionais e acadêmicos trabalhem na fronteira do direito e das políticas de IA. As turmas acontecem todo verão e inverno nas trilhas de direito dos EUA, direito da UE e Legal Frontiers. Inclui mentoria e sessões de perguntas e respostas com especialistas."
+  },
+  "recU9TIvuBwGmPSwF": {
+    "en": "Pairs students and early-career researchers with partner organizations working on global problems like AI safety. Participants develop a thesis or independent research project with mentorship, producing work that informs real-world decisions.",
+    "es": "Empareja a estudiantes e investigadores al inicio de su carrera con organizaciones aliadas que trabajan en problemas globales como la seguridad de la IA. Los participantes desarrollan una tesis o un proyecto de investigación independiente con mentoría, y producen trabajo que informa decisiones en el mundo real.",
+    "pt": "Conecta estudantes e pesquisadores em início de carreira a organizações parceiras que trabalham com problemas globais como a segurança da IA. Os participantes desenvolvem uma tese ou um projeto de pesquisa independente com mentoria, produzindo trabalhos que embasam decisões no mundo real."
+  },
+  "recTUrG6O0p0sxQsi": {
+    "en": "Program from Apart Research that turns hackathon projects into peer-reviewed publications. Fellows work in small teams with structured mentorship, compute, and conference travel support. Entry is by performing well in one of Apart's sprints.",
+    "es": "Programa de Apart Research que convierte proyectos de hackatón en publicaciones revisadas por pares. Los becarios trabajan en equipos pequeños con mentoría estructurada, cómputo y apoyo para viajar a conferencias. Para entrar, debes tener un buen desempeño en uno de los sprints de Apart.",
+    "pt": "Programa da Apart Research que transforma projetos de hackathon em publicações revisadas por pares. Os bolsistas trabalham em pequenas equipes com mentoria estruturada, poder computacional e apoio para viagens a conferências. Para entrar, é preciso ter um bom desempenho em um dos sprints da Apart."
+  },
+  "recq1YTdMkJ0FMBsC": {
+    "en": "Accelerator for content creators making video and social media content that educates the public about AI safety, with studio space and mentors. Two tracks: one for independent creators building their own channel, and one for those embedded with an organization to grow its reach.",
+    "es": "Aceleradora para creadores de contenido que hacen videos y contenido para redes sociales que educan al público sobre la seguridad de la IA, con espacio de estudio y mentores. Tiene dos líneas: una para creadores independientes que construyen su propio canal y otra para quienes trabajan dentro de una organización para ampliar su alcance.",
+    "pt": "Aceleradora para criadores de conteúdo que fazem vídeos e conteúdo para redes sociais que educam o público sobre a segurança da IA, com espaço de estúdio e mentores. São duas trilhas: uma para criadores independentes que constroem o próprio canal e outra para quem atua dentro de uma organização para ampliar seu alcance."
+  },
+  "rectGZPQWFrvyhd3Z": {
+    "en": "Research program pairing mentees with experienced mentors on technical AI safety and governance projects, with compute and other project expenses funded. Each round ends in a virtual demo day.",
+    "es": "Programa de investigación que empareja a mentorados con mentores con experiencia en proyectos de seguridad técnica y gobernanza de la IA, con el cómputo y otros gastos del proyecto financiados. Cada ronda termina con un demo day virtual.",
+    "pt": "Programa de pesquisa que conecta mentorados a mentores experientes em projetos de segurança técnica e governança da IA, com poder computacional e outras despesas do projeto financiados. Cada rodada termina com um demo day virtual."
+  },
+  "recXrfObONnuQYWmd": {
+    "en": "Intensive training for people pursuing a career in AI safety, run in regional cohorts around the world. Offers a technical track and a governance and strategy track, both ending in a capstone project.",
+    "es": "Formación intensiva para personas que buscan una carrera en seguridad de la IA, con cohortes regionales en todo el mundo. Ofrece una línea técnica y una línea de gobernanza y estrategia, ambas con un proyecto final.",
+    "pt": "Formação intensiva para pessoas que buscam uma carreira em segurança da IA, com turmas regionais ao redor do mundo. Oferece uma trilha técnica e uma trilha de governança e estratégia, ambas terminando com um projeto final."
+  },
+  "recwcNlRsRTneoGdB": {
+    "en": "Helps early-career scientists, engineers, and innovators advance AI safety and other beneficial technologies. Participants join seminars, workshops, and conferences. Also includes connections to mentors, funders, and career counseling. No minimum time requirement.",
+    "es": "Ayuda a científicos, ingenieros e innovadores al inicio de su carrera a impulsar la seguridad de la IA y otras tecnologías beneficiosas. Los participantes asisten a seminarios, talleres y conferencias. También incluye conexiones con mentores y financiadores, y orientación profesional. No hay un tiempo mínimo de dedicación.",
+    "pt": "Ajuda cientistas, engenheiros e inovadores em início de carreira a impulsionar a segurança da IA e outras tecnologias benéficas. Os participantes frequentam seminários, workshops e conferências. Também inclui conexões com mentores e financiadores, além de orientação de carreira. Não há exigência mínima de tempo."
+  },
+  "recRfaFKPcs5Kuhys": {
+    "en": "Places AI and emerging technology experts in policy roles in Washington D.C. for up to two years. The Horizon Institute for Public Service provides policy training, mentorship, and matching with executive branch, congressional, and think tank hosts.",
+    "es": "Ubica a expertos en IA y tecnologías emergentes en roles de políticas públicas en Washington D.C. por hasta dos años. El Horizon Institute for Public Service ofrece formación en políticas, mentoría y emparejamiento con anfitriones en el poder ejecutivo, el Congreso y think tanks.",
+    "pt": "Coloca especialistas em IA e tecnologias emergentes em funções de políticas públicas em Washington D.C. por até dois anos. O Horizon Institute for Public Service oferece formação em políticas, mentoria e conexão com anfitriões no Poder Executivo, no Congresso e em think tanks."
+  },
+  "rec0JQTRiQZj1a9QV": {
+    "en": "Program hosted at Constellation's Berkeley research center, pairing emerging talent with senior advisors on alignment research, governance, and strategy projects. Fellows receive mentorship and career support.",
+    "es": "Programa en el centro de investigación de Constellation en Berkeley que empareja a talento emergente con asesores sénior en proyectos de investigación en alineación, gobernanza y estrategia. Los becarios reciben mentoría y apoyo profesional.",
+    "pt": "Programa sediado no centro de pesquisa da Constellation em Berkeley que conecta talentos emergentes a consultores seniores em projetos de pesquisa em alinhamento, governança e estratégia. Os bolsistas recebem mentoria e apoio de carreira."
+  },
+  "recEE7W7lvNUkyPVB": {
+    "en": "Lightly structured program for people working full-time on AI safety to continue their work from Constellation's research center in Berkeley. During that time fellows connect with leading researchers and find collaborators.",
+    "es": "Programa poco estructurado para personas que trabajan tiempo completo en seguridad de la IA y quieren continuar su trabajo desde el centro de investigación de Constellation en Berkeley. Durante ese tiempo, los becarios se conectan con investigadores destacados y encuentran colaboradores.",
+    "pt": "Programa pouco estruturado para pessoas que trabalham em tempo integral com segurança da IA continuarem seu trabalho a partir do centro de pesquisa da Constellation em Berkeley. Durante esse período, os bolsistas se conectam com pesquisadores de destaque e encontram colaboradores."
+  },
+  "recxJjGgPujKFbxdO": {
+    "en": "Governance program run by the Centre for the Governance of AI (GovAI), aimed at early-career individuals and established professionals new to AI governance. Participants pursue a research or applied project under expert mentorship and build field connections.",
+    "es": "Programa de gobernanza del Centre for the Governance of AI (GovAI), dirigido a personas al inicio de su carrera y a profesionales con trayectoria que son nuevos en la gobernanza de la IA. Los participantes desarrollan un proyecto de investigación o aplicado con mentoría experta y construyen conexiones en el campo.",
+    "pt": "Programa de governança do Centre for the Governance of AI (GovAI), voltado a pessoas em início de carreira e a profissionais experientes que são novos na governança da IA. Os participantes desenvolvem um projeto de pesquisa ou aplicado com mentoria de especialistas e constroem conexões na área."
+  },
+  "recvW8ziwUxeJOKEg": {
+    "en": "Launches and accelerates European AI policy careers focused on the safe and responsible deployment of advanced AI. Combines an 8-week online reading group with a week-long policymaking summit in Brussels, plus optional tracks including a paid placement.",
+    "es": "Lanza y acelera carreras en políticas de IA en Europa enfocadas en el despliegue seguro y responsable de la IA avanzada. Combina un grupo de lectura en línea de 8 semanas con una cumbre de una semana sobre formulación de políticas en Bruselas, además de líneas opcionales, incluida una colocación pagada.",
+    "pt": "Lança e acelera carreiras em políticas de IA na Europa focadas na implantação segura e responsável da IA avançada. Combina um grupo de leitura online de 8 semanas com uma cúpula de uma semana sobre formulação de políticas em Bruxelas, além de trilhas opcionais, incluindo uma colocação remunerada."
+  },
+  "recqUhj6LaubXR3vo": {
+    "en": "Trains aspiring alignment researchers and engineers in ML through an intensive curriculum. Participants work through programming exercises in pairs under the guidance of expert teaching assistants.",
+    "es": "Forma en ML a aspirantes a investigadores e ingenieros en alineación mediante un currículo intensivo. Los participantes resuelven ejercicios de programación en parejas con la guía de asistentes docentes expertos.",
+    "pt": "Forma aspirantes a pesquisadores e engenheiros em alinhamento em ML por meio de um currículo intensivo. Os participantes resolvem exercícios de programação em duplas com a orientação de monitores especialistas."
+  },
+  "recHZhlokiYZ33diI": {
+    "en": "Intensive residential workshop run by Kairos, exploring the foundational arguments around risks from advanced AI and biotechnology. Includes guest speakers, career planning, and 1-on-1s.",
+    "es": "Taller residencial intensivo organizado por Kairos que explora los argumentos fundamentales sobre los riesgos de la IA avanzada y la biotecnología. Incluye charlas de invitados, planeación de carrera y reuniones 1-1.",
+    "pt": "Workshop residencial intensivo organizado pela Kairos que explora os argumentos fundamentais sobre os riscos da IA avançada e da biotecnologia. Inclui palestrantes convidados, planejamento de carreira e conversas 1-1."
+  },
+  "rec2sUSuXraFWl7u3": {
+    "en": "Research program for researchers and entrepreneurs mitigating risks from frontier AI. Fellows pursue a mentored project in technical AI safety, AI governance, or technical AI governance.",
+    "es": "Programa de investigación para investigadores y emprendedores que buscan mitigar los riesgos de la IA de frontera. Los becarios desarrollan un proyecto con mentoría en seguridad técnica de la IA, gobernanza de la IA o gobernanza técnica de la IA.",
+    "pt": "Programa de pesquisa para pesquisadores e empreendedores que buscam mitigar os riscos da IA de fronteira. Os bolsistas desenvolvem um projeto com mentoria em segurança técnica da IA, governança da IA ou governança técnica da IA."
+  },
+  "recBZC37c1HgT9gzJ": {
+    "en": "Research program focused on reducing the risk of loss of control to advanced AI, tackling action-relevant questions on concrete threat models. Participants work in teams of 3–4 with an experienced supervisor to write an academic-style paper.",
+    "es": "Programa de investigación enfocado en reducir el riesgo de pérdida de control frente a la IA avanzada, abordando preguntas relevantes para la acción sobre modelos de amenaza concretos. Los participantes trabajan en equipos de 3 a 4 con un supervisor con experiencia para escribir un paper de estilo académico.",
+    "pt": "Programa de pesquisa focado em reduzir o risco de perda de controle para a IA avançada, abordando questões relevantes para a ação sobre modelos de ameaça concretos. Os participantes trabalham em equipes de 3 a 4 com um supervisor experiente para escrever um artigo de estilo acadêmico."
+  },
+  "recDvRawU9wlVpuG6": {
+    "en": "Program for projects spanning technical AI safety, governance, and AI-bio. Includes mentorship, research management, workshops, and workspace at the London Initiative for Safe AI (LISA). Provides continued funding of up to six months for strong work.",
+    "es": "Programa para proyectos de seguridad técnica de la IA, gobernanza e IA-bio. Incluye mentoría, gestión de la investigación, talleres y espacio de trabajo en la London Initiative for Safe AI (LISA). Ofrece financiamiento continuo de hasta seis meses para trabajos destacados.",
+    "pt": "Programa para projetos de segurança técnica da IA, governança e IA-bio. Inclui mentoria, gestão de pesquisa, workshops e espaço de trabalho na London Initiative for Safe AI (LISA). Oferece financiamento contínuo de até seis meses para trabalhos de destaque."
+  },
+  "recVmwa1RXc25dDLZ": {
+    "en": "Supports students around the world who are organizing technical AI safety or AI policy university groups. Participants receive mentorship, funding, and other resources to develop into on-campus leaders, preparing themselves and their group members for careers in the field.",
+    "es": "Apoya a estudiantes de todo el mundo que organizan grupos universitarios de seguridad técnica de la IA o de políticas de IA. Los participantes reciben mentoría, financiamiento y otros recursos para convertirse en líderes en su campus, preparándose a sí mismos y a los miembros de su grupo para carreras en el campo.",
+    "pt": "Apoia estudantes do mundo todo que organizam grupos universitários de segurança técnica da IA ou de políticas de IA. Os participantes recebem mentoria, financiamento e outros recursos para se tornarem líderes no campus, preparando a si mesmos e aos membros do grupo para carreiras na área."
+  },
+  "recwQkZJJ2UbDUjhy": {
+    "en": "Helps experienced professionals transition into AI governance careers. Small teams tackle policy-relevant research with expert partners like the UK AI Security Institute (AISI) and GovAI, typically producing a paper and a policy brief or article.",
+    "es": "Ayuda a profesionales con experiencia a hacer la transición a carreras en gobernanza de la IA. Equipos pequeños abordan investigaciones relevantes para las políticas públicas con aliados expertos como el UK AI Security Institute (AISI) y GovAI, y suelen producir un paper y un policy brief o artículo.",
+    "pt": "Ajuda profissionais experientes a fazer a transição para carreiras em governança da IA. Pequenas equipes conduzem pesquisas relevantes para políticas públicas com parceiros especialistas como o UK AI Security Institute (AISI) e o GovAI, normalmente produzindo um artigo e um policy brief ou texto de opinião."
+  },
+  "recsF7D6LJdj9SjgJ": {
+    "en": "Immerses participants in safety research through expert-led sessions and hands-on projects. Teams of three survey research agendas, build technical skills, and work with mentors to produce a paper for conference submission.",
+    "es": "Te sumerge en la investigación en seguridad a través de sesiones dirigidas por expertos y proyectos prácticos. Equipos de tres revisan agendas de investigación, desarrollan habilidades técnicas y trabajan con mentores para producir un paper para enviar a una conferencia.",
+    "pt": "Mergulha os participantes na pesquisa em segurança por meio de sessões conduzidas por especialistas e projetos práticos. Equipes de três pessoas analisam agendas de pesquisa, desenvolvem habilidades técnicas e trabalham com mentores para produzir um artigo para submissão a uma conferência."
+  },
+  "recvuVrhIqffLrRNP": {
+    "en": "Intensive run by the Oxford AI Safety Initiative (OAISI) designed to rapidly build AI safety skills – covering interpretability, RLHF, and replicating alignment research papers. Expects basic familiarity with linear algebra, Python, and AI safety.",
+    "es": "Programa intensivo del Oxford AI Safety Initiative (OAISI) diseñado para desarrollar rápidamente habilidades en seguridad de la IA, cubriendo interpretabilidad, RLHF y la replicación de papers de investigación en alineación. Se espera familiaridad básica con álgebra lineal, Python y seguridad de la IA.",
+    "pt": "Programa intensivo da Oxford AI Safety Initiative (OAISI) criado para desenvolver rapidamente habilidades em segurança da IA, cobrindo interpretabilidade, RLHF e replicação de artigos de pesquisa em alinhamento. Espera-se familiaridade básica com álgebra linear, Python e segurança da IA."
+  },
+  "recLAzcPCI6At1MOE": {
+    "en": "ML upskilling program from the Cambridge Boston Alignment Initiative (CBAI) for aspiring technical AI safety researchers. Covers mechanistic interpretability and reinforcement learning via the ARENA curriculum.",
+    "es": "Programa de formación en ML de la Cambridge Boston Alignment Initiative (CBAI) para aspirantes a investigadores en seguridad técnica de la IA. Cubre interpretabilidad mecanicista y aprendizaje por refuerzo a través del currículo de ARENA.",
+    "pt": "Programa de capacitação em ML da Cambridge Boston Alignment Initiative (CBAI) para aspirantes a pesquisadores em segurança técnica da IA. Cobre interpretabilidade mecanicista e aprendizado por reforço por meio do currículo do ARENA."
+  },
+  "rec7eRVZBrTF7JLor": {
+    "en": "Research program run by the Cambridge Boston Alignment Initiative (CBAI). Fellows work closely with mentors on projects across interpretability, formal verification, and AI governance.",
+    "es": "Programa de investigación de la Cambridge Boston Alignment Initiative (CBAI). Los becarios trabajan de cerca con mentores en proyectos de interpretabilidad, verificación formal y gobernanza de la IA.",
+    "pt": "Programa de pesquisa da Cambridge Boston Alignment Initiative (CBAI). Os bolsistas trabalham de perto com mentores em projetos de interpretabilidade, verificação formal e governança da IA."
+  },
+  "reczLfFotU3eOa2OJ": {
+    "en": "Research program from the Cambridge AI Safety Hub (CAISH), pairing teams of 2–4 with mentors on technical alignment and governance research. A one-week in-person kickoff leads into 8–10 weeks of remote work.",
+    "es": "Programa de investigación del Cambridge AI Safety Hub (CAISH) que empareja equipos de 2 a 4 personas con mentores en investigación en alineación técnica y gobernanza. Un arranque presencial de una semana da paso a 8 a 10 semanas de trabajo remoto.",
+    "pt": "Programa de pesquisa do Cambridge AI Safety Hub (CAISH) que conecta equipes de 2 a 4 pessoas a mentores em pesquisa em alinhamento técnico e governança. Uma semana de abertura presencial dá lugar a 8 a 10 semanas de trabalho remoto."
+  },
+  "recG6wHPLlxNoXQTB": {
+    "en": "Intensive program for early-career professionals already working in or studying cooperative AI. Participants attend talks from researchers, work on collaborative projects tackling cooperative AI challenges, and receive career guidance and mentoring. Run by CAIF.",
+    "es": "Programa intensivo para profesionales al inicio de su carrera que ya trabajan o estudian en IA cooperativa. Los participantes asisten a charlas de investigadores, trabajan en proyectos colaborativos sobre desafíos de IA cooperativa y reciben orientación profesional y mentoría. Organizado por CAIF.",
+    "pt": "Programa intensivo para profissionais em início de carreira que já trabalham ou estudam IA cooperativa. Os participantes assistem a palestras de pesquisadores, trabalham em projetos colaborativos sobre desafios de IA cooperativa e recebem orientação de carreira e mentoria. Organizado pela CAIF."
+  },
+  "rectetscTK7TA4HWb": {
+    "en": "Aims to deepen participants' understanding of the field of cooperative AI and help them prepare to contribute. Includes weekly exercises, group discussions facilitated by field practitioners, and a dedicated community. Run by Cooperative AI Foundation (CAIF).",
+    "es": "Busca profundizar tu comprensión del campo de la IA cooperativa y ayudarte a prepararte para contribuir. Incluye ejercicios semanales, discusiones grupales facilitadas por profesionales del campo y una comunidad dedicada. Organizado por la Cooperative AI Foundation (CAIF).",
+    "pt": "Busca aprofundar sua compreensão da área de IA cooperativa e ajudar você a se preparar para contribuir. Inclui exercícios semanais, discussões em grupo facilitadas por profissionais da área e uma comunidade dedicada. Organizado pela Cooperative AI Foundation (CAIF)."
+  },
+  "reccGVf5ghXob6ALF": {
+    "en": "Run by UChicago's Existential Risk Laboratory (XLab), this program supports students and early-career researchers doing independent research on AI safety, AI security, or nuclear security. Includes expert mentorship.",
+    "es": "Organizado por el Existential Risk Laboratory (XLab) de UChicago, este programa apoya a estudiantes e investigadores al inicio de su carrera que hacen investigación independiente en seguridad de la IA, seguridad informática de la IA o seguridad nuclear. Incluye mentoría de expertos.",
+    "pt": "Organizado pelo Existential Risk Laboratory (XLab) da UChicago, este programa apoia estudantes e pesquisadores em início de carreira que fazem pesquisa independente em segurança da IA, segurança cibernética da IA ou segurança nuclear. Inclui mentoria de especialistas."
+  },
+  "recor9jSJMZqTxa3k": {
+    "en": "Run by Leaf for students aged 14–19 who haven't yet started university, exploring how to steer AI toward benefiting humanity. Includes discussion groups, talks and Q&As with AI safety researchers, and mentorship.",
+    "es": "Organizado por Leaf para estudiantes de 14 a 19 años que aún no han entrado a la universidad, explora cómo orientar la IA para que beneficie a la humanidad. Incluye grupos de discusión, charlas y sesiones de preguntas y respuestas con investigadores en seguridad de la IA, y mentoría.",
+    "pt": "Organizado pela Leaf para estudantes de 14 a 19 anos que ainda não entraram na universidade, explora como direcionar a IA para beneficiar a humanidade. Inclui grupos de discussão, palestras e sessões de perguntas e respostas com pesquisadores em segurança da IA, além de mentoria."
+  },
+  "recag9i2y47twdsGD": {
+    "en": "Participants work as research associates on projects supervised by experienced leads. Topics span AI policy, technical safety, and AI sentience. Provides research experience and helps build professional networks.",
+    "es": "Los participantes trabajan como asociados de investigación en proyectos supervisados por líderes con experiencia. Los temas abarcan políticas de IA, seguridad técnica y sintiencia de la IA. Ofrece experiencia en investigación y ayuda a construir redes profesionales.",
+    "pt": "Os participantes atuam como associados de pesquisa em projetos supervisionados por líderes experientes. Os temas abrangem políticas de IA, segurança técnica e senciência da IA. Oferece experiência em pesquisa e ajuda a construir redes profissionais."
+  },
+  "recdoMAlALXfnxCeW": {
+    "en": "Program run by High Impact Professionals (HIP) helping experienced mid-career and senior professionals transition into high-impact careers – including AI safety. Participants follow a guided workbook, attend weekly group sessions, and receive continued support after the program.",
+    "es": "Programa de High Impact Professionals (HIP) que ayuda a profesionales con experiencia, de mitad de carrera y sénior, a hacer la transición a carreras de alto impacto, incluida la seguridad de la IA. Los participantes siguen un cuaderno de trabajo guiado, asisten a sesiones grupales semanales y reciben apoyo continuo después del programa.",
+    "pt": "Programa da High Impact Professionals (HIP) que ajuda profissionais experientes, em meio de carreira e seniores, a fazer a transição para carreiras de alto impacto, incluindo a segurança da IA. Os participantes seguem um caderno de trabalho guiado, participam de sessões semanais em grupo e recebem apoio contínuo após o programa."
+  },
+  "rechE62zg7HFr2wv7": {
+    "en": "Strengthens practical policy skills for a world with powerful AI. Professionals from varied backgrounds pursue independent projects with expert mentorship, joining in Washington D.C. or remotely after an in-person residency.",
+    "es": "Fortalece habilidades prácticas en políticas públicas para un mundo con IA poderosa. Profesionales de diversos perfiles desarrollan proyectos independientes con mentoría experta, y participan desde Washington D.C. o de forma remota tras una residencia presencial.",
+    "pt": "Fortalece habilidades práticas em políticas públicas para um mundo com IA poderosa. Profissionais de diferentes perfis desenvolvem projetos independentes com mentoria de especialistas, participando de Washington D.C. ou remotamente após uma residência presencial."
+  },
+  "recUOQCM2x0v8jwqs": {
+    "en": "Program for women strengthening their research skills and network in technical and policy-focused AI safety research. Participants join weekly research talks and gather midway for a retreat with established researchers.",
+    "es": "Programa para mujeres que quieren fortalecer sus habilidades de investigación y su red en investigación en seguridad de la IA técnica y enfocada en políticas. Las participantes asisten a charlas de investigación semanales y se reúnen a mitad del programa en un retiro con investigadores reconocidos.",
+    "pt": "Programa para mulheres que querem fortalecer suas habilidades de pesquisa e sua rede em pesquisa em segurança da IA técnica e voltada a políticas. As participantes assistem a palestras de pesquisa semanais e se encontram no meio do programa em um retiro com pesquisadores reconhecidos."
+  },
+  "rec4fx8zjp86cI6aq": {
+    "en": "Program by ILINA, an African-led AI safety organization, helping participants develop high-impact projects and build career capital. Weekly seminars lead into mentored research on technical or governance tracks.",
+    "es": "Programa de ILINA, una organización africana de seguridad de la IA, que ayuda a los participantes a desarrollar proyectos de alto impacto y construir capital profesional. Seminarios semanales dan paso a investigación con mentoría en líneas técnicas o de gobernanza.",
+    "pt": "Programa da ILINA, uma organização africana de segurança da IA, que ajuda os participantes a desenvolver projetos de alto impacto e construir capital de carreira. Seminários semanais dão lugar a pesquisa com mentoria nas trilhas técnica ou de governança."
+  },
+  "rec6rat76WhqULQUS": {
+    "en": "Program by Black in AI Safety and Ethics (BASE) developing Black researchers in AI safety and security. Fellows work on a focused project with a mentor across alignment, security, governance, and responsible AI tracks.",
+    "es": "Programa de Black in AI Safety and Ethics (BASE) que forma a investigadores negros en seguridad y ciberseguridad de la IA. Los becarios trabajan en un proyecto enfocado con un mentor en líneas de alineación, seguridad, gobernanza e IA responsable.",
+    "pt": "Programa da Black in AI Safety and Ethics (BASE) que desenvolve pesquisadores negros em segurança e cibersegurança da IA. Os bolsistas trabalham em um projeto focado com um mentor nas trilhas de alinhamento, segurança, governança e IA responsável."
+  },
+  "recCjhxRjjDsTVSQL": {
+    "en": "Residency for AI safety researchers, providing workspace, community, research management, and support toward publication. Ideal for MATS-like program graduates transitioning to independent research, or experienced researchers seeking collaborators.",
+    "es": "Residencia para investigadores en seguridad de la IA que ofrece espacio de trabajo, comunidad, gestión de la investigación y apoyo para publicar. Ideal para egresados de programas tipo MATS que pasan a la investigación independiente, o investigadores con experiencia que buscan colaboradores.",
+    "pt": "Residência para pesquisadores em segurança da IA que oferece espaço de trabalho, comunidade, gestão de pesquisa e apoio para publicação. Ideal para egressos de programas como o MATS que estão migrando para a pesquisa independente, ou pesquisadores experientes em busca de colaboradores."
+  },
+  "rec3s5QA6fHHNR8gs": {
+    "en": "Program run by Arcadia Impact to help participants launch a career in AI policy. Five weeks of training on AI capabilities, risks, and policy levers lead into a supervised team research project.",
+    "es": "Programa de Arcadia Impact para ayudar a los participantes a lanzar una carrera en políticas de IA. Cinco semanas de formación sobre capacidades, riesgos y palancas de política de la IA dan paso a un proyecto de investigación supervisado en equipo.",
+    "pt": "Programa da Arcadia Impact para ajudar os participantes a iniciar uma carreira em políticas de IA. Cinco semanas de formação sobre capacidades, riscos e alavancas de política da IA dão lugar a um projeto de pesquisa supervisionado em equipe."
+  },
+  "recW6uWJQ7LaR8VMM": {
+    "en": "Hands-on, project-based program connecting students and recent graduates with US state and local governments to research and write policy briefs on emerging tech issues, including AI governance. Work is done in small teams.",
+    "es": "Programa práctico basado en proyectos que conecta a estudiantes y recién graduados con gobiernos estatales y locales de EE. UU. para investigar y redactar policy briefs sobre temas de tecnologías emergentes, incluida la gobernanza de la IA. El trabajo se hace en equipos pequeños.",
+    "pt": "Programa prático baseado em projetos que conecta estudantes e recém-formados a governos estaduais e locais dos EUA para pesquisar e redigir policy briefs sobre temas de tecnologias emergentes, incluindo a governança da IA. O trabalho é feito em pequenas equipes."
+  },
+  "recSs3CQteyddEU2D": {
+    "en": "Currently paused. Develops policy analysts at the intersection of AI and security through mentored research on frontier AI security, compute governance, and technology policy. Part-time is also possible.",
+    "es": "Actualmente en pausa. Forma analistas de políticas en la intersección entre IA y seguridad mediante investigación con mentoría sobre seguridad de la IA de frontera, gobernanza del cómputo y políticas tecnológicas. También es posible hacerlo a tiempo parcial.",
+    "pt": "Atualmente pausado. Forma analistas de políticas na interseção entre IA e segurança por meio de pesquisa com mentoria sobre segurança da IA de fronteira, governança de computação e políticas de tecnologia. Também é possível participar em meio período."
+  },
+  "recnlYQ6tbjbzbTkD": {
+    "en": "Program based on the ARENA curriculum, building technical AI safety skills across the Asia-Pacific region. Saturday sessions in cities across Australia, New Zealand, and Asia cover transformers, interpretability, RL, and evaluations, then a research project.",
+    "es": "Programa basado en el currículo de ARENA que desarrolla habilidades técnicas en seguridad de la IA en la región Asia-Pacífico. Sesiones los sábados en ciudades de Australia, Nueva Zelanda y Asia cubren transformers, interpretabilidad, RL y evaluaciones, seguidas de un proyecto de investigación.",
+    "pt": "Programa baseado no currículo do ARENA que desenvolve habilidades técnicas em segurança da IA na região Ásia-Pacífico. Sessões aos sábados em cidades da Austrália, da Nova Zelândia e da Ásia cobrem transformers, interpretabilidade, RL e avaliações, seguidas de um projeto de pesquisa."
+  },
+  "recxzjEgVSubdNgVg": {
+    "en": "Equips experienced security professionals to secure frontier AI systems. Covers adversarial ML, LLM security, and AI infrastructure through demos and hands-on red/blue team exercises.",
+    "es": "Prepara a profesionales de seguridad con experiencia para proteger sistemas de IA de frontera. Cubre ML adversarial, seguridad de LLM e infraestructura de IA mediante demostraciones y ejercicios prácticos de red team y blue team.",
+    "pt": "Prepara profissionais de segurança experientes para proteger sistemas de IA de fronteira. Cobre ML adversarial, segurança de LLMs e infraestrutura de IA por meio de demonstrações e exercícios práticos de red team e blue team."
+  },
+  "rechpNtQUj1Xm5d9j": {
+    "en": "Cohort-based courses on superintelligence risk. Each week combines readings, exercises with an AI tutor, and a guided group discussion. Also runs intensive versions. Anyone can join, with no selection process.",
+    "es": "Cursos por cohortes sobre el riesgo de la superinteligencia. Cada semana combina lecturas, ejercicios con un tutor de IA y una discusión grupal guiada. También ofrece versiones intensivas. Cualquiera puede unirse, sin proceso de selección.",
+    "pt": "Cursos em turmas sobre o risco da superinteligência. Cada semana combina leituras, exercícios com um tutor de IA e uma discussão em grupo guiada. Também oferece versões intensivas. Qualquer pessoa pode participar, sem processo seletivo."
+  },
+  "recYA6ZCK741kp5FQ": {
+    "en": "Interdisciplinary research program connecting PhD and postdoctoral researchers from fields like mathematics, neuroscience, physics, and philosophy with AI safety mentors. Projects bridge the participant's field and AI safety.",
+    "es": "Programa de investigación interdisciplinario que conecta a investigadores doctorales y posdoctorales de campos como matemáticas, neurociencia, física y filosofía con mentores en seguridad de la IA. Los proyectos tienden puentes entre el campo del participante y la seguridad de la IA.",
+    "pt": "Programa de pesquisa interdisciplinar que conecta pesquisadores de doutorado e pós-doutorado de áreas como matemática, neurociência, física e filosofia a mentores em segurança da IA. Os projetos fazem a ponte entre a área do participante e a segurança da IA."
+  }
+}
