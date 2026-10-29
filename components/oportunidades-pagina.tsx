@@ -59,11 +59,11 @@ export const TEXTOS: Record<Idioma, Textos> = {
   es: {
     titulo: "Oportunidades",
     descripcion:
-      "Becas, bootcamps y cursos de seguridad de la IA en todo el mundo, en línea y presenciales, con sus fechas y convocatorias. Listado de AISafety.com, sincronizado automáticamente.",
+      "Becas, bootcamps y cursos de seguridad de la IA en todo el mundo, en línea y presenciales, con sus fechas y convocatorias. Listado de AISafety.com.",
     intro: ["Becas, bootcamps y cursos", " de seguridad de la IA para formarte y construir tu carrera. En línea y presenciales."],
     eventos: ["Para conferencias, charlas, talleres y más, ve a ", "Eventos"],
     boletin: ["Recibe cada semana un resumen de los programas nuevos en AISafety.com.", "Suscríbete en AISafety.com"],
-    credito: (hace) => [`Actualizado ${hace} · Listado de `, ", sincronizado automáticamente."],
+    credito: (hace) => [`Actualizado ${hace} · Listado de `, "."],
     fechas: {
       empieza: (x) => `Empieza ${x}`,
       el: (x) => `el ${x}`,
@@ -137,11 +137,11 @@ export const TEXTOS: Record<Idioma, Textos> = {
   en: {
     titulo: "Opportunities",
     descripcion:
-      "AI safety fellowships, bootcamps and courses worldwide, online and in person, with dates and application deadlines. Listing from AISafety.com, synced automatically.",
+      "AI safety fellowships, bootcamps and courses worldwide, online and in person, with dates and application deadlines. Listing from AISafety.com.",
     intro: ["Fellowships, bootcamps, and courses", " in AI safety to upskill and build career capital. Both online and in person."],
     eventos: ["For conferences, talks, workshops, and more go to ", "Events"],
     boletin: ["Get a weekly summary of all new training programs on AISafety.com.", "Subscribe on AISafety.com"],
-    credito: (hace) => [`Updated ${hace} · Listing from `, ", synced automatically."],
+    credito: (hace) => [`Updated ${hace} · Listing from `, "."],
     fechas: {
       empieza: (x) => `Starts ${x}`,
       el: (x) => `on ${x}`,
@@ -188,11 +188,11 @@ export const TEXTOS: Record<Idioma, Textos> = {
   pt: {
     titulo: "Oportunidades",
     descripcion:
-      "Bolsas, bootcamps e cursos de segurança da IA no mundo todo, online e presenciais, com datas e prazos de inscrição. Lista do AISafety.com, sincronizada automaticamente.",
+      "Bolsas, bootcamps e cursos de segurança da IA no mundo todo, online e presenciais, com datas e prazos de inscrição. Lista do AISafety.com.",
     intro: ["Bolsas, bootcamps e cursos", " de segurança da IA para se capacitar e construir sua carreira. Online e presenciais."],
     eventos: ["Para conferências, palestras, oficinas e mais, vá para ", "Eventos"],
     boletin: ["Receba toda semana um resumo dos novos programas no AISafety.com.", "Inscreva-se no AISafety.com"],
-    credito: (hace) => [`Atualizado ${hace} · Lista do `, ", sincronizada automaticamente."],
+    credito: (hace) => [`Atualizado ${hace} · Lista do `, "."],
     fechas: {
       empieza: (x) => `Começa ${x}`,
       el: (x) => `em ${x}`,

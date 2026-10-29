@@ -93,7 +93,6 @@ function Tarjeta({ p, grande, t }: { p: ProgramaVista; grande?: boolean; t: Text
         ) : (
           p.types.map((tipo) => (
             <span key={tipo} className={`${PILDORA} ${COLOR_TIPO[tipo] ?? COLOR_TIPO.Other}`}>
-              <span className="size-1.5 rounded-full bg-current" aria-hidden />
               {t.opciones[tipo] ?? tipo}
             </span>
           ))
@@ -102,7 +101,7 @@ function Tarjeta({ p, grande, t }: { p: ProgramaVista; grande?: boolean; t: Text
       <div className="flex items-start gap-4 py-6">
         {p.logo && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={p.logo} alt="" width={64} height={64} loading="lazy" className="size-16 flex-none rounded-[4px] bg-white object-contain" />
+          <img src={p.logo} alt="" width={64} height={64} loading="lazy" className="size-16 flex-none rounded-[4px] object-contain" />
         )}
         <div className="min-w-0">
           <h3 className="text-[22px] leading-[1.25] font-light text-aisc-sand">{p.name}</h3>
@@ -139,8 +138,9 @@ function Tarjeta({ p, grande, t }: { p: ProgramaVista; grande?: boolean; t: Text
       )}
     </>
   );
-  const clases = `relative flex flex-col rounded-2xl border border-transparent transition-colors hover:border-[#8cc9a0]/40 ${FOCO} ${
-    grande ? "p-8 md:p-14 bg-[radial-gradient(at_0%_0%,#245a3b_0%,#143620_100%)]" : "p-7 md:p-10 bg-[#143620]"
+  // Como en AISafety.com: sin borde, sombra honda y un leve zoom al pasar el mouse.
+  const clases = `relative flex flex-col rounded-2xl shadow-[0_16px_40px_rgba(0,0,0,0.4)] transition-transform duration-100 ease-in-out will-change-transform [backface-visibility:hidden] [@media(hover:hover)]:hover:scale-[1.015] ${FOCO} ${
+    grande ? "p-8 lg:p-14 bg-[radial-gradient(at_0%_0%,#245a3b_0%,#143620_100%)]" : "p-8 lg:p-10 bg-[#143620]"
   }`;
   return p.href ? (
     <a href={p.href} target="_blank" rel="noopener noreferrer" className={clases}>
