@@ -100,6 +100,10 @@ export const PAGINAS: Pagina[] = [
     nav: { es: "Recursos", en: "Resources", pt: "Recursos" },
   },
   {
+    ruta: { es: "/oportunidades", en: "/en/opportunities", pt: "/pt/oportunidades" },
+    nav: { es: "Oportunidades", en: "Opportunities", pt: "Oportunidades" },
+  },
+  {
     ruta: { es: "/unete", en: "/en/join", pt: "/pt/participe" },
     nav: { es: "Únete", en: "Join us", pt: "Participe" },
   },
