@@ -63,10 +63,12 @@ const GRUPOS: Record<Grupo, Record<Idioma, string>> = {
 };
 
 /* El orden es el del menú:
-   1. Participa (Hackatón [destacado], Seminarios, Eventos, Únete)
-   2. Investigación
-   3. Aprende (Recursos, Oportunidades)
-   4. ¿Quiénes somos? */
+   1. Participa (Hackatón [destacado], Seminario técnico, Seminario futuro)
+   2. Eventos
+   3. Investigación
+   4. Aprende (Recursos, Oportunidades)
+   5. Únete
+   6. ¿Quiénes somos? */
 export const PAGINAS: Pagina[] = [
   {
     ruta: { es: "/", en: "/en", pt: "/pt" },
@@ -75,7 +77,7 @@ export const PAGINAS: Pagina[] = [
     ruta: { es: "/defacchackathon", en: "/en/defacchackathon", pt: "/pt/defacchackathon" },
     nav: { es: "Hackatón de Aceleración Defensiva", en: "Defensive Acceleration Hackathon", pt: "Hackathon de Aceleração Defensiva" },
     grupo: "participa",
-    detalle: { es: "14 nov · Presencial Uniandes · COP 2.000.000 en premios", en: "Nov 14 · In person Uniandes · COP 2,000,000 in prizes", pt: "14 nov · Presencial Uniandes · COP 2.000.000 em prêmios" },
+    detalle: { es: "14 nov · Presencial Uniandes · COP 3.000.000+ en premios", en: "Nov 14 · In person Uniandes · COP 3,000,000+ in prizes", pt: "14 nov · Presencial Uniandes · COP 3.000.000+ em prêmios" },
     destacado: true,
   },
   {
@@ -97,14 +99,6 @@ export const PAGINAS: Pagina[] = [
   {
     ruta: { es: "/eventos", en: "/en/events", pt: "/pt/eventos" },
     nav: { es: "Eventos", en: "Events", pt: "Eventos" },
-    grupo: "participa",
-    detalle: { es: "Charlas, cenas de discusión y paneles en Bogotá", en: "Talks, discussion dinners and panels in Bogotá", pt: "Palestras, jantares de discussão e painéis em Bogotá" },
-  },
-  {
-    ruta: { es: "/unete", en: "/en/join", pt: "/pt/participe" },
-    nav: { es: "Únete a la comunidad", en: "Join the community", pt: "Participe da comunidade" },
-    grupo: "participa",
-    detalle: { es: "Rutas para ingresar, colaborar y conectar", en: "Ways to join, collaborate and connect", pt: "Caminhos para entrar, colaborar e conectar" },
   },
   {
     ruta: { es: "/investigacion", en: "/en/research", pt: "/pt/pesquisa" },
@@ -121,6 +115,10 @@ export const PAGINAS: Pagina[] = [
     nav: { es: "Oportunidades globales", en: "Global opportunities", pt: "Oportunidades globais" },
     grupo: "aprende",
     detalle: { es: "Becas, bootcamps y convocatorias", en: "Fellowships, bootcamps and grants", pt: "Bolsas, bootcamps e chamadas" },
+  },
+  {
+    ruta: { es: "/unete", en: "/en/join", pt: "/pt/participe" },
+    nav: { es: "Únete", en: "Join us", pt: "Participe" },
   },
   {
     ruta: { es: "/quienes-somos", en: "/en/about", pt: "/pt/quem-somos" },
