@@ -182,7 +182,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       fechaRotulo: "Fecha",
       fechaValor: "Sábado 14 de noviembre de 2026",
       horarioRotulo: "Horario",
-      horarioValor: "8:00 a. m. a 8:00 p. m. (7 h de trabajo)",
+      horarioValor: "8:00 a. m. a 8:00 p. m. (8 h de trabajo)",
       lugarRotulo: "Lugar",
       lugarValor: "Universidad de los Andes, Bogotá",
       formatoRotulo: "Formato",
@@ -212,7 +212,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "En Colombia y América Latina ya enfrentamos riesgos concretos (desde incidentes contra entidades públicas e infraestructura crítica y suplantación con voces clonadas por WhatsApp hasta el despliegue apresurado de agentes autónomos sin guardarraíles), y a la vez contamos con el talento para aportar soluciones empíricas a la frontera global de seguridad de la IA.",
       retoTitulo: "El reto",
       retoTexto:
-        "Construir y evaluar, en 7 horas de trabajo continuo, un prototipo defensivo o estándar verificable dentro de uno de los 5 frentes temáticos: seguridad de agentes, control y monitoreo de IA, ciberdefensa y verificación formal, defensa epistémica o seguridad de infraestructura y gobernanza.",
+        "Construir y evaluar, en 8 horas de trabajo continuo, un prototipo defensivo o estándar verificable dentro de uno de los 5 frentes temáticos: seguridad de agentes, control y monitoreo de IA, ciberdefensa y verificación formal, defensa epistémica o seguridad de infraestructura y gobernanza.",
       cuatroRequisitosTitulo: "Las 4 preguntas clave de cada entrega",
       cuatroRequisitos: [
         "El vector de riesgo: definir con precisión qué ataque, fallo de control o vulnerabilidad de IA busca mitigar el proyecto.",
@@ -223,7 +223,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       quienTitulo: "¿Quién puede participar?",
       quienPuntos: [
         "Estudiantes universitarios de cualquier semestre y carrera, investigadores y profesionales de la industria o el sector público.",
-        "Equipos de 2 a 4 personas. Quien aplique solo podrá conformar equipo durante la dinámica de bienvenida a las 9:40 a. m.",
+        "Equipos de 2 a 4 personas. Quien aplique solo podrá conformar equipo durante la sesión de apertura a las 8:30 a. m.",
         "No hace falta experiencia previa en seguridad de IA: cada frente ofrece puntos de partida accesibles (resolubles con Python, suites de evaluación guiadas o modelado formal de amenazas y gobernanza sin programar en el Track 5).",
         "Cupo limitado por aforo para garantizar un espacio de trabajo óptimo, conectividad y alimentación.",
       ],
@@ -404,9 +404,9 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       titulo: "Agenda de la jornada",
       subtitulo: "Sábado 14 de noviembre en la Universidad de los Andes, Bogotá",
       agenda: [
-        { hora: "08:30 a. m.", actividad: "Registro e ingreso al campus", detalle: "Control de acceso en portería de Uniandes y ubicación de los equipos." },
-        { hora: "09:00 a. m.", actividad: "Apertura y presentación del reto", detalle: "Presentación de los frentes de investigación, criterios de evaluación y kits de inicio." },
-        { hora: "10:00 a. m.", actividad: "Inicio del sprint de desarrollo", detalle: "Trabajo continuo de los equipos con acompañamiento de mentores en sala.", destacado: true },
+        { hora: "08:00 a. m.", actividad: "Registro e ingreso al campus", detalle: "Control de acceso en portería de Uniandes y ubicación de los participantes." },
+        { hora: "08:30 a. m.", actividad: "Apertura y presentación del reto", detalle: "Presentación de los frentes temáticos, criterios de evaluación y conformación de equipos." },
+        { hora: "09:00 a. m.", actividad: "Inicio del sprint de desarrollo (8 horas)", detalle: "Trabajo continuo de los equipos con acompañamiento de mentores en sala.", destacado: true },
         { hora: "05:00 p. m.", actividad: "Cierre de entregas", detalle: "Entrega del repositorio con código ejecutable y la ficha técnica de una página.", destacado: true },
         { hora: "07:00 p. m.", actividad: "Pitches de finalistas y premiación", detalle: "Presentación de los proyectos con mayor puntaje ante el jurado y anuncio de los ganadores.", destacado: true },
       ],
@@ -421,7 +421,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       faqs: [
         {
           q: "¿Puedo participar si no tengo equipo previo?",
-          a: "Sí, absolutamente. Puedes postularte individualmente. A las 9:40 a. m. realizaremos una dinámica guiada de conformación de equipos interdisciplinarios para que nadie compita solo.",
+          a: "Sí, absolutamente. Puedes postularte individualmente. Durante la apertura de las 8:30 a. m. realizaremos una dinámica guiada de conformación de equipos interdisciplinarios para que nadie compita solo.",
         },
         {
           q: "¿Tiene algún costo participar?",
@@ -481,7 +481,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       fechaRotulo: "Date",
       fechaValor: "Saturday, November 14, 2026",
       horarioRotulo: "Hours",
-      horarioValor: "8:00 AM to 8:00 PM (7h sprint)",
+      horarioValor: "8:00 AM to 8:00 PM (8h sprint)",
       lugarRotulo: "Venue",
       lugarValor: "Universidad de los Andes, Bogotá",
       formatoRotulo: "Format",
@@ -511,7 +511,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "In Colombia and Latin America, these risks are already concrete (from attacks on public infrastructure and WhatsApp voice-cloning fraud to the rapid deployment of autonomous agents without guardrails), while our technical community has the talent to contribute empirical solutions to the global AI safety frontier.",
       retoTitulo: "The Challenge",
       retoTexto:
-        "Build and evaluate, within 7 hours of focused teamwork, a defensive prototype or verifiable standard across one of the 5 research tracks: agent security, AI control & oversight, automated cyberdefense & formal verification, epistemic defense, or AI infrastructure security & governance.",
+        "Build and evaluate, within 8 hours of focused teamwork, a defensive prototype or verifiable standard across one of the 5 research tracks: agent security, AI control & oversight, automated cyberdefense & formal verification, epistemic defense, or AI infrastructure security & governance.",
       cuatroRequisitosTitulo: "The 4 Core Questions for Every Submission",
       cuatroRequisitos: [
         "The threat vector: clearly define which attack vector, control failure, or AI vulnerability your project mitigates.",
@@ -522,7 +522,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       quienTitulo: "Who Can Join?",
       quienPuntos: [
         "Undergraduate & graduate students from any discipline, researchers, software engineers, and public policy practitioners.",
-        "Teams of 2 to 4. Solo applicants are grouped at the opening mixer at 9:40 AM.",
+        "Teams of 2 to 4. Solo applicants are grouped during the opening session at 8:30 AM.",
         "No prior AI safety research experience required: each track provides accessible entry points (solvable with Python, guided evaluation suites, or formal threat modeling and governance without code in Track 5).",
         "Limited capacity to ensure high-quality mentoring, workspace, and catering.",
       ],
@@ -681,9 +681,9 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       titulo: "Day Agenda",
       subtitulo: "Saturday, November 14, 2026 at Universidad de los Andes, Bogotá",
       agenda: [
-        { hora: "08:30 AM", actividad: "Check-in & Campus Access", detalle: "Access control at Uniandes security gates and team desk setup." },
-        { hora: "09:00 AM", actividad: "Opening Ceremony & Challenge Brief", detalle: "Presentation of research tracks, evaluation criteria, and starter kits." },
-        { hora: "10:00 AM", actividad: "Sprint Begins", detalle: "Focused build sprint with on-site mentor support.", destacado: true },
+        { hora: "08:00 AM", actividad: "Check-in & Campus Access", detalle: "Access control at Uniandes security gates and participant check-in." },
+        { hora: "08:30 AM", actividad: "Opening Ceremony & Challenge Brief", detalle: "Presentation of research tracks, evaluation criteria, and team formation." },
+        { hora: "09:00 AM", actividad: "Sprint Begins (8 hours)", detalle: "Focused build sprint with on-site mentor support.", destacado: true },
         { hora: "05:00 PM", actividad: "Submission Cutoff", detalle: "Strict deadline: repository with runnable code + one-page summary sheet.", destacado: true },
         { hora: "07:00 PM", actividad: "Finalist Pitches & Awards", detalle: "Top-scoring projects present live to judges, followed by the awards ceremony.", destacado: true },
       ],
@@ -696,7 +696,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       ],
       faqTitulo: "Frequently Asked Questions",
       faqs: [
-        { q: "Can I apply without a team?", a: "Yes. Solo applicants will join a team during the 9:40 AM mixer." },
+        { q: "Can I apply without a team?", a: "Yes. Solo applicants will join a team during the 8:30 AM opening session." },
         { q: "Is there an entry fee?", a: "None. Attendance, lunch, coffee stations, and mentors are 100% free. Capacity is limited to ensure a high-quality environment." },
         { q: "What technical experience is required?", a: "Beginners to advanced practitioners are welcome. Kits support basic Python to full agent architectures." },
         { q: "What should I bring?", a: "Your laptop, charger, water bottle, and national photo ID for Uniandes campus security." },
@@ -738,7 +738,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       fechaRotulo: "Data",
       fechaValor: "Sábado, 14 de novembro de 2026",
       horarioRotulo: "Horário",
-      horarioValor: "8:00 às 20:00 (7 h de trabalho)",
+      horarioValor: "8:00 às 20:00 (8 h de trabalho)",
       lugarRotulo: "Local",
       lugarValor: "Universidad de los Andes, Bogotá",
       formatoRotulo: "Formato",
@@ -768,7 +768,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "Na Colômbia e na América Latina, esses riscos já são concretos (desde incidentes contra órgãos públicos e fraudes com clonagem de voz até a implantação acelerada de agentes autônomos sem salvaguardas), enquanto nossa comunidade técnica tem talento para contribuir diretamente com a fronteira global de segurança de IA.",
       retoTitulo: "O Desafio",
       retoTexto:
-        "Construir e avaliar, em 7 horas de trabalho contínuo, um protótipo defensivo ou padrão verificável em um dos 5 frentes de pesquisa: segurança de agentes, controle e supervisão de IA, ciberdefesa e verificação formal, defesa epistêmica ou segurança de infraestrutura e governança.",
+        "Construir e avaliar, em 8 horas de trabalho contínuo, um protótipo defensivo ou padrão verificável em um dos 5 frentes de pesquisa: segurança de agentes, controle e supervisão de IA, ciberdefesa e verificação formal, defesa epistêmica ou segurança de infraestrutura e governança.",
       cuatroRequisitosTitulo: "As 4 perguntas essenciais de cada entrega",
       cuatroRequisitos: [
         "O vetor de risco: definir com precisão qual ataque, falha de controle ou vulnerabilidade de IA o projeto busca mitigar.",
@@ -779,7 +779,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       quienTitulo: "Quem Pode Participar?",
       quienPuntos: [
         "Estudantes de graduação e pós-graduação, pesquisadores e profissionais de tecnologia ou políticas públicas.",
-        "Equipes de 2 a 4 integrantes. Candidatos individuais formam grupos no início do dia.",
+        "Equipes de 2 a 4 integrantes. Candidatos individuais formam grupos na abertura às 8:30.",
         "Não é exigida experiência prévia em segurança de IA: cada frente oferece pontos de partida acessíveis (com Python, suítes de avaliação guiadas ou modelagem formal de ameaças e governança sem código no Track 5).",
         "Vagas limitadas para garantir espaço de trabalho ideal, conectividade e alimentação.",
       ],
@@ -938,9 +938,9 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       titulo: "Agenda da jornada",
       subtitulo: "Sábado, 14 de novembro na Universidad de los Andes, Bogotá",
       agenda: [
-        { hora: "08:30", actividad: "Credenciamento e Entrada no Campus", detalle: "Controle de acesso nas portarias da Uniandes e acomodação das equipes." },
-        { hora: "09:00", actividad: "Abertura Oficial e Apresentação do Desafio", detalle: "Apresentação dos frentes de pesquisa, critérios de avaliação e kits de início." },
-        { hora: "10:00", actividad: "Início do Sprint de Desenvolvimento", detalle: "Trabalho prático das equipes com mentoria presencial nas salas.", destacado: true },
+        { hora: "08:00", actividad: "Credenciamento e Entrada no Campus", detalle: "Controle de acesso nas portarias da Uniandes e recepção dos participantes." },
+        { hora: "08:30", actividad: "Abertura Oficial e Apresentação do Desafio", detalle: "Apresentação dos frentes de pesquisa, critérios de avaliação e formação de equipes." },
+        { hora: "09:00", actividad: "Início do Sprint de Desenvolvimento (8 horas)", detalle: "Trabalho prático das equipes com mentoria presencial nas salas.", destacado: true },
         { hora: "17:00", actividad: "Encerramento das Entregas", detalle: "Envio do repositório com código executável e ficha técnica de 1 página.", destacado: true },
         { hora: "19:00", actividad: "Pitches dos Finalistas e Premiação", detalle: "Apresentação dos projetos finalistas perante os jurados e anúncio dos vencedores.", destacado: true },
       ],
@@ -953,7 +953,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       ],
       faqTitulo: "Perguntas Frequentes",
       faqs: [
-        { q: "Posso participar sem equipe?", a: "Sim, formaremos equipes de 2 a 4 pessoas no início do evento." },
+        { q: "Posso participar sem equipe?", a: "Sim, formaremos equipes de 2 a 4 pessoas durante a abertura às 8:30." },
         { q: "Há algum custo?", a: "Nenhum. Participação 100% gratuita com almoço completo, lanches e mentores inclusos. Vagas limitadas por capacidade." },
         { q: "Qual o nível de programação necessário?", a: "Há kits para todos os níveis, incluindo opções sem código no Track 5." },
         { q: "O que devo levar?", a: "Notebook, carregador, documento de identificação original e garrafa de água." },
