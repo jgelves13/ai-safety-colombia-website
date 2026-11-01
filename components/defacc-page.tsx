@@ -12,7 +12,6 @@ import {
 import {
   CIERRE_INSCRIPCIONES_ISO,
   FECHA_EVENTO_ISO,
-  GRUPO_COMUNIDAD_WHATSAPP,
   TEXTOS_HACKATHON,
   inscripcionesCerradas,
 } from "@/app/defacchackathon/datos";
@@ -31,7 +30,7 @@ function diasHasta(iso: string) {
   return Math.round((target - today) / 86_400_000);
 }
 
-function PodioPremios({
+function PremiosSoberos({
   premios,
   premioDifusion,
 }: {
@@ -40,141 +39,57 @@ function PodioPremios({
 }) {
   return (
     <div className="space-y-6">
-      {/* Grid de 3 tarjetas de podio */}
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:items-end">
-        {/* 2.º Lugar (Plata) */}
-        {premios[1] && (
-          <div className="relative order-2 md:order-1 flex flex-col justify-between rounded-2xl border border-slate-300 bg-linear-to-b from-slate-100/90 via-white to-slate-50/60 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
-            <div>
-              <div className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-200/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-slate-800">
-                  <span>{premios[1].icono}</span> {premios[1].posicion}
-                </span>
-              </div>
-              <div className="mt-4">
-                <span className="text-display-2 font-black tracking-tight text-slate-800">
-                  {premios[1].monto}
-                </span>
-                <span className="block text-meta text-slate-600 font-medium">
-                  En efectivo
-                </span>
-              </div>
-              <h4 className="text-display-4 mt-3 font-semibold text-aisc-ink">
-                {premios[1].titulo}
-              </h4>
-              <p className="text-body-sm mt-2 text-aisc-muted leading-relaxed">
-                {premios[1].descripcion}
-              </p>
-            </div>
-            {premios[1].extra && (
-              <div className="mt-5 rounded-lg bg-slate-100 px-3 py-2 text-caption font-semibold text-slate-800 border border-slate-200">
-                ✨ {premios[1].extra}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* 1.er Lugar (Oro - Elevado y deslumbrante) */}
-        {premios[0] && (
-          <div className="relative order-1 md:order-2 flex flex-col justify-between rounded-3xl border-2 border-amber-400 bg-linear-to-b from-amber-50/95 via-white to-amber-100/50 p-7 shadow-xl shadow-amber-500/15 transition-all hover:-translate-y-1 hover:shadow-2xl md:-translate-y-2">
-            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500 px-4 py-1 text-xs font-black uppercase tracking-wider text-aisc-cream shadow-md shadow-amber-500/30">
-                <span>{premios[0].icono}</span> {premios[0].posicion}
+      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+        {premios.map((p, i) => (
+          <li className="flex" key={p.puesto}>
+            <article
+              className={`flex min-h-[140px] w-full flex-col justify-between rounded-[8px] p-5 md:p-6 ${
+                i === 0
+                  ? "bg-aisc-forest text-aisc-sand"
+                  : "border border-aisc-forest/40 bg-aisc-cream text-aisc-ink"
+              }`}
+            >
+              <span
+                className={`text-meta font-semibold tracking-widest uppercase ${
+                  i === 0 ? "text-aisc-sand/75" : "text-aisc-muted"
+                }`}
+              >
+                {p.puesto}
               </span>
-            </div>
-            <div className="pt-2">
-              <div className="mt-3">
-                <span className="text-display-1 md:text-display-1-lg font-black tracking-tight text-amber-600">
-                  {premios[0].monto}
+              <span className="mt-4 flex flex-col">
+                <span
+                  className={`text-meta ${i === 0 ? "text-aisc-sand/75" : "text-aisc-muted"}`}
+                >
+                  COP
                 </span>
-                <span className="block text-meta text-amber-900 font-bold">
-                  En efectivo garantizado
+                <span
+                  className={`text-display-2 md:text-display-2-lg tabular-nums font-normal ${
+                    i === 0 ? "text-aisc-sand" : "text-aisc-forest"
+                  }`}
+                >
+                  {p.monto}
                 </span>
-              </div>
-              <h4 className="text-display-3 mt-3 font-bold text-aisc-forest-deep">
-                {premios[0].titulo}
-              </h4>
-              <p className="text-body-sm mt-2 text-aisc-ink/90 font-medium leading-relaxed">
-                {premios[0].descripcion}
-              </p>
-            </div>
-            {premios[0].extra && (
-              <div className="mt-6 rounded-xl bg-linear-to-r from-amber-100 to-amber-200/80 px-4 py-2.5 text-caption font-bold text-amber-950 border border-amber-300/80 shadow-xs">
-                🏆 {premios[0].extra}
-              </div>
-            )}
-          </div>
-        )}
+                <span
+                  className={`text-body-sm mt-1 ${
+                    i === 0 ? "text-aisc-sand/85" : "text-aisc-muted"
+                  }`}
+                >
+                  {p.detalle}
+                </span>
+              </span>
+            </article>
+          </li>
+        ))}
+      </ul>
 
-        {/* 3.er Lugar (Bronce) */}
-        {premios[2] && (
-          <div className="relative order-3 flex flex-col justify-between rounded-2xl border border-amber-800/25 bg-linear-to-b from-amber-900/5 via-white to-amber-950/5 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
-            <div>
-              <div className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-800/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-950">
-                  <span>{premios[2].icono}</span> {premios[2].posicion}
-                </span>
-              </div>
-              <div className="mt-4">
-                <span className="text-display-2 font-black tracking-tight text-amber-950">
-                  {premios[2].monto}
-                </span>
-                <span className="block text-meta text-amber-900/70 font-medium">
-                  En efectivo
-                </span>
-              </div>
-              <h4 className="text-display-4 mt-3 font-semibold text-aisc-ink">
-                {premios[2].titulo}
-              </h4>
-              <p className="text-body-sm mt-2 text-aisc-muted leading-relaxed">
-                {premios[2].descripcion}
-              </p>
-            </div>
-            {premios[2].extra && (
-              <div className="mt-5 rounded-lg bg-amber-900/10 px-3 py-2 text-caption font-semibold text-amber-950 border border-amber-900/15">
-                💡 {premios[2].extra}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Premio Especial de Difusión e Impacto Comunitario */}
       {premioDifusion && (
-        <div className="relative overflow-hidden rounded-2xl border border-aisc-coral/40 bg-linear-to-r from-aisc-coral/10 via-white to-aisc-sand/40 p-6 shadow-sm md:p-7">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-start gap-4">
-              <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-aisc-coral text-2xl text-aisc-cream shadow-md shadow-aisc-coral/25">
-                {premioDifusion.icono}
-              </span>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-kicker text-aisc-coral font-bold uppercase">
-                    {premioDifusion.posicion}
-                  </span>
-                </div>
-                <h4 className="text-display-4 font-bold text-aisc-forest-deep mt-0.5">
-                  {premioDifusion.titulo}
-                </h4>
-                <p className="text-body-sm mt-1 max-w-[560px] text-aisc-ink/80 leading-relaxed">
-                  {premioDifusion.descripcion}
-                </p>
-                {premioDifusion.extra && (
-                  <p className="text-caption mt-2 font-medium text-aisc-coral">
-                    ⭐ {premioDifusion.extra}
-                  </p>
-                )}
-              </div>
-            </div>
-            <div className="flex shrink-0 flex-col items-start md:items-end">
-              <span className="text-display-2 font-black tracking-tight text-aisc-coral">
-                {premioDifusion.monto}
-              </span>
-              <span className="text-meta text-aisc-muted font-medium">
-                En efectivo
-              </span>
-            </div>
-          </div>
+        <div className="rounded-[8px] border border-aisc-line bg-aisc-sand/40 p-5 text-body-sm">
+          <span className="text-meta font-semibold uppercase tracking-wider text-aisc-forest block">
+            {premioDifusion.puesto}
+          </span>
+          <p className="mt-1 text-aisc-ink/90">
+            {premioDifusion.detalle} ({premioDifusion.monto}).
+          </p>
         </div>
       )}
     </div>
@@ -208,33 +123,32 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
         />
         <SiteHeader active="/defacchackathon" />
 
-        <div className="mx-auto w-full max-w-[1440px] px-6 pt-10 pb-12 md:px-12 md:pt-14 md:pb-16 lg:px-16">
-          <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
+        <div className="mx-auto w-full max-w-[1440px] px-6 pt-12 pb-14 md:px-12 md:pt-16 md:pb-16 lg:px-16">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
             {/* Texto del Hero */}
-            <div className="flex flex-col items-start gap-3.5 lg:col-span-7 xl:col-span-8">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-kicker inline-flex items-center rounded-full bg-aisc-sand/15 px-3 py-1 font-medium tracking-wider text-aisc-sand">
-                  {d.badge}
-                </span>
-                <span className="text-kicker inline-flex items-center rounded-full bg-aisc-coral px-3 py-1 font-semibold tracking-wider text-aisc-cream">
-                  14 Nov 2026 · Bogotá
-                </span>
-              </div>
+            <div className="flex flex-col items-start gap-4 lg:col-span-7 xl:col-span-8">
+              <p className="text-kicker tracking-widest uppercase text-aisc-sand/75">
+                {d.badge}
+              </p>
 
-              <h1 className="text-display-1 md:text-display-1-lg tracking-tight text-aisc-sand text-balance leading-none md:leading-tight">
+              <h1 className="text-display-1 md:text-display-1-lg tracking-tight text-aisc-sand text-balance">
                 {d.titulo}
               </h1>
 
-              <p className="text-display-3 md:text-display-3-lg font-medium text-aisc-mint">
+              <p className="text-display-3 font-medium text-aisc-mint">
                 {d.subtitulo}
               </p>
 
-              <p className="text-body md:text-body-lg max-w-[620px] text-aisc-sand/90">
+              <p className="text-body md:text-body-lg max-w-[640px] text-aisc-sand/90">
                 {d.lema}
               </p>
 
+              <p className="text-body-sm mt-1 text-aisc-sand/75">
+                {d.estadoInscripciones}
+              </p>
+
               {/* Botones de acción principales */}
-              <div className="mt-2 flex flex-wrap items-center gap-3.5">
+              <div className="mt-2 flex flex-wrap items-center gap-3">
                 <Link className={CTA_LINK_PRIMARY} href={rutaAplicar}>
                   {d.ctaAplicar}
                 </Link>
@@ -245,70 +159,55 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                 >
                   {d.ctaVerBases}
                 </button>
-                <a
-                  className={`${CTA_LINK} inline-flex items-center gap-2`}
-                  href={GRUPO_COMUNIDAD_WHATSAPP}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-4 flex-none text-aisc-sand">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.582 0 11.941-5.359 11.944-11.893a11.821 11.821 0 00-3.487-8.4z" />
-                  </svg>
-                  {d.ctaWhatsapp}
-                </a>
               </div>
-
-              {/* Indicador de estado */}
-              <p className="text-meta mt-1 text-aisc-sand/70">
-                {d.estadoInscripciones}
-              </p>
             </div>
 
-            {/* Mascota CyberBear */}
+            {/* Mascota CyberBear sobria */}
             <div className="relative flex justify-center lg:col-span-5 xl:col-span-4">
-              <div className="relative w-full max-w-[320px] md:max-w-[360px]">
-                {/* Aura de iluminación detrás del oso */}
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 -m-6 rounded-full bg-linear-to-b from-aisc-mint/25 to-transparent blur-2xl"
-                />
+              <div className="relative w-full max-w-[260px] md:max-w-[300px]">
                 <img
                   src="/aisc/hackathon/cyberbear.png"
-                  alt="CyberBear - Mascota del Defensive Acceleration Hackathon"
+                  alt="CyberBear"
                   width={474}
                   height={730}
-                  className="relative z-10 mx-auto h-auto w-full object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.55)] transition-transform duration-500 hover:scale-[1.02]"
+                  className="mx-auto h-auto w-full object-contain drop-shadow-lg"
                 />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Franja rápida de métricas */}
-        <div className="border-t border-aisc-sand/15 bg-aisc-night/60 backdrop-blur-xs">
-          <div className="mx-auto grid max-w-[1440px] grid-cols-2 divide-y divide-aisc-sand/10 md:grid-cols-4 md:divide-x md:divide-y-0 px-6 py-5 md:px-12">
-            <div className="flex flex-col items-center justify-center p-3 text-center">
-              <span className="text-display-3 md:text-display-2 font-black text-aisc-sand">COP $3.2M+</span>
-              <span className="text-meta text-aisc-sand/70">
-                {idioma === "en" ? "In cash prizes" : idioma === "pt" ? "Em prêmios em dinheiro" : "En premios en efectivo"}
+        {/* Tres datos clave pegados al hero, estilo sprint */}
+        <div className="border-t border-aisc-sand/15 bg-aisc-night/60 px-6 py-6 md:px-12 text-aisc-sand">
+          <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-3 sm:grid-cols-3">
+            <div className="flex flex-col rounded-[8px] bg-aisc-forest-deep/80 border border-aisc-sand/10 p-5">
+              <span className="text-display-4 text-aisc-sand">14 de noviembre</span>
+              <span className="text-body-sm mt-2 text-aisc-sand/75">
+                {idioma === "en"
+                  ? "Saturday · 8:00 AM – 8:00 PM (7h sprint)"
+                  : idioma === "pt"
+                  ? "Sábado · 8:00 às 20:00 (7 h de trabalho)"
+                  : "Sábado · 8:00 a. m. a 8:00 p. m. (7 h de trabajo)"}
               </span>
             </div>
-            <div className="flex flex-col items-center justify-center p-3 text-center">
-              <span className="text-display-3 md:text-display-2 font-black text-aisc-sand">Uniandes</span>
-              <span className="text-meta text-aisc-sand/70">
-                {idioma === "en" ? "Bogotá · In-person venue" : idioma === "pt" ? "Bogotá · Campus presencial" : "Campus Bogotá · Presencial"}
+            <div className="flex flex-col rounded-[8px] bg-aisc-forest-deep/80 border border-aisc-sand/10 p-5">
+              <span className="text-display-4 text-aisc-sand">Uniandes, Bogotá</span>
+              <span className="text-body-sm mt-2 text-aisc-sand/75">
+                {idioma === "en"
+                  ? "In-person · Classrooms & computer labs"
+                  : idioma === "pt"
+                  ? "Presencial · Salas de aula e laboratórios"
+                  : "Presencial · Auditorios y salas de cómputo"}
               </span>
             </div>
-            <div className="flex flex-col items-center justify-center p-3 text-center">
-              <span className="text-display-3 md:text-display-2 font-black text-aisc-sand">7 {idioma === "en" ? "Hours" : "Horas"}</span>
-              <span className="text-meta text-aisc-sand/70">
-                {idioma === "en" ? "Of intensive building" : idioma === "pt" ? "De construção intensiva" : "De construcción intensiva"}
-              </span>
-            </div>
-            <div className="flex flex-col items-center justify-center p-3 text-center">
-              <span className="text-display-3 md:text-display-2 font-black text-aisc-sand">5 Tracks</span>
-              <span className="text-meta text-aisc-sand/70">
-                {idioma === "en" ? "With guided starter kits" : idioma === "pt" ? "Com starter kits guiados" : "Con starter kits guiados"}
+            <div className="flex flex-col rounded-[8px] bg-aisc-forest-deep/80 border border-aisc-sand/10 p-5">
+              <span className="text-display-4 text-aisc-sand">COP 2.000.000</span>
+              <span className="text-body-sm mt-2 text-aisc-sand/75">
+                {idioma === "en"
+                  ? "In prizes for the top three places"
+                  : idioma === "pt"
+                  ? "Em prêmios para os três primeiros lugares"
+                  : "En premios para los tres primeros puestos"}
               </span>
             </div>
           </div>
@@ -432,39 +331,25 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                   </ul>
                 </div>
 
-                {/* 5. Premios y Reconocimientos */}
+                {/* 5. Premios */}
                 <div className="border-t border-aisc-line pt-8">
-                  <div className="mb-6 flex flex-wrap items-baseline justify-between gap-2">
+                  <div className="mb-4">
                     <h3 className="text-display-3 text-aisc-ink">
                       {d.resumen.premiosTitulo}
                     </h3>
-                    <span className="text-meta font-bold text-aisc-coral">
-                      COP $3.200.000+ total
-                    </span>
+                    <p className="text-body-sm text-aisc-muted mt-1">
+                      {idioma === "en"
+                        ? "Judges will evaluate submissions and determine the top three projects at the conclusion of the sprint."
+                        : idioma === "pt"
+                        ? "Os jurados avaliarão as entregas e definirão os três primeiros lugares no encerramento do evento."
+                        : "Los jurados evalúan los proyectos y definen los tres primeros lugares al cierre de la jornada."}
+                    </p>
                   </div>
 
-                  <PodioPremios
+                  <PremiosSoberos
                     premios={d.premiosPodio}
                     premioDifusion={d.premioDifusion}
                   />
-
-                  {/* Notas de continuidad y becas */}
-                  <div className="mt-6 rounded-2xl border border-aisc-forest/20 bg-aisc-sand/40 p-5 text-body-sm text-aisc-ink/85">
-                    <p className="font-semibold text-aisc-forest">
-                      {idioma === "en"
-                        ? "🚀 International Fellowship Opportunities"
-                        : idioma === "pt"
-                        ? "🚀 Oportunidades de Bolsas Internacionais"
-                        : "🚀 Oportunidades de Becas y Continuidad Internacional"}
-                    </p>
-                    <p className="mt-1 leading-relaxed">
-                      {idioma === "en"
-                        ? "All cash prizes are distributed in person the same evening. Beyond the awards, high-potential projects receive direct referrals and priority review for global AI safety fellowships with Apart Research and BlueDot Impact."
-                        : idioma === "pt"
-                        ? "Todos os prêmios em dinheiro são pagos presencialmente na mesma noite. Além disso, projetos destacados recebem recomendação direta e acesso prioritário a bolsas internacionais com a Apart Research e a BlueDot Impact."
-                        : "Todos los premios en efectivo se entregan de forma presencial la misma noche del evento. Además, los proyectos destacados recibirán recomendación directa y postulación prioritaria a becas internacionales de investigación con Apart Research y BlueDot Impact."}
-                    </p>
-                  </div>
                 </div>
 
                 {/* 6. Mascota */}
@@ -618,27 +503,20 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
             {/* PESTAÑA 3: PREMIOS Y EVALUACIÓN */}
             {pestaña === "reglas" && (
               <div className="space-y-12">
-                {/* Podio de Premios */}
+                {/* Premios */}
                 <div>
-                  <div className="mb-6 flex flex-wrap items-baseline justify-between gap-2">
-                    <div>
-                      <h2 className="text-display-2 md:text-display-2-lg text-aisc-ink">
-                        {d.resumen.premiosTitulo}
-                      </h2>
-                      <p className="text-body mt-2 text-aisc-muted">
-                        {idioma === "en"
-                          ? "Prizes are awarded based on the judges' combined evaluation of defensive impact, empirical rigor, and clarity."
-                          : idioma === "pt"
-                          ? "Os prêmios são distribuídos com base na avaliação dos jurados em impacto defensivo, rigor empírico e clareza."
-                          : "Los premios se asignan con base en la deliberación de los jurados evaluando impacto defensivo, rigor empírico y claridad."}
-                      </p>
-                    </div>
-                    <span className="text-meta font-bold text-aisc-coral">
-                      {idioma === "en" ? "Handed out live" : idioma === "pt" ? "Pagos na mesma noite" : "Entrega en vivo la misma noche"}
-                    </span>
-                  </div>
+                  <h2 className="text-display-2 md:text-display-2-lg text-aisc-ink">
+                    {d.resumen.premiosTitulo}
+                  </h2>
+                  <p className="text-body mt-2 mb-6 text-aisc-muted">
+                    {idioma === "en"
+                      ? "Prizes are awarded based on the judges' evaluation across defensive relevance, prototype functionality, empirical benchmarks, and responsible use."
+                      : idioma === "pt"
+                      ? "Os prêmios são concedidos com base na avaliação dos jurados em relevância defensiva, funcionamento do protótipo, evidência empírica e uso responsável."
+                      : "Los premios se asignan con base en la evaluación de los jurados sobre relevancia defensiva, funcionamiento del prototipo, evidencia empírica y uso responsable."}
+                  </p>
 
-                  <PodioPremios
+                  <PremiosSoberos
                     premios={d.premiosPodio}
                     premioDifusion={d.premioDifusion}
                   />
@@ -842,128 +720,63 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
             )}
           </div>
 
-          {/* ---------------------------------- COLUMNA LATERAL STICKY (4 cols) */}
+          {/* ---------------------------------- COLUMNA LATERAL STICKY (4 cols) estilo Apart */}
           <aside className="w-full lg:sticky lg:top-24 lg:col-span-4">
-            <div className="flex flex-col gap-5 rounded-3xl border border-aisc-forest/20 bg-linear-to-b from-white via-aisc-sand/35 to-aisc-sand/65 p-6 shadow-md shadow-aisc-forest/5 md:p-7">
-              {/* Header con CyberBear avatar y título moderno */}
-              <div className="flex items-center gap-3">
-                <img
-                  src="/aisc/hackathon/cyberbear.png"
-                  alt="CyberBear"
-                  className="size-13 shrink-0 rounded-2xl bg-aisc-forest-deep p-1.5 object-contain drop-shadow-sm"
-                />
-                <div className="min-w-0">
-                  <span className="text-kicker text-aisc-coral font-bold uppercase tracking-wider block">
-                    {idioma === "en" ? "In-Person Hackathon" : idioma === "pt" ? "Hackathon Presencial" : "Hackatón Presencial"}
-                  </span>
-                  <h3 className="text-display-4 font-bold text-aisc-forest leading-snug">
-                    CyberBear 2026
-                  </h3>
-                </div>
-              </div>
-
-              {/* Banner de premios en la barra lateral */}
-              <div className="flex items-center justify-between rounded-2xl bg-aisc-forest-deep px-4 py-3 text-aisc-cream shadow-sm">
-                <div className="flex items-center gap-2.5">
-                  <span className="text-xl">🏆</span>
-                  <div>
-                    <span className="text-caption font-bold uppercase tracking-wider text-aisc-sand/70 block">
-                      {idioma === "en" ? "Prize Pool" : idioma === "pt" ? "Prêmios" : "Premios"}
-                    </span>
-                    <span className="text-display-4 font-black text-aisc-sand leading-none">
-                      COP $3.200.000+
-                    </span>
-                  </div>
-                </div>
-                <span className="rounded-full bg-aisc-coral/90 px-2.5 py-0.5 text-caption font-bold text-aisc-cream">
-                  {idioma === "en" ? "Cash" : "Efectivo"}
+            <div className="flex flex-col gap-5 rounded-[8px] border border-aisc-line bg-aisc-sand/30 p-6 text-body-sm">
+              <div>
+                <span className="text-kicker uppercase tracking-wider text-aisc-muted font-semibold block">
+                  {d.sidebar.titulo}
                 </span>
+                <h3 className="text-display-4 font-semibold text-aisc-forest mt-1">
+                  {d.titulo}
+                </h3>
               </div>
 
-              {/* Countdown si falta tiempo */}
-              {diasFaltan !== null && diasFaltan > 0 ? (
-                <div className="flex items-center justify-between rounded-xl border border-aisc-line bg-white/80 px-4 py-2.5 shadow-2xs">
-                  <span className="text-meta text-aisc-muted font-medium">
-                    {idioma === "en" ? "Countdown" : idioma === "pt" ? "Faltam" : "Faltan"}
-                  </span>
-                  <span className="text-display-4 font-bold text-aisc-coral">
-                    {diasFaltan} {diasFaltan === 1 ? (idioma === "en" ? "day" : "día") : (idioma === "en" ? "days" : "días")}
-                  </span>
+              <dl className="space-y-3.5 border-t border-aisc-line pt-4 text-body-sm">
+                <div>
+                  <dt className="text-meta uppercase tracking-wider text-aisc-muted font-medium">{d.sidebar.fechaRotulo}</dt>
+                  <dd className="font-semibold text-aisc-ink mt-0.5">{d.sidebar.fechaValor}</dd>
                 </div>
-              ) : null}
-
-              {/* Perks y datos clave con íconos limpios */}
-              <div className="space-y-3.5 border-t border-aisc-line/80 pt-4 text-body-sm">
-                <div className="flex items-start gap-3">
-                  <span className="mt-0.5 text-base shrink-0" aria-hidden="true">📅</span>
-                  <div>
-                    <p className="font-semibold text-aisc-ink">{d.sidebar.fechaValor}</p>
-                    <p className="text-meta text-aisc-muted">{d.sidebar.horarioValor}</p>
-                  </div>
+                <div>
+                  <dt className="text-meta uppercase tracking-wider text-aisc-muted font-medium">{d.sidebar.horarioRotulo}</dt>
+                  <dd className="font-semibold text-aisc-ink mt-0.5">{d.sidebar.horarioValor}</dd>
                 </div>
-
-                <div className="flex items-start gap-3">
-                  <span className="mt-0.5 text-base shrink-0" aria-hidden="true">📍</span>
-                  <div>
-                    <p className="font-semibold text-aisc-ink">{d.sidebar.lugarValor}</p>
-                    <p className="text-meta text-aisc-muted">Auditorios y salas de cómputo</p>
-                  </div>
+                <div>
+                  <dt className="text-meta uppercase tracking-wider text-aisc-muted font-medium">{d.sidebar.lugarRotulo}</dt>
+                  <dd className="font-semibold text-aisc-ink mt-0.5">{d.sidebar.lugarValor}</dd>
                 </div>
-
-                <div className="flex items-start gap-3">
-                  <span className="mt-0.5 text-base shrink-0" aria-hidden="true">👥</span>
-                  <div>
-                    <p className="font-semibold text-aisc-ink">{d.sidebar.formatoValor}</p>
-                  </div>
+                <div>
+                  <dt className="text-meta uppercase tracking-wider text-aisc-muted font-medium">{d.sidebar.formatoRotulo}</dt>
+                  <dd className="font-semibold text-aisc-ink mt-0.5">{d.sidebar.formatoValor}</dd>
                 </div>
-
-                <div className="flex items-start gap-3">
-                  <span className="mt-0.5 text-base shrink-0" aria-hidden="true">🍽️</span>
-                  <div>
-                    <p className="font-semibold text-aisc-ink">{d.sidebar.comidaValor}</p>
-                  </div>
+                <div>
+                  <dt className="text-meta uppercase tracking-wider text-aisc-muted font-medium">{d.sidebar.premiosRotulo}</dt>
+                  <dd className="font-semibold text-aisc-forest mt-0.5">{d.sidebar.premiosValor}</dd>
                 </div>
-
-                <div className="flex items-start gap-3">
-                  <span className="mt-0.5 text-base shrink-0" aria-hidden="true">⚡</span>
-                  <div>
-                    <p className="font-semibold text-aisc-ink">{d.sidebar.cupoValor}</p>
-                  </div>
+                <div>
+                  <dt className="text-meta uppercase tracking-wider text-aisc-muted font-medium">{d.sidebar.comidaRotulo}</dt>
+                  <dd className="font-semibold text-aisc-ink mt-0.5">{d.sidebar.comidaValor}</dd>
                 </div>
-              </div>
+                <div>
+                  <dt className="text-meta uppercase tracking-wider text-aisc-muted font-medium">{d.sidebar.cupoRotulo}</dt>
+                  <dd className="font-semibold text-aisc-ink mt-0.5">{d.sidebar.cupoValor}</dd>
+                </div>
+              </dl>
 
-              {/* Botones de acción */}
-              <div className="border-t border-aisc-line/80 pt-4 flex flex-col gap-2.5">
+              <div className="border-t border-aisc-line pt-4 flex flex-col gap-3">
                 <Link
                   href={rutaAplicar}
-                  className="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-full bg-aisc-coral px-6 text-center font-bold text-aisc-cream shadow-md shadow-aisc-coral/25 transition-all hover:bg-aisc-coral/90 hover:scale-[1.01] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-aisc-forest"
+                  className="inline-flex min-h-[46px] w-full items-center justify-center rounded-[8px] bg-aisc-forest px-6 text-center font-semibold text-aisc-sand transition-colors hover:bg-aisc-forest-deep focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-aisc-forest"
                 >
-                  <span>{d.ctaAplicar}</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
+                  {d.ctaAplicar}
                 </Link>
-
-                <a
-                  className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-aisc-forest/30 bg-white px-5 text-center text-body-sm font-semibold text-aisc-forest transition-colors hover:bg-aisc-forest hover:text-aisc-sand"
-                  href={GRUPO_COMUNIDAD_WHATSAPP}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-4 shrink-0 text-green-600">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.582 0 11.941-5.359 11.944-11.893a11.821 11.821 0 00-3.487-8.4z" />
-                  </svg>
-                  <span>{d.ctaWhatsapp}</span>
-                </a>
               </div>
 
-              {/* Coorganización */}
-              <div className="border-t border-aisc-line/80 pt-3 text-center">
+              <div className="border-t border-aisc-line pt-3 text-center">
                 <span className="text-meta text-aisc-muted font-medium block">
                   {d.sidebar.organizanRotulo}
                 </span>
-                <span className="text-body-sm font-semibold text-aisc-forest mt-0.5 block">
+                <span className="text-caption font-semibold text-aisc-forest mt-0.5 block">
                   AI Safety Colombia × IEEE Computer Society Uniandes
                 </span>
               </div>

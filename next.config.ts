@@ -18,6 +18,8 @@ const viejas: { from: string; to: string; permanent: boolean }[] = [
   { from: "/sobre", to: "/quienes-somos", permanent: true },
   { from: "/hackathon", to: "/defacchackathon", permanent: false },
   { from: "/hackathon/aplicar", to: "/defacchackathon/aplicar", permanent: false },
+  { from: "/defacc-hackathon", to: "/defacchackathon", permanent: false },
+  { from: "/defacc-hackathon/aplicar", to: "/defacchackathon/aplicar", permanent: false },
   { from: "/def-acc-hackathon", to: "/defacchackathon", permanent: false },
   { from: "/def-acc-hackathon/aplicar", to: "/defacchackathon/aplicar", permanent: false },
   { from: "/def-acc", to: "/defacchackathon", permanent: false },
