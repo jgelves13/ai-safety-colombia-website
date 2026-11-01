@@ -288,7 +288,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                 >
                   <img
                     alt="IEEE Computer Society Uniandes"
-                    className="max-h-[46px] max-w-[148px] w-auto object-contain"
+                    className="max-h-[58px] max-w-[200px] w-auto object-contain"
                     decoding="async"
                     height={167}
                     src="/aisc/aliados/ieee-cs-uniandes.png"
