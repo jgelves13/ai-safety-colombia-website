@@ -5,12 +5,14 @@ import {
   EQUIPO_FORM,
   TRACKS_FORM,
 } from "@/app/sprint/datos";
+import { paseValido } from "@/lib/pase";
+import { POLITICA_VERSION } from "@/lib/politica-datos";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const CORREO_CONTACTO = "contacto@aisafetycolombia.org";
-const REMITENTE = "AI Safety Colombia <contacto@aisafetycolombia.org>";
+const CORREO_CONTACTO = "equipo@aisafetycolombia.org";
+const REMITENTE = "AI Safety Colombia <equipo@aisafetycolombia.org>";
 const TABLA = "sprint_applications";
 
 /* Límite por IP: ocho envíos cada diez minutos. Vive en memoria, así que solo
@@ -146,6 +148,10 @@ function validar(
   if (texto(raw.aiConfirm) !== "si") return { ok: false, campo: "aiConfirm" };
   datos.aiConfirm = "si";
 
+  /* Sin la casilla de autorización marcada no se guarda nada (Ley 1581 de
+     2012, art. 9). */
+  if (texto(raw.authorization) !== "si") return { ok: false, campo: "authorization" };
+
   return { ok: true, datos };
 }
 
@@ -185,6 +191,10 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
     hub_access: datos.hubAccess || null,
     hub_extra: datos.hubExtra || null,
     ai_confirmed: true,
+    /* La prueba de la autorización: cuándo marcó la casilla y qué versión de
+       la política tenía a la vista. */
+    consent_at: new Date().toISOString(),
+    policy_version: POLITICA_VERSION,
   };
 
   const enviar = (cuerpo: object) =>
@@ -204,7 +214,7 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
      al aspirante sale mucho mas caro que perder el dato. PostgREST nombra una
      sola columna por respuesta, asi que se reintenta quitando de a una. En
      cuanto existan las columnas, este lazo deja de entrar solo. */
-  const APLAZABLES = ["hub_availability", "whatsapp"];
+  const APLAZABLES = ["hub_availability", "whatsapp", "consent_at", "policy_version"];
 
   try {
     const cuerpo: Record<string, unknown> = { ...fila };
@@ -361,10 +371,6 @@ async function avisarDeLaFalla(datos: Record<string, string>): Promise<void> {
 }
 
 export async function POST(req: Request) {
-  if (Date.now() > Date.parse(CIERRE_ISO)) {
-    return NextResponse.json({ ok: false, error: "closed" }, { status: 403 });
-  }
-
   if (!pasaElLimite(ipDeLaPeticion(req))) {
     return NextResponse.json(
       { ok: false, error: "rate_limited" },
@@ -377,6 +383,15 @@ export async function POST(req: Request) {
     raw = (await req.json()) as Crudo;
   } catch {
     return NextResponse.json({ ok: false, error: "bad_json" }, { status: 400 });
+  }
+
+  /* El cierre es duro para todo el mundo, menos para quien traiga el pase
+     extemporáneo. Se revisa después de leer el cuerpo porque el pase viaja ahí:
+     la página lo tomó de la URL y el formulario lo devuelve en el envío.
+     `validar` arma la fila con una lista blanca de campos, así que el pase no
+     llega a Supabase; el envío tardío se reconoce por `submitted_at`. */
+  if (Date.now() > Date.parse(CIERRE_ISO) && !paseValido(texto(raw.pase))) {
+    return NextResponse.json({ ok: false, error: "closed" }, { status: 403 });
   }
 
   /* Campo trampa: un bot lo llena. Se responde que todo salió bien para que no

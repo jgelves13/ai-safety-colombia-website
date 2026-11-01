@@ -1,38 +1,38 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { type Idioma, idiomaDe, rutaEn } from "@/lib/idiomas";
 
-/* El sprint que estamos organizando ahora mismo. Mientras esté vigente manda
-   sobre el resto del inicio: va arriba del hero, igual que en el sitio actual. */
-export const SPRINT: Record<
+/* Hackathon de Aceleración Defensiva (CyberBear Hackathon) · 14 de noviembre de 2026 */
+export const HACKATHON_INFO: Record<
   Idioma,
   { badge: string; title: string; body: string; cta: string }
 > = {
   es: {
-    badge: "Apart Research · CeSIA",
-    title: "AI Incident Response Sprint · presencial en Bogotá",
-    body: "Del 11 al 13 de septiembre. Un fin de semana para investigar cómo se responde cuando un sistema de IA falla en serio: contención, reconstrucción del incidente, respuesta regulatoria y comunicación. USD 2.000 en premios y las aplicaciones cierran el 6 de septiembre.",
-    cta: "Ver la convocatoria",
+    badge: "14 de noviembre · Uniandes Bogotá",
+    title: "Defensive Acceleration Hackathon · IA para la defensa",
+    body: "Un día intensivo en la Universidad de los Andes para diseñar y evaluar defensas frente a amenazas de IA. 5 tracks de investigación, starter kits por nivel, almuerzo incluido y más de COP 3.000.000 en premios.",
+    cta: "Inscribirme al Hackathon",
   },
   en: {
-    badge: "Apart Research · CeSIA",
-    title: "AI Incident Response Sprint · in person in Bogotá",
-    body: "11 to 13 September. A weekend to research what happens once an AI system fails badly: containment, reconstructing the incident, the regulatory response and how it gets communicated. USD 2,000 in prizes, and applications close on 6 September.",
-    cta: "See the call",
+    badge: "November 14 · Uniandes Bogotá",
+    title: "Defensive Acceleration Hackathon · AI for Defense",
+    body: "An intensive day at Universidad de los Andes to design and evaluate defenses against AI threats. 5 research tracks, tiered starter kits, lunch included, and over COP 3,000,000 in prizes.",
+    cta: "Register for the Hackathon",
   },
   pt: {
-    badge: "Apart Research · CeSIA",
-    title: "AI Incident Response Sprint · presencial em Bogotá",
-    body: "De 11 a 13 de setembro. Um fim de semana para pesquisar como se responde quando um sistema de IA falha de verdade: contenção, reconstrução do incidente, resposta regulatória e comunicação. USD 2.000 em prêmios e as inscrições fecham em 6 de setembro.",
-    cta: "Ver a chamada",
+    badge: "14 de novembro · Uniandes Bogotá",
+    title: "Defensive Acceleration Hackathon · IA para a defesa",
+    body: "Um dia intensivo na Universidad de los Andes para projetar e testar defesas contra ameaças de IA. 5 tracks de pesquisa, kits iniciais por nível, almoço incluso e mais de COP 3.000.000 em prêmios.",
+    cta: "Inscrever-se no Hackathon",
   },
 };
 
-/** fecha de arranque del sprint */
-export const SPRINT_EMPIEZA = "2026-09-11";
+/** Fecha de realización del evento */
+export const HACKATHON_FECHA = "2026-11-14";
 
 function diasHasta(iso: string) {
   const [y, m, d] = iso.split("-").map(Number);
@@ -42,53 +42,76 @@ function diasHasta(iso: string) {
   return Math.round((target - today) / 86_400_000);
 }
 
-/** La cuenta regresiva se resuelve en el cliente para no congelar el número en
-    el HTML estático ni provocar un desajuste de hidratación. */
 function Countdown({ idioma }: { idioma: Idioma }) {
   const [texto, setTexto] = useState<string | null>(null);
 
   useEffect(() => {
-    const dias = diasHasta(SPRINT_EMPIEZA);
+    const dias = diasHasta(HACKATHON_FECHA);
     const cuenta: Record<Idioma, (d: number) => string | null> = {
-      es: (d) => (d > 1 ? `Faltan ${d} días` : d === 1 ? "Falta 1 día" : d === 0 ? "Es hoy" : null),
-      en: (d) => (d > 1 ? `${d} days to go` : d === 1 ? "1 day to go" : d === 0 ? "Today" : null),
-      pt: (d) => (d > 1 ? `Faltam ${d} dias` : d === 1 ? "Falta 1 dia" : d === 0 ? "É hoje" : null),
+      es: (d) => (d > 1 ? `Faltan ${d} días` : d === 1 ? "Falta 1 día" : d === 0 ? "¡Es hoy!" : null),
+      en: (d) => (d > 1 ? `${d} days to go` : d === 1 ? "1 day to go" : d === 0 ? "Today!" : null),
+      pt: (d) => (d > 1 ? `Faltam ${d} dias` : d === 1 ? "Falta 1 dia" : d === 0 ? "É hoje!" : null),
     };
     setTexto(cuenta[idioma](dias));
   }, [idioma]);
 
   if (!texto) return null;
-  return <span className="text-meta text-aisc-sand/75">{texto}</span>;
+  return (
+    <span className="text-meta font-medium tracking-wide text-aisc-sand/90 bg-white/10 px-3 py-1 rounded-full border border-white/15">
+      {texto}
+    </span>
+  );
 }
 
 export default function HackathonBanner() {
   const ruta = usePathname() ?? "/";
   const idioma = idiomaDe(ruta);
-  const t = SPRINT[idioma];
+  const t = HACKATHON_INFO[idioma];
 
   return (
-    <div className="relative overflow-hidden rounded-[22px] bg-aisc-forest px-6 py-8 text-aisc-sand md:px-11 md:py-9">
-      {/* el círculo salvia que se asoma por la esquina, como en el sitio actual */}
+    <div className="relative overflow-hidden rounded-[22px] bg-aisc-forest px-6 py-8 text-aisc-sand shadow-sm md:px-10 md:py-9 border border-aisc-forest-deep/20">
+      {/* Círculo salvia decorativo */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-[120px] -right-[80px] size-[280px] rounded-full bg-aisc-sage opacity-45"
+        className="pointer-events-none absolute -top-[120px] -right-[80px] size-[280px] rounded-full bg-aisc-sage opacity-30"
       />
-      <div className="relative z-10 flex flex-col items-start gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
-        <div className="flex max-w-[720px] flex-col items-start gap-3">
-          <span className="text-kicker inline-flex items-center rounded-full bg-aisc-coral px-3 py-1.5 text-aisc-cream">
-            {t.badge}
-          </span>
-          <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.title}</h2>
-          <p className="text-body-sm text-aisc-sand/85">{t.body}</p>
+      <div className="relative z-10 flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+        <div className="flex max-w-[740px] flex-col items-start gap-3">
+          <div className="flex flex-wrap items-center gap-2.5">
+            <span className="text-kicker inline-flex items-center rounded-full bg-aisc-coral px-3 py-1 text-aisc-cream font-medium shadow-xs">
+              {t.badge}
+            </span>
+            <span className="text-[11px] font-mono tracking-wider text-aisc-sand/75 uppercase">
+              AI Safety Colombia × IEEE Uniandes
+            </span>
+          </div>
+          <h2 className="text-display-3 md:text-display-3-lg text-balance text-aisc-sand">
+            {t.title}
+          </h2>
+          <p className="text-body-sm text-aisc-sand/90 max-w-[650px] leading-relaxed">
+            {t.body}
+          </p>
         </div>
-        <div className="flex shrink-0 flex-wrap items-center gap-x-5 gap-y-2">
-          <Link
-            className="text-body-sm inline-flex min-h-11 items-center rounded-full bg-aisc-coral px-6 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85 focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-aisc-sand"
-            href={rutaEn(idioma, "/sprint")}
-          >
-            {t.cta}
-          </Link>
-          <Countdown idioma={idioma} />
+
+        <div className="flex shrink-0 flex-wrap items-center gap-4">
+          <div className="hidden sm:block shrink-0">
+            <Image
+              src="/aisc/hackathon/cyberbear.png"
+              alt="CyberBear"
+              width={76}
+              height={76}
+              className="object-contain drop-shadow-md"
+            />
+          </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <Link
+              className="text-body-sm inline-flex min-h-11 items-center rounded-full bg-aisc-coral px-6 font-medium text-aisc-cream transition-all hover:bg-aisc-coral/90 hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-aisc-sand shadow-sm"
+              href={rutaEn(idioma, "/defacchackathon")}
+            >
+              {t.cta}
+            </Link>
+            <Countdown idioma={idioma} />
+          </div>
         </div>
       </div>
     </div>

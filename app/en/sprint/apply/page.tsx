@@ -5,12 +5,13 @@ import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { CIERRE_TEXTO_IDIOMA, aplicacionesCerradas } from "@/app/sprint/datos";
+import { paseValido } from "@/lib/pase";
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
   title: "Apply to the AI Incident Response Sprint",
   description:
-    "Application form for the in-person Bogotá hub of the AI Incident Response Sprint, 11 to 13 September 2026. Closes on 6 September.",
+    "Application form for the in-person Bogotá hub of the AI Incident Response Sprint, 11 to 13 September 2026. Applications have closed.",
   alternates: { canonical: "/en/sprint/apply", languages: alternativas("/en/sprint/apply") },
 };
 
@@ -18,8 +19,15 @@ export const metadata: Metadata = {
    prerenderizara, el cierre del 6 de septiembre quedaría congelado. */
 export const dynamic = "force-dynamic";
 
-export default function Apply() {
-  const cerrado = aplicacionesCerradas();
+/* El pase extemporáneo llega por la URL: `?pase=<clave>`. Solo reabre el
+   formulario para quien traiga el enlace; para el resto el cierre sigue igual. */
+export default async function Apply({
+  searchParams,
+}: {
+  searchParams: Promise<{ pase?: string }>;
+}) {
+  const { pase } = await searchParams;
+  const cerrado = aplicacionesCerradas() && !paseValido(pase);
 
   return (
     <main lang="en" className={PAGE_SHELL}>
@@ -43,7 +51,7 @@ export default function Apply() {
               Apply to the Bogotá hub
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO_IDIOMA.en} It takes about twenty minutes. The only thing to think through beforehand is which track interests you and what you would like to work on in it.
+              {CIERRE_TEXTO_IDIOMA.en}{!cerrado ? " It takes about twenty minutes. The only thing to think through beforehand is which track interests you and what you would like to work on in it." : null}
             </p>
           </div>
         </div>
@@ -69,7 +77,7 @@ export default function Apply() {
               </p>
             </div>
           ) : null}
-          <HackathonApplyForm cerrado={cerrado} idioma="en" />
+          <HackathonApplyForm cerrado={cerrado} pase={pase} idioma="en" />
         </div>
       </section>
       <SiteFooter idioma="en" />

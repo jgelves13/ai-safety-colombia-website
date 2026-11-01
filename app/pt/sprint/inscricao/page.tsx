@@ -5,12 +5,13 @@ import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { CIERRE_TEXTO_IDIOMA, aplicacionesCerradas } from "@/app/sprint/datos";
+import { paseValido } from "@/lib/pase";
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
   title: "Inscrição no AI Incident Response Sprint",
   description:
-    "Formulário de inscrição no hub presencial em Bogotá do AI Incident Response Sprint, de 11 a 13 de setembro de 2026. Encerra em 6 de setembro.",
+    "Formulário de inscrição no hub presencial em Bogotá do AI Incident Response Sprint, de 11 a 13 de setembro de 2026. As inscrições já encerraram.",
   alternates: { canonical: "/pt/sprint/inscricao", languages: alternativas("/pt/sprint/inscricao") },
 };
 
@@ -18,8 +19,15 @@ export const metadata: Metadata = {
    prerenderizara, el cierre del 6 de septiembre quedaría congelado. */
 export const dynamic = "force-dynamic";
 
-export default function Inscricao() {
-  const cerrado = aplicacionesCerradas();
+/* El pase extemporáneo llega por la URL: `?pase=<clave>`. Solo reabre el
+   formulario para quien traiga el enlace; para el resto el cierre sigue igual. */
+export default async function Inscricao({
+  searchParams,
+}: {
+  searchParams: Promise<{ pase?: string }>;
+}) {
+  const { pase } = await searchParams;
+  const cerrado = aplicacionesCerradas() && !paseValido(pase);
 
   return (
     <main lang="pt" className={PAGE_SHELL}>
@@ -43,7 +51,7 @@ export default function Inscricao() {
               Inscreva-se no hub em Bogotá
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO_IDIOMA.pt} Leva cerca de vinte minutos. A única coisa a pensar antes é qual track te interessa e o que você gostaria de trabalhar nele.
+              {CIERRE_TEXTO_IDIOMA.pt}{!cerrado ? " Leva cerca de vinte minutos. A única coisa a pensar antes é qual track te interessa e o que você gostaria de trabalhar nele." : null}
             </p>
           </div>
         </div>
@@ -69,7 +77,7 @@ export default function Inscricao() {
               </p>
             </div>
           ) : null}
-          <HackathonApplyForm cerrado={cerrado} idioma="pt" />
+          <HackathonApplyForm cerrado={cerrado} pase={pase} idioma="pt" />
         </div>
       </section>
       <SiteFooter idioma="pt" />

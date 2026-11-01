@@ -52,31 +52,31 @@ type Pagina = {
       describe ahí. El pie la muestra suelta, como las demás. */
   grupo?: Grupo;
   detalle?: Record<Idioma, string>;
+  destacado?: boolean;
 };
 
-type Grupo = "seminarios";
+type Grupo = "participa" | "aprende";
 
 const GRUPOS: Record<Grupo, Record<Idioma, string>> = {
-  seminarios: { es: "Seminarios", en: "Seminars", pt: "Seminários" },
+  participa: { es: "Participa", en: "Get Involved", pt: "Participe" },
+  aprende: { es: "Aprende", en: "Learn", pt: "Aprenda" },
 };
 
-/* El orden es el del menú: qué está abierto ahora mismo, qué sale de acá, con
-   qué estudiar, cómo entrar y quiénes somos. Lo abierto ahora son los dos
-   cursos, juntos bajo «Seminarios» como el «Get Involved» de MIT. El sprint y
-   «¿Qué es AI safety?» salieron del menú, pero sus páginas siguen en la tabla,
-   igual que el inicio y los formularios, porque el selector tiene que saber a
-   dónde mandarlas. */
+/* El orden es el del menú:
+   1. Participa (Hackatón [destacado], Seminarios, Eventos, Únete)
+   2. Investigación
+   3. Aprende (Recursos, Oportunidades)
+   4. ¿Quiénes somos? */
 export const PAGINAS: Pagina[] = [
   {
     ruta: { es: "/", en: "/en", pt: "/pt" },
   },
   {
-    ruta: { es: "/seguridad-de-la-ia", en: "/en/ai-safety", pt: "/pt/seguranca-da-ia" },
-  },
-  {
-    ruta: { es: "/seminarios/futuro-y-riesgos", en: "/en/seminars/future-and-risks", pt: "/pt/seminarios/futuro-e-riscos" },
-    nav: { es: "Seminario de futuro y riesgos de la IA", en: "Seminar on the Future and Risks of AI", pt: "Seminário de futuro e riscos da IA" },
-    grupo: "seminarios",
+    ruta: { es: "/defacchackathon", en: "/en/defacchackathon", pt: "/pt/defacchackathon" },
+    nav: { es: "Hackatón de Aceleración Defensiva", en: "Defensive Acceleration Hackathon", pt: "Hackathon de Aceleração Defensiva" },
+    grupo: "participa",
+    detalle: { es: "14 nov · Presencial Uniandes · COP 2.000.000 en premios", en: "Nov 14 · In person Uniandes · COP 2,000,000 in prizes", pt: "14 nov · Presencial Uniandes · COP 2.000.000 em prêmios" },
+    destacado: true,
   },
   {
     ruta: {
@@ -85,11 +85,26 @@ export const PAGINAS: Pagina[] = [
       pt: "/pt/seminarios/tecnico",
     },
     nav: { es: "Seminario técnico de seguridad de la IA", en: "Technical AI Safety Seminar", pt: "Seminário técnico de segurança da IA" },
-    grupo: "seminarios",
+    grupo: "participa",
+    detalle: { es: "Curso intensivo en español de BlueDot Impact", en: "Intensive course in Spanish from BlueDot Impact", pt: "Curso intensivo em espanhol da BlueDot Impact" },
+  },
+  {
+    ruta: { es: "/seminarios/futuro-y-riesgos", en: "/en/seminars/future-and-risks", pt: "/pt/seminarios/futuro-e-riscos" },
+    nav: { es: "Seminario de futuro y riesgos de la IA", en: "Seminar on the Future and Risks of AI", pt: "Seminário de futuro e riscos da IA" },
+    grupo: "participa",
+    detalle: { es: "Gobernanza y estrategia de IA avanzada", en: "Governance and strategy for advanced AI", pt: "Governança e estratégia de IA avançada" },
   },
   {
     ruta: { es: "/eventos", en: "/en/events", pt: "/pt/eventos" },
     nav: { es: "Eventos", en: "Events", pt: "Eventos" },
+    grupo: "participa",
+    detalle: { es: "Charlas, cenas de discusión y paneles en Bogotá", en: "Talks, discussion dinners and panels in Bogotá", pt: "Palestras, jantares de discussão e painéis em Bogotá" },
+  },
+  {
+    ruta: { es: "/unete", en: "/en/join", pt: "/pt/participe" },
+    nav: { es: "Únete a la comunidad", en: "Join the community", pt: "Participe da comunidade" },
+    grupo: "participa",
+    detalle: { es: "Rutas para ingresar, colaborar y conectar", en: "Ways to join, collaborate and connect", pt: "Caminhos para entrar, colaborar e conectar" },
   },
   {
     ruta: { es: "/investigacion", en: "/en/research", pt: "/pt/pesquisa" },
@@ -97,19 +112,25 @@ export const PAGINAS: Pagina[] = [
   },
   {
     ruta: { es: "/recursos", en: "/en/resources", pt: "/pt/recursos" },
-    nav: { es: "Recursos", en: "Resources", pt: "Recursos" },
+    nav: { es: "Recursos de estudio", en: "Study resources", pt: "Recursos de estudo" },
+    grupo: "aprende",
+    detalle: { es: "Lecturas, videos, libros y cursos", en: "Readings, videos, books and courses", pt: "Leituras, vídeos, livros e cursos" },
   },
   {
     ruta: { es: "/oportunidades", en: "/en/opportunities", pt: "/pt/oportunidades" },
-    nav: { es: "Oportunidades", en: "Opportunities", pt: "Oportunidades" },
-  },
-  {
-    ruta: { es: "/unete", en: "/en/join", pt: "/pt/participe" },
-    nav: { es: "Únete", en: "Join us", pt: "Participe" },
+    nav: { es: "Oportunidades globales", en: "Global opportunities", pt: "Oportunidades globais" },
+    grupo: "aprende",
+    detalle: { es: "Becas, bootcamps y convocatorias", en: "Fellowships, bootcamps and grants", pt: "Bolsas, bootcamps e chamadas" },
   },
   {
     ruta: { es: "/quienes-somos", en: "/en/about", pt: "/pt/quem-somos" },
     nav: { es: "¿Quiénes somos?", en: "About us", pt: "Quem somos?" },
+  },
+  {
+    ruta: { es: "/defacchackathon/aplicar", en: "/en/defacchackathon/apply", pt: "/pt/defacchackathon/inscricao" },
+  },
+  {
+    ruta: { es: "/seguridad-de-la-ia", en: "/en/ai-safety", pt: "/pt/seguranca-da-ia" },
   },
   {
     ruta: { es: "/sprint", en: "/en/sprint", pt: "/pt/sprint" },
@@ -120,9 +141,6 @@ export const PAGINAS: Pagina[] = [
   {
     ruta: { es: "/seminarios/aplicar", en: "/en/seminars/apply", pt: "/pt/seminarios/inscricao" },
   },
-  /* La version corta del formulario, la que se manda por enlace a quien llega
-     recomendado. No se enlaza desde ninguna pagina ni sale en buscadores, pero
-     tiene que estar aca para que el selector de idioma la sepa cruzar. */
   {
     ruta: {
       es: "/sprint/aplicar/recomendacion",
@@ -130,8 +148,6 @@ export const PAGINAS: Pagina[] = [
       pt: "/pt/sprint/inscricao/indicacao",
     },
   },
-  /* La política de datos personales. No va en el menú: la enlazan el pie y la
-     casilla de autorización de cada formulario. */
   {
     ruta: { es: "/privacidad", en: "/en/privacy", pt: "/pt/privacidade" },
   },
@@ -147,13 +163,13 @@ export function menu(idioma: Idioma): { href: string; label: string }[] {
 
 export type EntradaMenu =
   | { href: string; label: string }
-  | { label: string; hijos: { href: string; label: string; detalle?: string }[] };
+  | { label: string; hijos: { href: string; label: string; detalle?: string; destacado?: boolean }[] };
 
 /** El menú del encabezado: las páginas de un mismo grupo van juntas en un
     submenú, en el lugar de la primera. */
 export function menuAgrupado(idioma: Idioma): EntradaMenu[] {
   const salida: EntradaMenu[] = [];
-  const vistos = new Map<Grupo, { href: string; label: string; detalle?: string }[]>();
+  const vistos = new Map<Grupo, { href: string; label: string; detalle?: string; destacado?: boolean }[]>();
   for (const p of PAGINAS) {
     if (!p.nav) continue;
     const item = { href: p.ruta[idioma], label: p.nav[idioma] };
@@ -167,7 +183,7 @@ export function menuAgrupado(idioma: Idioma): EntradaMenu[] {
       vistos.set(p.grupo, hijos);
       salida.push({ label: GRUPOS[p.grupo][idioma], hijos });
     }
-    hijos.push({ ...item, detalle: p.detalle?.[idioma] });
+    hijos.push({ ...item, detalle: p.detalle?.[idioma], destacado: p.destacado });
   }
   return salida;
 }

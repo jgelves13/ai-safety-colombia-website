@@ -5,12 +5,13 @@ import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { CIERRE_TEXTO, aplicacionesCerradas } from "../datos";
+import { paseValido } from "@/lib/pase";
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
   title: "Aplicar al AI Incident Response Sprint",
   description:
-    "Formulario de aplicación al hub presencial en Bogotá del AI Incident Response Sprint, del 11 al 13 de septiembre de 2026. Cierra el 6 de septiembre.",
+    "Formulario de aplicación al hub presencial en Bogotá del AI Incident Response Sprint, del 11 al 13 de septiembre de 2026. Las aplicaciones ya cerraron.",
   alternates: { canonical: "/sprint/aplicar", languages: alternativas("/sprint/aplicar") },
 };
 
@@ -18,8 +19,15 @@ export const metadata: Metadata = {
    prerenderizara, el cierre del 6 de septiembre quedaría congelado. */
 export const dynamic = "force-dynamic";
 
-export default function Aplicar() {
-  const cerrado = aplicacionesCerradas();
+/* El pase extemporáneo llega por la URL: `?pase=<clave>`. Solo reabre el
+   formulario para quien traiga el enlace; para el resto el cierre sigue igual. */
+export default async function Aplicar({
+  searchParams,
+}: {
+  searchParams: Promise<{ pase?: string }>;
+}) {
+  const { pase } = await searchParams;
+  const cerrado = aplicacionesCerradas() && !paseValido(pase);
 
   return (
     <main className={PAGE_SHELL}>
@@ -43,7 +51,7 @@ export default function Aplicar() {
               Aplica al hub en Bogotá
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO} Toma alrededor de veinte minutos. Lo único que hay que pensar antes es qué frente te interesa y qué te gustaría trabajar en él.
+              {CIERRE_TEXTO}{!cerrado ? " Toma alrededor de veinte minutos. Lo único que hay que pensar antes es qué frente te interesa y qué te gustaría trabajar en él." : null}
             </p>
           </div>
         </div>
@@ -69,7 +77,7 @@ export default function Aplicar() {
               </p>
             </div>
           ) : null}
-          <HackathonApplyForm cerrado={cerrado} />
+          <HackathonApplyForm cerrado={cerrado} pase={pase} />
         </div>
       </section>
       <SiteFooter />

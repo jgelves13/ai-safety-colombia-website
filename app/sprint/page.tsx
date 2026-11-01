@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { HeroHackathon } from "@/components/hero-hackathon";
@@ -13,14 +12,19 @@ import {
   HERO_SECTION,
   PAGE_SHELL,
 } from "@/components/ui";
-import { APART_FELLOWSHIP_URL, APART_SPRINT_URL, CIERRE_TEXTO } from "./datos";
+import {
+  APART_FELLOWSHIP_URL,
+  APART_SPRINT_URL,
+  CIERRE_TEXTO,
+  GRUPO_COMUNIDAD,
+} from "./datos";
 import { alternativas } from "@/lib/idiomas";
 import { orderSprintMentors } from "@/lib/sprint-mentor-order.mjs";
 
 export const metadata: Metadata = {
   title: "AI Incident Response Sprint",
   description:
-    "Del 11 al 13 de septiembre de 2026. Apart Research y CeSIA convocan el sprint sobre respuesta a incidentes de IA. Abrimos el hub presencial en Bogotá; las aplicaciones cierran a la medianoche del domingo 6 de septiembre.",
+    "Del 11 al 13 de septiembre de 2026. Apart Research y CeSIA convocan el sprint sobre respuesta a incidentes de IA. Las aplicaciones al hub de Bogotá ya cerraron; aún puedes participar en línea con Apart y unirte al grupo de WhatsApp.",
   alternates: { canonical: "/sprint", languages: alternativas("/sprint") },
 };
 
@@ -298,7 +302,7 @@ const MENTORES: {
     nombre: "Camila Beltrán",
     rol: "Mentora y ponente",
     foto: "/aisc/mentores/camila-beltran.png",
-    modalidad: "En Bogotá",
+    modalidad: "Remoto",
     linkedin:
       "https://www.linkedin.com/in/camila-alejandra-beltran-reyes-ab288627a/",
     bio: (
@@ -476,8 +480,7 @@ const MENTORES: {
         >
           AgentBreak
         </a>
-        , un laboratorio de inyección indirecta de prompts en sistemas con
-        LLM.
+        , un laboratorio de inyección indirecta de prompts en sistemas con LLM.
       </>
     ),
   },
@@ -685,7 +688,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           Habi
-        </a>. Coautor, en la revista{" "}
+        </a>
+        . Coautor, en la revista{" "}
         <a
           className={ENLACE}
           href="https://revistas.udistrital.edu.co/index.php/Tecnura/article/view/23438"
@@ -693,7 +697,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           Tecnura
-        </a>, de un estudio sobre aprendizaje automático adversario para la
+        </a>
+        , de un estudio sobre aprendizaje automático adversario para la
         ciberseguridad de la IA en Colombia.
       </>
     ),
@@ -703,8 +708,7 @@ const MENTORES: {
     rol: "Ponente",
     foto: "/aisc/mentores/maria-lorena-florez-v4.png",
     modalidad: "Remoto",
-    linkedin:
-      "https://www.linkedin.com/in/maria-lorena-florez-rojas/",
+    linkedin: "https://www.linkedin.com/in/maria-lorena-florez-rojas/",
     bio: (
       <>
         Profesora de derecho y tecnología en{" "}
@@ -715,7 +719,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           Groningen
-        </a>, editora de gobernanza algorítmica de{" "}
+        </a>
+        , editora de gobernanza algorítmica de{" "}
         <a
           className={ENLACE}
           href="https://www.cambridge.org/core/journals/data-and-policy/information/about-this-journal/editorial-board"
@@ -900,16 +905,24 @@ export default function Hackathon() {
               {CIERRE_TEXTO}
             </p>
             <div className="mt-2 flex flex-wrap items-center gap-3">
-              <Link className={CTA_LINK_PRIMARY} href="/sprint/aplicar">
-                Aplicar al hub en Bogotá
-              </Link>
               <a
-                className={CTA_LINK}
+                className={CTA_LINK_PRIMARY}
                 href={APART_SPRINT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Participar en línea con Apart
+              </a>
+              <a className={CTA_LINK} href="/sprint/guia-en-linea">
+                Guía para participar en línea
+              </a>
+              <a
+                className={CTA_LINK}
+                href={GRUPO_COMUNIDAD}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Grupo de WhatsApp
               </a>
             </div>
           </div>
@@ -1048,18 +1061,28 @@ export default function Hackathon() {
                   procedimiento: no está escrito cómo se contiene, ni cómo se
                   reconstruye qué falló, ni qué le puede exigir un regulador al
                   laboratorio, ni cómo se cuenta el caso sin exagerar ni
-                  minimizar.
+                  minimizar. Es un vacío que OpenAI acaba de reconocer en voz
+                  alta: el 5 de septiembre de 2026{" "}
+                  <a
+                    className={ENLACE}
+                    href="https://x.com/OpenAI/status/2096133504417616165"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    dijo
+                  </a>{" "}
+                  que todavía no existe un estándar claro para reportar los
+                  incidentes de desalineación, que ya es hora de definirlo y que
+                  está trabajando en un marco para hacerlo.
                 </p>
                 <p>
                   El sprint existe para llenar ese vacío con piezas concretas.
                   Se trabaja en cinco frentes en paralelo durante un fin de
-                  semana.
-                  Cada equipo entrega algo que alguien más pueda usar: un
-                  estándar, un banco de pruebas, un cuestionario para un
-                  regulador, un ejercicio de mesa. Después los califican
-                  jurados que no estuvieron en la sala. La
-                  retroalimentación llega por escrito y el reporte queda
-                  publicado con tu nombre.{" "}
+                  semana. Cada equipo entrega algo que alguien más pueda usar:
+                  un estándar, un banco de pruebas, un cuestionario para un
+                  regulador, un ejercicio de mesa. Después los califican jurados
+                  que no estuvieron en la sala. La retroalimentación llega por
+                  escrito y el reporte queda publicado con tu nombre.{" "}
                   <a
                     className={ENLACE}
                     href="https://apartresearch.com"
@@ -1143,8 +1166,8 @@ export default function Hackathon() {
             <div className={COLUMNA}>
               <div className={PROSA}>
                 <p>
-                  Trabajar un fin de semana entero es más fácil acompañado
-                  que solo en la casa. Por eso abrimos una sala en Bogotá, de
+                  Trabajar un fin de semana entero es más fácil acompañado que
+                  solo en la casa. Por eso abrimos una sala en Bogotá, de
                   viernes a domingo. Participar no cuesta nada: la selección
                   existe porque la sala tiene aforo, no porque haya un precio.
                 </p>
@@ -1158,10 +1181,7 @@ export default function Hackathon() {
           </div>
           <ul className="mt-12 grid grid-cols-1 gap-3 md:mt-14 lg:mt-16 lg:grid-cols-3">
             {HUB.map((h) => (
-              <li
-                className="flex w-full"
-                key={h.titulo}
-              >
+              <li className="flex w-full" key={h.titulo}>
                 <article className={`${TARJETA} w-full`}>
                   <h3 className="text-display-4 text-balance">{h.titulo}</h3>
                   <p className="text-body-sm text-aisc-muted">{h.body}</p>
@@ -1247,9 +1267,7 @@ export default function Hackathon() {
                   <span className="text-body-sm text-aisc-muted">
                     {m.rol}
                     <span aria-hidden="true"> · </span>
-                    <span className="text-aisc-forest/70">
-                      {m.modalidad}
-                    </span>
+                    <span className="text-aisc-forest/70">{m.modalidad}</span>
                   </span>
                   {m.bio ? (
                     <p className="text-body-sm mt-2 text-aisc-ink">{m.bio}</p>
@@ -1285,8 +1303,8 @@ export default function Hackathon() {
             </h2>
             <div className="flex max-w-[640px] flex-col gap-4">
               <p className="text-body md:text-body-lg text-aisc-sand/90">
-                No se pide experiencia previa en seguridad de la IA ni un
-                título específico. Se pide estar el fin de semana completo y llegar con
+                No se pide experiencia previa en seguridad de la IA ni un título
+                específico. Se pide estar el fin de semana completo y llegar con
                 idea de qué quieres trabajar.
               </p>
             </div>
@@ -1305,9 +1323,14 @@ export default function Hackathon() {
             ))}
           </ul>
           <div className="mt-10 flex flex-wrap items-center gap-3">
-            <Link className={CTA_LINK_PRIMARY} href="/sprint/aplicar">
-              Aplicar al hub en Bogotá
-            </Link>
+            <a
+              className={CTA_LINK_PRIMARY}
+              href={APART_SPRINT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Participar en línea con Apart
+            </a>
             <span className="text-body-sm text-aisc-sand/70">
               {CIERRE_TEXTO}
             </span>
@@ -1526,19 +1549,27 @@ export default function Hackathon() {
                 {CIERRE_TEXTO}
               </span>
               <h2 className="text-display-2 md:text-display-2-lg text-balance">
-                Aplica al hub en Bogotá
+                Participa en el sprint
               </h2>
               <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
-                <Link className={CTA_LINK_PRIMARY} href="/sprint/aplicar">
-                  Aplicar
-                </Link>
                 <a
-                  className={CTA_LINK}
+                  className={CTA_LINK_PRIMARY}
                   href={APART_SPRINT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Participar en línea
+                  Registrarme con Apart
+                </a>
+                <a className={CTA_LINK} href="/sprint/guia-en-linea">
+                  Guía para participar en línea
+                </a>
+                <a
+                  className={CTA_LINK}
+                  href={GRUPO_COMUNIDAD}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Grupo de WhatsApp
                 </a>
               </div>
             </div>

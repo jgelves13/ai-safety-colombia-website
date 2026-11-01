@@ -257,11 +257,17 @@ export default function CourseApplyForm({
   cerrado,
   idioma = "es",
   cursoInicial,
+  pase,
+  soloCurso,
 }: {
   cerrado: boolean;
   idioma?: Idioma;
   /** El curso que llega por `?curso=` desde la página de Únete. */
   cursoInicial?: CursoId;
+  /** Pase tardío ya verificado en el servidor; se devuelve tal cual a la API. */
+  pase?: string;
+  /** Con pase tardío solo se ofrece el seminario del pase. */
+  soloCurso?: CursoId;
 }) {
   const t = TEXTOS_CURSOS[idioma];
   const tp = TEXTOS_POLITICA[idioma];
@@ -377,7 +383,7 @@ export default function CourseApplyForm({
       const r = await fetch("/api/cursos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...v, locale: idioma }),
+        body: JSON.stringify({ ...v, locale: idioma, pase }),
       });
       if (!r.ok) throw new Error(String(r.status));
       try {
@@ -517,8 +523,8 @@ export default function CourseApplyForm({
         <div className="mb-8 rounded-[var(--radius)] border border-aisc-coral bg-aisc-coral/8 p-5">
           <p className="text-body-sm text-aisc-ink">
             {t.fallaAntes}
-            <a className={ENLACE} href="mailto:contacto@aisafetycolombia.org">
-              contacto@aisafetycolombia.org
+            <a className={ENLACE} href="mailto:equipo@aisafetycolombia.org">
+              equipo@aisafetycolombia.org
             </a>
             {t.fallaDespues}
           </p>
@@ -563,7 +569,7 @@ export default function CourseApplyForm({
           </h2>
           <div className="mt-6 flex flex-col gap-6">
             <Grupo label={t.curso} error={errores.course}>
-              {CURSOS.map((id) => (
+              {(soloCurso ? [soloCurso] : CURSOS).map((id) => (
                 <label className={OPCION} key={id}>
                   <input
                     type="radio"
@@ -811,8 +817,8 @@ export default function CourseApplyForm({
           </div>
           <p className="text-meta mt-6 text-aisc-muted">
             {t.privacidadAntes}
-            <a className={ENLACE} href="mailto:contacto@aisafetycolombia.org">
-              contacto@aisafetycolombia.org
+            <a className={ENLACE} href="mailto:equipo@aisafetycolombia.org">
+              equipo@aisafetycolombia.org
             </a>
             {t.privacidadDespues}
           </p>

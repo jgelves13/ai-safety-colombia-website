@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { HeroHackathon } from "@/components/hero-hackathon";
@@ -17,6 +16,7 @@ import {
   APART_FELLOWSHIP_URL,
   APART_SPRINT_URL,
   CIERRE_TEXTO_IDIOMA,
+  GRUPO_COMUNIDAD,
 } from "@/app/sprint/datos";
 import { alternativas } from "@/lib/idiomas";
 import { orderSprintMentors } from "@/lib/sprint-mentor-order.mjs";
@@ -26,7 +26,7 @@ const CIERRE_TEXTO = CIERRE_TEXTO_IDIOMA.en;
 export const metadata: Metadata = {
   title: "AI Incident Response Sprint",
   description:
-    "11 to 13 September 2026. Apart Research and CeSIA convene the sprint on AI incident response. We open the in-person hub in Bogotá; applications close at midnight on Sunday 6 September.",
+    "11 to 13 September 2026. Apart Research and CeSIA convene the sprint on AI incident response. Applications to the Bogotá hub are closed; you can still take part online with Apart and join the WhatsApp group.",
   alternates: {
     canonical: "/en/sprint",
     languages: alternativas("/en/sprint"),
@@ -268,8 +268,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           Pivotal Research
-        </a>
-        {" "}fellow. At{" "}
+        </a>{" "}
+        fellow. At{" "}
         <a
           className={ENLACE}
           href="https://www.matsprogram.org/"
@@ -305,7 +305,7 @@ const MENTORES: {
     nombre: "Camila Beltrán",
     rol: "Mentor and speaker",
     foto: "/aisc/mentores/camila-beltran.png",
-    modalidad: "In Bogotá",
+    modalidad: "Remote",
     linkedin:
       "https://www.linkedin.com/in/camila-alejandra-beltran-reyes-ab288627a/",
     bio: (
@@ -367,8 +367,7 @@ const MENTORES: {
         >
           OECD group
         </a>{" "}
-        on AI compute. She spent eight years on data and AI policy at
-        Colombia’s{" "}
+        on AI compute. She spent eight years on data and AI policy at Colombia’s{" "}
         <a
           className={ENLACE}
           href="https://www.dnp.gov.co/"
@@ -691,7 +690,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           Habi
-        </a>. Co-author, in the journal{" "}
+        </a>
+        . Co-author, in the journal{" "}
         <a
           className={ENLACE}
           href="https://revistas.udistrital.edu.co/index.php/Tecnura/article/view/23438"
@@ -699,7 +699,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           Tecnura
-        </a>, of a study on adversarial machine learning for the cybersecurity of AI
+        </a>
+        , of a study on adversarial machine learning for the cybersecurity of AI
         in Colombia.
       </>
     ),
@@ -709,8 +710,7 @@ const MENTORES: {
     rol: "Speaker",
     foto: "/aisc/mentores/maria-lorena-florez-v4.png",
     modalidad: "Remote",
-    linkedin:
-      "https://www.linkedin.com/in/maria-lorena-florez-rojas/",
+    linkedin: "https://www.linkedin.com/in/maria-lorena-florez-rojas/",
     bio: (
       <>
         Professor of technology law at{" "}
@@ -721,7 +721,8 @@ const MENTORES: {
           rel="noopener noreferrer"
         >
           Groningen
-        </a>, algorithmic governance editor at{" "}
+        </a>
+        , algorithmic governance editor at{" "}
         <a
           className={ENLACE}
           href="https://www.cambridge.org/core/journals/data-and-policy/information/about-this-journal/editorial-board"
@@ -748,7 +749,8 @@ const MENTORES: {
         >
           written
         </a>{" "}
-        on algocracy in the courts and how it erodes trust in the justice system.
+        on algocracy in the courts and how it erodes trust in the justice
+        system.
       </>
     ),
   },
@@ -897,24 +899,32 @@ export default function Hackathon() {
               AI Incident Response Sprint
             </h1>
             <p className="text-body md:text-body-lg max-w-[680px] text-aisc-sand/90">
-              A lab runs an evaluation, the model breaks out and attacks a
-              third party. In this sprint, engineering, cybersecurity, public
-              policy and journalism come together to build the response.
+              A lab runs an evaluation, the model breaks out and attacks a third
+              party. In this sprint, engineering, cybersecurity, public policy
+              and journalism come together to build the response.
             </p>
             <p className="text-body-sm mt-1 w-fit text-aisc-sand/75">
               {CIERRE_TEXTO}
             </p>
             <div className="mt-2 flex flex-wrap items-center gap-3">
-              <Link className={CTA_LINK_PRIMARY} href="/en/sprint/apply">
-                Apply to the Bogotá hub
-              </Link>
               <a
-                className={CTA_LINK}
+                className={CTA_LINK_PRIMARY}
                 href={APART_SPRINT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Take part online with Apart
+              </a>
+              <a className={CTA_LINK} href="/sprint/guia-en-linea">
+                Online guide, in Spanish
+              </a>
+              <a
+                className={CTA_LINK}
+                href={GRUPO_COMUNIDAD}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp group
               </a>
             </div>
           </div>
@@ -1053,16 +1063,28 @@ export default function Hackathon() {
                   procedure to hand: it is not written down how to contain it,
                   nor how to reconstruct what failed, nor what a regulator can
                   demand of the lab, nor how to tell the story without
-                  exaggerating or playing it down.
+                  exaggerating or playing it down. It is a gap OpenAI has just
+                  acknowledged out loud: on 5 September 2026 it{" "}
+                  <a
+                    className={ENLACE}
+                    href="https://x.com/OpenAI/status/2096133504417616165"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    said
+                  </a>{" "}
+                  that there is still no clear standard for reporting
+                  misalignment incidents, that it is past time to define one,
+                  and that it is working on a framework to do so.
                 </p>
                 <p>
                   The sprint exists to fill that gap with concrete pieces. Five
                   tracks run in parallel over one weekend. Each team delivers
                   something someone else can use: a standard, a test bench, a
-                  questionnaire for a regulator, a tabletop exercise. The work is then
-                  graded by judges who were not in the room.
-                  Feedback arrives in writing and the report is published under
-                  your name.{" "}
+                  questionnaire for a regulator, a tabletop exercise. The work
+                  is then graded by judges who were not in the room. Feedback
+                  arrives in writing and the report is published under your
+                  name.{" "}
                   <a
                     className={ENLACE}
                     href="https://apartresearch.com"
@@ -1160,10 +1182,7 @@ export default function Hackathon() {
           </div>
           <ul className="mt-12 grid grid-cols-1 gap-3 md:mt-14 lg:mt-16 lg:grid-cols-3">
             {HUB.map((h) => (
-              <li
-                className="flex w-full"
-                key={h.titulo}
-              >
+              <li className="flex w-full" key={h.titulo}>
                 <article className={`${TARJETA} w-full`}>
                   <h3 className="text-display-4 text-balance">{h.titulo}</h3>
                   <p className="text-body-sm text-aisc-muted">{h.body}</p>
@@ -1249,9 +1268,7 @@ export default function Hackathon() {
                   <span className="text-body-sm text-aisc-muted">
                     {m.rol}
                     <span aria-hidden="true"> · </span>
-                    <span className="text-aisc-forest/70">
-                      {m.modalidad}
-                    </span>
+                    <span className="text-aisc-forest/70">{m.modalidad}</span>
                   </span>
                   {m.bio ? (
                     <p className="text-body-sm mt-2 text-aisc-ink">{m.bio}</p>
@@ -1287,9 +1304,9 @@ export default function Hackathon() {
             </h2>
             <div className="flex max-w-[640px] flex-col gap-4">
               <p className="text-body md:text-body-lg text-aisc-sand/90">
-                No previous experience in AI safety is required, and no
-                specific degree. You do need to be there for the whole weekend and
-                arrive with an idea of what you want to work on.
+                No previous experience in AI safety is required, and no specific
+                degree. You do need to be there for the whole weekend and arrive
+                with an idea of what you want to work on.
               </p>
             </div>
           </div>
@@ -1307,9 +1324,14 @@ export default function Hackathon() {
             ))}
           </ul>
           <div className="mt-10 flex flex-wrap items-center gap-3">
-            <Link className={CTA_LINK_PRIMARY} href="/en/sprint/apply">
-              Apply to the Bogotá hub
-            </Link>
+            <a
+              className={CTA_LINK_PRIMARY}
+              href={APART_SPRINT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Take part online with Apart
+            </a>
             <span className="text-body-sm text-aisc-sand/70">
               {CIERRE_TEXTO}
             </span>
@@ -1527,19 +1549,27 @@ export default function Hackathon() {
                 {CIERRE_TEXTO}
               </span>
               <h2 className="text-display-2 md:text-display-2-lg text-balance">
-                Apply to the Bogotá hub
+                Take part in the sprint
               </h2>
               <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
-                <Link className={CTA_LINK_PRIMARY} href="/en/sprint/apply">
-                  Apply
-                </Link>
                 <a
-                  className={CTA_LINK}
+                  className={CTA_LINK_PRIMARY}
                   href={APART_SPRINT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Take part online
+                  Register with Apart
+                </a>
+                <a className={CTA_LINK} href="/sprint/guia-en-linea">
+                  Online guide, in Spanish
+                </a>
+                <a
+                  className={CTA_LINK}
+                  href={GRUPO_COMUNIDAD}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  WhatsApp group
                 </a>
               </div>
             </div>

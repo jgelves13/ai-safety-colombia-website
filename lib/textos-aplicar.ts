@@ -102,7 +102,7 @@ export const RUTA_SPRINT: Record<Idioma, string> = {
 const es: TextosAplicar = {
   cerradoTitulo: "Las aplicaciones ya cerraron",
   cerradoCuerpo:
-    "El plazo para el hub presencial en Bogotá se cerró el 6 de septiembre. Todavía puedes participar en línea con Apart, que recibe proyectos hasta el domingo del sprint.",
+    "El plazo para el hub de Bogotá se cerró el 6 de septiembre. Aún puedes participar en línea con Apart, que recibe proyectos hasta el domingo del sprint, y unirte al grupo de WhatsApp para formar equipo y recibir mentoría de nuestro hub.",
   cerradoEnLinea: "Participar en línea",
   volverAlSprint: "Volver al sprint",
 
@@ -190,9 +190,9 @@ const es: TextosAplicar = {
   confirmacionIA:
     "Las respuestas de esta aplicación las escribí yo. Pude usar un modelo para corregir la redacción, pero el razonamiento es mío.",
   privacidadCortaAntes:
-    "Usamos la información que compartes para seleccionar a los participantes y organizar el fin de semana. Si eres seleccionado, los demás participantes podrán ver tu nombre. Tu correo, tu WhatsApp y lo que escribiste acá son confidenciales. Si en algún momento quieres que eliminemos tus datos, puedes escribirnos a ",
+    "Usamos la información que compartes para seleccionar a los participantes y organizar el fin de semana. Si eres seleccionado, los demás participantes podrán ver tu nombre, tu afiliación y tu LinkedIn. Para inscribirte en el evento global compartimos tu nombre, tu correo y tu perfil con Apart Research. Tu correo, tu WhatsApp y lo que escribiste acá son confidenciales. Si en algún momento quieres que eliminemos tus datos, puedes escribirnos a ",
   privacidadAntes:
-    "Usamos la información que compartes para seleccionar a los participantes y organizar el fin de semana. Si eres seleccionado, los demás participantes podrán ver tu nombre, en qué estás trabajando y el frente que elegiste, para facilitar la formación de equipos. Tu correo, tu WhatsApp y tus respuestas a las dos últimas preguntas serán confidenciales. Si en algún momento quieres que eliminemos tus datos, puedes escribirnos a ",
+    "Usamos la información que compartes para seleccionar a los participantes y organizar el fin de semana. Si eres seleccionado, los demás participantes podrán ver tu nombre, tu afiliación, tu LinkedIn, en qué estás trabajando y el frente que elegiste, para facilitar la formación de equipos. Para inscribirte en el evento global compartimos tu nombre, tu correo y tu perfil con Apart Research. Tu correo, tu WhatsApp y tus respuestas a las dos últimas preguntas serán confidenciales. Si en algún momento quieres que eliminemos tus datos, puedes escribirnos a ",
   privacidadDespues: ".",
   enviar: "Enviar aplicación",
   enviando: "Enviando…",
@@ -224,7 +224,7 @@ const es: TextosAplicar = {
 const en: TextosAplicar = {
   cerradoTitulo: "Applications have closed",
   cerradoCuerpo:
-    "The deadline for the in-person hub in Bogotá closed on 6 September. You can still take part online with Apart, which accepts projects until the Sunday of the sprint.",
+    "The deadline for the Bogotá hub closed on 6 September. You can still take part online with Apart, which accepts projects until the Sunday of the sprint, and join the WhatsApp group to form a team and get mentorship from our hub.",
   cerradoEnLinea: "Take part online",
   volverAlSprint: "Back to the sprint",
 
@@ -312,9 +312,9 @@ const en: TextosAplicar = {
   confirmacionIA:
     "I wrote the answers in this application myself. I may have used a model to fix the wording, but the reasoning is mine.",
   privacidadCortaAntes:
-    "We use the information you share to select the participants and to organise the weekend. If you are selected, the other participants will see your name. Your email, your WhatsApp number and what you wrote here stay confidential. If at any point you want us to delete your data, you can write to us at ",
+    "We use the information you share to select the participants and to organise the weekend. If you are selected, the other participants will see your name, affiliation and LinkedIn. To register you for the global event we share your name, email and profile with Apart Research. Your email, your WhatsApp number and what you wrote here stay confidential. If at any point you want us to delete your data, you can write to us at ",
   privacidadAntes:
-    "We use the information you share to select the participants and to organise the weekend. If you are selected, the other participants will see your name, what you are working on and the track you chose, so that teams come together more easily. Your email, your WhatsApp number and your answers to the last two questions stay confidential. If at any point you want us to delete your data, you can write to us at ",
+    "We use the information you share to select the participants and to organise the weekend. If you are selected, the other participants will see your name, affiliation, LinkedIn, what you are working on and the track you chose, so that teams come together more easily. To register you for the global event we share your name, email and profile with Apart Research. Your email, your WhatsApp number and your answers to the last two questions stay confidential. If at any point you want us to delete your data, you can write to us at ",
   privacidadDespues: ".",
   enviar: "Send application",
   enviando: "Sending…",
@@ -346,7 +346,7 @@ const en: TextosAplicar = {
 const pt: TextosAplicar = {
   cerradoTitulo: "As inscrições já encerraram",
   cerradoCuerpo:
-    "O prazo para o hub presencial em Bogotá encerrou em 6 de setembro. Você ainda pode participar on-line com a Apart, que recebe projetos até o domingo do sprint.",
+    "O prazo para o hub de Bogotá encerrou em 6 de setembro. Você ainda pode participar on-line com a Apart, que recebe projetos até o domingo do sprint, e entrar no grupo de WhatsApp para formar equipe e receber mentoria do nosso hub.",
   cerradoEnLinea: "Participar on-line",
   volverAlSprint: "Voltar ao sprint",
 
@@ -434,9 +434,9 @@ const pt: TextosAplicar = {
   confirmacionIA:
     "As respostas desta inscrição fui eu que escrevi. Posso ter usado um modelo para corrigir a redação, mas o raciocínio é meu.",
   privacidadCortaAntes:
-    "Usamos as informações que você compartilha para selecionar os participantes e organizar o fim de semana. Se você for selecionado, os demais participantes poderão ver seu nome. Seu e-mail, seu WhatsApp e o que você escreveu aqui são confidenciais. Se em algum momento você quiser que apaguemos seus dados, pode escrever para ",
+    "Usamos as informações que você compartilha para selecionar os participantes e organizar o fim de semana. Se você for selecionado, os demais participantes poderão ver seu nome, sua afiliação e seu LinkedIn. Para inscrever você no evento global, compartilhamos seu nome, seu e-mail e seu perfil com a Apart Research. Seu e-mail, seu WhatsApp e o que você escreveu aqui são confidenciais. Se em algum momento você quiser que apaguemos seus dados, pode escrever para ",
   privacidadAntes:
-    "Usamos as informações que você compartilha para selecionar os participantes e organizar o fim de semana. Se você for selecionado, os demais participantes poderão ver seu nome, no que você está trabalhando e a frente que escolheu, para facilitar a formação de equipes. Seu e-mail, seu WhatsApp e suas respostas às duas últimas perguntas serão confidenciais. Se em algum momento você quiser que apaguemos seus dados, pode escrever para ",
+    "Usamos as informações que você compartilha para selecionar os participantes e organizar o fim de semana. Se você for selecionado, os demais participantes poderão ver seu nome, sua afiliação, seu LinkedIn, no que você está trabalhando e a frente que escolheu, para facilitar a formação de equipes. Para inscrever você no evento global, compartilhamos seu nome, seu e-mail e seu perfil com a Apart Research. Seu e-mail, seu WhatsApp e suas respostas às duas últimas perguntas serão confidenciais. Se em algum momento você quiser que apaguemos seus dados, pode escrever para ",
   privacidadDespues: ".",
   enviar: "Enviar inscrição",
   enviando: "Enviando…",

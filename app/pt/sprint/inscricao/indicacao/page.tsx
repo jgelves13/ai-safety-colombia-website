@@ -5,6 +5,7 @@ import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { CIERRE_TEXTO_IDIOMA, aplicacionesCerradas } from "@/app/sprint/datos";
+import { paseValido } from "@/lib/pase";
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
@@ -24,8 +25,15 @@ export const metadata: Metadata = {
    prerenderizara, el cierre del 6 de septiembre quedaría congelado. */
 export const dynamic = "force-dynamic";
 
-export default function InscricaoPorIndicacao() {
-  const cerrado = aplicacionesCerradas();
+/* El pase extemporáneo llega por la URL: `?pase=<clave>`. Solo reabre el
+   formulario para quien traiga el enlace; para el resto el cierre sigue igual. */
+export default async function InscricaoPorIndicacao({
+  searchParams,
+}: {
+  searchParams: Promise<{ pase?: string }>;
+}) {
+  const { pase } = await searchParams;
+  const cerrado = aplicacionesCerradas() && !paseValido(pase);
 
   return (
     <main lang="pt" className={PAGE_SHELL}>
@@ -49,8 +57,7 @@ export default function InscricaoPorIndicacao() {
               Inscreva-se no hub em Bogotá
             </h1>
             <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-              {CIERRE_TEXTO_IDIOMA.pt} Esta via é para quem chega por recomendação de alguém da equipe ou de um
-              mentor do sprint.
+              {CIERRE_TEXTO_IDIOMA.pt}{!cerrado ? " Esta via é para quem chega por recomendação de alguém da equipe ou de um mentor do sprint." : null}
             </p>
           </div>
         </div>
@@ -76,7 +83,7 @@ export default function InscricaoPorIndicacao() {
               </p>
             </div>
           ) : null}
-          <HackathonApplyForm cerrado={cerrado} idioma="pt" corta />
+          <HackathonApplyForm cerrado={cerrado} pase={pase} idioma="pt" corta />
         </div>
       </section>
       <SiteFooter idioma="pt" />

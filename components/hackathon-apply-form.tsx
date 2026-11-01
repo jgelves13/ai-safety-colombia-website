@@ -5,11 +5,13 @@ import { useEffect, useRef, useState } from "react";
 import {
   APART_SPRINT_URL,
   DISPONIBILIDAD_FORM,
+  GRUPO_COMUNIDAD,
   EQUIPO_FORM,
   TRACKS_FORM,
 } from "@/app/sprint/datos";
 import type { Idioma } from "@/lib/idiomas";
 import { RUTA_SPRINT, TEXTOS_APLICAR } from "@/lib/textos-aplicar";
+import { RUTA_POLITICA, TEXTOS_POLITICA } from "@/lib/politica-datos";
 
 /* Borrador local: quien empieza a escribir y cierra la pestaña no pierde lo que
    llevaba. Se borra al enviar. Cada formulario lleva su propia llave para que
@@ -35,6 +37,8 @@ const VACIO: Campos = {
   hubAccess: "",
   hubExtra: "",
   aiConfirm: "",
+  /* La casilla de autorización de datos. No se guarda en el borrador. */
+  authorization: "",
   website: "",
 };
 
@@ -146,13 +150,18 @@ export default function HackathonApplyForm({
   cerrado,
   idioma = "es",
   corta = false,
+  pase,
 }: {
   cerrado: boolean;
   idioma?: Idioma;
   /** La versión corta, la que se le manda por enlace a alguien recomendado. */
   corta?: boolean;
+  /** Pase extemporáneo que venía en la URL. Viaja de vuelta en el envío para
+      que la ruta de la API también deje pasar el cierre. */
+  pase?: string;
 }) {
   const t = TEXTOS_APLICAR[idioma];
+  const tp = TEXTOS_POLITICA[idioma];
   const sprint = RUTA_SPRINT[idioma];
   const OBLIGATORIOS = corta ? OBLIGATORIOS_CORTO : OBLIGATORIOS_LARGO;
   const borrador = corta ? BORRADOR_CORTO : BORRADOR;
@@ -170,7 +179,7 @@ export default function HackathonApplyForm({
   useEffect(() => {
     try {
       const guardado = window.localStorage.getItem(borrador);
-      if (guardado) setV({ ...VACIO, ...(JSON.parse(guardado) as Campos) });
+      if (guardado) setV({ ...VACIO, ...(JSON.parse(guardado) as Campos), authorization: "" });
     } catch {
       /* si el almacenamiento está bloqueado, se sigue sin borrador */
     }
@@ -182,7 +191,7 @@ export default function HackathonApplyForm({
     try {
       window.localStorage.setItem(
         borrador,
-        JSON.stringify({ ...v, website: "" }),
+        JSON.stringify({ ...v, website: "", authorization: "" }),
       );
     } catch {
       /* idem */
@@ -208,6 +217,7 @@ export default function HackathonApplyForm({
     if (v.hubTeam === "equipo" && !v.hubTeamNames.trim()) {
       nuevos.hubTeamNames = t.faltaResponder;
     }
+    if (v.authorization !== "si") nuevos.authorization = tp.casillaFalta;
     for (const [name, tope] of Object.entries(LIMITES)) {
       if ((v[name] ?? "").length > tope) nuevos[name] = t.limite(tope);
     }
@@ -225,6 +235,7 @@ export default function HackathonApplyForm({
         (c) => t.falta[c],
       );
       if (nuevos.hubTeamNames) pendientes.push(t.falta.hubTeamNames);
+      if (nuevos.authorization) pendientes.push(tp.faltaCasilla);
       setFaltantes(pendientes);
       requestAnimationFrame(() =>
         resumen.current?.scrollIntoView({
@@ -241,7 +252,11 @@ export default function HackathonApplyForm({
       const r = await fetch("/api/aplicar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...v, formato: corta ? "corto" : "largo" }),
+        body: JSON.stringify({
+          ...v,
+          formato: corta ? "corto" : "largo",
+          pase: pase ?? "",
+        }),
       });
       if (!r.ok) throw new Error(String(r.status));
       try {
@@ -276,6 +291,14 @@ export default function HackathonApplyForm({
           >
             {t.cerradoEnLinea}
           </a>
+          <a
+            className="text-body-sm inline-flex min-h-11 items-center rounded-full border border-aisc-ink px-6 font-medium text-aisc-ink transition-colors hover:bg-aisc-ink hover:text-aisc-cream"
+            href={GRUPO_COMUNIDAD}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t.enviadoGrupo}
+          </a>
           <Link
             className="text-body-sm inline-flex min-h-11 items-center rounded-full border border-aisc-ink px-6 font-medium text-aisc-ink transition-colors hover:bg-aisc-ink hover:text-aisc-cream"
             href={sprint}
@@ -298,7 +321,7 @@ export default function HackathonApplyForm({
         <div className="mt-7 flex flex-wrap gap-3">
           <a
             className="text-body-sm inline-flex min-h-11 items-center rounded-full bg-aisc-coral px-6 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85"
-            href="https://chat.whatsapp.com/KwE8cciX48TAVhAOHnrLaZ"
+            href={GRUPO_COMUNIDAD}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -362,8 +385,8 @@ export default function HackathonApplyForm({
         <div className="mb-8 rounded-[var(--radius)] border border-aisc-coral bg-aisc-coral/8 p-5">
           <p className="text-body-sm text-aisc-ink">
             {t.fallaAntes}
-            <a className={ENLACE} href="mailto:contacto@aisafetycolombia.org">
-              contacto@aisafetycolombia.org
+            <a className={ENLACE} href="mailto:equipo@aisafetycolombia.org">
+              equipo@aisafetycolombia.org
             </a>
             {t.fallaDespues}
           </p>
@@ -804,11 +827,32 @@ export default function HackathonApplyForm({
           ) : null}
           <p className="text-meta mt-4 text-aisc-muted">
             {corta ? t.privacidadCortaAntes : t.privacidadAntes}
-            <a className={ENLACE} href="mailto:contacto@aisafetycolombia.org">
-              contacto@aisafetycolombia.org
+            <a className={ENLACE} href="mailto:equipo@aisafetycolombia.org">
+              equipo@aisafetycolombia.org
             </a>
             {t.privacidadDespues}
           </p>
+          <label className="text-body-sm mt-4 flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-4 py-4 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6">
+            <input
+              name="authorization"
+              type="checkbox"
+              checked={v.authorization === "si"}
+              onChange={(e) => set("authorization", e.target.checked ? "si" : "")}
+              className="mt-0.5 accent-aisc-forest"
+            />
+            <span>
+              {tp.casilla}
+              <a className={ENLACE} href={RUTA_POLITICA[idioma]} target="_blank" rel="noopener noreferrer">
+                {tp.casillaEnlace}
+              </a>
+              .
+            </span>
+          </label>
+          {errores.authorization ? (
+            <span className={ERROR} role="alert">
+              {errores.authorization}
+            </span>
+          ) : null}
         </section>
       </div>
 

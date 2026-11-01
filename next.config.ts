@@ -16,17 +16,24 @@ import type { NextConfig } from "next";
    este no tiene, y apuntan dentro del mismo idioma. */
 const viejas: { from: string; to: string; permanent: boolean }[] = [
   { from: "/sobre", to: "/quienes-somos", permanent: true },
-  { from: "/hackathon", to: "/sprint", permanent: false },
-  { from: "/hackathon/aplicar", to: "/sprint/aplicar", permanent: false },
-  { from: "/aplicar", to: "/sprint/aplicar", permanent: true },
+  { from: "/hackathon", to: "/defacchackathon", permanent: false },
+  { from: "/hackathon/aplicar", to: "/defacchackathon/aplicar", permanent: false },
+  { from: "/def-acc-hackathon", to: "/defacchackathon", permanent: false },
+  { from: "/def-acc-hackathon/aplicar", to: "/defacchackathon/aplicar", permanent: false },
+  { from: "/def-acc", to: "/defacchackathon", permanent: false },
+  { from: "/cyberbear", to: "/defacchackathon", permanent: false },
+  { from: "/aplicar", to: "/defacchackathon/aplicar", permanent: false },
   { from: "/contacto", to: "/unete", permanent: true },
   { from: "/grupos", to: "/unete", permanent: true },
   { from: "/grupos/invitacion", to: "/unete", permanent: false },
   { from: "/confirmar", to: "/eventos", permanent: false },
-  { from: "/en/apply", to: "/en/sprint/apply", permanent: true },
+  { from: "/en/apply", to: "/en/defacchackathon/apply", permanent: false },
   { from: "/en/contact", to: "/en/join", permanent: true },
   { from: "/en/groups", to: "/en/join", permanent: true },
-  { from: "/en/hackathon", to: "/en/sprint", permanent: false },
+  { from: "/en/hackathon", to: "/en/defacchackathon", permanent: false },
+  { from: "/en/def-acc-hackathon", to: "/en/defacchackathon", permanent: false },
+  { from: "/pt/hackathon", to: "/pt/defacchackathon", permanent: false },
+  { from: "/pt/def-acc-hackathon", to: "/pt/defacchackathon", permanent: false },
 
   /* La via de recomendacion se llamo un dia "rapido", que describia el formato
      y no para quien era. Van temporales, no permanentes: la direccion es de

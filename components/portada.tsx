@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CtaPanel from "./cta-panel";
+import HackathonBanner from "./hackathon-banner";
 import Puntos, { type Patron } from "./puntos";
 import SiteFooter from "./site-footer";
 import SiteHeader from "./site-header";
@@ -61,10 +62,10 @@ export const TEXTOS: Record<Idioma, Textos> = {
           enlaces: ["Ver el técnico", "Ver futuro y riesgos"],
         },
         {
-          kicker: "Un fin de semana",
-          titulo: "Sprints y hackatones",
-          texto: "Con Apart Research pasas de leer sobre seguridad de la IA a terminar un proyecto propio, desde el hub presencial de Bogotá.",
-          enlaces: ["Ver los proyectos"],
+          kicker: "14 de noviembre · Uniandes",
+          titulo: "Hackatón y sprints",
+          texto: "Diseña defensas de IA en el Defensive Acceleration Hackathon (Uniandes) o investiga en sprints con Apart Research.",
+          enlaces: ["Hackatón 14 Nov", "Ver proyectos"],
         },
         {
           kicker: "Cada quince días",
@@ -121,10 +122,10 @@ export const TEXTOS: Record<Idioma, Textos> = {
           enlaces: ["See Technical", "See Future and Risks"],
         },
         {
-          kicker: "One weekend",
-          titulo: "Sprints and hackathons",
-          texto: "With Apart Research you go from reading about AI safety to finishing a project of your own, from the in-person hub in Bogotá.",
-          enlaces: ["See the projects"],
+          kicker: "November 14 · Uniandes",
+          titulo: "Hackathon & sprints",
+          texto: "Build AI defenses at the Defensive Acceleration Hackathon (Uniandes) or conduct research in sprints with Apart Research.",
+          enlaces: ["Hackathon Nov 14", "See projects"],
         },
         {
           kicker: "Every two weeks",
@@ -181,10 +182,10 @@ export const TEXTOS: Record<Idioma, Textos> = {
           enlaces: ["Ver o técnico", "Ver futuro e riscos"],
         },
         {
-          kicker: "Um fim de semana",
-          titulo: "Sprints e hackathons",
-          texto: "Com a Apart Research você passa de ler sobre segurança da IA a terminar um projeto próprio, a partir do hub presencial de Bogotá.",
-          enlaces: ["Ver os projetos"],
+          kicker: "14 de novembro · Uniandes",
+          titulo: "Hackathon e sprints",
+          texto: "Construa defesas de IA no Defensive Acceleration Hackathon (Uniandes) ou pesquise em sprints com a Apart Research.",
+          enlaces: ["Hackathon 14 Nov", "Ver projetos"],
         },
         {
           kicker: "A cada quinze dias",
@@ -242,7 +243,7 @@ const PUBLICACIONES = [
 /** Para cada programa, su ícono y a dónde lleva cada enlace (rutas en español; se traducen abajo). */
 const PROGRAMAS: { patron: Patron; rutas: string[] }[] = [
   { patron: "seminarios", rutas: ["/seminarios/tecnico", "/seminarios/futuro-y-riesgos"] },
-  { patron: "sprints", rutas: ["/investigacion#hackathons"] },
+  { patron: "sprints", rutas: ["/defacchackathon", "/investigacion#hackathons"] },
   { patron: "lectura", rutas: ["/unete"] },
   { patron: "charlas", rutas: ["/eventos"] },
 ];
@@ -314,6 +315,13 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* -------------------------------------------------- banner hackathon */}
+      <section className="pt-10 pb-2">
+        <div className={COLUMNA}>
+          <HackathonBanner />
         </div>
       </section>
 
@@ -433,7 +441,7 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
         <a className={CTA_LINK} href={AGENDAR} target="_blank" rel="noopener noreferrer">
           {t.cierre.agendar}
         </a>
-        <a className={CTA_LINK} href="mailto:contacto@aisafetycolombia.org">
+        <a className={CTA_LINK} href="mailto:equipo@aisafetycolombia.org">
           {t.cierre.escribir}
         </a>
       </CtaPanel>

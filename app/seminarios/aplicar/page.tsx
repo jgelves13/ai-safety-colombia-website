@@ -13,7 +13,7 @@ export const metadata: Metadata = {
    congelado en un prerender. */
 export const dynamic = "force-dynamic";
 
-export default async function AplicarCursos({ searchParams }: { searchParams: Promise<{ curso?: string }> }) {
-  const { curso } = await searchParams;
-  return <CourseApplyPage idioma="es" curso={curso} />;
+export default async function AplicarCursos({ searchParams }: { searchParams: Promise<{ curso?: string; pase?: string }> }) {
+  const { curso, pase } = await searchParams;
+  return <CourseApplyPage idioma="es" curso={curso} pase={pase} />;
 }

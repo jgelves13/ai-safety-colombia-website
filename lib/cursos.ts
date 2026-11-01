@@ -127,6 +127,8 @@ export type TextosCursos = {
   titulo: string;
   entrada: string;
   cierre: string;
+  /** Hero con pase tardío; {dia} y {hora} los pone la página. */
+  paseCierre: string;
   sinIA: string;
   prerrequisitoTitulo: string;
   prerrequisitos: string[];
@@ -211,6 +213,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     entrada:
       "El formulario toma unos 30 minutos y puedes responder con viñetas.",
     cierre: "Cierra el viernes 9 de octubre a las 11:59 p. m.",
+    paseCierre: "Este enlace cierra el {dia} a las {hora}.",
     sinIA: "Por favor no uses IA para responder: queremos leerte a ti.",
     prerrequisitoTitulo: "Antes de aplicar al Seminario técnico de seguridad de la IA deberías:",
     prerrequisitos: [
@@ -438,6 +441,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     entrada:
       "The form takes about 30 minutes, and bullet points are fine.",
     cierre: "Closes Friday 9 October at 11:59 pm, Colombia time.",
+    paseCierre: "This link closes on {dia} at {hora}, Colombia time.",
     sinIA: "Please don't use AI to answer: we want to hear from you.",
     prerrequisitoTitulo: "Before applying to the Technical AI Safety Seminar you should:",
     prerrequisitos: [
@@ -665,6 +669,7 @@ export const TEXTOS_CURSOS: Record<Idioma, TextosCursos> = {
     entrada:
       "O formulário leva uns 30 minutos e você pode responder em tópicos.",
     cierre: "Fecha na sexta-feira, 9 de outubro, às 23h59, horário da Colômbia.",
+    paseCierre: "Este link fecha na {dia}, às {hora}, horário da Colômbia.",
     sinIA: "Por favor, não use IA para responder: queremos ler você.",
     prerrequisitoTitulo: "Antes de se inscrever no Seminário técnico de segurança da IA, você deveria:",
     prerrequisitos: [

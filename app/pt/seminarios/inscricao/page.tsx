@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 /* Renderizada a cada visita para que o encerramento de 9 de outubro não fique congelado. */
 export const dynamic = "force-dynamic";
 
-export default async function InscricaoCursos({ searchParams }: { searchParams: Promise<{ curso?: string }> }) {
-  const { curso } = await searchParams;
-  return <CourseApplyPage idioma="pt" curso={curso} />;
+export default async function InscricaoCursos({ searchParams }: { searchParams: Promise<{ curso?: string; pase?: string }> }) {
+  const { curso, pase } = await searchParams;
+  return <CourseApplyPage idioma="pt" curso={curso} pase={pase} />;
 }

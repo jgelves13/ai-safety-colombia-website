@@ -110,7 +110,7 @@ function Submenu({
       {/* El pt-2 es el puente invisible entre el botón y la caja, para que el
           mouse no la cierre al bajar. */}
       <div className={`absolute top-full left-0 z-30 pt-2 ${abierto ? "block" : "hidden"}`}>
-        <ul className="flex w-[22rem] flex-col rounded-2xl bg-aisc-forest-deep p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] ring-1 ring-aisc-sand/12">
+        <ul className="flex w-[24rem] flex-col rounded-2xl bg-aisc-forest-deep p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] ring-1 ring-aisc-sand/12">
           {entrada.hijos.map((h) => (
             <li key={h.href}>
               <Link
@@ -121,7 +121,14 @@ function Submenu({
                   h.href === active ? " bg-aisc-sand/10" : ""
                 }`}
               >
-                <span className="text-body-sm font-medium">{h.label}</span>
+                <span className="text-body-sm font-medium flex items-center justify-between gap-2">
+                  <span>{h.label}</span>
+                  {"destacado" in h && h.destacado ? (
+                    <span className="text-[.68rem] tracking-wider uppercase font-semibold px-2 py-0.5 rounded-full bg-aisc-coral text-aisc-cream shrink-0">
+                      14 Nov
+                    </span>
+                  ) : null}
+                </span>
                 {h.detalle ? <span className="text-body-sm text-aisc-sand/60">{h.detalle}</span> : null}
               </Link>
             </li>
@@ -279,7 +286,14 @@ function PanelMovil({
                           h.href === active ? " text-aisc-coral" : ""
                         }`}
                       >
-                        {h.label}
+                        <span className="flex items-center justify-between gap-2">
+                          <span>{h.label}</span>
+                          {"destacado" in h && h.destacado ? (
+                            <span className="text-[.68rem] tracking-wider uppercase font-semibold px-2 py-0.5 rounded-full bg-aisc-coral text-aisc-cream shrink-0">
+                              14 Nov
+                            </span>
+                          ) : null}
+                        </span>
                         {h.detalle ? <span className="text-body-sm text-aisc-sand/60">{h.detalle}</span> : null}
                       </Link>
                     ))}

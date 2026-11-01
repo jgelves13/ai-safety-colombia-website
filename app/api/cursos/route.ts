@@ -12,12 +12,13 @@ import {
   type CursoId,
 } from "@/lib/cursos";
 import { POLITICA_VERSION, RUTA_POLITICA } from "@/lib/politica-datos";
+import { verificarPase } from "@/lib/pase-seminario";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const CORREO_CONTACTO = "contacto@aisafetycolombia.org";
-const REMITENTE = "Jose Gelves <contacto@aisafetycolombia.org>";
+const CORREO_CONTACTO = "equipo@aisafetycolombia.org";
+const REMITENTE = "Jose Gelves <equipo@aisafetycolombia.org>";
 const TABLA = "course_applications";
 const RONDA = "2026-10";
 
@@ -291,10 +292,6 @@ async function mandar(cuerpo: object, etiqueta: string): Promise<void> {
 }
 
 export async function POST(req: Request) {
-  if (cursosCerrados()) {
-    return NextResponse.json({ ok: false, error: "closed" }, { status: 403 });
-  }
-
   if (!pasaElLimite(ipDeLaPeticion(req))) {
     return NextResponse.json({ ok: false, error: "rate_limited" }, { status: 429 });
   }
@@ -309,6 +306,12 @@ export async function POST(req: Request) {
   /* Campo trampa: un bot lo llena. Se responde que todo salió bien para que no
      reintente, y no se guarda nada. */
   if (texto(raw.website)) return NextResponse.json({ ok: true });
+
+  /* Después del cierre solo entra quien trae un pase tardío vigente para el
+     mismo seminario al que aplica. */
+  if (cursosCerrados() && verificarPase(raw.pase)?.curso !== texto(raw.course)) {
+    return NextResponse.json({ ok: false, error: "closed" }, { status: 403 });
+  }
 
   const revisado = validar(raw);
   if (!revisado.ok) {
