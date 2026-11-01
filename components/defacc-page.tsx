@@ -529,52 +529,67 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                         </p>
                       </div>
 
-                      <div className="grid grid-cols-1 gap-6 border-t border-aisc-forest/25 pt-5 md:grid-cols-2">
-                        <div>
-                          <span className="text-kicker text-aisc-forest">
+                      <div className="grid grid-cols-1 gap-4 border-t border-aisc-forest/25 pt-5 md:grid-cols-2">
+                        <div className="rounded-xl bg-aisc-sand/50 p-4">
+                          <span className="text-kicker text-aisc-forest font-bold">
                             {idioma === "en"
                               ? "Getting started"
                               : idioma === "pt"
                               ? "Para começar"
                               : "Para empezar"}
                           </span>
-                          <p className="text-body-sm mt-2 text-aisc-ink">
+                          <p className="text-body-sm mt-1.5 text-aisc-ink">
                             {tr.paraEmpezar}
                           </p>
                         </div>
-                        <div>
-                          <span className="text-kicker text-aisc-forest">
+                        <div className="rounded-xl bg-aisc-sand/50 p-4">
+                          <span className="text-kicker text-aisc-forest font-bold">
                             {idioma === "en"
                               ? "Advanced scope"
                               : idioma === "pt"
                               ? "Com experiência"
                               : "Con experiencia"}
                           </span>
-                          <p className="text-body-sm mt-2 text-aisc-ink">
+                          <p className="text-body-sm mt-1.5 text-aisc-ink">
                             {tr.conExperiencia}
                           </p>
                         </div>
                       </div>
 
-                      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-aisc-forest/20 pt-4 text-body-sm">
-                        <span className="text-meta uppercase tracking-wider text-aisc-muted">
+                      <div className="border-t border-aisc-forest/20 pt-4">
+                        <span className="text-kicker text-aisc-muted">
                           {idioma === "en"
-                            ? "Benchmarks & code:"
+                            ? "Starter datasets, benchmarks & repositories:"
                             : idioma === "pt"
-                            ? "Benchmarks e código:"
-                            : "Benchmarks y código:"}
+                            ? "Datasets, benchmarks e repositórios de partida:"
+                            : "Datasets, benchmarks y repositorios de partida:"}
                         </span>
-                        {tr.recursos.map((rec) => (
-                          <a
-                            key={rec.url}
-                            href={rec.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={ENLACE}
-                          >
-                            {rec.label}
-                          </a>
-                        ))}
+                        <div className="mt-2.5 flex flex-wrap gap-2">
+                          {tr.recursos.map((rec) => (
+                            <a
+                              key={rec.url}
+                              href={rec.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-meta inline-flex items-center gap-1.5 rounded-full border border-aisc-forest/30 bg-aisc-sand/30 px-3 py-1 font-medium text-aisc-forest transition-colors hover:border-aisc-forest hover:bg-aisc-forest hover:text-aisc-sand"
+                            >
+                              <svg
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2.5"
+                                aria-hidden="true"
+                              >
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                              </svg>
+                              {rec.label}
+                            </a>
+                          ))}
+                        </div>
                       </div>
                     </article>
                   </li>
