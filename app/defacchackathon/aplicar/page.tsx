@@ -49,7 +49,7 @@ export default async function AplicarDefAcc() {
               </h1>
               <p className="text-body md:text-body-lg text-aisc-sand/90">
                 8:00 a. m. a 8:00 p. m. en el campus de la Universidad de los Andes en Bogotá.
-                Cupo para 100 participantes, almuerzo incluido, mentores técnicos y más de COP 3.000.000 en premios.
+                Cupo limitado por aforo, almuerzo y refrigerios incluidos, mentores técnicos y más de COP 3.200.000 en premios.
               </p>
             </div>
             <div className="hidden md:flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
@@ -84,7 +84,7 @@ export default async function AplicarDefAcc() {
                   <strong>Ingreso al campus:</strong> el número de documento de identidad es estrictamente necesario para registrar tu pase de seguridad peatonal en la portería de la Universidad de los Andes.
                 </li>
                 <li>
-                  <strong>Almuerzo y logística:</strong> incluimos almuerzo completo para los 100 participantes seleccionados, estaciones de café y snacks durante toda la jornada.
+                  <strong>Almuerzo y logística:</strong> incluimos almuerzo completo en el campus para todos los participantes seleccionados, estaciones de café y snacks durante toda la jornada.
                 </li>
                 <li>
                   <strong>Cierre de postulaciones:</strong> martes 10 de noviembre a las 11:59 p. m.

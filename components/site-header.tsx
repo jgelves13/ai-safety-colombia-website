@@ -110,26 +110,23 @@ function Submenu({
       {/* El pt-2 es el puente invisible entre el botón y la caja, para que el
           mouse no la cierre al bajar. */}
       <div className={`absolute top-full left-0 z-30 pt-2 ${abierto ? "block" : "hidden"}`}>
-        <ul className="flex w-[24rem] flex-col rounded-2xl bg-aisc-forest-deep p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] ring-1 ring-aisc-sand/12">
+        <ul className="flex w-72 flex-col rounded-2xl bg-aisc-forest-deep p-1.5 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] ring-1 ring-aisc-sand/12">
           {entrada.hijos.map((h) => (
             <li key={h.href}>
               <Link
                 href={h.href}
                 aria-current={h.href === active ? "page" : undefined}
                 onClick={() => setAbierto(false)}
-                className={`flex flex-col gap-0.5 rounded-xl px-4 py-3 text-aisc-sand transition-colors hover:bg-aisc-sand/10${
+                className={`flex items-center justify-between rounded-xl px-3.5 py-2.5 text-aisc-sand transition-colors hover:bg-aisc-sand/10${
                   h.href === active ? " bg-aisc-sand/10" : ""
                 }`}
               >
-                <span className="text-body-sm font-medium flex items-center justify-between gap-2">
-                  <span>{h.label}</span>
-                  {"destacado" in h && h.destacado ? (
-                    <span className="text-[.68rem] tracking-wider uppercase font-semibold px-2 py-0.5 rounded-full bg-aisc-coral text-aisc-cream shrink-0">
-                      14 Nov
-                    </span>
-                  ) : null}
-                </span>
-                {h.detalle ? <span className="text-body-sm text-aisc-sand/60">{h.detalle}</span> : null}
+                <span className="text-body-sm font-medium">{h.label}</span>
+                {"destacado" in h && h.destacado ? (
+                  <span className="text-[.68rem] tracking-wider uppercase font-semibold px-2 py-0.5 rounded-full bg-aisc-coral text-aisc-cream shrink-0">
+                    14 Nov
+                  </span>
+                ) : null}
               </Link>
             </li>
           ))}
@@ -153,14 +150,20 @@ function Nav({
       {menuAgrupado(idioma).map((item) => {
         if ("hijos" in item) return <Submenu key={item.label} entrada={item} active={active} />;
         const current = item.href === active;
+        const destacado = "destacado" in item && item.destacado;
         return (
           <Link
             key={item.href}
             aria-current={current ? "page" : undefined}
-            className={`${PILDORA}${current ? " bg-aisc-sand/15" : ""}`}
+            className={`${PILDORA}${current ? " bg-aisc-sand/15" : ""} inline-flex items-center gap-1.5`}
             href={item.href}
           >
-            {item.label}
+            <span>{item.label}</span>
+            {destacado ? (
+              <span className="text-[.68rem] tracking-wider uppercase font-semibold px-2 py-0.5 rounded-full bg-aisc-coral text-aisc-cream shrink-0 shadow-xs">
+                14 Nov
+              </span>
+            ) : null}
           </Link>
         );
       })}
@@ -302,17 +305,23 @@ function PanelMovil({
               );
             }
             const current = item.href === active;
+            const destacado = "destacado" in item && item.destacado;
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={cerrar}
                 aria-current={current ? "page" : undefined}
-                className={`text-display-4 border-b border-aisc-sand/12 py-4 transition-colors hover:text-aisc-coral${
+                className={`text-display-4 border-b border-aisc-sand/12 py-4 transition-colors hover:text-aisc-coral flex items-center justify-between gap-3${
                   current ? " text-aisc-coral" : ""
                 }`}
               >
-                {item.label}
+                <span>{item.label}</span>
+                {destacado ? (
+                  <span className="text-body-sm font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-aisc-coral text-aisc-cream">
+                    14 Nov
+                  </span>
+                ) : null}
               </Link>
             );
           })}

@@ -49,7 +49,7 @@ export default async function ApplyDefAcc() {
               </h1>
               <p className="text-body md:text-body-lg text-aisc-sand/90">
                 8:00 a.m. to 8:00 p.m. at Universidad de los Andes campus, Bogotá.
-                Capacity for 100 participants, lunch included, technical mentors, and over COP 3,000,000 in prizes.
+                Limited capacity, lunch and coffee breaks included, technical mentors, and over COP 3,200,000 in prizes.
               </p>
             </div>
             <div className="hidden md:flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
@@ -84,7 +84,7 @@ export default async function ApplyDefAcc() {
                   <strong>Campus access:</strong> your national ID or passport number is strictly required to issue your pedestrian security pass at the Universidad de los Andes entrance.
                 </li>
                 <li>
-                  <strong>Lunch and catering:</strong> full lunch is provided for all 100 selected participants, alongside coffee stations and snacks throughout the day.
+                  <strong>Lunch and catering:</strong> full lunch is provided on campus for selected participants, alongside coffee stations and snacks throughout the day.
                 </li>
                 <li>
                   <strong>Applications deadline:</strong> Tuesday, November 10 at 11:59 p.m.

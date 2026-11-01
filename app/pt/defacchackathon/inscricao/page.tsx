@@ -49,7 +49,7 @@ export default async function InscricaoDefAcc() {
               </h1>
               <p className="text-body md:text-body-lg text-aisc-sand/90">
                 Das 8h00 às 20h00 no campus da Universidad de los Andes, em Bogotá.
-                100 vagas, almoço incluso, mentores técnicos e mais de COP 3.000.000 em prêmios.
+                Vagas limitadas, almoço completo incluso, mentores técnicos e mais de COP 3.200.000 em prêmios.
               </p>
             </div>
             <div className="hidden md:flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
@@ -84,7 +84,7 @@ export default async function InscricaoDefAcc() {
                   <strong>Acesso ao campus:</strong> o número de documento de identidade ou passaporte é estritamente obrigatório para emissão da autorização de entrada na portaria da Universidad de los Andes.
                 </li>
                 <li>
-                  <strong>Alimentação:</strong> almoço completo garantido para todos os 100 participantes selecionados, com café e lanches ao longo do dia.
+                  <strong>Alimentação:</strong> almoço completo garantido para os participantes selecionados, com café e lanches ao longo do dia.
                 </li>
                 <li>
                   <strong>Prazo de inscrição:</strong> terça-feira, 10 de novembro às 23h59.

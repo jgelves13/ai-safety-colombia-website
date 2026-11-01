@@ -637,8 +637,10 @@ export default function DefAccApplyForm({
         </h3>
         <p className={AYUDA}>
           {idioma === "en"
-            ? "We provide lunch on site for 100 participants to keep the build sprint uninterrupted."
-            : "El evento incluye almuerzo en sitio para 100 personas para no pausar el trabajo en equipo."}
+            ? "We provide full lunch and coffee breaks on campus to keep the build sprint uninterrupted."
+            : idioma === "pt"
+            ? "O evento inclui almoço completo e lanches no campus para não pausar o trabalho em equipe."
+            : "El evento incluye almuerzo completo en el campus y refrigerios continuos para no pausar el trabajo en equipo."}
         </p>
 
         <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">

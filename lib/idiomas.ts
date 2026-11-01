@@ -55,29 +55,28 @@ type Pagina = {
   destacado?: boolean;
 };
 
-type Grupo = "participa" | "aprende";
+type Grupo = "seminarios" | "aprende";
 
 const GRUPOS: Record<Grupo, Record<Idioma, string>> = {
-  participa: { es: "Participa", en: "Get Involved", pt: "Participe" },
+  seminarios: { es: "Seminarios", en: "Seminars", pt: "Seminários" },
   aprende: { es: "Aprende", en: "Learn", pt: "Aprenda" },
 };
 
 /* El orden es el del menú:
-   1. Participa (Hackatón [destacado], Seminario técnico, Seminario futuro)
-   2. Eventos
-   3. Investigación
-   4. Aprende (Recursos, Oportunidades)
-   5. Únete
-   6. ¿Quiénes somos? */
+   1. Hackatón (destacado con píldora 14 Nov)
+   2. Seminarios (Técnico, Futuro y riesgos)
+   3. Eventos
+   4. Investigación
+   5. Aprende (Recursos, Oportunidades)
+   6. Únete
+   7. ¿Quiénes somos? */
 export const PAGINAS: Pagina[] = [
   {
     ruta: { es: "/", en: "/en", pt: "/pt" },
   },
   {
     ruta: { es: "/defacchackathon", en: "/en/defacchackathon", pt: "/pt/defacchackathon" },
-    nav: { es: "Hackatón de Aceleración Defensiva", en: "Defensive Acceleration Hackathon", pt: "Hackathon de Aceleração Defensiva" },
-    grupo: "participa",
-    detalle: { es: "14 nov · Presencial Uniandes · COP 3.000.000+ en premios", en: "Nov 14 · In person Uniandes · COP 3,000,000+ in prizes", pt: "14 nov · Presencial Uniandes · COP 3.000.000+ em prêmios" },
+    nav: { es: "Hackatón", en: "Hackathon", pt: "Hackathon" },
     destacado: true,
   },
   {
@@ -86,15 +85,13 @@ export const PAGINAS: Pagina[] = [
       en: "/en/seminars/technical",
       pt: "/pt/seminarios/tecnico",
     },
-    nav: { es: "Seminario técnico de seguridad de la IA", en: "Technical AI Safety Seminar", pt: "Seminário técnico de segurança da IA" },
-    grupo: "participa",
-    detalle: { es: "Curso intensivo en español de BlueDot Impact", en: "Intensive course in Spanish from BlueDot Impact", pt: "Curso intensivo em espanhol da BlueDot Impact" },
+    nav: { es: "Seminario técnico", en: "Technical Seminar", pt: "Seminário técnico" },
+    grupo: "seminarios",
   },
   {
     ruta: { es: "/seminarios/futuro-y-riesgos", en: "/en/seminars/future-and-risks", pt: "/pt/seminarios/futuro-e-riscos" },
-    nav: { es: "Seminario de futuro y riesgos de la IA", en: "Seminar on the Future and Risks of AI", pt: "Seminário de futuro e riscos da IA" },
-    grupo: "participa",
-    detalle: { es: "Gobernanza y estrategia de IA avanzada", en: "Governance and strategy for advanced AI", pt: "Governança e estratégia de IA avançada" },
+    nav: { es: "Seminario futuro y riesgos", en: "Future & Risks Seminar", pt: "Seminário futuro e riscos" },
+    grupo: "seminarios",
   },
   {
     ruta: { es: "/eventos", en: "/en/events", pt: "/pt/eventos" },
@@ -106,15 +103,13 @@ export const PAGINAS: Pagina[] = [
   },
   {
     ruta: { es: "/recursos", en: "/en/resources", pt: "/pt/recursos" },
-    nav: { es: "Recursos de estudio", en: "Study resources", pt: "Recursos de estudo" },
+    nav: { es: "Recursos", en: "Resources", pt: "Recursos" },
     grupo: "aprende",
-    detalle: { es: "Lecturas, videos, libros y cursos", en: "Readings, videos, books and courses", pt: "Leituras, vídeos, livros e cursos" },
   },
   {
     ruta: { es: "/oportunidades", en: "/en/opportunities", pt: "/pt/oportunidades" },
-    nav: { es: "Oportunidades globales", en: "Global opportunities", pt: "Oportunidades globais" },
+    nav: { es: "Oportunidades", en: "Opportunities", pt: "Oportunidades" },
     grupo: "aprende",
-    detalle: { es: "Becas, bootcamps y convocatorias", en: "Fellowships, bootcamps and grants", pt: "Bolsas, bootcamps e chamadas" },
   },
   {
     ruta: { es: "/unete", en: "/en/join", pt: "/pt/participe" },
@@ -160,7 +155,7 @@ export function menu(idioma: Idioma): { href: string; label: string }[] {
 }
 
 export type EntradaMenu =
-  | { href: string; label: string }
+  | { href: string; label: string; destacado?: boolean }
   | { label: string; hijos: { href: string; label: string; detalle?: string; destacado?: boolean }[] };
 
 /** El menú del encabezado: las páginas de un mismo grupo van juntas en un
@@ -170,7 +165,7 @@ export function menuAgrupado(idioma: Idioma): EntradaMenu[] {
   const vistos = new Map<Grupo, { href: string; label: string; detalle?: string; destacado?: boolean }[]>();
   for (const p of PAGINAS) {
     if (!p.nav) continue;
-    const item = { href: p.ruta[idioma], label: p.nav[idioma] };
+    const item = { href: p.ruta[idioma], label: p.nav[idioma], destacado: p.destacado };
     if (!p.grupo) {
       salida.push(item);
       continue;
