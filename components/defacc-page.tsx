@@ -325,7 +325,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
         aria-label="Secciones del evento"
         className="sticky top-0 z-40 border-b border-aisc-line bg-white/95 px-6 backdrop-blur-md md:px-12"
       >
-        <div className="mx-auto flex max-w-[860px] items-center justify-between gap-4 overflow-x-auto py-3 no-scrollbar">
+        <div className="mx-auto flex max-w-[860px] items-center justify-start gap-4 overflow-x-auto py-3 no-scrollbar">
           <div className="flex items-center gap-1 md:gap-2">
             {(
               [
@@ -352,15 +352,6 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                 </button>
               );
             })}
-          </div>
-
-          <div className="hidden sm:flex items-center gap-3">
-            <Link
-              href={rutaAplicar}
-              className="text-body-sm inline-flex items-center rounded-full bg-aisc-coral px-4 py-1.5 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85"
-            >
-              {d.ctaAplicar}
-            </Link>
           </div>
         </div>
       </nav>
@@ -475,7 +466,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                   </div>
                 </div>
 
-                {/* 7. Jurados y mentores (al final de El reto, estilo Apart) */}
+                {/* 7. Jueces y mentores (al final de El reto, con retrato cuadrado estilo /sprint) */}
                 <div className="border-t border-aisc-line pt-8">
                   <h3 className="text-display-3 text-aisc-ink">
                     {d.reglas.juradosTitulo}
@@ -484,31 +475,52 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                     {d.reglas.juradosTexto}
                   </p>
 
-                  <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <ul className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
                     {d.reglas.jurados.map((j) => (
-                      <div
-                        key={j.nombre}
-                        className={`rounded-2xl border p-5 ${
-                          j.confirmado
-                            ? "border-aisc-forest/40 bg-white shadow-2xs"
-                            : "border-dashed border-aisc-line bg-aisc-sand/20"
-                        }`}
-                      >
-                        <span className="text-kicker text-aisc-coral font-bold">
-                          {j.rol}
-                        </span>
-                        <h4 className="text-display-4 mt-1 font-semibold text-aisc-ink">
-                          {j.nombre}
-                        </h4>
-                        <p className="text-meta font-medium text-aisc-forest mt-0.5">
-                          {j.afiliacion}
-                        </p>
-                        <p className="text-body-sm text-aisc-muted mt-2">
+                      <li key={j.nombre} className="flex flex-col gap-3.5">
+                        <div className="flex items-center gap-4">
+                          {j.foto ? (
+                            <div className="relative size-20 shrink-0 overflow-hidden rounded-[10px] bg-aisc-sand">
+                              <img
+                                src={j.foto}
+                                alt={j.nombre}
+                                width={160}
+                                height={160}
+                                loading="lazy"
+                                decoding="async"
+                                className="h-full w-full object-cover object-center"
+                              />
+                            </div>
+                          ) : null}
+                          <div className="min-w-0">
+                            <span className="text-kicker text-aisc-coral font-bold block">
+                              {j.rol}
+                            </span>
+                            <h4 className="text-display-4 mt-0.5 font-semibold text-aisc-forest">
+                              {j.url ? (
+                                <a
+                                  href={j.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="underline decoration-aisc-forest/30 underline-offset-4 transition-colors hover:text-aisc-coral hover:decoration-aisc-coral"
+                                >
+                                  {j.nombre}
+                                </a>
+                              ) : (
+                                j.nombre
+                              )}
+                            </h4>
+                            <p className="text-meta font-medium text-aisc-muted mt-0.5">
+                              {j.afiliacion}
+                            </p>
+                          </div>
+                        </div>
+                        <p className="text-body-sm text-aisc-ink/85 leading-relaxed">
                           {j.bio}
                         </p>
-                      </div>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </div>
             )}
