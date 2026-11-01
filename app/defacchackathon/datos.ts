@@ -242,86 +242,83 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       listaKits: [],
       tracksTitulo: "Los 5 frentes temáticos",
       tracksTexto:
-        "Puedes escoger cualquiera de estos 5 frentes para orientar tu proyecto, usar sus benchmarks sugeridos o proponer tu propio reto defensivo con visto bueno de un mentor en la mañana:",
+        "Los frentes están diseñados alrededor de las prioridades de aceleración defensiva (def/acc) en seguridad de IA: proteger agentes autónomos, supervisar sistemas no confiables, automatizar la ciberdefensa con código verificable, blindar el ecosistema epistémico y asegurar la infraestructura y gobernanza de IA.",
       listaTracks: [
         {
           id: "track-1",
           numero: "01",
-          titulo: "Agentes de IA que no se dejan engañar",
+          titulo: "Seguridad de agentes y defensa contra inyección de instrucciones",
           resumen:
-            "Los agentes de IA leen correos, documentos y llamadas a herramientas (MCP) y obedecen instrucciones maliciosas escondidas (prompt injection indirecto).",
+            "Cuando los sistemas de IA pasan de conversar a ejecutar acciones con herramientas reales (archivos, navegadores, terminales o servidores MCP), una instrucción oculta en un documento o web puede secuestrar al agente (prompt injection indirecto) para exfiltrar información o ejecutar comandos no autorizados.",
           paraEmpezar:
-            "Construir un validador que analice descripciones de herramientas MCP y detecte instrucciones maliciosas ocultas, evaluado sobre los casos de prueba de MCPTox.",
+            "Construir un auditor o filtro que inspeccione manifiestos y llamadas a herramientas MCP para detectar instrucciones maliciosas ocultas o permisos excesivos, evaluado sobre el benchmark MCPTox.",
           conExperiencia:
-            "Diseñar una defensa contra inyección de prompts para agentes y medir cuántos ataques mitiga sin degradar las tareas legítimas en AgentDojo o AgentDyn.",
+            "Diseñar una arquitectura defensiva (separación de privilegios, aislamiento de contexto o guardarraíles de flujo de datos) para agentes y medir cuántos ataques neutraliza sin degradar tareas legítimas en AgentDojo o AgentDyn.",
           recursos: [
-            { label: "MCPTox Benchmark", url: "https://github.com/zhiqiangwang4/MCPTox-Benchmark" },
             { label: "AgentDojo (ETH Zürich)", url: "https://github.com/ethz-spylab/agentdojo" },
+            { label: "MCPTox Benchmark", url: "https://github.com/zhiqiangwang4/MCPTox-Benchmark" },
             { label: "AgentDyn Benchmark", url: "https://github.com/SaFo-Lab/AgentDyn" },
           ],
         },
         {
           id: "track-2",
           numero: "02",
-          titulo: "Fraude y desinformación generada con IA",
+          titulo: "Control de IA, monitoreo y detección de sabotaje",
           resumen:
-            "Phishing contextualizado generado por modelos, audios con voz clonada usados en extorsión telefónica y fotografías sintéticas propagadas en redes sociales.",
+            "Un problema central de seguridad técnica de IA (impulsado por Redwood Research y UK AISI): si un modelo o agente autónomo actúa de forma engañosa, oculta intenciones en su razonamiento o intenta insertar puertas traseras sutiles en código, ¿cómo diseñamos protocolos de control que lo atrapen a tiempo?",
           paraEmpezar:
-            "Entrenar o calibrar un detector de phishing en español con SpaPhish (1.395 correos reales en español), o un verificador de procedencia C2PA que certifique la autenticidad de archivos multimedia.",
+            "Escribir con el framework Inspect (UK AISI) una suite de evaluación que detecte cuándo un modelo intenta evadir límites de seguridad, ocultar capacidades o engañar al evaluador.",
           conExperiencia:
-            "Evaluar si detectores de voz sintética de última generación (como AASIST) conservan su precisión al degradar el audio con la compresión típica de WhatsApp usando el dataset In-the-Wild, y diseñar una mitigación.",
+            "Implementar un monitor de supervisión en ControlArena (entornos Bash o Apps) o con OpenAI Monitorability Evals que audite las acciones y cadenas de razonamiento de un agente para detectar sabotaje con baja tasa de falsos positivos.",
           recursos: [
-            { label: "Dataset SpaPhish", url: "https://data.mendeley.com/datasets/hz2d6gz7pc" },
-            { label: "Librería c2pa-python", url: "https://github.com/contentauth/c2pa-python" },
-            { label: "Modelo AASIST", url: "https://github.com/clovaai/aasist" },
-            { label: "Dataset In-the-Wild", url: "https://huggingface.co/datasets/mueller91/In-The-Wild" },
+            { label: "ControlArena (UK AISI & Redwood)", url: "https://github.com/UKGovernmentBEIS/control-arena" },
+            { label: "Inspect Framework (UK AISI)", url: "https://inspect.aisi.org.uk/" },
+            { label: "OpenAI Monitorability Evals", url: "https://github.com/openai/monitorability-evals" },
           ],
         },
         {
           id: "track-3",
           numero: "03",
-          titulo: "IA para equipos de ciberdefensa (CTI y SOC)",
+          titulo: "Ciberdefensa automatizada y verificación formal de software",
           resumen:
-            "Los analistas de ciberseguridad sufren sobrecarga de alertas y reportes de amenazas no estructurados. La IA puede acelerar la detección si es rigurosa en su análisis.",
+            "Los modelos de frontera abaratan encontrar y explotar vulnerabilidades de software a gran escala. Para inclinar la balanza a favor de quien defiende, necesitamos usar IA para detectar fallas automáticamente, generar parches seguros y verificar matemáticamente que el código crítico sea invulnerable.",
           paraEmpezar:
-            "Evaluar el rendimiento comparativo de modelos de frontera en tareas de inteligencia de amenazas (CTI) en español traduciendo y ejecutando muestras del benchmark CTIBench.",
+            "Construir un flujo automatizado que analice código inseguro, identifique la vulnerabilidad y genere un parche verificable evaluado contra casos de prueba de CyberSecEval (Purple Llama) o CTIBench.",
           conExperiencia:
-            "Construir un extractor automático que lea reportes de incidentes y genere reglas de detección en estándar Sigma, validándolas con pySigma y contra el repositorio oficial de SigmaHQ.",
+            "Usar modelos de lenguaje para sintetizar anotaciones e invariantes formales que demuestren matemáticamente que un programa está libre de errores críticos utilizando Dafny y el benchmark DafnyBench.",
           recursos: [
+            { label: "DafnyBench (Verificación formal)", url: "https://github.com/sun-wendy/DafnyBench" },
+            { label: "CyberSecEval (Purple Llama)", url: "https://github.com/meta-llama/PurpleLlama" },
             { label: "CTIBench", url: "https://huggingface.co/datasets/AI4Sec/cti-bench" },
-            { label: "Reglas SigmaHQ", url: "https://github.com/SigmaHQ/sigma" },
-            { label: "pySigma Parser", url: "https://github.com/SigmaHQ/pySigma" },
           ],
         },
         {
           id: "track-4",
           numero: "04",
-          titulo: "Vigilar a la IA: control, monitoreo y alineación",
+          titulo: "Defensa epistémica, autenticidad criptográfica y detección de suplantación",
           resumen:
-            "En la frontera de investigación de laboratorios e institutos de seguridad (AISI): si un modelo avanzado o agente busca sabotear su entorno o simular alineación, ¿cómo lo atrapamos a tiempo?",
+            "La IA reduce casi a cero el costo de clonar voces en tiempo real, fabricar evidencia sintética y desplegar campañas de manipulación persuasiva. La aceleración defensiva en el espacio informativo busca proteger la confianza pública mediante pruebas criptográficas de origen y detección resistente en canales reales.",
           paraEmpezar:
-            "Escribir con el framework Inspect (UK AISI) una suite de evaluación que mida si un modelo desobedece límites de seguridad o engaña al usuario.",
+            "Implementar un verificador de procedencia criptográfica bajo el estándar C2PA (c2pa-python) que certifique el origen de archivos multimedia, o un detector calibrado con SpaPhish.",
           conExperiencia:
-            "Implementar un monitor en entornos de ControlArena (Apps o Bash) que vigile si un agente comete sabotaje, midiendo tasa de detección y falsos positivos.",
-          paraIrMasLejos:
-            "Evaluar la legibilidad del razonamiento con OpenAI monitorability-evals o verificar código formalmente con DafnyBench.",
+            "Evaluar cómo se degrada la precisión de detectores de voz sintética de última generación (como AASIST) bajo la compresión real de audio de WhatsApp usando el dataset In-the-Wild, y construir un mecanismo de mitigación.",
           recursos: [
-            { label: "Inspect Framework (UK AISI)", url: "https://inspect.aisi.org.uk/" },
-            { label: "ControlArena (UK AISI)", url: "https://github.com/UKGovernmentBEIS/control-arena" },
-            { label: "OpenAI Monitorability Evals", url: "https://github.com/openai/monitorability-evals" },
-            { label: "DafnyBench", url: "https://github.com/sun-wendy/DafnyBench" },
+            { label: "Librería c2pa-python", url: "https://github.com/contentauth/c2pa-python" },
+            { label: "Modelo AASIST", url: "https://github.com/clovaai/aasist" },
+            { label: "Dataset In-the-Wild", url: "https://huggingface.co/datasets/mueller91/In-The-Wild" },
+            { label: "Dataset SpaPhish", url: "https://data.mendeley.com/datasets/hz2d6gz7pc" },
           ],
         },
         {
           id: "track-5",
           numero: "05",
-          titulo: "Seguridad de infraestructura y política pública (No-Code)",
+          titulo: "Seguridad de infraestructura de IA y gobernanza defensiva (No-Code)",
           resumen:
-            "Proteger el entrenamiento y los pesos de modelos frontera requiere asegurar centros de datos y regular el acceso estatal. Este track no exige programar código.",
+            "Evitar el robo o exfiltración de los pesos de modelos de frontera y garantizar que el despliegue de sistemas autónomos no comprometa servicios esenciales requiere estándares técnicos e institucionales rigurosos. Este frente no exige programar código.",
           paraEmpezar:
-            "Modelado formal de amenazas para un centro de cómputo en Colombia bajo los niveles de seguridad SL1 a SL5 de RAND: diagnóstico de brechas actuales y requisitos para ascender de nivel.",
+            "Realizar un modelado formal de amenazas y brechas de seguridad bajo los niveles SL1 a SL5 de RAND (Securing AI Model Weights) o diseñar un protocolo de respuesta a incidentes de IA.",
           conExperiencia:
-            "Propuesta regulatoria y técnica sobre estándares mínimos obligatorios que entidades públicas deben exigir antes de desplegar agentes autónomos en infraestructura crítica.",
+            "Formular un estándar técnico y regulatorio verificable con los requisitos mínimos de contención, auditoría y líneas rojas que entidades públicas o infraestructura crítica deben exigir antes de desplegar agentes autónomos.",
           recursos: [
             { label: "Securing Model Weights (RAND)", url: "https://www.rand.org/pubs/research_reports/RRA2849-1.html" },
             { label: "Estándar de Seguridad SL5", url: "https://sl5.org/sl5-standard" },
@@ -334,7 +331,6 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       reglasSeguridad: [
         "Prohibido atacar, escanear o probar sistemas reales de terceros sin autorización explícita por escrito. Hacerlo es delito bajo la Ley 1273 de 2009. Todo el trabajo se realiza en entornos de laboratorio, benchmarks públicos o datos sintéticos.",
         "Cero publicación de exploits funcionales, código de malware o herramientas concebidas primordialmente para ofensa. Si un equipo descubre una vulnerabilidad real en una librería existente, debe reportarla en privado y omitirla de su entrega pública.",
-        "Bioseguridad: prohibido cualquier análisis que facilite la obtención o síntesis de agentes químicos o biológicos. La bioseguridad se admite únicamente como análisis regulatorio o de política en el Track 5.",
         "Protección de datos personales: las muestras de voz, rostros o correos deben provenir de datasets públicos debidamente anonimizados o ser datos sintéticos.",
         "Atribución y transparencia: todo código, dataset, librería o fragmento generado con IA debe estar claramente documentado y citado en la entrega.",
       ],
@@ -377,7 +373,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       ],
       finalistasTitulo: "Dinámica de selección de ganadores",
       finalistasTexto:
-        "A las 7:00 p. m., tras la deliberación técnica de los jurados, se anuncian los 5 mejores proyectos de la jornada. Cada equipo finalista realiza un pitch en vivo de 4 minutos ante el salón completo. A las 7:25 p. m. el jurado anuncia el podio y se efectúa el pago inmediato de los COP 2.000.000 en premios.",
+        "A las 7:00 p. m., tras la deliberación técnica de los jurados, se anuncian los 5 mejores proyectos de la jornada. Cada equipo finalista realiza un pitch en vivo de 4 minutos ante el salón completo y a las 7:25 p. m. el jurado anuncia los tres primeros puestos.",
       juradosTitulo: "Jurados confirmados",
       juradosTexto:
         "El panel de jurados evalúa de forma independiente y ciega:",
@@ -442,7 +438,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         },
         {
           q: "¿Cómo se evalúa y premia?",
-          a: "Los proyectos se entregan a las 5:00 p. m. (repositorio + ficha técnica de 1 página). Los 5 con mejor puntaje presentan 4 minutos en vivo a las 7:00 p. m. Los tres primeros lugares reciben COP 1.000.000, COP 500.000 y COP 500.000 pagados en el acto.",
+          a: "Los proyectos se entregan a las 5:00 p. m. (repositorio + ficha técnica de 1 página). Los 5 con mejor puntaje presentan 4 minutos en vivo a las 7:00 p. m. Los tres primeros lugares reciben COP 1.000.000, COP 500.000 y COP 500.000.",
         },
         {
           q: "¿Cómo llego al salón en Uniandes?",
@@ -548,86 +544,83 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       listaKits: [],
       tracksTitulo: "The 5 Research Tracks",
       tracksTexto:
-        "Select any track to anchor your project or propose a custom defense with a mentor's morning approval:",
+        "These tracks are structured around core Defensive Acceleration (def/acc) priorities in AI Safety: securing autonomous agents, monitoring untrusted systems, automating cyberdefense with formal verification, protecting epistemic integrity, and securing AI infrastructure and governance.",
       listaTracks: [
         {
           id: "track-1",
           numero: "01",
-          titulo: "Resilient AI Agents",
+          titulo: "Agent Security & Indirect Prompt Injection Defense",
           resumen:
-            "AI agents parsing emails, webpages, and tool descriptions face indirect prompt injection and poisoned tool manifests.",
+            "As AI systems move from chat to executing actions via external tools (browsers, terminals, files, or MCP servers), hidden instructions embedded in untrusted data can hijack the agent to exfiltrate data or execute unauthorized commands.",
           paraEmpezar:
-            "Build a tool reviewer checking MCP schema descriptions for hidden prompt injections using the MCPTox benchmark.",
+            "Build a tool auditor or filter inspecting MCP schema descriptions and tool calls for hidden prompt injections or excessive permissions using the MCPTox benchmark.",
           conExperiencia:
-            "Evaluate prompt injection defenses against AgentDojo or AgentDyn, measuring mitigated attacks vs. benign task breakages.",
+            "Design a defensive architecture (privilege separation, data-flow isolation, or intent verification) for tool-using agents and measure mitigated attacks vs. benign task utility on AgentDojo or AgentDyn.",
           recursos: [
-            { label: "MCPTox Benchmark", url: "https://github.com/zhiqiangwang4/MCPTox-Benchmark" },
             { label: "AgentDojo (ETH Zürich)", url: "https://github.com/ethz-spylab/agentdojo" },
+            { label: "MCPTox Benchmark", url: "https://github.com/zhiqiangwang4/MCPTox-Benchmark" },
             { label: "AgentDyn Benchmark", url: "https://github.com/SaFo-Lab/AgentDyn" },
           ],
         },
         {
           id: "track-2",
           numero: "02",
-          titulo: "AI Fraud & Disinformation Detection",
+          titulo: "AI Control, Oversight & Sabotage Detection",
           resumen:
-            "Phishing, voice-cloning fraud, and synthetic imagery circulating without verification.",
+            "A core technical AI safety paradigm (advanced by Redwood Research and UK AISI): if a frontier model or autonomous agent behaves deceptively, conceals unaligned reasoning, or attempts subtle code sabotage, how do we design control protocols that catch it before harm occurs?",
           paraEmpezar:
-            "Fine-tune Spanish phishing classifiers on SpaPhish (1,395 real Colombian/Spanish emails) or implement C2PA provenance checkers.",
+            "Use UK AISI's Inspect framework to build an evaluation suite detecting when a model attempts to bypass safety bounds, sandbag capabilities, or deceive an overseer.",
           conExperiencia:
-            "Test AASIST synthetic voice detectors under WhatsApp audio compression using the In-the-Wild dataset and propose corrections.",
+            "Build an oversight monitor in ControlArena (Bash/Apps) or using OpenAI Monitorability Evals that audits agent actions and chains of thought to catch sabotage with a low false-positive rate.",
           recursos: [
-            { label: "SpaPhish Dataset", url: "https://data.mendeley.com/datasets/hz2d6gz7pc" },
-            { label: "c2pa-python Library", url: "https://github.com/contentauth/c2pa-python" },
-            { label: "AASIST Model", url: "https://github.com/clovaai/aasist" },
-            { label: "In-the-Wild Dataset", url: "https://huggingface.co/datasets/mueller91/In-The-Wild" },
+            { label: "ControlArena (UK AISI & Redwood)", url: "https://github.com/UKGovernmentBEIS/control-arena" },
+            { label: "Inspect Framework (UK AISI)", url: "https://inspect.aisi.org.uk/" },
+            { label: "OpenAI Monitorability Evals", url: "https://github.com/openai/monitorability-evals" },
           ],
         },
         {
           id: "track-3",
           numero: "03",
-          titulo: "AI for Cyber Defense Teams",
+          titulo: "Automated Cyberdefense & Formal Software Verification",
           resumen:
-            "Cybersecurity operators are overwhelmed by raw threat reports and alert fatigue.",
+            "Frontier models dramatically lower the cost of discovering and exploiting software vulnerabilities at scale. To tilt the offense-defense balance toward defenders, we need AI systems that automatically find bugs, generate verified patches, and mathematically prove critical code is safe.",
           paraEmpezar:
-            "Benchmark LLM threat-intelligence performance in Spanish vs. English using translated CTIBench tasks.",
+            "Build an automated pipeline that audits vulnerable code snippets, identifies security flaws, and synthesizes verifiable patches evaluated against CyberSecEval (Purple Llama) or CTIBench.",
           conExperiencia:
-            "Generate Sigma detection rules from public threat advisories using LLMs, validated against pySigma and SigmaHQ.",
+            "Use LLMs to synthesize formal specifications and safety invariants that mathematically prove programs free of critical bugs using Dafny and the DafnyBench benchmark.",
           recursos: [
+            { label: "DafnyBench (Formal Verification)", url: "https://github.com/sun-wendy/DafnyBench" },
+            { label: "CyberSecEval (Purple Llama)", url: "https://github.com/meta-llama/PurpleLlama" },
             { label: "CTIBench", url: "https://huggingface.co/datasets/AI4Sec/cti-bench" },
-            { label: "SigmaHQ Rules", url: "https://github.com/SigmaHQ/sigma" },
-            { label: "pySigma Parser", url: "https://github.com/SigmaHQ/pySigma" },
           ],
         },
         {
           id: "track-4",
           numero: "04",
-          titulo: "AI Overseers: Control & Monitoring",
+          titulo: "Epistemic Defense, Cryptographic Provenance & Impersonation Detection",
           resumen:
-            "Frontier safety: detecting agent deception, unfaithful reasoning, or task sabotage before damage occurs.",
+            "AI reduces the cost of real-time voice cloning, synthetic evidence fabrication, and mass persuasive manipulation to near zero. Defensive acceleration in the information ecosystem protects collective decision-making through cryptographic provenance and resilient detection.",
           paraEmpezar:
-            "Use UK AISI's Inspect framework to code small behavioral evaluation suites measuring dangerous instruction compliance.",
+            "Implement a cryptographic provenance verifier using the C2PA standard (c2pa-python) to certify media authenticity, or a calibrated phishing detector using SpaPhish.",
           conExperiencia:
-            "Build an overseer monitor in ControlArena (Bash/Apps) detecting agent sabotage, measuring detection rate vs. false positives.",
-          paraIrMasLejos:
-            "Explore OpenAI monitorability-evals or formal DafnyBench code verification.",
+            "Evaluate how state-of-the-art synthetic voice detectors (such as AASIST) degrade under real-world WhatsApp audio compression using the In-the-Wild dataset, and build a mitigation layer.",
           recursos: [
-            { label: "Inspect Framework (UK AISI)", url: "https://inspect.aisi.org.uk/" },
-            { label: "ControlArena (UK AISI)", url: "https://github.com/UKGovernmentBEIS/control-arena" },
-            { label: "OpenAI Monitorability Evals", url: "https://github.com/openai/monitorability-evals" },
-            { label: "DafnyBench", url: "https://github.com/sun-wendy/DafnyBench" },
+            { label: "c2pa-python Library", url: "https://github.com/contentauth/c2pa-python" },
+            { label: "AASIST Model", url: "https://github.com/clovaai/aasist" },
+            { label: "In-the-Wild Dataset", url: "https://huggingface.co/datasets/mueller91/In-The-Wild" },
+            { label: "SpaPhish Dataset", url: "https://data.mendeley.com/datasets/hz2d6gz7pc" },
           ],
         },
         {
           id: "track-5",
           numero: "05",
-          titulo: "AI Infrastructure Security & Policy (No-Code)",
+          titulo: "AI Infrastructure Security & Defensive Governance (No-Code)",
           resumen:
-            "Securing training clusters, data centers, and public sector adoption standards. No code required.",
+            "Preventing the theft or exfiltration of frontier model weights and ensuring autonomous AI deployments do not compromise essential public services requires rigorous technical and institutional standards. No programming required.",
           paraEmpezar:
-            "Draft a threat model for a Colombian data center mapping against RAND's Security Levels SL1 to SL5.",
+            "Conduct a formal threat model and gap analysis under RAND's Security Levels SL1 to SL5 (Securing AI Model Weights) or design an AI incident response protocol.",
           conExperiencia:
-            "Formulate a mandatory baseline policy for public agencies deploying autonomous AI agents.",
+            "Formulate a verifiable technical and regulatory standard specifying mandatory containment, auditing, and red-line requirements before public agencies or critical infrastructure deploy autonomous agents.",
           recursos: [
             { label: "Securing Model Weights (RAND)", url: "https://www.rand.org/pubs/research_reports/RRA2849-1.html" },
             { label: "SL5 Standard", url: "https://sl5.org/sl5-standard" },
@@ -640,7 +633,6 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       reglasSeguridad: [
         "Never scan or test unauthorized third-party systems. Violations are punishable under Colombian Law 1273/2009. Work must use local sandboxes, public benchmarks, or synthetic data.",
         "Zero weaponized exploits or offensive malware deliverables. Live vulnerabilities must be privately disclosed and omitted from submissions.",
-        "No wet-lab biology or chemical syntheses. Biosecurity is permitted solely as governance or policy analysis in Track 5.",
         "Personal data protection: all test voice, face, or email assets must come from anonymized public datasets or synthetic generators.",
         "Transparent attribution: acknowledge all third-party code, datasets, and AI coding tools.",
       ],
@@ -662,7 +654,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       ],
       finalistasTitulo: "Finalist Presentations",
       finalistasTexto:
-        "At 7:00 PM, the top 5 teams deliver 4-minute live pitches before the assembly. Final deliberations conclude at 7:25 PM with cash prizes paid on site.",
+        "At 7:00 PM, the top 5 teams deliver 4-minute live pitches before the assembly, and at 7:25 PM the judges announce the three winning teams.",
       juradosTitulo: "Confirmed Judges",
       juradosTexto: "Independent expert panel:",
       jurados: [
@@ -812,69 +804,83 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       listaKits: [],
       tracksTitulo: "Os 5 Frentes de Pesquisa",
       tracksTexto:
-        "Escolha qualquer um destes temas para guiar seu projeto:",
+        "Os frentes são estruturados em torno das prioridades de aceleração defensiva (def/acc) em segurança de IA: proteger agentes autônomos, supervisionar modelos não confiáveis, automatizar a ciberdefesa com verificação formal, proteger o ecossistema epistêmico e garantir a governança e infraestrutura de IA.",
       listaTracks: [
         {
           id: "track-1",
           numero: "01",
-          titulo: "Agentes de IA Resilientes a Injeção",
-          resumen: "Defesas contra prompt injection indireto em ferramentas MCP.",
-          paraEmpezar: "Criar validador de descrições MCP testado no benchmark MCPTox.",
-          conExperiencia: "Desenvolver defesas avaliadas nos benchmarks AgentDojo e AgentDyn.",
+          titulo: "Segurança de Agentes e Defesa contra Injeção de Instruções",
+          resumen:
+            "Quando sistemas de IA passam a executar ações com ferramentas reais (arquivos, navegadores, terminais ou servidores MCP), instruções ocultas em documentos ou páginas podem sequestrar o agente (prompt injection indireto).",
+          paraEmpezar:
+            "Criar um auditor ou filtro de descrições e chamadas de ferramentas MCP testado no benchmark MCPTox.",
+          conExperiencia:
+            "Desenvolver arquiteturas defensivas (separação de privilégios ou isolamento de fluxo de dados) para agentes avaliadas nos benchmarks AgentDojo e AgentDyn.",
           recursos: [
+            { label: "AgentDojo (ETH Zürich)", url: "https://github.com/ethz-spylab/agentdojo" },
             { label: "MCPTox Benchmark", url: "https://github.com/zhiqiangwang4/MCPTox-Benchmark" },
-            { label: "AgentDojo", url: "https://github.com/ethz-spylab/agentdojo" },
             { label: "AgentDyn", url: "https://github.com/SaFo-Lab/AgentDyn" },
           ],
         },
         {
           id: "track-2",
           numero: "02",
-          titulo: "Detecção de Fraude e Desinformação",
-          resumen: "Phishing, clones de voz e mídia sintética gerada por modelos.",
-          paraEmpezar: "Detector de phishing no dataset SpaPhish ou verificador C2PA.",
-          conExperiencia: "Testar detectores de voz sintética AASIST sob compressão de áudio do WhatsApp.",
+          titulo: "Controle de IA, Supervisão e Detecção de Sabotagem",
+          resumen:
+            "Um pilar central da segurança técnica de IA (Redwood Research e UK AISI): se um modelo ou agente autônomo agir de forma enganosa, ocultar intenções no raciocínio ou tentar inserir backdoors sutis em código, como detectá-lo a tempo?",
+          paraEmpezar:
+            "Escrever uma suíte de avaliação com o framework Inspect (UK AISI) para detectar evasão de limites de segurança ou ocultação de capacidades.",
+          conExperiencia:
+            "Construir monitores de supervisão em ControlArena (Bash ou Apps) ou com OpenAI Monitorability Evals para detectar sabotagem de agentes com baixa taxa de falsos positivos.",
           recursos: [
-            { label: "SpaPhish", url: "https://data.mendeley.com/datasets/hz2d6gz7pc" },
-            { label: "c2pa-python", url: "https://github.com/contentauth/c2pa-python" },
-            { label: "AASIST", url: "https://github.com/clovaai/aasist" },
-            { label: "In-the-Wild", url: "https://huggingface.co/datasets/mueller91/In-The-Wild" },
+            { label: "ControlArena (UK AISI & Redwood)", url: "https://github.com/UKGovernmentBEIS/control-arena" },
+            { label: "Inspect Framework (UK AISI)", url: "https://inspect.aisi.org.uk/" },
+            { label: "OpenAI Monitorability Evals", url: "https://github.com/openai/monitorability-evals" },
           ],
         },
         {
           id: "track-3",
           numero: "03",
-          titulo: "IA para Equipes de Ciberdefesa",
-          resumen: "Apoio a analistas de SOC e inteligência de ameaças.",
-          paraEmpezar: "Medir desempenho de LLMs em tarefas de CTI em espanhol com CTIBench.",
-          conExperiencia: "Geração de regras Sigma validadas com pySigma.",
+          titulo: "Ciberdefesa Automatizada e Verificação Formal de Software",
+          resumen:
+            "Modelos de fronteira barateiam a descoberta e exploração de vulnerabilidades em larga escala. Para inclinar a balança a favor de quem defende, precisamos automatizar a detecção de falhas, gerar patches verificáveis e provar matematicamente que o código crítico é seguro.",
+          paraEmpezar:
+            "Construir um fluxo automatizado que audite código vulnerável, identifique falhas e proponha patches validados com CyberSecEval (Purple Llama) ou CTIBench.",
+          conExperiencia:
+            "Usar modelos de linguagem para sintetizar especificações e invariantes formais que provem matematicamente a ausência de erros críticos com Dafny e DafnyBench.",
           recursos: [
+            { label: "DafnyBench (Verificação formal)", url: "https://github.com/sun-wendy/DafnyBench" },
+            { label: "CyberSecEval (Purple Llama)", url: "https://github.com/meta-llama/PurpleLlama" },
             { label: "CTIBench", url: "https://huggingface.co/datasets/AI4Sec/cti-bench" },
-            { label: "SigmaHQ", url: "https://github.com/SigmaHQ/sigma" },
-            { label: "pySigma", url: "https://github.com/SigmaHQ/pySigma" },
           ],
         },
         {
           id: "track-4",
           numero: "04",
-          titulo: "Monitoramento e Controle de Agentes",
-          resumen: "Supervisão e auditoria de modelos na fronteira de pesquisa.",
-          paraEmpezar: "Escrever testes com o framework Inspect (UK AISI).",
-          conExperiencia: "Construir monitores em ControlArena para detectar sabotagem de agentes.",
+          titulo: "Defesa Epistêmica, Autenticidade Criptográfica e Detecção de Fraude",
+          resumen:
+            "A IA reduz a quase zero o custo de clonar vozes em tempo real, fabricar mídia sintética e executar campanhas de persuasão em massa. A aceleração defensiva protege a tomada de decisão coletiva por meio de procedência criptográfica e detecção robusta.",
+          paraEmpezar:
+            "Implementar um verificador de procedência criptográfica C2PA (c2pa-python) ou um detector calibrado no dataset SpaPhish.",
+          conExperiencia:
+            "Avaliar e fortalecer detectores de voz sintética (AASIST) sob a compressão real de áudio do WhatsApp usando o dataset In-the-Wild.",
           recursos: [
-            { label: "Inspect Framework", url: "https://inspect.aisi.org.uk/" },
-            { label: "ControlArena", url: "https://github.com/UKGovernmentBEIS/control-arena" },
-            { label: "OpenAI Monitorability", url: "https://github.com/openai/monitorability-evals" },
-            { label: "DafnyBench", url: "https://github.com/sun-wendy/DafnyBench" },
+            { label: "c2pa-python", url: "https://github.com/contentauth/c2pa-python" },
+            { label: "AASIST", url: "https://github.com/clovaai/aasist" },
+            { label: "In-the-Wild", url: "https://huggingface.co/datasets/mueller91/In-The-Wild" },
+            { label: "SpaPhish", url: "https://data.mendeley.com/datasets/hz2d6gz7pc" },
           ],
         },
         {
           id: "track-5",
           numero: "05",
-          titulo: "Infraestrutura de IA e Políticas Públicas",
-          resumen: "Padrões de segurança para data centers e regulamentação (No-Code).",
-          paraEmpezar: "Modelo de ameaças para data centers usando níveis SL1 a SL5 da RAND.",
-          conExperiencia: "Proposta de exigências regulatórias para órgãos públicos.",
+          titulo: "Segurança de Infraestrutura de IA e Governança Defensiva (No-Code)",
+          resumen:
+            "Prevenir o roubo dos pesos de modelos de fronteira e garantir que agentes autônomos não comprometam serviços públicos essenciais exige padrões técnicos e regulatórios rigorosos. Não exige programação.",
+          paraEmpezar:
+            "Realizar modelagem formal de ameaças sob os níveis SL1 a SL5 da RAND (Securing AI Model Weights) ou desenhar um protocolo de resposta a incidentes de IA.",
+          conExperiencia:
+            "Formular um padrão técnico-regulatório verificável com exigências mínimas de contenção e auditoria antes da implantação de agentes autônomos em infraestrutura crítica.",
           recursos: [
             { label: "Securing Weights (RAND)", url: "https://www.rand.org/pubs/research_reports/RRA2849-1.html" },
             { label: "Padrão SL5", url: "https://sl5.org/sl5-standard" },
@@ -887,7 +893,6 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       reglasSeguridad: [
         "Proibido atacar sistemas reais de terceiros sem autorização formal (Lei 1273/2009).",
         "Não entregar ferramentas puramente ofensivas ou exploits não remediados.",
-        "Sem biologia de bancada: biossegurança apenas como proposta regulatória no Track 5.",
         "Dados pessoais sempre anonimizados ou sintéticos.",
         "Citação e transparência obrigatória de todo código e modelos utilizados.",
       ],

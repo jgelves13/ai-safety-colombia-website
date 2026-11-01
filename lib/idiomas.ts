@@ -76,8 +76,11 @@ export const PAGINAS: Pagina[] = [
   },
   {
     ruta: { es: "/defacchackathon", en: "/en/defacchackathon", pt: "/pt/defacchackathon" },
-    nav: { es: "Hackatón", en: "Hackathon", pt: "Hackathon" },
-    destacado: true,
+    nav: {
+      es: "Defensive Acceleration Hackathon",
+      en: "Defensive Acceleration Hackathon",
+      pt: "Defensive Acceleration Hackathon",
+    },
   },
   {
     ruta: {

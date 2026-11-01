@@ -253,18 +253,6 @@ export default function DefAccApplyForm({
               ? "Voltar ao resumo"
               : "Volver al resumen del evento"}
           </Link>
-          <a
-            href="https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-body-sm inline-flex items-center rounded-full border border-aisc-forest/40 bg-white px-6 py-2.5 font-medium text-aisc-forest transition-colors hover:bg-aisc-forest hover:text-aisc-sand"
-          >
-            {idioma === "en"
-              ? "Join Community WhatsApp"
-              : idioma === "pt"
-              ? "Entrar no WhatsApp da comunidade"
-              : "Unirme al WhatsApp de la comunidad"}
-          </a>
         </div>
       </div>
     );
@@ -602,11 +590,11 @@ export default function DefAccApplyForm({
               value={datos.preferredTrack}
               onChange={(e) => cambiar("preferredTrack", e.target.value)}
             >
-              <option value="track-1">Track 1: Agentes de IA que no se dejan engañar (MCP, prompt injection)</option>
-              <option value="track-2">Track 2: Fraude y desinformación con IA (Phishing SpaPhish, C2PA, voz clonada)</option>
-              <option value="track-3">Track 3: IA para equipos de ciberdefensa (CTIBench, reglas Sigma)</option>
-              <option value="track-4">Track 4: Vigilar a la IA: control y monitoreo (Inspect, ControlArena)</option>
-              <option value="track-5">Track 5: Seguridad de infraestructura y política pública (No-Code, SL1–SL5)</option>
+              <option value="track-1">Track 1: Seguridad de agentes e inyección de instrucciones (MCP, AgentDojo)</option>
+              <option value="track-2">Track 2: Control de IA, monitoreo y detección de sabotaje (ControlArena, Inspect)</option>
+              <option value="track-3">Track 3: Ciberdefensa automatizada y verificación formal (DafnyBench, CyberSecEval)</option>
+              <option value="track-4">Track 4: Defensa epistémica, procedencia C2PA y detección de suplantación (AASIST)</option>
+              <option value="track-5">Track 5: Seguridad de infraestructura de IA y gobernanza defensiva (No-Code, SL1–SL5)</option>
               <option value="por_definir">Aún no lo tengo claro / Decidiré en la mañana</option>
             </select>
           </div>

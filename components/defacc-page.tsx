@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { League_Spartan } from "next/font/google";
 import { useEffect, useState } from "react";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
@@ -18,6 +19,100 @@ import {
 import type { Premio } from "@/app/defacchackathon/datos";
 import type { Idioma } from "@/lib/idiomas";
 import { rutaEn } from "@/lib/idiomas";
+
+const leagueSpartan = League_Spartan({
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
+  display: "swap",
+});
+
+const DIGITOS_BINARIOS: Array<{
+  char: "0" | "1";
+  x: number;
+  y: number;
+  size: number;
+  color: string;
+  opacity: number;
+  rotate: number;
+}> = [
+  // Lado izquierdo
+  { char: "1", x: 38, y: 58, size: 30, color: "#e5604d", opacity: 0.42, rotate: -14 },
+  { char: "0", x: 96, y: 42, size: 22, color: "#f3ead8", opacity: 0.2, rotate: 10 },
+  { char: "1", x: 158, y: 78, size: 26, color: "#e5604d", opacity: 0.34, rotate: 8 },
+  { char: "0", x: 52, y: 132, size: 36, color: "#e5604d", opacity: 0.38, rotate: -8 },
+  { char: "0", x: 124, y: 148, size: 20, color: "#5f9f77", opacity: 0.28, rotate: 14 },
+  { char: "1", x: 28, y: 215, size: 28, color: "#f3ead8", opacity: 0.22, rotate: -18 },
+  { char: "1", x: 94, y: 230, size: 34, color: "#e5604d", opacity: 0.45, rotate: 12 },
+  { char: "0", x: 172, y: 205, size: 22, color: "#e5604d", opacity: 0.28, rotate: -10 },
+  { char: "0", x: 44, y: 305, size: 32, color: "#e5604d", opacity: 0.4, rotate: 9 },
+  { char: "1", x: 118, y: 318, size: 24, color: "#f3ead8", opacity: 0.18, rotate: -12 },
+  { char: "1", x: 64, y: 392, size: 38, color: "#e5604d", opacity: 0.44, rotate: -6 },
+  { char: "0", x: 146, y: 385, size: 26, color: "#5f9f77", opacity: 0.26, rotate: 15 },
+  { char: "1", x: 32, y: 468, size: 26, color: "#e5604d", opacity: 0.35, rotate: 11 },
+  { char: "0", x: 108, y: 476, size: 32, color: "#f3ead8", opacity: 0.22, rotate: -14 },
+  { char: "1", x: 188, y: 454, size: 20, color: "#e5604d", opacity: 0.28, rotate: 7 },
+  { char: "0", x: 58, y: 540, size: 28, color: "#e5604d", opacity: 0.36, rotate: -9 },
+  { char: "1", x: 142, y: 548, size: 24, color: "#f3ead8", opacity: 0.18, rotate: 12 },
+
+  // Lado derecho y alrededor de la mascota
+  { char: "0", x: 980, y: 52, size: 24, color: "#f3ead8", opacity: 0.18, rotate: -11 },
+  { char: "1", x: 1065, y: 68, size: 32, color: "#e5604d", opacity: 0.38, rotate: 14 },
+  { char: "0", x: 1155, y: 48, size: 22, color: "#5f9f77", opacity: 0.26, rotate: -8 },
+  { char: "1", x: 1245, y: 74, size: 36, color: "#e5604d", opacity: 0.44, rotate: -15 },
+  { char: "0", x: 1338, y: 56, size: 28, color: "#f3ead8", opacity: 0.22, rotate: 10 },
+  { char: "1", x: 1396, y: 108, size: 34, color: "#e5604d", opacity: 0.4, rotate: 16 },
+  { char: "0", x: 940, y: 138, size: 20, color: "#e5604d", opacity: 0.26, rotate: 9 },
+  { char: "1", x: 1030, y: 156, size: 28, color: "#f3ead8", opacity: 0.2, rotate: -13 },
+  { char: "0", x: 1190, y: 142, size: 34, color: "#e5604d", opacity: 0.42, rotate: 11 },
+  { char: "1", x: 1295, y: 165, size: 26, color: "#5f9f77", opacity: 0.3, rotate: -9 },
+  { char: "0", x: 1378, y: 196, size: 38, color: "#e5604d", opacity: 0.46, rotate: -12 },
+  { char: "1", x: 965, y: 242, size: 28, color: "#e5604d", opacity: 0.32, rotate: -14 },
+  { char: "0", x: 1052, y: 268, size: 22, color: "#f3ead8", opacity: 0.18, rotate: 12 },
+  { char: "1", x: 1228, y: 254, size: 30, color: "#e5604d", opacity: 0.38, rotate: 8 },
+  { char: "0", x: 1322, y: 278, size: 34, color: "#f3ead8", opacity: 0.24, rotate: -16 },
+  { char: "1", x: 1404, y: 294, size: 26, color: "#e5604d", opacity: 0.4, rotate: 13 },
+  { char: "0", x: 990, y: 356, size: 32, color: "#e5604d", opacity: 0.36, rotate: 10 },
+  { char: "1", x: 1084, y: 382, size: 24, color: "#5f9f77", opacity: 0.26, rotate: -11 },
+  { char: "0", x: 1212, y: 374, size: 36, color: "#e5604d", opacity: 0.42, rotate: -7 },
+  { char: "1", x: 1308, y: 396, size: 28, color: "#f3ead8", opacity: 0.22, rotate: 15 },
+  { char: "0", x: 1388, y: 382, size: 32, color: "#e5604d", opacity: 0.44, rotate: -13 },
+  { char: "1", x: 948, y: 462, size: 22, color: "#f3ead8", opacity: 0.18, rotate: -9 },
+  { char: "0", x: 1042, y: 486, size: 34, color: "#e5604d", opacity: 0.38, rotate: 12 },
+  { char: "1", x: 1148, y: 472, size: 26, color: "#e5604d", opacity: 0.32, rotate: -14 },
+  { char: "0", x: 1264, y: 492, size: 38, color: "#e5604d", opacity: 0.45, rotate: 9 },
+  { char: "1", x: 1356, y: 478, size: 28, color: "#5f9f77", opacity: 0.28, rotate: -11 },
+  { char: "0", x: 1408, y: 534, size: 30, color: "#e5604d", opacity: 0.38, rotate: 14 },
+];
+
+function FondoBinario() {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 overflow-hidden font-mono select-none"
+    >
+      <svg
+        viewBox="0 0 1440 600"
+        preserveAspectRatio="xMidYMid slice"
+        className="h-full w-full"
+      >
+        {DIGITOS_BINARIOS.map((d, i) => (
+          <text
+            key={i}
+            x={d.x}
+            y={d.y}
+            fill={d.color}
+            fillOpacity={d.opacity}
+            fontSize={d.size}
+            fontWeight="800"
+            transform={`rotate(${d.rotate} ${d.x} ${d.y})`}
+          >
+            {d.char}
+          </text>
+        ))}
+      </svg>
+    </div>
+  );
+}
 
 const ENLACE =
   "text-aisc-forest underline underline-offset-[3px] font-medium transition-colors hover:text-aisc-forest-deep";
@@ -39,11 +134,11 @@ function PremiosSoberos({
 }) {
   return (
     <div className="space-y-6">
-      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+      <ul className="grid grid-cols-1 gap-3 md:grid-cols-3">
         {premios.map((p, i) => (
           <li className="flex" key={p.puesto}>
             <article
-              className={`flex min-h-[150px] w-full flex-col justify-between rounded-[8px] p-5 md:min-h-[172px] md:p-6 ${
+              className={`flex min-h-[148px] w-full flex-col justify-between rounded-[8px] p-5 md:min-h-[164px] md:p-6 ${
                 i === 0
                   ? "bg-aisc-forest text-aisc-sand"
                   : "border border-aisc-forest/55 bg-aisc-cream text-aisc-ink"
@@ -63,7 +158,7 @@ function PremiosSoberos({
                   COP
                 </span>
                 <span
-                  className={`text-display-2 md:text-display-2-lg tabular-nums ${
+                  className={`font-[family-name:var(--font-display)] text-[1.85rem] lg:text-[2.1rem] font-extrabold leading-none tracking-tight tabular-nums whitespace-nowrap mt-1 ${
                     i === 0 ? "text-aisc-sand" : "text-aisc-forest"
                   }`}
                 >
@@ -151,7 +246,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
     <main className={PAGE_SHELL}>
       {/* ------------------------------------------------------------ HERO */}
       <section className="relative overflow-hidden bg-aisc-forest-deep text-aisc-sand">
-        {/* Fondo decorativo con luces y rejilla sutil */}
+        {/* Fondo decorativo con luces y patrón binario de 1s y 0s del flyer */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -top-40 -right-40 size-[500px] rounded-full bg-aisc-sage/20 blur-3xl"
@@ -160,14 +255,22 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
           aria-hidden="true"
           className="pointer-events-none absolute -bottom-32 -left-20 size-[420px] rounded-full bg-aisc-mint/15 blur-3xl"
         />
+        <FondoBinario />
         <SiteHeader active="/defacchackathon" />
 
-        <div className="mx-auto w-full max-w-[1448px] px-8 pt-12 pb-14 md:px-16 md:pt-16 md:pb-16">
+        <div className="relative z-10 mx-auto w-full max-w-[1448px] px-8 pt-12 pb-14 md:px-16 md:pt-16 md:pb-16">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
             {/* Texto del Hero */}
             <div className="flex flex-col items-start gap-5 lg:col-span-7 xl:col-span-8">
-              <h1 className="text-display-1 md:text-display-1-lg tracking-tight text-aisc-sand text-balance">
-                {d.titulo}
+              <h1
+                className={`${leagueSpartan.className} flex flex-col uppercase leading-[0.94] tracking-[-0.02em]`}
+              >
+                <span className="text-[1.75rem] sm:text-[2.25rem] md:text-[2.65rem] font-extrabold text-aisc-coral">
+                  Defensive Acceleration
+                </span>
+                <span className="mt-1 text-[3rem] sm:text-[4.1rem] md:text-[4.85rem] font-black text-aisc-sand tracking-[-0.03em]">
+                  Hackathon
+                </span>
               </h1>
 
               <p className="text-body md:text-body-lg max-w-[680px] text-aisc-sand/90">
@@ -209,16 +312,16 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
         </div>
       </section>
 
-      {/* Los coorganizadores, en una banda de arena pegada al hero: igual que en /sprint */}
+      {/* Los organizadores, en una banda de arena pegada al hero: igual que en /sprint */}
       <section className="bg-aisc-sand">
         <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16">
           <div className="flex flex-col gap-5 py-6 sm:flex-row sm:items-center sm:gap-10 md:py-7">
             <p className="text-kicker whitespace-nowrap text-aisc-muted sm:flex-none">
               {idioma === "en"
-                ? "Co-organized in Bogotá"
+                ? "Organized by"
                 : idioma === "pt"
-                ? "Coorganizam em Bogotá"
-                : "Coorganizan en Bogotá"}
+                ? "Organizam"
+                : "Organizan"}
             </p>
             <ul className="flex flex-wrap items-center gap-x-12 gap-y-5 sm:ml-auto">
               <li>
