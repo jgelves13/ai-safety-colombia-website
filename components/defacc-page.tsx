@@ -43,10 +43,10 @@ function PremiosSoberos({
         {premios.map((p, i) => (
           <li className="flex" key={p.puesto}>
             <article
-              className={`flex min-h-[140px] w-full flex-col justify-between rounded-[8px] p-5 md:p-6 ${
+              className={`flex min-h-[150px] w-full flex-col justify-between rounded-[8px] p-5 md:min-h-[172px] md:p-6 ${
                 i === 0
                   ? "bg-aisc-forest text-aisc-sand"
-                  : "border border-aisc-forest/40 bg-aisc-cream text-aisc-ink"
+                  : "border border-aisc-forest/55 bg-aisc-cream text-aisc-ink"
               }`}
             >
               <span
@@ -56,25 +56,18 @@ function PremiosSoberos({
               >
                 {p.puesto}
               </span>
-              <span className="mt-4 flex flex-col">
+              <span className="mt-6 flex flex-col">
                 <span
                   className={`text-meta ${i === 0 ? "text-aisc-sand/75" : "text-aisc-muted"}`}
                 >
                   COP
                 </span>
                 <span
-                  className={`text-display-2 md:text-display-2-lg tabular-nums font-normal ${
+                  className={`text-display-2 md:text-display-2-lg tabular-nums ${
                     i === 0 ? "text-aisc-sand" : "text-aisc-forest"
                   }`}
                 >
                   {p.monto}
-                </span>
-                <span
-                  className={`text-body-sm mt-1 ${
-                    i === 0 ? "text-aisc-sand/85" : "text-aisc-muted"
-                  }`}
-                >
-                  {p.detalle}
                 </span>
               </span>
             </article>
@@ -108,6 +101,52 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
   const cerrada = inscripcionesCerradas();
   const rutaAplicar = rutaEn(idioma, "/defacchackathon/aplicar");
 
+  const datosClave =
+    idioma === "en"
+      ? [
+          {
+            valor: "November 14",
+            nota: "One full Saturday, from 8:00 AM to 8:00 PM",
+          },
+          {
+            valor: "In-person in Bogotá",
+            nota: "Universidad de los Andes campus",
+          },
+          {
+            valor: "COP 2,000,000 in prizes",
+            nota: "Three winning teams selected by the judges at the close of the sprint",
+          },
+        ]
+      : idioma === "pt"
+      ? [
+          {
+            valor: "14 de novembro",
+            nota: "Um sábado inteiro, das 8:00 às 20:00",
+          },
+          {
+            valor: "Presencial em Bogotá",
+            nota: "Campus da Universidad de los Andes",
+          },
+          {
+            valor: "COP 2.000.000 em prêmios",
+            nota: "Três equipes vencedoras escolhidas pelos jurados no encerramento do dia",
+          },
+        ]
+      : [
+          {
+            valor: "14 de noviembre",
+            nota: "Un sábado completo, de 8:00 a. m. a 8:00 p. m.",
+          },
+          {
+            valor: "Presencial en Bogotá",
+            nota: "Campus de la Universidad de los Andes",
+          },
+          {
+            valor: "COP 2.000.000 en premios",
+            nota: "Tres equipos ganadores escogidos por el jurado al cierre de la jornada",
+          },
+        ];
+
   return (
     <main className={PAGE_SHELL}>
       {/* ------------------------------------------------------------ HERO */}
@@ -123,73 +162,19 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
         />
         <SiteHeader active="/defacchackathon" />
 
-        <div className="mx-auto w-full max-w-[1440px] px-6 pt-12 pb-14 md:px-12 md:pt-16 md:pb-16 lg:px-16">
+        <div className="mx-auto w-full max-w-[1448px] px-8 pt-12 pb-14 md:px-16 md:pt-16 md:pb-16">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
             {/* Texto del Hero */}
-            <div className="flex flex-col items-start gap-4 lg:col-span-7 xl:col-span-8">
-              {/* Partner Logos */}
-              <div className="flex flex-wrap items-center gap-4 sm:gap-6 pb-1">
-                <img
-                  src="/aisc/logo-lockup-crema.png"
-                  alt="AI Safety Colombia"
-                  className="h-8 md:h-9 w-auto object-contain opacity-95"
-                />
-                <span className="text-aisc-sand/40 text-xl font-light select-none">×</span>
-                <img
-                  src="/aisc/aliados/ieee-cs-uniandes.png"
-                  alt="IEEE Computer Society Uniandes"
-                  className="h-7 md:h-8 w-auto object-contain brightness-0 invert opacity-95"
-                />
-              </div>
-
+            <div className="flex flex-col items-start gap-5 lg:col-span-7 xl:col-span-8">
               <h1 className="text-display-1 md:text-display-1-lg tracking-tight text-aisc-sand text-balance">
                 {d.titulo}
               </h1>
 
-              <p className="text-display-3 font-medium text-aisc-mint">
-                {d.subtitulo}
-              </p>
-
-              <p className="text-body md:text-body-lg max-w-[640px] text-aisc-sand/90">
+              <p className="text-body md:text-body-lg max-w-[680px] text-aisc-sand/90">
                 {d.lema}
               </p>
 
-              {/* Metadatos sobrios de fecha, lugar y premios */}
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-body-sm text-aisc-sand/85 pt-1">
-                <span className="inline-flex items-center gap-2">
-                  <svg className="size-4 text-aisc-coral shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <span>
-                    {idioma === "en"
-                      ? "Saturday, Nov 14, 2026 · 8:00 AM – 8:00 PM"
-                      : idioma === "pt"
-                      ? "Sábado, 14 de nov de 2026 · 8:00 às 20:00"
-                      : "Sábado 14 de noviembre de 2026 · 8:00 a. m. a 8:00 p. m."}
-                  </span>
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <svg className="size-4 text-aisc-mint shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span>Universidad de los Andes, Bogotá · {idioma === "en" ? "In-person" : "Presencial"}</span>
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <svg className="size-4 text-aisc-sand shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>
-                    {idioma === "en"
-                      ? "COP 2,000,000 in prizes"
-                      : idioma === "pt"
-                      ? "COP 2.000.000 em prêmios"
-                      : "COP 2.000.000 en premios"}
-                  </span>
-                </span>
-              </div>
-
-              <p className="text-body-sm mt-1 text-aisc-sand/75">
+              <p className="text-body-sm mt-1 w-fit text-aisc-sand/75">
                 {d.estadoInscripciones}
               </p>
 
@@ -221,6 +206,74 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Los coorganizadores, en una banda de arena pegada al hero: igual que en /sprint */}
+      <section className="bg-aisc-sand">
+        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16">
+          <div className="flex flex-col gap-5 py-6 sm:flex-row sm:items-center sm:gap-10 md:py-7">
+            <p className="text-kicker whitespace-nowrap text-aisc-muted sm:flex-none">
+              {idioma === "en"
+                ? "Co-organized in Bogotá"
+                : idioma === "pt"
+                ? "Coorganizam em Bogotá"
+                : "Coorganizan en Bogotá"}
+            </p>
+            <ul className="flex flex-wrap items-center gap-x-12 gap-y-5 sm:ml-auto">
+              <li>
+                <Link
+                  className="block transition-opacity hover:opacity-60"
+                  href={rutaEn(idioma, "/")}
+                  title="AI Safety Colombia"
+                >
+                  <img
+                    alt="AI Safety Colombia"
+                    className="max-h-[44px] w-auto object-contain"
+                    decoding="async"
+                    src="/aisc/logo-lockup-oscuro.png"
+                  />
+                </Link>
+              </li>
+              <li>
+                <a
+                  className="block transition-opacity hover:opacity-60"
+                  href="https://www.instagram.com/csuniandes/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  title="IEEE Computer Society Uniandes"
+                >
+                  <img
+                    alt="IEEE Computer Society Uniandes"
+                    className="max-h-[46px] max-w-[148px] w-auto object-contain"
+                    decoding="async"
+                    height={167}
+                    src="/aisc/aliados/ieee-cs-uniandes.png"
+                    width={560}
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Las tres cifras duras, en tarjetas oscuras debajo de la tira de logos: igual que en /sprint */}
+      <section className="bg-aisc-cream pt-9 pb-8 md:pt-10 md:pb-10">
+        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16">
+          <dl className="grid grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-3">
+            {datosClave.map((item) => (
+              <div
+                className="flex min-h-[122px] flex-col justify-start rounded-[8px] bg-aisc-forest-deep px-5 py-5 text-aisc-sand md:min-h-[142px] md:px-7 md:py-7"
+                key={item.valor}
+              >
+                <dt className="text-display-4 md:text-display-4-lg break-words">
+                  {item.valor}
+                </dt>
+                <dd className="text-body-sm mt-3 text-aisc-sand">{item.nota}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
