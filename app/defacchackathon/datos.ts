@@ -378,27 +378,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "A las 7:00 p. m., tras la deliberación técnica de los jurados, se anuncian los 5 mejores proyectos de la jornada. Cada equipo finalista realiza un pitch en vivo de 4 minutos ante el salón completo y a las 7:25 p. m. el jurado anuncia los tres primeros puestos.",
       juradosTitulo: "Jueces y mentores",
       juradosTexto:
-        "Panel de evaluación técnica y mentoría durante la jornada. Próximamente se anunciarán jurados y mentores adicionales.",
-      jurados: [
-        {
-          nombre: "Yuri Andrea Pinto Rojas",
-          rol: "Jurado técnica",
-          afiliacion: "Departamento de Ingeniería de Sistemas y Computación (DISC), Universidad de los Andes",
-          bio: "Doctora en Ingeniería e investigadora posdoctoral en la Universidad de los Andes. Su investigación se centra en inteligencia artificial y aprendizaje automático aplicados a la ciberseguridad y la defensa de infraestructuras críticas.",
-          foto: "/aisc/mentores/yuri-pinto.png",
-          url: "https://academia.uniandes.edu.co/AcademyCv/ya.pinto10",
-          confirmado: true,
-        },
-        {
-          nombre: "Carlos Andrés Lozano Garzón",
-          rol: "Jurado técnico",
-          afiliacion: "Departamento de Ingeniería de Sistemas y Computación (DISC), Universidad de los Andes · IEEE Senior Member",
-          bio: "Profesor Asistente en la Universidad de los Andes y Doctor en Ingeniería (Uniandes y Universitat de Girona). Investigador en ciberseguridad, seguridad en redes, hacking ético e inteligencia artificial aplicada al aseguramiento de redes.",
-          foto: "/aisc/mentores/carlos-lozano.png",
-          url: "https://profesores.virtual.uniandes.edu.co/calozanog/es/inicio/",
-          confirmado: true,
-        },
-      ],
+        "Durante la jornada pasan por la sala investigadores y especialistas en seguridad de IA, ciberseguridad y gobernanza para acompañar a los equipos y evaluar los entregables al cierre del día. La lista confirmada de jurados y mentores se publicará en los próximos días.",
+      jurados: [],
     },
     cronograma: {
       titulo: "Agenda de la jornada",
@@ -655,27 +636,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       finalistasTexto:
         "At 7:00 PM, the top 5 teams deliver 4-minute live pitches before the assembly, and at 7:25 PM the judges announce the three winning teams.",
       juradosTitulo: "Judges & Mentors",
-      juradosTexto: "Technical evaluation panel and on-site mentorship. Additional judges and mentors will be announced soon.",
-      jurados: [
-        {
-          nombre: "Yuri Andrea Pinto Rojas",
-          rol: "Technical Judge",
-          afiliacion: "Systems and Computing Engineering Department (DISC), Universidad de los Andes",
-          bio: "Ph.D. in Engineering and postdoctoral researcher at Universidad de los Andes, specializing in AI and machine learning for cybersecurity and critical infrastructure defense.",
-          foto: "/aisc/mentores/yuri-pinto.png",
-          url: "https://academia.uniandes.edu.co/AcademyCv/ya.pinto10",
-          confirmado: true,
-        },
-        {
-          nombre: "Carlos Andrés Lozano Garzón",
-          rol: "Technical Judge",
-          afiliacion: "Systems and Computing Engineering Department (DISC), Universidad de los Andes · IEEE Senior Member",
-          bio: "Assistant Professor at Universidad de los Andes and Ph.D. in Engineering (Uniandes & Universitat de Girona), researching cybersecurity, ethical hacking, and AI for network security.",
-          foto: "/aisc/mentores/carlos-lozano.png",
-          url: "https://profesores.virtual.uniandes.edu.co/calozanog/en/inicio-en/",
-          confirmado: true,
-        },
-      ],
+      juradosTexto: "Throughout the day, researchers and practitioners in AI safety, cybersecurity, and governance will join the room to mentor teams and evaluate submissions at the close of the sprint. The confirmed roster of judges and mentors will be published in the coming days.",
+      jurados: [],
     },
     cronograma: {
       titulo: "Day Agenda",
@@ -912,27 +874,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       finalistasTexto:
         "Às 19:00, os 5 melhores projetos apresentam pitches de 4 minutos perante a banca. Premiação às 19:25.",
       juradosTitulo: "Jurados e Mentores",
-      juradosTexto: "Banca de avaliação técnica e mentoria presencial. Novos jurados e mentores serão anunciados em breve.",
-      jurados: [
-        {
-          nombre: "Yuri Andrea Pinto Rojas",
-          rol: "Jurada Técnica",
-          afiliacion: "Departamento de Engenharia de Sistemas e Computação (DISC), Universidad de los Andes",
-          bio: "Doutora em Engenharia e pesquisadora de pós-doutorado na Universidad de los Andes, com foco em inteligência artificial e aprendizado de máquina aplicados à cibersegurança e proteção de infraestruturas críticas.",
-          foto: "/aisc/mentores/yuri-pinto.png",
-          url: "https://academia.uniandes.edu.co/AcademyCv/ya.pinto10",
-          confirmado: true,
-        },
-        {
-          nombre: "Carlos Andrés Lozano Garzón",
-          rol: "Jurado Técnico",
-          afiliacion: "Departamento de Engenharia de Sistemas e Computação (DISC), Universidad de los Andes · IEEE Senior Member",
-          bio: "Professor Assistente na Universidad de los Andes e Doutor em Engenharia (Uniandes e Universitat de Girona), pesquisador em cibersegurança, hacking ético e IA aplicada à segurança de redes.",
-          foto: "/aisc/mentores/carlos-lozano.png",
-          url: "https://profesores.virtual.uniandes.edu.co/calozanog/es/inicio/",
-          confirmado: true,
-        },
-      ],
+      juradosTexto: "Ao longo do dia, pesquisadores e especialistas em segurança de IA, cibersegurança e governança acompanham as equipes presencialmente e avaliam as entregas no encerramento. A lista confirmada de jurados e mentores será publicada nos próximos dias.",
+      jurados: [],
     },
     cronograma: {
       titulo: "Agenda da jornada",
