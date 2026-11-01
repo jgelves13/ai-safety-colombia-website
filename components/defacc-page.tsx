@@ -11,9 +11,7 @@ import {
   HERO_SECTION,
   PAGE_SHELL,
 } from "@/components/ui";
-import {
-  TEXTOS_HACKATHON,
-} from "@/app/defacchackathon/datos";
+import { TEXTOS_HACKATHON } from "@/app/defacchackathon/datos";
 import type { Premio } from "@/app/defacchackathon/datos";
 import type { Idioma } from "@/lib/idiomas";
 import { rutaEn } from "@/lib/idiomas";
@@ -25,19 +23,6 @@ const leagueSpartan = League_Spartan({
 });
 
 const CONTENEDOR = "mx-auto w-full max-w-[1448px] px-6 sm:px-8 md:px-16";
-const HAIRLINE = "h-px w-full bg-aisc-forest/25";
-const ENCABEZADO =
-  "mt-5 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-start lg:gap-10";
-const COL_TITULO = "lg:col-span-5";
-const COL_CONTENIDO = "flex min-w-0 flex-col gap-6 lg:col-span-7";
-const PROSA =
-  "text-body md:text-body-lg flex max-w-[680px] flex-col gap-5 text-aisc-ink";
-const TARJETA =
-  "flex flex-col gap-3 rounded-[8px] border border-aisc-forest/55 bg-aisc-cream p-5 md:p-6";
-const AVISO_OSCURO =
-  "flex flex-col gap-3 rounded-[8px] bg-aisc-forest-deep px-5 py-6 text-aisc-sand md:px-7 md:py-7";
-const ENLACE =
-  "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
 
 function FondoBinario() {
   return (
@@ -65,7 +50,22 @@ function FondoBinario() {
   );
 }
 
-function PremiosSoberos({
+function TextoConLeadIn({ texto }: { texto: string }) {
+  const idx = texto.indexOf(":");
+  if (idx === -1) {
+    return <span>{texto}</span>;
+  }
+  const lead = texto.slice(0, idx + 1);
+  const resto = texto.slice(idx + 1);
+  return (
+    <span>
+      <strong className="font-semibold text-aisc-ink">{lead}</strong>
+      {resto}
+    </span>
+  );
+}
+
+function PremiosEditorial({
   premios,
   premioDifusion,
 }: {
@@ -73,54 +73,39 @@ function PremiosSoberos({
   premioDifusion: Premio;
 }) {
   return (
-    <div className="space-y-4">
-      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+    <div className="mt-6">
+      <dl className="grid grid-cols-1 border-y border-aisc-line sm:grid-cols-3 sm:divide-x sm:divide-aisc-line">
         {premios.map((p, i) => (
-          <li className="flex" key={p.puesto}>
-            <article
-              className={`flex min-h-[144px] w-full flex-col justify-between rounded-[8px] p-5 md:min-h-[164px] md:p-6 ${
-                i === 0
-                  ? "bg-aisc-forest text-aisc-sand"
-                  : "border border-aisc-forest/55 bg-aisc-cream text-aisc-ink"
-              }`}
-            >
-              <span
-                className={`text-meta font-semibold tracking-widest uppercase ${
-                  i === 0 ? "text-aisc-sand/75" : "text-aisc-muted"
-                }`}
-              >
-                {p.puesto}
+          <div
+            key={p.puesto}
+            className={`flex flex-col justify-between py-5 ${
+              i === 0
+                ? "sm:pr-6"
+                : i === 1
+                ? "border-t border-aisc-line sm:border-t-0 sm:px-6"
+                : "border-t border-aisc-line sm:border-t-0 sm:pl-6"
+            }`}
+          >
+            <dt className="text-kicker text-aisc-muted">{p.puesto}</dt>
+            <dd className="mt-3 flex items-baseline gap-1.5">
+              <span className="text-meta font-semibold text-aisc-muted">
+                COP
               </span>
-              <span className="mt-6 flex flex-col">
-                <span
-                  className={`text-meta ${
-                    i === 0 ? "text-aisc-sand/75" : "text-aisc-muted"
-                  }`}
-                >
-                  COP
-                </span>
-                <span
-                  className={`font-[family-name:var(--font-display)] text-[1.85rem] lg:text-[2.1rem] font-extrabold leading-none tracking-tight tabular-nums whitespace-nowrap mt-1 ${
-                    i === 0 ? "text-aisc-sand" : "text-aisc-forest"
-                  }`}
-                >
-                  {p.monto}
-                </span>
+              <span className="font-[family-name:var(--font-display)] text-[1.75rem] font-bold tracking-tight tabular-nums text-aisc-forest md:text-[2rem]">
+                {p.monto}
               </span>
-            </article>
-          </li>
+            </dd>
+          </div>
         ))}
-      </ul>
+      </dl>
 
       {premioDifusion && (
-        <div className="rounded-[8px] border border-aisc-forest/40 bg-aisc-sand/50 p-5 text-body-sm">
-          <span className="text-meta font-semibold uppercase tracking-wider text-aisc-forest block">
-            {premioDifusion.puesto}
-          </span>
-          <p className="mt-1 text-aisc-ink">
-            {premioDifusion.detalle} ({premioDifusion.monto}).
-          </p>
-        </div>
+        <p className="mt-4 text-body-sm text-aisc-muted">
+          <strong className="font-semibold text-aisc-ink">
+            {premioDifusion.puesto}:
+          </strong>{" "}
+          {premioDifusion.detalle} ({premioDifusion.monto}).
+        </p>
       )}
     </div>
   );
@@ -138,45 +123,54 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
     idioma === "en"
       ? [
           {
-            valor: "November 14",
-            nota: "One full Saturday, from 8:00 AM to 8:00 PM (8h sprint)",
+            etiqueta: "Date & format",
+            valor: "November 14, 2026",
+            nota: "Full Saturday, 8:00 AM to 8:00 PM (8-hour build sprint)",
           },
           {
+            etiqueta: "Location",
             valor: "In-person in Bogotá",
             nota: "Universidad de los Andes campus",
           },
           {
-            valor: "COP 2,000,000 in prizes",
-            nota: "Three winning teams selected by the judges at the close of the sprint",
+            etiqueta: "Prizes",
+            valor: "COP 2,000,000",
+            nota: "Three winning teams selected at the close of the sprint",
           },
         ]
       : idioma === "pt"
       ? [
           {
-            valor: "14 de novembro",
-            nota: "Um sábado inteiro, das 8:00 às 20:00 (8 h de sprint)",
+            etiqueta: "Data e formato",
+            valor: "14 de novembro de 2026",
+            nota: "Sábado inteiro, das 8:00 às 20:00 (8 h de desenvolvimento)",
           },
           {
+            etiqueta: "Local",
             valor: "Presencial em Bogotá",
             nota: "Campus da Universidad de los Andes",
           },
           {
-            valor: "COP 2.000.000 em prêmios",
-            nota: "Três equipes vencedoras escolhidas pelos jurados no encerramento do dia",
+            etiqueta: "Prêmios",
+            valor: "COP 2.000.000",
+            nota: "Três equipes vencedoras escolhidas no encerramento do dia",
           },
         ]
       : [
           {
-            valor: "14 de noviembre",
-            nota: "Un sábado completo, de 8:00 a. m. a 8:00 p. m. (8 h de desarrollo)",
+            etiqueta: "Fecha y jornada",
+            valor: "14 de noviembre de 2026",
+            nota: "Sábado completo, de 8:00 a. m. a 8:00 p. m. (8 h de desarrollo)",
           },
           {
+            etiqueta: "Modalidad y sede",
             valor: "Presencial en Bogotá",
             nota: "Campus de la Universidad de los Andes",
           },
           {
-            valor: "COP 2.000.000 en premios",
-            nota: "Tres equipos ganadores escogidos por el jurado al cierre de la jornada",
+            etiqueta: "Bolsa de premios",
+            valor: "COP 2.000.000",
+            nota: "Tres equipos ganadores escogidos al cierre de la jornada",
           },
         ];
 
@@ -190,6 +184,9 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
     }
   };
 
+  const textoSiguiente =
+    idioma === "en" ? "Next:" : idioma === "pt" ? "Próximo:" : "Siguiente:";
+
   return (
     <main className={PAGE_SHELL}>
       {/* ------------------------------------------------------------ HERO */}
@@ -197,7 +194,6 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
         <FondoBinario />
         <SiteHeader active="/defacchackathon" />
 
-        {/* pt-28 / md:pt-32 respeta la altura del SiteHeader absoluto para que nunca se pisen en móvil ni en escritorio */}
         <div
           className={`${CONTENEDOR} relative z-10 pt-28 pb-12 md:pt-36 md:pb-16`}
         >
@@ -235,7 +231,6 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
             </div>
           </div>
 
-          {/* En pantallas grandes el oso se apoya al ras del borde inferior del hero (bottom-0) para que el corte nunca flote en el aire; en móvil se oculta siguiendo el patrón mobile-first del sitio */}
           <img
             src="/aisc/hackathon/cyberbear.png"
             alt=""
@@ -248,8 +243,8 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
         </div>
       </section>
 
-      {/* Banda de organizadores pegada al hero: idéntica a /sprint */}
-      <section className="bg-aisc-sand">
+      {/* Banda de organizadores */}
+      <section className="border-b border-aisc-line bg-aisc-sand">
         <div className={CONTENEDOR}>
           <div className="flex flex-col gap-5 py-6 sm:flex-row sm:items-center sm:gap-10 md:py-7">
             <p className="text-kicker whitespace-nowrap text-aisc-muted sm:flex-none">
@@ -297,19 +292,26 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
         </div>
       </section>
 
-      {/* Las tres cifras clave en tarjetas oscuras: idéntico a /sprint */}
-      <section className="bg-aisc-cream pt-8 pb-6 md:pt-10 md:pb-8">
+      {/* Ficha rápida editorial (líneas finas estilo Apart Research, sin bloques pesados) */}
+      <section className="border-b border-aisc-line bg-aisc-cream">
         <div className={CONTENEDOR}>
-          <dl className="grid grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-3">
-            {datosClave.map((item) => (
+          <dl className="grid grid-cols-1 divide-y divide-aisc-line md:grid-cols-3 md:divide-x md:divide-y-0">
+            {datosClave.map((item, idx) => (
               <div
-                className="flex min-h-[116px] flex-col justify-start rounded-[8px] bg-aisc-forest-deep px-5 py-5 text-aisc-sand md:min-h-[142px] md:px-7 md:py-7"
                 key={item.valor}
+                className={`py-5 md:py-7 ${
+                  idx === 0
+                    ? "md:pr-8"
+                    : idx === 1
+                    ? "md:px-8"
+                    : "md:pl-8"
+                }`}
               >
-                <dt className="text-display-4 md:text-display-4-lg break-words">
+                <dt className="text-kicker text-aisc-muted">{item.etiqueta}</dt>
+                <dd className="mt-1.5 text-display-4 text-aisc-ink">
                   {item.valor}
-                </dt>
-                <dd className="text-body-sm mt-3 text-aisc-sand/90">
+                </dd>
+                <dd className="mt-1 text-body-sm text-aisc-muted">
                   {item.nota}
                 </dd>
               </div>
@@ -318,12 +320,15 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
         </div>
       </section>
 
-      {/* Barra de pestañas editorial (no sticky, para que jamás colisione con la pastilla flotante del SiteHeader al hacer scroll) */}
-      <div id="contenido-hackathon" className="scroll-mt-24 bg-aisc-cream pt-2">
+      {/* Barra de pestañas estilo Apart Research (.sprint-details) */}
+      <div
+        id="contenido-hackathon"
+        className="scroll-mt-24 border-b border-aisc-line bg-aisc-sand/45"
+      >
         <div className={CONTENEDOR}>
           <nav
             aria-label="Secciones del hackatón"
-            className="flex items-center gap-1.5 overflow-x-auto border-b border-aisc-forest/25 pb-4 no-scrollbar sm:gap-2"
+            className="flex items-center gap-2 overflow-x-auto py-3.5 no-scrollbar"
           >
             {(
               [
@@ -340,10 +345,10 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                   type="button"
                   onClick={() => setPestaña(tab.id)}
                   aria-pressed={activo}
-                  className={`text-body-sm shrink-0 whitespace-nowrap rounded-full px-4 py-2 font-medium transition-colors ${
+                  className={`text-body-sm min-h-10 shrink-0 whitespace-nowrap rounded-full px-4 py-2 font-medium transition-colors ${
                     activo
                       ? "bg-aisc-forest-deep text-aisc-sand"
-                      : "border border-aisc-forest/30 text-aisc-ink hover:border-aisc-forest hover:bg-aisc-sand/60"
+                      : "text-aisc-ink hover:bg-aisc-sand"
                   }`}
                 >
                   {tab.label}
@@ -355,480 +360,463 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
       </div>
 
       {/* ------------------------------------------------ CONTENIDO EDITORIAL */}
-      <div className="bg-aisc-cream py-10 md:py-14">
+      <div className="bg-aisc-cream py-12 md:py-16">
         <div className={CONTENEDOR}>
-          {/* ==================== PESTAÑA 1: EL RETO ==================== */}
-          {pestaña === "resumen" && (
-            <div className="flex flex-col gap-12 md:gap-16">
-              {/* 1. La idea + Relevancia en Colombia */}
-              <section>
-                <div className={ENCABEZADO}>
-                  <h2
-                    className={`text-display-2 md:text-display-2-lg break-words ${COL_TITULO}`}
-                  >
+          <div className="max-w-[56rem]">
+            {/* ==================== PESTAÑA 1: EL RETO ==================== */}
+            {pestaña === "resumen" && (
+              <div>
+                {/* 1. La idea + Relevancia en nuestro entorno */}
+                <section>
+                  <h2 className="text-display-3 text-aisc-ink">
                     {d.resumen.ideaTitulo}
                   </h2>
-                  <div className={COL_CONTENIDO}>
-                    <div className={PROSA}>
-                      {d.resumen.ideaParrafos.map((p, i) => (
-                        <p key={i}>{p}</p>
-                      ))}
-                    </div>
-                    <div className={AVISO_OSCURO}>
-                      <h3 className="text-display-4 text-aisc-sand">
-                        {d.resumen.colombiaTitulo}
-                      </h3>
-                      <p className="text-body-sm md:text-body text-aisc-sand/90">
-                        {d.resumen.colombiaTexto}
-                      </p>
-                    </div>
+                  <div className="mt-4 max-w-[68ch] space-y-4 text-body md:text-body-lg text-aisc-ink/90">
+                    {d.resumen.ideaParrafos.map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
                   </div>
-                </div>
-              </section>
 
-              {/* 2. El reto y las 4 preguntas clave */}
-              <section>
-                <div aria-hidden="true" className={HAIRLINE} />
-                <div className={ENCABEZADO}>
-                  <h2
-                    className={`text-display-2 md:text-display-2-lg break-words ${COL_TITULO}`}
-                  >
+                  <div className="mt-6 max-w-[68ch] border-l-2 border-aisc-forest py-1 pl-5">
+                    <h3 className="text-display-4 text-aisc-ink">
+                      {d.resumen.colombiaTitulo}
+                    </h3>
+                    <p className="mt-1.5 text-body-sm md:text-body text-aisc-muted">
+                      {d.resumen.colombiaTexto}
+                    </p>
+                  </div>
+                </section>
+
+                {/* 2. El reto y las 4 preguntas clave (.fsteps de Apart Research) */}
+                <section className="mt-12 border-t border-aisc-line pt-10">
+                  <h2 className="text-display-3 text-aisc-ink">
                     {d.resumen.retoTitulo}
                   </h2>
-                  <div className={COL_CONTENIDO}>
-                    <p className="text-body md:text-body-lg max-w-[680px] text-aisc-ink">
-                      {d.resumen.retoTexto}
-                    </p>
-                  </div>
-                </div>
+                  <p className="mt-3 max-w-[68ch] text-body md:text-body-lg text-aisc-ink/90">
+                    {d.resumen.retoTexto}
+                  </p>
 
-                <ul className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4">
-                  {d.resumen.cuatroRequisitos.map((req, idx) => {
-                    const partes = req.split(":");
-                    const titulo = partes.length > 1 ? partes[0] : `0${idx + 1}`;
-                    const cuerpo =
-                      partes.length > 1 ? partes.slice(1).join(":").trim() : req;
-                    return (
-                      <li className="flex" key={idx}>
-                        <article className={`${TARJETA} w-full`}>
+                  <ul className="mt-9 grid grid-cols-1 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+                    {d.resumen.cuatroRequisitos.map((req, idx) => {
+                      const partes = req.split(":");
+                      const titulo =
+                        partes.length > 1 ? partes[0] : `Paso ${idx + 1}`;
+                      const cuerpo =
+                        partes.length > 1
+                          ? partes.slice(1).join(":").trim()
+                          : req;
+                      return (
+                        <li
+                          key={idx}
+                          className="relative border-t border-aisc-line pt-6 sm:pr-6 lg:pr-7"
+                        >
                           <span
-                            className="text-display-4 tabular-nums text-aisc-coral"
                             aria-hidden="true"
-                          >
-                            {String(idx + 1).padStart(2, "0")}
-                          </span>
-                          <h3 className="text-display-4 text-balance">
+                            className="absolute -top-[5.5px] left-0 size-2.5 rounded-full bg-aisc-coral ring-4 ring-aisc-cream"
+                          />
+                          <h3 className="text-display-4 text-aisc-ink">
                             {titulo}
                           </h3>
-                          <p className="text-body-sm text-aisc-ink">{cuerpo}</p>
-                        </article>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </section>
+                          <p className="mt-2 text-body-sm text-aisc-muted">
+                            {cuerpo}
+                          </p>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </section>
 
-              {/* 3. Quién puede participar */}
-              <section>
-                <div aria-hidden="true" className={HAIRLINE} />
-                <div className={ENCABEZADO}>
-                  <h2
-                    className={`text-display-2 md:text-display-2-lg break-words ${COL_TITULO}`}
-                  >
+                {/* 3. Quién puede participar */}
+                <section className="mt-12 border-t border-aisc-line pt-10">
+                  <h2 className="text-display-3 text-aisc-ink">
                     {d.resumen.quienTitulo}
                   </h2>
-                  <div className={COL_CONTENIDO}>
-                    <ul className="grid grid-cols-1 gap-x-8 sm:grid-cols-2">
-                      {d.resumen.quienPuntos.map((pt, i) => (
-                        <li
-                          key={i}
-                          className="border-t border-aisc-forest/25 py-5 text-body-sm text-aisc-ink"
-                        >
-                          {pt}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </section>
+                  <ul className="mt-5 max-w-[68ch] divide-y divide-aisc-line border-y border-aisc-line">
+                    {d.resumen.quienPuntos.map((pt, i) => (
+                      <li
+                        key={i}
+                        className="py-4 text-body-sm md:text-body text-aisc-ink/90"
+                      >
+                        <TextoConLeadIn texto={pt} />
+                      </li>
+                    ))}
+                  </ul>
+                </section>
 
-              {/* 4. Premios */}
-              <section>
-                <div aria-hidden="true" className={HAIRLINE} />
-                <div className={ENCABEZADO}>
-                  <h2
-                    className={`text-display-2 md:text-display-2-lg break-words ${COL_TITULO}`}
-                  >
+                {/* 4. Premios */}
+                <section className="mt-12 border-t border-aisc-line pt-10">
+                  <h2 className="text-display-3 text-aisc-ink">
                     {d.resumen.premiosTitulo}
                   </h2>
-                  <div className={COL_CONTENIDO}>
-                    <div className={PROSA}>
-                      {d.resumen.premiosParrafos.map((p, i) => (
-                        <p key={i}>{p}</p>
-                      ))}
-                    </div>
-                    <PremiosSoberos
-                      premios={d.premiosPodio}
-                      premioDifusion={d.premioDifusion}
-                    />
+                  <div className="mt-3 max-w-[68ch] space-y-3 text-body md:text-body-lg text-aisc-ink/90">
+                    {d.resumen.premiosParrafos.map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
                   </div>
-                </div>
-              </section>
+                  <PremiosEditorial
+                    premios={d.premiosPodio}
+                    premioDifusion={d.premioDifusion}
+                  />
+                </section>
 
-              {/* 5. Jueces y mentores (al final de El reto, sin publicar nombres hasta tener luz verde) */}
-              <section>
-                <div aria-hidden="true" className={HAIRLINE} />
-                <div className={ENCABEZADO}>
-                  <h2
-                    className={`text-display-2 md:text-display-2-lg break-words ${COL_TITULO}`}
-                  >
+                {/* 5. Jueces y mentores */}
+                <section className="mt-12 border-t border-aisc-line pt-10">
+                  <h2 className="text-display-3 text-aisc-ink">
                     {d.reglas.juradosTitulo}
                   </h2>
-                  <div className={COL_CONTENIDO}>
-                    <p className="text-body md:text-body-lg max-w-[680px] text-aisc-ink">
-                      {d.reglas.juradosTexto}
-                    </p>
-                  </div>
-                </div>
-              </section>
-            </div>
-          )}
-
-          {/* ==================== PESTAÑA 2: FRENTES TEMÁTICOS ==================== */}
-          {pestaña === "tracks" && (
-            <div className="flex flex-col gap-10 md:gap-12">
-              <div className={ENCABEZADO}>
-                <h2
-                  className={`text-display-2 md:text-display-2-lg break-words ${COL_TITULO}`}
-                >
-                  {d.kits.tracksTitulo}
-                </h2>
-                <div className={COL_CONTENIDO}>
-                  <p className="text-body md:text-body-lg max-w-[680px] text-aisc-ink">
-                    {d.kits.tracksTexto}
+                  <p className="mt-3 max-w-[68ch] text-body md:text-body-lg text-aisc-muted">
+                    {d.reglas.juradosTexto}
                   </p>
+                </section>
+
+                {/* Enlace de continuación estilo Apart Research */}
+                <div className="mt-12 border-t border-aisc-line pt-6">
+                  <button
+                    type="button"
+                    onClick={() => cambiarPestaña("tracks")}
+                    className="inline-flex items-center gap-2 text-body-sm font-semibold text-aisc-forest transition-colors hover:text-aisc-forest-deep"
+                  >
+                    <span>
+                      {textoSiguiente} {d.pestañas.tracks}
+                    </span>
+                    <span aria-hidden="true">→</span>
+                  </button>
                 </div>
               </div>
+            )}
 
-              <ul className="mt-4 grid grid-cols-1 gap-4">
-                {d.kits.listaTracks.map((tr) => (
-                  <li key={tr.id} id={tr.id}>
-                    <article className="flex flex-col gap-5 rounded-[8px] border border-aisc-forest/55 bg-aisc-cream p-6 md:p-8">
-                      <div className="flex flex-col gap-2">
-                        <span
-                          className="text-display-4 tabular-nums text-aisc-coral"
-                          aria-hidden="true"
-                        >
-                          {tr.numero}
-                        </span>
-                        <h3 className="text-display-3 text-aisc-ink">
-                          {tr.titulo}
-                        </h3>
-                        <p className="text-body max-w-[820px] text-aisc-ink/90">
+            {/* ==================== PESTAÑA 2: FRENTES TEMÁTICOS ==================== */}
+            {pestaña === "tracks" && (
+              <div>
+                <section>
+                  <h2 className="text-display-3 text-aisc-ink">
+                    {d.kits.tracksTitulo}
+                  </h2>
+                  <p className="mt-3 max-w-[68ch] text-body md:text-body-lg text-aisc-ink/90">
+                    {d.kits.tracksTexto}
+                  </p>
+                </section>
+
+                <ul className="mt-8 divide-y divide-aisc-line border-t border-aisc-line">
+                  {d.kits.listaTracks.map((tr) => (
+                    <li key={tr.id} id={tr.id} className="py-9">
+                      <article>
+                        <div className="flex items-baseline gap-3">
+                          <span
+                            className="text-meta font-semibold tabular-nums text-aisc-coral"
+                            aria-hidden="true"
+                          >
+                            {tr.numero}
+                          </span>
+                          <h3 className="text-display-3 text-aisc-ink">
+                            {tr.titulo}
+                          </h3>
+                        </div>
+
+                        <p className="mt-3 max-w-[68ch] text-body text-aisc-ink/90">
                           {tr.resumen}
                         </p>
-                      </div>
 
-                      <div className="grid grid-cols-1 gap-4 border-t border-aisc-forest/25 pt-5 md:grid-cols-2">
-                        <div className="rounded-xl bg-aisc-sand/50 p-4">
-                          <span className="text-kicker text-aisc-forest font-bold">
-                            {idioma === "en"
-                              ? "Getting started"
-                              : idioma === "pt"
-                              ? "Para começar"
-                              : "Para empezar"}
-                          </span>
-                          <p className="text-body-sm mt-1.5 text-aisc-ink">
-                            {tr.paraEmpezar}
-                          </p>
+                        {/* Dos columnas estilo .tracks / .tracks-half de Apart Research */}
+                        <div className="mt-6 grid grid-cols-1 gap-5 border-t border-aisc-line pt-5 md:grid-cols-2 md:gap-0">
+                          <div className="md:pr-8">
+                            <span className="text-kicker font-bold text-aisc-forest">
+                              {idioma === "en"
+                                ? "Getting started"
+                                : idioma === "pt"
+                                ? "Para começar"
+                                : "Para empezar"}
+                            </span>
+                            <p className="mt-1.5 text-body-sm text-aisc-ink/90">
+                              {tr.paraEmpezar}
+                            </p>
+                          </div>
+                          <div className="border-t border-aisc-line pt-4 md:border-t-0 md:border-l md:pl-8 md:pt-0">
+                            <span className="text-kicker font-bold text-aisc-forest">
+                              {idioma === "en"
+                                ? "Advanced scope"
+                                : idioma === "pt"
+                                ? "Com experiência"
+                                : "Con experiencia"}
+                            </span>
+                            <p className="mt-1.5 text-body-sm text-aisc-ink/90">
+                              {tr.conExperiencia}
+                            </p>
+                          </div>
                         </div>
-                        <div className="rounded-xl bg-aisc-sand/50 p-4">
-                          <span className="text-kicker text-aisc-forest font-bold">
-                            {idioma === "en"
-                              ? "Advanced scope"
-                              : idioma === "pt"
-                              ? "Com experiência"
-                              : "Con experiencia"}
-                          </span>
-                          <p className="text-body-sm mt-1.5 text-aisc-ink">
-                            {tr.conExperiencia}
-                          </p>
-                        </div>
-                      </div>
 
-                      <div className="border-t border-aisc-forest/20 pt-4">
-                        <span className="text-kicker text-aisc-muted">
-                          {idioma === "en"
-                            ? "Starter datasets, benchmarks & repositories:"
-                            : idioma === "pt"
-                            ? "Datasets, benchmarks e repositórios de partida:"
-                            : "Datasets, benchmarks y repositorios de partida:"}
-                        </span>
-                        <div className="mt-2.5 flex flex-wrap gap-2">
-                          {tr.recursos.map((rec) => (
-                            <a
-                              key={rec.url}
-                              href={rec.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-meta inline-flex items-center gap-1.5 rounded-full border border-aisc-forest/30 bg-aisc-sand/30 px-3 py-1 font-medium text-aisc-forest transition-colors hover:border-aisc-forest hover:bg-aisc-forest hover:text-aisc-sand"
-                            >
-                              <svg
-                                width="12"
-                                height="12"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2.5"
-                                aria-hidden="true"
+                        {/* Recursos y repositorios con los botones tipo píldora e ícono de enlace externo */}
+                        <div className="mt-5 pt-2">
+                          <span className="text-kicker text-aisc-muted">
+                            {idioma === "en"
+                              ? "Starter datasets, benchmarks & repositories:"
+                              : idioma === "pt"
+                              ? "Datasets, benchmarks e repositórios de partida:"
+                              : "Datasets, benchmarks y repositorios de partida:"}
+                          </span>
+                          <div className="mt-2.5 flex flex-wrap gap-2">
+                            {tr.recursos.map((rec) => (
+                              <a
+                                key={rec.url}
+                                href={rec.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-meta inline-flex items-center gap-1.5 rounded-full border border-aisc-forest/30 bg-aisc-sand/30 px-3 py-1 font-medium text-aisc-forest transition-colors hover:border-aisc-forest hover:bg-aisc-forest hover:text-aisc-sand"
                               >
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                <polyline points="15 3 21 3 21 9" />
-                                <line x1="10" y1="14" x2="21" y2="3" />
-                              </svg>
-                              {rec.label}
-                            </a>
-                          ))}
+                                <svg
+                                  width="12"
+                                  height="12"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2.5"
+                                  aria-hidden="true"
+                                >
+                                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                  <polyline points="15 3 21 3 21 9" />
+                                  <line x1="10" y1="14" x2="21" y2="3" />
+                                </svg>
+                                {rec.label}
+                              </a>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    </article>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+                      </article>
+                    </li>
+                  ))}
+                </ul>
 
-          {/* ==================== PESTAÑA 3: PREMIOS Y EVALUACIÓN ==================== */}
-          {pestaña === "reglas" && (
-            <div className="flex flex-col gap-12 md:gap-16">
-              {/* Premios */}
-              <section>
-                <div className={ENCABEZADO}>
-                  <h2
-                    className={`text-display-2 md:text-display-2-lg break-words ${COL_TITULO}`}
+                <div className="mt-6 border-t border-aisc-line pt-6">
+                  <button
+                    type="button"
+                    onClick={() => cambiarPestaña("reglas")}
+                    className="inline-flex items-center gap-2 text-body-sm font-semibold text-aisc-forest transition-colors hover:text-aisc-forest-deep"
                   >
+                    <span>
+                      {textoSiguiente} {d.pestañas.reglas}
+                    </span>
+                    <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* ==================== PESTAÑA 3: PREMIOS Y EVALUACIÓN ==================== */}
+            {pestaña === "reglas" && (
+              <div>
+                {/* Premios */}
+                <section>
+                  <h2 className="text-display-3 text-aisc-ink">
                     {d.resumen.premiosTitulo}
                   </h2>
-                  <div className={COL_CONTENIDO}>
-                    <div className={PROSA}>
-                      {d.resumen.premiosParrafos.map((p, i) => (
-                        <p key={i}>{p}</p>
-                      ))}
-                    </div>
-                    <PremiosSoberos
-                      premios={d.premiosPodio}
-                      premioDifusion={d.premioDifusion}
-                    />
+                  <div className="mt-3 max-w-[68ch] space-y-3 text-body md:text-body-lg text-aisc-ink/90">
+                    {d.resumen.premiosParrafos.map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
                   </div>
-                </div>
-              </section>
+                  <PremiosEditorial
+                    premios={d.premiosPodio}
+                    premioDifusion={d.premioDifusion}
+                  />
+                </section>
 
-              {/* Entregables */}
-              <section>
-                <div aria-hidden="true" className={HAIRLINE} />
-                <div className={ENCABEZADO}>
-                  <div className={COL_TITULO}>
-                    <h2 className="text-display-2 md:text-display-2-lg break-words">
+                {/* Entregables */}
+                <section className="mt-12 border-t border-aisc-line pt-10">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h2 className="text-display-3 text-aisc-ink">
                       {d.reglas.entregablesTitulo}
                     </h2>
-                    <p className="text-meta mt-2 font-semibold uppercase tracking-wider text-aisc-coral">
+                    <span className="text-kicker text-aisc-coral">
                       {d.reglas.entregablesHora}
+                    </span>
+                  </div>
+                  <ul className="mt-5 max-w-[68ch] divide-y divide-aisc-line border-y border-aisc-line">
+                    {d.reglas.entregables.map((ent, i) => (
+                      <li
+                        key={i}
+                        className="py-4 text-body-sm md:text-body text-aisc-ink/90"
+                      >
+                        <TextoConLeadIn texto={ent} />
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+
+                {/* Criterios de evaluación */}
+                <section className="mt-12 border-t border-aisc-line pt-10">
+                  <h2 className="text-display-3 text-aisc-ink">
+                    {d.reglas.criteriosTitulo}
+                  </h2>
+                  <p className="mt-2 max-w-[68ch] text-body-sm md:text-body text-aisc-muted">
+                    {d.reglas.criteriosTexto}
+                  </p>
+
+                  <ul className="mt-6 divide-y divide-aisc-line border-y border-aisc-line">
+                    {d.reglas.criterios.map((c) => (
+                      <li
+                        key={c.nombre}
+                        className="grid grid-cols-[1fr_auto] items-baseline gap-6 py-4"
+                      >
+                        <div className="max-w-[60ch]">
+                          <h3 className="text-display-4 text-aisc-ink">
+                            {c.nombre}
+                          </h3>
+                          <p className="mt-1 text-body-sm text-aisc-muted">
+                            {c.descripcion}
+                          </p>
+                        </div>
+                        <span className="font-[family-name:var(--font-display)] text-lg font-bold tabular-nums text-aisc-forest">
+                          {c.peso}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-6 max-w-[68ch] border-l-2 border-aisc-forest py-1 pl-5">
+                    <h3 className="text-display-4 text-aisc-ink">
+                      {d.reglas.finalistasTitulo}
+                    </h3>
+                    <p className="mt-1.5 text-body-sm md:text-body text-aisc-muted">
+                      {d.reglas.finalistasTexto}
                     </p>
                   </div>
-                  <div className={COL_CONTENIDO}>
-                    <ul className="flex flex-col">
-                      {d.reglas.entregables.map((ent, i) => (
-                        <li
-                          key={i}
-                          className="flex gap-4 border-t border-aisc-forest/25 py-5 text-body-sm text-aisc-ink"
-                        >
-                          <span className="text-display-4 tabular-nums text-aisc-coral shrink-0">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <span>{ent}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </section>
+                </section>
 
-              {/* Criterios de evaluación */}
-              <section>
-                <div aria-hidden="true" className={HAIRLINE} />
-                <div className={ENCABEZADO}>
-                  <div className={COL_TITULO}>
-                    <h2 className="text-display-2 md:text-display-2-lg break-words">
-                      {d.reglas.criteriosTitulo}
-                    </h2>
-                    <p className="text-body-sm mt-2 text-aisc-muted">
-                      {d.reglas.criteriosTexto}
-                    </p>
-                  </div>
-                  <div className={COL_CONTENIDO}>
-                    <ul className="flex flex-col">
-                      {d.reglas.criterios.map((c) => (
-                        <li
-                          key={c.nombre}
-                          className="flex items-baseline justify-between gap-6 border-t border-aisc-forest/25 py-5"
-                        >
-                          <div>
-                            <h3 className="text-display-4 text-aisc-ink">
-                              {c.nombre}
-                            </h3>
-                            <p className="text-body-sm mt-1 text-aisc-muted">
-                              {c.descripcion}
-                            </p>
-                          </div>
-                          <span className="text-display-3 tabular-nums text-aisc-coral shrink-0">
-                            {c.peso}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className={AVISO_OSCURO}>
-                      <h3 className="text-display-4 text-aisc-sand">
-                        {d.reglas.finalistasTitulo}
-                      </h3>
-                      <p className="text-body-sm md:text-body text-aisc-sand/90">
-                        {d.reglas.finalistasTexto}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* Reglas de uso responsable */}
-              <section>
-                <div aria-hidden="true" className={HAIRLINE} />
-                <div className={ENCABEZADO}>
-                  <h2
-                    className={`text-display-2 md:text-display-2-lg break-words ${COL_TITULO}`}
-                  >
+                {/* Reglas de uso responsable */}
+                <section className="mt-12 border-t border-aisc-line pt-10">
+                  <h2 className="text-display-3 text-aisc-ink">
                     {d.reglas.tituloSeguridad}
                   </h2>
-                  <div className={COL_CONTENIDO}>
-                    <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      {d.reglas.reglasSeguridad.map((regla, i) => (
-                        <li key={i} className="flex">
-                          <article className={`${TARJETA} w-full`}>
-                            <span className="text-display-4 tabular-nums text-aisc-coral">
-                              {String(i + 1).padStart(2, "0")}
-                            </span>
-                            <p className="text-body-sm text-aisc-ink">
-                              {regla}
-                            </p>
-                          </article>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </section>
-            </div>
-          )}
+                  <ul className="mt-5 max-w-[68ch] divide-y divide-aisc-line border-y border-aisc-line">
+                    {d.reglas.reglasSeguridad.map((regla, i) => (
+                      <li
+                        key={i}
+                        className="py-4 text-body-sm md:text-body text-aisc-ink/90"
+                      >
+                        <TextoConLeadIn texto={regla} />
+                      </li>
+                    ))}
+                  </ul>
+                </section>
 
-          {/* ==================== PESTAÑA 4: AGENDA Y FAQ ==================== */}
-          {pestaña === "cronograma" && (
-            <div className="flex flex-col gap-12 md:gap-16">
-              {/* Minuto a minuto */}
-              <section>
-                <div className={ENCABEZADO}>
-                  <div className={COL_TITULO}>
-                    <h2 className="text-display-2 md:text-display-2-lg break-words">
-                      {d.cronograma.titulo}
-                    </h2>
-                    <p className="text-body-sm mt-2 text-aisc-muted">
-                      {d.cronograma.subtitulo}
-                    </p>
-                  </div>
-                  <div className={COL_CONTENIDO}>
-                    <ul className="flex flex-col">
-                      {d.cronograma.agenda.map((ag) => (
-                        <li
-                          key={ag.hora}
-                          className="flex flex-col gap-1 border-t border-aisc-forest/25 py-5 sm:flex-row sm:items-baseline sm:gap-8"
-                        >
-                          <time className="text-display-4 tabular-nums text-aisc-coral shrink-0 sm:w-32">
-                            {ag.hora}
-                          </time>
-                          <div className="min-w-0">
-                            <h3 className="text-display-4 text-aisc-ink">
-                              {ag.actividad}
-                            </h3>
-                            <p className="text-body-sm mt-1 text-aisc-muted">
-                              {ag.detalle}
-                            </p>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </section>
-
-              {/* Fechas clave */}
-              <section>
-                <div aria-hidden="true" className={HAIRLINE} />
-                <div className={ENCABEZADO}>
-                  <h2
-                    className={`text-display-2 md:text-display-2-lg break-words ${COL_TITULO}`}
+                <div className="mt-12 border-t border-aisc-line pt-6">
+                  <button
+                    type="button"
+                    onClick={() => cambiarPestaña("cronograma")}
+                    className="inline-flex items-center gap-2 text-body-sm font-semibold text-aisc-forest transition-colors hover:text-aisc-forest-deep"
                   >
+                    <span>
+                      {textoSiguiente} {d.pestañas.cronograma}
+                    </span>
+                    <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* ==================== PESTAÑA 4: AGENDA Y FAQ ==================== */}
+            {pestaña === "cronograma" && (
+              <div>
+                {/* Minuto a minuto */}
+                <section>
+                  <h2 className="text-display-3 text-aisc-ink">
+                    {d.cronograma.titulo}
+                  </h2>
+                  <p className="mt-2 max-w-[68ch] text-body-sm md:text-body text-aisc-muted">
+                    {d.cronograma.subtitulo}
+                  </p>
+
+                  <ul className="mt-6 divide-y divide-aisc-line border-y border-aisc-line">
+                    {d.cronograma.agenda.map((ag) => (
+                      <li
+                        key={ag.hora}
+                        className="grid gap-1.5 py-4 sm:grid-cols-[10rem_minmax(0,1fr)] sm:items-baseline sm:gap-8"
+                      >
+                        <time className="text-meta font-semibold uppercase tracking-wider tabular-nums text-aisc-forest">
+                          {ag.hora}
+                        </time>
+                        <div className="min-w-0 max-w-[60ch]">
+                          <h3 className="text-display-4 text-aisc-ink">
+                            {ag.actividad}
+                          </h3>
+                          <p className="mt-1 text-body-sm text-aisc-muted">
+                            {ag.detalle}
+                          </p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+
+                {/* Fechas clave */}
+                <section className="mt-12 border-t border-aisc-line pt-10">
+                  <h2 className="text-display-3 text-aisc-ink">
                     {d.cronograma.calendarioPrevioTitulo}
                   </h2>
-                  <div className={COL_CONTENIDO}>
-                    <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      {d.cronograma.calendarioPrevio.map((cal, i) => (
-                        <li key={i} className="flex">
-                          <article className={`${TARJETA} w-full`}>
-                            <span className="text-kicker text-aisc-coral">
-                              {cal.fecha}
-                            </span>
-                            <p className="text-body-sm text-aisc-ink">
-                              {cal.hito}
-                            </p>
-                          </article>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </section>
 
-              {/* Preguntas frecuentes */}
-              <section>
-                <div aria-hidden="true" className={HAIRLINE} />
-                <div className={ENCABEZADO}>
-                  <h2
-                    className={`text-display-2 md:text-display-2-lg break-words ${COL_TITULO}`}
-                  >
+                  <ul className="mt-6 divide-y divide-aisc-line border-y border-aisc-line">
+                    {d.cronograma.calendarioPrevio.map((cal, i) => (
+                      <li
+                        key={i}
+                        className="grid gap-1.5 py-4 sm:grid-cols-[13rem_minmax(0,1fr)] sm:items-baseline sm:gap-8"
+                      >
+                        <span className="text-meta font-semibold uppercase tracking-wider text-aisc-forest">
+                          {cal.fecha}
+                        </span>
+                        <p className="max-w-[60ch] text-body-sm md:text-body text-aisc-ink/90">
+                          {cal.hito}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+
+                {/* Preguntas frecuentes (acordeón exacto de apartresearch.com/fellowships) */}
+                <section className="mt-12 pt-2">
+                  <h2 className="text-display-3 text-aisc-ink">
                     {d.cronograma.faqTitulo}
                   </h2>
-                  <div className={COL_CONTENIDO}>
-                    <div className="flex flex-col">
-                      {d.cronograma.faqs.map((faq) => (
-                        <details
-                          key={faq.q}
-                          className="group border-t border-aisc-forest/25 py-5"
-                        >
-                          <summary className="text-display-4 flex cursor-pointer list-none items-center justify-between gap-4 text-aisc-ink [&::-webkit-details-marker]:hidden">
-                            <span>{faq.q}</span>
-                            <span className="text-aisc-coral text-xl transition-transform group-open:rotate-45">
-                              +
-                            </span>
-                          </summary>
-                          <p className="text-body-sm mt-3 text-aisc-ink/85">
-                            {faq.a}
-                          </p>
-                        </details>
-                      ))}
-                    </div>
+
+                  <div className="mt-6 border-t border-aisc-line">
+                    {d.cronograma.faqs.map((faq) => (
+                      <details
+                        key={faq.q}
+                        className="group border-b border-aisc-line"
+                      >
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-left [&::-webkit-details-marker]:hidden">
+                          <span className="text-body font-medium text-aisc-ink">
+                            {faq.q}
+                          </span>
+                          <span
+                            aria-hidden="true"
+                            className="flex size-7 shrink-0 items-center justify-center rounded-full bg-aisc-sand text-aisc-forest-deep transition-transform group-open:rotate-180"
+                          >
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 12 12"
+                              fill="none"
+                            >
+                              <path
+                                d="M2.5 4.5L6 8L9.5 4.5"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                          </span>
+                        </summary>
+                        <div className="max-w-[65ch] pb-6 text-body-sm md:text-body text-aisc-muted">
+                          <p>{faq.a}</p>
+                        </div>
+                      </details>
+                    ))}
                   </div>
-                </div>
-              </section>
-            </div>
-          )}
+                </section>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
