@@ -55,7 +55,7 @@ export default async function AplicarDefAcc() {
             <div className="hidden md:flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
               <Image
                 src="/aisc/hackathon/cyberbear.png"
-                alt="Oso de anteojos — Defensive Acceleration Hackathon"
+                alt="Oso de anteojos · Defensive Acceleration Hackathon"
                 width={120}
                 height={120}
                 className="object-contain"

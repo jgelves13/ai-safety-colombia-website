@@ -55,7 +55,7 @@ export default async function InscricaoDefAcc() {
             <div className="hidden md:flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
               <Image
                 src="/aisc/hackathon/cyberbear.png"
-                alt="Urso-de-óculos — Defensive Acceleration Hackathon"
+                alt="Urso-de-óculos · Defensive Acceleration Hackathon"
                 width={120}
                 height={120}
                 className="object-contain"

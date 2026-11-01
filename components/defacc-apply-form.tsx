@@ -594,7 +594,7 @@ export default function DefAccApplyForm({
               <option value="track-2">Track 2: Control de IA, monitoreo y detección de sabotaje (ControlArena, Inspect)</option>
               <option value="track-3">Track 3: Ciberdefensa automatizada y verificación formal (DafnyBench, CyberSecEval)</option>
               <option value="track-4">Track 4: Defensa epistémica, procedencia C2PA y detección de suplantación (AASIST)</option>
-              <option value="track-5">Track 5: Seguridad de infraestructura de IA y gobernanza defensiva (No-Code, SL1–SL5)</option>
+              <option value="track-5">Track 5: Seguridad de infraestructura de IA y gobernanza defensiva (No-Code, SL1 a SL5)</option>
               <option value="por_definir">Aún no lo tengo claro / Decidiré en la mañana</option>
             </select>
           </div>

@@ -203,11 +203,11 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       ideaTitulo: "La idea: aceleración defensiva (def/acc)",
       ideaParrafos: [
         "Los sistemas de inteligencia artificial avanzan rápido en capacidad y autonomía: agentes conectados a herramientas reales (terminales, archivos, navegadores o servidores MCP) pueden ser secuestrados mediante inyección indirecta de instrucciones; modelos cada vez más capaces plantean el problema de cómo supervisarlos si ocultan intenciones o intentan sabotear código; y la automatización de ciberataques y suplantación sintética pone a prueba la infraestructura digital y la confianza pública.",
-        "La aceleración defensiva (def/acc) en seguridad de la IA propone construir y validar las defensas técnicas e institucionales que inclinen la balanza a favor de quien defiende: arquitecturas de agentes resistentes, protocolos de control y monitoreo de IA (AI Control), ciberdefensa automatizada y verificación formal de software, autenticidad criptográfica y estándares para asegurar pesos de modelos e infraestructura crítica. El evento se inspira en el Defensive Acceleration Hackathon de Apart Research, adaptado a una jornada intensiva y presencial en Bogotá.",
+        "La aceleración defensiva (def/acc) en seguridad de la IA propone construir y validar las defensas técnicas e institucionales que inclinen la balanza a favor de quien defiende: arquitecturas de agentes resistentes, protocolos de control y monitoreo de IA (AI Control), ciberdefensa automatizada y verificación formal de software, autenticidad criptográfica y estándares para asegurar pesos de modelos e infraestructura crítica.",
       ],
       colombiaTitulo: "Relevancia directa en nuestro entorno",
       colombiaTexto:
-        "En Colombia y América Latina ya enfrentamos riesgos concretos —desde incidentes contra entidades públicas e infraestructura crítica y suplantación con voces clonadas por WhatsApp hasta el despliegue apresurado de agentes autónomos sin guardarraíles—, y a la vez contamos con el talento para aportar soluciones empíricas a la frontera global de seguridad de la IA.",
+        "En Colombia y América Latina ya enfrentamos riesgos concretos (desde incidentes contra entidades públicas e infraestructura crítica y suplantación con voces clonadas por WhatsApp hasta el despliegue apresurado de agentes autónomos sin guardarraíles), y a la vez contamos con el talento para aportar soluciones empíricas a la frontera global de seguridad de la IA.",
       retoTitulo: "El reto",
       retoTexto:
         "Construir y evaluar, en 7 horas de trabajo continuo, un prototipo defensivo o estándar verificable dentro de uno de los 5 frentes temáticos: seguridad de agentes, control y monitoreo de IA, ciberdefensa y verificación formal, defensa epistémica o seguridad de infraestructura y gobernanza.",
@@ -374,9 +374,9 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       finalistasTitulo: "Dinámica de selección de ganadores",
       finalistasTexto:
         "A las 7:00 p. m., tras la deliberación técnica de los jurados, se anuncian los 5 mejores proyectos de la jornada. Cada equipo finalista realiza un pitch en vivo de 4 minutos ante el salón completo y a las 7:25 p. m. el jurado anuncia los tres primeros puestos.",
-      juradosTitulo: "Jurados confirmados",
+      juradosTitulo: "Jueces y mentores",
       juradosTexto:
-        "El panel de jurados evalúa de forma independiente y ciega:",
+        "Panel de evaluación técnica y mentoría durante la jornada:",
       jurados: [
         {
           nombre: "Yuri Andrea Pinto",
@@ -482,7 +482,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       fechaRotulo: "Date",
       fechaValor: "Saturday, November 14, 2026",
       horarioRotulo: "Hours",
-      horarioValor: "8:00 AM – 8:00 PM (7h sprint)",
+      horarioValor: "8:00 AM to 8:00 PM (7h sprint)",
       lugarRotulo: "Venue",
       lugarValor: "Universidad de los Andes, Bogotá",
       formatoRotulo: "Format",
@@ -505,11 +505,11 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       ideaTitulo: "The Idea: Defensive Acceleration (def/acc)",
       ideaParrafos: [
         "AI systems are rapidly advancing in capability and autonomy: tool-using agents connected to terminals, browsers, and MCP servers can be hijacked via indirect prompt injection; increasingly capable models raise the challenge of how to oversee them if they act deceptively or attempt subtle sabotage; and automated vulnerability discovery and synthetic impersonation strain digital infrastructure and epistemic trust.",
-        "Defensive acceleration (def/acc) in AI safety proposes building and validating technical and institutional defenses that tilt the balance back toward defenders: resilient agent architectures, AI control and monitoring protocols, automated cyberdefense and formal software verification, cryptographic provenance, and standards for securing frontier model weights and critical infrastructure. Inspired by Apart Research's Defensive Acceleration Hackathon, adapted to an intensive in-person day in Bogotá.",
+        "Defensive acceleration (def/acc) in AI safety proposes building and validating technical and institutional defenses that tilt the balance back toward defenders: resilient agent architectures, AI control and monitoring protocols, automated cyberdefense and formal software verification, cryptographic provenance, and standards for securing frontier model weights and critical infrastructure.",
       ],
       colombiaTitulo: "Real-World Context",
       colombiaTexto:
-        "In Colombia and Latin America, these risks are already concrete—from attacks on public infrastructure and WhatsApp voice-cloning fraud to the rapid deployment of autonomous agents without guardrails—while our technical community has the talent to contribute empirical solutions to the global AI safety frontier.",
+        "In Colombia and Latin America, these risks are already concrete (from attacks on public infrastructure and WhatsApp voice-cloning fraud to the rapid deployment of autonomous agents without guardrails), while our technical community has the talent to contribute empirical solutions to the global AI safety frontier.",
       retoTitulo: "The Challenge",
       retoTexto:
         "Build and evaluate, within 7 hours of focused teamwork, a defensive prototype or verifiable standard across one of the 5 research tracks: agent security, AI control & oversight, automated cyberdefense & formal verification, epistemic defense, or AI infrastructure security & governance.",
@@ -639,7 +639,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       entregablesTitulo: "Submission Deliverables",
       entregablesHora: "Strict deadline: Saturday, November 14, 5:00 PM COT",
       entregables: [
-        "Runnable code repository link (GitHub or Colab) for Tracks 1–4, or a formal threat model / verifiable technical-regulatory standard document for Track 5 (No-Code).",
+        "Runnable code repository link (GitHub or Colab) for Tracks 1 to 4, or a formal threat model / verifiable technical-regulatory standard document for Track 5 (No-Code).",
         "One-page technical summary sheet: threat vector, defensive architecture or protocol, evaluation methodology, quantitative results, limitations, and dual-use analysis.",
         "Optional 2-minute demo recording illustrating the prototype or protocol.",
       ],
@@ -655,8 +655,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       finalistasTitulo: "Finalist Presentations",
       finalistasTexto:
         "At 7:00 PM, the top 5 teams deliver 4-minute live pitches before the assembly, and at 7:25 PM the judges announce the three winning teams.",
-      juradosTitulo: "Confirmed Judges",
-      juradosTexto: "Independent expert panel:",
+      juradosTitulo: "Judges & Mentors",
+      juradosTexto: "Technical evaluation panel and on-site mentorship:",
       jurados: [
         {
           nombre: "Yuri Andrea Pinto",
@@ -695,8 +695,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       calendarioPrevio: [
         { fecha: "Monday, Nov 2", hito: "Public applications open." },
         { fecha: "Tuesday, Nov 10 (11:59 PM)", hito: "Application deadline & starter kits release." },
-        { fecha: "Nov 11 – 13", hito: "Application review and campus entry passes issued." },
-        { fecha: "Saturday, Nov 14", hito: "Hackathon day at Universidad de los Andes (8 AM – 8 PM)." },
+        { fecha: "Nov 11 to 13", hito: "Application review and campus entry passes issued." },
+        { fecha: "Saturday, Nov 14", hito: "Hackathon day at Universidad de los Andes (8 AM to 8 PM)." },
       ],
       faqTitulo: "Frequently Asked Questions",
       faqs: [
@@ -765,11 +765,11 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       ideaTitulo: "A ideia: aceleração defensiva (def/acc)",
       ideaParrafos: [
         "Os sistemas de inteligência artificial avançam rapidamente em capacidade e autonomia: agentes conectados a ferramentas reais (terminais, navegadores, arquivos ou servidores MCP) podem ser sequestrados via injeção indireta de prompts; modelos cada vez mais capazes trazem o desafio de como supervisioná-los caso ocultem intenções ou tentem sabotar código; e a automação de ciberataques e falsificações sintéticas pressiona a infraestrutura digital e a confiança pública.",
-        "A aceleração defensiva (def/acc) em segurança de IA propõe construir e validar defesas técnicas e institucionais que inclinem a balança a favor de quem defende: arquiteturas de agentes resilientes, protocolos de controle e monitoramento de IA (AI Control), ciberdefesa automatizada e verificação formal de software, autenticidade criptográfica e padrões para proteger pesos de modelos e infraestrutura crítica. O evento é inspirado no Defensive Acceleration Hackathon da Apart Research, adaptado para um dia presencial em Bogotá.",
+        "A aceleração defensiva (def/acc) em segurança de IA propõe construir e validar defesas técnicas e institucionais que inclinem a balança a favor de quem defende: arquiteturas de agentes resilientes, protocolos de controle e monitoramento de IA (AI Control), ciberdefesa automatizada e verificação formal de software, autenticidade criptográfica e padrões para proteger pesos de modelos e infraestrutura crítica.",
       ],
       colombiaTitulo: "Relevância Direta na Região",
       colombiaTexto:
-        "Na Colômbia e na América Latina, esses riscos já são concretos — desde incidentes contra órgãos públicos e fraudes com clonagem de voz até a implantação acelerada de agentes autônomos sem salvaguardas —, enquanto nossa comunidade técnica tem talento para contribuir diretamente com a fronteira global de segurança de IA.",
+        "Na Colômbia e na América Latina, esses riscos já são concretos (desde incidentes contra órgãos públicos e fraudes com clonagem de voz até a implantação acelerada de agentes autônomos sem salvaguardas), enquanto nossa comunidade técnica tem talento para contribuir diretamente com a fronteira global de segurança de IA.",
       retoTitulo: "O Desafio",
       retoTexto:
         "Construir e avaliar, em 7 horas de trabalho contínuo, um protótipo defensivo ou padrão verificável em um dos 5 frentes de pesquisa: segurança de agentes, controle e supervisão de IA, ciberdefesa e verificação formal, defesa epistêmica ou segurança de infraestrutura e governança.",
@@ -915,8 +915,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       finalistasTitulo: "Finalistas ao Vivo",
       finalistasTexto:
         "Às 19:00, os 5 melhores projetos apresentam pitches de 4 minutos perante a banca. Premiação às 19:25.",
-      juradosTitulo: "Jurados Confirmados",
-      juradosTexto: "Banca independente de cibersegurança e IA:",
+      juradosTitulo: "Jurados e Mentores",
+      juradosTexto: "Banca de avaliação técnica e mentoria presencial:",
       jurados: [
         {
           nombre: "Yuri Andrea Pinto",

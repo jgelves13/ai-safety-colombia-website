@@ -26,182 +26,30 @@ const leagueSpartan = League_Spartan({
   display: "swap",
 });
 
-type DigitoBinario = {
-  texto: string;
-  x: number;
-  y: number;
-  size: number;
-  color: string;
-  opacity: number;
-};
-
-function generarCampoBinario(): DigitoBinario[] {
-  // Generador determinista (mulberry32) para evitar diferencias entre SSR y cliente
-  let seed = 20261114;
-  const rand = () => {
-    seed |= 0;
-    seed = (seed + 0x6d2b79f5) | 0;
-    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-
-  const items: DigitoBinario[] = [];
-  const W = 1440;
-  const H = 620;
-
-  // 1. Nube estructurada en ondas diagonales alternando coral/terracota y verde salvia/menta
-  //    Igual que en el afiche: dígitos 100% verticales (sin rotación), agrupaciones "110", "10", "01"
-  //    en las crestas de onda (tamaños grandes), rodeadas de dígitos medianos y polvo binario diminuto.
-  const cols = 58;
-  const rows = 26;
-  const cellW = W / cols;
-  const cellH = H / rows;
-
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      const x = (c + 0.15 + rand() * 0.7) * cellW;
-      const y = (r + 0.18 + rand() * 0.64) * cellH;
-
-      // Zona de lectura del título y párrafo a la izquierda: despejada en el centro-izquierda
-      // pero con borde izquierdo activo y lado derecho (alrededor de CyberBear) muy denso
-      const dxTexto = (x - 430) / 370;
-      const dyTexto = (y - 300) / 230;
-      const distTexto = Math.sqrt(dxTexto * dxTexto + dyTexto * dyTexto);
-
-      // Hueco central del oso (para que rodee a CyberBear como un aura sin taparle la cara)
-      const dxOso = (x - 1095) / 145;
-      const dyOso = (y - 310) / 195;
-      const distOso = Math.sqrt(dxOso * dxOso + dyOso * dyOso);
-
-      // En la zona del texto principal dejamos solo una bruma muy sutil en los bordes
-      if (distTexto < 0.78 && rand() < 0.86) continue;
-      if (distTexto < 1.02 && rand() < 0.45) continue;
-      if (distOso < 0.65 && rand() < 0.75) continue;
-
-      // Onda diagonal orgánica que alterna entre bandas terracota/naranja y bandas salvia/verde
-      const MirrorX = x < 720 ? x : W - x;
-      const wavePhase =
-        MirrorX * 0.021 +
-        y * 0.017 +
-        Math.sin(y * 0.009 + MirrorX * 0.005) * 1.15;
-      const wave = Math.sin(wavePhase);
-      const absWave = Math.abs(wave);
-
-      // Color según el signo de la onda (exactamente como las franjas del flyer)
-      const esCoral = wave >= 0;
-      const colorCoral = rand() < 0.6 ? "#e86a42" : "#df7b54";
-      const colorSalvia = rand() < 0.6 ? "#7ea593" : "#96b5a6";
-      const color = esCoral ? colorCoral : colorSalvia;
-
-      // Escala continua desde polvo diminuto (8px) hasta racimos grandes en la cresta (42px)
-      let size: number;
-      let opacity: number;
-      let texto: string;
-
-      if (absWave > 0.84 && distTexto > 0.95) {
-        // Cresta de la onda: números grandes y racimos tipo "110", "10", "1"
-        size = Math.round(30 + rand() * 14); // 30..44px
-        opacity = Number((0.36 + rand() * 0.18).toFixed(2));
-        const rCluster = rand();
-        texto =
-          rCluster < 0.22
-            ? "110"
-            : rCluster < 0.46
-            ? "10"
-            : rCluster < 0.62
-            ? "01"
-            : rCluster < 0.82
-            ? "1"
-            : "0";
-      } else if (absWave > 0.52) {
-        // Ladera media de la onda
-        size = Math.round(17 + rand() * 11); // 17..28px
-        opacity = Number((0.24 + rand() * 0.15).toFixed(2));
-        const rCluster = rand();
-        texto =
-          rCluster < 0.18
-            ? "10"
-            : rCluster < 0.32
-            ? "11"
-            : rCluster < 0.68
-            ? "1"
-            : "0";
-      } else {
-        // Valle de la onda: partículas pequeñas de profundidad
-        if (rand() < 0.25) continue;
-        size = Math.round(9 + rand() * 7); // 9..16px
-        opacity = Number((0.14 + rand() * 0.14).toFixed(2));
-        texto = rand() < 0.54 ? "1" : "0";
-      }
-
-      // Atenuar ligeramente si está cerca del texto
-      if (distTexto < 1.15) {
-        opacity = Number((opacity * 0.55).toFixed(2));
-        if (size > 22) size = 20;
-      }
-
-      items.push({
-        texto,
-        x: Math.round(x),
-        y: Math.round(y),
-        size,
-        color,
-        opacity,
-      });
-    }
-  }
-
-  // 2. Capa adicional de micro-polvo binario (7px..11px) entre las ondas para dar el efecto de nube del afiche
-  for (let i = 0; i < 240; i++) {
-    const x = Math.round(rand() * W);
-    const y = Math.round(rand() * H);
-    const dxTexto = (x - 430) / 350;
-    const dyTexto = (y - 300) / 220;
-    if (dxTexto * dxTexto + dyTexto * dyTexto < 0.85) continue;
-
-    const MirrorX = x < 720 ? x : W - x;
-    const wave = Math.sin(MirrorX * 0.021 + y * 0.017);
-    const color = wave >= 0 ? "#e5744e" : "#89ab9b";
-    const size = Math.round(7 + rand() * 5);
-    const opacity = Number((0.12 + rand() * 0.14).toFixed(2));
-    const texto = rand() < 0.2 ? "10" : rand() < 0.6 ? "1" : "0";
-
-    items.push({ texto, x, y, size, color, opacity });
-  }
-
-  return items;
-}
-
-const CAMPO_BINARIO = generarCampoBinario();
-
 function FondoBinario() {
   return (
     <div
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 overflow-hidden select-none"
     >
-      <svg
-        viewBox="0 0 1440 620"
-        preserveAspectRatio="xMidYMid slice"
-        className="h-full w-full"
-        style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
-      >
-        {CAMPO_BINARIO.map((d, i) => (
-          <text
-            key={i}
-            x={d.x}
-            y={d.y}
-            fill={d.color}
-            fillOpacity={d.opacity}
-            fontSize={d.size}
-            fontWeight="400"
-            letterSpacing="-0.04em"
-          >
-            {d.texto}
-          </text>
-        ))}
-      </svg>
+      {/* Ala binaria izquierda extraída directamente del flyer */}
+      <img
+        src="/aisc/hackathon/binario-izq.webp"
+        alt=""
+        width={220}
+        height={500}
+        decoding="async"
+        className="absolute top-0 bottom-0 left-0 h-full w-auto object-cover opacity-55 md:opacity-75"
+      />
+      {/* Ala binaria derecha extraída directamente del flyer */}
+      <img
+        src="/aisc/hackathon/binario-der.webp"
+        alt=""
+        width={226}
+        height={500}
+        decoding="async"
+        className="absolute top-0 right-0 bottom-0 h-full w-auto object-cover opacity-75 md:opacity-95"
+      />
     </div>
   );
 }
@@ -612,7 +460,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                 <div className="flex flex-col sm:flex-row items-center gap-6 rounded-2xl bg-aisc-forest-deep p-6 text-aisc-sand md:p-8">
                   <img
                     src="/aisc/hackathon/cyberbear.png"
-                    alt="CyberBear"
+                    alt="Oso de anteojos"
                     width={180}
                     height={277}
                     className="size-36 shrink-0 object-contain drop-shadow-md"
@@ -624,6 +472,42 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                     <p className="text-body-sm mt-2 text-aisc-sand/85">
                       {d.resumen.mascotaTexto}
                     </p>
+                  </div>
+                </div>
+
+                {/* 7. Jurados y mentores (al final de El reto, estilo Apart) */}
+                <div className="border-t border-aisc-line pt-8">
+                  <h3 className="text-display-3 text-aisc-ink">
+                    {d.reglas.juradosTitulo}
+                  </h3>
+                  <p className="text-body mt-1 text-aisc-muted">
+                    {d.reglas.juradosTexto}
+                  </p>
+
+                  <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {d.reglas.jurados.map((j) => (
+                      <div
+                        key={j.nombre}
+                        className={`rounded-2xl border p-5 ${
+                          j.confirmado
+                            ? "border-aisc-forest/40 bg-white shadow-2xs"
+                            : "border-dashed border-aisc-line bg-aisc-sand/20"
+                        }`}
+                      >
+                        <span className="text-kicker text-aisc-coral font-bold">
+                          {j.rol}
+                        </span>
+                        <h4 className="text-display-4 mt-1 font-semibold text-aisc-ink">
+                          {j.nombre}
+                        </h4>
+                        <p className="text-meta font-medium text-aisc-forest mt-0.5">
+                          {j.afiliacion}
+                        </p>
+                        <p className="text-body-sm text-aisc-muted mt-2">
+                          {j.bio}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -839,42 +723,6 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                   <p className="text-body mt-3 text-aisc-ink/90 leading-relaxed">
                     {d.reglas.finalistasTexto}
                   </p>
-                </div>
-
-                {/* Jurados */}
-                <div className="border-t border-aisc-line pt-8">
-                  <h3 className="text-display-3 text-aisc-ink">
-                    {d.reglas.juradosTitulo}
-                  </h3>
-                  <p className="text-body mt-1 text-aisc-muted">
-                    {d.reglas.juradosTexto}
-                  </p>
-
-                  <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    {d.reglas.jurados.map((j) => (
-                      <div
-                        key={j.nombre}
-                        className={`rounded-2xl border p-5 ${
-                          j.confirmado
-                            ? "border-aisc-forest/40 bg-white shadow-2xs"
-                            : "border-dashed border-aisc-line bg-aisc-sand/20"
-                        }`}
-                      >
-                        <span className="text-kicker text-aisc-coral font-bold">
-                          {j.rol}
-                        </span>
-                        <h4 className="text-display-4 mt-1 font-semibold text-aisc-ink">
-                          {j.nombre}
-                        </h4>
-                        <p className="text-meta font-medium text-aisc-forest mt-0.5">
-                          {j.afiliacion}
-                        </p>
-                        <p className="text-body-sm text-aisc-muted mt-2">
-                          {j.bio}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
                 </div>
               </div>
             )}
