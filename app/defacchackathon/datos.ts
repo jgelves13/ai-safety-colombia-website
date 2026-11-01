@@ -147,8 +147,8 @@ export type DatosHackathon = {
 export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
   es: {
     badge: "AI Safety Colombia × IEEE Computer Society Uniandes",
-    titulo: "CyberBear Hackathon",
-    subtitulo: "Hackatón de IA para la defensa",
+    titulo: "Defensive Acceleration Hackathon",
+    subtitulo: "Hackatón de IA para la defensa · Bogotá 2026",
     lema: "Un día, un reto: construir una defensa basada en inteligencia artificial contra una amenaza real.",
     ctaAplicar: "Postularme al hackatón",
     ctaVerBases: "Ver kits y recursos",
@@ -236,30 +236,11 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "El oso de anteojos (Tremarctos ornatus) es el único oso nativo de Suramérica y habita en los páramos y bosques andinos colombianos. Sus 'anteojos' representan la esencia de este hackatón: ver las amenazas antes de que causen daño y proteger nuestro ecosistema digital.",
     },
     kits: {
-      introTitulo: "Un solo ranking con 3 puntos de partida por nivel",
+      introTitulo: "Frentes de investigación",
       introTexto:
-        "Todos los equipos compiten en un único track y bajo la misma rúbrica. Para que nadie pierda la mañana instalando herramientas, la organización entrega kits listos con notebooks y datasets según el nivel del equipo:",
-      listaKits: [
-        {
-          nivel: "Para primeros semestres y principiantes",
-          etiqueta: "Proteger a las personas",
-          audiencia: "Equipos que inician o con conocimientos básicos de Python y ML",
-          ejemplos: "Detector de phishing o estafas por WhatsApp/SMS en español; verificación de procedencia y credenciales de imágenes (C2PA); detección de voz clonada.",
-        },
-        {
-          nivel: "Para estudiantes intermedios",
-          etiqueta: "Proteger la IA",
-          audiencia: "Familiarizados con APIs de LLMs, agentes o arquitecturas tipo RAG/MCP",
-          ejemplos: "Filtros y detectores de inyección de instrucciones (prompt injection) en herramientas MCP; monitores de razonamiento o evaluación de sabotaje en agentes.",
-        },
-        {
-          nivel: "Para estudiantes avanzados y profesionales",
-          etiqueta: "Proteger los sistemas e infraestructura",
-          audiencia: "Experiencia en ciberseguridad, ingeniería de software o gobernanza",
-          ejemplos: "Triage y clasificación de reportes de amenazas (CTI) en español; generación y validación de reglas Sigma; modelos de amenazas SL1–SL5 para centros de cómputo.",
-        },
-      ],
-      tracksTitulo: "Los 5 frentes temáticos de investigación",
+        "Cada equipo aborda un vector de amenaza concreto y construye una solución defensiva comprobable. Puedes elegir cualquiera de estos frentes o proponer un reto afín:",
+      listaKits: [],
+      tracksTitulo: "Los 5 frentes temáticos",
       tracksTexto:
         "Puedes escoger cualquiera de estos 5 frentes para orientar tu proyecto, usar sus benchmarks sugeridos o proponer tu propio reto defensivo con visto bueno de un mentor en la mañana:",
       listaTracks: [
@@ -425,24 +406,14 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       ],
     },
     cronograma: {
-      titulo: "Minuto a minuto del sábado 14 de noviembre",
-      subtitulo: "Universidad de los Andes, Bogotá · Salón por confirmar",
+      titulo: "Agenda de la jornada",
+      subtitulo: "Sábado 14 de noviembre en la Universidad de los Andes, Bogotá",
       agenda: [
-        { hora: "07:00 a. m.", actividad: "Montaje técnico", detalle: "Equipo organizador y voluntarios preparan sonido, red y mesas de trabajo." },
-        { hora: "08:00 a. m.", actividad: "Ingreso, credenciales y café", detalle: "Control de acceso al campus, entrega de credenciales con la mascota CyberBear y ubicación en mesas." },
-        { hora: "09:00 a. m.", actividad: "Apertura oficial del reto", detalle: "Bienvenida por AI Safety Colombia e IEEE CS Uniandes; presentación de kits, reglas y criterios de evaluación (40 min)." },
-        { hora: "09:40 a. m.", actividad: "Dinámica de conformación de equipos", detalle: "Espacio para quienes llegaron sin equipo: conformación de grupos interdisciplinarios de 2 a 4 integrantes (20 min)." },
-        { hora: "10:00 a. m.", actividad: "Inicio de la construcción (Hackeo)", detalle: "Entrega de accesos y kits. Los mentores inician rotación por las mesas de trabajo.", destacado: true },
-        { hora: "12:30 p. m.", actividad: "Punto de control con mentores", detalle: "Revisión rápida de alcance y viabilidad técnica por equipo." },
-        { hora: "01:00 p. m.", actividad: "Almuerzo para participantes", detalle: "Almuerzo completo servido en campus para los participantes sin detener el flujo de trabajo.", destacado: true },
-        { hora: "04:30 p. m.", actividad: "Aviso de cierre de entregas", detalle: "Alerta de 30 minutos restantes para empaquetar código y ficha." },
-        { hora: "05:00 p. m.", actividad: "Cierre estricto de entregas", detalle: "Envío en el formulario: repositorio + ficha técnica de 1 página (+ video opcional).", destacado: true },
-        { hora: "05:00 a 07:00 p. m.", actividad: "Deliberación y charlas de invitados", detalle: "Jurados evalúan en paralelo mientras los equipos asisten a charlas breves de expositores y comunidad." },
-        { hora: "07:00 p. m.", actividad: "Presentación de los 5 finalistas", detalle: "Pitches en vivo de 4 minutos cada uno ante los jurados y el público.", destacado: true },
-        { hora: "07:20 p. m.", actividad: "Decisión final del jurado", detalle: "Consolidación de puntajes del podio." },
-        { hora: "07:25 p. m.", actividad: "Premiación en vivo", detalle: "Entrega formal y transferencia inmediata de los premios en efectivo.", destacado: true },
-        { hora: "07:45 p. m.", actividad: "Foto grupal y networking", detalle: "Foto oficial con la mascota CyberBear y despedida de la jornada." },
-        { hora: "08:00 p. m.", actividad: "Cierre del evento", detalle: "Desmontaje y salida del campus." },
+        { hora: "08:30 a. m.", actividad: "Registro e ingreso al campus", detalle: "Control de acceso en portería de Uniandes y ubicación de los equipos." },
+        { hora: "09:00 a. m.", actividad: "Apertura y presentación del reto", detalle: "Presentación de los frentes de investigación, criterios de evaluación y kits de inicio." },
+        { hora: "10:00 a. m.", actividad: "Inicio del sprint de desarrollo", detalle: "Trabajo continuo de los equipos con acompañamiento de mentores en sala.", destacado: true },
+        { hora: "05:00 p. m.", actividad: "Cierre de entregas", detalle: "Entrega del repositorio con código ejecutable y la ficha técnica de una página.", destacado: true },
+        { hora: "07:00 p. m.", actividad: "Pitches de finalistas y premiación", detalle: "Presentación de los proyectos con mayor puntaje ante el jurado y anuncio de los ganadores.", destacado: true },
       ],
       calendarioPrevioTitulo: "Fechas clave de la convocatoria",
       calendarioPrevio: [
@@ -482,8 +453,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
   },
   en: {
     badge: "AI Safety Colombia × IEEE Computer Society Uniandes",
-    titulo: "CyberBear Hackathon",
-    subtitulo: "AI for Defense Hackathon",
+    titulo: "Defensive Acceleration Hackathon",
+    subtitulo: "AI for Defense Hackathon · Bogotá 2026",
     lema: "One day, one challenge: build an AI-based defense against an active threat.",
     ctaAplicar: "Apply for the Hackathon",
     ctaVerBases: "Starter Kits & Tracks",
@@ -571,29 +542,10 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "The spectacled bear (Tremarctos ornatus) is South America's only native bear species. Its distinctive facial rings reflect our defensive mission: spotting threats before they cause harm.",
     },
     kits: {
-      introTitulo: "A Single Ranking with 3 Level-Based Starter Kits",
+      introTitulo: "Research Tracks",
       introTexto:
-        "All teams compete under the same evaluation rubric. Pre-configured starter kits with notebooks and datasets eliminate morning setup overhead:",
-      listaKits: [
-        {
-          nivel: "Beginner / Early semesters",
-          etiqueta: "Protecting People",
-          audiencia: "Teams starting out with basic Python and ML literacy",
-          ejemplos: "Spanish SMS/WhatsApp phishing detection, C2PA content credential verifiers, cloned voice detection.",
-        },
-        {
-          nivel: "Intermediate",
-          etiqueta: "Protecting AI",
-          audiencia: "Familiar with LLM APIs, prompt engineering, RAG, and MCP tooling",
-          ejemplos: "Prompt injection defenses in MCP tools, agent monitor pipelines, output guardrails.",
-        },
-        {
-          nivel: "Advanced & Professionals",
-          etiqueta: "Protecting Systems & Infrastructure",
-          audiencia: "Cybersecurity engineers, systems architects, and policy analysts",
-          ejemplos: "Threat intelligence triage in Spanish, automated Sigma detection rules, RAND SL1–SL5 data center threat models.",
-        },
-      ],
+        "Each team focuses on a concrete threat vector and builds an empirically verifiable defensive prototype. Choose any track or propose a related defensive project:",
+      listaKits: [],
       tracksTitulo: "The 5 Research Tracks",
       tracksTexto:
         "Select any track to anchor your project or propose a custom defense with a mentor's morning approval:",
@@ -738,19 +690,14 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       ],
     },
     cronograma: {
-      titulo: "Saturday, November 14 Schedule",
-      subtitulo: "Universidad de los Andes, Bogotá",
+      titulo: "Day Agenda",
+      subtitulo: "Saturday, November 14, 2026 at Universidad de los Andes, Bogotá",
       agenda: [
-        { hora: "08:00 AM", actividad: "Check-in & Badges", detalle: "Campus access, CyberBear badge pickup, and desk setup." },
-        { hora: "09:00 AM", actividad: "Opening Ceremony", detalle: "Welcome, rules, track introduction, and evaluation breakdown." },
-        { hora: "09:40 AM", actividad: "Team Formation Mixer", detalle: "Forming teams of 2–4 for solo registrants." },
-        { hora: "10:00 AM", actividad: "Sprint Begins", detalle: "Kits unlocked; mentors circulate through tables.", destacado: true },
-        { hora: "01:00 PM", actividad: "Lunch Served", detalle: "Full catered lunch on campus for all participants without interrupting work.", destacado: true },
-        { hora: "05:00 PM", actividad: "Submission Cutoff", detalle: "Strict deadline: repository + one-page sheet + optional demo video.", destacado: true },
-        { hora: "05:00 – 07:00 PM", actividad: "Judging & Tech Talks", detalle: "Parallel judging and guest keynote presentations." },
-        { hora: "07:00 PM", actividad: "Top 5 Live Pitches", detalle: "4-minute pitches by finalists.", destacado: true },
-        { hora: "07:25 PM", actividad: "Awards Ceremony", detalle: "Immediate distribution of cash prizes before the judges.", destacado: true },
-        { hora: "07:45 PM", actividad: "Group Photo & Closing", detalle: "Group photo with CyberBear mascot and community wrap-up." },
+        { hora: "08:30 AM", actividad: "Check-in & Campus Access", detalle: "Access control at Uniandes security gates and team desk setup." },
+        { hora: "09:00 AM", actividad: "Opening Ceremony & Challenge Brief", detalle: "Presentation of research tracks, evaluation criteria, and starter kits." },
+        { hora: "10:00 AM", actividad: "Sprint Begins", detalle: "Focused build sprint with on-site mentor support.", destacado: true },
+        { hora: "05:00 PM", actividad: "Submission Cutoff", detalle: "Strict deadline: repository with runnable code + one-page summary sheet.", destacado: true },
+        { hora: "07:00 PM", actividad: "Finalist Pitches & Awards", detalle: "Top-scoring projects present live to judges, followed by the awards ceremony.", destacado: true },
       ],
       calendarioPrevioTitulo: "Application Key Dates",
       calendarioPrevio: [
@@ -770,8 +717,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
   },
   pt: {
     badge: "AI Safety Colombia × IEEE Computer Society Uniandes",
-    titulo: "CyberBear Hackathon",
-    subtitulo: "Hackathon de IA para Defesa",
+    titulo: "Defensive Acceleration Hackathon",
+    subtitulo: "Hackathon de IA para Defesa · Bogotá 2026",
     lema: "Um dia, um desafio: construir uma defesa baseada em inteligência artificial contra uma ameaça real.",
     ctaAplicar: "Inscrever-se no hackathon",
     ctaVerBases: "Ver kits e tracks",
@@ -859,29 +806,10 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "O urso-de-óculos (Tremarctos ornatus) é o único urso nativo da América do Sul. Suas manchas ao redor dos olhos simbolizam enxergar as ameaças antes que causem danos.",
     },
     kits: {
-      introTitulo: "Um Único Ranking com 3 Níveis de Partida",
+      introTitulo: "Frentes de pesquisa",
       introTexto:
-        "Todos competem sob a mesma régua de avaliação. Kits com notebooks e bases prontas eliminam tempo perdido de instalação:",
-      listaKits: [
-        {
-          nivel: "Para iniciantes",
-          etiqueta: "Proteger as Pessoas",
-          audiencia: "Equipes com noções básicas de Python",
-          ejemplos: "Detecção de phishing em espanhol, verificação de procedência C2PA e detecção de vozes clonadas.",
-        },
-        {
-          nivel: "Intermediário",
-          etiqueta: "Proteger a IA",
-          audiencia: "Experiência com APIs de LLM e arquiteturas MCP",
-          ejemplos: "Defesa contra injeção de prompt em ferramentas MCP e monitores de raciocínio de agentes.",
-        },
-        {
-          nivel: "Avançado",
-          etiqueta: "Proteger Sistemas e Infraestrutura",
-          audiencia: "Engenheiros de segurança e analistas de políticas",
-          ejemplos: "Triagem de ameaças (CTI), geração de regras Sigma e modelos de ameaça SL1–SL5 para data centers.",
-        },
-      ],
+        "Cada equipe foca em um vetor concreto de ameaça e constrói uma solução defensiva verificável. Você pode escolher qualquer um destes frentes ou propor um desafio afim:",
+      listaKits: [],
       tracksTitulo: "Os 5 Frentes de Pesquisa",
       tracksTexto:
         "Escolha qualquer um destes temas para guiar seu projeto:",
@@ -1009,19 +937,14 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       ],
     },
     cronograma: {
-      titulo: "Cronograma de Sábado, 14 de Novembro",
-      subtitulo: "Universidad de los Andes, Bogotá",
+      titulo: "Agenda da jornada",
+      subtitulo: "Sábado, 14 de novembro na Universidad de los Andes, Bogotá",
       agenda: [
-        { hora: "08:00", actividad: "Credenciamento e Café", detalle: "Recepção, crachás com CyberBear e mesas." },
-        { hora: "09:00", actividad: "Abertura Oficial", detalle: "Boas-vindas, regras e apresentação dos kits." },
-        { hora: "09:40", actividad: "Formação de Equipes", detalle: "Agrupamento de participantes individuais." },
-        { hora: "10:00", actividad: "Início do Hackathon", detalle: "Início da construção com apoio dos mentores.", destacado: true },
-        { hora: "13:00", actividad: "Almoço Servido", detalle: "Almoço completo servido no campus para os participantes.", destacado: true },
-        { hora: "17:00", actividad: "Encerramento das Entregas", detalle: "Envio do repositório e ficha de 1 página.", destacado: true },
-        { hora: "17:00 às 19:00", actividad: "Avaliação e Palestras", detalle: "Avaliação dos jurados e palestras curtas da comunidade." },
-        { hora: "19:00", actividad: "Pitches dos 5 Finalistas", detalle: "4 minutos por equipe perante os jurados.", destacado: true },
-        { hora: "19:25", actividad: "Premiação", detalle: "Entrega dos prêmios em dinheiro aos vencedores.", destacado: true },
-        { hora: "19:45", actividad: "Foto Coletiva e Encerramento", detalle: "Foto com o mascote CyberBear." },
+        { hora: "08:30", actividad: "Credenciamento e Entrada no Campus", detalle: "Controle de acesso nas portarias da Uniandes e acomodação das equipes." },
+        { hora: "09:00", actividad: "Abertura Oficial e Apresentação do Desafio", detalle: "Apresentação dos frentes de pesquisa, critérios de avaliação e kits de início." },
+        { hora: "10:00", actividad: "Início do Sprint de Desenvolvimento", detalle: "Trabalho prático das equipes com mentoria presencial nas salas.", destacado: true },
+        { hora: "17:00", actividad: "Encerramento das Entregas", detalle: "Envio do repositório com código executável e ficha técnica de 1 página.", destacado: true },
+        { hora: "19:00", actividad: "Pitches dos Finalistas e Premiação", detalle: "Apresentação dos projetos finalistas perante os jurados e anúncio dos vencedores.", destacado: true },
       ],
       calendarioPrevioTitulo: "Datas Importantes",
       calendarioPrevio: [

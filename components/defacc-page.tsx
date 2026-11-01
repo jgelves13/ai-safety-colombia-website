@@ -127,9 +127,20 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
             {/* Texto del Hero */}
             <div className="flex flex-col items-start gap-4 lg:col-span-7 xl:col-span-8">
-              <p className="text-kicker tracking-widest uppercase text-aisc-sand/75">
-                {d.badge}
-              </p>
+              {/* Partner Logos */}
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6 pb-1">
+                <img
+                  src="/aisc/logo-lockup-crema.png"
+                  alt="AI Safety Colombia"
+                  className="h-8 md:h-9 w-auto object-contain opacity-95"
+                />
+                <span className="text-aisc-sand/40 text-xl font-light select-none">×</span>
+                <img
+                  src="/aisc/aliados/ieee-cs-uniandes.png"
+                  alt="IEEE Computer Society Uniandes"
+                  className="h-7 md:h-8 w-auto object-contain brightness-0 invert opacity-95"
+                />
+              </div>
 
               <h1 className="text-display-1 md:text-display-1-lg tracking-tight text-aisc-sand text-balance">
                 {d.titulo}
@@ -142,6 +153,41 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
               <p className="text-body md:text-body-lg max-w-[640px] text-aisc-sand/90">
                 {d.lema}
               </p>
+
+              {/* Metadatos sobrios de fecha, lugar y premios */}
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-body-sm text-aisc-sand/85 pt-1">
+                <span className="inline-flex items-center gap-2">
+                  <svg className="size-4 text-aisc-coral shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <span>
+                    {idioma === "en"
+                      ? "Saturday, Nov 14, 2026 · 8:00 AM – 8:00 PM"
+                      : idioma === "pt"
+                      ? "Sábado, 14 de nov de 2026 · 8:00 às 20:00"
+                      : "Sábado 14 de noviembre de 2026 · 8:00 a. m. a 8:00 p. m."}
+                  </span>
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <svg className="size-4 text-aisc-mint shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>Universidad de los Andes, Bogotá · {idioma === "en" ? "In-person" : "Presencial"}</span>
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <svg className="size-4 text-aisc-sand shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>
+                    {idioma === "en"
+                      ? "COP 2,000,000 in prizes"
+                      : idioma === "pt"
+                      ? "COP 2.000.000 em prêmios"
+                      : "COP 2.000.000 en premios"}
+                  </span>
+                </span>
+              </div>
 
               <p className="text-body-sm mt-1 text-aisc-sand/75">
                 {d.estadoInscripciones}
@@ -176,50 +222,14 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
             </div>
           </div>
         </div>
-
-        {/* Tres datos clave pegados al hero, estilo sprint */}
-        <div className="border-t border-aisc-sand/15 bg-aisc-night/60 px-6 py-6 md:px-12 text-aisc-sand">
-          <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-3 sm:grid-cols-3">
-            <div className="flex flex-col rounded-[8px] bg-aisc-forest-deep/80 border border-aisc-sand/10 p-5">
-              <span className="text-display-4 text-aisc-sand">14 de noviembre</span>
-              <span className="text-body-sm mt-2 text-aisc-sand/75">
-                {idioma === "en"
-                  ? "Saturday · 8:00 AM – 8:00 PM (7h sprint)"
-                  : idioma === "pt"
-                  ? "Sábado · 8:00 às 20:00 (7 h de trabalho)"
-                  : "Sábado · 8:00 a. m. a 8:00 p. m. (7 h de trabajo)"}
-              </span>
-            </div>
-            <div className="flex flex-col rounded-[8px] bg-aisc-forest-deep/80 border border-aisc-sand/10 p-5">
-              <span className="text-display-4 text-aisc-sand">Uniandes, Bogotá</span>
-              <span className="text-body-sm mt-2 text-aisc-sand/75">
-                {idioma === "en"
-                  ? "In-person · Classrooms & computer labs"
-                  : idioma === "pt"
-                  ? "Presencial · Salas de aula e laboratórios"
-                  : "Presencial · Auditorios y salas de cómputo"}
-              </span>
-            </div>
-            <div className="flex flex-col rounded-[8px] bg-aisc-forest-deep/80 border border-aisc-sand/10 p-5">
-              <span className="text-display-4 text-aisc-sand">COP 2.000.000</span>
-              <span className="text-body-sm mt-2 text-aisc-sand/75">
-                {idioma === "en"
-                  ? "In prizes for the top three places"
-                  : idioma === "pt"
-                  ? "Em prêmios para os três primeiros lugares"
-                  : "En premios para los tres primeros puestos"}
-              </span>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* ------------------------------------------------ SUBNAV PESTAÑAS ESTILO APART */}
       <nav
         aria-label="Secciones del evento"
-        className="sticky top-0 z-40 border-b border-aisc-line bg-white/95 px-6 backdrop-blur-md md:px-12 lg:px-16"
+        className="sticky top-0 z-40 border-b border-aisc-line bg-white/95 px-6 backdrop-blur-md md:px-12"
       >
-        <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 overflow-x-auto py-3 no-scrollbar">
+        <div className="mx-auto flex max-w-[860px] items-center justify-between gap-4 overflow-x-auto py-3 no-scrollbar">
           <div className="flex items-center gap-1 md:gap-2">
             {(
               [
@@ -259,11 +269,9 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
         </div>
       </nav>
 
-      {/* ------------------------------------------------ CUERPO EN DOS COLUMNAS */}
-      <section className="mx-auto w-full max-w-[1440px] px-6 py-12 md:px-12 md:py-16 lg:px-16">
-        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-14">
-          {/* Columna Principal de Contenido (8 cols) */}
-          <div className="min-w-0 lg:col-span-8">
+      {/* ------------------------------------------------ CUERPO PRINCIPAL SOBRIO (ESTILO APART) */}
+      <section className="mx-auto w-full max-w-[860px] px-6 py-12 md:px-8 md:py-16">
+        <div className="min-w-0">
             {/* PESTAÑA 1: RESUMEN */}
             {pestaña === "resumen" && (
               <div className="space-y-12">
@@ -376,45 +384,10 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
             {/* PESTAÑA 2: KITS Y TRACKS */}
             {pestaña === "tracks" && (
               <div className="space-y-12">
-                {/* Starter Kits por nivel */}
                 <div>
                   <h2 className="text-display-2 md:text-display-2-lg text-aisc-ink">
-                    {d.kits.introTitulo}
-                  </h2>
-                  <p className="text-body md:text-body-lg mt-3 text-aisc-ink/85">
-                    {d.kits.introTexto}
-                  </p>
-
-                  <div className="mt-8 grid grid-cols-1 gap-4">
-                    {d.kits.listaKits.map((kit) => (
-                      <div
-                        key={kit.etiqueta}
-                        className="flex flex-col gap-2.5 rounded-2xl border border-aisc-forest/25 bg-aisc-sand/40 p-6 md:p-7"
-                      >
-                        <div className="flex flex-wrap items-center justify-between gap-2">
-                          <span className="text-kicker text-aisc-coral font-bold">
-                            {kit.nivel}
-                          </span>
-                          <span className="text-display-4 font-semibold text-aisc-forest">
-                            {kit.etiqueta}
-                          </span>
-                        </div>
-                        <p className="text-meta text-aisc-muted font-medium">
-                          {kit.audiencia}
-                        </p>
-                        <p className="text-body-sm text-aisc-ink mt-1">
-                          <strong>Ideas sugeridas:</strong> {kit.ejemplos}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Los 5 Tracks temáticos de investigación */}
-                <div className="border-t border-aisc-line pt-10">
-                  <h3 className="text-display-2 md:text-display-2-lg text-aisc-ink">
                     {d.kits.tracksTitulo}
-                  </h3>
+                  </h2>
                   <p className="text-body md:text-body-lg mt-3 text-aisc-ink/85">
                     {d.kits.tracksTexto}
                   </p>
@@ -718,70 +691,6 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                 </div>
               </div>
             )}
-          </div>
-
-          {/* ---------------------------------- COLUMNA LATERAL STICKY (4 cols) estilo Apart */}
-          <aside className="w-full lg:sticky lg:top-24 lg:col-span-4">
-            <div className="flex flex-col gap-5 rounded-[8px] border border-aisc-line bg-aisc-sand/30 p-6 text-body-sm">
-              <div>
-                <span className="text-kicker uppercase tracking-wider text-aisc-muted font-semibold block">
-                  {d.sidebar.titulo}
-                </span>
-                <h3 className="text-display-4 font-semibold text-aisc-forest mt-1">
-                  {d.titulo}
-                </h3>
-              </div>
-
-              <dl className="space-y-3.5 border-t border-aisc-line pt-4 text-body-sm">
-                <div>
-                  <dt className="text-meta uppercase tracking-wider text-aisc-muted font-medium">{d.sidebar.fechaRotulo}</dt>
-                  <dd className="font-semibold text-aisc-ink mt-0.5">{d.sidebar.fechaValor}</dd>
-                </div>
-                <div>
-                  <dt className="text-meta uppercase tracking-wider text-aisc-muted font-medium">{d.sidebar.horarioRotulo}</dt>
-                  <dd className="font-semibold text-aisc-ink mt-0.5">{d.sidebar.horarioValor}</dd>
-                </div>
-                <div>
-                  <dt className="text-meta uppercase tracking-wider text-aisc-muted font-medium">{d.sidebar.lugarRotulo}</dt>
-                  <dd className="font-semibold text-aisc-ink mt-0.5">{d.sidebar.lugarValor}</dd>
-                </div>
-                <div>
-                  <dt className="text-meta uppercase tracking-wider text-aisc-muted font-medium">{d.sidebar.formatoRotulo}</dt>
-                  <dd className="font-semibold text-aisc-ink mt-0.5">{d.sidebar.formatoValor}</dd>
-                </div>
-                <div>
-                  <dt className="text-meta uppercase tracking-wider text-aisc-muted font-medium">{d.sidebar.premiosRotulo}</dt>
-                  <dd className="font-semibold text-aisc-forest mt-0.5">{d.sidebar.premiosValor}</dd>
-                </div>
-                <div>
-                  <dt className="text-meta uppercase tracking-wider text-aisc-muted font-medium">{d.sidebar.comidaRotulo}</dt>
-                  <dd className="font-semibold text-aisc-ink mt-0.5">{d.sidebar.comidaValor}</dd>
-                </div>
-                <div>
-                  <dt className="text-meta uppercase tracking-wider text-aisc-muted font-medium">{d.sidebar.cupoRotulo}</dt>
-                  <dd className="font-semibold text-aisc-ink mt-0.5">{d.sidebar.cupoValor}</dd>
-                </div>
-              </dl>
-
-              <div className="border-t border-aisc-line pt-4 flex flex-col gap-3">
-                <Link
-                  href={rutaAplicar}
-                  className="inline-flex min-h-[46px] w-full items-center justify-center rounded-[8px] bg-aisc-forest px-6 text-center font-semibold text-aisc-sand transition-colors hover:bg-aisc-forest-deep focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-aisc-forest"
-                >
-                  {d.ctaAplicar}
-                </Link>
-              </div>
-
-              <div className="border-t border-aisc-line pt-3 text-center">
-                <span className="text-meta text-aisc-muted font-medium block">
-                  {d.sidebar.organizanRotulo}
-                </span>
-                <span className="text-caption font-semibold text-aisc-forest mt-0.5 block">
-                  AI Safety Colombia × IEEE Computer Society Uniandes
-                </span>
-              </div>
-            </div>
-          </aside>
         </div>
       </section>
 

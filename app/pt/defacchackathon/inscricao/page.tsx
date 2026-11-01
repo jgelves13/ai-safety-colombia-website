@@ -11,7 +11,7 @@ import { alternativas } from "@/lib/idiomas";
 export const metadata: Metadata = {
   title: "Inscrição · Defensive Acceleration Hackathon",
   description:
-    "Formulário de inscrição no Defensive Acceleration Hackathon (CyberBear Hackathon), sábado 14 de novembro de 2026 na Universidad de los Andes, Bogotá. Co-organizado por AI Safety Colombia e IEEE Computer Society Uniandes.",
+    "Formulário de inscrição no Defensive Acceleration Hackathon, sábado 14 de novembro de 2026 na Universidad de los Andes, Bogotá. Co-organizado por AI Safety Colombia e IEEE Computer Society Uniandes.",
   alternates: {
     canonical: "/pt/defacchackathon/inscricao",
     languages: alternativas("/pt/defacchackathon/inscricao"),
@@ -49,7 +49,7 @@ export default async function InscricaoDefAcc() {
               </h1>
               <p className="text-body md:text-body-lg text-aisc-sand/90">
                 Das 8h00 às 20h00 no campus da Universidad de los Andes, em Bogotá.
-                Vagas limitadas, almoço completo incluso, mentores técnicos e mais de COP 3.200.000 em prêmios.
+                Vagas limitadas, almoço completo incluso, mentores técnicos e COP 2.000.000 em prêmios.
               </p>
             </div>
             <div className="hidden md:flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">

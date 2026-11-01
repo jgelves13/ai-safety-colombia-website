@@ -11,7 +11,7 @@ import { alternativas } from "@/lib/idiomas";
 export const metadata: Metadata = {
   title: "Apply · Defensive Acceleration Hackathon",
   description:
-    "Application form for the Defensive Acceleration Hackathon (CyberBear Hackathon), Saturday November 14, 2026 at Universidad de los Andes, Bogotá. Co-organized by AI Safety Colombia & IEEE Computer Society Uniandes.",
+    "Application form for the Defensive Acceleration Hackathon, Saturday November 14, 2026 at Universidad de los Andes, Bogotá. Co-organized by AI Safety Colombia & IEEE Computer Society Uniandes.",
   alternates: {
     canonical: "/en/defacchackathon/apply",
     languages: alternativas("/en/defacchackathon/apply"),
@@ -49,7 +49,7 @@ export default async function ApplyDefAcc() {
               </h1>
               <p className="text-body md:text-body-lg text-aisc-sand/90">
                 8:00 a.m. to 8:00 p.m. at Universidad de los Andes campus, Bogotá.
-                Limited capacity, lunch and coffee breaks included, technical mentors, and over COP 3,200,000 in prizes.
+                Limited capacity, lunch and coffee breaks included, technical mentors, and COP 2,000,000 in prizes.
               </p>
             </div>
             <div className="hidden md:flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
