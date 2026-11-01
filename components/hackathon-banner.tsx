@@ -6,27 +6,27 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { type Idioma, idiomaDe, rutaEn } from "@/lib/idiomas";
 
-/* Hackathon de Aceleración Defensiva (CyberBear Hackathon) · 14 de noviembre de 2026 */
+/* Defensive Acceleration Hackathon · 14 de noviembre de 2026 */
 export const HACKATHON_INFO: Record<
   Idioma,
   { badge: string; title: string; body: string; cta: string }
 > = {
   es: {
     badge: "14 de noviembre · Uniandes Bogotá",
-    title: "Defensive Acceleration Hackathon · IA para la defensa",
-    body: "Un día intensivo en la Universidad de los Andes para diseñar y evaluar defensas frente a amenazas de IA. 5 tracks de investigación, starter kits por nivel, almuerzo incluido y más de COP 3.000.000 en premios.",
+    title: "Defensive Acceleration Hackathon",
+    body: "Una jornada presencial en la Universidad de los Andes para construir y evaluar defensas en seguridad de IA: seguridad de agentes, AI Control, verificación formal, defensa epistémica y gobernanza defensiva. COP 2.000.000 en premios.",
     cta: "Inscribirme al Hackathon",
   },
   en: {
     badge: "November 14 · Uniandes Bogotá",
-    title: "Defensive Acceleration Hackathon · AI for Defense",
-    body: "An intensive day at Universidad de los Andes to design and evaluate defenses against AI threats. 5 research tracks, tiered starter kits, lunch included, and over COP 3,000,000 in prizes.",
+    title: "Defensive Acceleration Hackathon",
+    body: "An in-person sprint at Universidad de los Andes to build and evaluate AI safety defenses: agent security, AI control, formal verification, epistemic defense, and defensive governance. COP 2,000,000 in prizes.",
     cta: "Register for the Hackathon",
   },
   pt: {
     badge: "14 de novembro · Uniandes Bogotá",
-    title: "Defensive Acceleration Hackathon · IA para a defesa",
-    body: "Um dia intensivo na Universidad de los Andes para projetar e testar defesas contra ameaças de IA. 5 tracks de pesquisa, kits iniciais por nível, almoço incluso e mais de COP 3.000.000 em prêmios.",
+    title: "Defensive Acceleration Hackathon",
+    body: "Uma jornada presencial na Universidad de los Andes para construir e avaliar defesas em segurança de IA: segurança de agentes, AI Control, verificação formal, defesa epistêmica e governança defensiva. COP 2.000.000 em prêmios.",
     cta: "Inscrever-se no Hackathon",
   },
 };

@@ -26,76 +26,168 @@ const leagueSpartan = League_Spartan({
   display: "swap",
 });
 
-const DIGITOS_BINARIOS: Array<{
-  char: "0" | "1";
+type DigitoBinario = {
+  texto: string;
   x: number;
   y: number;
   size: number;
   color: string;
   opacity: number;
-  rotate: number;
-}> = [
-  // Lado izquierdo
-  { char: "1", x: 38, y: 58, size: 30, color: "#e5604d", opacity: 0.42, rotate: -14 },
-  { char: "0", x: 96, y: 42, size: 22, color: "#f3ead8", opacity: 0.2, rotate: 10 },
-  { char: "1", x: 158, y: 78, size: 26, color: "#e5604d", opacity: 0.34, rotate: 8 },
-  { char: "0", x: 52, y: 132, size: 36, color: "#e5604d", opacity: 0.38, rotate: -8 },
-  { char: "0", x: 124, y: 148, size: 20, color: "#5f9f77", opacity: 0.28, rotate: 14 },
-  { char: "1", x: 28, y: 215, size: 28, color: "#f3ead8", opacity: 0.22, rotate: -18 },
-  { char: "1", x: 94, y: 230, size: 34, color: "#e5604d", opacity: 0.45, rotate: 12 },
-  { char: "0", x: 172, y: 205, size: 22, color: "#e5604d", opacity: 0.28, rotate: -10 },
-  { char: "0", x: 44, y: 305, size: 32, color: "#e5604d", opacity: 0.4, rotate: 9 },
-  { char: "1", x: 118, y: 318, size: 24, color: "#f3ead8", opacity: 0.18, rotate: -12 },
-  { char: "1", x: 64, y: 392, size: 38, color: "#e5604d", opacity: 0.44, rotate: -6 },
-  { char: "0", x: 146, y: 385, size: 26, color: "#5f9f77", opacity: 0.26, rotate: 15 },
-  { char: "1", x: 32, y: 468, size: 26, color: "#e5604d", opacity: 0.35, rotate: 11 },
-  { char: "0", x: 108, y: 476, size: 32, color: "#f3ead8", opacity: 0.22, rotate: -14 },
-  { char: "1", x: 188, y: 454, size: 20, color: "#e5604d", opacity: 0.28, rotate: 7 },
-  { char: "0", x: 58, y: 540, size: 28, color: "#e5604d", opacity: 0.36, rotate: -9 },
-  { char: "1", x: 142, y: 548, size: 24, color: "#f3ead8", opacity: 0.18, rotate: 12 },
+};
 
-  // Lado derecho y alrededor de la mascota
-  { char: "0", x: 980, y: 52, size: 24, color: "#f3ead8", opacity: 0.18, rotate: -11 },
-  { char: "1", x: 1065, y: 68, size: 32, color: "#e5604d", opacity: 0.38, rotate: 14 },
-  { char: "0", x: 1155, y: 48, size: 22, color: "#5f9f77", opacity: 0.26, rotate: -8 },
-  { char: "1", x: 1245, y: 74, size: 36, color: "#e5604d", opacity: 0.44, rotate: -15 },
-  { char: "0", x: 1338, y: 56, size: 28, color: "#f3ead8", opacity: 0.22, rotate: 10 },
-  { char: "1", x: 1396, y: 108, size: 34, color: "#e5604d", opacity: 0.4, rotate: 16 },
-  { char: "0", x: 940, y: 138, size: 20, color: "#e5604d", opacity: 0.26, rotate: 9 },
-  { char: "1", x: 1030, y: 156, size: 28, color: "#f3ead8", opacity: 0.2, rotate: -13 },
-  { char: "0", x: 1190, y: 142, size: 34, color: "#e5604d", opacity: 0.42, rotate: 11 },
-  { char: "1", x: 1295, y: 165, size: 26, color: "#5f9f77", opacity: 0.3, rotate: -9 },
-  { char: "0", x: 1378, y: 196, size: 38, color: "#e5604d", opacity: 0.46, rotate: -12 },
-  { char: "1", x: 965, y: 242, size: 28, color: "#e5604d", opacity: 0.32, rotate: -14 },
-  { char: "0", x: 1052, y: 268, size: 22, color: "#f3ead8", opacity: 0.18, rotate: 12 },
-  { char: "1", x: 1228, y: 254, size: 30, color: "#e5604d", opacity: 0.38, rotate: 8 },
-  { char: "0", x: 1322, y: 278, size: 34, color: "#f3ead8", opacity: 0.24, rotate: -16 },
-  { char: "1", x: 1404, y: 294, size: 26, color: "#e5604d", opacity: 0.4, rotate: 13 },
-  { char: "0", x: 990, y: 356, size: 32, color: "#e5604d", opacity: 0.36, rotate: 10 },
-  { char: "1", x: 1084, y: 382, size: 24, color: "#5f9f77", opacity: 0.26, rotate: -11 },
-  { char: "0", x: 1212, y: 374, size: 36, color: "#e5604d", opacity: 0.42, rotate: -7 },
-  { char: "1", x: 1308, y: 396, size: 28, color: "#f3ead8", opacity: 0.22, rotate: 15 },
-  { char: "0", x: 1388, y: 382, size: 32, color: "#e5604d", opacity: 0.44, rotate: -13 },
-  { char: "1", x: 948, y: 462, size: 22, color: "#f3ead8", opacity: 0.18, rotate: -9 },
-  { char: "0", x: 1042, y: 486, size: 34, color: "#e5604d", opacity: 0.38, rotate: 12 },
-  { char: "1", x: 1148, y: 472, size: 26, color: "#e5604d", opacity: 0.32, rotate: -14 },
-  { char: "0", x: 1264, y: 492, size: 38, color: "#e5604d", opacity: 0.45, rotate: 9 },
-  { char: "1", x: 1356, y: 478, size: 28, color: "#5f9f77", opacity: 0.28, rotate: -11 },
-  { char: "0", x: 1408, y: 534, size: 30, color: "#e5604d", opacity: 0.38, rotate: 14 },
-];
+function generarCampoBinario(): DigitoBinario[] {
+  // Generador determinista (mulberry32) para evitar diferencias entre SSR y cliente
+  let seed = 20261114;
+  const rand = () => {
+    seed |= 0;
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+
+  const items: DigitoBinario[] = [];
+  const W = 1440;
+  const H = 620;
+
+  // 1. Nube estructurada en ondas diagonales alternando coral/terracota y verde salvia/menta
+  //    Igual que en el afiche: dígitos 100% verticales (sin rotación), agrupaciones "110", "10", "01"
+  //    en las crestas de onda (tamaños grandes), rodeadas de dígitos medianos y polvo binario diminuto.
+  const cols = 58;
+  const rows = 26;
+  const cellW = W / cols;
+  const cellH = H / rows;
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const x = (c + 0.15 + rand() * 0.7) * cellW;
+      const y = (r + 0.18 + rand() * 0.64) * cellH;
+
+      // Zona de lectura del título y párrafo a la izquierda: despejada en el centro-izquierda
+      // pero con borde izquierdo activo y lado derecho (alrededor de CyberBear) muy denso
+      const dxTexto = (x - 430) / 370;
+      const dyTexto = (y - 300) / 230;
+      const distTexto = Math.sqrt(dxTexto * dxTexto + dyTexto * dyTexto);
+
+      // Hueco central del oso (para que rodee a CyberBear como un aura sin taparle la cara)
+      const dxOso = (x - 1095) / 145;
+      const dyOso = (y - 310) / 195;
+      const distOso = Math.sqrt(dxOso * dxOso + dyOso * dyOso);
+
+      // En la zona del texto principal dejamos solo una bruma muy sutil en los bordes
+      if (distTexto < 0.78 && rand() < 0.86) continue;
+      if (distTexto < 1.02 && rand() < 0.45) continue;
+      if (distOso < 0.65 && rand() < 0.75) continue;
+
+      // Onda diagonal orgánica que alterna entre bandas terracota/naranja y bandas salvia/verde
+      const MirrorX = x < 720 ? x : W - x;
+      const wavePhase =
+        MirrorX * 0.021 +
+        y * 0.017 +
+        Math.sin(y * 0.009 + MirrorX * 0.005) * 1.15;
+      const wave = Math.sin(wavePhase);
+      const absWave = Math.abs(wave);
+
+      // Color según el signo de la onda (exactamente como las franjas del flyer)
+      const esCoral = wave >= 0;
+      const colorCoral = rand() < 0.6 ? "#e86a42" : "#df7b54";
+      const colorSalvia = rand() < 0.6 ? "#7ea593" : "#96b5a6";
+      const color = esCoral ? colorCoral : colorSalvia;
+
+      // Escala continua desde polvo diminuto (8px) hasta racimos grandes en la cresta (42px)
+      let size: number;
+      let opacity: number;
+      let texto: string;
+
+      if (absWave > 0.84 && distTexto > 0.95) {
+        // Cresta de la onda: números grandes y racimos tipo "110", "10", "1"
+        size = Math.round(30 + rand() * 14); // 30..44px
+        opacity = Number((0.36 + rand() * 0.18).toFixed(2));
+        const rCluster = rand();
+        texto =
+          rCluster < 0.22
+            ? "110"
+            : rCluster < 0.46
+            ? "10"
+            : rCluster < 0.62
+            ? "01"
+            : rCluster < 0.82
+            ? "1"
+            : "0";
+      } else if (absWave > 0.52) {
+        // Ladera media de la onda
+        size = Math.round(17 + rand() * 11); // 17..28px
+        opacity = Number((0.24 + rand() * 0.15).toFixed(2));
+        const rCluster = rand();
+        texto =
+          rCluster < 0.18
+            ? "10"
+            : rCluster < 0.32
+            ? "11"
+            : rCluster < 0.68
+            ? "1"
+            : "0";
+      } else {
+        // Valle de la onda: partículas pequeñas de profundidad
+        if (rand() < 0.25) continue;
+        size = Math.round(9 + rand() * 7); // 9..16px
+        opacity = Number((0.14 + rand() * 0.14).toFixed(2));
+        texto = rand() < 0.54 ? "1" : "0";
+      }
+
+      // Atenuar ligeramente si está cerca del texto
+      if (distTexto < 1.15) {
+        opacity = Number((opacity * 0.55).toFixed(2));
+        if (size > 22) size = 20;
+      }
+
+      items.push({
+        texto,
+        x: Math.round(x),
+        y: Math.round(y),
+        size,
+        color,
+        opacity,
+      });
+    }
+  }
+
+  // 2. Capa adicional de micro-polvo binario (7px..11px) entre las ondas para dar el efecto de nube del afiche
+  for (let i = 0; i < 240; i++) {
+    const x = Math.round(rand() * W);
+    const y = Math.round(rand() * H);
+    const dxTexto = (x - 430) / 350;
+    const dyTexto = (y - 300) / 220;
+    if (dxTexto * dxTexto + dyTexto * dyTexto < 0.85) continue;
+
+    const MirrorX = x < 720 ? x : W - x;
+    const wave = Math.sin(MirrorX * 0.021 + y * 0.017);
+    const color = wave >= 0 ? "#e5744e" : "#89ab9b";
+    const size = Math.round(7 + rand() * 5);
+    const opacity = Number((0.12 + rand() * 0.14).toFixed(2));
+    const texto = rand() < 0.2 ? "10" : rand() < 0.6 ? "1" : "0";
+
+    items.push({ texto, x, y, size, color, opacity });
+  }
+
+  return items;
+}
+
+const CAMPO_BINARIO = generarCampoBinario();
 
 function FondoBinario() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 overflow-hidden font-mono select-none"
+      className="pointer-events-none absolute inset-0 overflow-hidden select-none"
     >
       <svg
-        viewBox="0 0 1440 600"
+        viewBox="0 0 1440 620"
         preserveAspectRatio="xMidYMid slice"
         className="h-full w-full"
+        style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
       >
-        {DIGITOS_BINARIOS.map((d, i) => (
+        {CAMPO_BINARIO.map((d, i) => (
           <text
             key={i}
             x={d.x}
@@ -103,10 +195,10 @@ function FondoBinario() {
             fill={d.color}
             fillOpacity={d.opacity}
             fontSize={d.size}
-            fontWeight="800"
-            transform={`rotate(${d.rotate} ${d.x} ${d.y})`}
+            fontWeight="400"
+            letterSpacing="-0.04em"
           >
-            {d.char}
+            {d.texto}
           </text>
         ))}
       </svg>
@@ -571,7 +663,11 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                         <div className="mt-6 grid grid-cols-1 gap-4 border-t border-aisc-line/70 pt-5 md:grid-cols-2">
                           <div className="rounded-xl bg-aisc-sand/50 p-4">
                             <span className="text-kicker text-aisc-forest font-bold">
-                              Para empezar
+                              {idioma === "en"
+                                ? "Getting started"
+                                : idioma === "pt"
+                                ? "Para começar"
+                                : "Para empezar"}
                             </span>
                             <p className="text-body-sm mt-1.5 text-aisc-ink">
                               {tr.paraEmpezar}
@@ -579,7 +675,11 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                           </div>
                           <div className="rounded-xl bg-aisc-sand/50 p-4">
                             <span className="text-kicker text-aisc-forest font-bold">
-                              Con experiencia
+                              {idioma === "en"
+                                ? "Advanced scope"
+                                : idioma === "pt"
+                                ? "Com experiência"
+                                : "Con experiencia"}
                             </span>
                             <p className="text-body-sm mt-1.5 text-aisc-ink">
                               {tr.conExperiencia}
@@ -590,7 +690,11 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                         {tr.paraIrMasLejos ? (
                           <div className="mt-3 rounded-xl bg-aisc-cream border border-aisc-line p-4">
                             <span className="text-kicker text-aisc-coral font-bold">
-                              Para ir más lejos
+                              {idioma === "en"
+                                ? "Going further"
+                                : idioma === "pt"
+                                ? "Para ir mais longe"
+                                : "Para ir más lejos"}
                             </span>
                             <p className="text-body-sm mt-1.5 text-aisc-ink">
                               {tr.paraIrMasLejos}
@@ -601,7 +705,11 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                         {/* Recursos y Datasets */}
                         <div className="mt-5 pt-4 border-t border-aisc-line/60">
                           <span className="text-kicker text-aisc-muted">
-                            Datasets, benchmarks y repositorios de partida:
+                            {idioma === "en"
+                              ? "Starter datasets, benchmarks & repositories:"
+                              : idioma === "pt"
+                              ? "Datasets, benchmarks e repositórios de partida:"
+                              : "Datasets, benchmarks y repositorios de partida:"}
                           </span>
                           <div className="mt-2.5 flex flex-wrap gap-2">
                             {tr.recursos.map((rec) => (

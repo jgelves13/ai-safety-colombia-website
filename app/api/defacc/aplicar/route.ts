@@ -171,17 +171,28 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
   }
 }
 
+const NOMBRES_TRACKS: Record<string, string> = {
+  "track-1": "Track 1: Seguridad de agentes e inyección de instrucciones (MCP, AgentDojo)",
+  "track-2": "Track 2: Control de IA, monitoreo y detección de sabotaje (ControlArena, Inspect)",
+  "track-3": "Track 3: Ciberdefensa automatizada y verificación formal (DafnyBench, CyberSecEval)",
+  "track-4": "Track 4: Defensa epistémica, procedencia C2PA y detección de suplantación (AASIST)",
+  "track-5": "Track 5: Seguridad de infraestructura de IA y gobernanza defensiva (No-Code, SL1–SL5)",
+  por_definir: "Por definir en la mañana del evento",
+};
+
 async function confirmarPorCorreo(datos: Record<string, string>): Promise<void> {
   const key = process.env.RESEND_API_KEY;
   if (!key) return;
 
+  const trackLegible = NOMBRES_TRACKS[datos.preferredTrack] ?? datos.preferredTrack;
+
   const cuerpo = [
     `¡Hola ${datos.firstName}!`,
     "",
-    "Recibimos tu postulación al Defensive Acceleration Hackathon (CyberBear Hackathon), que celebraremos el sábado 14 de noviembre de 2026 de 8:00 a. m. a 8:00 p. m. en la Universidad de los Andes, Bogotá.",
+    "Recibimos tu postulación al Defensive Acceleration Hackathon, que celebraremos el sábado 14 de noviembre de 2026 de 8:00 a. m. a 8:00 p. m. en la Universidad de los Andes, Bogotá.",
     "",
     `Modalidad: ${datos.teamMode === "equipo" ? "En equipo" : "Individual (te ayudaremos a conectar con un equipo en el matchmaking matutino)"}`,
-    `Track preferido: ${datos.preferredTrack}`,
+    `Track preferido: ${trackLegible}`,
     "",
     "Revisamos las postulaciones continuamente para coordinar los accesos peatonales al campus con la Universidad de los Andes (con tu documento registrado) y el servicio de almuerzo.",
     "",

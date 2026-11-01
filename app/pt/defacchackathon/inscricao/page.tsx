@@ -55,15 +55,12 @@ export default async function InscricaoDefAcc() {
             <div className="hidden md:flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
               <Image
                 src="/aisc/hackathon/cyberbear.png"
-                alt="CyberBear"
+                alt="Urso-de-óculos — Defensive Acceleration Hackathon"
                 width={120}
                 height={120}
                 className="object-contain"
                 priority
               />
-              <span className="text-[11px] font-mono tracking-wider text-aisc-sand/80 uppercase mt-1">
-                CyberBear 2026
-              </span>
             </div>
           </div>
         </div>
@@ -91,7 +88,7 @@ export default async function InscricaoDefAcc() {
                 </li>
               </ul>
               <div className="pt-2 text-body-sm">
-                Deseja consultar os tracks de pesquisa, kits iniciais ou critérios de avaliação antes de se inscrever?{" "}
+                Deseja consultar os 5 frentes de pesquisa ou critérios de avaliação antes de se inscrever?{" "}
                 <Link
                   className="font-medium text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
                   href="/pt/defacchackathon"

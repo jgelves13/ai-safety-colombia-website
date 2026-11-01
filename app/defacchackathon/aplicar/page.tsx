@@ -55,15 +55,12 @@ export default async function AplicarDefAcc() {
             <div className="hidden md:flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
               <Image
                 src="/aisc/hackathon/cyberbear.png"
-                alt="CyberBear"
+                alt="Oso de anteojos — Defensive Acceleration Hackathon"
                 width={120}
                 height={120}
                 className="object-contain"
                 priority
               />
-              <span className="text-[11px] font-mono tracking-wider text-aisc-sand/80 uppercase mt-1">
-                CyberBear 2026
-              </span>
             </div>
           </div>
         </div>
@@ -91,7 +88,7 @@ export default async function AplicarDefAcc() {
                 </li>
               </ul>
               <div className="pt-2 text-body-sm">
-                ¿Quieres revisar los tracks, starter kits o rúbrica de evaluación antes de postularte?{" "}
+                ¿Quieres revisar los 5 frentes temáticos o la rúbrica de evaluación antes de postularte?{" "}
                 <Link
                   className="font-medium text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
                   href="/defacchackathon"
