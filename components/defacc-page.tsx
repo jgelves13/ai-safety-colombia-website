@@ -240,7 +240,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
             <div className="relative flex justify-center lg:col-span-5 xl:col-span-4">
               <div className="relative w-full max-w-[260px] md:max-w-[300px]">
                 <img
-                  src="/aisc/hackathon/cyberbear.png"
+                  src="/aisc/hackathon/cyberbear-clean.png"
                   alt="CyberBear"
                   width={474}
                   height={730}
@@ -450,7 +450,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                 {/* 6. Mascota */}
                 <div className="flex flex-col sm:flex-row items-center gap-6 rounded-2xl bg-aisc-forest-deep p-6 text-aisc-sand md:p-8">
                   <img
-                    src="/aisc/hackathon/cyberbear.png"
+                    src="/aisc/hackathon/cyberbear-clean.png"
                     alt="Oso de anteojos"
                     width={180}
                     height={277}
