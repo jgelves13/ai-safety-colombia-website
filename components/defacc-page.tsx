@@ -333,13 +333,9 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
               {d.lema}
             </p>
 
-            <div className="mt-4 inline-flex max-w-[560px] items-start gap-2.5 rounded-2xl border border-aisc-sand/25 bg-white/5 px-4 py-2.5 text-left text-body-sm text-aisc-sand/85 backdrop-blur-xs sm:items-center sm:rounded-full sm:py-1.5">
-              <span className="mt-[0.45em] size-2 shrink-0 rounded-full bg-aisc-coral animate-pulse sm:mt-0" />
-              <span>{d.estadoInscripciones}</span>
-            </div>
 
             {/* Botones de acción principales */}
-            <div className="mt-6 flex w-full max-w-[360px] flex-col items-stretch gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center [&>*]:justify-center">
+            <div className="mt-8 flex w-full max-w-[360px] flex-col items-stretch gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center [&>*]:justify-center">
               <Link className={CTA_LINK_PRIMARY} href={rutaAplicar}>
                 {d.ctaAplicar}
               </Link>
@@ -440,11 +436,11 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
               >
                 <img
                   alt="Universidad de los Andes — Departamento de Ingeniería de Sistemas y Computación (DISC / ISIS)"
-                  className="h-9 w-auto max-w-[190px] object-contain sm:h-[46px] sm:max-w-[240px]"
+                  className="h-11 w-auto max-w-[220px] object-contain sm:h-[58px] sm:max-w-[320px] md:h-[68px] md:max-w-[380px]"
                   decoding="async"
-                  height={725}
+                  height={488}
                   src="/aisc/aliados/uniandes-disc.png"
-                  width={2170}
+                  width={2121}
                 />
               </a>
             </div>
