@@ -1,69 +1,15 @@
 "use client";
 
-import Link from "next/link";
-import { League_Spartan } from "next/font/google";
-import { useEffect, useRef, useState } from "react";
+import DefAccHero from "./defacc-hero";
+import styles from "./defacc.module.css";
+import { useState } from "react";
+import { flushSync } from "react-dom";
 import SiteFooter from "@/components/site-footer";
-import SiteHeader from "@/components/site-header";
-import {
-  CTA_LINK,
-  CTA_LINK_PRIMARY,
-  PAGE_SHELL,
-} from "@/components/ui";
-import {
-  CIERRE_INSCRIPCIONES_ISO,
-  FECHA_EVENTO_ISO,
-  TEXTOS_HACKATHON,
-  inscripcionesCerradas,
-} from "@/app/defacchackathon/datos";
+
+import { PAGE_SHELL } from "@/components/ui";
+import { TEXTOS_HACKATHON } from "@/app/defacchackathon/datos";
 import type { Premio } from "@/app/defacchackathon/datos";
 import type { Idioma } from "@/lib/idiomas";
-import { rutaEn } from "@/lib/idiomas";
-
-const leagueSpartan = League_Spartan({
-  subsets: ["latin"],
-  weight: ["700", "800", "900"],
-  display: "swap",
-});
-
-function FondoBinario() {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 overflow-hidden select-none"
-    >
-      {/* Ala binaria izquierda extraída directamente del flyer */}
-      <img
-        src="/aisc/hackathon/binario-izq.webp"
-        alt=""
-        width={220}
-        height={500}
-        decoding="async"
-        className="absolute top-0 bottom-0 left-0 h-full w-auto object-cover opacity-55 md:opacity-75"
-      />
-      {/* Ala binaria derecha extraída directamente del flyer */}
-      <img
-        src="/aisc/hackathon/binario-der.webp"
-        alt=""
-        width={226}
-        height={500}
-        decoding="async"
-        className="absolute top-0 right-0 bottom-0 h-full w-auto object-cover opacity-75 md:opacity-95"
-      />
-    </div>
-  );
-}
-
-const ENLACE =
-  "text-aisc-forest underline underline-offset-[3px] font-medium transition-colors hover:text-aisc-forest-deep";
-
-function diasHasta(iso: string) {
-  const [y, m, d] = iso.split("T")[0].split("-").map(Number);
-  const target = Date.UTC(y, m - 1, d);
-  const now = new Date();
-  const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
-  return Math.round((target - today) / 86_400_000);
-}
 
 function PremiosSoberos({
   premios,
@@ -127,212 +73,26 @@ function PremiosSoberos({
 export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
   const d = TEXTOS_HACKATHON[idioma];
   const [pestaña, setPestaña] = useState<"resumen" | "tracks" | "reglas" | "cronograma">("resumen");
-  const inicioPestañas = useRef<HTMLDivElement>(null);
-  const [pegada, setPegada] = useState(false);
-
-  /* Con la barra pegada, el texto asomaba entre la pastilla flotante y las
-     pestañas; al pegarse, la barra pinta también esa franja. */
-  useEffect(() => {
-    const el = inicioPestañas.current;
-    if (!el) return;
-    const medir = () => setPegada(el.getBoundingClientRect().top <= (window.innerWidth >= 768 ? 88 : 72) + 1);
-    medir();
-    window.addEventListener("scroll", medir, { passive: true });
-    window.addEventListener("resize", medir, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", medir);
-      window.removeEventListener("resize", medir);
-    };
-  }, []);
-
-  /* Cambia de pestaña y lleva al lector al comienzo del contenido: en el
-     celular el cuerpo queda fuera de pantalla y el cambio no se veía. La
-     barra fija del sitio mide 72px (88px desde md). */
-  const abrirPestaña = (tab: typeof pestaña, siempre = false) => {
-    setPestaña(tab);
-    const el = inicioPestañas.current;
-    if (!el) return;
-    const tope = el.getBoundingClientRect().top + window.scrollY - (window.innerWidth >= 768 ? 88 : 72);
-    if (siempre || window.scrollY > tope) window.scrollTo({ top: tope, behavior: "smooth" });
+  const cambiarPestaña = (nueva: typeof pestaña) => {
+    flushSync(() => setPestaña(nueva));
+    const contenido = document.getElementById("defacc-contenido");
+    const navegacion = document.getElementById("defacc-secciones");
+    if (!contenido || !navegacion) return;
+    const altoEncabezado = window.matchMedia("(min-width: 768px)").matches ? 88 : 72;
+    const espacioSuperior = altoEncabezado + navegacion.getBoundingClientRect().height;
+    window.scrollTo({
+      top: contenido.getBoundingClientRect().top + window.scrollY - espacioSuperior,
+      behavior: "instant",
+    });
   };
-  const [diasFaltan, setDiasFaltan] = useState<number | null>(null);
-
-  useEffect(() => {
-    setDiasFaltan(diasHasta(FECHA_EVENTO_ISO));
-  }, []);
-
-  const cerrada = inscripcionesCerradas();
-  const rutaAplicar = rutaEn(idioma, "/defacchackathon/aplicar");
-
-  const datosClave =
-    idioma === "en"
-      ? [
-          {
-            valor: "November 14",
-            nota: "One full Saturday, from 8:00 AM to 8:00 PM",
-          },
-          {
-            valor: "In-person in Bogotá",
-            nota: "Universidad de los Andes campus",
-          },
-          {
-            valor: "COP 2,000,000 in prizes",
-            nota: "Three winning teams selected by the judges at the close of the sprint",
-          },
-        ]
-      : idioma === "pt"
-      ? [
-          {
-            valor: "14 de novembro",
-            nota: "Um sábado inteiro, das 8:00 às 20:00",
-          },
-          {
-            valor: "Presencial em Bogotá",
-            nota: "Campus da Universidad de los Andes",
-          },
-          {
-            valor: "COP 2.000.000 em prêmios",
-            nota: "Três equipes vencedoras escolhidas pelos jurados no encerramento do dia",
-          },
-        ]
-      : [
-          {
-            valor: "14 de noviembre",
-            nota: "Un sábado completo, de 8:00 a. m. a 8:00 p. m.",
-          },
-          {
-            valor: "Presencial en Bogotá",
-            nota: "Campus de la Universidad de los Andes",
-          },
-          {
-            valor: "COP 2.000.000 en premios",
-            nota: "Tres equipos ganadores escogidos por el jurado al cierre de la jornada",
-          },
-        ];
-
   return (
-    <main className={PAGE_SHELL}>
-      {/* ------------------------------------------------------------ HERO */}
-      <section className="relative overflow-hidden bg-aisc-forest-deep text-aisc-sand">
-        <FondoBinario />
-        <SiteHeader active="/defacchackathon" />
-
-        <div className="relative z-10 mx-auto w-full max-w-[1240px] px-6 pt-28 pb-12 sm:px-8 md:pt-36 md:pb-16">
-          <div className="flex flex-col items-center text-center">
-            {/* Banner oficial propuesto por IEEE Computer Society Uniandes */}
-            <div className="w-full max-w-[980px] overflow-hidden rounded-2xl border border-white/20 bg-[#faf8f5] shadow-2xl transition-all">
-              <img
-                src="/aisc/hackathon/banner-ieee.png"
-                alt="Defensive Acceleration Hackathon · Sábado 14 Noviembre 2026 · Uniandes · IEEE Computer Society × AI Safety Colombia"
-                width={1024}
-                height={512}
-                decoding="async"
-                className="h-auto w-full object-contain"
-              />
-            </div>
-
-            {/* Subtítulo y estado de postulación */}
-            <p className="mt-8 max-w-[720px] text-body md:text-body-lg text-aisc-sand/90">
-              {d.lema}
-            </p>
-
-            <div className="mt-4 inline-flex max-w-[560px] items-start gap-2.5 rounded-2xl border border-aisc-sand/25 bg-white/5 px-4 py-2.5 text-left text-body-sm text-aisc-sand/85 backdrop-blur-xs sm:items-center sm:rounded-full sm:py-1.5">
-              <span className="mt-[0.45em] size-2 shrink-0 rounded-full bg-aisc-coral animate-pulse sm:mt-0" />
-              <span>{d.estadoInscripciones}</span>
-            </div>
-
-            {/* Botones de acción principales */}
-            <div className="mt-6 flex w-full max-w-[360px] flex-col items-stretch gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center [&>*]:justify-center">
-              <Link className={CTA_LINK_PRIMARY} href={rutaAplicar}>
-                {d.ctaAplicar}
-              </Link>
-              <button
-                type="button"
-                onClick={() => abrirPestaña("tracks", true)}
-                className={CTA_LINK}
-              >
-                {d.ctaVerBases}
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Los organizadores, en una banda de arena pegada al hero: igual que en /sprint */}
-      <section className="bg-aisc-sand">
-        <div className="mx-auto w-full max-w-[1448px] px-6 sm:px-8 md:px-16">
-          <div className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:gap-10 md:py-7">
-            <p className="text-kicker whitespace-nowrap text-aisc-muted sm:flex-none">
-              {idioma === "en"
-                ? "Organized by"
-                : idioma === "pt"
-                ? "Organizam"
-                : "Organizan"}
-            </p>
-            <ul className="flex flex-wrap items-center gap-x-7 gap-y-4 sm:ml-auto sm:gap-x-12">
-              <li>
-                <Link
-                  className="block transition-opacity hover:opacity-60"
-                  href={rutaEn(idioma, "/")}
-                  title="AI Safety Colombia"
-                >
-                  <img
-                    alt="AI Safety Colombia"
-                    className="h-9 w-auto object-contain sm:h-11"
-                    decoding="async"
-                    src="/aisc/logo-lockup-oscuro.png"
-                  />
-                </Link>
-              </li>
-              <li>
-                <a
-                  className="block transition-opacity hover:opacity-60"
-                  href="https://www.instagram.com/csuniandes/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  title="IEEE Computer Society Uniandes"
-                >
-                  <img
-                    alt="IEEE Computer Society Uniandes"
-                    className="h-11 w-auto max-w-[170px] object-contain sm:h-[58px] sm:max-w-[200px]"
-                    decoding="async"
-                    height={167}
-                    src="/aisc/aliados/ieee-cs-uniandes.png"
-                    width={560}
-                  />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Las tres cifras duras, en tarjetas oscuras debajo de la tira de logos: igual que en /sprint */}
-      <section className="bg-aisc-cream pt-9 pb-8 md:pt-10 md:pb-10">
-        <div className="mx-auto w-full max-w-[1448px] px-8 md:px-16">
-          <dl className="grid grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-3">
-            {datosClave.map((item) => (
-              <div
-                className="flex min-h-[122px] flex-col justify-start rounded-[8px] bg-aisc-forest-deep px-5 py-5 text-aisc-sand md:min-h-[142px] md:px-7 md:py-7"
-                key={item.valor}
-              >
-                <dt className="text-display-4 md:text-display-4-lg break-words">
-                  {item.valor}
-                </dt>
-                <dd className="text-body-sm mt-3 text-aisc-sand">{item.nota}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+    <main className={`${PAGE_SHELL} ${styles.page}`}>
+      <DefAccHero idioma={idioma} datos={d} onTracks={() => cambiarPestaña("tracks")} />
 
       {/* ------------------------------------------------ SUBNAV PESTAÑAS ESTILO APART */}
-      <div ref={inicioPestañas} aria-hidden="true" />
-      {/* Se pega justo debajo de la pastilla flotante del sitio (72px / 88px),
-          no en top-0, donde la pastilla la tapaba. */}
-      <nav
+      <nav id="defacc-secciones"
         aria-label="Secciones del evento"
-        className={`sticky top-[72px] z-40 border-b border-aisc-line bg-white/95 backdrop-blur-md md:top-[88px] md:px-12 before:pointer-events-none before:absolute before:inset-x-0 before:bottom-full before:h-[72px] before:bg-white md:before:h-[88px] ${pegada ? "before:block" : "before:hidden"}`}
+        className={styles.tabs}
       >
         <div className="mx-auto flex max-w-[860px] items-center justify-start gap-4 overflow-x-auto px-4 py-2.5 no-scrollbar [mask-image:linear-gradient(to_right,black_88%,transparent)] sm:[mask-image:none] md:px-0 md:py-3">
           <div className="flex items-center gap-1 md:gap-2">
@@ -349,7 +109,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                 <button
                   key={tab.id}
                   type="button"
-                  onClick={() => abrirPestaña(tab.id)}
+                  onClick={() => cambiarPestaña(tab.id)}
                   aria-pressed={activo}
                   className={`text-body-sm whitespace-nowrap rounded-full px-3.5 py-2 font-medium transition-all md:px-4 ${
                     activo
@@ -366,7 +126,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
       </nav>
 
       {/* ------------------------------------------------ CUERPO PRINCIPAL SOBRIO (ESTILO APART) */}
-      <section className="mx-auto w-full max-w-[860px] px-6 py-12 md:px-8 md:py-16">
+      <section id="defacc-contenido" className={styles.content}>
         <div className="min-w-0">
             {/* PESTAÑA 1: RESUMEN */}
             {pestaña === "resumen" && (
@@ -485,46 +245,6 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                       </li>
                     ))}
                   </ul>
-                </div>
-
-                {/* 5. Premios */}
-                <div className="border-t border-aisc-line pt-8">
-                  <div className="mb-4">
-                    <h3 className="text-display-3 text-aisc-ink">
-                      {d.resumen.premiosTitulo}
-                    </h3>
-                    <p className="text-body-sm text-aisc-muted mt-1">
-                      {idioma === "en"
-                        ? "Judges will evaluate submissions and determine the top three projects at the conclusion of the sprint."
-                        : idioma === "pt"
-                        ? "Os jurados avaliarão as entregas e definirão os três primeiros lugares no encerramento do evento."
-                        : "Los jurados evalúan los proyectos y definen los tres primeros lugares al cierre de la jornada."}
-                    </p>
-                  </div>
-
-                  <PremiosSoberos
-                    premios={d.premiosPodio}
-                    premioDifusion={d.premioDifusion}
-                  />
-                </div>
-
-                {/* 6. Mascota */}
-                <div className="flex flex-col sm:flex-row items-center gap-6 rounded-2xl bg-aisc-forest-deep p-6 text-aisc-sand md:p-8">
-                  <img
-                    src="/aisc/hackathon/cyberbear-clean.png"
-                    alt="Oso de anteojos"
-                    width={180}
-                    height={277}
-                    className="size-36 shrink-0 object-contain drop-shadow-md"
-                  />
-                  <div>
-                    <h3 className="text-display-3 text-aisc-sand">
-                      {d.resumen.mascotaTitulo}
-                    </h3>
-                    <p className="text-body-sm mt-2 text-aisc-sand/85">
-                      {d.resumen.mascotaTexto}
-                    </p>
-                  </div>
                 </div>
 
                 {/* 7. Jueces y mentores (al final de El reto, con retrato cuadrado estilo /sprint) */}
@@ -698,7 +418,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
             {pestaña === "reglas" && (
               <div className="space-y-12">
                 {/* Premios */}
-                <div>
+                <div className={styles.prizePanel}>
                   <h2 className="text-display-2 md:text-display-2-lg text-aisc-ink">
                     {d.resumen.premiosTitulo}
                   </h2>
