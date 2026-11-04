@@ -317,7 +317,16 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
         <div className="relative z-10 mx-auto w-full max-w-[1240px] px-6 pt-28 pb-12 sm:px-8 md:pt-36 md:pb-16">
           <div className="flex flex-col items-center text-center">
             {/* Video y banner oficial con animación de CyberBear propuesto por IEEE Computer Society Uniandes */}
-            <VideoHeroBanner idioma={idioma} />
+            <div className="w-full max-w-[980px] overflow-hidden rounded-2xl border border-white/20 bg-[#faf8f5] shadow-2xl transition-all">
+              <img
+                src="/aisc/hackathon/defacc-banner.jpeg"
+                alt="Defensive Acceleration Hackathon · Sábado 14 Noviembre 2026 · Uniandes · IEEE Computer Society × AI Safety Colombia"
+                width={1500}
+                height={750}
+                decoding="async"
+                className="h-auto w-full object-contain"
+              />
+            </div>
 
             {/* Subtítulo y estado de postulación */}
             <p className="mt-8 max-w-[720px] text-body md:text-body-lg text-aisc-sand/90">
@@ -341,6 +350,18 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
               >
                 {d.ctaVerBases}
               </button>
+              <button
+                type="button"
+                onClick={() => {
+                  abrirPestaña("resumen", true);
+                  setTimeout(() => {
+                    document.getElementById("video-hackathon")?.scrollIntoView({ behavior: "smooth" });
+                  }, 120);
+                }}
+                className={CTA_LINK}
+              >
+                {idioma === "en" ? "▶ Watch video (0:30)" : idioma === "pt" ? "▶ Assistir vídeo (0:30)" : "▶ Ver video (0:30)"}
+              </button>
             </div>
           </div>
         </div>
@@ -349,66 +370,84 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
       {/* Los organizadores y anfitriones, en una banda de arena pegada al hero */}
       <section className="border-b border-aisc-line/60 bg-aisc-sand">
         <div className="mx-auto w-full max-w-[1448px] px-6 sm:px-8 md:px-16">
-          <div className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:gap-8 md:py-7">
-            <p className="text-kicker whitespace-nowrap text-aisc-muted sm:flex-none">
-              {idioma === "en"
-                ? "Organized by"
-                : idioma === "pt"
-                ? "Organizam"
-                : "Organizan"}
-            </p>
-            <ul className="flex flex-wrap items-center gap-x-6 gap-y-4 sm:ml-auto sm:gap-x-10 md:gap-x-12">
-              <li>
-                <Link
-                  className="block transition-opacity hover:opacity-60"
-                  href={rutaEn(idioma, "/")}
-                  title="AI Safety Colombia"
-                >
-                  <img
-                    alt="AI Safety Colombia"
-                    className="h-9 w-auto object-contain sm:h-11"
-                    decoding="async"
-                    src="/aisc/logo-lockup-oscuro.png"
-                  />
-                </Link>
-              </li>
-              <li>
-                <a
-                  className="block transition-opacity hover:opacity-60"
-                  href="https://www.instagram.com/csuniandes/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  title="IEEE Computer Society Uniandes"
-                >
-                  <img
-                    alt="IEEE Computer Society Uniandes"
-                    className="h-10 w-auto max-w-[170px] object-contain sm:h-[50px] sm:max-w-[200px]"
-                    decoding="async"
-                    height={167}
-                    src="/aisc/aliados/ieee-cs-uniandes-original.svg"
-                    width={560}
-                  />
-                </a>
-              </li>
-              <li>
-                <a
-                  className="block transition-opacity hover:opacity-60"
-                  href="https://sistemas.uniandes.edu.co/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  title="Universidad de los Andes — Departamento de Ingeniería de Sistemas y Computación (DISC / ISIS)"
-                >
-                  <img
-                    alt="Universidad de los Andes — Departamento de Ingeniería de Sistemas y Computación"
-                    className="h-9 w-auto max-w-[190px] object-contain sm:h-[46px] sm:max-w-[240px]"
-                    decoding="async"
-                    height={725}
-                    src="/aisc/aliados/uniandes-disc.png"
-                    width={2170}
-                  />
-                </a>
-              </li>
-            </ul>
+          <div className="flex flex-col gap-5 py-6 lg:flex-row lg:items-center lg:justify-between lg:gap-8 md:py-7">
+            {/* 1. ORGANIZAN: solo AIS y IEEE */}
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+              <p className="text-kicker whitespace-nowrap text-aisc-muted sm:flex-none">
+                {idioma === "en"
+                  ? "Organized by"
+                  : idioma === "pt"
+                  ? "Organizam"
+                  : "Organizan"}
+              </p>
+              <ul className="flex flex-wrap items-center gap-x-6 gap-y-3 sm:gap-x-8">
+                <li>
+                  <Link
+                    className="block transition-opacity hover:opacity-60"
+                    href={rutaEn(idioma, "/")}
+                    title="AI Safety Colombia"
+                  >
+                    <img
+                      alt="AI Safety Colombia"
+                      className="h-8 w-auto object-contain sm:h-10"
+                      decoding="async"
+                      src="/aisc/logo-lockup-oscuro.png"
+                    />
+                  </Link>
+                </li>
+                <li>
+                  <a
+                    className="block transition-opacity hover:opacity-60"
+                    href="https://www.instagram.com/csuniandes/"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    title="IEEE Computer Society Uniandes"
+                  >
+                    <img
+                      alt="IEEE Computer Society Uniandes"
+                      className="h-9 w-auto max-w-[160px] object-contain sm:h-[48px] sm:max-w-[190px]"
+                      decoding="async"
+                      height={167}
+                      src="/aisc/aliados/ieee-cs-uniandes-original.svg"
+                      width={560}
+                    />
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Separador vertical en pantallas grandes */}
+            <div
+              className="hidden h-10 w-px bg-aisc-forest/15 lg:block"
+              aria-hidden="true"
+            />
+
+            {/* 2. INVITA: con la especificación de que es solo ISIS */}
+            <div className="flex flex-col gap-3 border-t border-aisc-line/50 pt-4 sm:flex-row sm:items-center sm:gap-5 lg:border-t-0 lg:pt-0">
+              <p className="text-kicker whitespace-nowrap text-aisc-muted sm:flex-none">
+                {idioma === "en"
+                  ? "Invited by (Systems & Computing Dept. · ISIS)"
+                  : idioma === "pt"
+                  ? "Convida (Depto. de Engenharia de Sistemas · ISIS)"
+                  : "Invita (Depto. de Ingeniería de Sistemas · ISIS)"}
+              </p>
+              <a
+                className="block transition-opacity hover:opacity-60"
+                href="https://sistemas.uniandes.edu.co/"
+                rel="noopener noreferrer"
+                target="_blank"
+                title="Universidad de los Andes — Departamento de Ingeniería de Sistemas y Computación (DISC / ISIS)"
+              >
+                <img
+                  alt="Universidad de los Andes — Departamento de Ingeniería de Sistemas y Computación (DISC / ISIS)"
+                  className="h-9 w-auto max-w-[190px] object-contain sm:h-[46px] sm:max-w-[240px]"
+                  decoding="async"
+                  height={725}
+                  src="/aisc/aliados/uniandes-disc.png"
+                  width={2170}
+                />
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -487,6 +526,24 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                       <p key={i}>{p}</p>
                     ))}
                   </div>
+                </div>
+
+                
+
+                {/* Video oficial del evento */}
+                <div id="video-hackathon" className="scroll-mt-36 rounded-2xl border border-aisc-forest/20 bg-aisc-sand/40 p-6 md:p-8">
+                  <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <div>
+                      <span className="text-kicker text-aisc-coral font-bold">
+                        {idioma === "en" ? "Official Video" : idioma === "pt" ? "Vídeo Oficial" : "Video oficial"}
+                      </span>
+                      <h3 className="text-display-3 text-aisc-forest mt-1">
+                        {idioma === "en" ? "CyberBear presents the Hackathon" : idioma === "pt" ? "CyberBear apresenta o Hackathon" : "CyberBear presenta el Hackathon"}
+                      </h3>
+                    </div>
+                    <span className="text-meta text-aisc-muted font-mono">0:30 min</span>
+                  </div>
+                  <VideoHeroBanner idioma={idioma} />
                 </div>
 
                 {/* 2. Colombia */}
