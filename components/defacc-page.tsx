@@ -32,6 +32,15 @@ function FondoBinario() {
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 overflow-hidden select-none"
     >
+      {/* Pattern de matriz binaria sutil con números verdes y naranjas propuesto por IEEE */}
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: "url('/aisc/hackathon/binario-pattern.svg')",
+          backgroundRepeat: "repeat",
+          backgroundSize: "520px 460px",
+        }}
+      />
       {/* Ala binaria izquierda extraída directamente del flyer */}
       <img
         src="/aisc/hackathon/binario-izq.webp"
@@ -50,6 +59,84 @@ function FondoBinario() {
         decoding="async"
         className="absolute top-0 right-0 bottom-0 h-full w-auto object-cover opacity-75 md:opacity-95"
       />
+    </div>
+  );
+}
+
+function VideoHeroBanner({ idioma = "es" }: { idioma?: Idioma }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const etiqueta =
+    idioma === "en"
+      ? (isPlaying ? "Pause video" : "Play official video")
+      : idioma === "pt"
+      ? (isPlaying ? "Pausar vídeo" : "Reproduzir vídeo oficial")
+      : (isPlaying ? "Pausar video" : "Reproducir video oficial");
+
+  const togglePlay = () => {
+    const el = videoRef.current;
+    if (!el) return;
+    if (el.paused) {
+      void el.play().catch(() => {});
+    } else {
+      el.pause();
+    }
+  };
+
+  return (
+    <div className="group relative w-full max-w-[980px] overflow-hidden rounded-2xl border border-white/20 bg-[#faf8f5] shadow-2xl transition-all">
+      <video
+        ref={videoRef}
+        controls={isPlaying}
+        muted={!isPlaying}
+        playsInline
+        preload="none"
+        poster="/aisc/hackathon/defacc-banner.jpeg"
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        onEnded={() => setIsPlaying(false)}
+        aria-label={
+          idioma === "en"
+            ? "Defensive Acceleration Hackathon official video animation"
+            : idioma === "pt"
+            ? "Animação em vídeo oficial do Defensive Acceleration Hackathon"
+            : "Video de animación oficial del Defensive Acceleration Hackathon"
+        }
+        className="block aspect-[2/1] h-auto w-full object-contain"
+      >
+        <source src="/aisc/hackathon/defacc-logos-juntos.mp4" type="video/mp4" />
+      </video>
+
+      {/* Botón flotante de reproducción en el centro antes de dar play */}
+      {!isPlaying && (
+        <button
+          type="button"
+          onClick={togglePlay}
+          aria-label={etiqueta}
+          className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/15 transition-all duration-300 hover:bg-black/25 focus:outline-none focus-visible:ring-4 focus-visible:ring-aisc-coral cursor-pointer"
+        >
+          <span className="flex size-16 sm:size-20 items-center justify-center rounded-full border-2 border-white/90 bg-aisc-forest/90 text-white shadow-xl backdrop-blur-sm transition-transform duration-200 group-hover:scale-110">
+            <svg
+              viewBox="0 0 32 32"
+              width="32"
+              height="32"
+              fill="currentColor"
+              className="ml-1 size-7 sm:size-9"
+              aria-hidden="true"
+            >
+              <path d="M10 5v22l18-11z" />
+            </svg>
+          </span>
+          <span className="rounded-full bg-aisc-forest-deep/85 px-4 py-1.5 text-xs font-semibold tracking-wide text-aisc-sand shadow-md backdrop-blur-xs">
+            {idioma === "en"
+              ? "▶ Play official video"
+              : idioma === "pt"
+              ? "▶ Reproduzir vídeo oficial"
+              : "▶ Ver video oficial"}
+          </span>
+        </button>
+      )}
     </div>
   );
 }
@@ -211,7 +298,17 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
         ];
 
   return (
-    <main className={PAGE_SHELL}>
+    <main
+      className={`${PAGE_SHELL} relative`}
+      style={{
+        backgroundImage:
+          "url('/aisc/hackathon/binario-izq.webp'), url('/aisc/hackathon/binario-der.webp'), url('/aisc/hackathon/binario-pattern.svg')",
+        backgroundPosition: "left top, right top, center top",
+        backgroundRepeat: "repeat-y, repeat-y, repeat",
+        backgroundSize:
+          "clamp(90px, 16vw, 240px) auto, clamp(90px, 16vw, 240px) auto, 520px 460px",
+      }}
+    >
       {/* ------------------------------------------------------------ HERO */}
       <section className="relative overflow-hidden bg-aisc-forest-deep text-aisc-sand">
         <FondoBinario />
@@ -219,17 +316,8 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
 
         <div className="relative z-10 mx-auto w-full max-w-[1240px] px-6 pt-28 pb-12 sm:px-8 md:pt-36 md:pb-16">
           <div className="flex flex-col items-center text-center">
-            {/* Banner oficial propuesto por IEEE Computer Society Uniandes */}
-            <div className="w-full max-w-[980px] overflow-hidden rounded-2xl border border-white/20 bg-[#faf8f5] shadow-2xl transition-all">
-              <img
-                src="/aisc/hackathon/banner-ieee.png"
-                alt="Defensive Acceleration Hackathon · Sábado 14 Noviembre 2026 · Uniandes · IEEE Computer Society × AI Safety Colombia"
-                width={1024}
-                height={512}
-                decoding="async"
-                className="h-auto w-full object-contain"
-              />
-            </div>
+            {/* Video y banner oficial con animación de CyberBear propuesto por IEEE Computer Society Uniandes */}
+            <VideoHeroBanner idioma={idioma} />
 
             {/* Subtítulo y estado de postulación */}
             <p className="mt-8 max-w-[720px] text-body md:text-body-lg text-aisc-sand/90">
@@ -258,10 +346,10 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
         </div>
       </section>
 
-      {/* Los organizadores, en una banda de arena pegada al hero: igual que en /sprint */}
-      <section className="bg-aisc-sand">
+      {/* Los organizadores y anfitriones, en una banda de arena pegada al hero */}
+      <section className="border-b border-aisc-line/60 bg-aisc-sand">
         <div className="mx-auto w-full max-w-[1448px] px-6 sm:px-8 md:px-16">
-          <div className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:gap-10 md:py-7">
+          <div className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:gap-8 md:py-7">
             <p className="text-kicker whitespace-nowrap text-aisc-muted sm:flex-none">
               {idioma === "en"
                 ? "Organized by"
@@ -269,7 +357,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                 ? "Organizam"
                 : "Organizan"}
             </p>
-            <ul className="flex flex-wrap items-center gap-x-7 gap-y-4 sm:ml-auto sm:gap-x-12">
+            <ul className="flex flex-wrap items-center gap-x-6 gap-y-4 sm:ml-auto sm:gap-x-10 md:gap-x-12">
               <li>
                 <Link
                   className="block transition-opacity hover:opacity-60"
@@ -294,11 +382,29 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                 >
                   <img
                     alt="IEEE Computer Society Uniandes"
-                    className="h-11 w-auto max-w-[170px] object-contain sm:h-[58px] sm:max-w-[200px]"
+                    className="h-10 w-auto max-w-[170px] object-contain sm:h-[50px] sm:max-w-[200px]"
                     decoding="async"
                     height={167}
-                    src="/aisc/aliados/ieee-cs-uniandes.png"
+                    src="/aisc/aliados/ieee-cs-uniandes-original.svg"
                     width={560}
+                  />
+                </a>
+              </li>
+              <li>
+                <a
+                  className="block transition-opacity hover:opacity-60"
+                  href="https://sistemas.uniandes.edu.co/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  title="Universidad de los Andes — Departamento de Ingeniería de Sistemas y Computación (DISC / ISIS)"
+                >
+                  <img
+                    alt="Universidad de los Andes — Departamento de Ingeniería de Sistemas y Computación"
+                    className="h-9 w-auto max-w-[190px] object-contain sm:h-[46px] sm:max-w-[240px]"
+                    decoding="async"
+                    height={725}
+                    src="/aisc/aliados/uniandes-disc.png"
+                    width={2170}
                   />
                 </a>
               </li>
