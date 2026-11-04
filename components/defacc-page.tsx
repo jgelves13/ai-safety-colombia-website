@@ -366,67 +366,64 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
       {/* Los organizadores y anfitriones, en una banda de arena pegada al hero */}
       <section className="border-b border-aisc-line/60 bg-aisc-sand">
         <div className="mx-auto w-full max-w-[1448px] px-6 sm:px-8 md:px-16">
-          <div className="flex flex-col gap-5 py-6 lg:flex-row lg:items-center lg:justify-between lg:gap-8 md:py-7">
-            {/* 1. ORGANIZAN: solo AIS y IEEE */}
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-              <p className="text-kicker whitespace-nowrap text-aisc-muted sm:flex-none">
+          <div className="flex flex-col gap-5 py-6 md:flex-row md:items-center md:gap-10 md:py-7">
+            {/* 1. ORGANIZAN: AISC e IEEE CS */}
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+              <span className="text-kicker whitespace-nowrap text-aisc-muted">
                 {idioma === "en"
                   ? "Organized by"
                   : idioma === "pt"
                   ? "Organizam"
                   : "Organizan"}
-              </p>
-              <ul className="flex flex-wrap items-center gap-x-6 gap-y-3 sm:gap-x-8">
-                <li>
-                  <Link
-                    className="block transition-opacity hover:opacity-60"
-                    href={rutaEn(idioma, "/")}
-                    title="AI Safety Colombia"
-                  >
-                    <img
-                      alt="AI Safety Colombia"
-                      className="h-8 w-auto object-contain sm:h-10"
-                      decoding="async"
-                      src="/aisc/logo-lockup-oscuro.png"
-                    />
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    className="block transition-opacity hover:opacity-60"
-                    href="https://www.instagram.com/csuniandes/"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    title="IEEE Computer Society Uniandes"
-                  >
-                    <img
-                      alt="IEEE Computer Society Uniandes"
-                      className="h-9 w-auto max-w-[160px] object-contain sm:h-[48px] sm:max-w-[190px]"
-                      decoding="async"
-                      height={167}
-                      src="/aisc/aliados/ieee-cs-uniandes-original.svg"
-                      width={560}
-                    />
-                  </a>
-                </li>
-              </ul>
+              </span>
+              <div className="flex items-center gap-5 sm:gap-7">
+                <Link
+                  className="block transition-opacity hover:opacity-60"
+                  href={rutaEn(idioma, "/")}
+                  title="AI Safety Colombia"
+                >
+                  <img
+                    alt="AI Safety Colombia"
+                    className="h-8 w-auto object-contain sm:h-9"
+                    decoding="async"
+                    src="/aisc/logo-lockup-oscuro.png"
+                  />
+                </Link>
+                <span className="text-aisc-muted/50 font-light" aria-hidden="true">×</span>
+                <a
+                  className="block transition-opacity hover:opacity-60"
+                  href="https://www.instagram.com/csuniandes/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  title="IEEE Computer Society Uniandes"
+                >
+                  <img
+                    alt="IEEE Computer Society Uniandes"
+                    className="h-9 w-auto max-w-[150px] object-contain sm:h-10 sm:max-w-[180px]"
+                    decoding="async"
+                    height={167}
+                    src="/aisc/aliados/ieee-cs-uniandes-original.svg"
+                    width={560}
+                  />
+                </a>
+              </div>
             </div>
 
-            {/* Separador vertical en pantallas grandes */}
+            {/* Separador vertical en desktop */}
             <div
-              className="hidden h-10 w-px bg-aisc-forest/15 lg:block"
+              className="hidden h-8 w-px bg-aisc-forest/20 md:block"
               aria-hidden="true"
             />
 
-            {/* 2. INVITA: con la especificación de que es solo ISIS */}
-            <div className="flex flex-col gap-3 border-t border-aisc-line/50 pt-4 sm:flex-row sm:items-center sm:gap-5 lg:border-t-0 lg:pt-0">
-              <p className="text-kicker whitespace-nowrap text-aisc-muted sm:flex-none">
+            {/* 2. INVITA: Uniandes DISC / ISIS */}
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 border-t border-aisc-line/40 pt-4 md:border-t-0 md:pt-0">
+              <span className="text-kicker whitespace-nowrap text-aisc-muted">
                 {idioma === "en"
                   ? "Invited by"
                   : idioma === "pt"
                   ? "Convida"
                   : "Invita"}
-              </p>
+              </span>
               <a
                 className="block transition-opacity hover:opacity-60"
                 href="https://sistemas.uniandes.edu.co/"
@@ -435,12 +432,12 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                 title="Universidad de los Andes — Departamento de Ingeniería de Sistemas y Computación (DISC / ISIS)"
               >
                 <img
-                  alt="Universidad de los Andes — Departamento de Ingeniería de Sistemas y Computación (DISC / ISIS)"
-                  className="h-11 w-auto max-w-[220px] object-contain sm:h-[58px] sm:max-w-[320px] md:h-[68px] md:max-w-[380px]"
+                  alt="Universidad de los Andes — Departamento de Ingeniería de Sistemas y Computación"
+                  className="h-9 w-auto max-w-[210px] object-contain sm:h-10 sm:max-w-[240px]"
                   decoding="async"
-                  height={488}
+                  height={725}
                   src="/aisc/aliados/uniandes-disc.png"
-                  width={2121}
+                  width={2170}
                 />
               </a>
             </div>
