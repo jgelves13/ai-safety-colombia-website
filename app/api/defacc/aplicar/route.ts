@@ -189,7 +189,7 @@ async function confirmarPorCorreo(datos: Record<string, string>): Promise<void> 
   const cuerpo = [
     `¡Hola ${datos.firstName}!`,
     "",
-    "Recibimos tu postulación al Defensive Acceleration Hackathon, que celebraremos el sábado 14 de noviembre de 2026 de 8:00 a. m. a 8:00 p. m. en la Universidad de los Andes, Bogotá.",
+    "Recibimos tu postulación al Defensive Acceleration Hackathon, que celebraremos el sábado 14 de noviembre de 2026 de 8:00 a.m. a 8:00 p.m. en la Universidad de los Andes, Bogotá.",
     "",
     `Modalidad: ${datos.teamMode === "equipo" ? "En equipo" : "Individual (te ayudaremos a conectar con un equipo en el matchmaking matutino)"}`,
     `Track preferido: ${trackLegible}`,

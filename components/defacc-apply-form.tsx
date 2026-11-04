@@ -130,7 +130,7 @@ export default function DefAccApplyForm({
           ? "You must confirm full in-person availability for Saturday, November 14."
           : idioma === "pt"
           ? "Você deve confirmar presença integral no sábado, 14 de novembro."
-          : "Debes confirmar tu disponibilidad presencial completa el sábado 14 de noviembre (8:00 a. m. a 8:00 p. m.)."
+          : "Debes confirmar tu disponibilidad presencial completa el sábado 14 de noviembre (8:00 a.m. a 8:00 p.m.)."
       );
       return;
     }
@@ -589,7 +589,7 @@ export default function DefAccApplyForm({
                   <span className="text-meta text-aisc-muted mt-0.5 block">
                     {idioma === "en"
                       ? "I want to be matched with a team at the 9:40 AM mixer."
-                      : "Quiero armar equipo con otros participantes en la dinámica de las 9:40 a. m."}
+                      : "Quiero armar equipo con otros participantes en la dinámica de las 9:40 a.m."}
                   </span>
                 </div>
               </label>
@@ -739,7 +739,7 @@ export default function DefAccApplyForm({
               className="mt-1 size-5 rounded text-aisc-forest"
             />
             <span className="text-body-sm font-medium text-aisc-ink leading-relaxed">
-              <strong>Compromiso de asistencia:</strong> Confirmo que podré asistir de forma presencial a la Universidad de los Andes el <strong>sábado 14 de noviembre de 2026</strong> desde las 8:00 a. m. hasta las 8:00 p. m.
+              <strong>Compromiso de asistencia:</strong> Confirmo que podré asistir de forma presencial a la Universidad de los Andes el <strong>sábado 14 de noviembre de 2026</strong> desde las 8:00 a.m. hasta las 8:00 p.m.
             </span>
           </label>
         </div>

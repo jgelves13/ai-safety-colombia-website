@@ -285,7 +285,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
       : [
           {
             valor: "14 de noviembre",
-            nota: "Un sábado completo, de 8:00 a. m. a 8:00 p. m.",
+            nota: "Un sábado completo, de 8:00 a.m. a 8:00 p.m.",
           },
           {
             valor: "Presencial en Bogotá",

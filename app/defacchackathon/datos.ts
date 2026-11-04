@@ -188,7 +188,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       fechaRotulo: "Fecha",
       fechaValor: "Sábado 14 de noviembre de 2026",
       horarioRotulo: "Horario",
-      horarioValor: "8:00 a. m. a 8:00 p. m. (8 h de trabajo)",
+      horarioValor: "8:00 a.m. a 8:00 p.m. (8 h de trabajo)",
       lugarRotulo: "Lugar",
       lugarValor: "Universidad de los Andes, Bogotá",
       formatoRotulo: "Formato",
@@ -229,7 +229,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       quienTitulo: "¿Quién puede participar?",
       quienPuntos: [
         "Estudiantes universitarios de cualquier semestre y carrera, investigadores y profesionales de la industria o el sector público.",
-        "Equipos de 2 a 4 personas. Quien aplique solo podrá conformar equipo durante la sesión de apertura a las 8:30 a. m.",
+        "Equipos de 2 a 4 personas. Quien aplique solo podrá conformar equipo durante la sesión de apertura a las 8:30 a.m.",
         "No hace falta experiencia previa en seguridad de IA: cada frente ofrece puntos de partida accesibles (resolubles con Python, suites de evaluación guiadas o modelado formal de amenazas y gobernanza sin programar en el Track 5).",
         "Cupo limitado por aforo para garantizar un espacio de trabajo óptimo, conectividad y alimentación.",
       ],
@@ -343,7 +343,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "Atribución y transparencia: todo código, dataset, librería o fragmento generado con IA debe estar claramente documentado y citado en la entrega.",
       ],
       entregablesTitulo: "Entregables de cada equipo",
-      entregablesHora: "Hora límite estricta: sábado 14 de noviembre a las 5:00 p. m.",
+      entregablesHora: "Hora límite estricta: sábado 14 de noviembre a las 5:00 p.m.",
       entregables: [
         "Enlace al repositorio ejecutable (GitHub o Google Colab) con código documentado para los Tracks 1 al 4, o al documento de modelado formal de amenazas / estándar técnico-regulatorio verificable para el Track 5 (No-Code).",
         "Ficha técnica de una página (según la plantilla oficial): vector de amenaza, arquitectura o protocolo defensivo, metodología de evaluación, resultados cuantitativos, límites y análisis de riesgo dual.",
@@ -381,7 +381,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       ],
       finalistasTitulo: "Dinámica de selección de ganadores",
       finalistasTexto:
-        "A las 7:00 p. m., tras la deliberación técnica de los jurados, se anuncian los 5 mejores proyectos de la jornada. Cada equipo finalista realiza un pitch en vivo de 4 minutos ante el salón completo y a las 7:25 p. m. el jurado anuncia los tres primeros puestos.",
+        "A las 7:00 p.m., tras la deliberación técnica de los jurados, se anuncian los 5 mejores proyectos de la jornada. Cada equipo finalista realiza un pitch en vivo de 4 minutos ante el salón completo y a las 7:25 p.m. el jurado anuncia los tres primeros puestos.",
       juradosTitulo: "Jueces y mentores",
       juradosTexto:
         "Durante la jornada pasan por la sala investigadores y especialistas en seguridad de IA, ciberseguridad y gobernanza para acompañar a los equipos y evaluar los entregables al cierre del día. La lista confirmada de jurados y mentores se publicará en los próximos días.",
@@ -391,24 +391,24 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       titulo: "Agenda de la jornada",
       subtitulo: "Sábado 14 de noviembre en la Universidad de los Andes, Bogotá",
       agenda: [
-        { hora: "08:00 a. m.", actividad: "Registro e ingreso al campus", detalle: "Control de acceso en portería de Uniandes y ubicación de los participantes." },
-        { hora: "08:30 a. m.", actividad: "Apertura y presentación del reto", detalle: "Presentación de los frentes temáticos, criterios de evaluación y conformación de equipos." },
-        { hora: "09:00 a. m.", actividad: "Inicio del sprint de desarrollo (8 horas)", detalle: "Trabajo continuo de los equipos con acompañamiento de mentores en sala.", destacado: true },
-        { hora: "05:00 p. m.", actividad: "Cierre de entregas", detalle: "Entrega del repositorio con código ejecutable y la ficha técnica de una página.", destacado: true },
-        { hora: "07:00 p. m.", actividad: "Pitches de finalistas y premiación", detalle: "Presentación de los proyectos con mayor puntaje ante el jurado y anuncio de los ganadores.", destacado: true },
+        { hora: "08:00 a.m.", actividad: "Registro e ingreso al campus", detalle: "Control de acceso en portería de Uniandes y ubicación de los participantes." },
+        { hora: "08:30 a.m.", actividad: "Apertura y presentación del reto", detalle: "Presentación de los frentes temáticos, criterios de evaluación y conformación de equipos." },
+        { hora: "09:00 a.m.", actividad: "Inicio del sprint de desarrollo (8 horas)", detalle: "Trabajo continuo de los equipos con acompañamiento de mentores en sala.", destacado: true },
+        { hora: "05:00 p.m.", actividad: "Cierre de entregas", detalle: "Entrega del repositorio con código ejecutable y la ficha técnica de una página.", destacado: true },
+        { hora: "07:00 p.m.", actividad: "Pitches de finalistas y premiación", detalle: "Presentación de los proyectos con mayor puntaje ante el jurado y anuncio de los ganadores.", destacado: true },
       ],
       calendarioPrevioTitulo: "Fechas clave de la convocatoria",
       calendarioPrevio: [
         { fecha: "Lunes 2 de noviembre", hito: "Apertura oficial de postulaciones públicas." },
-        { fecha: "Martes 10 de noviembre (11:59 p. m.)", hito: "Cierre estricto de inscripciones y publicación de kits de inicio." },
+        { fecha: "Martes 10 de noviembre (11:59 p.m.)", hito: "Cierre estricto de inscripciones y publicación de kits de inicio." },
         { fecha: "11 al 13 de noviembre", hito: "Revisión de aplicaciones y envío de correos de confirmación con acceso al campus." },
-        { fecha: "Sábado 14 de noviembre", hito: "Jornada presencial del hackatón en la Universidad de los Andes (8:00 a. m. a 8:00 p. m.)." },
+        { fecha: "Sábado 14 de noviembre", hito: "Jornada presencial del hackatón en la Universidad de los Andes (8:00 a.m. a 8:00 p.m.)." },
       ],
       faqTitulo: "Preguntas frecuentes",
       faqs: [
         {
           q: "¿Puedo participar si no tengo equipo previo?",
-          a: "Sí, absolutamente. Puedes postularte individualmente. Durante la apertura de las 8:30 a. m. realizaremos una dinámica guiada de conformación de equipos interdisciplinarios para que nadie compita solo.",
+          a: "Sí, absolutamente. Puedes postularte individualmente. Durante la apertura de las 8:30 a.m. realizaremos una dinámica guiada de conformación de equipos interdisciplinarios para que nadie compita solo.",
         },
         {
           q: "¿Tiene algún costo participar?",
@@ -424,7 +424,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         },
         {
           q: "¿Cómo se evalúa y premia?",
-          a: "Los proyectos se entregan a las 5:00 p. m. (repositorio + ficha técnica de 1 página). Los 5 con mejor puntaje presentan 4 minutos en vivo a las 7:00 p. m. Los tres primeros lugares reciben COP 1.000.000, COP 500.000 y COP 500.000.",
+          a: "Los proyectos se entregan a las 5:00 p.m. (repositorio + ficha técnica de 1 página). Los 5 con mejor puntaje presentan 4 minutos en vivo a las 7:00 p.m. Los tres primeros lugares reciben COP 1.000.000, COP 500.000 y COP 500.000.",
         },
         {
           q: "¿Cómo llego al salón en Uniandes?",

@@ -49,7 +49,7 @@ export default async function AplicarDefAcc() {
                 Inscríbete al Hackathon
               </h1>
               <p className="text-body md:text-body-lg text-aisc-sand/90">
-                8:00 a. m. a 8:00 p. m. en el campus de la Universidad de los Andes en Bogotá.
+                8:00 a.m. a 8:00 p.m. en el campus de la Universidad de los Andes en Bogotá.
                 Cupo limitado por aforo, almuerzo y refrigerios incluidos, mentores técnicos y COP 2.000.000 en premios.
               </p>
             </div>
@@ -76,7 +76,7 @@ export default async function AplicarDefAcc() {
               </p>
               <ul className="text-body-sm text-aisc-ink space-y-1.5 list-disc list-inside">
                 <li>
-                  <strong>Equipos o individual:</strong> puedes inscribirte en equipo (2 a 4 personas) o de forma individual. Si vienes solo, te ayudaremos a conformar equipo en la sesión de matchmaking matutina (9:40 a. m.).
+                  <strong>Equipos o individual:</strong> puedes inscribirte en equipo (2 a 4 personas) o de forma individual. Si vienes solo, te ayudaremos a conformar equipo en la sesión de matchmaking matutina (9:40 a.m.).
                 </li>
                 <li>
                   <strong>Ingreso al campus:</strong> el número de documento de identidad es estrictamente necesario para registrar tu pase de seguridad peatonal en la portería de la Universidad de los Andes.
@@ -85,7 +85,7 @@ export default async function AplicarDefAcc() {
                   <strong>Almuerzo y logística:</strong> incluimos almuerzo completo en el campus para todos los participantes seleccionados, estaciones de café y snacks durante toda la jornada.
                 </li>
                 <li>
-                  <strong>Cierre de postulaciones:</strong> martes 10 de noviembre a las 11:59 p. m.
+                  <strong>Cierre de postulaciones:</strong> martes 10 de noviembre a las 11:59 p.m.
                 </li>
               </ul>
               <div className="pt-2 text-body-sm">
