@@ -376,7 +376,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                   ? "Organizam"
                   : "Organizan"}
               </span>
-              <div className="flex items-center gap-5 sm:gap-7">
+              <div className="flex items-center gap-5 sm:gap-8">
                 <Link
                   className="block transition-opacity hover:opacity-60"
                   href={rutaEn(idioma, "/")}
@@ -384,12 +384,12 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                 >
                   <img
                     alt="AI Safety Colombia"
-                    className="h-9 w-auto object-contain sm:h-10 md:h-11"
+                    className="h-12 w-auto object-contain sm:h-14 md:h-16"
                     decoding="async"
                     src="/aisc/logo-lockup-oscuro.png"
                   />
                 </Link>
-                <span className="text-aisc-coral font-light text-xl" aria-hidden="true">×</span>
+                <span className="text-aisc-coral font-light text-2xl sm:text-3xl" aria-hidden="true">×</span>
                 <a
                   className="block transition-opacity hover:opacity-60"
                   href="https://www.instagram.com/csuniandes/"
@@ -399,7 +399,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                 >
                   <img
                     alt="IEEE Computer Society Uniandes"
-                    className="h-10 w-auto max-w-[170px] object-contain sm:h-11 sm:max-w-[200px] md:h-12 md:max-w-[220px]"
+                    className="h-12 w-auto max-w-[190px] object-contain sm:h-14 sm:max-w-[230px] md:h-[68px] md:max-w-[260px]"
                     decoding="async"
                     height={167}
                     src="/aisc/aliados/ieee-cs-uniandes-original.svg"
@@ -411,7 +411,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
 
             {/* Separador vertical en desktop */}
             <div
-              className="hidden h-14 w-px bg-aisc-forest/15 md:block"
+              className="hidden h-20 w-px bg-aisc-forest/15 md:block"
               aria-hidden="true"
             />
 
@@ -433,7 +433,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
               >
                 <img
                   alt="Universidad de los Andes — Departamento de Ingeniería de Sistemas y Computación"
-                  className="-mt-2 -mb-1.5 block h-auto w-full max-w-[280px] object-contain sm:-mt-2.5 sm:max-w-[320px] md:max-w-[360px]"
+                  className="-mt-2 -mb-1.5 block h-auto w-full max-w-[280px] object-contain sm:-mt-2.5 sm:max-w-[320px] md:max-w-[350px]"
                   decoding="async"
                   height={725}
                   src="/aisc/aliados/uniandes-disc.png"
