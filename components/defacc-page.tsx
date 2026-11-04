@@ -98,10 +98,10 @@ function VideoHeroBanner({ idioma = "es" }: { idioma?: Idioma }) {
         onEnded={() => setIsPlaying(false)}
         aria-label={
           idioma === "en"
-            ? "Defensive Acceleration Hackathon official video animation"
+            ? "Defensive Acceleration Hackathon official animation"
             : idioma === "pt"
-            ? "Animação em vídeo oficial do Defensive Acceleration Hackathon"
-            : "Video de animación oficial del Defensive Acceleration Hackathon"
+            ? "Animação oficial do Defensive Acceleration Hackathon"
+            : "Animación oficial del Defensive Acceleration Hackathon"
         }
         className="block aspect-[2/1] h-auto w-full object-contain"
       >
@@ -316,7 +316,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
 
         <div className="relative z-10 mx-auto w-full max-w-[1240px] px-6 pt-28 pb-12 sm:px-8 md:pt-36 md:pb-16">
           <div className="flex flex-col items-center text-center">
-            {/* Video y banner oficial con animación de CyberBear propuesto por IEEE Computer Society Uniandes */}
+            {/* Banner oficial propuesto por IEEE Computer Society Uniandes */}
             <div className="w-full max-w-[980px] overflow-hidden rounded-2xl border border-white/20 bg-[#faf8f5] shadow-2xl transition-all">
               <img
                 src="/aisc/hackathon/defacc-banner.jpeg"
@@ -426,10 +426,10 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
             <div className="flex flex-col gap-3 border-t border-aisc-line/50 pt-4 sm:flex-row sm:items-center sm:gap-5 lg:border-t-0 lg:pt-0">
               <p className="text-kicker whitespace-nowrap text-aisc-muted sm:flex-none">
                 {idioma === "en"
-                  ? "Invited by (Systems & Computing Dept. · ISIS)"
+                  ? "Invited by"
                   : idioma === "pt"
-                  ? "Convida (Depto. de Engenharia de Sistemas · ISIS)"
-                  : "Invita (Depto. de Ingeniería de Sistemas · ISIS)"}
+                  ? "Convida"
+                  : "Invita"}
               </p>
               <a
                 className="block transition-opacity hover:opacity-60"
@@ -538,7 +538,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                         {idioma === "en" ? "Official Video" : idioma === "pt" ? "Vídeo Oficial" : "Video oficial"}
                       </span>
                       <h3 className="text-display-3 text-aisc-forest mt-1">
-                        {idioma === "en" ? "CyberBear presents the Hackathon" : idioma === "pt" ? "CyberBear apresenta o Hackathon" : "CyberBear presenta el Hackathon"}
+                        {idioma === "en" ? "Official Hackathon Animation" : idioma === "pt" ? "Animação Oficial do Hackathon" : "Animación oficial del hackatón"}
                       </h3>
                     </div>
                     <span className="text-meta text-aisc-muted font-mono">0:30 min</span>
