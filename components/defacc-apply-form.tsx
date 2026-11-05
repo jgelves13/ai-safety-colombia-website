@@ -341,7 +341,7 @@ const TEXTOS: Record<Idioma, Textos> = {
     },
     companeros: "Nombres y correos de tu equipo",
     companerosAyuda: "Hasta tres personas, con el correo que usaron o van a usar en su postulación.",
-    companeroNombre: "Nombre",
+    companeroNombre: "Nombre completo",
     companeroCorreo: "Correo",
     agregarCompanero: "+ Agregar integrante",
     quitarCompanero: "Quitar integrante",
@@ -462,7 +462,7 @@ const TEXTOS: Record<Idioma, Textos> = {
     },
     companeros: "Your teammates' names and emails",
     companerosAyuda: "Up to three people, with the email they used or will use to apply.",
-    companeroNombre: "Name",
+    companeroNombre: "Full name",
     companeroCorreo: "Email",
     agregarCompanero: "+ Add teammate",
     quitarCompanero: "Remove teammate",
@@ -583,7 +583,7 @@ const TEXTOS: Record<Idioma, Textos> = {
     },
     companeros: "Nomes e e-mails da sua equipe",
     companerosAyuda: "Até três pessoas, com o e-mail que usaram ou vão usar na candidatura.",
-    companeroNombre: "Nome",
+    companeroNombre: "Nome completo",
     companeroCorreo: "E-mail",
     agregarCompanero: "+ Adicionar integrante",
     quitarCompanero: "Remover integrante",
@@ -1332,7 +1332,7 @@ export default function DefAccApplyForm({
                       >
                         <div>
                           <label className={etiqueta} htmlFor={idNombre}>
-                            {t.companeroNombre} {i + 1}
+                            {t.companeroNombre}<span className="sr-only"> {i + 1}</span>
                           </label>
                           <input
                             id={idNombre}
@@ -1348,7 +1348,7 @@ export default function DefAccApplyForm({
                         </div>
                         <div>
                           <label className={etiqueta} htmlFor={idCorreo}>
-                            {t.companeroCorreo} {i + 1}
+                            {t.companeroCorreo}<span className="sr-only"> {i + 1}</span>
                           </label>
                           <input
                             id={idCorreo}

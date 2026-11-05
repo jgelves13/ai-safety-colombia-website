@@ -31,7 +31,7 @@ export default async function InscricaoDefAcc() {
         <FondoBinario />
         <SiteHeader active="/pt/defacchackathon" />
         <div className={HERO_INNER}>
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 max-w-[960px]">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 w-full">
             <div className="flex max-w-[700px] flex-col gap-4">
               <span className="text-kicker text-aisc-sand/70">
                 Defensive Acceleration Hackathon · Sábado 14 de novembro de 2026 · Uniandes
