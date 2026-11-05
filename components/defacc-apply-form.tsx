@@ -184,12 +184,12 @@ type Textos = {
 
 const TEXTOS: Record<Idioma, Textos> = {
   es: {
-    noIniciadoTitulo: "Las inscripciones abren pronto",
+    noIniciadoTitulo: "Las postulaciones abren pronto",
     noIniciadoCuerpo:
       "Estamos cerrando los detalles de logística y de ingreso al campus con IEEE Computer Society Uniandes. Mientras abrimos el formulario, puedes revisar los cinco frentes temáticos o entrar al grupo de WhatsApp para enterarte apenas abra.",
     verFrentes: "Ver los frentes temáticos",
     unirmeGrupo: "Entrar al grupo de WhatsApp",
-    cerradoTitulo: "Las inscripciones ya cerraron",
+    cerradoTitulo: "Las postulaciones ya cerraron",
     cerradoCuerpo: (cierre) =>
       `El plazo para postularse terminó el ${cierre}. Si te postulaste, te escribimos al correo que nos diste con la respuesta y las instrucciones para entrar al campus.`,
     volver: "Volver al hackatón",
@@ -422,25 +422,25 @@ const TEXTOS: Record<Idioma, Textos> = {
     guardado: "What you type is saved in this browser until you send it.",
   },
   pt: {
-    noIniciadoTitulo: "As inscrições abrem em breve",
+    noIniciadoTitulo: "As candidaturas abrem em breve",
     noIniciadoCuerpo:
       "Estamos fechando os detalhes de logística e de acesso ao campus com a IEEE Computer Society Uniandes. Enquanto o formulário não abre, você pode conhecer as cinco frentes temáticas ou entrar no grupo de WhatsApp para saber assim que abrir.",
     verFrentes: "Ver as frentes temáticas",
     unirmeGrupo: "Entrar no grupo de WhatsApp",
-    cerradoTitulo: "As inscrições foram encerradas",
+    cerradoTitulo: "As candidaturas foram encerradas",
     cerradoCuerpo: (cierre) =>
       `O prazo terminou ${cierre}. Se você se inscreveu, vamos escrever para o seu e-mail com a resposta e as instruções de acesso ao campus.`,
     volver: "Voltar ao hackathon",
-    enviadoTitulo: "Recebemos sua inscrição",
+    enviadoTitulo: "Recebemos sua candidatura",
     enviadoCuerpo1:
       "Uma confirmação está a caminho do e-mail que você informou. Se não aparecer em alguns minutos, confira a pasta de spam.",
     enviadoCuerpo2:
       "Vamos escrever de novo com a resposta e as instruções para entrar na Universidad de los Andes. Enquanto isso, no grupo de WhatsApp compartilhamos as novidades do evento.",
     fallaAntes:
-      "Não conseguimos salvar sua inscrição. Tente de novo em um minuto; o que você escreveu continua aqui. Se falhar outra vez, escreva para ",
+      "Não conseguimos salvar sua candidatura. Tente de novo em um minuto; o que você escreveu continua aqui. Se falhar outra vez, escreva para ",
     fallaDespues: " e recebemos por e-mail.",
     limitePeticiones: "Recebemos envios demais da sua conexão. Espere alguns minutos e tente de novo.",
-    yaCerro: "O formulário não está recebendo inscrições agora. Recarregue a página para ver a situação atual.",
+    yaCerro: "O formulário não está recebendo candidaturas agora. Recarregue a página para ver a situação atual.",
     resumenTitulo: "Falta responder isto antes de enviar:",
     faltaResponder: "Falta responder.",
     correoMal: "Confira o e-mail: parece que falta algo.",
@@ -515,7 +515,7 @@ const TEXTOS: Record<Idioma, Textos> = {
       },
     },
     companeros: "Nomes e e-mails da sua equipe",
-    companerosAyuda: "Uma pessoa por linha, com o e-mail que usou ou vai usar na inscrição.",
+    companerosAyuda: "Uma pessoa por linha, com o e-mail que usou ou vai usar na candidatura.",
     frente: "Frente temática que mais te interessa",
     frenteAyuda: "Você pode mudar no dia do evento.",
     porDefinir: "Ainda não sei, decido no dia",
@@ -533,9 +533,9 @@ const TEXTOS: Record<Idioma, Textos> = {
     disponibilidad:
       "Confirmo que posso estar na Universidad de los Andes no sábado, 14 de novembro de 2026, das 8h às 20h.",
     privacidadAntes:
-      "Guardamos suas respostas para avaliar sua inscrição e organizar o evento. O número do documento é compartilhado com a Universidad de los Andes para registrar sua entrada. Para corrigir ou apagar seus dados, escreva para ",
+      "Guardamos suas respostas para avaliar sua candidatura e organizar o evento. O número do documento é compartilhado com a Universidad de los Andes para registrar sua entrada. Para corrigir ou apagar seus dados, escreva para ",
     privacidadDespues: ".",
-    enviar: "Enviar inscrição",
+    enviar: "Enviar candidatura",
     enviando: "Enviando…",
     guardado: "O que você escreve fica salvo neste navegador até o envio.",
   },

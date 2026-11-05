@@ -92,7 +92,7 @@ function VideoHeroBanner({ idioma = "es" }: { idioma?: Idioma }) {
         muted={!isPlaying}
         playsInline
         preload="none"
-        poster="/aisc/hackathon/defacc-banner.jpeg"
+        poster="/aisc/hackathon/defacc-banner-oracle.jpeg"
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
         onEnded={() => setIsPlaying(false)}
@@ -322,7 +322,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
             {/* Banner oficial propuesto por IEEE Computer Society Uniandes */}
             <div className="w-full max-w-[980px] overflow-hidden rounded-2xl border border-white/20 bg-[#faf8f5] shadow-2xl transition-all">
               <img
-                src="/aisc/hackathon/defacc-banner.jpeg"
+                src="/aisc/hackathon/defacc-banner-oracle.jpeg"
                 alt="Defensive Acceleration Hackathon · Sábado 14 Noviembre 2026 · Uniandes · IEEE Computer Society × AI Safety Colombia"
                 width={1500}
                 height={750}
@@ -364,6 +364,13 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
               </button>
               )}
             </div>
+            <p className="mt-4 text-body-sm font-medium text-aisc-sand/90">
+              {idioma === "en"
+                ? "Application deadline: Tuesday, November 10, 11:59 PM (Bogotá time)"
+                : idioma === "pt"
+                  ? "Prazo para se candidatar: terça, 10 de novembro, 23:59 (horário de Bogotá)"
+                  : "Cierre de postulaciones: martes 10 de noviembre, 11:59 p.m. (hora de Bogotá)"}
+            </p>
           </div>
         </div>
       </section>

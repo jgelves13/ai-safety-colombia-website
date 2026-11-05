@@ -9,9 +9,9 @@ import { inscripcionesCerradas, inscripcionesIniciadas } from "../datos";
 import { alternativas } from "@/lib/idiomas";
 
 export const metadata: Metadata = {
-  title: "Inscripción · Defensive Acceleration Hackathon",
+  title: "Postulación · Defensive Acceleration Hackathon",
   description:
-    "Formulario de inscripción al Defensive Acceleration Hackathon, sábado 14 de noviembre de 2026 en la Universidad de los Andes, Bogotá. Co-organizado por AI Safety Colombia e IEEE Computer Society Uniandes.",
+    "Formulario de postulación al Defensive Acceleration Hackathon, sábado 14 de noviembre de 2026 en la Universidad de los Andes, Bogotá. Co-organizado por AI Safety Colombia e IEEE Computer Society Uniandes.",
   alternates: {
     canonical: "/defacchackathon/aplicar",
     languages: alternativas("/defacchackathon/aplicar"),
@@ -46,11 +46,14 @@ export default async function AplicarDefAcc() {
                 Defensive Acceleration Hackathon · Sábado 14 de noviembre de 2026 · Uniandes
               </span>
               <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">
-                Inscríbete al Hackathon
+                Postúlate al Hackathon
               </h1>
               <p className="text-body md:text-body-lg text-aisc-sand/90">
                 8:00 a.m. a 8:00 p.m. en el campus de la Universidad de los Andes en Bogotá.
                 Cupo limitado por aforo, almuerzo y refrigerios incluidos, mentores técnicos y COP 2.000.000 en premios.
+              </p>
+              <p className="text-body font-semibold text-aisc-sand">
+                Cierre de postulaciones: martes 10 de noviembre, 11:59 p.m. (hora de Bogotá).
               </p>
             </div>
             <div className="hidden md:flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
@@ -76,7 +79,7 @@ export default async function AplicarDefAcc() {
               </p>
               <ul className="text-body-sm text-aisc-ink space-y-1.5 list-disc list-inside">
                 <li>
-                  <strong>Equipos o individual:</strong> puedes inscribirte en equipo (2 a 4 personas) o de forma individual. Si vienes solo, te ayudaremos a conformar equipo en la sesión de matchmaking matutina (9:40 a.m.).
+                  <strong>Equipos o individual:</strong> puedes postularte en equipo (2 a 4 personas) o de forma individual. Si vienes solo, te ayudaremos a conformar equipo en la sesión de matchmaking matutina (9:40 a.m.).
                 </li>
                 <li>
                   <strong>Ingreso al campus:</strong> el número de documento de identidad es estrictamente necesario para registrar tu pase de seguridad peatonal en la portería de la Universidad de los Andes.

@@ -253,7 +253,7 @@ async function confirmarPorCorreo(datos: Record<string, string>): Promise<void> 
     "",
     "Si tienes preguntas o necesitas actualizar tu registro, puedes responder directamente a este correo o escribir a equipo@aisafetycolombia.org.",
     "",
-    "¡Nos vemos el 14 de noviembre!",
+    "Te confirmaremos por correo antes del evento si tu postulación fue aceptada.",
     "",
     "Comité Organizador",
     "AI Safety Colombia × IEEE Computer Society Uniandes",
@@ -331,7 +331,7 @@ export async function POST(req: Request) {
   // Apertura de inscripciones
   if (!inscripcionesIniciadas()) {
     return NextResponse.json(
-      { ok: false, error: "not_started", mensaje: "Las inscripciones al hackathon aún no han iniciado." },
+      { ok: false, error: "not_started", mensaje: "Las postulaciones al hackathon aún no han iniciado." },
       { status: 403 },
     );
   }
@@ -339,7 +339,7 @@ export async function POST(req: Request) {
   // Cierre de inscripciones
   if (Date.now() > Date.parse(CIERRE_INSCRIPCIONES_ISO)) {
     return NextResponse.json(
-      { ok: false, error: "closed", mensaje: "Las inscripciones al hackathon han cerrado." },
+      { ok: false, error: "closed", mensaje: "Las postulaciones al hackathon han cerrado." },
       { status: 403 },
     );
   }
