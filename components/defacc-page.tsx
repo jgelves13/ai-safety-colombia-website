@@ -141,6 +141,9 @@ function VideoHeroBanner({ idioma = "es" }: { idioma?: Idioma }) {
   );
 }
 
+// Video oficial oculto por ahora (pedido de Jose, 5 nov 2026). Cambiar a true para mostrarlo.
+const MOSTRAR_VIDEO = false;
+
 const ENLACE =
   "text-aisc-forest underline underline-offset-[3px] font-medium transition-colors hover:text-aisc-forest-deep";
 
@@ -346,6 +349,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
               >
                 {d.ctaVerBases}
               </button>
+              {MOSTRAR_VIDEO && (
               <button
                 type="button"
                 onClick={() => {
@@ -358,6 +362,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
               >
                 {idioma === "en" ? "▶ Watch video (0:30)" : idioma === "pt" ? "▶ Assistir vídeo (0:30)" : "▶ Ver video (0:30)"}
               </button>
+              )}
             </div>
           </div>
         </div>
@@ -415,39 +420,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
               aria-hidden="true"
             />
 
-            {/* 2. INVITA: Uniandes DISC / ISIS */}
-            <div className="flex flex-col items-start gap-2 border-t border-aisc-line/50 pt-5 md:border-t-0 md:pt-0">
-              <span className="text-kicker font-semibold tracking-wider text-aisc-muted uppercase">
-                {idioma === "en"
-                  ? "Invited by"
-                  : idioma === "pt"
-                  ? "Convida"
-                  : "Invita"}
-              </span>
-              <a
-                className="block transition-opacity hover:opacity-60"
-                href="https://sistemas.uniandes.edu.co/"
-                rel="noopener noreferrer"
-                target="_blank"
-                title="Universidad de los Andes — Departamento de Ingeniería de Sistemas y Computación (DISC / ISIS)"
-              >
-                <img
-                  alt="Universidad de los Andes — Departamento de Ingeniería de Sistemas y Computación"
-                  className="-mt-2 -mb-1.5 block h-auto w-full max-w-[280px] object-contain sm:-mt-2.5 sm:max-w-[320px] md:max-w-[350px]"
-                  decoding="async"
-                  height={725}
-                  src="/aisc/aliados/uniandes-disc.png"
-                  width={2170}
-                />
-              </a>
-            </div>
-
-            <div
-              className="hidden h-20 w-px bg-aisc-forest/15 md:block"
-              aria-hidden="true"
-            />
-
-            {/* 3. APOYA: Oracle Academy (plataforma + certificación; detalles por anunciar) */}
+            {/* 2. APOYA: Oracle Academy (plataforma + certificación; detalles por anunciar) */}
             <div className="flex flex-col items-start gap-2.5 border-t border-aisc-line/50 pt-5 md:border-t-0 md:pt-0">
               <span className="text-kicker font-semibold tracking-wider text-aisc-muted uppercase">
                 {idioma === "en"
@@ -472,13 +445,38 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                   width={211}
                 />
               </a>
-              <span className="text-body-sm text-aisc-ink/75">
+            </div>
+
+            <div
+              className="hidden h-20 w-px bg-aisc-forest/15 md:block"
+              aria-hidden="true"
+            />
+
+            {/* 3. INVITA: Uniandes DISC / ISIS */}
+            <div className="flex flex-col items-start gap-2 border-t border-aisc-line/50 pt-5 md:border-t-0 md:pt-0">
+              <span className="text-kicker font-semibold tracking-wider text-aisc-muted uppercase">
                 {idioma === "en"
-                  ? "Platform and certification for participants. Details coming soon."
+                  ? "Invited by"
                   : idioma === "pt"
-                  ? "Plataforma e certificação para participantes. Detalhes em breve."
-                  : "Plataforma y certificación para participantes. Detalles muy pronto."}
+                  ? "Convida"
+                  : "Invita"}
               </span>
+              <a
+                className="block transition-opacity hover:opacity-60"
+                href="https://sistemas.uniandes.edu.co/"
+                rel="noopener noreferrer"
+                target="_blank"
+                title="Universidad de los Andes — Departamento de Ingeniería de Sistemas y Computación (DISC / ISIS)"
+              >
+                <img
+                  alt="Universidad de los Andes — Departamento de Ingeniería de Sistemas y Computación"
+                  className="-mt-2 -mb-1.5 block h-auto w-full max-w-[280px] object-contain sm:-mt-2.5 sm:max-w-[320px] md:max-w-[350px]"
+                  decoding="async"
+                  height={725}
+                  src="/aisc/aliados/uniandes-disc.png"
+                  width={2170}
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -562,7 +560,8 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
 
                 
 
-                {/* Video oficial del evento */}
+                {/* Video oficial del evento (oculto por ahora: MOSTRAR_VIDEO) */}
+                {MOSTRAR_VIDEO && (
                 <div id="video-hackathon" className="scroll-mt-36 rounded-2xl border border-aisc-forest/20 bg-aisc-sand/40 p-6 md:p-8">
                   <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                     <div>
@@ -577,6 +576,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                   </div>
                   <VideoHeroBanner idioma={idioma} />
                 </div>
+                )}
 
                 {/* 2. Colombia */}
                 <div className="rounded-2xl border border-aisc-forest/20 bg-aisc-sand/60 p-6 md:p-8">

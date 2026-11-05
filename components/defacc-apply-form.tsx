@@ -1,37 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import {
+  CIERRE_INSCRIPCIONES_ISO,
+  CORREO_HACKATHON,
+  GRUPO_COMUNIDAD_WHATSAPP,
+  TEXTOS_HACKATHON,
+} from "@/app/defacchackathon/datos";
 import type { Idioma } from "@/lib/idiomas";
 import { rutaEn } from "@/lib/idiomas";
 import { RUTA_POLITICA, TEXTOS_POLITICA } from "@/lib/politica-datos";
 
-const BORRADOR_KEY = "aisc-defacc-2026-11-draft";
+/* Borrador local: quien empieza a escribir y cierra la pestaña no pierde lo que
+   llevaba. Se borra al enviar. La casilla de autorización nunca se guarda. */
+const BORRADOR = "aisc-defacc-2026-11-draft";
 
-type FormState = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  whatsapp: string;
-  documentType: string;
-  documentNumber: string;
-  affiliation: string;
-  careerRole: string;
-  experienceLevel: string;
-  linkedin: string;
-  githubPortfolio: string;
-  teamMode: string;
-  teamMembers: string;
-  preferredTrack: string;
-  projectIdea: string;
-  dietaryRestrictions: string;
-  dietaryDetail: string;
-  availability: string;
-  authorization: string;
-  website: string; // Honeypot
-};
+type Campos = Record<string, string>;
 
-const VACIO: FormState = {
+/* Los nombres de los campos son los que espera app/api/defacc/aplicar/route.ts.
+   Los identificadores de las opciones (CC, intermedio, track-1, alergia…) no se
+   traducen: son los que viajan a la base de datos. */
+const VACIO: Campos = {
   firstName: "",
   lastName: "",
   email: "",
@@ -40,12 +30,12 @@ const VACIO: FormState = {
   documentNumber: "",
   affiliation: "",
   careerRole: "",
-  experienceLevel: "intermedio",
+  experienceLevel: "",
   linkedin: "",
   githubPortfolio: "",
-  teamMode: "individual",
+  teamMode: "",
   teamMembers: "",
-  preferredTrack: "track-1",
+  preferredTrack: "",
   projectIdea: "",
   dietaryRestrictions: "ninguna",
   dietaryDetail: "",
@@ -54,11 +44,611 @@ const VACIO: FormState = {
   website: "",
 };
 
+const OBLIGATORIOS = [
+  "firstName",
+  "lastName",
+  "email",
+  "whatsapp",
+  "documentType",
+  "documentNumber",
+  "affiliation",
+  "careerRole",
+  "experienceLevel",
+  "teamMode",
+  "preferredTrack",
+] as const;
+
+/* Los mismos topes que aplica la ruta de la API. */
+const LIMITES: Record<string, number> = {
+  firstName: 100,
+  lastName: 100,
+  email: 200,
+  whatsapp: 40,
+  documentNumber: 50,
+  affiliation: 300,
+  careerRole: 300,
+  linkedin: 300,
+  githubPortfolio: 300,
+  teamMembers: 500,
+  projectIdea: 1500,
+  dietaryDetail: 300,
+};
+
+const DOCUMENTOS = ["CC", "CE", "Pasaporte", "TI", "Otro"] as const;
+const NIVELES = ["principiante", "intermedio", "avanzado"] as const;
+const MODALIDADES = ["individual", "equipo"] as const;
+const DIETAS = ["ninguna", "vegetariano", "vegano", "alergia"] as const;
+
+/* WhatsApp: se acepta como lo escriba cada quien y solo se exige que queden
+   entre siete y quince dígitos. Es la misma regla de la ruta. */
+function telefonoValido(valor: string): boolean {
+  const s = valor.trim();
+  if (!/^\+?[\d\s().-]+$/.test(s)) return false;
+  const digitos = s.replace(/\D/g, "").length;
+  return digitos >= 7 && digitos <= 15;
+}
+
+/* La fecha de cierre sale de CIERRE_INSCRIPCIONES_ISO, en hora de Bogotá, para
+   que el formulario no se quede con una fecha vieja si cambia el plazo. */
+function fechaCierre(idioma: Idioma): string {
+  const locale = idioma === "en" ? "en-US" : idioma === "pt" ? "pt-BR" : "es-CO";
+  const partes = new Intl.DateTimeFormat(locale, {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    hour: "numeric",
+    minute: "2-digit",
+    hourCycle: "h23",
+    timeZone: "America/Bogota",
+  }).formatToParts(new Date(CIERRE_INSCRIPCIONES_ISO));
+  const p = (tipo: string) => partes.find((x) => x.type === tipo)?.value ?? "";
+  const hora = Number(p("hour"));
+  const minuto = p("minute");
+  const h12 = `${hora % 12 === 0 ? 12 : hora % 12}:${minuto} ${hora < 12 ? "a.m." : "p.m."}`;
+  if (idioma === "en") return `${p("weekday")}, ${p("month")} ${p("day")} at ${h12}`;
+  if (idioma === "pt") return `${p("weekday")}, ${p("day")} de ${p("month")}, às ${String(hora).padStart(2, "0")}h${minuto}`;
+  return `${p("weekday")} ${p("day")} de ${p("month")} a las ${h12}`;
+}
+
+type Textos = {
+  noIniciadoTitulo: string;
+  noIniciadoCuerpo: string;
+  verFrentes: string;
+  unirmeGrupo: string;
+  cerradoTitulo: string;
+  cerradoCuerpo: (cierre: string) => string;
+  volver: string;
+  enviadoTitulo: string;
+  enviadoCuerpo1: string;
+  enviadoCuerpo2: string;
+  fallaAntes: string;
+  fallaDespues: string;
+  limitePeticiones: string;
+  yaCerro: string;
+  resumenTitulo: string;
+  faltaResponder: string;
+  correoMal: string;
+  whatsappMal: string;
+  enlaceMal: string;
+  limite: (tope: number) => string;
+  opcional: string;
+  trampa: string;
+  falta: Record<string, string>;
+  seccionDatos: string;
+  datosNota: string;
+  seccionPerfil: string;
+  seccionEquipo: string;
+  seccionLogistica: string;
+  logisticaNota: string;
+  seccionAntes: string;
+  nombre: string;
+  apellidos: string;
+  correo: string;
+  correoAyuda: string;
+  whatsapp: string;
+  whatsappAyuda: string;
+  tipoDocumento: string;
+  documentos: Record<string, string>;
+  numeroDocumento: string;
+  numeroDocumentoAyuda: string;
+  afiliacion: string;
+  afiliacionAyuda: string;
+  carrera: string;
+  carreraAyuda: string;
+  nivel: string;
+  nivelAyuda: string;
+  niveles: Record<string, string>;
+  linkedin: string;
+  github: string;
+  githubAyuda: string;
+  modalidad: string;
+  modalidades: Record<string, { titulo: string; detalle: string }>;
+  companeros: string;
+  companerosAyuda: string;
+  frente: string;
+  frenteAyuda: string;
+  porDefinir: string;
+  idea: string;
+  ideaAyuda: string;
+  dieta: string;
+  dietas: Record<string, string>;
+  detalleDieta: string;
+  detalleDietaAyuda: string;
+  disponibilidad: string;
+  privacidadAntes: string;
+  privacidadDespues: string;
+  enviar: string;
+  enviando: string;
+  guardado: string;
+};
+
+const TEXTOS: Record<Idioma, Textos> = {
+  es: {
+    noIniciadoTitulo: "Las inscripciones abren pronto",
+    noIniciadoCuerpo:
+      "Estamos cerrando los detalles de logística y de ingreso al campus con IEEE Computer Society Uniandes. Mientras abrimos el formulario, puedes revisar los cinco frentes temáticos o entrar al grupo de WhatsApp para enterarte apenas abra.",
+    verFrentes: "Ver los frentes temáticos",
+    unirmeGrupo: "Entrar al grupo de WhatsApp",
+    cerradoTitulo: "Las inscripciones ya cerraron",
+    cerradoCuerpo: (cierre) =>
+      `El plazo para postularse terminó el ${cierre}. Si te postulaste, te escribimos al correo que nos diste con la respuesta y las instrucciones para entrar al campus.`,
+    volver: "Volver al hackatón",
+    enviadoTitulo: "Recibimos tu postulación",
+    enviadoCuerpo1:
+      "Te llega una confirmación al correo que nos diste. Si no la ves en unos minutos, revisa la carpeta de spam.",
+    enviadoCuerpo2:
+      "Te volvemos a escribir con la respuesta y las instrucciones para entrar a la Universidad de los Andes. Mientras tanto, en el grupo de WhatsApp compartimos novedades del evento.",
+    fallaAntes:
+      "No pudimos guardar tu postulación. Vuelve a intentarlo en un minuto; lo que escribiste sigue acá. Si falla otra vez, escríbenos a ",
+    fallaDespues: " y la recibimos por correo.",
+    limitePeticiones: "Recibimos demasiados envíos desde tu conexión. Espera unos minutos y vuelve a intentarlo.",
+    yaCerro: "El formulario no está recibiendo postulaciones en este momento. Recarga la página para ver el estado actual.",
+    resumenTitulo: "Falta responder esto antes de enviar:",
+    faltaResponder: "Falta responder.",
+    correoMal: "Revisa el correo: parece que le falta algo.",
+    whatsappMal: "Revisa el número: con el indicativo del país y sin letras.",
+    enlaceMal: "Revisa este dato.",
+    limite: (tope) => `Pasaste el límite de ${tope} caracteres.`,
+    opcional: " (opcional)",
+    trampa: "No llenes este campo",
+    falta: {
+      firstName: "Tu nombre",
+      lastName: "Tus apellidos",
+      email: "Tu correo",
+      whatsapp: "Tu WhatsApp",
+      documentType: "El tipo de documento",
+      documentNumber: "El número de documento",
+      affiliation: "Tu universidad o empresa",
+      careerRole: "Tu carrera o cargo",
+      experienceLevel: "Tu nivel de experiencia",
+      teamMode: "Si vienes solo o en equipo",
+      teamMembers: "Los nombres y correos de tu equipo",
+      preferredTrack: "El frente que te interesa",
+      dietaryDetail: "El detalle de tu alergia",
+      availability: "La confirmación de asistencia",
+    },
+    seccionDatos: "Tus datos",
+    datosNota:
+      "Los usamos para darte la respuesta y para registrar tu ingreso a la Universidad de los Andes.",
+    seccionPerfil: "Tu perfil",
+    seccionEquipo: "Equipo y frente",
+    seccionLogistica: "La jornada",
+    logisticaNota:
+      "Damos almuerzo y refrigerios en el campus. Cuéntanos si hay algo que debamos tener en cuenta.",
+    seccionAntes: "Antes de enviar",
+    nombre: "Nombres",
+    apellidos: "Apellidos",
+    correo: "Correo",
+    correoAyuda: "Ahí te llega la confirmación y la respuesta.",
+    whatsapp: "WhatsApp",
+    whatsappAyuda: "Con el indicativo del país, por ejemplo +57.",
+    tipoDocumento: "Tipo de documento",
+    documentos: {
+      CC: "Cédula de ciudadanía",
+      CE: "Cédula de extranjería",
+      Pasaporte: "Pasaporte",
+      TI: "Tarjeta de identidad",
+      Otro: "Otro",
+    },
+    numeroDocumento: "Número de documento",
+    numeroDocumentoAyuda:
+      "La universidad lo pide para autorizar tu ingreso. Escríbelo como aparece en el documento que vas a llevar ese día.",
+    afiliacion: "Universidad o empresa",
+    afiliacionAyuda: "Donde estudias o trabajas.",
+    carrera: "Carrera, semestre o cargo",
+    carreraAyuda: "Por ejemplo: Ingeniería de Sistemas, sexto semestre.",
+    nivel: "Experiencia con IA y programación",
+    nivelAyuda: "No filtramos por nivel. Nos sirve para armar equipos parejos.",
+    niveles: {
+      principiante: "Principiante: Python básico o primeros semestres",
+      intermedio: "Intermedio: he usado APIs de modelos de lenguaje o he hecho proyectos con RAG",
+      avanzado: "Avanzado: ciberseguridad, benchmarks, entrenamiento o evaluación de modelos",
+    },
+    linkedin: "LinkedIn",
+    github: "GitHub o página personal",
+    githubAyuda: "Algo donde veamos tu trabajo, si lo tienes.",
+    modalidad: "¿Cómo te postulas?",
+    modalidades: {
+      individual: {
+        titulo: "Solo",
+        detalle: "Armamos equipos en la mañana del evento, a las 9:40 a.m.",
+      },
+      equipo: {
+        titulo: "Con un equipo de 2 a 4 personas",
+        detalle: "Cada integrante llena su propio formulario, porque el ingreso al campus es individual.",
+      },
+    },
+    companeros: "Nombres y correos de tu equipo",
+    companerosAyuda: "Una persona por línea, con el correo que usó o va a usar en su postulación.",
+    frente: "Frente temático que más te interesa",
+    frenteAyuda: "Puedes cambiarlo el día del evento.",
+    porDefinir: "Todavía no sé, lo decido ese día",
+    idea: "¿Tienes una idea o un problema en mente?",
+    ideaAyuda: "Una o dos frases bastan.",
+    dieta: "Alimentación",
+    dietas: {
+      ninguna: "Sin restricciones",
+      vegetariano: "Vegetariana",
+      vegano: "Vegana",
+      alergia: "Tengo una alergia alimentaria",
+    },
+    detalleDieta: "Alergias, accesibilidad u otra necesidad",
+    detalleDietaAyuda: "Por ejemplo: celiaquía, alergia al maní, movilidad reducida.",
+    disponibilidad:
+      "Confirmo que puedo estar en la Universidad de los Andes el sábado 14 de noviembre de 2026, de 8:00 a.m. a 8:00 p.m.",
+    privacidadAntes:
+      "Guardamos tus respuestas para revisar tu postulación y organizar el evento. El número de documento se comparte con la Universidad de los Andes para registrar tu ingreso. Si quieres corregir o borrar tus datos, escríbenos a ",
+    privacidadDespues: ".",
+    enviar: "Enviar postulación",
+    enviando: "Enviando…",
+    guardado: "Lo que escribes se guarda en este navegador mientras no lo envíes.",
+  },
+  en: {
+    noIniciadoTitulo: "Applications open soon",
+    noIniciadoCuerpo:
+      "We are finishing logistics and campus access with IEEE Computer Society Uniandes. Until the form opens, you can read about the five research tracks or join the WhatsApp group to hear as soon as it does.",
+    verFrentes: "See the research tracks",
+    unirmeGrupo: "Join the WhatsApp group",
+    cerradoTitulo: "Applications are closed",
+    cerradoCuerpo: (cierre) =>
+      `The deadline was ${cierre}. If you applied, we will email you with the decision and instructions for getting onto campus.`,
+    volver: "Back to the hackathon",
+    enviadoTitulo: "We received your application",
+    enviadoCuerpo1:
+      "A confirmation is on its way to the email you gave us. If you don't see it in a few minutes, check your spam folder.",
+    enviadoCuerpo2:
+      "We will write again with the decision and instructions for entering Universidad de los Andes. In the meantime, the WhatsApp group is where we share event news.",
+    fallaAntes:
+      "We couldn't save your application. Try again in a minute; what you wrote is still here. If it fails again, email us at ",
+    fallaDespues: " and we'll take it by email.",
+    limitePeticiones: "Too many submissions from your connection. Wait a few minutes and try again.",
+    yaCerro: "The form isn't accepting applications right now. Reload the page to see the current status.",
+    resumenTitulo: "Please answer these before sending:",
+    faltaResponder: "This is required.",
+    correoMal: "Check the email address: something seems to be missing.",
+    whatsappMal: "Check the number: include the country code and no letters.",
+    enlaceMal: "Check this field.",
+    limite: (tope) => `You went over the ${tope}-character limit.`,
+    opcional: " (optional)",
+    trampa: "Leave this field empty",
+    falta: {
+      firstName: "Your first name",
+      lastName: "Your last name",
+      email: "Your email",
+      whatsapp: "Your WhatsApp",
+      documentType: "ID type",
+      documentNumber: "ID number",
+      affiliation: "Your university or company",
+      careerRole: "Your program or role",
+      experienceLevel: "Your experience level",
+      teamMode: "Whether you're coming solo or with a team",
+      teamMembers: "Your teammates' names and emails",
+      preferredTrack: "Your preferred track",
+      dietaryDetail: "Your allergy details",
+      availability: "Attendance confirmation",
+    },
+    seccionDatos: "About you",
+    datosNota: "We use these to send you the decision and to register your entry to Universidad de los Andes.",
+    seccionPerfil: "Your background",
+    seccionEquipo: "Team and track",
+    seccionLogistica: "The day",
+    logisticaNota: "Lunch and snacks are provided on campus. Let us know about anything we should plan for.",
+    seccionAntes: "Before you send",
+    nombre: "First name",
+    apellidos: "Last name",
+    correo: "Email",
+    correoAyuda: "Where the confirmation and decision will go.",
+    whatsapp: "WhatsApp",
+    whatsappAyuda: "Include the country code, for example +57.",
+    tipoDocumento: "ID type",
+    documentos: {
+      CC: "Colombian citizen ID (CC)",
+      CE: "Colombian foreigner ID (CE)",
+      Pasaporte: "Passport",
+      TI: "Colombian minor ID (TI)",
+      Otro: "Other",
+    },
+    numeroDocumento: "ID number",
+    numeroDocumentoAyuda:
+      "The university requires it to let you in. Write it exactly as it appears on the ID you will bring that day.",
+    afiliacion: "University or company",
+    afiliacionAyuda: "Where you study or work.",
+    carrera: "Program, year or role",
+    carreraAyuda: "For example: Computer Science, third year.",
+    nivel: "AI and coding experience",
+    nivelAyuda: "We don't filter by level. It helps us form balanced teams.",
+    niveles: {
+      principiante: "Beginner: basic Python or early in your degree",
+      intermedio: "Intermediate: I've used LLM APIs or built RAG projects",
+      avanzado: "Advanced: security, benchmarks, model training or evaluation",
+    },
+    linkedin: "LinkedIn",
+    github: "GitHub or personal site",
+    githubAyuda: "Somewhere we can see your work, if you have it.",
+    modalidad: "How are you applying?",
+    modalidades: {
+      individual: {
+        titulo: "Solo",
+        detalle: "We form teams on the morning of the event, at 9:40 a.m.",
+      },
+      equipo: {
+        titulo: "With a team of 2 to 4",
+        detalle: "Each member fills in their own form, since campus access is individual.",
+      },
+    },
+    companeros: "Your teammates' names and emails",
+    companerosAyuda: "One person per line, with the email they used or will use to apply.",
+    frente: "Track you're most interested in",
+    frenteAyuda: "You can change it on the day.",
+    porDefinir: "Not sure yet, I'll decide on the day",
+    idea: "Do you have an idea or problem in mind?",
+    ideaAyuda: "One or two sentences is enough.",
+    dieta: "Food",
+    dietas: {
+      ninguna: "No restrictions",
+      vegetariano: "Vegetarian",
+      vegano: "Vegan",
+      alergia: "I have a food allergy",
+    },
+    detalleDieta: "Allergies, accessibility or other needs",
+    detalleDietaAyuda: "For example: celiac, peanut allergy, reduced mobility.",
+    disponibilidad:
+      "I confirm I can be at Universidad de los Andes on Saturday, November 14, 2026, from 8:00 a.m. to 8:00 p.m.",
+    privacidadAntes:
+      "We store your answers to review your application and run the event. Your ID number is shared with Universidad de los Andes to register your entry. To correct or delete your data, email ",
+    privacidadDespues: ".",
+    enviar: "Send application",
+    enviando: "Sending…",
+    guardado: "What you type is saved in this browser until you send it.",
+  },
+  pt: {
+    noIniciadoTitulo: "As inscrições abrem em breve",
+    noIniciadoCuerpo:
+      "Estamos fechando os detalhes de logística e de acesso ao campus com a IEEE Computer Society Uniandes. Enquanto o formulário não abre, você pode conhecer as cinco frentes temáticas ou entrar no grupo de WhatsApp para saber assim que abrir.",
+    verFrentes: "Ver as frentes temáticas",
+    unirmeGrupo: "Entrar no grupo de WhatsApp",
+    cerradoTitulo: "As inscrições foram encerradas",
+    cerradoCuerpo: (cierre) =>
+      `O prazo terminou ${cierre}. Se você se inscreveu, vamos escrever para o seu e-mail com a resposta e as instruções de acesso ao campus.`,
+    volver: "Voltar ao hackathon",
+    enviadoTitulo: "Recebemos sua inscrição",
+    enviadoCuerpo1:
+      "Uma confirmação está a caminho do e-mail que você informou. Se não aparecer em alguns minutos, confira a pasta de spam.",
+    enviadoCuerpo2:
+      "Vamos escrever de novo com a resposta e as instruções para entrar na Universidad de los Andes. Enquanto isso, no grupo de WhatsApp compartilhamos as novidades do evento.",
+    fallaAntes:
+      "Não conseguimos salvar sua inscrição. Tente de novo em um minuto; o que você escreveu continua aqui. Se falhar outra vez, escreva para ",
+    fallaDespues: " e recebemos por e-mail.",
+    limitePeticiones: "Recebemos envios demais da sua conexão. Espere alguns minutos e tente de novo.",
+    yaCerro: "O formulário não está recebendo inscrições agora. Recarregue a página para ver a situação atual.",
+    resumenTitulo: "Falta responder isto antes de enviar:",
+    faltaResponder: "Falta responder.",
+    correoMal: "Confira o e-mail: parece que falta algo.",
+    whatsappMal: "Confira o número: com o código do país e sem letras.",
+    enlaceMal: "Confira este dado.",
+    limite: (tope) => `Você passou do limite de ${tope} caracteres.`,
+    opcional: " (opcional)",
+    trampa: "Não preencha este campo",
+    falta: {
+      firstName: "Seu nome",
+      lastName: "Seu sobrenome",
+      email: "Seu e-mail",
+      whatsapp: "Seu WhatsApp",
+      documentType: "O tipo de documento",
+      documentNumber: "O número do documento",
+      affiliation: "Sua universidade ou empresa",
+      careerRole: "Seu curso ou cargo",
+      experienceLevel: "Seu nível de experiência",
+      teamMode: "Se você vem sozinho ou em equipe",
+      teamMembers: "Os nomes e e-mails da sua equipe",
+      preferredTrack: "A frente que te interessa",
+      dietaryDetail: "O detalhe da sua alergia",
+      availability: "A confirmação de presença",
+    },
+    seccionDatos: "Seus dados",
+    datosNota: "Usamos para enviar a resposta e para registrar sua entrada na Universidad de los Andes.",
+    seccionPerfil: "Seu perfil",
+    seccionEquipo: "Equipe e frente",
+    seccionLogistica: "O dia do evento",
+    logisticaNota: "Oferecemos almoço e lanches no campus. Conte se há algo que devemos levar em conta.",
+    seccionAntes: "Antes de enviar",
+    nombre: "Nome",
+    apellidos: "Sobrenome",
+    correo: "E-mail",
+    correoAyuda: "É para onde vão a confirmação e a resposta.",
+    whatsapp: "WhatsApp",
+    whatsappAyuda: "Com o código do país, por exemplo +55.",
+    tipoDocumento: "Tipo de documento",
+    documentos: {
+      CC: "Cédula de cidadania colombiana (CC)",
+      CE: "Cédula de estrangeiro (CE)",
+      Pasaporte: "Passaporte",
+      TI: "Tarjeta de identidad (TI)",
+      Otro: "Outro",
+    },
+    numeroDocumento: "Número do documento",
+    numeroDocumentoAyuda:
+      "A universidade exige para autorizar sua entrada. Escreva como aparece no documento que você vai levar no dia.",
+    afiliacion: "Universidade ou empresa",
+    afiliacionAyuda: "Onde você estuda ou trabalha.",
+    carrera: "Curso, semestre ou cargo",
+    carreraAyuda: "Por exemplo: Ciência da Computação, sexto semestre.",
+    nivel: "Experiência com IA e programação",
+    nivelAyuda: "Não filtramos por nível. Isso nos ajuda a montar equipes equilibradas.",
+    niveles: {
+      principiante: "Iniciante: Python básico ou primeiros semestres",
+      intermedio: "Intermediário: já usei APIs de modelos de linguagem ou fiz projetos com RAG",
+      avanzado: "Avançado: cibersegurança, benchmarks, treinamento ou avaliação de modelos",
+    },
+    linkedin: "LinkedIn",
+    github: "GitHub ou site pessoal",
+    githubAyuda: "Algum lugar onde possamos ver seu trabalho, se tiver.",
+    modalidad: "Como você se inscreve?",
+    modalidades: {
+      individual: {
+        titulo: "Sozinho",
+        detalle: "Montamos equipes na manhã do evento, às 9h40.",
+      },
+      equipo: {
+        titulo: "Com uma equipe de 2 a 4 pessoas",
+        detalle: "Cada integrante preenche o próprio formulário, porque o acesso ao campus é individual.",
+      },
+    },
+    companeros: "Nomes e e-mails da sua equipe",
+    companerosAyuda: "Uma pessoa por linha, com o e-mail que usou ou vai usar na inscrição.",
+    frente: "Frente temática que mais te interessa",
+    frenteAyuda: "Você pode mudar no dia do evento.",
+    porDefinir: "Ainda não sei, decido no dia",
+    idea: "Você tem uma ideia ou um problema em mente?",
+    ideaAyuda: "Uma ou duas frases bastam.",
+    dieta: "Alimentação",
+    dietas: {
+      ninguna: "Sem restrições",
+      vegetariano: "Vegetariana",
+      vegano: "Vegana",
+      alergia: "Tenho alergia alimentar",
+    },
+    detalleDieta: "Alergias, acessibilidade ou outra necessidade",
+    detalleDietaAyuda: "Por exemplo: doença celíaca, alergia a amendoim, mobilidade reduzida.",
+    disponibilidad:
+      "Confirmo que posso estar na Universidad de los Andes no sábado, 14 de novembro de 2026, das 8h às 20h.",
+    privacidadAntes:
+      "Guardamos suas respostas para avaliar sua inscrição e organizar o evento. O número do documento é compartilhado com a Universidad de los Andes para registrar sua entrada. Para corrigir ou apagar seus dados, escreva para ",
+    privacidadDespues: ".",
+    enviar: "Enviar inscrição",
+    enviando: "Enviando…",
+    guardado: "O que você escreve fica salvo neste navegador até o envio.",
+  },
+};
+
 const INPUT =
   "text-body-sm w-full rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 text-aisc-ink transition-colors placeholder:text-aisc-muted/60 focus:border-aisc-forest focus:outline-2 focus:outline-offset-[1px] focus:outline-aisc-forest/35";
+const INPUT_MAL =
+  "border-aisc-coral focus:border-aisc-coral focus:outline-aisc-coral/35";
 const ETIQUETA = "text-body-sm block font-medium text-aisc-ink";
 const AYUDA = "text-meta mt-1 block text-aisc-muted";
+const ERROR = "text-meta mt-1.5 block text-aisc-coral";
 const SECCION = "border-t border-aisc-line pt-8 first:border-t-0 first:pt-0";
+const TITULO = "text-display-3 md:text-display-3-lg text-balance";
+const NOTA = "text-body-sm mt-3 max-w-[640px] text-aisc-muted";
+const ENLACE =
+  "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
+const OPCION =
+  "text-body-sm flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6";
+const CASILLA =
+  "text-body-sm flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-4 py-4 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6";
+const BOTON_LLENO =
+  "text-body-sm inline-flex min-h-11 items-center rounded-full bg-aisc-coral px-6 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85";
+const BOTON_CONTORNO =
+  "text-body-sm inline-flex min-h-11 items-center rounded-full border border-aisc-ink px-6 font-medium text-aisc-ink transition-colors hover:bg-aisc-ink hover:text-aisc-cream";
+const TARJETA =
+  "rounded-lg border border-aisc-ink bg-aisc-cream p-6 md:p-9 lg:p-11";
+
+function Campo({
+  name,
+  label,
+  ayuda,
+  error,
+  requerido,
+  opcional,
+  children,
+}: {
+  name: string;
+  label: string;
+  ayuda?: string;
+  error?: string;
+  requerido?: boolean;
+  opcional: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex flex-col">
+      <label className={ETIQUETA} htmlFor={name}>
+        {label}
+        {requerido ? (
+          <span className="text-aisc-coral"> *</span>
+        ) : (
+          <span className="text-aisc-muted">{opcional}</span>
+        )}
+      </label>
+      {ayuda ? <span className={AYUDA}>{ayuda}</span> : null}
+      <div className="mt-2">{children}</div>
+      {error ? (
+        <span className={ERROR} id={`${name}-error`} role="alert">
+          {error}
+        </span>
+      ) : null}
+    </div>
+  );
+}
+
+function Opciones({
+  name,
+  legend,
+  ayuda,
+  opciones,
+  valor,
+  error,
+  onChange,
+}: {
+  name: string;
+  legend: string;
+  ayuda?: string;
+  opciones: { id: string; texto: React.ReactNode }[];
+  valor: string;
+  error?: string;
+  onChange: (id: string) => void;
+}) {
+  return (
+    <fieldset aria-describedby={error ? `${name}-error` : undefined}>
+      <legend className={ETIQUETA}>
+        {legend}
+        <span className="text-aisc-coral"> *</span>
+      </legend>
+      {ayuda ? <span className={AYUDA}>{ayuda}</span> : null}
+      <div className="mt-3 flex flex-col gap-2">
+        {opciones.map((opcion) => (
+          <label className={OPCION} key={opcion.id}>
+            <input
+              type="radio"
+              name={name}
+              value={opcion.id}
+              checked={valor === opcion.id}
+              onChange={() => onChange(opcion.id)}
+              className="mt-0.5 accent-aisc-forest"
+            />
+            <span>{opcion.texto}</span>
+          </label>
+        ))}
+      </div>
+      {error ? (
+        <span className={ERROR} id={`${name}-error`} role="alert">
+          {error}
+        </span>
+      ) : null}
+    </fieldset>
+  );
+}
 
 export default function DefAccApplyForm({
   cerrado = false,
@@ -69,184 +659,192 @@ export default function DefAccApplyForm({
   noIniciado?: boolean;
   idioma?: Idioma;
 }) {
-  const [datos, setDatos] = useState<FormState>(VACIO);
-  const [enviando, setEnviando] = useState(false);
-  const [enviado, setEnviado] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const t = TEXTOS[idioma];
+  const tp = TEXTOS_POLITICA[idioma];
+  const tracks = TEXTOS_HACKATHON[idioma].kits.listaTracks;
+  const inicio = rutaEn(idioma, "/defacchackathon");
+  const [v, setV] = useState<Campos>(VACIO);
+  const [errores, setErrores] = useState<Record<string, string>>({});
+  const [estado, setEstado] = useState<
+    "listo" | "enviando" | "enviado" | "falla"
+  >("listo");
+  const [aviso, setAviso] = useState<string | null>(null);
+  const [faltantes, setFaltantes] = useState<string[]>([]);
+  const [cargado, setCargado] = useState(false);
+  const resumen = useRef<HTMLDivElement>(null);
 
-  // Cargar borrador guardado en localStorage
+  /* Recuperar el borrador. Va en un efecto para que el HTML del servidor y el
+     del cliente coincidan en el primer render. */
   useEffect(() => {
     try {
-      const guardado = localStorage.getItem(BORRADOR_KEY);
+      const guardado = window.localStorage.getItem(BORRADOR);
       if (guardado) {
-        setDatos((prev) => ({ ...prev, ...JSON.parse(guardado), authorization: "" }));
+        setV({
+          ...VACIO,
+          ...(JSON.parse(guardado) as Campos),
+          availability: "",
+          authorization: "",
+          website: "",
+        });
       }
     } catch {
-      // Ignorar
+      /* si el almacenamiento está bloqueado, se sigue sin borrador */
     }
+    setCargado(true);
   }, []);
 
-  // Guardar cambios en borrador
-  const cambiar = (campo: keyof FormState, valor: string) => {
-    setDatos((prev) => {
-      const nuevo = { ...prev, [campo]: valor };
-      try {
-        const { authorization, website, ...aGuardar } = nuevo;
-        localStorage.setItem(BORRADOR_KEY, JSON.stringify(aGuardar));
-      } catch {
-        // Ignorar
-      }
-      return nuevo;
-    });
+  useEffect(() => {
+    if (!cargado || estado === "enviado") return;
+    try {
+      window.localStorage.setItem(
+        BORRADOR,
+        JSON.stringify({ ...v, website: "", authorization: "", availability: "" }),
+      );
+    } catch {
+      /* idem */
+    }
+  }, [v, cargado, estado]);
+
+  const set = (name: string, valor: string) => {
+    setV((prev) => ({ ...prev, [name]: valor }));
+    setErrores((prev) => (prev[name] ? { ...prev, [name]: "" } : prev));
   };
 
-  const enviar = async (e: React.FormEvent) => {
+  const revisar = () => {
+    const nuevos: Record<string, string> = {};
+    for (const campo of OBLIGATORIOS) {
+      if (!v[campo]?.trim()) nuevos[campo] = t.faltaResponder;
+    }
+    if (v.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim())) {
+      nuevos.email = t.correoMal;
+    }
+    if (v.whatsapp.trim() && !telefonoValido(v.whatsapp)) {
+      nuevos.whatsapp = t.whatsappMal;
+    }
+    if (v.teamMode === "equipo" && !v.teamMembers.trim()) {
+      nuevos.teamMembers = t.faltaResponder;
+    }
+    if (v.dietaryRestrictions === "alergia" && !v.dietaryDetail.trim()) {
+      nuevos.dietaryDetail = t.faltaResponder;
+    }
+    if (v.availability !== "si") nuevos.availability = t.faltaResponder;
+    if (v.authorization !== "si") nuevos.authorization = tp.casillaFalta;
+    for (const [name, tope] of Object.entries(LIMITES)) {
+      if ((v[name] ?? "").trim().length > tope) nuevos[name] = t.limite(tope);
+    }
+    return nuevos;
+  };
+
+  const listarFaltantes = (nuevos: Record<string, string>) => {
+    const orden = [
+      ...OBLIGATORIOS,
+      "teamMembers",
+      "dietaryDetail",
+      "availability",
+    ];
+    const pendientes = orden.filter((c) => nuevos[c]).map((c) => t.falta[c]);
+    if (nuevos.authorization) pendientes.push(tp.faltaCasilla);
+    setFaltantes(pendientes);
+    requestAnimationFrame(() =>
+      resumen.current?.scrollIntoView({ behavior: "smooth", block: "center" }),
+    );
+  };
+
+  const enviar = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError(null);
+    if (estado === "enviando") return;
+    setAviso(null);
 
-    // Validaciones básicas
-    if (
-      !datos.firstName.trim() ||
-      !datos.lastName.trim() ||
-      !datos.email.trim() ||
-      !datos.whatsapp.trim() ||
-      !datos.documentNumber.trim() ||
-      !datos.affiliation.trim() ||
-      !datos.careerRole.trim()
-    ) {
-      setError(
-        idioma === "en"
-          ? "Please fill in all required fields."
-          : idioma === "pt"
-          ? "Por favor, preencha todos os campos obrigatórios."
-          : "Por favor completa todos los campos obligatorios antes de enviar."
-      );
+    const nuevos = revisar();
+    setErrores(nuevos);
+    if (Object.keys(nuevos).length > 0) {
+      listarFaltantes(nuevos);
       return;
     }
 
-    if (datos.availability !== "si") {
-      setError(
-        idioma === "en"
-          ? "You must confirm full in-person availability for Saturday, November 14."
-          : idioma === "pt"
-          ? "Você deve confirmar presença integral no sábado, 14 de novembro."
-          : "Debes confirmar tu disponibilidad presencial completa el sábado 14 de noviembre (8:00 a.m. a 8:00 p.m.)."
-      );
-      return;
-    }
-
-    if (datos.authorization !== "si") {
-      setError(
-        idioma === "en"
-          ? "You must authorize personal data processing to proceed."
-          : idioma === "pt"
-          ? "Você deve autorizar o tratamento de dados para continuar."
-          : "Debes autorizar el tratamiento de tus datos personales conforme a la ley para postularte."
-      );
-      return;
-    }
-
-    setEnviando(true);
-
+    setFaltantes([]);
+    setEstado("enviando");
     try {
+      const datos: Campos = { ...v };
+      if (datos.teamMode !== "equipo") datos.teamMembers = "";
       const r = await fetch("/api/defacc/aplicar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datos),
       });
-
-      const res = await r.json();
+      const res = (await r.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+        campo?: string;
+      };
 
       if (!r.ok || !res.ok) {
-        setError(
-          res.mensaje ||
-            (idioma === "en"
-              ? "Could not submit your application. Please check your data or try again in a minute."
-              : idioma === "pt"
-              ? "Não foi possível enviar sua inscrição. Tente novamente em um minuto."
-              : "No se pudo guardar la postulación. Verifica tus datos o intenta nuevamente en un minuto.")
-        );
-        setEnviando(false);
-        return;
+        /* La ruta dice qué campo rechazó: se marca ahí, como si lo hubiera
+           detectado el navegador. */
+        if (res.error === "invalid" && res.campo) {
+          const campo = res.campo;
+          const mensaje =
+            campo === "email"
+              ? t.correoMal
+              : campo === "whatsapp"
+                ? t.whatsappMal
+                : campo === "authorization"
+                  ? tp.casillaFalta
+                  : LIMITES[campo] && v[campo].trim().length > LIMITES[campo]
+                    ? t.limite(LIMITES[campo])
+                    : v[campo]?.trim()
+                      ? t.enlaceMal
+                      : t.faltaResponder;
+          const marcados = { [campo]: mensaje };
+          setErrores(marcados);
+          listarFaltantes(marcados);
+          setEstado("listo");
+          return;
+        }
+        if (res.error === "rate_limited") {
+          setAviso(t.limitePeticiones);
+          setEstado("listo");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
+        if (res.error === "closed" || res.error === "not_started") {
+          setAviso(t.yaCerro);
+          setEstado("listo");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
+        throw new Error(String(r.status));
       }
 
-      // Éxito: limpiar borrador local
       try {
-        localStorage.removeItem(BORRADOR_KEY);
+        window.localStorage.removeItem(BORRADOR);
       } catch {
-        // Ignorar
+        /* idem */
       }
-      setEnviado(true);
+      setEstado("enviado");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch {
-      setError(
-        idioma === "en"
-          ? "Network error. Please check your connection."
-          : idioma === "pt"
-          ? "Erro de conexão. Verifique sua internet."
-          : "Error de conexión. Por favor verifica tu red e intenta de nuevo."
-      );
-    } finally {
-      setEnviando(false);
+      setEstado("falla");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
-  const tPol = TEXTOS_POLITICA[idioma];
-
   if (noIniciado) {
     return (
-      <div className="rounded-2xl border border-aisc-line bg-white p-8 text-center shadow-xs md:p-12">
-        <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-aisc-sand text-aisc-forest-deep mb-4">
-          <svg
-            width="28"
-            height="28"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <polyline points="12 6 12 12 16 14" />
-          </svg>
-        </div>
-        <h2 className="text-display-3 text-aisc-ink">
-          {idioma === "en"
-            ? "Applications Have Not Started Yet"
-            : idioma === "pt"
-            ? "As inscrições ainda não começaram"
-            : "Las postulaciones aún no han iniciado"}
-        </h2>
-        <p className="text-body mt-4 text-aisc-muted max-w-lg mx-auto">
-          {idioma === "en"
-            ? "We are finalizing logistics and campus security pass coordination with IEEE Computer Society Uniandes. Registration will open very soon. In the meantime, you can explore the 5 research tracks or join our community group to be notified the moment applications go live."
-            : idioma === "pt"
-            ? "Estamos finalizando os preparativos de logística e acesso ao campus junto à IEEE Computer Society Uniandes. O formulário de inscrição será aberto em breve. Enquanto isso, você pode conferir as 5 frentes temáticas ou entrar no grupo da comunidade para ser avisado assim que abrir."
-            : "Estamos ultimando los detalles logísticos y de registro peatonal al campus junto con IEEE Computer Society Uniandes. Próximamente habilitaremos el formulario oficial de inscripción. Mientras tanto, puedes explorar los 5 frentes temáticos o unirte a nuestro grupo de la comunidad para enterarte apenas abran."}
-        </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <Link
-            href={rutaEn(idioma, "/defacchackathon")}
-            className="text-body-sm inline-flex items-center rounded-full bg-aisc-forest px-6 py-2.5 font-medium text-aisc-cream transition-colors hover:bg-aisc-forest-deep"
-          >
-            {idioma === "en"
-              ? "Explore Research Tracks"
-              : idioma === "pt"
-              ? "Ver frentes de pesquisa"
-              : "Ver frentes temáticos"}
+      <div className={TARJETA}>
+        <h2 className={TITULO}>{t.noIniciadoTitulo}</h2>
+        <p className="text-body-sm mt-4 text-aisc-ink">{t.noIniciadoCuerpo}</p>
+        <div className="mt-7 flex flex-wrap gap-3">
+          <Link className={BOTON_LLENO} href={inicio}>
+            {t.verFrentes}
           </Link>
           <a
-            href="https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF"
+            className={BOTON_CONTORNO}
+            href={GRUPO_COMUNIDAD_WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-body-sm inline-flex items-center rounded-full border border-aisc-forest/40 bg-aisc-sand/40 px-6 py-2.5 font-medium text-aisc-forest transition-colors hover:bg-aisc-forest hover:text-aisc-cream"
           >
-            {idioma === "en"
-              ? "Join WhatsApp Community"
-              : idioma === "pt"
-              ? "Entrar no grupo do WhatsApp"
-              : "Unirme al grupo en WhatsApp"}
+            {t.unirmeGrupo}
           </a>
         </div>
       </div>
@@ -255,543 +853,438 @@ export default function DefAccApplyForm({
 
   if (cerrado) {
     return (
-      <div className="rounded-2xl border border-aisc-line bg-white p-8 text-center shadow-xs md:p-12">
-        <h2 className="text-display-3 text-aisc-ink">
-          {idioma === "en"
-            ? "Applications are closed"
-            : idioma === "pt"
-            ? "Inscrições encerradas"
-            : "Las inscripciones para esta edición ya cerraron"}
-        </h2>
-        <p className="text-body mt-4 text-aisc-muted max-w-lg mx-auto">
-          {idioma === "en"
-            ? "Selection review is underway. If you already applied, check your inbox between November 11 and 13 for your campus access pass."
-            : idioma === "pt"
-            ? "O processo de seleção está em andamento. Os selecionados receberão instruções de acesso ao campus por e-mail."
-            : "El proceso de selección está en marcha. Si ya postulaste, revisa tu correo entre el 11 y el 13 de noviembre para la confirmación de ingreso al campus de la Universidad de los Andes."}
+      <div className={TARJETA}>
+        <h2 className={TITULO}>{t.cerradoTitulo}</h2>
+        <p className="text-body-sm mt-4 text-aisc-ink">
+          {t.cerradoCuerpo(fechaCierre(idioma))}
         </p>
-        <div className="mt-8">
-          <Link
-            href={rutaEn(idioma, "/defacchackathon")}
-            className="text-body-sm inline-flex items-center rounded-full bg-aisc-forest px-6 py-2.5 font-medium text-aisc-cream transition-colors hover:bg-aisc-forest-deep"
+        <div className="mt-7 flex flex-wrap gap-3">
+          <a
+            className={BOTON_LLENO}
+            href={GRUPO_COMUNIDAD_WHATSAPP}
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            {idioma === "en"
-              ? "Back to Hackathon Page"
-              : idioma === "pt"
-              ? "Voltar para o Hackathon"
-              : "Volver a la página del hackatón"}
+            {t.unirmeGrupo}
+          </a>
+          <Link className={BOTON_CONTORNO} href={inicio}>
+            {t.volver}
           </Link>
         </div>
       </div>
     );
   }
 
-  if (enviado) {
+  if (estado === "enviado") {
     return (
-      <div className="rounded-2xl border border-aisc-forest/30 bg-aisc-sand/40 p-8 text-center shadow-xs md:p-12">
-        <span className="text-4xl" aria-hidden="true">🎉</span>
-        <h2 className="text-display-2 text-aisc-forest mt-4">
-          {idioma === "en"
-            ? "Application Received!"
-            : idioma === "pt"
-            ? "Inscrição Recebida!"
-            : "¡Recibimos tu postulación!"}
-        </h2>
-        <p className="text-body md:text-body-lg mt-4 text-aisc-ink max-w-xl mx-auto">
-          {idioma === "en"
-            ? "Thank you for applying to the Defensive Acceleration Hackathon. We review applications continuously and will notify you by email before November 13 with campus security details."
-            : idioma === "pt"
-            ? "Obrigado por se inscrever no Defensive Acceleration Hackathon. Enviaremos o resultado e as orientações de acesso ao campus por e-mail até 13 de novembro."
-            : "Muchas gracias por postularte al Defensive Acceleration Hackathon. Revisamos las postulaciones continuamente y te responderemos por correo antes del 13 de noviembre con los detalles de ingreso a la Universidad de los Andes."}
-        </p>
-
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Link
-            href={rutaEn(idioma, "/defacchackathon")}
-            className="text-body-sm inline-flex items-center rounded-full bg-aisc-forest px-6 py-2.5 font-medium text-aisc-cream transition-colors hover:bg-aisc-forest-deep"
+      <div className={TARJETA}>
+        <h2 className={TITULO}>{t.enviadoTitulo}</h2>
+        <p className="text-body-sm mt-4 text-aisc-ink">{t.enviadoCuerpo1}</p>
+        <p className="text-body-sm mt-3 text-aisc-ink">{t.enviadoCuerpo2}</p>
+        <div className="mt-7 flex flex-wrap gap-3">
+          <a
+            className={BOTON_LLENO}
+            href={GRUPO_COMUNIDAD_WHATSAPP}
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            {idioma === "en"
-              ? "Return to Hackathon Overview"
-              : idioma === "pt"
-              ? "Voltar ao resumo"
-              : "Volver al resumen del evento"}
+            {t.unirmeGrupo}
+          </a>
+          <Link className={BOTON_CONTORNO} href={inicio}>
+            {t.volver}
           </Link>
         </div>
       </div>
     );
   }
+
+  const contador = (name: string) => {
+    const usado = (v[name] ?? "").length;
+    const tope = LIMITES[name];
+    return (
+      <span
+        className={`text-meta mt-1 block text-right tabular-nums ${usado > tope ? "text-aisc-coral" : "text-aisc-muted"}`}
+      >
+        {usado} / {tope}
+      </span>
+    );
+  };
+
+  const aria = (name: string) => ({
+    "aria-invalid": errores[name] ? true : undefined,
+    "aria-describedby": errores[name] ? `${name}-error` : undefined,
+  });
+
+  const areaProps = (name: string, rows: number) => ({
+    id: name,
+    name,
+    rows,
+    value: v[name],
+    onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) =>
+      set(name, e.target.value),
+    className: `${INPUT} resize-y ${errores[name] ? INPUT_MAL : ""}`,
+    ...aria(name),
+  });
+
+  const textProps = (name: string, tipo = "text") => ({
+    id: name,
+    name,
+    type: tipo,
+    maxLength: LIMITES[name],
+    value: v[name],
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+      set(name, e.target.value),
+    className: `${INPUT} ${errores[name] ? INPUT_MAL : ""}`,
+    ...aria(name),
+  });
 
   return (
-    <form onSubmit={enviar} className="flex flex-col gap-8 rounded-2xl border border-aisc-line bg-white p-6 shadow-xs md:p-10">
-      {/* Honeypot anti-spam */}
-      <input
-        type="text"
-        name="website"
-        tabIndex={-1}
-        autoComplete="off"
-        className="hidden"
-        value={datos.website}
-        onChange={(e) => cambiar("website", e.target.value)}
-      />
-
-      {error ? (
-        <div className="rounded-xl border border-red-300 bg-red-50 p-4 text-body-sm text-red-800">
-          {error}
+    <form className={TARJETA} noValidate onSubmit={enviar}>
+      {estado === "falla" ? (
+        <div className="mb-8 rounded-[var(--radius)] border border-aisc-coral bg-aisc-coral/8 p-5">
+          <p className="text-body-sm text-aisc-ink">
+            {t.fallaAntes}
+            <a className={ENLACE} href={`mailto:${CORREO_HACKATHON}`}>
+              {CORREO_HACKATHON}
+            </a>
+            {t.fallaDespues}
+          </p>
         </div>
       ) : null}
 
-      {/* SECCIÓN 1: DATOS PERSONALES */}
-      <div className={SECCION}>
-        <h3 className="text-display-3 text-aisc-ink">
-          {idioma === "en" ? "1. Personal Information" : idioma === "pt" ? "1. Dados Pessoais" : "1. Datos personales y de contacto"}
-        </h3>
-        <p className={AYUDA}>
-          {idioma === "en"
-            ? "Used to communicate results and process your Uniandes campus clearance pass."
-            : idioma === "pt"
-            ? "Usados para contato e credenciamento no campus da Uniandes."
-            : "Usados para comunicarte el resultado y tramitar tu pase de acceso en la portería de Uniandes."}
-        </p>
-
-        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <div>
-            <label className={ETIQUETA} htmlFor="firstName">
-              {idioma === "en" ? "First name *" : idioma === "pt" ? "Nome *" : "Nombres *"}
-            </label>
-            <input
-              id="firstName"
-              type="text"
-              required
-              maxLength={80}
-              className={INPUT}
-              value={datos.firstName}
-              onChange={(e) => cambiar("firstName", e.target.value)}
-            />
-          </div>
-          <div>
-            <label className={ETIQUETA} htmlFor="lastName">
-              {idioma === "en" ? "Last name *" : idioma === "pt" ? "Sobrenome *" : "Apellidos *"}
-            </label>
-            <input
-              id="lastName"
-              type="text"
-              required
-              maxLength={80}
-              className={INPUT}
-              value={datos.lastName}
-              onChange={(e) => cambiar("lastName", e.target.value)}
-            />
-          </div>
+      {aviso ? (
+        <div className="mb-8 rounded-[var(--radius)] border border-aisc-coral bg-aisc-coral/8 p-5">
+          <p className="text-body-sm text-aisc-ink">{aviso}</p>
         </div>
+      ) : null}
 
-        <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <div>
-            <label className={ETIQUETA} htmlFor="email">
-              {idioma === "en" ? "Email *" : idioma === "pt" ? "E-mail *" : "Correo electrónico *"}
-            </label>
-            <input
-              id="email"
-              type="email"
-              required
-              maxLength={150}
-              className={INPUT}
-              value={datos.email}
-              onChange={(e) => cambiar("email", e.target.value)}
-            />
-            <span className={AYUDA}>
-              {idioma === "en" ? "Where you will receive confirmation and updates." : "Donde recibirás la confirmación y acceso."}
-            </span>
+      <div aria-live="polite" ref={resumen}>
+        {faltantes.length > 0 ? (
+          <div className="mb-8 rounded-[var(--radius)] border border-aisc-coral bg-aisc-coral/8 p-5">
+            <p className="text-body-sm font-medium text-aisc-ink">
+              {t.resumenTitulo}
+            </p>
+            <ul className="text-body-sm mt-2 list-disc pl-5 text-aisc-ink">
+              {faltantes.map((f) => (
+                <li key={f}>{f}</li>
+              ))}
+            </ul>
           </div>
-
-          <div>
-            <label className={ETIQUETA} htmlFor="whatsapp">
-              WhatsApp *
-            </label>
-            <input
-              id="whatsapp"
-              type="tel"
-              required
-              placeholder="+57 300 1234567"
-              maxLength={30}
-              className={INPUT}
-              value={datos.whatsapp}
-              onChange={(e) => cambiar("whatsapp", e.target.value)}
-            />
-            <span className={AYUDA}>
-              {idioma === "en" ? "Include country code (e.g. +57)." : "Incluye el indicativo de país (ej. +57 para Colombia)."}
-            </span>
-          </div>
-        </div>
-
-        {/* IDENTIFICACIÓN PARA INGRESO A UNIANDES */}
-        <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-12">
-          <div className="sm:col-span-4">
-            <label className={ETIQUETA} htmlFor="documentType">
-              {idioma === "en" ? "ID Type *" : idioma === "pt" ? "Tipo de Documento *" : "Tipo de documento *"}
-            </label>
-            <select
-              id="documentType"
-              className={INPUT}
-              value={datos.documentType}
-              onChange={(e) => cambiar("documentType", e.target.value)}
-            >
-              <option value="CC">Cédula de Ciudadanía (CC)</option>
-              <option value="CE">Cédula de Extranjería (CE)</option>
-              <option value="Pasaporte">{idioma === "en" ? "Passport" : "Pasaporte"}</option>
-              <option value="TI">Tarjeta de Identidad (TI)</option>
-              <option value="Otro">{idioma === "en" ? "Other" : "Otro"}</option>
-            </select>
-          </div>
-
-          <div className="sm:col-span-8">
-            <label className={ETIQUETA} htmlFor="documentNumber">
-              {idioma === "en" ? "ID Number *" : idioma === "pt" ? "Número do Documento *" : "Número de documento *"}
-            </label>
-            <input
-              id="documentNumber"
-              type="text"
-              required
-              maxLength={40}
-              placeholder="1020304050"
-              className={INPUT}
-              value={datos.documentNumber}
-              onChange={(e) => cambiar("documentNumber", e.target.value)}
-            />
-            <span className={AYUDA}>
-              {idioma === "en"
-                ? "Required by Uniandes campus security for in-person access on Saturday, Nov 14."
-                : "Requerido por seguridad de la Universidad de los Andes para autorizar tu ingreso físico."}
-            </span>
-          </div>
-        </div>
+        ) : null}
       </div>
 
-      {/* SECCIÓN 2: PERFIL */}
-      <div className={SECCION}>
-        <h3 className="text-display-3 text-aisc-ink">
-          {idioma === "en" ? "2. Academic / Professional Profile" : idioma === "pt" ? "2. Perfil Acadêmico / Profissional" : "2. Perfil académico o profesional"}
-        </h3>
-
-        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <div>
-            <label className={ETIQUETA} htmlFor="affiliation">
-              {idioma === "en" ? "University or Company *" : idioma === "pt" ? "Universidade ou Empresa *" : "Universidad o empresa *"}
-            </label>
-            <input
-              id="affiliation"
-              type="text"
-              required
-              placeholder="Ej. Uniandes, UNAL, Javeriana, Empresa..."
-              maxLength={120}
-              className={INPUT}
-              value={datos.affiliation}
-              onChange={(e) => cambiar("affiliation", e.target.value)}
-            />
-          </div>
-
-          <div>
-            <label className={ETIQUETA} htmlFor="careerRole">
-              {idioma === "en" ? "Major / Current Role *" : idioma === "pt" ? "Curso / Cargo Atual *" : "Carrera, semestre o cargo actual *"}
-            </label>
-            <input
-              id="careerRole"
-              type="text"
-              required
-              placeholder="Ej. Ing. de Sistemas 6to sem, Investigador..."
-              maxLength={120}
-              className={INPUT}
-              value={datos.careerRole}
-              onChange={(e) => cambiar("careerRole", e.target.value)}
-            />
-          </div>
-        </div>
-
-        <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-          <div>
-            <label className={ETIQUETA} htmlFor="experienceLevel">
-              {idioma === "en" ? "AI / Coding Experience" : "Nivel de experiencia con IA"}
-            </label>
-            <select
-              id="experienceLevel"
-              className={INPUT}
-              value={datos.experienceLevel}
-              onChange={(e) => cambiar("experienceLevel", e.target.value)}
-            >
-              <option value="principiante">{idioma === "en" ? "Beginner (Python basics)" : "Principiante (Python básico / primeros semestres)"}</option>
-              <option value="intermedio">{idioma === "en" ? "Intermediate (LLM APIs, prompt engineering)" : "Intermedio (APIs de LLM, RAG, desarrollo)"}</option>
-              <option value="avanzado">{idioma === "en" ? "Advanced (Security, agent frameworks)" : "Avanzado (Ciberseguridad, benchmarks, modelos)"}</option>
-            </select>
-          </div>
-
-          <div>
-            <label className={ETIQUETA} htmlFor="linkedin">
-              LinkedIn ({idioma === "en" ? "optional" : "opcional"})
-            </label>
-            <input
-              id="linkedin"
-              type="url"
-              placeholder="https://linkedin.com/in/..."
-              maxLength={160}
-              className={INPUT}
-              value={datos.linkedin}
-              onChange={(e) => cambiar("linkedin", e.target.value)}
-            />
-          </div>
-
-          <div>
-            <label className={ETIQUETA} htmlFor="githubPortfolio">
-              GitHub / Web ({idioma === "en" ? "optional" : "opcional"})
-            </label>
-            <input
-              id="githubPortfolio"
-              type="url"
-              placeholder="https://github.com/..."
-              maxLength={160}
-              className={INPUT}
-              value={datos.githubPortfolio}
-              onChange={(e) => cambiar("githubPortfolio", e.target.value)}
-            />
-          </div>
-        </div>
+      {/* trampa para robots: si viene llena, la postulación se descarta */}
+      <div
+        aria-hidden="true"
+        className="absolute h-px w-px overflow-hidden opacity-0"
+      >
+        <label htmlFor="website">{t.trampa}</label>
+        <input
+          id="website"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={v.website}
+          onChange={(e) => set("website", e.target.value)}
+        />
       </div>
 
-      {/* SECCIÓN 3: MODALIDAD DE EQUIPO Y TRACK */}
-      <div className={SECCION}>
-        <h3 className="text-display-3 text-aisc-ink">
-          {idioma === "en" ? "3. Team & Research Track" : idioma === "pt" ? "3. Equipe e Track de Pesquisa" : "3. Modalidad de equipo y track de interés"}
-        </h3>
-
-        <div className="mt-6 space-y-4">
-          <div>
-            <label className={ETIQUETA}>
-              {idioma === "en" ? "¿How are you applying?" : "¿Cómo te postulas? *"}
-            </label>
-            <div className="mt-2.5 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              <label
-                className={`flex cursor-pointer items-start gap-3 rounded-xl border p-4 transition-colors ${
-                  datos.teamMode === "individual"
-                    ? "border-aisc-forest bg-aisc-sand/40"
-                    : "border-aisc-line hover:border-aisc-line/80"
-                }`}
-              >
-                <input
-                  type="radio"
-                  name="teamMode"
-                  value="individual"
-                  checked={datos.teamMode === "individual"}
-                  onChange={() => cambiar("teamMode", "individual")}
-                  className="mt-1 size-4 text-aisc-forest"
-                />
-                <div>
-                  <span className="text-body-sm font-semibold text-aisc-ink block">
-                    {idioma === "en" ? "Solo applicant" : "Aplico de forma individual"}
-                  </span>
-                  <span className="text-meta text-aisc-muted mt-0.5 block">
-                    {idioma === "en"
-                      ? "I want to be matched with a team at the 9:40 AM mixer."
-                      : "Quiero armar equipo con otros participantes en la dinámica de las 9:40 a.m."}
-                  </span>
-                </div>
-              </label>
-
-              <label
-                className={`flex cursor-pointer items-start gap-3 rounded-xl border p-4 transition-colors ${
-                  datos.teamMode === "equipo"
-                    ? "border-aisc-forest bg-aisc-sand/40"
-                    : "border-aisc-line hover:border-aisc-line/80"
-                }`}
-              >
-                <input
-                  type="radio"
-                  name="teamMode"
-                  value="equipo"
-                  checked={datos.teamMode === "equipo"}
-                  onChange={() => cambiar("teamMode", "equipo")}
-                  className="mt-1 size-4 text-aisc-forest"
-                />
-                <div>
-                  <span className="text-body-sm font-semibold text-aisc-ink block">
-                    {idioma === "en" ? "With a pre-formed team" : "Aplico con equipo ya armado (2 a 4 personas)"}
-                  </span>
-                  <span className="text-meta text-aisc-muted mt-0.5 block">
-                    {idioma === "en"
-                      ? "All members should apply individually with the same team name/members."
-                      : "Cada integrante debe enviar su postulación para su acceso individual al campus."}
-                  </span>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          {datos.teamMode === "equipo" ? (
-            <div>
-              <label className={ETIQUETA} htmlFor="teamMembers">
-                {idioma === "en"
-                  ? "Names and emails of your teammates *"
-                  : "Nombres y correos de tus compañeros de equipo *"}
-              </label>
-              <textarea
-                id="teamMembers"
-                rows={2}
-                maxLength={400}
-                required={datos.teamMode === "equipo"}
-                placeholder="Ej. Juan Pérez (juan@uniandes.edu.co), Laura Gómez (laura@gmail.com)..."
-                className={INPUT}
-                value={datos.teamMembers}
-                onChange={(e) => cambiar("teamMembers", e.target.value)}
+      <div className="flex flex-col gap-9">
+        <section className={SECCION}>
+          <h2 className={TITULO}>{t.seccionDatos}</h2>
+          <p className={NOTA}>{t.datosNota}</p>
+          <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+            <Campo opcional={t.opcional} requerido name="firstName" label={t.nombre} error={errores.firstName}>
+              <input {...textProps("firstName")} autoComplete="given-name" />
+            </Campo>
+            <Campo opcional={t.opcional} requerido name="lastName" label={t.apellidos} error={errores.lastName}>
+              <input {...textProps("lastName")} autoComplete="family-name" />
+            </Campo>
+            <Campo
+              opcional={t.opcional}
+              requerido
+              name="email"
+              label={t.correo}
+              ayuda={t.correoAyuda}
+              error={errores.email}
+            >
+              <input {...textProps("email", "email")} autoComplete="email" />
+            </Campo>
+            <Campo
+              opcional={t.opcional}
+              requerido
+              name="whatsapp"
+              label={t.whatsapp}
+              ayuda={t.whatsappAyuda}
+              error={errores.whatsapp}
+            >
+              <input
+                {...textProps("whatsapp", "tel")}
+                autoComplete="tel"
+                placeholder="+57 300 123 4567"
               />
+            </Campo>
+            <Campo
+              opcional={t.opcional}
+              requerido
+              name="documentType"
+              label={t.tipoDocumento}
+              error={errores.documentType}
+            >
+              <select
+                id="documentType"
+                name="documentType"
+                value={v.documentType}
+                onChange={(e) => set("documentType", e.target.value)}
+                className={`${INPUT} ${errores.documentType ? INPUT_MAL : ""}`}
+                {...aria("documentType")}
+              >
+                {DOCUMENTOS.map((id) => (
+                  <option key={id} value={id}>
+                    {t.documentos[id]}
+                  </option>
+                ))}
+              </select>
+            </Campo>
+            <Campo
+              opcional={t.opcional}
+              requerido
+              name="documentNumber"
+              label={t.numeroDocumento}
+              ayuda={t.numeroDocumentoAyuda}
+              error={errores.documentNumber}
+            >
+              <input {...textProps("documentNumber")} autoComplete="off" />
+            </Campo>
+          </div>
+        </section>
+
+        <section className={SECCION}>
+          <h2 className={TITULO}>{t.seccionPerfil}</h2>
+          <div className="mt-6 flex flex-col gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="affiliation"
+                label={t.afiliacion}
+                ayuda={t.afiliacionAyuda}
+                error={errores.affiliation}
+              >
+                <input {...textProps("affiliation")} autoComplete="organization" />
+              </Campo>
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="careerRole"
+                label={t.carrera}
+                ayuda={t.carreraAyuda}
+                error={errores.careerRole}
+              >
+                <input {...textProps("careerRole")} />
+              </Campo>
+              <Campo opcional={t.opcional} name="linkedin" label={t.linkedin} error={errores.linkedin}>
+                <input
+                  {...textProps("linkedin", "url")}
+                  placeholder="https://linkedin.com/in/..."
+                />
+              </Campo>
+              <Campo
+                opcional={t.opcional}
+                name="githubPortfolio"
+                label={t.github}
+                ayuda={t.githubAyuda}
+                error={errores.githubPortfolio}
+              >
+                <input
+                  {...textProps("githubPortfolio", "url")}
+                  placeholder="https://github.com/..."
+                />
+              </Campo>
             </div>
-          ) : null}
-
-          <div>
-            <label className={ETIQUETA} htmlFor="preferredTrack">
-              {idioma === "en" ? "Preferred Research Track" : "Track temático de preferencia"}
-            </label>
-            <select
-              id="preferredTrack"
-              className={INPUT}
-              value={datos.preferredTrack}
-              onChange={(e) => cambiar("preferredTrack", e.target.value)}
-            >
-              <option value="track-1">Track 1: Seguridad de agentes e inyección de instrucciones (MCP, AgentDojo)</option>
-              <option value="track-2">Track 2: Control de IA, monitoreo y detección de sabotaje (ControlArena, Inspect)</option>
-              <option value="track-3">Track 3: Ciberdefensa automatizada y verificación formal (DafnyBench, CyberSecEval)</option>
-              <option value="track-4">Track 4: Defensa epistémica, procedencia C2PA y detección de suplantación (AASIST)</option>
-              <option value="track-5">Track 5: Seguridad de infraestructura de IA y gobernanza defensiva (No-Code, SL1 a SL5)</option>
-              <option value="por_definir">Aún no lo tengo claro / Decidiré en la mañana</option>
-            </select>
-          </div>
-
-          <div>
-            <label className={ETIQUETA} htmlFor="projectIdea">
-              {idioma === "en"
-                ? "Preliminary project idea (optional)"
-                : "¿Tienes alguna idea o problema preliminar que te gustaría trabajar? (Opcional)"}
-            </label>
-            <textarea
-              id="projectIdea"
-              rows={2}
-              maxLength={600}
-              placeholder="Una frase o dos sobre el enfoque o problema que tienes en mente..."
-              className={INPUT}
-              value={datos.projectIdea}
-              onChange={(e) => cambiar("projectIdea", e.target.value)}
+            <Opciones
+              name="experienceLevel"
+              legend={t.nivel}
+              ayuda={t.nivelAyuda}
+              opciones={NIVELES.map((id) => ({ id, texto: t.niveles[id] }))}
+              valor={v.experienceLevel}
+              error={errores.experienceLevel}
+              onChange={(id) => set("experienceLevel", id)}
             />
           </div>
-        </div>
-      </div>
+        </section>
 
-      {/* SECCIÓN 4: LOGÍSTICA DE LA JORNADA */}
-      <div className={SECCION}>
-        <h3 className="text-display-3 text-aisc-ink">
-          {idioma === "en" ? "4. Event Logistics & Catering" : idioma === "pt" ? "4. Logística e Alimentação" : "4. Logística de la jornada y alimentación"}
-        </h3>
-        <p className={AYUDA}>
-          {idioma === "en"
-            ? "We provide full lunch and coffee breaks on campus to keep the build sprint uninterrupted."
-            : idioma === "pt"
-            ? "O evento inclui almoço completo e lanches no campus para não pausar o trabalho em equipe."
-            : "El evento incluye almuerzo completo en el campus y refrigerios continuos para no pausar el trabajo en equipo."}
-        </p>
-
-        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <div>
-            <label className={ETIQUETA} htmlFor="dietaryRestrictions">
-              {idioma === "en" ? "Dietary preferences" : "Preferencias de alimentación"}
-            </label>
-            <select
-              id="dietaryRestrictions"
-              className={INPUT}
-              value={datos.dietaryRestrictions}
-              onChange={(e) => cambiar("dietaryRestrictions", e.target.value)}
-            >
-              <option value="ninguna">{idioma === "en" ? "No restrictions (standard menu)" : "Ninguna (menú estándar)"}</option>
-              <option value="vegetariano">{idioma === "en" ? "Vegetarian" : "Vegetariano"}</option>
-              <option value="vegano">{idioma === "en" ? "Vegan" : "Vegano"}</option>
-              <option value="alergia">{idioma === "en" ? "Food allergy (specify below)" : "Alergia alimentaria (especificar abajo)"}</option>
-            </select>
-          </div>
-
-          <div>
-            <label className={ETIQUETA} htmlFor="dietaryDetail">
-              {idioma === "en" ? "Allergy or accessibility details" : "Detalle de alergias o accesibilidad (si aplica)"}
-            </label>
-            <input
-              id="dietaryDetail"
-              type="text"
-              placeholder="Ej. Celíaco, alergia a maní, movilidad reducida..."
-              maxLength={120}
-              className={INPUT}
-              value={datos.dietaryDetail}
-              onChange={(e) => cambiar("dietaryDetail", e.target.value)}
+        <section className={SECCION}>
+          <h2 className={TITULO}>{t.seccionEquipo}</h2>
+          <div className="mt-6 flex flex-col gap-6">
+            <Opciones
+              name="teamMode"
+              legend={t.modalidad}
+              opciones={MODALIDADES.map((id) => ({
+                id,
+                texto: (
+                  <>
+                    <span className="block font-medium text-aisc-ink">
+                      {t.modalidades[id].titulo}
+                    </span>
+                    <span className="text-meta mt-0.5 block text-aisc-muted">
+                      {t.modalidades[id].detalle}
+                    </span>
+                  </>
+                ),
+              }))}
+              valor={v.teamMode}
+              error={errores.teamMode}
+              onChange={(id) => set("teamMode", id)}
             />
-          </div>
-        </div>
 
-        {/* CONFIRMACIÓN DE DISPONIBILIDAD */}
-        <div className="mt-6 rounded-xl border border-aisc-forest/30 bg-aisc-sand/40 p-4">
-          <label className="flex items-start gap-3 cursor-pointer">
+            {v.teamMode === "equipo" ? (
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="teamMembers"
+                label={t.companeros}
+                ayuda={t.companerosAyuda}
+                error={errores.teamMembers}
+              >
+                <textarea {...areaProps("teamMembers", 4)} />
+                {contador("teamMembers")}
+              </Campo>
+            ) : null}
+
+            <Opciones
+              name="preferredTrack"
+              legend={t.frente}
+              ayuda={t.frenteAyuda}
+              opciones={[
+                ...tracks.map((track) => ({
+                  id: track.id,
+                  texto: `${track.numero}. ${track.titulo}`,
+                })),
+                { id: "por_definir", texto: t.porDefinir },
+              ]}
+              valor={v.preferredTrack}
+              error={errores.preferredTrack}
+              onChange={(id) => set("preferredTrack", id)}
+            />
+
+            <Campo
+              opcional={t.opcional}
+              name="projectIdea"
+              label={t.idea}
+              ayuda={t.ideaAyuda}
+              error={errores.projectIdea}
+            >
+              <textarea {...areaProps("projectIdea", 3)} />
+              {contador("projectIdea")}
+            </Campo>
+          </div>
+        </section>
+
+        <section className={SECCION}>
+          <h2 className={TITULO}>{t.seccionLogistica}</h2>
+          <p className={NOTA}>{t.logisticaNota}</p>
+          <div className="mt-6 flex flex-col gap-6">
+            <fieldset>
+              <legend className={ETIQUETA}>{t.dieta}</legend>
+              <div className="mt-3 grid grid-cols-1 gap-2 md:grid-cols-2">
+                {DIETAS.map((id) => (
+                  <label className={OPCION} key={id}>
+                    <input
+                      type="radio"
+                      name="dietaryRestrictions"
+                      value={id}
+                      checked={v.dietaryRestrictions === id}
+                      onChange={() => set("dietaryRestrictions", id)}
+                      className="mt-0.5 accent-aisc-forest"
+                    />
+                    <span>{t.dietas[id]}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+            <Campo
+              opcional={t.opcional}
+              requerido={v.dietaryRestrictions === "alergia"}
+              name="dietaryDetail"
+              label={t.detalleDieta}
+              ayuda={t.detalleDietaAyuda}
+              error={errores.dietaryDetail}
+            >
+              <input {...textProps("dietaryDetail")} />
+            </Campo>
+          </div>
+        </section>
+
+        <section className={SECCION}>
+          <h2 className={TITULO}>{t.seccionAntes}</h2>
+          <label className={`${CASILLA} mt-6`} htmlFor="availability">
             <input
+              id="availability"
+              name="availability"
               type="checkbox"
-              required
-              checked={datos.availability === "si"}
-              onChange={(e) => cambiar("availability", e.target.checked ? "si" : "")}
-              className="mt-1 size-5 rounded text-aisc-forest"
+              checked={v.availability === "si"}
+              onChange={(e) => set("availability", e.target.checked ? "si" : "")}
+              className="mt-0.5 accent-aisc-forest"
+              {...aria("availability")}
             />
-            <span className="text-body-sm font-medium text-aisc-ink leading-relaxed">
-              <strong>Compromiso de asistencia:</strong> Confirmo que podré asistir de forma presencial a la Universidad de los Andes el <strong>sábado 14 de noviembre de 2026</strong> desde las 8:00 a.m. hasta las 8:00 p.m.
+            <span>
+              {t.disponibilidad}
+              <span className="text-aisc-coral"> *</span>
             </span>
           </label>
-        </div>
-      </div>
-
-      {/* SECCIÓN 5: POLÍTICA DE DATOS Y ENVÍO */}
-      <div className={SECCION}>
-        <div className="rounded-xl border border-aisc-line bg-white p-4">
-          <label className="flex items-start gap-3 cursor-pointer">
+          {errores.availability ? (
+            <span className={ERROR} id="availability-error" role="alert">
+              {errores.availability}
+            </span>
+          ) : null}
+          <p className="text-meta mt-4 text-aisc-muted">
+            {t.privacidadAntes}
+            <a className={ENLACE} href={`mailto:${CORREO_HACKATHON}`}>
+              {CORREO_HACKATHON}
+            </a>
+            {t.privacidadDespues}
+          </p>
+          <label className={`${CASILLA} mt-4`} htmlFor="authorization">
             <input
+              id="authorization"
+              name="authorization"
               type="checkbox"
-              required
-              checked={datos.authorization === "si"}
-              onChange={(e) => cambiar("authorization", e.target.checked ? "si" : "")}
-              className="mt-1 size-5 rounded text-aisc-forest"
+              checked={v.authorization === "si"}
+              onChange={(e) => set("authorization", e.target.checked ? "si" : "")}
+              className="mt-0.5 accent-aisc-forest"
+              {...aria("authorization")}
             />
-            <span className="text-meta text-aisc-ink/90 leading-relaxed">
-              {tPol.casilla}
-              <Link
+            <span>
+              {tp.casilla}
+              <a
+                className={ENLACE}
                 href={RUTA_POLITICA[idioma]}
                 target="_blank"
-                className="text-aisc-forest font-medium underline"
+                rel="noopener noreferrer"
               >
-                {tPol.casillaEnlace}
-              </Link>
+                {tp.casillaEnlace}
+              </a>
               .
             </span>
           </label>
-        </div>
+          {errores.authorization ? (
+            <span className={ERROR} id="authorization-error" role="alert">
+              {errores.authorization}
+            </span>
+          ) : null}
+        </section>
+      </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
-          <Link
-            href={rutaEn(idioma, "/defacchackathon")}
-            className="text-body-sm text-aisc-muted hover:text-aisc-ink"
-          >
-            ← {idioma === "en" ? "Back to hackathon" : "Volver a las bases"}
-          </Link>
-
-          <button
-            type="submit"
-            disabled={enviando}
-            className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-aisc-coral px-8 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85 disabled:opacity-50"
-          >
-            {enviando
-              ? idioma === "en"
-                ? "Submitting..."
-                : "Enviando postulación..."
-              : idioma === "en"
-              ? "Submit Application"
-              : "Enviar mi postulación"}
-          </button>
-        </div>
+      <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-aisc-line pt-8">
+        <button
+          className="text-body-sm inline-flex min-h-11 items-center rounded-full bg-aisc-coral px-7 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85 disabled:cursor-not-allowed disabled:opacity-60"
+          disabled={estado === "enviando"}
+          type="submit"
+        >
+          {estado === "enviando" ? t.enviando : t.enviar}
+        </button>
+        <span className="text-meta text-aisc-muted">{t.guardado}</span>
       </div>
     </form>
   );

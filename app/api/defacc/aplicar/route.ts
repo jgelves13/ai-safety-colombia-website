@@ -59,10 +59,47 @@ const OBLIGATORIOS = [
   "lastName",
   "email",
   "whatsapp",
+  "documentType",
   "documentNumber",
   "affiliation",
   "careerRole",
+  "experienceLevel",
+  "teamMode",
+  "preferredTrack",
 ];
+
+/* Valores admitidos en los campos de opción. Son los mismos identificadores que
+   envía components/defacc-apply-form.tsx. */
+const OPCIONES: Record<string, readonly string[]> = {
+  documentType: ["CC", "CE", "Pasaporte", "TI", "Otro"],
+  experienceLevel: ["principiante", "intermedio", "avanzado"],
+  teamMode: ["individual", "equipo"],
+  preferredTrack: ["track-1", "track-2", "track-3", "track-4", "track-5", "por_definir"],
+  dietaryRestrictions: ["ninguna", "vegetariano", "vegano", "alergia"],
+};
+
+/* Nombres legibles para el mensaje de error que devuelve la ruta. */
+const NOMBRES_CAMPOS: Record<string, string> = {
+  firstName: "nombres",
+  lastName: "apellidos",
+  email: "correo",
+  whatsapp: "WhatsApp",
+  documentType: "tipo de documento",
+  documentNumber: "número de documento",
+  affiliation: "universidad o empresa",
+  careerRole: "carrera o cargo",
+  experienceLevel: "experiencia",
+  linkedin: "LinkedIn",
+  githubPortfolio: "GitHub o página personal",
+  teamMode: "modalidad",
+  teamMembers: "integrantes del equipo",
+  preferredTrack: "frente temático",
+  projectIdea: "idea",
+  dietaryRestrictions: "alimentación",
+  dietaryDetail: "detalle de alimentación",
+  availability: "confirmación de asistencia",
+  authorization: "autorización de datos",
+};
 
 type Crudo = Record<string, unknown>;
 
@@ -83,6 +120,21 @@ function validar(
 
   for (const campo of OBLIGATORIOS) {
     if (!datos[campo]) return { ok: false, campo };
+  }
+
+  if (!datos.dietaryRestrictions) datos.dietaryRestrictions = "ninguna";
+  for (const [campo, validos] of Object.entries(OPCIONES)) {
+    if (!validos.includes(datos[campo])) return { ok: false, campo };
+  }
+
+  if (datos.teamMode === "equipo") {
+    if (!datos.teamMembers) return { ok: false, campo: "teamMembers" };
+  } else {
+    datos.teamMembers = "";
+  }
+
+  if (datos.dietaryRestrictions === "alergia" && !datos.dietaryDetail) {
+    return { ok: false, campo: "dietaryDetail" };
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(datos.email)) {
@@ -117,10 +169,11 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
     return false;
   }
 
-  let dieta = datos.dietaryRestrictions || "ninguna";
-  if (dieta === "alergias" && datos.dietaryDetail) {
-    dieta = `Alergias: ${datos.dietaryDetail}`;
-  }
+  /* La tabla no tiene columna aparte para el detalle: se guarda junto a la opción. */
+  const codigoDieta = datos.dietaryRestrictions || "ninguna";
+  const dieta = datos.dietaryDetail
+    ? `${codigoDieta}: ${datos.dietaryDetail}`
+    : codigoDieta;
 
   const fila = {
     submitted_at: new Date().toISOString(),
@@ -299,7 +352,7 @@ export async function POST(req: Request) {
   const rev = validar(raw);
   if (!rev.ok) {
     return NextResponse.json(
-      { ok: false, error: "invalid", campo: rev.campo, mensaje: `El campo ${rev.campo} es obligatorio o tiene un formato no válido.` },
+      { ok: false, error: "invalid", campo: rev.campo, mensaje: `Revisa el campo "${NOMBRES_CAMPOS[rev.campo] ?? rev.campo}": falta o no tiene un formato válido.` },
       { status: 400 },
     );
   }

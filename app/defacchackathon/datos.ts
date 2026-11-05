@@ -6,7 +6,7 @@ export const CIERRE_INSCRIPCIONES_ISO = "2026-11-10T23:59:59-05:00";
 export const GRUPO_COMUNIDAD_WHATSAPP = "https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF";
 export const CORREO_HACKATHON = "equipo@aisafetycolombia.org";
 
-export const INSCRIPCIONES_INICIADAS = false;
+export const INSCRIPCIONES_INICIADAS = true;
 
 export function inscripcionesIniciadas(): boolean {
   return INSCRIPCIONES_INICIADAS;
@@ -158,7 +158,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
     titulo: "Defensive Acceleration Hackathon",
     subtitulo: "Hackatón de IA para la defensa · Bogotá 2026",
     lema: "Un día, un reto: construir una defensa basada en inteligencia artificial contra una amenaza real.",
-    ctaAplicar: "Inscripciones próximamente",
+    ctaAplicar: "Inscríbete",
     ctaVerBases: "Ver frentes temáticos",
     estadoInscripciones: "Las postulaciones aún no han iniciado. Próximamente abriremos la convocatoria oficial.",
     premiosPodio: [
@@ -399,9 +399,9 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       ],
       calendarioPrevioTitulo: "Fechas clave de la convocatoria",
       calendarioPrevio: [
-        { fecha: "Lunes 2 de noviembre", hito: "Apertura oficial de postulaciones públicas." },
-        { fecha: "Martes 10 de noviembre (11:59 p.m.)", hito: "Cierre estricto de inscripciones y publicación de kits de inicio." },
-        { fecha: "11 al 13 de noviembre", hito: "Revisión de aplicaciones y envío de correos de confirmación con acceso al campus." },
+        { fecha: "Jueves 5 de noviembre", hito: "Apertura de inscripciones." },
+        { fecha: "Martes 10 de noviembre (11:59 p.m.)", hito: "Cierre de inscripciones." },
+        { fecha: "Antes del evento", hito: "Correos de confirmación con acceso al campus para los participantes seleccionados." },
         { fecha: "Sábado 14 de noviembre", hito: "Jornada presencial del hackatón en la Universidad de los Andes (8:00 a.m. a 8:00 p.m.)." },
       ],
       faqTitulo: "Preguntas frecuentes",
@@ -428,7 +428,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         },
         {
           q: "¿Cómo llego al salón en Uniandes?",
-          a: "El número exacto del edificio y salón te llegará al correo de aceptación junto con el registro de portería entre el 11 y el 13 de noviembre.",
+          a: "El número exacto del edificio y salón te llegará al correo de aceptación junto con el registro de portería antes del evento.",
         },
       ],
     },
@@ -438,7 +438,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
     titulo: "Defensive Acceleration Hackathon",
     subtitulo: "AI for Defense Hackathon · Bogotá 2026",
     lema: "One day, one challenge: build an AI-based defense against an active threat.",
-    ctaAplicar: "Applications opening soon",
+    ctaAplicar: "Apply now",
     ctaVerBases: "Research Tracks",
     estadoInscripciones: "Applications have not started yet. Registration will open soon.",
     premiosPodio: [
@@ -657,9 +657,9 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       ],
       calendarioPrevioTitulo: "Application Key Dates",
       calendarioPrevio: [
-        { fecha: "Monday, Nov 2", hito: "Public applications open." },
-        { fecha: "Tuesday, Nov 10 (11:59 PM)", hito: "Application deadline & starter kits release." },
-        { fecha: "Nov 11 to 13", hito: "Application review and campus entry passes issued." },
+        { fecha: "Thursday, Nov 5", hito: "Applications open." },
+        { fecha: "Tuesday, Nov 10 (11:59 PM)", hito: "Application deadline." },
+        { fecha: "Before the event", hito: "Confirmation emails with campus access for selected participants." },
         { fecha: "Saturday, Nov 14", hito: "Hackathon day at Universidad de los Andes (8 AM to 8 PM)." },
       ],
       faqTitulo: "Frequently Asked Questions",
@@ -676,7 +676,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
     titulo: "Defensive Acceleration Hackathon",
     subtitulo: "Hackathon de IA para Defesa · Bogotá 2026",
     lema: "Um dia, um desafio: construir uma defesa baseada em inteligência artificial contra uma ameaça real.",
-    ctaAplicar: "Inscrições em breve",
+    ctaAplicar: "Inscreva-se",
     ctaVerBases: "Ver frentes de pesquisa",
     estadoInscripciones: "As inscrições ainda não começaram. O formulário oficial será aberto em breve.",
     premiosPodio: [
@@ -895,9 +895,9 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       ],
       calendarioPrevioTitulo: "Datas Importantes",
       calendarioPrevio: [
-        { fecha: "Segunda, 2 nov", hito: "Abertura das inscrições públicas." },
-        { fecha: "Terça, 10 nov (23:59)", hito: "Fechamento estrito das inscrições." },
-        { fecha: "11 a 13 nov", hito: "Seleção e envio de acessos ao campus." },
+        { fecha: "Quinta, 5 nov", hito: "Abertura das inscrições." },
+        { fecha: "Terça, 10 nov (23:59)", hito: "Fechamento das inscrições." },
+        { fecha: "Antes do evento", hito: "E-mails de confirmação com acesso ao campus para os selecionados." },
         { fecha: "Sábado, 14 nov", hito: "Hackathon presencial na Uniandes (8:00 às 20:00)." },
       ],
       faqTitulo: "Perguntas Frequentes",
