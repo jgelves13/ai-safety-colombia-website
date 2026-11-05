@@ -37,8 +37,7 @@ const VACIO: Campos = {
   teamMembers: "",
   preferredTrack: "",
   projectIdea: "",
-  dietaryRestrictions: "ninguna",
-  dietaryDetail: "",
+  dietaryRestrictions: "",
   availability: "",
   authorization: "",
   website: "",
@@ -54,8 +53,10 @@ const OBLIGATORIOS = [
   "affiliation",
   "careerRole",
   "experienceLevel",
+  "linkedin",
   "teamMode",
   "preferredTrack",
+  "projectIdea",
 ] as const;
 
 /* Los mismos topes que aplica la ruta de la API. */
@@ -69,15 +70,65 @@ const LIMITES: Record<string, number> = {
   careerRole: 300,
   linkedin: 300,
   githubPortfolio: 300,
-  teamMembers: 500,
   projectIdea: 1500,
-  dietaryDetail: 300,
+  dietaryRestrictions: 300,
 };
+
+/* Mínimo de caracteres para la pregunta de selección (projectIdea). La ruta
+   aplica el mismo mínimo. */
+const IDEA_MINIMO = 30;
+
+/* Equipo: de 2 a 4 personas contando a quien se postula, así que hasta tres
+   integrantes más. Cada fila viaja a la ruta como una línea "Nombre <correo>". */
+const MAX_COMPANEROS = 3;
+type Companero = { nombre: string; correo: string };
+const FILA_VACIA: Companero = { nombre: "", correo: "" };
+const CORREO_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/* LinkedIn: se acepta "linkedin.com/in/x" sin https o cualquier dirección web.
+   Es la misma regla de la ruta. */
+function enlaceValido(valor: string): boolean {
+  const s = valor.trim();
+  if (/\s/.test(s)) return false;
+  if (/^(https?:\/\/)?([\w-]+\.)*linkedin\.com\/\S+$/i.test(s)) return true;
+  return /^(https?:\/\/)?[\w-]+(\.[\w-]+)+(:\d+)?(\/\S*)?$/i.test(s);
+}
+
+function filaCompleta(f: Companero): boolean {
+  return Boolean(f.nombre.trim()) && CORREO_RE.test(f.correo.trim());
+}
+
+function filaVacia(f: Companero): boolean {
+  return !f.nombre.trim() && !f.correo.trim();
+}
+
+function serializarEquipo(filas: Companero[]): string {
+  return filas
+    .filter((f) => !filaVacia(f))
+    .map((f) => `${f.nombre.trim()} <${f.correo.trim()}>`)
+    .join("\n");
+}
+
+/* Para borradores viejos que guardaban el equipo como texto libre. */
+function leerEquipo(texto: string): Companero[] {
+  const filas = texto
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .slice(0, MAX_COMPANEROS)
+    .map((l) => {
+      const m = l.match(/^(.*?)\s*<([^>]+)>\s*$/);
+      if (m) return { nombre: m[1].trim(), correo: m[2].trim() };
+      const correo = l.match(/[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]+/)?.[0] ?? "";
+      const nombre = l.replace(correo, "").replace(/[,;:<>()-]+/g, " ").trim();
+      return { nombre, correo };
+    });
+  return filas.length > 0 ? filas : [{ ...FILA_VACIA }];
+}
 
 const DOCUMENTOS = ["CC", "CE", "Pasaporte", "TI", "Otro"] as const;
 const NIVELES = ["principiante", "intermedio", "avanzado"] as const;
 const MODALIDADES = ["individual", "equipo"] as const;
-const DIETAS = ["ninguna", "vegetariano", "vegano", "alergia"] as const;
 
 /* WhatsApp: se acepta como lo escriba cada quien y solo se exige que queden
    entre siete y quince dígitos. Es la misma regla de la ruta. */
@@ -159,21 +210,27 @@ type Textos = {
   nivelAyuda: string;
   niveles: Record<string, string>;
   linkedin: string;
+  linkedinAyuda: string;
+  linkedinMal: string;
   github: string;
   githubAyuda: string;
   modalidad: string;
   modalidades: Record<string, { titulo: string; detalle: string }>;
   companeros: string;
   companerosAyuda: string;
+  companeroNombre: string;
+  companeroCorreo: string;
+  agregarCompanero: string;
+  quitarCompanero: string;
+  companerosMal: string;
   frente: string;
   frenteAyuda: string;
   porDefinir: string;
   idea: string;
   ideaAyuda: string;
+  ideaCorta: string;
   dieta: string;
-  dietas: Record<string, string>;
-  detalleDieta: string;
-  detalleDietaAyuda: string;
+  dietaAyuda: string;
   disponibilidad: string;
   privacidadAntes: string;
   privacidadDespues: string;
@@ -218,13 +275,15 @@ const TEXTOS: Record<Idioma, Textos> = {
       whatsapp: "Tu WhatsApp",
       documentType: "El tipo de documento",
       documentNumber: "El número de documento",
-      affiliation: "Tu universidad o empresa",
+      affiliation: "Tu universidad, empresa u ocupación",
       careerRole: "Tu carrera o cargo",
       experienceLevel: "Tu nivel de experiencia",
+      linkedin: "Tu LinkedIn",
       teamMode: "Si vienes solo o en equipo",
       teamMembers: "Los nombres y correos de tu equipo",
       preferredTrack: "El frente que te interesa",
-      dietaryDetail: "El detalle de tu alergia",
+      projectIdea: "El problema que te gustaría atacar",
+      dietaryRestrictions: "Restricciones o necesidades para el día",
       availability: "La confirmación de asistencia",
     },
     seccionDatos: "Tus datos",
@@ -234,7 +293,7 @@ const TEXTOS: Record<Idioma, Textos> = {
     seccionEquipo: "Equipo y frente",
     seccionLogistica: "La jornada",
     logisticaNota:
-      "Damos almuerzo y refrigerios en el campus. Cuéntanos si hay algo que debamos tener en cuenta.",
+      "Damos almuerzo en el campus. Si hay algo que debamos tener en cuenta para tu día, cuéntanos acá.",
     seccionAntes: "Antes de enviar",
     nombre: "Nombres",
     apellidos: "Apellidos",
@@ -253,8 +312,8 @@ const TEXTOS: Record<Idioma, Textos> = {
     numeroDocumento: "Número de documento",
     numeroDocumentoAyuda:
       "La universidad lo pide para autorizar tu ingreso. Escríbelo como aparece en el documento que vas a llevar ese día.",
-    afiliacion: "Universidad o empresa",
-    afiliacionAyuda: "Donde estudias o trabajas.",
+    afiliacion: "Universidad, empresa u ocupación",
+    afiliacionAyuda: "Donde estudias o trabajas. Si eres independiente o estás buscando trabajo, escríbelo así.",
     carrera: "Carrera, semestre o cargo",
     carreraAyuda: "Por ejemplo: Ingeniería de Sistemas, sexto semestre.",
     nivel: "Experiencia con IA y programación",
@@ -265,13 +324,15 @@ const TEXTOS: Record<Idioma, Textos> = {
       avanzado: "Avanzado: ciberseguridad, benchmarks, entrenamiento o evaluación de modelos",
     },
     linkedin: "LinkedIn",
+    linkedinAyuda: "El enlace a tu perfil, por ejemplo linkedin.com/in/tu-nombre.",
+    linkedinMal: "Revisa el enlace: debe ser la dirección de tu perfil de LinkedIn.",
     github: "GitHub o página personal",
     githubAyuda: "Algo donde veamos tu trabajo, si lo tienes.",
     modalidad: "¿Cómo te postulas?",
     modalidades: {
       individual: {
         titulo: "Solo",
-        detalle: "Armamos equipos en la mañana del evento, a las 9:40 a.m.",
+        detalle: "Te ayudamos a armar equipo la mañana del evento.",
       },
       equipo: {
         titulo: "Con un equipo de 2 a 4 personas",
@@ -279,23 +340,22 @@ const TEXTOS: Record<Idioma, Textos> = {
       },
     },
     companeros: "Nombres y correos de tu equipo",
-    companerosAyuda: "Una persona por línea, con el correo que usó o va a usar en su postulación.",
+    companerosAyuda: "Hasta tres personas, con el correo que usaron o van a usar en su postulación.",
+    companeroNombre: "Nombre",
+    companeroCorreo: "Correo",
+    agregarCompanero: "+ Agregar integrante",
+    quitarCompanero: "Quitar integrante",
+    companerosMal: "Completa el nombre y un correo válido de cada integrante.",
     frente: "Frente temático que más te interesa",
     frenteAyuda: "Puedes cambiarlo el día del evento.",
     porDefinir: "Todavía no sé, lo decido ese día",
-    idea: "¿Tienes una idea o un problema en mente?",
-    ideaAyuda: "Una o dos frases bastan.",
-    dieta: "Alimentación",
-    dietas: {
-      ninguna: "Sin restricciones",
-      vegetariano: "Vegetariana",
-      vegano: "Vegana",
-      alergia: "Tengo una alergia alimentaria",
-    },
-    detalleDieta: "Alergias, accesibilidad u otra necesidad",
-    detalleDietaAyuda: "Por ejemplo: celiaquía, alergia al maní, movilidad reducida.",
+    idea: "¿Qué problema de seguridad o defensa con IA te gustaría atacar, y por qué?",
+    ideaAyuda: "No tiene que ser una idea completa. Con unas pocas frases basta.",
+    ideaCorta: "Cuéntanos un poco más: escribe al menos 30 caracteres.",
+    dieta: "¿Restricciones alimentarias, alergias o algo de accesibilidad que debamos saber?",
+    dietaAyuda: "Por ejemplo: vegetariana, celiaquía, alergia al maní, movilidad reducida.",
     disponibilidad:
-      "Confirmo que puedo estar en la Universidad de los Andes el sábado 14 de noviembre de 2026, de 8:00 a.m. a 8:00 p.m.",
+      "Confirmo que puedo estar en la Universidad de los Andes durante toda la jornada del sábado 14 de noviembre de 2026.",
     privacidadAntes:
       "Guardamos tus respuestas para revisar tu postulación y organizar el evento. El número de documento se comparte con la Universidad de los Andes para registrar tu ingreso. Si quieres corregir o borrar tus datos, escríbenos a ",
     privacidadDespues: ".",
@@ -338,13 +398,15 @@ const TEXTOS: Record<Idioma, Textos> = {
       whatsapp: "Your WhatsApp",
       documentType: "ID type",
       documentNumber: "ID number",
-      affiliation: "Your university or company",
+      affiliation: "Your university, company or occupation",
       careerRole: "Your program or role",
       experienceLevel: "Your experience level",
+      linkedin: "Your LinkedIn",
       teamMode: "Whether you're coming solo or with a team",
       teamMembers: "Your teammates' names and emails",
       preferredTrack: "Your preferred track",
-      dietaryDetail: "Your allergy details",
+      projectIdea: "The problem you'd like to work on",
+      dietaryRestrictions: "Dietary or accessibility needs",
       availability: "Attendance confirmation",
     },
     seccionDatos: "About you",
@@ -352,7 +414,7 @@ const TEXTOS: Record<Idioma, Textos> = {
     seccionPerfil: "Your background",
     seccionEquipo: "Team and track",
     seccionLogistica: "The day",
-    logisticaNota: "Lunch and snacks are provided on campus. Let us know about anything we should plan for.",
+    logisticaNota: "Lunch is provided on campus. Let us know about anything we should plan for.",
     seccionAntes: "Before you send",
     nombre: "First name",
     apellidos: "Last name",
@@ -371,8 +433,8 @@ const TEXTOS: Record<Idioma, Textos> = {
     numeroDocumento: "ID number",
     numeroDocumentoAyuda:
       "The university requires it to let you in. Write it exactly as it appears on the ID you will bring that day.",
-    afiliacion: "University or company",
-    afiliacionAyuda: "Where you study or work.",
+    afiliacion: "University, company or occupation",
+    afiliacionAyuda: "Where you study or work. If you're freelance or looking for work, just say so.",
     carrera: "Program, year or role",
     carreraAyuda: "For example: Computer Science, third year.",
     nivel: "AI and coding experience",
@@ -383,13 +445,15 @@ const TEXTOS: Record<Idioma, Textos> = {
       avanzado: "Advanced: security, benchmarks, model training or evaluation",
     },
     linkedin: "LinkedIn",
+    linkedinAyuda: "A link to your profile, for example linkedin.com/in/your-name.",
+    linkedinMal: "Check the link: it should be your LinkedIn profile address.",
     github: "GitHub or personal site",
     githubAyuda: "Somewhere we can see your work, if you have it.",
     modalidad: "How are you applying?",
     modalidades: {
       individual: {
         titulo: "Solo",
-        detalle: "We form teams on the morning of the event, at 9:40 a.m.",
+        detalle: "We'll help you find a team on the morning of the event.",
       },
       equipo: {
         titulo: "With a team of 2 to 4",
@@ -397,23 +461,22 @@ const TEXTOS: Record<Idioma, Textos> = {
       },
     },
     companeros: "Your teammates' names and emails",
-    companerosAyuda: "One person per line, with the email they used or will use to apply.",
+    companerosAyuda: "Up to three people, with the email they used or will use to apply.",
+    companeroNombre: "Name",
+    companeroCorreo: "Email",
+    agregarCompanero: "+ Add teammate",
+    quitarCompanero: "Remove teammate",
+    companerosMal: "Fill in the name and a valid email for each teammate.",
     frente: "Track you're most interested in",
     frenteAyuda: "You can change it on the day.",
     porDefinir: "Not sure yet, I'll decide on the day",
-    idea: "Do you have an idea or problem in mind?",
-    ideaAyuda: "One or two sentences is enough.",
-    dieta: "Food",
-    dietas: {
-      ninguna: "No restrictions",
-      vegetariano: "Vegetarian",
-      vegano: "Vegan",
-      alergia: "I have a food allergy",
-    },
-    detalleDieta: "Allergies, accessibility or other needs",
-    detalleDietaAyuda: "For example: celiac, peanut allergy, reduced mobility.",
+    idea: "What AI security or defense problem would you like to work on, and why?",
+    ideaAyuda: "It doesn't have to be a full idea yet. A few sentences are enough.",
+    ideaCorta: "Tell us a bit more: write at least 30 characters.",
+    dieta: "Any dietary restrictions, allergies or accessibility needs we should know about?",
+    dietaAyuda: "For example: vegetarian, celiac, peanut allergy, reduced mobility.",
     disponibilidad:
-      "I confirm I can be at Universidad de los Andes on Saturday, November 14, 2026, from 8:00 a.m. to 8:00 p.m.",
+      "I confirm I can be at Universidad de los Andes for the whole day on Saturday, November 14, 2026.",
     privacidadAntes:
       "We store your answers to review your application and run the event. Your ID number is shared with Universidad de los Andes to register your entry. To correct or delete your data, email ",
     privacidadDespues: ".",
@@ -456,13 +519,15 @@ const TEXTOS: Record<Idioma, Textos> = {
       whatsapp: "Seu WhatsApp",
       documentType: "O tipo de documento",
       documentNumber: "O número do documento",
-      affiliation: "Sua universidade ou empresa",
+      affiliation: "Sua universidade, empresa ou ocupação",
       careerRole: "Seu curso ou cargo",
       experienceLevel: "Seu nível de experiência",
+      linkedin: "Seu LinkedIn",
       teamMode: "Se você vem sozinho ou em equipe",
       teamMembers: "Os nomes e e-mails da sua equipe",
       preferredTrack: "A frente que te interessa",
-      dietaryDetail: "O detalhe da sua alergia",
+      projectIdea: "O problema que você gostaria de atacar",
+      dietaryRestrictions: "Restrições ou necessidades para o dia",
       availability: "A confirmação de presença",
     },
     seccionDatos: "Seus dados",
@@ -470,7 +535,7 @@ const TEXTOS: Record<Idioma, Textos> = {
     seccionPerfil: "Seu perfil",
     seccionEquipo: "Equipe e frente",
     seccionLogistica: "O dia do evento",
-    logisticaNota: "Oferecemos almoço e lanches no campus. Conte se há algo que devemos levar em conta.",
+    logisticaNota: "Oferecemos almoço no campus. Conte se há algo que devemos levar em conta para o seu dia.",
     seccionAntes: "Antes de enviar",
     nombre: "Nome",
     apellidos: "Sobrenome",
@@ -489,8 +554,8 @@ const TEXTOS: Record<Idioma, Textos> = {
     numeroDocumento: "Número do documento",
     numeroDocumentoAyuda:
       "A universidade exige para autorizar sua entrada. Escreva como aparece no documento que você vai levar no dia.",
-    afiliacion: "Universidade ou empresa",
-    afiliacionAyuda: "Onde você estuda ou trabalha.",
+    afiliacion: "Universidade, empresa ou ocupação",
+    afiliacionAyuda: "Onde você estuda ou trabalha. Se é autônomo ou está procurando emprego, escreva isso.",
     carrera: "Curso, semestre ou cargo",
     carreraAyuda: "Por exemplo: Ciência da Computação, sexto semestre.",
     nivel: "Experiência com IA e programação",
@@ -501,13 +566,15 @@ const TEXTOS: Record<Idioma, Textos> = {
       avanzado: "Avançado: cibersegurança, benchmarks, treinamento ou avaliação de modelos",
     },
     linkedin: "LinkedIn",
+    linkedinAyuda: "O link do seu perfil, por exemplo linkedin.com/in/seu-nome.",
+    linkedinMal: "Confira o link: deve ser o endereço do seu perfil no LinkedIn.",
     github: "GitHub ou site pessoal",
     githubAyuda: "Algum lugar onde possamos ver seu trabalho, se tiver.",
     modalidad: "Como você se inscreve?",
     modalidades: {
       individual: {
         titulo: "Sozinho",
-        detalle: "Montamos equipes na manhã do evento, às 9h40.",
+        detalle: "Ajudamos você a montar uma equipe na manhã do evento.",
       },
       equipo: {
         titulo: "Com uma equipe de 2 a 4 pessoas",
@@ -515,23 +582,22 @@ const TEXTOS: Record<Idioma, Textos> = {
       },
     },
     companeros: "Nomes e e-mails da sua equipe",
-    companerosAyuda: "Uma pessoa por linha, com o e-mail que usou ou vai usar na candidatura.",
+    companerosAyuda: "Até três pessoas, com o e-mail que usaram ou vão usar na candidatura.",
+    companeroNombre: "Nome",
+    companeroCorreo: "E-mail",
+    agregarCompanero: "+ Adicionar integrante",
+    quitarCompanero: "Remover integrante",
+    companerosMal: "Preencha o nome e um e-mail válido de cada integrante.",
     frente: "Frente temática que mais te interessa",
     frenteAyuda: "Você pode mudar no dia do evento.",
     porDefinir: "Ainda não sei, decido no dia",
-    idea: "Você tem uma ideia ou um problema em mente?",
-    ideaAyuda: "Uma ou duas frases bastam.",
-    dieta: "Alimentação",
-    dietas: {
-      ninguna: "Sem restrições",
-      vegetariano: "Vegetariana",
-      vegano: "Vegana",
-      alergia: "Tenho alergia alimentar",
-    },
-    detalleDieta: "Alergias, acessibilidade ou outra necessidade",
-    detalleDietaAyuda: "Por exemplo: doença celíaca, alergia a amendoim, mobilidade reduzida.",
+    idea: "Que problema de segurança ou defesa com IA você gostaria de atacar, e por quê?",
+    ideaAyuda: "Não precisa ser uma ideia completa. Algumas frases bastam.",
+    ideaCorta: "Conte um pouco mais: escreva pelo menos 30 caracteres.",
+    dieta: "Restrições alimentares, alergias ou alguma necessidade de acessibilidade que devamos saber?",
+    dietaAyuda: "Por exemplo: vegetariana, doença celíaca, alergia a amendoim, mobilidade reduzida.",
     disponibilidad:
-      "Confirmo que posso estar na Universidad de los Andes no sábado, 14 de novembro de 2026, das 8h às 20h.",
+      "Confirmo que posso estar na Universidad de los Andes durante todo o dia no sábado, 14 de novembro de 2026.",
     privacidadAntes:
       "Guardamos suas respostas para avaliar sua candidatura e organizar o evento. O número do documento é compartilhado com a Universidad de los Andes para registrar sua entrada. Para corrigir ou apagar seus dados, escreva para ",
     privacidadDespues: ".",
@@ -545,6 +611,9 @@ const INPUT =
   "text-body-sm w-full rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 text-aisc-ink transition-colors placeholder:text-aisc-muted/60 focus:border-aisc-forest focus:outline-2 focus:outline-offset-[1px] focus:outline-aisc-forest/35";
 const INPUT_MAL =
   "border-aisc-coral focus:border-aisc-coral focus:outline-aisc-coral/35";
+/* Los select usan la misma caja que los campos de texto, sin la flecha nativa:
+   la flecha es un SVG aparte y el padding derecho evita que el texto la pise. */
+const SELECT = `${INPUT} cursor-pointer appearance-none pr-10`;
 const ETIQUETA = "text-body-sm block font-medium text-aisc-ink";
 const AYUDA = "text-meta mt-1 block text-aisc-muted";
 const ERROR = "text-meta mt-1.5 block text-aisc-coral";
@@ -599,6 +668,26 @@ function Campo({
         </span>
       ) : null}
     </div>
+  );
+}
+
+/* Flecha de los select: decorativa, no recibe clics (el clic llega al select). */
+function Flecha() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="pointer-events-none absolute top-1/2 right-3.5 h-4 w-4 -translate-y-1/2 text-aisc-muted"
+      fill="none"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M4 6l4 4 4-4"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.6"
+      />
+    </svg>
   );
 }
 
@@ -664,6 +753,7 @@ export default function DefAccApplyForm({
   const tracks = TEXTOS_HACKATHON[idioma].kits.listaTracks;
   const inicio = rutaEn(idioma, "/defacchackathon");
   const [v, setV] = useState<Campos>(VACIO);
+  const [filas, setFilas] = useState<Companero[]>([{ ...FILA_VACIA }]);
   const [errores, setErrores] = useState<Record<string, string>>({});
   const [estado, setEstado] = useState<
     "listo" | "enviando" | "enviado" | "falla"
@@ -679,13 +769,41 @@ export default function DefAccApplyForm({
     try {
       const guardado = window.localStorage.getItem(BORRADOR);
       if (guardado) {
+        const { teamRows, ...resto } = JSON.parse(guardado) as Record<string, unknown>;
+        const previos: Campos = {};
+        for (const [k, valor] of Object.entries(resto)) {
+          if (typeof valor === "string") previos[k] = valor;
+        }
+        /* Borradores de la versión con opciones de dieta: "ninguna" pasa a
+           vacío y el detalle de la alergia se suma al texto libre. */
+        const dietaVieja = previos.dietaryRestrictions ?? "";
+        const detalleViejo = previos.dietaryDetail ?? "";
+        delete previos.dietaryDetail;
+        if (["ninguna", "vegetariano", "vegano", "alergia"].includes(dietaVieja)) {
+          const base = ["vegetariano", "vegano"].includes(dietaVieja) ? dietaVieja : "";
+          previos.dietaryRestrictions = [base, detalleViejo].filter(Boolean).join(", ");
+        }
         setV({
           ...VACIO,
-          ...(JSON.parse(guardado) as Campos),
+          ...previos,
           availability: "",
           authorization: "",
           website: "",
         });
+        if (Array.isArray(teamRows)) {
+          const leidas = (teamRows as unknown[])
+            .slice(0, MAX_COMPANEROS)
+            .map((f) => {
+              const fila = (f ?? {}) as Record<string, unknown>;
+              return {
+                nombre: typeof fila.nombre === "string" ? fila.nombre : "",
+                correo: typeof fila.correo === "string" ? fila.correo : "",
+              };
+            });
+          setFilas(leidas.length > 0 ? leidas : [{ ...FILA_VACIA }]);
+        } else if (previos.teamMembers) {
+          setFilas(leerEquipo(previos.teamMembers));
+        }
       }
     } catch {
       /* si el almacenamiento está bloqueado, se sigue sin borrador */
@@ -698,17 +816,47 @@ export default function DefAccApplyForm({
     try {
       window.localStorage.setItem(
         BORRADOR,
-        JSON.stringify({ ...v, website: "", authorization: "", availability: "" }),
+        JSON.stringify({
+          ...v,
+          teamMembers: serializarEquipo(filas),
+          teamRows: filas,
+          website: "",
+          authorization: "",
+          availability: "",
+        }),
       );
     } catch {
       /* idem */
     }
-  }, [v, cargado, estado]);
+  }, [v, filas, cargado, estado]);
 
   const set = (name: string, valor: string) => {
     setV((prev) => ({ ...prev, [name]: valor }));
     setErrores((prev) => (prev[name] ? { ...prev, [name]: "" } : prev));
   };
+
+  const limpiarErrorEquipo = () =>
+    setErrores((prev) => (prev.teamMembers ? { ...prev, teamMembers: "" } : prev));
+
+  const setFila = (i: number, campo: keyof Companero, valor: string) => {
+    setFilas((prev) => prev.map((f, j) => (j === i ? { ...f, [campo]: valor } : f)));
+    limpiarErrorEquipo();
+  };
+
+  const agregarFila = () => {
+    setFilas((prev) =>
+      prev.length >= MAX_COMPANEROS ? prev : [...prev, { ...FILA_VACIA }],
+    );
+  };
+
+  const quitarFila = (i: number) => {
+    setFilas((prev) => (prev.length <= 1 ? prev : prev.filter((_, j) => j !== i)));
+    limpiarErrorEquipo();
+  };
+
+  /* Al menos una fila completa, y ninguna a medias ni con correo inválido. */
+  const equipoValido = () =>
+    filas.some(filaCompleta) && filas.every((f) => filaVacia(f) || filaCompleta(f));
 
   const revisar = () => {
     const nuevos: Record<string, string> = {};
@@ -721,11 +869,14 @@ export default function DefAccApplyForm({
     if (v.whatsapp.trim() && !telefonoValido(v.whatsapp)) {
       nuevos.whatsapp = t.whatsappMal;
     }
-    if (v.teamMode === "equipo" && !v.teamMembers.trim()) {
-      nuevos.teamMembers = t.faltaResponder;
+    if (v.linkedin.trim() && !enlaceValido(v.linkedin)) {
+      nuevos.linkedin = t.linkedinMal;
     }
-    if (v.dietaryRestrictions === "alergia" && !v.dietaryDetail.trim()) {
-      nuevos.dietaryDetail = t.faltaResponder;
+    if (v.projectIdea.trim() && v.projectIdea.trim().length < IDEA_MINIMO) {
+      nuevos.projectIdea = t.ideaCorta;
+    }
+    if (v.teamMode === "equipo" && !equipoValido()) {
+      nuevos.teamMembers = filas.every(filaVacia) ? t.faltaResponder : t.companerosMal;
     }
     if (v.availability !== "si") nuevos.availability = t.faltaResponder;
     if (v.authorization !== "si") nuevos.authorization = tp.casillaFalta;
@@ -739,7 +890,7 @@ export default function DefAccApplyForm({
     const orden = [
       ...OBLIGATORIOS,
       "teamMembers",
-      "dietaryDetail",
+      "dietaryRestrictions",
       "availability",
     ];
     const pendientes = orden.filter((c) => nuevos[c]).map((c) => t.falta[c]);
@@ -766,8 +917,7 @@ export default function DefAccApplyForm({
     setEstado("enviando");
     try {
       const datos: Campos = { ...v };
-      if (datos.teamMode !== "equipo") datos.teamMembers = "";
-      const r = await fetch("/api/defacc/aplicar", {
+      datos.teamMembers = datos.teamMode === "equipo" ? serializarEquipo(filas) : "";      const r = await fetch("/api/defacc/aplicar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datos),
@@ -790,7 +940,15 @@ export default function DefAccApplyForm({
                 ? t.whatsappMal
                 : campo === "authorization"
                   ? tp.casillaFalta
-                  : LIMITES[campo] && v[campo].trim().length > LIMITES[campo]
+                  : campo === "teamMembers"
+                    ? t.companerosMal
+                    : campo === "linkedin" && v.linkedin.trim()
+                      ? t.linkedinMal
+                      : campo === "projectIdea" &&
+                          v.projectIdea.trim() &&
+                          v.projectIdea.trim().length < IDEA_MINIMO
+                        ? t.ideaCorta
+                        : LIMITES[campo] && v[campo].trim().length > LIMITES[campo]
                     ? t.limite(LIMITES[campo])
                     : v[campo]?.trim()
                       ? t.enlaceMal
@@ -1031,20 +1189,23 @@ export default function DefAccApplyForm({
               label={t.tipoDocumento}
               error={errores.documentType}
             >
-              <select
-                id="documentType"
-                name="documentType"
-                value={v.documentType}
-                onChange={(e) => set("documentType", e.target.value)}
-                className={`${INPUT} ${errores.documentType ? INPUT_MAL : ""}`}
-                {...aria("documentType")}
-              >
-                {DOCUMENTOS.map((id) => (
-                  <option key={id} value={id}>
-                    {t.documentos[id]}
-                  </option>
-                ))}
-              </select>
+              <div className="relative">
+                <select
+                  id="documentType"
+                  name="documentType"
+                  value={v.documentType}
+                  onChange={(e) => set("documentType", e.target.value)}
+                  className={`${SELECT} ${errores.documentType ? INPUT_MAL : ""}`}
+                  {...aria("documentType")}
+                >
+                  {DOCUMENTOS.map((id) => (
+                    <option key={id} value={id}>
+                      {t.documentos[id]}
+                    </option>
+                  ))}
+                </select>
+                <Flecha />
+              </div>
             </Campo>
             <Campo
               opcional={t.opcional}
@@ -1083,10 +1244,18 @@ export default function DefAccApplyForm({
               >
                 <input {...textProps("careerRole")} />
               </Campo>
-              <Campo opcional={t.opcional} name="linkedin" label={t.linkedin} error={errores.linkedin}>
+              <Campo
+                opcional={t.opcional}
+                requerido
+                name="linkedin"
+                label={t.linkedin}
+                ayuda={t.linkedinAyuda}
+                error={errores.linkedin}
+              >
                 <input
                   {...textProps("linkedin", "url")}
-                  placeholder="https://linkedin.com/in/..."
+                  autoComplete="url"
+                  placeholder="linkedin.com/in/..."
                 />
               </Campo>
               <Campo
@@ -1147,8 +1316,79 @@ export default function DefAccApplyForm({
                 ayuda={t.companerosAyuda}
                 error={errores.teamMembers}
               >
-                <textarea {...areaProps("teamMembers", 4)} />
-                {contador("teamMembers")}
+                <div className="flex flex-col gap-3">
+                  {filas.map((fila, i) => {
+                    const mala =
+                      Boolean(errores.teamMembers) &&
+                      !filaCompleta(fila) &&
+                      !(filaVacia(fila) && filas.some(filaCompleta));
+                    const etiqueta = `text-meta mb-1 block text-aisc-muted ${i > 0 ? "md:sr-only" : ""}`;
+                    const idNombre = i === 0 ? "teamMembers" : `teamMembers-${i}-nombre`;
+                    const idCorreo = `teamMembers-${i}-correo`;
+                    return (
+                      <div
+                        className="grid grid-cols-1 gap-2 md:grid-cols-[1fr_1fr_auto] md:items-end md:gap-3"
+                        key={i}
+                      >
+                        <div>
+                          <label className={etiqueta} htmlFor={idNombre}>
+                            {t.companeroNombre} {i + 1}
+                          </label>
+                          <input
+                            id={idNombre}
+                            type="text"
+                            maxLength={100}
+                            autoComplete="off"
+                            value={fila.nombre}
+                            onChange={(e) => setFila(i, "nombre", e.target.value)}
+                            className={`${INPUT} ${mala ? INPUT_MAL : ""}`}
+                            aria-invalid={mala || undefined}
+                            aria-describedby={errores.teamMembers ? "teamMembers-error" : undefined}
+                          />
+                        </div>
+                        <div>
+                          <label className={etiqueta} htmlFor={idCorreo}>
+                            {t.companeroCorreo} {i + 1}
+                          </label>
+                          <input
+                            id={idCorreo}
+                            type="email"
+                            maxLength={200}
+                            autoComplete="off"
+                            value={fila.correo}
+                            onChange={(e) => setFila(i, "correo", e.target.value)}
+                            className={`${INPUT} ${mala ? INPUT_MAL : ""}`}
+                            aria-invalid={mala || undefined}
+                            aria-describedby={errores.teamMembers ? "teamMembers-error" : undefined}
+                          />
+                        </div>
+                        {filas.length > 1 ? (
+                          <button
+                            type="button"
+                            onClick={() => quitarFila(i)}
+                            aria-label={`${t.quitarCompanero} ${i + 1}`}
+                            title={t.quitarCompanero}
+                            className="text-body-sm inline-flex min-h-11 items-center justify-center self-end rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 text-aisc-muted transition-colors hover:border-aisc-coral hover:text-aisc-coral focus-visible:outline-2 focus-visible:outline-offset-[1px] focus-visible:outline-aisc-forest/35"
+                          >
+                            <span aria-hidden="true">✕</span>
+                            <span className="ml-2 md:hidden">{t.quitarCompanero}</span>
+                          </button>
+                        ) : (
+                          <span className="hidden w-[46px] md:block" aria-hidden="true" />
+                        )}
+                      </div>
+                    );
+                  })}
+                  {filas.length < MAX_COMPANEROS ? (
+                    <button
+                      type="button"
+                      onClick={agregarFila}
+                      className="text-body-sm inline-flex min-h-11 items-center self-start rounded-full border border-aisc-forest px-5 font-medium text-aisc-forest transition-colors hover:bg-aisc-forest hover:text-aisc-cream focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-aisc-forest/35"
+                    >
+                      {t.agregarCompanero}
+                    </button>
+                  ) : null}
+                </div>
               </Campo>
             ) : null}
 
@@ -1170,12 +1410,13 @@ export default function DefAccApplyForm({
 
             <Campo
               opcional={t.opcional}
+              requerido
               name="projectIdea"
               label={t.idea}
               ayuda={t.ideaAyuda}
               error={errores.projectIdea}
             >
-              <textarea {...areaProps("projectIdea", 3)} />
+              <textarea {...areaProps("projectIdea", 4)} />
               {contador("projectIdea")}
             </Campo>
           </div>
@@ -1184,34 +1425,16 @@ export default function DefAccApplyForm({
         <section className={SECCION}>
           <h2 className={TITULO}>{t.seccionLogistica}</h2>
           <p className={NOTA}>{t.logisticaNota}</p>
-          <div className="mt-6 flex flex-col gap-6">
-            <fieldset>
-              <legend className={ETIQUETA}>{t.dieta}</legend>
-              <div className="mt-3 grid grid-cols-1 gap-2 md:grid-cols-2">
-                {DIETAS.map((id) => (
-                  <label className={OPCION} key={id}>
-                    <input
-                      type="radio"
-                      name="dietaryRestrictions"
-                      value={id}
-                      checked={v.dietaryRestrictions === id}
-                      onChange={() => set("dietaryRestrictions", id)}
-                      className="mt-0.5 accent-aisc-forest"
-                    />
-                    <span>{t.dietas[id]}</span>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
+          <div className="mt-6">
             <Campo
               opcional={t.opcional}
-              requerido={v.dietaryRestrictions === "alergia"}
-              name="dietaryDetail"
-              label={t.detalleDieta}
-              ayuda={t.detalleDietaAyuda}
-              error={errores.dietaryDetail}
+              name="dietaryRestrictions"
+              label={t.dieta}
+              ayuda={t.dietaAyuda}
+              error={errores.dietaryRestrictions}
             >
-              <input {...textProps("dietaryDetail")} />
+              <textarea {...areaProps("dietaryRestrictions", 3)} />
+              {contador("dietaryRestrictions")}
             </Campo>
           </div>
         </section>

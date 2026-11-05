@@ -45,11 +45,10 @@ const LIMITES: Record<string, number> = {
   linkedin: 300,
   githubPortfolio: 300,
   teamMode: 50,
-  teamMembers: 500,
+  teamMembers: 1000,
   preferredTrack: 50,
   projectIdea: 1500,
-  dietaryRestrictions: 50,
-  dietaryDetail: 300,
+  dietaryRestrictions: 300,
   availability: 10,
   authorization: 10,
 };
@@ -64,9 +63,22 @@ const OBLIGATORIOS = [
   "affiliation",
   "careerRole",
   "experienceLevel",
+  "linkedin",
   "teamMode",
   "preferredTrack",
+  "projectIdea",
 ];
+
+/* Mínimo de caracteres de la pregunta de selección; el formulario aplica el mismo. */
+const IDEA_MINIMO = 30;
+
+/* LinkedIn: "linkedin.com/in/x" sin https o cualquier dirección web. Es la misma
+   regla de components/defacc-apply-form.tsx. */
+function enlaceValido(valor: string): boolean {
+  if (/\s/.test(valor)) return false;
+  if (/^(https?:\/\/)?([\w-]+\.)*linkedin\.com\/\S+$/i.test(valor)) return true;
+  return /^(https?:\/\/)?[\w-]+(\.[\w-]+)+(:\d+)?(\/\S*)?$/i.test(valor);
+}
 
 /* Valores admitidos en los campos de opción. Son los mismos identificadores que
    envía components/defacc-apply-form.tsx. */
@@ -75,7 +87,6 @@ const OPCIONES: Record<string, readonly string[]> = {
   experienceLevel: ["principiante", "intermedio", "avanzado"],
   teamMode: ["individual", "equipo"],
   preferredTrack: ["track-1", "track-2", "track-3", "track-4", "track-5", "por_definir"],
-  dietaryRestrictions: ["ninguna", "vegetariano", "vegano", "alergia"],
 };
 
 /* Nombres legibles para el mensaje de error que devuelve la ruta. */
@@ -86,7 +97,7 @@ const NOMBRES_CAMPOS: Record<string, string> = {
   whatsapp: "WhatsApp",
   documentType: "tipo de documento",
   documentNumber: "número de documento",
-  affiliation: "universidad o empresa",
+  affiliation: "universidad, empresa u ocupación",
   careerRole: "carrera o cargo",
   experienceLevel: "experiencia",
   linkedin: "LinkedIn",
@@ -94,9 +105,8 @@ const NOMBRES_CAMPOS: Record<string, string> = {
   teamMode: "modalidad",
   teamMembers: "integrantes del equipo",
   preferredTrack: "frente temático",
-  projectIdea: "idea",
-  dietaryRestrictions: "alimentación",
-  dietaryDetail: "detalle de alimentación",
+  projectIdea: "problema que te gustaría atacar",
+  dietaryRestrictions: "restricciones alimentarias o de accesibilidad",
   availability: "confirmación de asistencia",
   authorization: "autorización de datos",
 };
@@ -122,6 +132,7 @@ function validar(
     if (!datos[campo]) return { ok: false, campo };
   }
 
+  /* Texto libre; dietaryDetail ya no se usa y se ignora si llega. */
   if (!datos.dietaryRestrictions) datos.dietaryRestrictions = "ninguna";
   for (const [campo, validos] of Object.entries(OPCIONES)) {
     if (!validos.includes(datos[campo])) return { ok: false, campo };
@@ -133,8 +144,12 @@ function validar(
     datos.teamMembers = "";
   }
 
-  if (datos.dietaryRestrictions === "alergia" && !datos.dietaryDetail) {
-    return { ok: false, campo: "dietaryDetail" };
+  if (!enlaceValido(datos.linkedin)) {
+    return { ok: false, campo: "linkedin" };
+  }
+
+  if (datos.projectIdea.length < IDEA_MINIMO) {
+    return { ok: false, campo: "projectIdea" };
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(datos.email)) {
@@ -169,12 +184,6 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
     return false;
   }
 
-  /* La tabla no tiene columna aparte para el detalle: se guarda junto a la opción. */
-  const codigoDieta = datos.dietaryRestrictions || "ninguna";
-  const dieta = datos.dietaryDetail
-    ? `${codigoDieta}: ${datos.dietaryDetail}`
-    : codigoDieta;
-
   const fila = {
     submitted_at: new Date().toISOString(),
     first_name: datos.firstName,
@@ -186,13 +195,13 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
     affiliation: datos.affiliation,
     career_role: datos.careerRole,
     experience_level: datos.experienceLevel || "intermedio",
-    linkedin: datos.linkedin || null,
+    linkedin: datos.linkedin,
     github_portfolio: datos.githubPortfolio || null,
     team_mode: datos.teamMode || "individual",
     team_members: datos.teamMembers || null,
     preferred_track: datos.preferredTrack || "por_definir",
-    project_idea: datos.projectIdea || null,
-    dietary_restrictions: dieta,
+    project_idea: datos.projectIdea,
+    dietary_restrictions: datos.dietaryRestrictions || "ninguna",
     availability_confirmed: true,
     consent_at: new Date().toISOString(),
     policy_version: POLITICA_VERSION,
@@ -242,7 +251,7 @@ async function confirmarPorCorreo(datos: Record<string, string>): Promise<void> 
   const cuerpo = [
     `¡Hola ${datos.firstName}!`,
     "",
-    "Recibimos tu postulación al Defensive Acceleration Hackathon, que celebraremos el sábado 14 de noviembre de 2026 de 8:00 a.m. a 8:00 p.m. en la Universidad de los Andes, Bogotá.",
+    "Recibimos tu postulación al Defensive Acceleration Hackathon, que celebraremos el sábado 14 de noviembre de 2026 en la Universidad de los Andes, Bogotá.",
     "",
     `Modalidad: ${datos.teamMode === "equipo" ? "En equipo" : "Individual (te ayudaremos a conectar con un equipo en el matchmaking matutino)"}`,
     `Track preferido: ${trackLegible}`,

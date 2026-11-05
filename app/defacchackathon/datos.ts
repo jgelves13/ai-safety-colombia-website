@@ -382,9 +382,9 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       finalistasTitulo: "Dinámica de selección de ganadores",
       finalistasTexto:
         "A las 7:00 p.m., tras la deliberación técnica de los jurados, se anuncian los 5 mejores proyectos de la jornada. Cada equipo finalista realiza un pitch en vivo de 4 minutos ante el salón completo y a las 7:25 p.m. el jurado anuncia los tres primeros puestos.",
-      juradosTitulo: "Jueces y mentores",
+      juradosTitulo: "Jueces",
       juradosTexto:
-        "Durante la jornada pasan por la sala investigadores y especialistas en seguridad de IA, ciberseguridad y gobernanza para acompañar a los equipos y evaluar los entregables al cierre del día. La lista confirmada de jurados y mentores se publicará en los próximos días.",
+        "Investigadores y especialistas en seguridad de IA, ciberseguridad y gobernanza evalúan los entregables al cierre del día. La lista confirmada de jurados se publicará en los próximos días.",
       jurados: [],
     },
     cronograma: {
@@ -393,7 +393,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       agenda: [
         { hora: "08:00 a.m.", actividad: "Registro e ingreso al campus", detalle: "Control de acceso en portería de Uniandes y ubicación de los participantes." },
         { hora: "08:30 a.m.", actividad: "Apertura y presentación del reto", detalle: "Presentación de los frentes temáticos, criterios de evaluación y conformación de equipos." },
-        { hora: "09:00 a.m.", actividad: "Inicio del sprint de desarrollo (8 horas)", detalle: "Trabajo continuo de los equipos con acompañamiento de mentores en sala.", destacado: true },
+        { hora: "09:00 a.m.", actividad: "Inicio del sprint de desarrollo (8 horas)", detalle: "Trabajo continuo de los equipos en sala.", destacado: true },
         { hora: "05:00 p.m.", actividad: "Cierre de entregas", detalle: "Entrega del repositorio con código ejecutable y la ficha técnica de una página.", destacado: true },
         { hora: "07:00 p.m.", actividad: "Pitches de finalistas y premiación", detalle: "Presentación de los proyectos con mayor puntaje ante el jurado y anuncio de los ganadores.", destacado: true },
       ],
@@ -412,7 +412,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         },
         {
           q: "¿Tiene algún costo participar?",
-          a: "Ninguno. La participación es 100% gratuita e incluye credencial conmemorativa, almuerzo completo en el campus, refrigerios continuos y acceso a mentores especializados en sala. El cupo es limitado por aforo para asegurar una experiencia de primer nivel.",
+          a: "Ninguno. La participación es 100% gratuita e incluye credencial conmemorativa y almuerzo completo en el campus. El cupo es limitado por aforo para asegurar una experiencia de primer nivel.",
         },
         {
           q: "¿Qué nivel técnico necesito tener?",
@@ -511,7 +511,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "Undergraduate & graduate students from any discipline, researchers, software engineers, and public policy practitioners.",
         "Teams of 2 to 4. Solo applicants are grouped during the opening session at 8:30 AM.",
         "No prior AI safety research experience required: each track provides accessible entry points (solvable with Python, guided evaluation suites, or formal threat modeling and governance without code in Track 5).",
-        "Limited capacity to ensure high-quality mentoring, workspace, and catering.",
+        "Limited capacity to ensure a good workspace and catering.",
       ],
       premiosTitulo: "Prizes · COP 2,000,000 total",
       premiosParrafos: [
@@ -641,8 +641,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       finalistasTitulo: "Finalist Presentations",
       finalistasTexto:
         "At 7:00 PM, the top 5 teams deliver 4-minute live pitches before the assembly, and at 7:25 PM the judges announce the three winning teams.",
-      juradosTitulo: "Judges & Mentors",
-      juradosTexto: "Throughout the day, researchers and practitioners in AI safety, cybersecurity, and governance will join the room to mentor teams and evaluate submissions at the close of the sprint. The confirmed roster of judges and mentors will be published in the coming days.",
+      juradosTitulo: "Judges",
+      juradosTexto: "Researchers and practitioners in AI safety, cybersecurity, and governance evaluate submissions at the close of the sprint. The confirmed roster of judges will be published in the coming days.",
       jurados: [],
     },
     cronograma: {
@@ -651,7 +651,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       agenda: [
         { hora: "08:00 AM", actividad: "Check-in & Campus Access", detalle: "Access control at Uniandes security gates and participant check-in." },
         { hora: "08:30 AM", actividad: "Opening Ceremony & Challenge Brief", detalle: "Presentation of research tracks, evaluation criteria, and team formation." },
-        { hora: "09:00 AM", actividad: "Sprint Begins (8 hours)", detalle: "Focused build sprint with on-site mentor support.", destacado: true },
+        { hora: "09:00 AM", actividad: "Sprint Begins (8 hours)", detalle: "Focused build sprint on site.", destacado: true },
         { hora: "05:00 PM", actividad: "Submission Cutoff", detalle: "Strict deadline: repository with runnable code + one-page summary sheet.", destacado: true },
         { hora: "07:00 PM", actividad: "Finalist Pitches & Awards", detalle: "Top-scoring projects present live to judges, followed by the awards ceremony.", destacado: true },
       ],
@@ -665,7 +665,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       faqTitulo: "Frequently Asked Questions",
       faqs: [
         { q: "Can I apply without a team?", a: "Yes. Solo applicants will join a team during the 8:30 AM opening session." },
-        { q: "Is there an entry fee?", a: "None. Attendance, lunch, coffee stations, and mentors are 100% free. Capacity is limited to ensure a high-quality environment." },
+        { q: "Is there an entry fee?", a: "None. Attendance and lunch are 100% free. Capacity is limited to ensure a high-quality environment." },
         { q: "What technical experience is required?", a: "Beginners to advanced practitioners are welcome. Kits support basic Python to full agent architectures." },
         { q: "What should I bring?", a: "Your laptop, charger, water bottle, and national photo ID for Uniandes campus security." },
       ],
@@ -879,8 +879,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       finalistasTitulo: "Finalistas ao Vivo",
       finalistasTexto:
         "Às 19:00, os 5 melhores projetos apresentam pitches de 4 minutos perante a banca. Premiação às 19:25.",
-      juradosTitulo: "Jurados e Mentores",
-      juradosTexto: "Ao longo do dia, pesquisadores e especialistas em segurança de IA, cibersegurança e governança acompanham as equipes presencialmente e avaliam as entregas no encerramento. A lista confirmada de jurados e mentores será publicada nos próximos dias.",
+      juradosTitulo: "Jurados",
+      juradosTexto: "Pesquisadores e especialistas em segurança de IA, cibersegurança e governança avaliam as entregas no encerramento. A lista confirmada de jurados será publicada nos próximos dias.",
       jurados: [],
     },
     cronograma: {
@@ -889,7 +889,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       agenda: [
         { hora: "08:00", actividad: "Credenciamento e Entrada no Campus", detalle: "Controle de acesso nas portarias da Uniandes e recepção dos participantes." },
         { hora: "08:30", actividad: "Abertura Oficial e Apresentação do Desafio", detalle: "Apresentação dos frentes de pesquisa, critérios de avaliação e formação de equipes." },
-        { hora: "09:00", actividad: "Início do Sprint de Desenvolvimento (8 horas)", detalle: "Trabalho prático das equipes com mentoria presencial nas salas.", destacado: true },
+        { hora: "09:00", actividad: "Início do Sprint de Desenvolvimento (8 horas)", detalle: "Trabalho prático das equipes nas salas.", destacado: true },
         { hora: "17:00", actividad: "Encerramento das Entregas", detalle: "Envio do repositório com código executável e ficha técnica de 1 página.", destacado: true },
         { hora: "19:00", actividad: "Pitches dos Finalistas e Premiação", detalle: "Apresentação dos projetos finalistas perante os jurados e anúncio dos vencedores.", destacado: true },
       ],
@@ -903,7 +903,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       faqTitulo: "Perguntas Frequentes",
       faqs: [
         { q: "Posso participar sem equipe?", a: "Sim, formaremos equipes de 2 a 4 pessoas durante a abertura às 8:30." },
-        { q: "Há algum custo?", a: "Nenhum. Participação 100% gratuita com almoço completo, lanches e mentores inclusos. Vagas limitadas por capacidade." },
+        { q: "Há algum custo?", a: "Nenhum. Participação 100% gratuita com almoço completo incluso. Vagas limitadas por capacidade." },
         { q: "Qual o nível de programação necessário?", a: "Há kits para todos os níveis, incluindo opções sem código no Track 5." },
         { q: "O que devo levar?", a: "Notebook, carregador, documento de identificação original e garrafa de água." },
       ],

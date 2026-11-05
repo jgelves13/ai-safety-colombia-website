@@ -26,7 +26,7 @@ const leagueSpartan = League_Spartan({
   display: "swap",
 });
 
-function FondoBinario() {
+export function FondoBinario() {
   return (
     <div
       aria-hidden="true"
@@ -729,7 +729,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                   </div>
                 </div>
 
-                {/* 7. Jueces y mentores (al final de El reto, con retrato cuadrado estilo /sprint) */}
+                {/* 7. Jueces (al final de El reto, con retrato cuadrado estilo /sprint) */}
                 <div className="border-t border-aisc-line pt-8">
                   <h3 className="text-display-3 text-aisc-ink">
                     {d.reglas.juradosTitulo}
