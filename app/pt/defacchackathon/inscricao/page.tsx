@@ -66,13 +66,14 @@ export default async function InscricaoDefAcc() {
           {!cerrado && !noIniciado ? (
             <div className="mb-6">
               <div className="text-body-sm text-aisc-ink">
-                Deseja consultar os 5 frentes de pesquisa ou critérios de avaliação antes de se inscrever?{" "}
+                Se quiser, antes de se candidatar você pode ver as 5 frentes temáticas e os critérios de avaliação no{" "}
                 <Link
                   className="font-medium text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
                   href="/pt/defacchackathon"
                 >
-                  Veja todos os detalhes do hackathon aqui →
+                  guia completo do hackathon
                 </Link>
+                .
               </div>
             </div>
           ) : null}

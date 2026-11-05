@@ -66,13 +66,14 @@ export default async function AplicarDefAcc() {
           {!cerrado && !noIniciado ? (
             <div className="mb-6">
               <div className="text-body-sm text-aisc-ink">
-                ¿Quieres revisar los 5 frentes temáticos o la rúbrica de evaluación antes de postularte?{" "}
+                Si quieres, antes de postularte puedes ver los 5 frentes temáticos y la rúbrica de evaluación en la{" "}
                 <Link
                   className="font-medium text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
                   href="/defacchackathon"
                 >
-                  Consulta aquí la guía completa del hackathon →
+                  guía completa del hackathon
                 </Link>
+                .
               </div>
             </div>
           ) : null}
