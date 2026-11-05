@@ -785,6 +785,39 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                     ))}
                   </ul>
                 </div>
+
+                {/* 8. Patrocinio de Oracle Academy (detalles por anunciar) */}
+                <div className="border-t border-aisc-line pt-8">
+                  <h3 className="text-display-3 text-aisc-ink">
+                    {idioma === "en" ? "Sponsorship" : idioma === "pt" ? "Patrocínio" : "Patrocinio"}
+                  </h3>
+                  <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-center">
+                    <a
+                      className="block shrink-0 transition-opacity hover:opacity-60"
+                      href="https://academy.oracle.com/"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      title="Oracle Academy"
+                    >
+                      <img
+                        alt="Oracle Academy"
+                        className="h-12 w-auto object-contain md:h-14"
+                        decoding="async"
+                        loading="lazy"
+                        height={72}
+                        src="/aisc/aliados/oracle-academy.png"
+                        width={211}
+                      />
+                    </a>
+                    <p className="text-body text-aisc-ink/85">
+                      {idioma === "en"
+                        ? "Oracle Academy supports this hackathon. We will share the details of its sponsorship soon."
+                        : idioma === "pt"
+                        ? "A Oracle Academy apoia este hackathon. Em breve compartilharemos os detalhes do patrocínio."
+                        : "Oracle Academy apoya este hackathon. Muy pronto compartiremos los detalles de su patrocinio."}
+                    </p>
+                  </div>
+                </div>
               </div>
             )}
 
