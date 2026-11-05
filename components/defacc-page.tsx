@@ -740,7 +740,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
 
                   <ul className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
                     {d.reglas.jurados.map((j) => (
-                      <li key={j.nombre} className="flex flex-col gap-3.5">
+                      <li key={j.nombre} className="flex flex-col gap-3.5 rounded-[var(--radius)] border border-aisc-line bg-white p-5 shadow-sm">
                         <div className="flex items-center gap-4">
                           {j.foto ? (
                             <div className="relative size-20 shrink-0 overflow-hidden rounded-[10px] bg-aisc-sand">
