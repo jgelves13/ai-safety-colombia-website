@@ -441,6 +441,45 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                 />
               </a>
             </div>
+
+            <div
+              className="hidden h-20 w-px bg-aisc-forest/15 md:block"
+              aria-hidden="true"
+            />
+
+            {/* 3. APOYA: Oracle Academy (plataforma + certificación; detalles por anunciar) */}
+            <div className="flex flex-col items-start gap-2.5 border-t border-aisc-line/50 pt-5 md:border-t-0 md:pt-0">
+              <span className="text-kicker font-semibold tracking-wider text-aisc-muted uppercase">
+                {idioma === "en"
+                  ? "Supported by"
+                  : idioma === "pt"
+                  ? "Com o apoio de"
+                  : "Con el apoyo de"}
+              </span>
+              <a
+                className="block transition-opacity hover:opacity-60"
+                href="https://academy.oracle.com/"
+                rel="noopener noreferrer"
+                target="_blank"
+                title="Oracle Academy"
+              >
+                <img
+                  alt="Oracle Academy"
+                  className="h-11 w-auto object-contain sm:h-12 md:h-14"
+                  decoding="async"
+                  height={72}
+                  src="/aisc/aliados/oracle-academy.png"
+                  width={211}
+                />
+              </a>
+              <span className="text-body-sm text-aisc-ink/75">
+                {idioma === "en"
+                  ? "Platform and certification for participants. Details coming soon."
+                  : idioma === "pt"
+                  ? "Plataforma e certificação para participantes. Detalhes em breve."
+                  : "Plataforma y certificación para participantes. Detalles muy pronto."}
+              </span>
+            </div>
           </div>
         </div>
       </section>
