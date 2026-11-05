@@ -56,7 +56,8 @@ export type Jurado = {
   nombre: string;
   rol: string;
   afiliacion: string;
-  bio: string;
+  /** Texto plano o segmentos; los segmentos con url se muestran como enlace. */
+  bio: string | (string | { texto: string; url: string })[];
   foto?: string;
   url?: string;
   confirmado: boolean;
@@ -384,8 +385,18 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "A las 7:00 p.m., tras la deliberación técnica de los jurados, se anuncian los 5 mejores proyectos de la jornada. Cada equipo finalista realiza un pitch en vivo de 4 minutos ante el salón completo y a las 7:25 p.m. el jurado anuncia los tres primeros puestos.",
       juradosTitulo: "Jueces",
       juradosTexto:
-        "Investigadores y especialistas en seguridad de IA, ciberseguridad y gobernanza evalúan los entregables al cierre del día. La lista confirmada de jurados se publicará en los próximos días.",
-      jurados: [],
+        "Investigadores y especialistas en seguridad de IA, ciberseguridad y gobernanza evalúan los entregables al cierre del día. Pronto anunciaremos más jurados.",
+      jurados: [
+        {
+          nombre: "Christian Urcuqui",
+          rol: "Juez",
+          afiliacion: "TryHackMe · Universidad Icesi",
+          foto: "/aisc/mentores/christian-urcuqui.png",
+          url: "https://www.linkedin.com/in/christianurcuqui/",
+          confirmado: true,
+          bio: ["Investigador de ciberseguridad e IA en ", { texto: "TryHackMe", url: "https://tryhackme.com/" }, ". Docente de la ", { texto: "Universidad Icesi", url: "https://www.icesi.edu.co/" }, " y coautor de tres ", { texto: "libros", url: "https://www.icesi.edu.co/editorial/ciberseguridad-datos-caos/" }, " de ciberseguridad. Publicó ", { texto: "AgentBreak", url: "https://github.com/urcuqui/AgentBreak" }, ", un laboratorio de inyección indirecta de prompts en sistemas con LLM."],
+        },
+      ],
     },
     cronograma: {
       titulo: "Agenda de la jornada",
@@ -642,8 +653,18 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       finalistasTexto:
         "At 7:00 PM, the top 5 teams deliver 4-minute live pitches before the assembly, and at 7:25 PM the judges announce the three winning teams.",
       juradosTitulo: "Judges",
-      juradosTexto: "Researchers and practitioners in AI safety, cybersecurity, and governance evaluate submissions at the close of the sprint. The confirmed roster of judges will be published in the coming days.",
-      jurados: [],
+      juradosTexto: "Researchers and practitioners in AI safety, cybersecurity, and governance evaluate submissions at the close of the day. More judges will be announced soon.",
+      jurados: [
+        {
+          nombre: "Christian Urcuqui",
+          rol: "Judge",
+          afiliacion: "TryHackMe · Universidad Icesi",
+          foto: "/aisc/mentores/christian-urcuqui.png",
+          url: "https://www.linkedin.com/in/christianurcuqui/",
+          confirmado: true,
+          bio: ["Cybersecurity and AI researcher at ", { texto: "TryHackMe", url: "https://tryhackme.com/" }, ". Lecturer at ", { texto: "Universidad Icesi", url: "https://www.icesi.edu.co/" }, " and co-author of three ", { texto: "books", url: "https://www.icesi.edu.co/editorial/ciberseguridad-datos-caos/" }, " on cybersecurity. He published ", { texto: "AgentBreak", url: "https://github.com/urcuqui/AgentBreak" }, ", an indirect prompt injection lab for LLM systems."],
+        },
+      ],
     },
     cronograma: {
       titulo: "Day Agenda",
@@ -880,8 +901,18 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       finalistasTexto:
         "Às 19:00, os 5 melhores projetos apresentam pitches de 4 minutos perante a banca. Premiação às 19:25.",
       juradosTitulo: "Jurados",
-      juradosTexto: "Pesquisadores e especialistas em segurança de IA, cibersegurança e governança avaliam as entregas no encerramento. A lista confirmada de jurados será publicada nos próximos dias.",
-      jurados: [],
+      juradosTexto: "Pesquisadores e especialistas em segurança de IA, cibersegurança e governança avaliam as entregas no encerramento. Em breve anunciaremos mais jurados.",
+      jurados: [
+        {
+          nombre: "Christian Urcuqui",
+          rol: "Jurado",
+          afiliacion: "TryHackMe · Universidad Icesi",
+          foto: "/aisc/mentores/christian-urcuqui.png",
+          url: "https://www.linkedin.com/in/christianurcuqui/",
+          confirmado: true,
+          bio: ["Pesquisador de cibersegurança e IA na ", { texto: "TryHackMe", url: "https://tryhackme.com/" }, ". Docente da ", { texto: "Universidad Icesi", url: "https://www.icesi.edu.co/" }, " e coautor de três ", { texto: "livros", url: "https://www.icesi.edu.co/editorial/ciberseguridad-datos-caos/" }, " de cibersegurança. Publicou o ", { texto: "AgentBreak", url: "https://github.com/urcuqui/AgentBreak" }, ", um laboratório de injeção indireta de prompts em sistemas com LLM."],
+        },
+      ],
     },
     cronograma: {
       titulo: "Agenda da jornada",

@@ -765,7 +765,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                                   href={j.url}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="underline decoration-aisc-forest/30 underline-offset-4 transition-colors hover:text-aisc-coral hover:decoration-aisc-coral"
+                                  className="transition-colors hover:text-aisc-coral"
                                 >
                                   {j.nombre}
                                 </a>
@@ -779,7 +779,23 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                           </div>
                         </div>
                         <p className="text-body-sm text-aisc-ink/85 leading-relaxed">
-                          {j.bio}
+                          {typeof j.bio === "string"
+                            ? j.bio
+                            : j.bio.map((seg, k) =>
+                                typeof seg === "string" ? (
+                                  seg
+                                ) : (
+                                  <a
+                                    key={k}
+                                    href={seg.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="font-medium text-aisc-forest transition-colors hover:text-aisc-coral"
+                                  >
+                                    {seg.texto}
+                                  </a>
+                                ),
+                              )}
                         </p>
                       </li>
                     ))}
