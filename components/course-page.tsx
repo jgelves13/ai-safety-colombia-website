@@ -22,7 +22,6 @@ const SECCION = `${COLUMNA} flex flex-col gap-6 py-16 md:py-24`;
 const TITULO = "text-display-3 md:text-display-2 text-balance";
 const PROSA = "text-body flex flex-col gap-5 text-aisc-ink";
 const TARJETA = "rounded-2xl border border-aisc-line bg-white/80";
-/* La modalidad de cada semana alterna desde una presencial (índice par). */
 const ENLACE = "text-aisc-forest transition-colors hover:text-aisc-coral";
 const PATRON = "/aisc/patterns/aisc-wash-lattice.svg";
 /* Un icono de una sola línea por seminario, al modo de los hero-graphic de
@@ -231,7 +230,7 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
             </p>
           </div>
           {/* Una tarjeta por semana, con el mismo patrón de las tarjetas de perfiles:
-              a la izquierda la semana y la modalidad, a la derecha el título y una frase. */}
+              a la izquierda la semana, a la derecha el título y una frase. */}
           <ol className="flex flex-col gap-3">
             {p.semanas.unidades.map((u, i) => (
               <li className={`${TARJETA} grid grid-cols-1 gap-x-8 gap-y-2 p-6 md:grid-cols-[168px_1fr]`} key={u.titulo}>
@@ -239,7 +238,6 @@ export default function CoursePage({ idioma, curso }: { idioma: Idioma; curso: C
                   <span className="text-kicker text-aisc-muted">
                     {r.semana} {i + 1}
                   </span>
-                  <span className="text-body-sm text-aisc-forest">{i % 2 === 0 ? r.presencial : r.enLinea}</span>
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <h3 className="text-display-4">{u.titulo}</h3>
