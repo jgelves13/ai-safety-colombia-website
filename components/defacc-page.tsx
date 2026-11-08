@@ -885,10 +885,10 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                   </h2>
                   <p className="text-body mt-2 mb-6 text-aisc-muted">
                     {idioma === "en"
-                      ? "Prizes are awarded based on the judges' evaluation across defensive relevance, prototype functionality, empirical benchmarks, and responsible use."
+                      ? "Prizes are awarded based on the judges' evaluation of impact potential and innovation, execution quality, presentation and clarity, and responsible use."
                       : idioma === "pt"
-                      ? "Os prêmios são concedidos com base na avaliação dos jurados em relevância defensiva, funcionamento do protótipo, evidência empírica e uso responsável."
-                      : "Los premios se asignan con base en la evaluación de los jurados sobre relevancia defensiva, funcionamiento del prototipo, evidencia empírica y uso responsable."}
+                      ? "Os prêmios são concedidos com base na avaliação dos jurados em potencial de impacto e inovação, qualidade de execução, apresentação e clareza, e uso responsável."
+                      : "Los premios se asignan con base en la evaluación de los jurados sobre impacto potencial e innovación, calidad de ejecución, presentación y claridad, y uso responsable."}
                   </p>
 
                   <PremiosSoberos

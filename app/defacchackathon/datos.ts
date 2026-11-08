@@ -347,40 +347,30 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       ],
       criteriosTitulo: "Criterios de evaluación y rúbrica",
       criteriosTexto:
-        "Cada proyecto es evaluado por al menos 2 jurados independientes, especialistas en seguridad de IA, ciberseguridad y gobernanza tecnológica. Cada criterio se califica de 1 a 5 (3 = trabajo sólido para un día, 5 = excepcional), para un total de 20 puntos. Los cuatro criterios pesan lo mismo.",
+        "Cada proyecto es evaluado por al menos 2 jurados independientes, especialistas en seguridad de IA, ciberseguridad y gobernanza tecnológica. Cada criterio se califica de 1 a 5 (3 = trabajo sólido para un día, 5 = excepcional), para un total de 15 puntos. Los tres criterios pesan lo mismo.",
       criterios: [
         {
-          nombre: "Impacto defensivo",
+          nombre: "Impacto potencial e innovación",
           peso: "1–5",
-          descripcion: "¿Aborda un riesgo real de IA? ¿Le da una ventaja neta a quien defiende sobre quien ataca?",
+          descripcion: "¿Aborda un riesgo real de IA con una idea nueva? ¿Le da una ventaja neta a quien defiende sobre quien ataca?",
           niveles: {
-            n1: "Riesgo vago o genérico, sin vínculo claro con IA.",
-            n3: "Riesgo concreto y relevante; la ventaja defensiva es plausible.",
-            n5: "Riesgo importante y poco atendido; ventaja clara que un equipo real podría adoptar.",
+            n1: "Riesgo vago o genérico, sin vínculo claro con IA; idea ya conocida.",
+            n3: "Riesgo concreto y relevante; ventaja defensiva plausible, con algo de novedad.",
+            n5: "Riesgo importante y poco atendido; enfoque original con una ventaja clara que un equipo real podría adoptar.",
           },
         },
         {
-          nombre: "Ejecución técnica",
+          nombre: "Calidad de ejecución",
           peso: "1–5",
-          descripcion: "¿El prototipo funciona? (En el Track 5: ¿el estándar o modelado de amenazas es técnico y accionable?)",
+          descripcion: "¿El prototipo funciona y lo pusieron a prueba? ¿Los resultados respaldan lo que afirman? (En el Track 5: ¿el estándar o modelado de amenazas es técnico y accionable?)",
           niveles: {
-            n1: "No corre o es solo una idea.",
-            n3: "Prototipo funcional en al menos un caso.",
-            n5: "Funciona de punta a punta y se puede reproducir desde el repositorio.",
+            n1: "No corre o es solo una idea; afirmaciones sin pruebas.",
+            n3: "Prototipo funcional en al menos un caso, con al menos una prueba concreta; mencionan sus limitaciones.",
+            n5: "Funciona de punta a punta y se puede reproducir; evaluado contra una línea base; analizan límites y riesgo de uso dual.",
           },
         },
         {
-          nombre: "Evidencia y honestidad",
-          peso: "1–5",
-          descripcion: "¿Lo pusieron a prueba? ¿Los resultados respaldan lo que afirman y reconocen sus límites?",
-          niveles: {
-            n1: "Sin pruebas; afirmaciones sin respaldo.",
-            n3: "Al menos una prueba concreta; mencionan sus limitaciones.",
-            n5: "Evaluación sistemática con línea base; los resultados respaldan lo afirmado; analizan límites y riesgo de uso dual.",
-          },
-        },
-        {
-          nombre: "Claridad",
+          nombre: "Presentación y claridad",
           peso: "1–5",
           descripcion: "¿La ficha y la explicación permiten entender rápido qué hicieron y qué encontraron?",
           niveles: {
@@ -391,7 +381,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         },
       ],
       criteriosNota:
-        "Uso responsable: un proyecto que principalmente facilita ataques sin una mitigación no es elegible para premio. En caso de empate, gana el proyecto con mayor puntaje en Impacto defensivo.",
+        "Uso responsable: un proyecto que principalmente facilita ataques sin una mitigación no es elegible para premio. En caso de empate, gana el proyecto con mayor puntaje en Impacto potencial e innovación.",
       finalistasTitulo: "Dinámica de selección de ganadores",
       finalistasTexto:
         "A las 7:00 p.m., tras la deliberación técnica de los jurados, se anuncian los 5 mejores proyectos de la jornada. Cada equipo finalista realiza un pitch en vivo de 4 minutos ante el salón completo y a las 7:25 p.m. el jurado anuncia los tres primeros puestos.",
@@ -674,14 +664,13 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "Optional 2-minute demo recording illustrating the prototype or protocol.",
       ],
       criteriosTitulo: "Evaluation Rubric",
-      criteriosTexto: "Each project is scored by at least 2 independent judges. Each criterion is scored 1–5 (3 = solid work for one day, 5 = exceptional), for a total of 20 points. All four criteria weigh the same.",
+      criteriosTexto: "Each project is scored by at least 2 independent judges. Each criterion is scored 1–5 (3 = solid work for one day, 5 = exceptional), for a total of 15 points. All three criteria weigh the same.",
       criterios: [
-        { nombre: "Defensive Impact", peso: "1–5", descripcion: "Does it address a real AI risk? Does it give defenders a net advantage over attackers?", niveles: { n1: "Vague or generic risk, no clear link to AI.", n3: "Concrete, relevant risk; plausible defensive advantage.", n5: "Important, neglected risk; clear advantage a real team could adopt." } },
-        { nombre: "Technical Execution", peso: "1–5", descripcion: "Does the prototype work? (Track 5: is the standard or threat model technical and actionable?)", niveles: { n1: "Doesn't run, or is only an idea.", n3: "Working prototype on at least one case.", n5: "Works end to end and is reproducible from the repo." } },
-        { nombre: "Evidence & Honesty", peso: "1–5", descripcion: "Did you test it? Do the results back the claims, and do you state the limits?", niveles: { n1: "No tests; unsupported claims.", n3: "At least one concrete test; limitations mentioned.", n5: "Systematic evaluation with a baseline; results back the claims; limits and dual-use risk analysed." } },
-        { nombre: "Clarity", peso: "1–5", descripcion: "Can a judge quickly see what you built and what you found?", niveles: { n1: "Hard to tell what was done.", n3: "Clear what was done and why.", n5: "A judge gets it in 2 minutes; concise sheet with the key results." } },
+        { nombre: "Impact Potential & Innovation", peso: "1–5", descripcion: "Does it tackle a real AI risk with a new idea? Does it give defenders a net advantage over attackers?", niveles: { n1: "Vague or generic risk, no clear link to AI; well-known idea.", n3: "Concrete, relevant risk; plausible defensive advantage with some novelty.", n5: "Important, neglected risk; original approach with a clear advantage a real team could adopt." } },
+        { nombre: "Execution Quality", peso: "1–5", descripcion: "Does the prototype work, and did you test it? Do the results back the claims? (Track 5: is the standard or threat model technical and actionable?)", niveles: { n1: "Doesn't run, or is only an idea; untested claims.", n3: "Working prototype on at least one case, with at least one concrete test; limitations mentioned.", n5: "Works end to end and is reproducible; tested against a baseline; limits and dual-use risk analysed." } },
+        { nombre: "Presentation & Clarity", peso: "1–5", descripcion: "Can a judge quickly see what you built and what you found?", niveles: { n1: "Hard to tell what was done.", n3: "Clear what was done and why.", n5: "A judge gets it in 2 minutes; concise sheet with the key results." } },
       ],
-      criteriosNota: "Responsible use: a project that mainly enables attacks without a mitigation is not eligible for a prize. Ties go to the project with the higher Defensive Impact score.",
+      criteriosNota: "Responsible use: a project that mainly enables attacks without a mitigation is not eligible for a prize. Ties go to the project with the higher Impact Potential & Innovation score.",
       finalistasTitulo: "Finalist Presentations",
       finalistasTexto:
         "At 7:00 PM, the top 5 teams deliver 4-minute live pitches before the assembly, and at 7:25 PM the judges announce the three winning teams.",
@@ -943,14 +932,13 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "Vídeo opcional de até 2 minutos demonstrando o protótipo ou protocolo.",
       ],
       criteriosTitulo: "Critérios de Avaliação",
-      criteriosTexto: "Cada projeto é avaliado por pelo menos 2 jurados independentes. Cada critério recebe nota de 1 a 5 (3 = trabalho sólido para um dia, 5 = excepcional), num total de 20 pontos. Os quatro critérios têm o mesmo peso.",
+      criteriosTexto: "Cada projeto é avaliado por pelo menos 2 jurados independentes. Cada critério recebe nota de 1 a 5 (3 = trabalho sólido para um dia, 5 = excepcional), num total de 15 pontos. Os três critérios têm o mesmo peso.",
       criterios: [
-        { nombre: "Impacto Defensivo", peso: "1–5", descripcion: "Aborda um risco real de IA? Dá vantagem líquida a quem defende sobre quem ataca?", niveles: { n1: "Risco vago ou genérico, sem vínculo claro com IA.", n3: "Risco concreto e relevante; vantagem defensiva plausível.", n5: "Risco importante e pouco atendido; vantagem clara que uma equipe real poderia adotar." } },
-        { nombre: "Execução Técnica", peso: "1–5", descripcion: "O protótipo funciona? (No Track 5: o padrão ou modelo de ameaças é técnico e acionável?)", niveles: { n1: "Não roda ou é só uma ideia.", n3: "Protótipo funcional em pelo menos um caso.", n5: "Funciona de ponta a ponta e é reproduzível a partir do repositório." } },
-        { nombre: "Evidência e Honestidade", peso: "1–5", descripcion: "Testaram? Os resultados sustentam o que afirmam e reconhecem os limites?", niveles: { n1: "Sem testes; afirmações sem respaldo.", n3: "Pelo menos um teste concreto; mencionam as limitações.", n5: "Avaliação sistemática com linha de base; resultados sustentam o afirmado; analisam limites e risco de uso dual." } },
-        { nombre: "Clareza", peso: "1–5", descripcion: "Um jurado entende rápido o que fizeram e o que encontraram?", niveles: { n1: "Difícil entender o que fizeram.", n3: "Entende-se o que fizeram e por quê.", n5: "Um jurado entende em 2 minutos; ficha concisa com os resultados-chave." } },
+        { nombre: "Potencial de Impacto e Inovação", peso: "1–5", descripcion: "Aborda um risco real de IA com uma ideia nova? Dá vantagem líquida a quem defende sobre quem ataca?", niveles: { n1: "Risco vago ou genérico, sem vínculo claro com IA; ideia já conhecida.", n3: "Risco concreto e relevante; vantagem defensiva plausível, com alguma novidade.", n5: "Risco importante e pouco atendido; abordagem original com vantagem clara que uma equipe real poderia adotar." } },
+        { nombre: "Qualidade de Execução", peso: "1–5", descripcion: "O protótipo funciona e foi testado? Os resultados sustentam o que afirmam? (No Track 5: o padrão ou modelo de ameaças é técnico e acionável?)", niveles: { n1: "Não roda ou é só uma ideia; afirmações sem testes.", n3: "Protótipo funcional em pelo menos um caso, com pelo menos um teste concreto; mencionam as limitações.", n5: "Funciona de ponta a ponta e é reproduzível; avaliado contra uma linha de base; analisam limites e risco de uso dual." } },
+        { nombre: "Apresentação e Clareza", peso: "1–5", descripcion: "Um jurado entende rápido o que fizeram e o que encontraram?", niveles: { n1: "Difícil entender o que fizeram.", n3: "Entende-se o que fizeram e por quê.", n5: "Um jurado entende em 2 minutos; ficha concisa com os resultados-chave." } },
       ],
-      criteriosNota: "Uso responsável: um projeto que principalmente facilita ataques sem mitigação não é elegível a prêmio. Em caso de empate, vence o projeto com maior nota em Impacto Defensivo.",
+      criteriosNota: "Uso responsável: um projeto que principalmente facilita ataques sem mitigação não é elegível a prêmio. Em caso de empate, vence o projeto com maior nota em Potencial de Impacto e Inovação.",
       finalistasTitulo: "Finalistas ao Vivo",
       finalistasTexto:
         "Às 19:00, os 5 melhores projetos apresentam pitches de 4 minutos perante a banca. Premiação às 19:25.",
