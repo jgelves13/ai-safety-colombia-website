@@ -155,13 +155,7 @@ function diasHasta(iso: string) {
   return Math.round((target - today) / 86_400_000);
 }
 
-function PremiosSoberos({
-  premios,
-  premioDifusion,
-}: {
-  premios: Premio[];
-  premioDifusion: Premio;
-}) {
+function PremiosSoberos({ premios }: { premios: Premio[] }) {
   return (
     <div className="space-y-6">
       <ul className="grid grid-cols-1 gap-3 md:grid-cols-3">
@@ -199,17 +193,6 @@ function PremiosSoberos({
           </li>
         ))}
       </ul>
-
-      {premioDifusion && (
-        <div className="rounded-[8px] border border-aisc-line bg-aisc-sand/40 p-5 text-body-sm">
-          <span className="text-meta font-semibold uppercase tracking-wider text-aisc-forest block">
-            {premioDifusion.puesto}
-          </span>
-          <p className="mt-1 text-aisc-ink/90">
-            {premioDifusion.detalle} ({premioDifusion.monto}).
-          </p>
-        </div>
-      )}
     </div>
   );
 }
@@ -654,7 +637,6 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
 
                   <PremiosSoberos
                     premios={d.premiosPodio}
-                    premioDifusion={d.premioDifusion}
                   />
                 </div>
 
@@ -911,7 +893,6 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
 
                   <PremiosSoberos
                     premios={d.premiosPodio}
-                    premioDifusion={d.premioDifusion}
                   />
                 </div>
 
@@ -969,22 +950,52 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                     {d.reglas.criterios.map((c) => (
                       <div
                         key={c.nombre}
-                        className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-aisc-line bg-aisc-sand/30 p-4 md:p-5"
+                        className="rounded-xl border border-aisc-line bg-aisc-sand/30 p-4 md:p-5"
                       >
-                        <div className="min-w-0">
-                          <h4 className="text-display-4 font-semibold text-aisc-ink">
-                            {c.nombre}
-                          </h4>
-                          <p className="text-body-sm mt-1 text-aisc-muted">
-                            {c.descripcion}
-                          </p>
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                          <div className="min-w-0">
+                            <h4 className="text-display-4 font-semibold text-aisc-ink">
+                              {c.nombre}
+                            </h4>
+                            <p className="text-body-sm mt-1 text-aisc-muted">
+                              {c.descripcion}
+                            </p>
+                          </div>
+                          <span className="text-display-3 tabular-nums font-bold text-aisc-coral shrink-0">
+                            {c.peso}
+                          </span>
                         </div>
-                        <span className="text-display-3 tabular-nums font-bold text-aisc-coral shrink-0">
-                          {c.peso}
-                        </span>
+                        {c.niveles && (
+                          <div className="mt-4 grid gap-2 sm:grid-cols-3">
+                            {(
+                              [
+                                ["1", c.niveles.n1],
+                                ["3", c.niveles.n3],
+                                ["5", c.niveles.n5],
+                              ] as const
+                            ).map(([n, texto]) => (
+                              <div
+                                key={n}
+                                className="flex gap-3 rounded-lg border border-aisc-line bg-white/60 p-3"
+                              >
+                                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-aisc-coral text-body-sm font-bold text-white tabular-nums">
+                                  {n}
+                                </span>
+                                <p className="text-body-sm text-aisc-ink">
+                                  {texto}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>
+                  {d.reglas.criteriosNota && (
+                    <p className="text-body-sm mt-4 rounded-lg border-l-4 border-aisc-coral bg-aisc-sand/30 p-4 text-aisc-ink">
+                      {d.reglas.criteriosNota}
+                    </p>
+                  )}
                 </div>
 
                 {/* Dinámica de finalistas */}
