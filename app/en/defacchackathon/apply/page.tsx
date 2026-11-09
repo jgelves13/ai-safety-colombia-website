@@ -66,7 +66,7 @@ export default async function ApplyDefAcc() {
           {!cerrado && !noIniciado ? (
             <div className="mb-6">
               <div className="text-body-sm text-aisc-ink">
-                If you like, you can check the 5 research tracks and the evaluation rubric in the{" "}
+                If you like, you can check the 6 research tracks and the evaluation rubric in the{" "}
                 <Link
                   className="font-medium text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
                   href="/en/defacchackathon"

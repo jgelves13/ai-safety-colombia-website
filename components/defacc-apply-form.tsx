@@ -243,7 +243,7 @@ const TEXTOS: Record<Idioma, Textos> = {
   es: {
     noIniciadoTitulo: "Las postulaciones abren pronto",
     noIniciadoCuerpo:
-      "Estamos cerrando los detalles de logística y de ingreso al campus con IEEE Computer Society Uniandes. Mientras abrimos el formulario, puedes revisar los cinco frentes temáticos o entrar al grupo de WhatsApp para enterarte apenas abra.",
+      "Estamos cerrando los detalles de logística y de ingreso al campus con IEEE Computer Society Uniandes. Mientras abrimos el formulario, puedes revisar los seis frentes temáticos o entrar al grupo de WhatsApp para enterarte apenas abra.",
     verFrentes: "Ver los frentes temáticos",
     unirmeGrupo: "Entrar al grupo de WhatsApp",
     cerradoTitulo: "Las postulaciones ya cerraron",
@@ -366,7 +366,7 @@ const TEXTOS: Record<Idioma, Textos> = {
   en: {
     noIniciadoTitulo: "Applications open soon",
     noIniciadoCuerpo:
-      "We are finishing logistics and campus access with IEEE Computer Society Uniandes. Until the form opens, you can read about the five research tracks or join the WhatsApp group to hear as soon as it does.",
+      "We are finishing logistics and campus access with IEEE Computer Society Uniandes. Until the form opens, you can read about the six research tracks or join the WhatsApp group to hear as soon as it does.",
     verFrentes: "See the research tracks",
     unirmeGrupo: "Join the WhatsApp group",
     cerradoTitulo: "Applications are closed",
@@ -487,7 +487,7 @@ const TEXTOS: Record<Idioma, Textos> = {
   pt: {
     noIniciadoTitulo: "As candidaturas abrem em breve",
     noIniciadoCuerpo:
-      "Estamos fechando os detalhes de logística e de acesso ao campus com a IEEE Computer Society Uniandes. Enquanto o formulário não abre, você pode conhecer as cinco frentes temáticas ou entrar no grupo de WhatsApp para saber assim que abrir.",
+      "Estamos fechando os detalhes de logística e de acesso ao campus com a IEEE Computer Society Uniandes. Enquanto o formulário não abre, você pode conhecer as seis frentes temáticas ou entrar no grupo de WhatsApp para saber assim que abrir.",
     verFrentes: "Ver as frentes temáticas",
     unirmeGrupo: "Entrar no grupo de WhatsApp",
     cerradoTitulo: "As candidaturas foram encerradas",

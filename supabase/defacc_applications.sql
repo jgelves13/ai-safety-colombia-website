@@ -30,7 +30,7 @@ create table if not exists public.defacc_applications (
   team_members            text,          -- Nombres y correos si vienen en equipo
 
   -- Interés temático
-  preferred_track         text not null, -- track1..track5 o 'por_definir'
+  preferred_track         text not null, -- track1..track6 o 'por_definir'
   project_idea            text,          -- Idea o reto preliminar
 
   -- Logística de la jornada (almuerzo para 100 personas y aforo en campus)

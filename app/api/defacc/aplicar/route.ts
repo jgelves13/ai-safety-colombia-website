@@ -86,7 +86,7 @@ const OPCIONES: Record<string, readonly string[]> = {
   documentType: ["CC", "CE", "Pasaporte", "TI", "Otro"],
   experienceLevel: ["principiante", "intermedio", "avanzado"],
   teamMode: ["individual", "equipo"],
-  preferredTrack: ["track-1", "track-2", "track-3", "track-4", "track-5", "por_definir"],
+  preferredTrack: ["track-1", "track-2", "track-3", "track-4", "track-5", "track-6", "por_definir"],
 };
 
 /* Nombres legibles para el mensaje de error que devuelve la ruta. */
@@ -239,6 +239,7 @@ const NOMBRES_TRACKS: Record<string, string> = {
   "track-3": "Track 3: Ciberdefensa automatizada y verificación formal (DafnyBench, CyberSecEval)",
   "track-4": "Track 4: Defensa epistémica, procedencia C2PA y detección de suplantación (AASIST)",
   "track-5": "Track 5: Seguridad de infraestructura de IA y gobernanza defensiva (No-Code, SL1 a SL5)",
+  "track-6": "Track 6: Riesgos multiagente: colusión, explotación y resiliencia cooperativa (Concordia, Melting Pot)",
   por_definir: "Por definir en la mañana del evento",
 };
 

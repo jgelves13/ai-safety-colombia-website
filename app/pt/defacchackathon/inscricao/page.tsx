@@ -66,7 +66,7 @@ export default async function InscricaoDefAcc() {
           {!cerrado && !noIniciado ? (
             <div className="mb-6">
               <div className="text-body-sm text-aisc-ink">
-                Se quiser, antes de se candidatar você pode ver as 5 frentes temáticas e os critérios de avaliação no{" "}
+                Se quiser, antes de se candidatar você pode ver as 6 frentes temáticas e os critérios de avaliação no{" "}
                 <Link
                   className="font-medium text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
                   href="/pt/defacchackathon"

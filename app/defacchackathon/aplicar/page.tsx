@@ -66,7 +66,7 @@ export default async function AplicarDefAcc() {
           {!cerrado && !noIniciado ? (
             <div className="mb-6">
               <div className="text-body-sm text-aisc-ink">
-                Si quieres, antes de postularte puedes ver los 5 frentes temáticos y la rúbrica de evaluación en la{" "}
+                Si quieres, antes de postularte puedes ver los 6 frentes temáticos y la rúbrica de evaluación en la{" "}
                 <Link
                   className="font-medium text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep"
                   href="/defacchackathon"

@@ -215,7 +215,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "En Colombia y América Latina ya enfrentamos riesgos concretos (desde incidentes contra entidades públicas e infraestructura crítica y suplantación con voces clonadas por WhatsApp hasta el despliegue apresurado de agentes autónomos sin guardarraíles), y a la vez contamos con el talento para aportar soluciones empíricas a la frontera global de seguridad de la IA.",
       retoTitulo: "El reto",
       retoTexto:
-        "Construir y evaluar, en 8 horas de trabajo continuo, un prototipo defensivo o estándar verificable dentro de uno de los 5 frentes temáticos: seguridad de agentes, control y monitoreo de IA, ciberdefensa y verificación formal, defensa epistémica o seguridad de infraestructura y gobernanza.",
+        "Construir y evaluar, en 8 horas de trabajo continuo, un prototipo defensivo o estándar verificable dentro de uno de los 6 frentes temáticos: seguridad de agentes, control y monitoreo de IA, ciberdefensa y verificación formal, defensa epistémica, seguridad de infraestructura y gobernanza, o riesgos multiagente.",
       cuatroRequisitosTitulo: "Las 4 preguntas clave de cada entrega",
       cuatroRequisitos: [
         "El vector de riesgo: definir con precisión qué ataque, fallo de control o vulnerabilidad de IA busca mitigar el proyecto.",
@@ -244,9 +244,9 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       introTexto:
         "Cada equipo aborda un vector de amenaza concreto y construye una solución defensiva comprobable. Puedes elegir cualquiera de estos frentes o proponer un reto afín:",
       listaKits: [],
-      tracksTitulo: "Los 5 frentes temáticos",
+      tracksTitulo: "Los 6 frentes temáticos",
       tracksTexto:
-        "Los frentes están diseñados alrededor de las prioridades de aceleración defensiva (def/acc) en seguridad de IA: proteger agentes autónomos, supervisar sistemas no confiables, automatizar la ciberdefensa con código verificable, blindar el ecosistema epistémico y asegurar la infraestructura y gobernanza de IA.",
+        "Los frentes están diseñados alrededor de las prioridades de aceleración defensiva (def/acc) en seguridad de IA: proteger agentes autónomos, supervisar sistemas no confiables, automatizar la ciberdefensa con código verificable, blindar el ecosistema epistémico, asegurar la infraestructura y gobernanza de IA y evitar que los sistemas multiagente se vuelvan en contra de las personas.",
       listaTracks: [
         {
           id: "track-1",
@@ -328,6 +328,23 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
             { label: "Estándar de Seguridad SL5", url: "https://sl5.org/sl5-standard" },
           ],
         },
+        {
+          id: "track-6",
+          numero: "06",
+          titulo: "Riesgos multiagente: colusión, explotación y resiliencia cooperativa",
+          resumen:
+            "Cada vez más agentes de IA negocian, compiten y cooperan entre sí sin una persona en el ciclo. Ahí aparecen riesgos que no se ven al evaluar un modelo aislado: agentes que se coluden en contra de los usuarios, modelos fuertes que explotan a otros más débiles en una negociación y grupos que colapsan cuando un solo agente deja de cooperar.",
+          paraEmpezar:
+            "Montar en NegotiationArena o Concordia una negociación entre agentes de distinta capacidad, medir cuándo el más fuerte explota al más débil y probar una salvaguarda (un árbitro, reglas de transparencia o un monitor) que reduzca ese daño.",
+          conExperiencia:
+            "Construir un detector de colusión entre agentes, o un mecanismo que sostenga la cooperación de un grupo de agentes cuando entra uno disruptivo (escenarios de Melting Pot o Concordia), y medir su efecto en el bienestar colectivo frente a una línea base sin defensa.",
+          recursos: [
+            { label: "Concordia (Google DeepMind)", url: "https://github.com/google-deepmind/concordia" },
+            { label: "Melting Pot (Google DeepMind)", url: "https://github.com/google-deepmind/meltingpot" },
+            { label: "NegotiationArena", url: "https://github.com/vinid/NegotiationArena" },
+            { label: "Multi-Agent Risks from Advanced AI (Cooperative AI Foundation)", url: "https://arxiv.org/abs/2502.14143" },
+          ],
+        },
       ],
     },
     reglas: {
@@ -341,7 +358,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       entregablesTitulo: "Entregables de cada equipo",
       entregablesHora: "Hora límite estricta: sábado 14 de noviembre a las 5:00 p.m.",
       entregables: [
-        "Enlace al repositorio ejecutable (GitHub o Google Colab) con código documentado para los Tracks 1 al 4, o al documento de modelado formal de amenazas / estándar técnico-regulatorio verificable para el Track 5 (No-Code).",
+        "Enlace al repositorio ejecutable (GitHub o Google Colab) con código documentado para los Tracks 1 al 4 y 6, o al documento de modelado formal de amenazas / estándar técnico-regulatorio verificable para el Track 5 (No-Code).",
         "Ficha técnica de una página (según la plantilla oficial): vector de amenaza, arquitectura o protocolo defensivo, metodología de evaluación, resultados cuantitativos, límites y análisis de riesgo dual.",
         "Video de demostración (Opcional): video de hasta 2 minutos mostrando el prototipo o protocolo en funcionamiento.",
       ],
@@ -533,7 +550,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "In Colombia and Latin America, these risks are already concrete (from attacks on public infrastructure and WhatsApp voice-cloning fraud to the rapid deployment of autonomous agents without guardrails), while our technical community has the talent to contribute empirical solutions to the global AI safety frontier.",
       retoTitulo: "The Challenge",
       retoTexto:
-        "Build and evaluate, within 8 hours of focused teamwork, a defensive prototype or verifiable standard across one of the 5 research tracks: agent security, AI control & oversight, automated cyberdefense & formal verification, epistemic defense, or AI infrastructure security & governance.",
+        "Build and evaluate, within 8 hours of focused teamwork, a defensive prototype or verifiable standard across one of the 6 research tracks: agent security, AI control & oversight, automated cyberdefense & formal verification, epistemic defense, AI infrastructure security & governance, or multi-agent risks.",
       cuatroRequisitosTitulo: "The 4 Core Questions for Every Submission",
       cuatroRequisitos: [
         "The threat vector: clearly define which attack vector, control failure, or AI vulnerability your project mitigates.",
@@ -562,9 +579,9 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       introTexto:
         "Each team focuses on a concrete threat vector and builds an empirically verifiable defensive prototype. Choose any track or propose a related defensive project:",
       listaKits: [],
-      tracksTitulo: "The 5 Research Tracks",
+      tracksTitulo: "The 6 Research Tracks",
       tracksTexto:
-        "These tracks are structured around core Defensive Acceleration (def/acc) priorities in AI Safety: securing autonomous agents, monitoring untrusted systems, automating cyberdefense with formal verification, protecting epistemic integrity, and securing AI infrastructure and governance.",
+        "These tracks are structured around core Defensive Acceleration (def/acc) priorities in AI Safety: securing autonomous agents, monitoring untrusted systems, automating cyberdefense with formal verification, protecting epistemic integrity, securing AI infrastructure and governance, and keeping multi-agent systems from turning against people.",
       listaTracks: [
         {
           id: "track-1",
@@ -646,6 +663,23 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
             { label: "SL5 Standard", url: "https://sl5.org/sl5-standard" },
           ],
         },
+        {
+          id: "track-6",
+          numero: "06",
+          titulo: "Multi-Agent Risks: Collusion, Exploitation & Cooperative Resilience",
+          resumen:
+            "AI agents increasingly negotiate, compete and cooperate with each other with no human in the loop. That creates risks you cannot see when testing one model on its own: agents colluding against their users, stronger models exploiting weaker ones in a negotiation, and groups that collapse when a single agent stops cooperating.",
+          paraEmpezar:
+            "Set up a negotiation between agents of different capability in NegotiationArena or Concordia, measure when the stronger one exploits the weaker one, and test a safeguard (a referee, transparency rules or a monitor) that reduces the harm.",
+          conExperiencia:
+            "Build a detector for collusion between agents, or a mechanism that keeps a group of agents cooperating when a disruptive one joins (Melting Pot or Concordia scenarios), and measure its effect on collective welfare against an undefended baseline.",
+          recursos: [
+            { label: "Concordia (Google DeepMind)", url: "https://github.com/google-deepmind/concordia" },
+            { label: "Melting Pot (Google DeepMind)", url: "https://github.com/google-deepmind/meltingpot" },
+            { label: "NegotiationArena", url: "https://github.com/vinid/NegotiationArena" },
+            { label: "Multi-Agent Risks from Advanced AI (Cooperative AI Foundation)", url: "https://arxiv.org/abs/2502.14143" },
+          ],
+        },
       ],
     },
     reglas: {
@@ -659,7 +693,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       entregablesTitulo: "Submission Deliverables",
       entregablesHora: "Strict deadline: Saturday, November 14, 5:00 PM COT",
       entregables: [
-        "Runnable code repository link (GitHub or Colab) for Tracks 1 to 4, or a formal threat model / verifiable technical-regulatory standard document for Track 5 (No-Code).",
+        "Runnable code repository link (GitHub or Colab) for Tracks 1 to 4 and 6, or a formal threat model / verifiable technical-regulatory standard document for Track 5 (No-Code).",
         "One-page technical summary sheet: threat vector, defensive architecture or protocol, evaluation methodology, quantitative results, limitations, and dual-use analysis.",
         "Optional 2-minute demo recording illustrating the prototype or protocol.",
       ],
@@ -801,7 +835,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "Na Colômbia e na América Latina, esses riscos já são concretos (desde incidentes contra órgãos públicos e fraudes com clonagem de voz até a implantação acelerada de agentes autônomos sem salvaguardas), enquanto nossa comunidade técnica tem talento para contribuir diretamente com a fronteira global de segurança de IA.",
       retoTitulo: "O Desafio",
       retoTexto:
-        "Construir e avaliar, em 8 horas de trabalho contínuo, um protótipo defensivo ou padrão verificável em um dos 5 frentes de pesquisa: segurança de agentes, controle e supervisão de IA, ciberdefesa e verificação formal, defesa epistêmica ou segurança de infraestrutura e governança.",
+        "Construir e avaliar, em 8 horas de trabalho contínuo, um protótipo defensivo ou padrão verificável em um dos 6 frentes de pesquisa: segurança de agentes, controle e supervisão de IA, ciberdefesa e verificação formal, defesa epistêmica, segurança de infraestrutura e governança, ou riscos multiagente.",
       cuatroRequisitosTitulo: "As 4 perguntas essenciais de cada entrega",
       cuatroRequisitos: [
         "O vetor de risco: definir com precisão qual ataque, falha de controle ou vulnerabilidade de IA o projeto busca mitigar.",
@@ -830,9 +864,9 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       introTexto:
         "Cada equipe foca em um vetor concreto de ameaça e constrói uma solução defensiva verificável. Você pode escolher qualquer um destes frentes ou propor um desafio afim:",
       listaKits: [],
-      tracksTitulo: "Os 5 Frentes de Pesquisa",
+      tracksTitulo: "Os 6 Frentes de Pesquisa",
       tracksTexto:
-        "Os frentes são estruturados em torno das prioridades de aceleração defensiva (def/acc) em segurança de IA: proteger agentes autônomos, supervisionar modelos não confiáveis, automatizar a ciberdefesa com verificação formal, proteger o ecossistema epistêmico e garantir a governança e infraestrutura de IA.",
+        "Os frentes são estruturados em torno das prioridades de aceleração defensiva (def/acc) em segurança de IA: proteger agentes autônomos, supervisionar modelos não confiáveis, automatizar a ciberdefesa com verificação formal, proteger o ecossistema epistêmico, garantir a governança e infraestrutura de IA e evitar que sistemas multiagente se voltem contra as pessoas.",
       listaTracks: [
         {
           id: "track-1",
@@ -914,6 +948,23 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
             { label: "Padrão SL5", url: "https://sl5.org/sl5-standard" },
           ],
         },
+        {
+          id: "track-6",
+          numero: "06",
+          titulo: "Riscos Multiagente: Conluio, Exploração e Resiliência Cooperativa",
+          resumen:
+            "Cada vez mais agentes de IA negociam, competem e cooperam entre si sem uma pessoa no ciclo. Surgem riscos que não aparecem ao avaliar um modelo isolado: agentes em conluio contra os usuários, modelos fortes explorando outros mais fracos numa negociação e grupos que colapsam quando um único agente deixa de cooperar.",
+          paraEmpezar:
+            "Montar no NegotiationArena ou no Concordia uma negociação entre agentes de capacidades diferentes, medir quando o mais forte explora o mais fraco e testar uma salvaguarda (um árbitro, regras de transparência ou um monitor) que reduza esse dano.",
+          conExperiencia:
+            "Construir um detector de conluio entre agentes, ou um mecanismo que mantenha a cooperação de um grupo de agentes quando entra um disruptivo (cenários do Melting Pot ou do Concordia), e medir o efeito no bem-estar coletivo contra uma linha de base sem defesa.",
+          recursos: [
+            { label: "Concordia (Google DeepMind)", url: "https://github.com/google-deepmind/concordia" },
+            { label: "Melting Pot (Google DeepMind)", url: "https://github.com/google-deepmind/meltingpot" },
+            { label: "NegotiationArena", url: "https://github.com/vinid/NegotiationArena" },
+            { label: "Multi-Agent Risks from Advanced AI (Cooperative AI Foundation)", url: "https://arxiv.org/abs/2502.14143" },
+          ],
+        },
       ],
     },
     reglas: {
@@ -927,7 +978,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       entregablesTitulo: "Entregáveis da Equipe",
       entregablesHora: "Prazo final: Sábado, 14 de novembro, às 17:00",
       entregables: [
-        "Repositório executável (GitHub ou Colab) para os Tracks 1 a 4, ou documento de modelagem formal de ameaças / padrão técnico-regulatório verificável para o Track 5 (No-Code).",
+        "Repositório executável (GitHub ou Colab) para os Tracks 1 a 4 e 6, ou documento de modelagem formal de ameaças / padrão técnico-regulatório verificável para o Track 5 (No-Code).",
         "Ficha técnica de uma página: vetor de ameaça, arquitetura ou protocolo defensivo, metodologia de avaliação, resultados quantitativos, limites e risco dual.",
         "Vídeo opcional de até 2 minutos demonstrando o protótipo ou protocolo.",
       ],
