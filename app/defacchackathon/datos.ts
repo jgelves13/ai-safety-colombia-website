@@ -360,7 +360,6 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       entregables: [
         "Enlace al repositorio ejecutable (GitHub o Google Colab) con código documentado para los Tracks 1 al 4 y 6, o al documento de modelado formal de amenazas / estándar técnico-regulatorio verificable para el Track 5 (No-Code).",
         "Ficha técnica de hasta 2 páginas (según la plantilla oficial): vector de amenaza, arquitectura o protocolo defensivo, metodología de evaluación, resultados cuantitativos, límites y análisis de riesgo dual.",
-        "Video de demostración (Opcional): video de hasta 2 minutos mostrando el prototipo o protocolo en funcionamiento.",
       ],
       criteriosTitulo: "Criterios de evaluación y rúbrica",
       criteriosTexto:
