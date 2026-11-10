@@ -757,10 +757,10 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                     </a>
                     <p className="text-body text-aisc-ink/85">
                       {idioma === "en"
-                        ? "Oracle Academy supports this hackathon. We will share the details of its sponsorship soon."
+                        ? "Oracle Academy supports this hackathon: participants get a certificate and access to Oracle Academy tools to build their project. More details soon."
                         : idioma === "pt"
-                        ? "A Oracle Academy apoia este hackathon. Em breve compartilharemos os detalhes do patrocínio."
-                        : "Oracle Academy apoya este hackathon. Muy pronto compartiremos los detalles de su patrocinio."}
+                        ? "A Oracle Academy apoia este hackathon: os participantes recebem um certificado e acesso às ferramentas da Oracle Academy para desenvolver o projeto. Em breve, mais detalhes."
+                        : "Oracle Academy apoya este hackathon: los participantes reciben un certificado y acceso a herramientas de Oracle Academy para desarrollar su proyecto. Muy pronto, más detalles."}
                     </p>
                   </div>
                 </div>
