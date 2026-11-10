@@ -359,7 +359,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       entregablesHora: "Hora límite estricta: sábado 14 de noviembre a las 5:00 p.m.",
       entregables: [
         "Enlace al repositorio ejecutable (GitHub o Google Colab) con código documentado para los Tracks 1 al 4 y 6, o al documento de modelado formal de amenazas / estándar técnico-regulatorio verificable para el Track 5 (No-Code).",
-        "Ficha técnica de una página (según la plantilla oficial): vector de amenaza, arquitectura o protocolo defensivo, metodología de evaluación, resultados cuantitativos, límites y análisis de riesgo dual.",
+        "Ficha técnica de hasta 2 páginas (según la plantilla oficial): vector de amenaza, arquitectura o protocolo defensivo, metodología de evaluación, resultados cuantitativos, límites y análisis de riesgo dual.",
         "Video de demostración (Opcional): video de hasta 2 minutos mostrando el prototipo o protocolo en funcionamiento.",
       ],
       criteriosTitulo: "Criterios de evaluación y rúbrica",
@@ -401,7 +401,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         "Uso responsable: un proyecto que principalmente facilita ataques sin una mitigación no es elegible para premio. En caso de empate, gana el proyecto con mayor puntaje en Impacto potencial e innovación.",
       finalistasTitulo: "Dinámica de selección de ganadores",
       finalistasTexto:
-        "A las 7:00 p.m., tras la deliberación técnica de los jurados, se anuncian los 5 mejores proyectos de la jornada. Cada equipo finalista realiza un pitch en vivo de 4 minutos ante el salón completo y a las 7:25 p.m. el jurado anuncia los tres primeros puestos.",
+        "Todos los equipos presentan. Desde las 5:10 p.m., cada equipo hace un pitch en vivo de 3 minutos, sin preguntas, mientras los jurados leen su ficha técnica y lo califican. De 6:40 a 7:00 p.m. el jurado consolida los puntajes y a las 7:15 p.m. anuncia los tres primeros puestos.",
       juradosTitulo: "Jueces",
       juradosTexto:
         "Investigadores y especialistas en seguridad de IA, ciberseguridad y gobernanza evalúan los entregables al cierre del día. Pronto anunciaremos más jurados.",
@@ -460,8 +460,11 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         { hora: "08:00 a.m.", actividad: "Registro e ingreso al campus", detalle: "Control de acceso en portería de Uniandes y ubicación de los participantes." },
         { hora: "08:30 a.m.", actividad: "Apertura y presentación del reto", detalle: "Presentación de los frentes temáticos, criterios de evaluación y conformación de equipos." },
         { hora: "09:00 a.m.", actividad: "Inicio del sprint de desarrollo (8 horas)", detalle: "Trabajo continuo de los equipos en sala.", destacado: true },
-        { hora: "05:00 p.m.", actividad: "Cierre de entregas", detalle: "Entrega del repositorio con código ejecutable y la ficha técnica de una página.", destacado: true },
-        { hora: "07:00 p.m.", actividad: "Pitches de finalistas y premiación", detalle: "Presentación de los proyectos con mayor puntaje ante el jurado y anuncio de los ganadores.", destacado: true },
+        { hora: "05:00 p.m.", actividad: "Cierre de entregas", detalle: "Entrega del repositorio con código ejecutable y la ficha técnica de hasta 2 páginas.", destacado: true },
+        { hora: "05:10 p.m.", actividad: "Pitches de todos los equipos", detalle: "Cada equipo presenta 3 minutos, sin preguntas. Los jurados leen la ficha técnica y califican durante el pitch.", destacado: true },
+        { hora: "06:40 p.m.", actividad: "Deliberación del jurado", detalle: "Los jurados consolidan los puntajes y eligen los tres primeros puestos." },
+        { hora: "07:15 p.m.", actividad: "Premiación", detalle: "Anuncio de los tres primeros puestos y entrega de premios.", destacado: true },
+        { hora: "07:30 p.m.", actividad: "Cierre de la jornada", detalle: "Cierre del evento hasta las 8:00 p.m." },
       ],
       calendarioPrevioTitulo: "Fechas clave de la convocatoria",
       calendarioPrevio: [
@@ -490,7 +493,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         },
         {
           q: "¿Cómo se evalúa y premia?",
-          a: "Los proyectos se entregan a las 5:00 p.m. (repositorio + ficha técnica de 1 página). Los 5 con mejor puntaje presentan 4 minutos en vivo a las 7:00 p.m. Los tres primeros lugares reciben COP 1.000.000, COP 500.000 y COP 500.000.",
+          a: "Los proyectos se entregan a las 5:00 p.m. (repositorio + ficha técnica de hasta 2 páginas). Desde las 5:10 p.m. todos los equipos presentan un pitch de 3 minutos y a las 7:15 p.m. se anuncian los tres primeros lugares, que reciben COP 1.000.000, COP 500.000 y COP 500.000.",
         },
         {
           q: "¿Cómo llego al salón en Uniandes?",
@@ -703,7 +706,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       entregablesHora: "Strict deadline: Saturday, November 14, 5:00 PM COT",
       entregables: [
         "Runnable code repository link (GitHub or Colab) for Tracks 1 to 4 and 6, or a formal threat model / verifiable technical-regulatory standard document for Track 5 (No-Code).",
-        "One-page technical summary sheet: threat vector, defensive architecture or protocol, evaluation methodology, quantitative results, limitations, and dual-use analysis.",
+        "Technical summary sheet of up to 2 pages: threat vector, defensive architecture or protocol, evaluation methodology, quantitative results, limitations, and dual-use analysis.",
         "Optional 2-minute demo recording illustrating the prototype or protocol.",
       ],
       criteriosTitulo: "Evaluation Rubric",
@@ -714,9 +717,9 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         { nombre: "Presentation & Clarity", peso: "1–5", descripcion: "Can a judge quickly see what you built and what you found?", niveles: { n1: "Hard to tell what was done.", n3: "Clear what was done and why.", n5: "A judge gets it in 2 minutes; concise sheet with the key results." } },
       ],
       criteriosNota: "Responsible use: a project that mainly enables attacks without a mitigation is not eligible for a prize. Ties go to the project with the higher Impact Potential & Innovation score.",
-      finalistasTitulo: "Finalist Presentations",
+      finalistasTitulo: "Pitches & Winner Selection",
       finalistasTexto:
-        "At 7:00 PM, the top 5 teams deliver 4-minute live pitches before the assembly, and at 7:25 PM the judges announce the three winning teams.",
+        "Every team presents. From 5:10 PM, each team gives a 3-minute live pitch, with no Q&A, while the judges read its summary sheet and score it. From 6:40 to 7:00 PM the judges consolidate scores, and at 7:15 PM they announce the top three teams.",
       juradosTitulo: "Judges",
       juradosTexto: "Researchers and practitioners in AI safety, cybersecurity, and governance evaluate submissions at the close of the day. More judges will be announced soon.",
       jurados: [
@@ -774,8 +777,11 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         { hora: "08:00 AM", actividad: "Check-in & Campus Access", detalle: "Access control at Uniandes security gates and participant check-in." },
         { hora: "08:30 AM", actividad: "Opening Ceremony & Challenge Brief", detalle: "Presentation of research tracks, evaluation criteria, and team formation." },
         { hora: "09:00 AM", actividad: "Sprint Begins (8 hours)", detalle: "Focused build sprint on site.", destacado: true },
-        { hora: "05:00 PM", actividad: "Submission Cutoff", detalle: "Strict deadline: repository with runnable code + one-page summary sheet.", destacado: true },
-        { hora: "07:00 PM", actividad: "Finalist Pitches & Awards", detalle: "Top-scoring projects present live to judges, followed by the awards ceremony.", destacado: true },
+        { hora: "05:00 PM", actividad: "Submission Cutoff", detalle: "Strict deadline: repository with runnable code + summary sheet of up to 2 pages.", destacado: true },
+        { hora: "05:10 PM", actividad: "Pitches from Every Team", detalle: "Each team presents for 3 minutes, no Q&A. Judges read the summary sheet and score during the pitch.", destacado: true },
+        { hora: "06:40 PM", actividad: "Judges' Deliberation", detalle: "Judges consolidate scores and choose the top three." },
+        { hora: "07:15 PM", actividad: "Awards", detalle: "Top three announced and prizes awarded.", destacado: true },
+        { hora: "07:30 PM", actividad: "Closing", detalle: "Event wraps up by 8:00 PM." },
       ],
       calendarioPrevioTitulo: "Application Key Dates",
       calendarioPrevio: [
@@ -997,7 +1003,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       entregablesHora: "Prazo final: Sábado, 14 de novembro, às 17:00",
       entregables: [
         "Repositório executável (GitHub ou Colab) para os Tracks 1 a 4 e 6, ou documento de modelagem formal de ameaças / padrão técnico-regulatório verificável para o Track 5 (No-Code).",
-        "Ficha técnica de uma página: vetor de ameaça, arquitetura ou protocolo defensivo, metodologia de avaliação, resultados quantitativos, limites e risco dual.",
+        "Ficha técnica de até 2 páginas: vetor de ameaça, arquitetura ou protocolo defensivo, metodologia de avaliação, resultados quantitativos, limites e risco dual.",
         "Vídeo opcional de até 2 minutos demonstrando o protótipo ou protocolo.",
       ],
       criteriosTitulo: "Critérios de Avaliação",
@@ -1008,9 +1014,9 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         { nombre: "Apresentação e Clareza", peso: "1–5", descripcion: "Um jurado entende rápido o que fizeram e o que encontraram?", niveles: { n1: "Difícil entender o que fizeram.", n3: "Entende-se o que fizeram e por quê.", n5: "Um jurado entende em 2 minutos; ficha concisa com os resultados-chave." } },
       ],
       criteriosNota: "Uso responsável: um projeto que principalmente facilita ataques sem mitigação não é elegível a prêmio. Em caso de empate, vence o projeto com maior nota em Potencial de Impacto e Inovação.",
-      finalistasTitulo: "Finalistas ao Vivo",
+      finalistasTitulo: "Pitches e Seleção dos Vencedores",
       finalistasTexto:
-        "Às 19:00, os 5 melhores projetos apresentam pitches de 4 minutos perante a banca. Premiação às 19:25.",
+        "Todas as equipes apresentam. A partir das 17:10, cada equipe faz um pitch ao vivo de 3 minutos, sem perguntas, enquanto os jurados leem a ficha técnica e dão a nota. Das 18:40 às 19:00 os jurados consolidam as notas e às 19:15 anunciam os três primeiros lugares.",
       juradosTitulo: "Jurados",
       juradosTexto: "Pesquisadores e especialistas em segurança de IA, cibersegurança e governança avaliam as entregas no encerramento. Em breve anunciaremos mais jurados.",
       jurados: [
@@ -1068,8 +1074,11 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         { hora: "08:00", actividad: "Credenciamento e Entrada no Campus", detalle: "Controle de acesso nas portarias da Uniandes e recepção dos participantes." },
         { hora: "08:30", actividad: "Abertura Oficial e Apresentação do Desafio", detalle: "Apresentação dos frentes de pesquisa, critérios de avaliação e formação de equipes." },
         { hora: "09:00", actividad: "Início do Sprint de Desenvolvimento (8 horas)", detalle: "Trabalho prático das equipes nas salas.", destacado: true },
-        { hora: "17:00", actividad: "Encerramento das Entregas", detalle: "Envio do repositório com código executável e ficha técnica de 1 página.", destacado: true },
-        { hora: "19:00", actividad: "Pitches dos Finalistas e Premiação", detalle: "Apresentação dos projetos finalistas perante os jurados e anúncio dos vencedores.", destacado: true },
+        { hora: "17:00", actividad: "Encerramento das Entregas", detalle: "Envio do repositório com código executável e ficha técnica de até 2 páginas.", destacado: true },
+        { hora: "17:10", actividad: "Pitches de Todas as Equipes", detalle: "Cada equipe apresenta 3 minutos, sem perguntas. Os jurados leem a ficha técnica e dão a nota durante o pitch.", destacado: true },
+        { hora: "18:40", actividad: "Deliberação dos Jurados", detalle: "Os jurados consolidam as notas e escolhem os três primeiros lugares." },
+        { hora: "19:15", actividad: "Premiação", detalle: "Anúncio dos três primeiros lugares e entrega dos prêmios.", destacado: true },
+        { hora: "19:30", actividad: "Encerramento", detalle: "Encerramento do evento até as 20:00." },
       ],
       calendarioPrevioTitulo: "Datas Importantes",
       calendarioPrevio: [
