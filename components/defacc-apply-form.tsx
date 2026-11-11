@@ -740,10 +740,12 @@ export default function DefAccApplyForm({
   cerrado = false,
   noIniciado = false,
   idioma = "es",
+  pase,
 }: {
   cerrado?: boolean;
   noIniciado?: boolean;
   idioma?: Idioma;
+  pase?: string;
 }) {
   const t = TEXTOS[idioma];
   const tp = TEXTOS_POLITICA[idioma];
@@ -919,7 +921,7 @@ export default function DefAccApplyForm({
       datos.teamMembers = datos.teamMode === "equipo" ? serializarEquipo(filas) : "";      const r = await fetch("/api/defacc/aplicar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(datos),
+        body: JSON.stringify(pase ? { ...datos, pase } : datos),
       });
       const res = (await r.json().catch(() => ({}))) as {
         ok?: boolean;

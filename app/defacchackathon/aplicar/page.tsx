@@ -8,6 +8,7 @@ import SiteHeader from "@/components/site-header";
 import { HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { inscripcionesCerradas, inscripcionesIniciadas } from "../datos";
 import { alternativas } from "@/lib/idiomas";
+import { verificarPaseDefacc } from "@/lib/pase-defacc";
 
 export const metadata: Metadata = {
   title: "Postulación · Defensive Acceleration Hackathon",
@@ -21,8 +22,12 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default async function AplicarDefAcc() {
-  const cerrado = inscripcionesCerradas();
+/* Un `?pase=` firmado y vigente (lib/pase-defacc.ts) abre el formulario
+   después del cierre, solo para quien tenga el enlace. */
+export default async function AplicarDefAcc({ searchParams }: { searchParams: Promise<{ pase?: string }> }) {
+  const { pase } = await searchParams;
+  const conPase = inscripcionesCerradas() && verificarPaseDefacc(pase) !== null;
+  const cerrado = inscripcionesCerradas() && !conPase;
   const noIniciado = !inscripcionesIniciadas();
 
   return (
@@ -44,7 +49,9 @@ export default async function AplicarDefAcc() {
                 Cupo limitado por aforo, almuerzo incluido y COP 2.000.000 en premios.
               </p>
               <p className="text-body font-semibold text-aisc-sand">
-                Cierre de postulaciones: martes 10 de noviembre, 11:59 p.m. (hora de Bogotá).
+                {conPase
+                  ? "Enlace especial: puedes postularte hasta hoy, miércoles 11 de noviembre, 11:59 p.m. (hora de Bogotá)."
+                  : "Cierre de postulaciones: martes 10 de noviembre, 11:59 p.m. (hora de Bogotá)."}
               </p>
             </div>
             <div className="hidden md:flex flex-col items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
@@ -78,7 +85,7 @@ export default async function AplicarDefAcc() {
             </div>
           ) : null}
 
-          <DefAccApplyForm cerrado={cerrado} noIniciado={noIniciado} idioma="es" />
+          <DefAccApplyForm cerrado={cerrado} noIniciado={noIniciado} idioma="es" pase={conPase ? pase : undefined} />
         </div>
       </section>
 

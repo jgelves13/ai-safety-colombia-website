@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { CORREO_HACKATHON, inscripcionesCerradas, inscripcionesIniciadas } from "@/app/defacchackathon/datos";
+import { verificarPaseDefacc } from "@/lib/pase-defacc";
 import { POLITICA_VERSION } from "@/lib/politica-datos";
 
 export const runtime = "nodejs";
@@ -346,8 +347,8 @@ export async function POST(req: Request) {
     );
   }
 
-  // Cierre de inscripciones
-  if (inscripcionesCerradas()) {
+  // Cierre de inscripciones: después solo entra quien trae un pase vigente
+  if (inscripcionesCerradas() && !verificarPaseDefacc(raw.pase)) {
     return NextResponse.json(
       { ok: false, error: "closed", mensaje: "Las postulaciones al hackathon han cerrado." },
       { status: 403 },
