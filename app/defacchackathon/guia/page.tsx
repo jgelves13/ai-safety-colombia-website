@@ -214,14 +214,18 @@ export default function GuiaDefAcc() {
                 ]}
               />
               <Parrafo>
-                Al enviar recibes un <strong>código de edición</strong>.
-                Guárdalo: solo se muestra una vez. Con él puedes actualizar la
-                entrega cuantas veces quieras antes del cierre. El jurado ve la
-                última versión.
+                <strong>A las 5:00 p. m. se cierra la entrega</strong> y el
+                jurado empieza a calificar. Lo que no esté enviado a esa hora no
+                cuenta.
               </Parrafo>
               <Parrafo>
-                Nuestro consejo: envíen una primera versión hacia las 4:00 p.
-                m. y después la mejoran.
+                Al enviar recibes un <strong>código de edición</strong>.
+                Guárdalo, solo se muestra una vez. Sirve para corregir la
+                entrega antes de las 5:00 p. m. si algo quedó mal.
+              </Parrafo>
+              <Parrafo>
+                Nuestro consejo: envíen hacia las 4:00 p. m. y dejen ese margen
+                por si hay que corregir algo.
               </Parrafo>
               <Parrafo>
                 Una revisión automática con IA lee cada entrega solo para
