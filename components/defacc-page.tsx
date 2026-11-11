@@ -757,10 +757,10 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                     </a>
                     <p className="text-body text-aisc-ink/85">
                       {idioma === "en"
-                        ? "Oracle Academy supports this hackathon: participants get a certificate and access to Oracle Academy tools to build their project. They only activate with an @uniandes.edu.co email, so teams need a Uniandes member; we'll help you find one during team formation. More details soon."
+                        ? "Oracle Academy supports this hackathon: participants get a certification and access to Oracle Academy tools to build their project. They only activate with an @uniandes.edu.co email, so teams need a Uniandes member; we'll help you find one during team formation. More details soon."
                         : idioma === "pt"
-                        ? "A Oracle Academy apoia este hackathon: os participantes recebem um certificado e acesso às ferramentas da Oracle Academy para desenvolver o projeto. Elas só são ativadas com e-mail @uniandes.edu.co, então a equipe precisa de um integrante da Uniandes; ajudamos a encontrar um na formação das equipes. Em breve, mais detalhes."
-                        : "Oracle Academy apoya este hackathon: los participantes reciben un certificado y acceso a herramientas de Oracle Academy para desarrollar su proyecto. Solo se activan con correo @uniandes.edu.co, así que el equipo necesita un integrante de Uniandes; les ayudamos a encontrarlo al armar equipos. Muy pronto, más detalles."}
+                        ? "A Oracle Academy apoia este hackathon: os participantes recebem uma certificação e acesso às ferramentas da Oracle Academy para desenvolver o projeto. Elas só são ativadas com e-mail @uniandes.edu.co, então a equipe precisa de um integrante da Uniandes; ajudamos a encontrar um na formação das equipes. Em breve, mais detalhes."
+                        : "Oracle Academy apoya este hackathon: los participantes reciben una certificación y acceso a herramientas de Oracle Academy para desarrollar su proyecto. Solo se activan con correo @uniandes.edu.co, así que el equipo necesita un integrante de Uniandes; les ayudamos a encontrarlo al armar equipos. Muy pronto, más detalles."}
                     </p>
                   </div>
                 </div>
