@@ -126,6 +126,9 @@ export const PAGINAS: Pagina[] = [
     ruta: { es: "/defacchackathon/aplicar", en: "/en/defacchackathon/apply", pt: "/pt/defacchackathon/inscricao" },
   },
   {
+    ruta: { es: "/defacchackathon/entregar", en: "/en/defacchackathon/submit", pt: "/pt/defacchackathon/entrega" },
+  },
+  {
     ruta: { es: "/seguridad-de-la-ia", en: "/en/ai-safety", pt: "/pt/seguranca-da-ia" },
   },
   {
