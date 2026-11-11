@@ -227,12 +227,6 @@ export default function GuiaDefAcc() {
                 Nuestro consejo: envíen hacia las 4:00 p. m. y dejen ese margen
                 por si hay que corregir algo.
               </Parrafo>
-              <Parrafo>
-                Una revisión automática con IA lee cada entrega solo para
-                marcar dos cosas: si está fuera de tema o si trae
-                instrucciones escondidas para manipular al evaluador. No pone
-                notas. Las notas las ponen personas.
-              </Parrafo>
 
               <H2 id="calificacion">Cómo se califica</H2>
               <Parrafo>
