@@ -144,7 +144,10 @@ export async function subirJson(ruta: string, datos: unknown): Promise<void> {
 
 export async function leerBytes(ruta: string): Promise<ArrayBuffer | null> {
   const { url, key } = config();
-  const r = await fetch(`${url}/storage/v1/object/${BUCKET}/${ruta}`, {
+  /* El CDN de Supabase sirve versiones viejas tras sobrescribir un objeto aunque se pida no-cache;
+     un parámetro único en la URL obliga a leer la versión actual. */
+  const fresco = `t=${Date.now()}${Math.random().toString(36).slice(2, 8)}`;
+  const r = await fetch(`${url}/storage/v1/object/${BUCKET}/${ruta}?${fresco}`, {
     headers: cabeceras(key),
     cache: "no-store",
   });
