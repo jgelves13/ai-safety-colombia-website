@@ -406,9 +406,9 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       finalistasTitulo: "Dinámica de selección de ganadores",
       finalistasTexto:
         "Todos los equipos presentan. Desde las 5:10 p.m., cada equipo hace un pitch en vivo de 3 minutos, sin preguntas, mientras los jurados leen su ficha técnica y lo califican. De 6:40 a 7:00 p.m. el jurado consolida los puntajes y a las 7:15 p.m. anuncia los tres primeros puestos.",
-      juradosTitulo: "Jueces",
+      juradosTitulo: "Jueces y mentores",
       juradosTexto:
-        "Investigadores y especialistas en seguridad de IA, ciberseguridad y gobernanza evalúan los entregables al cierre del día. Pronto anunciaremos más jurados.",
+        "Los mentores acompañan a los equipos durante la jornada y los jueces, investigadores y especialistas en seguridad de IA, ciberseguridad y gobernanza, evalúan los entregables al cierre del día.",
       jurados: [
         {
           nombre: "Christian Urcuqui",
@@ -454,6 +454,24 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
           url: "https://www.linkedin.com/in/torregrosaj/",
           confirmado: true,
           bio: ["Sr AI Research Engineer en ", { texto: "Mercado Libre", url: "https://www.mercadolibre.com.co/" }, " (GenAI Engineering Research) y Claude Community Ambassador en Bogotá, donde da talleres de agentes con Agent SDK y Managed Agents. Publica herramientas de agentes y ", { texto: "evals abiertos", url: "https://github.com/JairoTorregrosa/sesgo-inspect" }, "."],
+        },
+        {
+          nombre: "Robert Gómez",
+          rol: "Mentor",
+          afiliacion: "AIMEDIC",
+          foto: "/aisc/mentores/robert-gomez.png",
+          url: "https://www.linkedin.com/in/robert-gomez-6361571b6/",
+          confirmado: true,
+          bio: ["CTO de ", { texto: "AIMEDIC", url: "https://www.aimedic.com.co/" }, ", que lleva IA generativa a clínicas y hospitales. Coautor de un estudio de asistentes de salud para adolescentes en la ", { texto: "Universidad Nacional", url: "https://unal.edu.co/" }, " e investiga vacíos tributarios en ", { texto: "LoopholeCheck", url: "https://socampoq.github.io/LoopholeCheck.github.io/" }, ", con el ", { texto: "MIT", url: "https://www.mit.edu/" }, "."],
+        },
+        {
+          nombre: "Pablo Pastrana",
+          rol: "Mentor",
+          afiliacion: "Dapper",
+          foto: "/aisc/mentores/pablo-pastrana.png",
+          url: "https://www.linkedin.com/in/pablo-pastrana-vega/",
+          confirmado: true,
+          bio: "Product Lead en Dapper, cuyo conector hace parte del directorio oficial de conectores de Claude.",
         },
       ],
     },
@@ -726,8 +744,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       finalistasTitulo: "Pitches & Winner Selection",
       finalistasTexto:
         "Every team presents. From 5:10 PM, each team gives a 3-minute live pitch, with no Q&A, while the judges read its summary sheet and score it. From 6:40 to 7:00 PM the judges consolidate scores, and at 7:15 PM they announce the top three teams.",
-      juradosTitulo: "Judges",
-      juradosTexto: "Researchers and practitioners in AI safety, cybersecurity, and governance evaluate submissions at the close of the day. More judges will be announced soon.",
+      juradosTitulo: "Judges and mentors",
+      juradosTexto: "Mentors support the teams throughout the day, and judges, researchers and practitioners in AI safety, cybersecurity, and governance, evaluate submissions at the close of the day.",
       jurados: [
         {
           nombre: "Christian Urcuqui",
@@ -773,6 +791,24 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
           url: "https://www.linkedin.com/in/torregrosaj/",
           confirmado: true,
           bio: ["Sr AI Research Engineer at ", { texto: "Mercado Libre", url: "https://www.mercadolibre.com.co/" }, " (GenAI Engineering Research) and Claude Community Ambassador in Bogotá, where they teach agent workshops on the Agent SDK and Managed Agents. Publishes agent tooling and ", { texto: "open evals", url: "https://github.com/JairoTorregrosa/sesgo-inspect" }, "."],
+        },
+        {
+          nombre: "Robert Gómez",
+          rol: "Mentor",
+          afiliacion: "AIMEDIC",
+          foto: "/aisc/mentores/robert-gomez.png",
+          url: "https://www.linkedin.com/in/robert-gomez-6361571b6/",
+          confirmado: true,
+          bio: ["CTO of ", { texto: "AIMEDIC", url: "https://www.aimedic.com.co/" }, ", which brings generative AI to clinics and hospitals. Co-author of a ", { texto: "Universidad Nacional", url: "https://unal.edu.co/" }, " study on health assistants for teenagers and researches tax loopholes with ", { texto: "MIT", url: "https://www.mit.edu/" }, " at ", { texto: "LoopholeCheck", url: "https://socampoq.github.io/LoopholeCheck.github.io/" }, "."],
+        },
+        {
+          nombre: "Pablo Pastrana",
+          rol: "Mentor",
+          afiliacion: "Dapper",
+          foto: "/aisc/mentores/pablo-pastrana.png",
+          url: "https://www.linkedin.com/in/pablo-pastrana-vega/",
+          confirmado: true,
+          bio: "Product Lead at Dapper, whose connector is part of Claude's official connector directory.",
         },
       ],
     },
@@ -1025,8 +1061,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       finalistasTitulo: "Pitches e Seleção dos Vencedores",
       finalistasTexto:
         "Todas as equipes apresentam. A partir das 17:10, cada equipe faz um pitch ao vivo de 3 minutos, sem perguntas, enquanto os jurados leem a ficha técnica e dão a nota. Das 18:40 às 19:00 os jurados consolidam as notas e às 19:15 anunciam os três primeiros lugares.",
-      juradosTitulo: "Jurados",
-      juradosTexto: "Pesquisadores e especialistas em segurança de IA, cibersegurança e governança avaliam as entregas no encerramento. Em breve anunciaremos mais jurados.",
+      juradosTitulo: "Jurados e mentores",
+      juradosTexto: "Os mentores acompanham as equipes durante o dia e os jurados, pesquisadores e especialistas em segurança de IA, cibersegurança e governança, avaliam as entregas no encerramento.",
       jurados: [
         {
           nombre: "Christian Urcuqui",
@@ -1072,6 +1108,24 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
           url: "https://www.linkedin.com/in/torregrosaj/",
           confirmado: true,
           bio: ["Sr AI Research Engineer no ", { texto: "Mercado Libre", url: "https://www.mercadolibre.com.co/" }, " (GenAI Engineering Research) e Claude Community Ambassador em Bogotá, onde dá workshops de agentes com Agent SDK e Managed Agents. Publica ferramentas de agentes e ", { texto: "evals abertos", url: "https://github.com/JairoTorregrosa/sesgo-inspect" }, "."],
+        },
+        {
+          nombre: "Robert Gómez",
+          rol: "Mentor",
+          afiliacion: "AIMEDIC",
+          foto: "/aisc/mentores/robert-gomez.png",
+          url: "https://www.linkedin.com/in/robert-gomez-6361571b6/",
+          confirmado: true,
+          bio: ["CTO da ", { texto: "AIMEDIC", url: "https://www.aimedic.com.co/" }, ", que leva IA generativa a clínicas e hospitais. Coautor de um estudo de assistentes de saúde para adolescentes na ", { texto: "Universidad Nacional", url: "https://unal.edu.co/" }, " e pesquisa brechas tributárias no ", { texto: "LoopholeCheck", url: "https://socampoq.github.io/LoopholeCheck.github.io/" }, ", com o ", { texto: "MIT", url: "https://www.mit.edu/" }, "."],
+        },
+        {
+          nombre: "Pablo Pastrana",
+          rol: "Mentor",
+          afiliacion: "Dapper",
+          foto: "/aisc/mentores/pablo-pastrana.png",
+          url: "https://www.linkedin.com/in/pablo-pastrana-vega/",
+          confirmado: true,
+          bio: "Product Lead na Dapper, cujo conector faz parte do diretório oficial de conectores do Claude.",
         },
       ],
     },
