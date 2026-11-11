@@ -226,6 +226,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       quienTitulo: "¿Quién puede participar?",
       quienPuntos: [
         "Estudiantes universitarios de cualquier semestre y carrera, investigadores y profesionales de la industria o el sector público.",
+        "Solo mayores de edad (18 años o más). No aceptamos menores de edad.",
         "Equipos de 2 a 4 personas. Quien aplique solo podrá conformar equipo durante la sesión de apertura a las 8:30 a.m.",
         "No hace falta experiencia previa en seguridad de IA: cada frente ofrece puntos de partida accesibles (resolubles con Python, suites de evaluación guiadas o modelado formal de amenazas y gobernanza sin programar en el Track 5).",
         "Cupo limitado por aforo para garantizar un espacio de trabajo óptimo, conectividad y alimentación.",
@@ -572,6 +573,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       quienTitulo: "Who Can Join?",
       quienPuntos: [
         "Undergraduate & graduate students from any discipline, researchers, software engineers, and public policy practitioners.",
+        "Participants must be 18 or older. We do not accept minors.",
         "Teams of 2 to 4. Solo applicants are grouped during the opening session at 8:30 AM.",
         "No prior AI safety research experience required: each track provides accessible entry points (solvable with Python, guided evaluation suites, or formal threat modeling and governance without code in Track 5).",
         "Limited capacity to ensure a good workspace and catering.",
@@ -869,6 +871,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       quienTitulo: "Quem Pode Participar?",
       quienPuntos: [
         "Estudantes de graduação e pós-graduação, pesquisadores e profissionais de tecnologia ou políticas públicas.",
+        "Só maiores de idade (18 anos ou mais). Não aceitamos menores de idade.",
         "Equipes de 2 a 4 integrantes. Candidatos individuais formam grupos na abertura às 8:30.",
         "Não é exigida experiência prévia em segurança de IA: cada frente oferece pontos de partida acessíveis (com Python, suítes de avaliação guiadas ou modelagem formal de ameaças e governança sem código no Track 5).",
         "Vagas limitadas para garantir espaço de trabalho ideal, conectividade e alimentação.",

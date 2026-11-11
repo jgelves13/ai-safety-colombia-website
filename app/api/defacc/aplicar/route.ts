@@ -83,7 +83,7 @@ function enlaceValido(valor: string): boolean {
 /* Valores admitidos en los campos de opción. Son los mismos identificadores que
    envía components/defacc-apply-form.tsx. */
 const OPCIONES: Record<string, readonly string[]> = {
-  documentType: ["CC", "CE", "Pasaporte", "TI", "Otro"],
+  documentType: ["CC", "CE", "Pasaporte", "Otro"],
   experienceLevel: ["principiante", "intermedio", "avanzado"],
   teamMode: ["individual", "equipo"],
   preferredTrack: ["track-1", "track-2", "track-3", "track-4", "track-5", "track-6", "por_definir"],

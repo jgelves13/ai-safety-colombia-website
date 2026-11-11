@@ -126,7 +126,7 @@ function leerEquipo(texto: string): Companero[] {
   return filas.length > 0 ? filas : [{ ...FILA_VACIA }];
 }
 
-const DOCUMENTOS = ["CC", "CE", "Pasaporte", "TI", "Otro"] as const;
+const DOCUMENTOS = ["CC", "CE", "Pasaporte", "Otro"] as const;
 const NIVELES = ["principiante", "intermedio", "avanzado"] as const;
 const MODALIDADES = ["individual", "equipo"] as const;
 
@@ -288,7 +288,7 @@ const TEXTOS: Record<Idioma, Textos> = {
     },
     seccionDatos: "Tus datos",
     datosNota:
-      "Los usamos para darte la respuesta y para registrar tu ingreso a la Universidad de los Andes.",
+      "Solo aceptamos mayores de edad (18 años o más). Los datos los usamos para darte la respuesta y para registrar tu ingreso a la Universidad de los Andes.",
     seccionPerfil: "Tu perfil",
     seccionEquipo: "Equipo y frente",
     seccionLogistica: "La jornada",
@@ -306,7 +306,6 @@ const TEXTOS: Record<Idioma, Textos> = {
       CC: "Cédula de ciudadanía",
       CE: "Cédula de extranjería",
       Pasaporte: "Pasaporte",
-      TI: "Tarjeta de identidad",
       Otro: "Otro",
     },
     numeroDocumento: "Número de documento",
@@ -355,7 +354,7 @@ const TEXTOS: Record<Idioma, Textos> = {
     dieta: "¿Restricciones alimentarias, alergias o algo de accesibilidad que debamos saber?",
     dietaAyuda: "Por ejemplo: vegetariana, celiaquía, alergia al maní, movilidad reducida.",
     disponibilidad:
-      "Confirmo que puedo estar en la Universidad de los Andes durante toda la jornada del sábado 14 de noviembre de 2026.",
+      "Confirmo que soy mayor de edad (18 años o más) y que puedo estar en la Universidad de los Andes durante toda la jornada del sábado 14 de noviembre de 2026.",
     privacidadAntes:
       "Guardamos tus respuestas para revisar tu postulación y organizar el evento. El número de documento se comparte con la Universidad de los Andes para registrar tu ingreso. Si quieres corregir o borrar tus datos, escríbenos a ",
     privacidadDespues: ".",
@@ -410,7 +409,7 @@ const TEXTOS: Record<Idioma, Textos> = {
       availability: "Attendance confirmation",
     },
     seccionDatos: "About you",
-    datosNota: "We use these to send you the decision and to register your entry to Universidad de los Andes.",
+    datosNota: "We only accept applicants who are 18 or older. We use these details to send you the decision and to register your entry to Universidad de los Andes.",
     seccionPerfil: "Your background",
     seccionEquipo: "Team and track",
     seccionLogistica: "The day",
@@ -427,7 +426,6 @@ const TEXTOS: Record<Idioma, Textos> = {
       CC: "Colombian citizen ID (CC)",
       CE: "Colombian foreigner ID (CE)",
       Pasaporte: "Passport",
-      TI: "Colombian minor ID (TI)",
       Otro: "Other",
     },
     numeroDocumento: "ID number",
@@ -476,7 +474,7 @@ const TEXTOS: Record<Idioma, Textos> = {
     dieta: "Any dietary restrictions, allergies or accessibility needs we should know about?",
     dietaAyuda: "For example: vegetarian, celiac, peanut allergy, reduced mobility.",
     disponibilidad:
-      "I confirm I can be at Universidad de los Andes for the whole day on Saturday, November 14, 2026.",
+      "I confirm I am 18 or older and can be at Universidad de los Andes for the whole day on Saturday, November 14, 2026.",
     privacidadAntes:
       "We store your answers to review your application and run the event. Your ID number is shared with Universidad de los Andes to register your entry. To correct or delete your data, email ",
     privacidadDespues: ".",
@@ -531,7 +529,7 @@ const TEXTOS: Record<Idioma, Textos> = {
       availability: "A confirmação de presença",
     },
     seccionDatos: "Seus dados",
-    datosNota: "Usamos para enviar a resposta e para registrar sua entrada na Universidad de los Andes.",
+    datosNota: "Só aceitamos maiores de idade (18 anos ou mais). Usamos estes dados para enviar a resposta e para registrar sua entrada na Universidad de los Andes.",
     seccionPerfil: "Seu perfil",
     seccionEquipo: "Equipe e frente",
     seccionLogistica: "O dia do evento",
@@ -548,7 +546,6 @@ const TEXTOS: Record<Idioma, Textos> = {
       CC: "Cédula de cidadania colombiana (CC)",
       CE: "Cédula de estrangeiro (CE)",
       Pasaporte: "Passaporte",
-      TI: "Tarjeta de identidad (TI)",
       Otro: "Outro",
     },
     numeroDocumento: "Número do documento",
@@ -597,7 +594,7 @@ const TEXTOS: Record<Idioma, Textos> = {
     dieta: "Restrições alimentares, alergias ou alguma necessidade de acessibilidade que devamos saber?",
     dietaAyuda: "Por exemplo: vegetariana, doença celíaca, alergia a amendoim, mobilidade reduzida.",
     disponibilidad:
-      "Confirmo que posso estar na Universidad de los Andes durante todo o dia no sábado, 14 de novembro de 2026.",
+      "Confirmo que sou maior de idade (18 anos ou mais) e que posso estar na Universidad de los Andes durante todo o dia no sábado, 14 de novembro de 2026.",
     privacidadAntes:
       "Guardamos suas respostas para avaliar sua candidatura e organizar o evento. O número do documento é compartilhado com a Universidad de los Andes para registrar sua entrada. Para corrigir ou apagar seus dados, escreva para ",
     privacidadDespues: ".",
@@ -783,6 +780,8 @@ export default function DefAccApplyForm({
           const base = ["vegetariano", "vegano"].includes(dietaVieja) ? dietaVieja : "";
           previos.dietaryRestrictions = [base, detalleViejo].filter(Boolean).join(", ");
         }
+        /* La tarjeta de identidad ya no es opción: no aceptamos menores. */
+        if (previos.documentType === "TI") previos.documentType = VACIO.documentType;
         setV({
           ...VACIO,
           ...previos,
