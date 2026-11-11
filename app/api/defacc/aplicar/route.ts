@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { CIERRE_INSCRIPCIONES_ISO, CORREO_HACKATHON, inscripcionesIniciadas } from "@/app/defacchackathon/datos";
+import { CORREO_HACKATHON, inscripcionesCerradas, inscripcionesIniciadas } from "@/app/defacchackathon/datos";
 import { POLITICA_VERSION } from "@/lib/politica-datos";
 
 export const runtime = "nodejs";
@@ -347,7 +347,7 @@ export async function POST(req: Request) {
   }
 
   // Cierre de inscripciones
-  if (Date.now() > Date.parse(CIERRE_INSCRIPCIONES_ISO)) {
+  if (inscripcionesCerradas()) {
     return NextResponse.json(
       { ok: false, error: "closed", mensaje: "Las postulaciones al hackathon han cerrado." },
       { status: 403 },

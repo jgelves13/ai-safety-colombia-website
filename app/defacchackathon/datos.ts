@@ -2,6 +2,9 @@ import type { Idioma } from "@/lib/idiomas";
 
 export const FECHA_EVENTO_ISO = "2026-11-14T08:00:00-05:00";
 export const CIERRE_INSCRIPCIONES_ISO = "2026-11-10T23:59:59-05:00";
+/* Cierre real, interno y sin mostrar en ningún texto: el sitio sigue diciendo
+   23:59, pero el formulario y la API aceptan postulaciones hasta la 1:00 a. m. */
+export const CIERRE_REAL_INSCRIPCIONES_ISO = "2026-11-11T01:00:00-05:00";
 
 export const GRUPO_COMUNIDAD_WHATSAPP = "https://chat.whatsapp.com/KhjJqDNVviK3aX5S4q79EF";
 export const CORREO_HACKATHON = "equipo@aisafetycolombia.org";
@@ -13,7 +16,7 @@ export function inscripcionesIniciadas(): boolean {
 }
 
 export function inscripcionesCerradas(ahora: Date = new Date()): boolean {
-  return ahora.getTime() > Date.parse(CIERRE_INSCRIPCIONES_ISO);
+  return ahora.getTime() > Date.parse(CIERRE_REAL_INSCRIPCIONES_ISO);
 }
 
 export type TrackItem = {
