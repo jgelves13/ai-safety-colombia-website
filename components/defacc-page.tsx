@@ -757,10 +757,10 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                     </a>
                     <p className="text-body text-aisc-ink/85">
                       {idioma === "en"
-                        ? "Oracle Academy supports this hackathon: participants get a certificate and access to Oracle Academy tools to build their project. More details soon."
+                        ? "Oracle Academy supports this hackathon: participants get a certificate and access to Oracle Academy tools to build their project. These tools can only be activated with an @uniandes.edu.co email, so teams that want them need at least one Uniandes member. More details soon."
                         : idioma === "pt"
-                        ? "A Oracle Academy apoia este hackathon: os participantes recebem um certificado e acesso às ferramentas da Oracle Academy para desenvolver o projeto. Em breve, mais detalhes."
-                        : "Oracle Academy apoya este hackathon: los participantes reciben un certificado y acceso a herramientas de Oracle Academy para desarrollar su proyecto. Muy pronto, más detalles."}
+                        ? "A Oracle Academy apoia este hackathon: os participantes recebem um certificado e acesso às ferramentas da Oracle Academy para desenvolver o projeto. Essas ferramentas só são ativadas com um e-mail @uniandes.edu.co, então a equipe que quiser usá-las precisa de pelo menos um integrante da Uniandes. Em breve, mais detalhes."
+                        : "Oracle Academy apoya este hackathon: los participantes reciben un certificado y acceso a herramientas de Oracle Academy para desarrollar su proyecto. Estas herramientas solo se activan con un correo @uniandes.edu.co, así que el equipo que quiera usarlas necesita al menos un integrante de Uniandes. Muy pronto, más detalles."}
                     </p>
                   </div>
                 </div>
