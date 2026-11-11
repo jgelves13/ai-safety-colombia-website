@@ -78,9 +78,9 @@ const LIMITES: Record<string, number> = {
    aplica el mismo mínimo. */
 const IDEA_MINIMO = 30;
 
-/* Equipo: de 2 a 4 personas contando a quien se postula, así que hasta tres
+/* Equipo: de 2 a 5 personas contando a quien se postula, así que hasta cuatro
    integrantes más. Cada fila viaja a la ruta como una línea "Nombre <correo>". */
-const MAX_COMPANEROS = 3;
+const MAX_COMPANEROS = 4;
 type Companero = { nombre: string; correo: string };
 const FILA_VACIA: Companero = { nombre: "", correo: "" };
 const CORREO_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -334,12 +334,12 @@ const TEXTOS: Record<Idioma, Textos> = {
         detalle: "Te ayudamos a armar equipo la mañana del evento.",
       },
       equipo: {
-        titulo: "Con un equipo de 2 a 4 personas",
+        titulo: "Con un equipo de 2 a 5 personas",
         detalle: "Cada integrante llena su propio formulario, porque el ingreso al campus es individual.",
       },
     },
     companeros: "Nombres y correos de tu equipo",
-    companerosAyuda: "Hasta tres personas, con el correo que usaron o van a usar en su postulación.",
+    companerosAyuda: "Hasta cuatro personas, con el correo que usaron o van a usar en su postulación.",
     companeroNombre: "Nombre completo",
     companeroCorreo: "Correo",
     agregarCompanero: "+ Agregar integrante",
@@ -454,12 +454,12 @@ const TEXTOS: Record<Idioma, Textos> = {
         detalle: "We'll help you find a team on the morning of the event.",
       },
       equipo: {
-        titulo: "With a team of 2 to 4",
+        titulo: "With a team of 2 to 5",
         detalle: "Each member fills in their own form, since campus access is individual.",
       },
     },
     companeros: "Your teammates' names and emails",
-    companerosAyuda: "Up to three people, with the email they used or will use to apply.",
+    companerosAyuda: "Up to four people, with the email they used or will use to apply.",
     companeroNombre: "Full name",
     companeroCorreo: "Email",
     agregarCompanero: "+ Add teammate",
@@ -574,12 +574,12 @@ const TEXTOS: Record<Idioma, Textos> = {
         detalle: "Ajudamos você a montar uma equipe na manhã do evento.",
       },
       equipo: {
-        titulo: "Com uma equipe de 2 a 4 pessoas",
+        titulo: "Com uma equipe de 2 a 5 pessoas",
         detalle: "Cada integrante preenche o próprio formulário, porque o acesso ao campus é individual.",
       },
     },
     companeros: "Nomes e e-mails da sua equipe",
-    companerosAyuda: "Até três pessoas, com o e-mail que usaram ou vão usar na candidatura.",
+    companerosAyuda: "Até quatro pessoas, com o e-mail que usaram ou vão usar na candidatura.",
     companeroNombre: "Nome completo",
     companeroCorreo: "E-mail",
     agregarCompanero: "+ Adicionar integrante",
