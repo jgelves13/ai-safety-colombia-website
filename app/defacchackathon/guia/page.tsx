@@ -90,7 +90,9 @@ export default function GuiaDefAcc() {
       <section className={HERO_SECTION}>
         <FondoBinario />
         <SiteHeader active="/defacchackathon" />
-        <div className={HERO_INNER}>
+        <div
+          className={`${HERO_INNER} items-start gap-6 md:flex-row md:items-end md:justify-between`}
+        >
           <div className="flex max-w-[760px] flex-col gap-5">
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">
               Guía para participantes
@@ -104,6 +106,14 @@ export default function GuiaDefAcc() {
               seleccionados
             </p>
           </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/aisc/hackathon/cyberbear-clean.png"
+            alt="Oso de anteojos, mascota del hackatón"
+            width={180}
+            height={277}
+            className="order-first h-32 w-auto shrink-0 object-contain drop-shadow-md md:order-none md:h-60"
+          />
         </div>
       </section>
 
