@@ -17,25 +17,69 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "Un auditor sencillo que revise las descripciones de herramientas MCP antes de que el agente las vea, para detectar órdenes ocultas que lo lleven a leer secretos, alterar argumentos o enviar datos a terceros.",
   },
+  "adriana durand": {
+    problema:
+      "El riesgo que aparece cuando un agente acumula demasiados permisos y autorizaciones.",
+  },
+  "bryan bobadilla": {
+    afiliacion: "Independiente",
+    problema:
+      "Llevar el modelo de confianza cero a los agentes y a los secretos que manejan.",
+  },
+  "carlos andres romero orduz": {
+    afiliacion: "COEM",
+    problema:
+      "Detectar y bloquear la inyección de instrucciones y los jailbreaks en agentes empresariales conectados a APIs y datos sensibles, sin quitarles utilidad.",
+  },
   "cesar rivas": {
     afiliacion: "Niawi Tech",
     problema:
       "Agentes de ciberdefensa para servidores VPS sin monitoreo, que no solo alerten temprano sino que contengan la amenaza antes de que el servidor quede comprometido.",
   },
-  "jose leonardo pinilla zamora": {
-    afiliacion: "Universidad Nacional",
+  "hermann galvis": {
+    afiliacion: "Universidad de los Andes",
     problema:
-      "Un sistema con varias capas de guardas contra la inyección de instrucciones en agentes y RAG, con monitoreo de la seguridad del modelo.",
+      "Cómo asegurar una aplicación con agentes conectada a WhatsApp, Google Workspace, Supabase y su propio RAG, desde la infraestructura hasta las herramientas externas.",
   },
   "jhon david bedoya munoz": {
     afiliacion: "Universidad Externado",
     problema:
       "Qué tanto resiste un modelo la inyección de instrucciones sin apartarse de lo que se le pidió, y si herramientas como JEV detectan contenido malicioso antes de que entre al contexto del agente.",
   },
+  "jose carlos guerra martinez": {
+    afiliacion: "Axmos Technologies",
+    problema:
+      "La inyección indirecta en sistemas de varios agentes con herramientas externas, donde un solo dato malicioso de un tercero puede autorizar acciones no deseadas.",
+  },
+  "jose leonardo pinilla zamora": {
+    afiliacion: "Universidad Nacional",
+    problema:
+      "Un sistema con varias capas de guardas contra la inyección de instrucciones en agentes y RAG, con monitoreo de la seguridad del modelo.",
+  },
+  "josue david briceno urquijo": {
+    afiliacion: "Universidad de los Andes",
+    problema:
+      "Comprobar que el código escrito con IA por personas sin formación técnica sea seguro antes de llegar a producción.",
+  },
+  "juan felipe jimenez pacheco": {
+    afiliacion: "Inetum",
+    problema:
+      "Clarity Web, una extensión de navegador que detecta estafas, suplantaciones e información engañosa y las explica en lenguaje sencillo para personas con necesidades cognitivas diversas.",
+  },
   "juan felipe leon barrero": {
     afiliacion: "Universidad de los Andes",
     problema:
       "Limitar el daño de la inyección indirecta separando un agente que lee contenido no confiable de otro que actúa, con una capa que valida lo que pasa entre ambos.",
+  },
+  "juan trivino": {
+    afiliacion: "Universidad de los Andes",
+    problema:
+      "Defender a los agentes de la inyección indirecta de instrucciones.",
+  },
+  "julian andres restrepo castano": {
+    afiliacion: "Kidar · Universidad EAN",
+    problema:
+      "MCP Guard, que audita los manifiestos de herramientas MCP en busca de instrucciones ocultas y cambios después de aprobados, y agrega un control de mínimo privilegio mientras el agente corre.",
   },
   "julian lizcano": {
     afiliacion: "Independiente",
@@ -52,6 +96,11 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "Un escáner que revise plugins y contenido antes de que un agente los use, y alerte sobre instrucciones ocultas o destinos sospechosos.",
   },
+  "marlon naranjo": {
+    afiliacion: "MNaranjo Consultoría",
+    problema:
+      "Un banco de pruebas de inyección indirecta en agentes que operan sistemas de pymes como ERP, correo y WhatsApp, que mida el éxito de los ataques antes y después de cada defensa.",
+  },
   "michael david rodriguez beltran": {
     afiliacion: "SmartSoft Colombia",
     problema:
@@ -62,10 +111,20 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "Clarity Web, una extensión de navegador que detecta estafas, suplantaciones e información engañosa y las explica en lenguaje sencillo para personas con necesidades cognitivas diversas.",
   },
+  "sergio alejandro castano arcila": {
+    afiliacion: "Universidad de los Andes",
+    problema:
+      "Agentes de ciberdefensa que generen parches y los verifiquen formalmente antes de que las vulnerabilidades sean explotadas.",
+  },
   "sonia viviana cano guerrero": {
     afiliacion: "SENA · CUN",
     problema:
       "Una capa que filtre el contenido externo antes de que llegue al agente, para frenar instrucciones ocultas, y que se evalúe con casos de ataque reales.",
+  },
+  "tomas galeano espinosa": {
+    afiliacion: "Universidad Nacional",
+    problema:
+      "Qué tan vulnerables son los modelos de frontera a la inyección de instrucciones a través de repositorios de skills contaminados.",
   },
 };
 
