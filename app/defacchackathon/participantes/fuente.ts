@@ -36,6 +36,11 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "Agentes de ciberdefensa para servidores VPS sin monitoreo, que no solo alerten temprano sino que contengan la amenaza antes de que el servidor quede comprometido.",
   },
+  "esteban alejandro hernandez sulvara": {
+    afiliacion: "Universidad de los Andes",
+    problema:
+      "Usar IA para la ciberdefensa automatizada y la verificación formal de software, para encontrar vulnerabilidades antes de que comprometan los sistemas.",
+  },
   "hermann galvis": {
     afiliacion: "Universidad de los Andes",
     problema:
@@ -71,6 +76,11 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "Limitar el daño de la inyección indirecta separando un agente que lee contenido no confiable de otro que actúa, con una capa que valida lo que pasa entre ambos.",
   },
+  "juan sebastian herrera corzo": {
+    afiliacion: "Universidad de los Andes",
+    problema:
+      "Un monitor que asigne un puntaje de sospecha a las acciones de un agente con permisos reales, para detectar sabotaje sutil con un modelo más pequeño y confiable que revise al más capaz.",
+  },
   "juan trivino": {
     afiliacion: "Universidad de los Andes",
     problema:
@@ -86,6 +96,10 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "Ataques de denegación de servicio a modelos de IA: entradas diseñadas para consumir la mayor cantidad posible de cómputo.",
   },
+  "juliana alexandra capador ochoa": {
+    problema:
+      "Un modelo de gobernanza y evaluación de riesgos para agentes que acceden a información interna de las empresas, con una guía de controles de seguridad y casos de prueba.",
+  },
   "julio alfonso rodriguez buelvas": {
     afiliacion: "Pragma",
     problema:
@@ -95,6 +109,11 @@ const AJUSTES: Record<string, Ajuste> = {
     afiliacion: "Universidad Sergio Arboleda",
     problema:
       "Un escáner que revise plugins y contenido antes de que un agente los use, y alerte sobre instrucciones ocultas o destinos sospechosos.",
+  },
+  "manuel santiago figueroa gomez": {
+    afiliacion: "Universidad de los Andes",
+    problema:
+      "Detectar cuándo un agente de programación hace algo distinto a lo que se le pidió, revisando los archivos que toca, los comandos que ejecuta y las dependencias que instala.",
   },
   "marlon naranjo": {
     afiliacion: "MNaranjo Consultoría",
@@ -120,6 +139,11 @@ const AJUSTES: Record<string, Ajuste> = {
     afiliacion: "SENA · CUN",
     problema:
       "Una capa que filtre el contenido externo antes de que llegue al agente, para frenar instrucciones ocultas, y que se evalúe con casos de ataque reales.",
+  },
+  "thomas chisica londono": {
+    afiliacion: "Universidad del Rosario",
+    problema:
+      "Medir qué tan estables son las decisiones de los monitores en protocolos de control de IA cuando cambia el monitor, la instrucción o se repite la misma consulta, y llevarlo a ControlArena.",
   },
   "tomas galeano espinosa": {
     afiliacion: "Universidad Nacional",
