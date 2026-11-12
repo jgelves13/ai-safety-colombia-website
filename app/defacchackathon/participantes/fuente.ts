@@ -21,6 +21,11 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "El riesgo que aparece cuando un agente acumula demasiados permisos y autorizaciones.",
   },
+  "brandon jahir cabra bulla": {
+    afiliacion: "Iberoamericana",
+    problema:
+      "Detectar el ciberbullying con IA a partir de patrones de acoso, amenazas y exclusión, no solo de palabras ofensivas, y darle a la víctima opciones de apoyo y reporte sin caer en vigilancia invasiva.",
+  },
   "bryan bobadilla": {
     afiliacion: "Independiente",
     problema:
