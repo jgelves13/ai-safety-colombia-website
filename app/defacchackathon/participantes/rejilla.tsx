@@ -92,6 +92,9 @@ const CONTEO = (Object.keys(FRENTES) as Frente[])
   .filter((f) => f.total > 0)
   .sort((a, b) => b.total - a.total);
 
+const SIN_FRENTE = "Sin frente definido";
+const TOTAL_SIN_FRENTE = PARTICIPANTES.filter((p) => !p.frente).length;
+
 function iniciales(nombre: string) {
   return nombre
     .split(" ")
@@ -131,9 +134,13 @@ function Filtro({
 }
 
 export default function RejillaParticipantes() {
-  const [filtro, setFiltro] = useState<Frente | "todos">("todos");
+  const [filtro, setFiltro] = useState<Frente | "todos" | "sin-frente">("todos");
   const visibles =
-    filtro === "todos" ? PARTICIPANTES : PARTICIPANTES.filter((p) => p.frente === filtro);
+    filtro === "todos"
+      ? PARTICIPANTES
+      : filtro === "sin-frente"
+        ? PARTICIPANTES.filter((p) => !p.frente)
+        : PARTICIPANTES.filter((p) => p.frente === filtro);
 
   return (
     <>
@@ -155,6 +162,14 @@ export default function RejillaParticipantes() {
               total={f.total}
             />
           ))}
+          {TOTAL_SIN_FRENTE > 0 ? (
+            <Filtro
+              activo={filtro === "sin-frente"}
+              onClick={() => setFiltro("sin-frente")}
+              label={SIN_FRENTE}
+              total={TOTAL_SIN_FRENTE}
+            />
+          ) : null}
         </div>
       </div>
 
@@ -170,9 +185,9 @@ export default function RejillaParticipantes() {
               </span>
             </div>
             <div className="flex flex-col gap-0.5">
-              {p.frente ? (
-                <span className="text-kicker mb-1 text-aisc-coral">{FRENTES[p.frente]}</span>
-              ) : null}
+              <span className="text-kicker mb-1 text-aisc-coral">
+                {p.frente ? FRENTES[p.frente] : SIN_FRENTE}
+              </span>
               <span className="text-display-4 font-semibold text-aisc-forest">{p.nombre}</span>
               {p.afiliacion ? (
                 <span className="text-body-sm text-aisc-muted">{p.afiliacion}</span>
