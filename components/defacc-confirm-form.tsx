@@ -8,7 +8,7 @@ import { useState } from "react";
    a 4: si aceptarían a alguien más el sábado. La página decide si mostrarla
    (lib/defacc-confirmar usa node:crypto y no puede importarse acá). */
 
-const GRUPO_WHATSAPP = "https://chat.whatsapp.com/BbAAzeSrTj3LWvqDYw6rhY";
+const GRUPO_WHATSAPP = "https://chat.whatsapp.com/KQdBJaT1SHOLp2t64fe8Yw";
 
 const INPUT =
   "text-body-sm w-full rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 text-aisc-ink transition-colors placeholder:text-aisc-muted/60 focus:border-aisc-forest focus:outline-2 focus:outline-offset-[1px] focus:outline-aisc-forest/35";
@@ -23,6 +23,14 @@ const CASILLA =
 const MAS_GENTE = [
   { id: "si", label: "Sí, nos puede llegar alguien más." },
   { id: "no", label: "No, vamos como estamos." },
+] as const;
+
+/* La aplicación del DefAcc no pedía permiso para mostrarle a los demás quién
+   viene, así que se pregunta acá. Con esto se arma la lista de participantes
+   de la guía, como en el sprint de Incident Response. */
+const EN_LISTA = [
+  { id: "si", label: "Sí, inclúyanme." },
+  { id: "no", label: "Prefiero no aparecer." },
 ] as const;
 
 type Estado = "listo" | "enviando" | "enviado" | "falla";
@@ -41,6 +49,7 @@ export default function DefaccConfirmForm({
   const [asiste, setAsiste] = useState(false);
   const [grupo, setGrupo] = useState(false);
   const [masGente, setMasGente] = useState("");
+  const [enLista, setEnLista] = useState("");
   const [nota, setNota] = useState("");
   const [trampa, setTrampa] = useState("");
   const [errores, setErrores] = useState<Record<string, string>>({});
@@ -52,6 +61,7 @@ export default function DefaccConfirmForm({
     const e: Record<string, string> = {};
     if (!asiste) e.asiste = "Confirma que vienes el sábado completo para continuar.";
     if (preguntarMasGente && !masGente) e.masGente = "Cuéntanos si aceptarían a alguien más.";
+    if (!enLista) e.enLista = "Cuéntanos si te incluimos en la lista.";
     setErrores(e);
     return Object.keys(e).length === 0;
   }
@@ -70,6 +80,7 @@ export default function DefaccConfirmForm({
           asiste,
           grupo,
           masGente: preguntarMasGente ? masGente : undefined,
+          enLista,
           nota,
           website: trampa,
         }),
@@ -195,6 +206,33 @@ export default function DefaccConfirmForm({
             {errores.masGente ? <span className={ERROR}>{errores.masGente}</span> : null}
           </section>
         ) : null}
+
+        <section>
+          <h2 className={TITULO}>¿Te incluimos en la lista de participantes?</h2>
+          <span className={AYUDA}>
+            Antes del sábado publicamos en la guía del hackathon una lista con el nombre, la
+            institución y la idea de cada persona, para que quienes llegan sin equipo encuentren
+            con quién trabajar sin tener que escribir en el grupo. Tu correo y tu WhatsApp no
+            aparecen. Solo la ven quienes tienen el enlace de la guía.
+          </span>
+          <div className="mt-4 space-y-2.5">
+            {EN_LISTA.map((opcion) => (
+              <label className={CASILLA} key={opcion.id} htmlFor={`lista-${opcion.id}`}>
+                <input
+                  id={`lista-${opcion.id}`}
+                  type="radio"
+                  name="enLista"
+                  value={opcion.id}
+                  checked={enLista === opcion.id}
+                  onChange={() => setEnLista(opcion.id)}
+                  className="mt-0.5 accent-aisc-forest"
+                />
+                <span>{opcion.label}</span>
+              </label>
+            ))}
+          </div>
+          {errores.enLista ? <span className={ERROR}>{errores.enLista}</span> : null}
+        </section>
 
         <section>
           <h2 className={TITULO}>

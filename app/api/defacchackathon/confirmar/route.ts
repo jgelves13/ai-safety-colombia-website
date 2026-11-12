@@ -8,7 +8,7 @@ const CORREO_CONTACTO = "equipo@aisafetycolombia.org";
 const REMITENTE = "AI Safety Colombia <equipo@aisafetycolombia.org>";
 const TABLA = "defacc_confirmations";
 const EVENTO = "defacc-2026";
-const GRUPO_WHATSAPP = "https://chat.whatsapp.com/BbAAzeSrTj3LWvqDYw6rhY";
+const GRUPO_WHATSAPP = "https://chat.whatsapp.com/KQdBJaT1SHOLp2t64fe8Yw";
 
 /* Mismo límite que la confirmación del sprint: mucha gente confirma desde la
    misma red universitaria y la identidad ya viene firmada en el token. */
@@ -47,6 +47,8 @@ type Confirmacion = {
   grupo: boolean;
   /* 'si' o 'no' solo para equipos de 2 a 4; null para el resto. */
   masGente: "si" | "no" | null;
+  /* Si acepta aparecer en la lista de participantes de la guía. */
+  enLista: boolean;
   nota: string;
 };
 
@@ -67,6 +69,7 @@ async function guardar(c: Confirmacion): Promise<boolean> {
     joined_whatsapp: c.grupo,
     team_size: c.equipo,
     accepts_more: c.masGente,
+    listed: c.enLista,
     note: c.nota || null,
     source: "enlace",
   };
@@ -86,7 +89,7 @@ async function guardar(c: Confirmacion): Promise<boolean> {
 
   /* Si a la tabla le falta alguna columna secundaria, la confirmación se guarda
      sin ese dato antes que devolverle un 502 a quien ya cumplió su parte. */
-  const APLAZABLES = ["note", "source", "accepts_more", "team_size", "joined_whatsapp"];
+  const APLAZABLES = ["listed", "note", "source", "accepts_more", "team_size", "joined_whatsapp"];
 
   try {
     const cuerpo: Record<string, unknown> = { ...fila };
@@ -132,6 +135,7 @@ function resumen(c: Confirmacion, encabezado: string): string {
     `Entró al grupo: ${c.grupo ? "sí" : "no"}`,
     `Equipo según la aplicación: ${c.equipo <= 1 ? "sin equipo" : `${c.equipo} personas`}`,
     `Acepta a alguien más: ${c.masGente ?? "(no aplica)"}`,
+    `Aparece en la lista de participantes: ${c.enLista ? "sí" : "no"}`,
     `Nota: ${c.nota || "(vacía)"}`,
   ].join("\n");
 }
@@ -228,6 +232,10 @@ export async function POST(req: Request) {
     masGente = valor;
   }
 
+  const lista = texto(crudo.enLista, 4);
+  if (lista !== "si" && lista !== "no")
+    return NextResponse.json({ error: "lista" }, { status: 400 });
+
   const confirmacion: Confirmacion = {
     nombre: invitada.nombre,
     correo: invitada.correo,
@@ -235,6 +243,7 @@ export async function POST(req: Request) {
     asiste,
     grupo: crudo.grupo === true,
     masGente,
+    enLista: lista === "si",
     nota: texto(crudo.nota, 1200),
   };
 

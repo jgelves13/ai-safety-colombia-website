@@ -20,6 +20,9 @@ create table if not exists public.defacc_confirmations (
   team_size integer,
   -- Solo para equipos de 2 a 4: 'si' o 'no' a sumar a alguien el sábado.
   accepts_more text,
+  -- Si acepta aparecer en la lista de participantes de la guía (nombre,
+  -- institución e idea). Sin esto no se le muestra a nadie.
+  listed boolean not null default false,
   -- Comida, accesibilidad o cualquier otra cosa.
   note text,
   -- 'enlace' por ahora; queda la columna por si se abre un formulario sin firma.
@@ -33,3 +36,7 @@ create index if not exists defacc_confirmations_confirmed_at
   on public.defacc_confirmations (confirmed_at desc);
 
 alter table public.defacc_confirmations enable row level security;
+
+-- Para la tabla ya creada antes de agregar la lista de participantes:
+alter table public.defacc_confirmations
+  add column if not exists listed boolean not null default false;
