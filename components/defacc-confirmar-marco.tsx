@@ -52,7 +52,7 @@ export function DefaccConfirmarMarco({ children }: { children: React.ReactNode }
             alt="Oso de anteojos, mascota del hackatón"
             width={180}
             height={277}
-            className="order-first h-32 w-auto shrink-0 object-contain drop-shadow-md md:order-none md:h-60"
+            className="order-first h-48 w-auto shrink-0 object-contain drop-shadow-md md:order-none md:h-[22rem]"
           />
         </div>
       </section>

@@ -31,6 +31,10 @@ const PENDIENTE = <em>Pendiente todavía.</em>;
 
 const ENTREGAR = "/defacchackathon/entregar";
 
+/* Lista de quienes confirmaron y aceptaron salir en ella. Mismo régimen que
+   esta guía: noindex y enlazada solo desde aquí. */
+const PARTICIPANTES = "/defacchackathon/participantes";
+
 const CLAVE: Array<[string, React.ReactNode]> = [
   ["Fecha", "Sábado 14 de noviembre de 2026"],
   ["Horario", "8:00 a. m. a 8:00 p. m."],
@@ -77,6 +81,7 @@ const INDICE: ItemIndice[] = [
   { id: "lugar", label: "Lugar y qué traer" },
   { id: "equipos", label: "Equipos" },
   { id: "oracle", label: "Oracle Academy", nivel: 3 },
+  { id: "participantes", label: "Quiénes van", nivel: 3 },
   { id: "frentes", label: "Frentes temáticos" },
   { id: "entrega", label: "Cómo entregar" },
   { id: "calificacion", label: "Cómo se califica" },
@@ -178,6 +183,24 @@ export default function GuiaDefAcc() {
               <Parrafo>
                 Si no tienen a nadie, avísanos al armar equipos y les ayudamos
                 a encontrarlo.
+              </Parrafo>
+
+              <H3 id="participantes">Quiénes van</H3>
+              <Parrafo>
+                Ya está la{" "}
+                <a
+                  className={ENLACE}
+                  href={PARTICIPANTES}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  lista de participantes
+                </a>
+                , con quién viene, de dónde viene, en qué problema le gustaría
+                trabajar y a qué frente corresponde. Puedes filtrar por frente
+                para encontrar a quienes piensan parecido. Solo aparecen quienes
+                confirmaron y aceptaron salir en ella, y se va llenando a medida
+                que más gente confirma.
               </Parrafo>
 
               <H2 id="frentes">Frentes temáticos</H2>
