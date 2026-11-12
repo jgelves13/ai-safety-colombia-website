@@ -4,9 +4,8 @@ import { useState } from "react";
 
 /* Confirmación de cupo del DefAcc Hackathon. Solo llega con enlace firmado:
    el nombre, el correo y el tamaño del equipo vienen de la aplicación, así que
-   acá no se pregunta nada de eso. La única pregunta nueva es para equipos de 2
-   a 4: si aceptarían a alguien más el sábado. La página decide si mostrarla
-   (lib/defacc-confirmar usa node:crypto y no puede importarse acá). */
+   acá no se pregunta nada de eso. Todo es obligatorio menos la nota, que puede
+   traer datos de salud y por eso no puede exigirse. */
 
 const GRUPO_WHATSAPP = "https://chat.whatsapp.com/KQdBJaT1SHOLp2t64fe8Yw";
 
@@ -19,11 +18,6 @@ const ENLACE =
   "text-aisc-forest underline underline-offset-[3px] transition-colors hover:text-aisc-forest-deep";
 const CASILLA =
   "text-body-sm flex cursor-pointer items-start gap-3 rounded-[var(--radius)] border border-aisc-line bg-white px-4 py-4 transition-colors hover:border-aisc-forest/45 has-checked:border-aisc-forest has-checked:bg-aisc-forest/6";
-
-const MAS_GENTE = [
-  { id: "si", label: "Sí, nos puede llegar alguien más." },
-  { id: "no", label: "No, vamos como estamos." },
-] as const;
 
 /* La aplicación del DefAcc no pedía permiso para mostrarle a los demás quién
    viene, así que se pregunta acá. Con esto se arma la lista de participantes
@@ -38,17 +32,12 @@ type Estado = "listo" | "enviando" | "enviado" | "falla";
 export default function DefaccConfirmForm({
   token,
   nombre,
-  equipo,
-  preguntarMasGente,
 }: {
   token: string;
   nombre: string;
-  equipo: number;
-  preguntarMasGente: boolean;
 }) {
   const [asiste, setAsiste] = useState(false);
   const [grupo, setGrupo] = useState(false);
-  const [masGente, setMasGente] = useState("");
   const [enLista, setEnLista] = useState("");
   const [nota, setNota] = useState("");
   const [trampa, setTrampa] = useState("");
@@ -60,7 +49,7 @@ export default function DefaccConfirmForm({
   function revisar(): boolean {
     const e: Record<string, string> = {};
     if (!asiste) e.asiste = "Confirma que vienes el sábado completo para continuar.";
-    if (preguntarMasGente && !masGente) e.masGente = "Cuéntanos si aceptarían a alguien más.";
+    if (!grupo) e.grupo = "Únete al grupo y marca la casilla para continuar.";
     if (!enLista) e.enLista = "Cuéntanos si te incluimos en la lista.";
     setErrores(e);
     return Object.keys(e).length === 0;
@@ -79,7 +68,6 @@ export default function DefaccConfirmForm({
           token,
           asiste,
           grupo,
-          masGente: preguntarMasGente ? masGente : undefined,
           enLista,
           nota,
           website: trampa,
@@ -102,14 +90,6 @@ export default function DefaccConfirmForm({
           Nos vemos el sábado a las 8:00 en la Universidad de los Andes. Te llega un correo con
           los detalles.
         </p>
-        {grupo ? null : (
-          <p className="text-body-sm mt-4 text-aisc-ink">
-            Todavía no te has unido al grupo de WhatsApp, y es obligatorio.{" "}
-            <a className={ENLACE} href={GRUPO_WHATSAPP} target="_blank" rel="noreferrer">
-              Únete acá.
-            </a>
-          </p>
-        )}
         <p className="text-meta mt-7 text-aisc-muted">
           Si algo cambia y ya no puedes venir, escríbenos a{" "}
           <a className={ENLACE} href="mailto:equipo@aisafetycolombia.org">
@@ -176,36 +156,8 @@ export default function DefaccConfirmForm({
             />
             <span>Ya me uní al grupo.</span>
           </label>
-          {/* No bloquea el envío: el enlace a veces no abre desde el navegador
-              del celular. A quien no la marque se le insiste por correo. */}
+          {errores.grupo ? <span className={ERROR}>{errores.grupo}</span> : null}
         </section>
-
-        {preguntarMasGente ? (
-          <section>
-            <h2 className={TITULO}>¿Aceptarían a alguien más el sábado?</h2>
-            <span className={AYUDA}>
-              En tu aplicación dijiste que vienes en un equipo de {equipo}. Los equipos pueden ser
-              de hasta 5 y hay gente que llega sola.
-            </span>
-            <div className="mt-4 space-y-2.5">
-              {MAS_GENTE.map((opcion) => (
-                <label className={CASILLA} key={opcion.id} htmlFor={`mas-${opcion.id}`}>
-                  <input
-                    id={`mas-${opcion.id}`}
-                    type="radio"
-                    name="masGente"
-                    value={opcion.id}
-                    checked={masGente === opcion.id}
-                    onChange={() => setMasGente(opcion.id)}
-                    className="mt-0.5 accent-aisc-forest"
-                  />
-                  <span>{opcion.label}</span>
-                </label>
-              ))}
-            </div>
-            {errores.masGente ? <span className={ERROR}>{errores.masGente}</span> : null}
-          </section>
-        ) : null}
 
         <section>
           <h2 className={TITULO}>¿Te incluimos en la lista de participantes?</h2>

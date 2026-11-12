@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { preguntaPorMasGente, verificarInvitacionDefacc } from "@/lib/defacc-confirmar";
+import { verificarInvitacionDefacc } from "@/lib/defacc-confirmar";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -45,8 +45,6 @@ type Confirmacion = {
   equipo: number;
   asiste: boolean;
   grupo: boolean;
-  /* 'si' o 'no' solo para equipos de 2 a 4; null para el resto. */
-  masGente: "si" | "no" | null;
   /* Si acepta aparecer en la lista de participantes de la guía. */
   enLista: boolean;
   nota: string;
@@ -68,7 +66,6 @@ async function guardar(c: Confirmacion): Promise<boolean> {
     attending: c.asiste,
     joined_whatsapp: c.grupo,
     team_size: c.equipo,
-    accepts_more: c.masGente,
     listed: c.enLista,
     note: c.nota || null,
     source: "enlace",
@@ -89,7 +86,7 @@ async function guardar(c: Confirmacion): Promise<boolean> {
 
   /* Si a la tabla le falta alguna columna secundaria, la confirmación se guarda
      sin ese dato antes que devolverle un 502 a quien ya cumplió su parte. */
-  const APLAZABLES = ["listed", "note", "source", "accepts_more", "team_size", "joined_whatsapp"];
+  const APLAZABLES = ["listed", "note", "source", "team_size", "joined_whatsapp"];
 
   try {
     const cuerpo: Record<string, unknown> = { ...fila };
@@ -134,7 +131,6 @@ function resumen(c: Confirmacion, encabezado: string): string {
     `Asiste el sábado completo: ${c.asiste ? "sí" : "no"}`,
     `Entró al grupo: ${c.grupo ? "sí" : "no"}`,
     `Equipo según la aplicación: ${c.equipo <= 1 ? "sin equipo" : `${c.equipo} personas`}`,
-    `Acepta a alguien más: ${c.masGente ?? "(no aplica)"}`,
     `Aparece en la lista de participantes: ${c.enLista ? "sí" : "no"}`,
     `Nota: ${c.nota || "(vacía)"}`,
   ].join("\n");
@@ -172,9 +168,7 @@ async function acusar(c: Confirmacion): Promise<void> {
     "Sábado 14 de noviembre, de 8 a. m. a 8 p. m., en la Universidad de los Andes, Bogotá.",
     "El registro abre a las 8:00. Trae tu documento de identidad original para entrar al campus. El almuerzo va por nuestra cuenta.",
     "",
-    c.grupo
-      ? ""
-      : `Todavía no marcaste que entraste al grupo de WhatsApp. Es obligatorio: por ahí sale toda la logística del sábado. ${GRUPO_WHATSAPP}`,
+    `Si todavía no lo abriste, este es el grupo de WhatsApp: ${GRUPO_WHATSAPP}`,
     "",
     `Si algo cambia y ya no puedes venir, avísanos a ${CORREO_CONTACTO} lo antes posible. Hay gente en lista de espera.`,
     "",
@@ -219,18 +213,10 @@ export async function POST(req: Request) {
 
   if (texto(crudo.website, 100)) return NextResponse.json({ ok: true });
 
-  /* La casilla de asistencia es la única que bloquea. La del grupo queda en
-     false si no la marcó, para poder insistirle. */
+  /* Todo es obligatorio menos la nota: asistencia, grupo y lista. */
   const asiste = crudo.asiste === true;
-  if (!asiste) return NextResponse.json({ error: "casillas" }, { status: 400 });
-
-  let masGente: "si" | "no" | null = null;
-  if (preguntaPorMasGente(invitada.equipo)) {
-    const valor = texto(crudo.masGente, 4);
-    if (valor !== "si" && valor !== "no")
-      return NextResponse.json({ error: "mas" }, { status: 400 });
-    masGente = valor;
-  }
+  const grupo = crudo.grupo === true;
+  if (!asiste || !grupo) return NextResponse.json({ error: "casillas" }, { status: 400 });
 
   const lista = texto(crudo.enLista, 4);
   if (lista !== "si" && lista !== "no")
@@ -241,8 +227,7 @@ export async function POST(req: Request) {
     correo: invitada.correo,
     equipo: invitada.equipo,
     asiste,
-    grupo: crudo.grupo === true,
-    masGente,
+    grupo,
     enLista: lista === "si",
     nota: texto(crudo.nota, 1200),
   };

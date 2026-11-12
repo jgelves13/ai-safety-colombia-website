@@ -5,8 +5,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
    Mismo esquema que lib/confirmar.ts (el del sprint), con dos diferencias:
    la firma lleva el prefijo "defacc-confirmar." para que un token del sprint
    no sirva acá ni al revés, y el cuerpo trae el tamaño del equipo según la
-   aplicación (e). Con eso el formulario sabe si preguntar por sumar a alguien
-   más sin volver a preguntarle a nadie si viene en equipo.
+   aplicación (e), que se guarda con la confirmación sin volver a preguntarlo.
 
    Vive en lib/ y no en app/defacchackathon/datos.ts porque ese archivo lo
    importa un componente de cliente y la llave no puede llegar al navegador. */
@@ -78,9 +77,4 @@ export function verificarInvitacionDefacc(
   } catch {
     return null;
   }
-}
-
-/* Equipos de 2 a 4: pueden recibir a alguien más el sábado sin pasarse de 5. */
-export function preguntaPorMasGente(equipo: number): boolean {
-  return equipo >= 2 && equipo < 5;
 }

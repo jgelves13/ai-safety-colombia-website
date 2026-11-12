@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import DefaccConfirmForm from "@/components/defacc-confirm-form";
 import { ConfirmarAviso } from "@/components/confirmar-marco";
 import { DefaccConfirmarMarco } from "@/components/defacc-confirmar-marco";
-import { preguntaPorMasGente, verificarInvitacionDefacc } from "@/lib/defacc-confirmar";
+import { verificarInvitacionDefacc } from "@/lib/defacc-confirmar";
 
 /* Solo en español, sin enlazar desde ningún lado y con noindex: se llega por
    el enlace firmado del correo de aceptación. No hay versión abierta. */
@@ -34,12 +34,7 @@ export default async function ConfirmarDefacc({
 
   return (
     <DefaccConfirmarMarco>
-      <DefaccConfirmForm
-        token={t ?? ""}
-        nombre={invitada.nombre}
-        equipo={invitada.equipo}
-        preguntarMasGente={preguntaPorMasGente(invitada.equipo)}
-      />
+      <DefaccConfirmForm token={t ?? ""} nombre={invitada.nombre} />
     </DefaccConfirmarMarco>
   );
 }
