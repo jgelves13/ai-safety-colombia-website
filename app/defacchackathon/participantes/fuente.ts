@@ -126,6 +126,11 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "Qué tan vulnerables son los modelos de frontera a la inyección de instrucciones a través de repositorios de skills contaminados.",
   },
+  "yohan felipe gaitan carvajal": {
+    afiliacion: "Universidad de los Andes",
+    problema:
+      "Un monitor por capas contra la inyección indirecta en agentes con herramientas, evaluado con benchmarks públicos en tasa de detección y falsos positivos.",
+  },
 };
 
 function normalizar(texto: string) {
