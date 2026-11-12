@@ -35,7 +35,7 @@ export default async function ParticipantesDefacc() {
               DefAcc Hackathon · Universidad de los Andes · sábado 14 de noviembre de 2026
             </p>
             <p className="text-meta text-aisc-sand/60">
-              AI Safety Colombia · solo para participantes seleccionados
+              IEEE CS Uniandes × AI Safety Colombia · solo para participantes seleccionados
             </p>
           </div>
         </div>

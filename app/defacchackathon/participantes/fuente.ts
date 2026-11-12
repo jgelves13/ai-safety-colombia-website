@@ -2,17 +2,12 @@ import { esFrente, type Participante } from "./datos";
 
 /* Arma la lista de participantes desde Supabase. Entran quienes confirmaron que
    vienen y aceptaron salir en la lista (defacc_confirmations con attending y
-   listed). Afiliación, frente e idea salen de su aplicación más reciente. Al
-   cliente solo llegan nombre, afiliación, frente y problema: nunca el correo.
-   Los resúmenes escritos a mano mandan sobre el texto de la aplicación. */
+   listed). El frente sale de su aplicación más reciente. Afiliación y problema
+   se escriben a mano en AJUSTES: el texto crudo de la aplicación no se muestra.
+   Al cliente solo llegan nombre, afiliación, frente y problema: nunca el correo. */
 
 type Confirmacion = { name: string | null; email: string | null };
-type Aplicacion = {
-  email: string | null;
-  affiliation: string | null;
-  preferred_track: string | null;
-  project_idea: string | null;
-};
+type Aplicacion = { email: string | null; preferred_track: string | null };
 
 type Ajuste = { afiliacion?: string; problema?: string; sinFrente?: boolean };
 
@@ -31,6 +26,16 @@ const AJUSTES: Record<string, Ajuste> = {
     afiliacion: "Universidad Nacional",
     problema:
       "Un sistema con varias capas de guardas contra la inyección de instrucciones en agentes y RAG, con monitoreo de la seguridad del modelo.",
+  },
+  "jhon david bedoya munoz": {
+    afiliacion: "Universidad Externado",
+    problema:
+      "Qué tanto resiste un modelo la inyección de instrucciones sin apartarse de lo que se le pidió, y si herramientas como JEV detectan contenido malicioso antes de que entre al contexto del agente.",
+  },
+  "juan felipe leon barrero": {
+    afiliacion: "Universidad de los Andes",
+    problema:
+      "Limitar el daño de la inyección indirecta separando un agente que lee contenido no confiable de otro que actúa, con una capa que valida lo que pasa entre ambos.",
   },
   "julian lizcano": {
     afiliacion: "Independiente",
@@ -64,9 +69,6 @@ const AJUSTES: Record<string, Ajuste> = {
   },
 };
 
-const CORREO = /[\w.+-]+@[\w-]+\.[\w.-]+/g;
-const ENLACE = /https?:\/\/\S+/g;
-
 function normalizar(texto: string) {
   return texto
     .normalize("NFD")
@@ -74,29 +76,6 @@ function normalizar(texto: string) {
     .toLowerCase()
     .replace(/\s+/g, " ")
     .trim();
-}
-
-function limpiar(texto: string) {
-  return texto.replace(CORREO, "").replace(ENLACE, "").replace(/\s+/g, " ").trim();
-}
-
-function recortar(texto: string, maximo: number) {
-  if (texto.length <= maximo) return texto;
-  const corte = texto.slice(0, maximo);
-  const espacio = corte.lastIndexOf(" ");
-  return (espacio > maximo * 0.6 ? corte.slice(0, espacio) : corte).replace(/[\s,.;:]+$/, "") + "…";
-}
-
-function afiliacionCorta(texto: string | null) {
-  if (!texto) return undefined;
-  const base = limpiar(texto).split(/[(,.;]/)[0].trim();
-  return base ? recortar(base, 60) : undefined;
-}
-
-function primerParrafo(texto: string | null) {
-  if (!texto) return undefined;
-  const parrafo = limpiar(texto.split(/\n\s*\n/)[0] ?? "");
-  return parrafo ? recortar(parrafo, 220) : undefined;
 }
 
 async function consultar<T>(ruta: string): Promise<T[]> {
@@ -118,7 +97,7 @@ export async function obtenerParticipantes(): Promise<Participante[]> {
         "defacc_confirmations?select=name,email&event=eq.defacc-2026&attending=is.true&listed=is.true",
       ),
       consultar<Aplicacion>(
-        "defacc_applications?select=email,affiliation,preferred_track,project_idea&order=submitted_at.desc",
+        "defacc_applications?select=email,preferred_track&order=submitted_at.desc",
       ),
     ]);
 
@@ -140,9 +119,9 @@ export async function obtenerParticipantes(): Promise<Participante[]> {
       const frente = aplicacion?.preferred_track;
       lista.push({
         nombre,
-        afiliacion: ajuste.afiliacion ?? afiliacionCorta(aplicacion?.affiliation ?? null),
+        afiliacion: ajuste.afiliacion,
         frente: !ajuste.sinFrente && esFrente(frente) ? frente : undefined,
-        problema: ajuste.problema ?? primerParrafo(aplicacion?.project_idea ?? null),
+        problema: ajuste.problema,
       });
     }
 
