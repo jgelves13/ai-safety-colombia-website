@@ -40,3 +40,7 @@ alter table public.defacc_confirmations enable row level security;
 -- Para la tabla ya creada antes de agregar la lista de participantes:
 alter table public.defacc_confirmations
   add column if not exists listed boolean not null default false;
+
+-- Para guardar de dónde se enteró (igual que el sprint):
+alter table public.defacc_confirmations add column if not exists heard_about text;
+alter table public.defacc_confirmations add column if not exists heard_detail text;

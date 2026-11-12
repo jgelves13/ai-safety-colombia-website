@@ -27,6 +27,29 @@ const EN_LISTA = [
   { id: "no", label: "Prefiero no aparecer." },
 ] as const;
 
+/* Igual que en el sprint de Incident Response: sirve para saber qué difusión
+   funcionó. Si la opción trae pregunta de precisión, esa también es obligatoria. */
+const ENTERADO: { id: string; label: string; detalle?: string }[] = [
+  { id: "whatsapp", label: "Por un grupo de WhatsApp.", detalle: "¿Cuál grupo?" },
+  { id: "correo", label: "Por un correo.", detalle: "¿De quién?" },
+  { id: "persona", label: "Alguien me lo contó.", detalle: "¿Quién?" },
+  {
+    id: "universidad",
+    label: "Por mi universidad: un profesor, un semillero, un boletín.",
+    detalle: "¿Cuál universidad, y quién te lo pasó?",
+  },
+  { id: "ieee", label: "Por IEEE CS Uniandes.", detalle: "¿Por dónde: un correo, sus redes, alguien del capítulo?" },
+  { id: "redes", label: "Por redes: LinkedIn, Instagram, X.", detalle: "¿Cuál red?" },
+  { id: "otro", label: "Otro.", detalle: "¿Cómo?" },
+];
+
+/** La pregunta de precisión de la opción escogida, o nada si no lleva. */
+function DETALLE_DE(id: string): string {
+  return ENTERADO.find((o) => o.id === id)?.detalle ?? "";
+}
+
+const ETIQUETA = "text-body-sm block font-medium text-aisc-ink";
+
 type Estado = "listo" | "enviando" | "enviado" | "falla";
 
 export default function DefaccConfirmForm({
@@ -39,6 +62,8 @@ export default function DefaccConfirmForm({
   const [asiste, setAsiste] = useState(false);
   const [grupo, setGrupo] = useState(false);
   const [enLista, setEnLista] = useState("");
+  const [enterado, setEnterado] = useState("");
+  const [enteradoDetalle, setEnteradoDetalle] = useState("");
   const [nota, setNota] = useState("");
   const [trampa, setTrampa] = useState("");
   const [errores, setErrores] = useState<Record<string, string>>({});
@@ -51,6 +76,9 @@ export default function DefaccConfirmForm({
     if (!asiste) e.asiste = "Confirma que vienes el sábado completo para continuar.";
     if (!grupo) e.grupo = "Únete al grupo y marca la casilla para continuar.";
     if (!enLista) e.enLista = "Cuéntanos si te incluimos en la lista.";
+    if (!enterado) e.enterado = "Cuéntanos por dónde te enteraste.";
+    else if (DETALLE_DE(enterado) && !enteradoDetalle.trim())
+      e.enteradoDetalle = "Falta responder.";
     setErrores(e);
     return Object.keys(e).length === 0;
   }
@@ -69,6 +97,8 @@ export default function DefaccConfirmForm({
           asiste,
           grupo,
           enLista,
+          enterado,
+          enteradoDetalle,
           nota,
           website: trampa,
         }),
@@ -184,6 +214,51 @@ export default function DefaccConfirmForm({
             ))}
           </div>
           {errores.enLista ? <span className={ERROR}>{errores.enLista}</span> : null}
+        </section>
+
+        <section>
+          <h2 className={TITULO}>¿Dónde te enteraste del hackathon?</h2>
+          <span className={AYUDA}>
+            Nos sirve para saber qué repetir el próximo hackathon y a quién agradecerle.
+          </span>
+          <div className="mt-4 space-y-2.5">
+            {ENTERADO.map((opcion) => (
+              <label className={CASILLA} key={opcion.id} htmlFor={`enterado-${opcion.id}`}>
+                <input
+                  id={`enterado-${opcion.id}`}
+                  type="radio"
+                  name="enterado"
+                  value={opcion.id}
+                  checked={enterado === opcion.id}
+                  onChange={() => {
+                    setEnterado(opcion.id);
+                    setEnteradoDetalle("");
+                  }}
+                  className="mt-0.5 accent-aisc-forest"
+                />
+                <span>{opcion.label}</span>
+              </label>
+            ))}
+          </div>
+          {errores.enterado ? <span className={ERROR}>{errores.enterado}</span> : null}
+          {DETALLE_DE(enterado) ? (
+            <div className="mt-4">
+              <label className={ETIQUETA} htmlFor="enterado-detalle">
+                {DETALLE_DE(enterado)}
+              </label>
+              <input
+                id="enterado-detalle"
+                type="text"
+                maxLength={200}
+                value={enteradoDetalle}
+                onChange={(e) => setEnteradoDetalle(e.target.value)}
+                className={`${INPUT} mt-2`}
+              />
+              {errores.enteradoDetalle ? (
+                <span className={ERROR}>{errores.enteradoDetalle}</span>
+              ) : null}
+            </div>
+          ) : null}
         </section>
 
         <section>

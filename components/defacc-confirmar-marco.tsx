@@ -1,28 +1,21 @@
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
-import { HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
+import { FondoBinario } from "@/components/defacc-page";
+import { HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 
 /* Marco de /defacchackathon/confirmar. Es el mismo de la confirmación del
-   sprint, con los datos del sábado. El aviso de enlace roto se reusa tal cual
+   sprint, con los datos del sábado y el fondo y el oso de la guía del DefAcc. El aviso de enlace roto se reusa tal cual
    desde components/confirmar-marco. */
 
 export function DefaccConfirmarMarco({ children }: { children: React.ReactNode }) {
   return (
     <main className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
-        <img
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          width="1697"
-          height="1415"
-          decoding="async"
-          className={HERO_CORNER_CLASS}
-          style={{ color: "transparent" }}
-          src="/aisc/patterns/aisc-hero-hackathon.svg"
-        />
+        <FondoBinario />
         <SiteHeader active="/defacchackathon" />
-        <div className={HERO_INNER}>
+        <div
+          className={`${HERO_INNER} items-start gap-6 md:flex-row md:items-end md:justify-between`}
+        >
           <div className="flex max-w-[760px] flex-col gap-5">
             <span className="text-kicker text-aisc-sand/70">
               DefAcc Hackathon · sábado 14 de noviembre
@@ -53,6 +46,14 @@ export function DefaccConfirmarMarco({ children }: { children: React.ReactNode }
               </div>
             </dl>
           </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/aisc/hackathon/cyberbear-clean.png"
+            alt="Oso de anteojos, mascota del hackatón"
+            width={180}
+            height={277}
+            className="order-first h-32 w-auto shrink-0 object-contain drop-shadow-md md:order-none md:h-60"
+          />
         </div>
       </section>
 

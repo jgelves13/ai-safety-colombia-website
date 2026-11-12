@@ -39,6 +39,9 @@ function texto(valor: unknown, tope: number): string {
   return typeof valor === "string" ? valor.trim().slice(0, tope) : "";
 }
 
+/** Las opciones de "¿Dónde te enteraste?" del formulario. */
+const ENTERADO_IDS = ["whatsapp", "correo", "persona", "universidad", "ieee", "redes", "otro"];
+
 type Confirmacion = {
   nombre: string;
   correo: string;
@@ -47,6 +50,8 @@ type Confirmacion = {
   grupo: boolean;
   /* Si acepta aparecer en la lista de participantes de la guía. */
   enLista: boolean;
+  enterado: string;
+  enteradoDetalle: string;
   nota: string;
 };
 
@@ -68,6 +73,8 @@ async function guardar(c: Confirmacion): Promise<boolean> {
     team_size: c.equipo,
     listed: c.enLista,
     note: c.nota || null,
+    heard_about: c.enterado || null,
+    heard_detail: c.enteradoDetalle || null,
     source: "enlace",
   };
 
@@ -86,7 +93,15 @@ async function guardar(c: Confirmacion): Promise<boolean> {
 
   /* Si a la tabla le falta alguna columna secundaria, la confirmación se guarda
      sin ese dato antes que devolverle un 502 a quien ya cumplió su parte. */
-  const APLAZABLES = ["listed", "note", "source", "team_size", "joined_whatsapp"];
+  const APLAZABLES = [
+    "listed",
+    "note",
+    "source",
+    "team_size",
+    "joined_whatsapp",
+    "heard_about",
+    "heard_detail",
+  ];
 
   try {
     const cuerpo: Record<string, unknown> = { ...fila };
@@ -132,6 +147,7 @@ function resumen(c: Confirmacion, encabezado: string): string {
     `Entró al grupo: ${c.grupo ? "sí" : "no"}`,
     `Equipo según la aplicación: ${c.equipo <= 1 ? "sin equipo" : `${c.equipo} personas`}`,
     `Aparece en la lista de participantes: ${c.enLista ? "sí" : "no"}`,
+    `Se enteró por: ${c.enterado || "(vacío)"} — ${c.enteradoDetalle || "sin detalle"}`,
     `Nota: ${c.nota || "(vacía)"}`,
   ].join("\n");
 }
@@ -222,6 +238,12 @@ export async function POST(req: Request) {
   if (lista !== "si" && lista !== "no")
     return NextResponse.json({ error: "lista" }, { status: 400 });
 
+  /* Igual que el sprint: de dónde se enteró, y la precisión (todas la piden). */
+  const enterado = texto(crudo.enterado, 20);
+  const enteradoDetalle = texto(crudo.enteradoDetalle, 200);
+  if (!ENTERADO_IDS.includes(enterado) || !enteradoDetalle)
+    return NextResponse.json({ error: "enterado" }, { status: 400 });
+
   const confirmacion: Confirmacion = {
     nombre: invitada.nombre,
     correo: invitada.correo,
@@ -229,6 +251,8 @@ export async function POST(req: Request) {
     asiste,
     grupo,
     enLista: lista === "si",
+    enterado,
+    enteradoDetalle,
     nota: texto(crudo.nota, 1200),
   };
 
