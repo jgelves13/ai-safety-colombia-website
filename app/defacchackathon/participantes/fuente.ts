@@ -18,6 +18,7 @@ const AJUSTES: Record<string, Ajuste> = {
       "Un auditor sencillo que revise las descripciones de herramientas MCP antes de que el agente las vea, para detectar órdenes ocultas que lo lleven a leer secretos, alterar argumentos o enviar datos a terceros.",
   },
   "adriana durand": {
+    afiliacion: "Derecho",
     problema:
       "El riesgo que aparece cuando un agente acumula demasiados permisos y autorizaciones.",
   },
@@ -45,6 +46,11 @@ const AJUSTES: Record<string, Ajuste> = {
     afiliacion: "Universidad de los Andes",
     problema:
       "Usar IA para la ciberdefensa automatizada y la verificación formal de software, para encontrar vulnerabilidades antes de que comprometan los sistemas.",
+  },
+  "eva julio caro": {
+    afiliacion: "Auditoría",
+    problema:
+      "Que un agente no se salga de los límites de las instrucciones que se le dieron.",
   },
   "hermann galvis": {
     afiliacion: "Universidad de los Andes",
@@ -102,6 +108,7 @@ const AJUSTES: Record<string, Ajuste> = {
       "Ataques de denegación de servicio a modelos de IA: entradas diseñadas para consumir la mayor cantidad posible de cómputo.",
   },
   "juliana alexandra capador ochoa": {
+    afiliacion: "Ingeniería de Sistemas",
     problema:
       "Un modelo de gobernanza y evaluación de riesgos para agentes que acceden a información interna de las empresas, con una guía de controles de seguridad y casos de prueba.",
   },
