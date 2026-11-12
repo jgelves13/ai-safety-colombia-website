@@ -3,10 +3,14 @@ import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { FondoBinario } from "@/components/defacc-page";
 import { HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
+import { obtenerParticipantes } from "./fuente";
 import RejillaParticipantes from "./rejilla";
 
 /* Lista de participantes del DefAcc Hackathon. No se indexa y solo se enlaza
-   desde la guía del participante. */
+   desde la guía del participante. La lista se arma sola desde Supabase y se
+   refresca cada minuto. */
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Participantes · DefAcc Hackathon",
@@ -15,7 +19,8 @@ export const metadata: Metadata = {
 
 const CONTENEDOR = "mx-auto w-full max-w-[1448px] px-8 md:px-16";
 
-export default function ParticipantesDefacc() {
+export default async function ParticipantesDefacc() {
+  const participantes = await obtenerParticipantes();
   return (
     <main className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
@@ -49,7 +54,7 @@ export default function ParticipantesDefacc() {
               el grupo de WhatsApp.
             </p>
           </div>
-          <RejillaParticipantes />
+          <RejillaParticipantes participantes={participantes} />
         </div>
       </section>
       <SiteFooter />
