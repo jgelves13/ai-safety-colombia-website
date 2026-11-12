@@ -38,7 +38,7 @@ export default function ParticipantesDefacc() {
 
       <section className="bg-aisc-cream py-14 md:py-16 lg:py-20">
         <div className={CONTENEDOR}>
-          <div className="text-body md:text-body-lg flex max-w-[54rem] flex-col gap-5 text-aisc-ink">
+          <div className="text-body md:text-body-lg flex flex-col gap-5 text-aisc-ink">
             <p>
               Aquí están las personas que confirmaron su cupo y aceptaron aparecer en la lista. La
               lista crece a medida que más gente confirma.
