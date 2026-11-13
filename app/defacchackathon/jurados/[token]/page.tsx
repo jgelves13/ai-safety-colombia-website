@@ -14,13 +14,12 @@ import {
   type RevisionIA,
 } from "@/lib/defacc-entregas";
 import { NOMBRES_TRACKS } from "@/lib/defacc-revision";
+import { GUIA_RUBRICA, NIVELES, NOMBRES_CRITERIO, RUBRICA_URL, type ClaveCriterio } from "@/lib/defacc-rubrica";
 
 export const metadata: Metadata = {
   title: "Jurado · Defensive Acceleration Hackathon",
   robots: { index: false, follow: false },
 };
-
-const RUBRICA_URL = "https://docs.google.com/document/d/19xVIiadLqi-bJ-bxQ71gn37vAGWBYqJ-EvvBQYueU6c/edit";
 
 const CHIP = "text-meta ml-2 inline-block rounded-full bg-aisc-coral px-2.5 py-0.5 align-middle font-normal text-aisc-cream";
 
@@ -99,22 +98,62 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
       titulo={`Hola, ${juez.nombre.split(" ")[0]}`}
       texto="Califica de 1 a 5. Puedes cambiar tus notas cuando quieras. Enlace personal."
     >
-      <a
-        href={RUBRICA_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group mb-10 flex w-full items-center justify-between gap-4 rounded-lg border border-aisc-ink bg-aisc-cream px-5 py-4 transition-colors hover:bg-white md:px-7"
-      >
-        <span className="flex flex-col gap-1">
-          <span className="text-body font-medium text-aisc-ink">Rúbrica de evaluación</span>
-          <span className="text-body-sm text-aisc-ink/80">
-            Qué significa cada nota del 1 al 5 en Impacto, Ejecución y Presentación. Léela antes de calificar.
+      <section className="mb-10 w-full rounded-lg border border-aisc-ink bg-aisc-cream">
+        <a
+          href={RUBRICA_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-center justify-between gap-4 rounded-t-lg px-5 py-4 transition-colors hover:bg-white md:px-7"
+        >
+          <span className="flex flex-col gap-1">
+            <span className="text-body font-medium text-aisc-ink">Rúbrica de evaluación completa</span>
+            <span className="text-body-sm text-aisc-ink/80">
+              Qué significa cada nota del 1 al 5, con ejemplos. Léela antes de calificar.
+            </span>
           </span>
-        </span>
-        <span aria-hidden className="text-body shrink-0 text-aisc-forest transition-transform group-hover:translate-x-0.5">
-          ↗
-        </span>
-      </a>
+          <span aria-hidden className="text-body shrink-0 text-aisc-forest transition-transform group-hover:translate-x-0.5">
+            ↗
+          </span>
+        </a>
+        <details className="group border-t border-aisc-ink/20">
+          <summary className="text-body-sm cursor-pointer px-5 py-3 font-medium text-aisc-forest md:px-7">
+            Resumen rápido
+          </summary>
+          <div className="flex flex-col gap-4 px-5 pb-5 md:px-7">
+            <div className="overflow-x-auto">
+              <table className="text-body-sm w-full min-w-[560px] border-collapse text-left text-aisc-ink">
+                <thead>
+                  <tr className="border-b border-aisc-ink/30">
+                    <th className="py-2 pr-3 font-medium">Nota</th>
+                    {(Object.keys(NIVELES) as ClaveCriterio[]).map((k) => (
+                      <th key={k} className="py-2 pr-3 font-medium">
+                        {NOMBRES_CRITERIO[k]}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {[1, 2, 3, 4, 5].map((n) => (
+                    <tr key={n} className="border-b border-aisc-ink/10 last:border-0">
+                      <td className="py-2 pr-3 font-medium">{n}</td>
+                      {(Object.keys(NIVELES) as ClaveCriterio[]).map((k) => (
+                        <td key={k} className="py-2 pr-3">
+                          {NIVELES[k][n - 1]}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <ul className="text-body-sm flex list-disc flex-col gap-1 pl-5 text-aisc-ink">
+              {GUIA_RUBRICA.map((g) => (
+                <li key={g}>{g}</li>
+              ))}
+            </ul>
+          </div>
+        </details>
+      </section>
       <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4">
         <h2 className="text-display-2 text-aisc-ink">
           {entregas.length === 0 ? "Aún no hay entregas" : `${hechas} de ${entregas.length} calificadas`}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { NIVELES } from "@/lib/defacc-rubrica";
 
 type Clave = "impacto" | "ejecucion" | "presentacion";
 const CLAVES: Clave[] = ["impacto", "ejecucion", "presentacion"];
@@ -25,13 +26,6 @@ const BOTON_LLENO =
   "text-body-sm inline-flex min-h-11 items-center rounded-full bg-aisc-coral px-6 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85 disabled:opacity-60";
 const INPUT =
   "text-body-sm w-full rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 text-aisc-ink transition-colors placeholder:text-aisc-muted/60 focus:border-aisc-forest focus:outline-2 focus:outline-offset-[1px] focus:outline-aisc-forest/35";
-
-// Nombre de cada nivel tal como aparece en la rúbrica oficial (Google Doc enlazado en la página).
-const NIVELES: Record<Clave, string[]> = {
-  impacto: ["Insignificante", "Limitado", "Moderado", "Significativo", "Excepcional"],
-  ejecucion: ["Con fallas graves", "Débil", "Competente", "Sólido", "Excepcional"],
-  presentacion: ["Incomprensible", "Difícil de seguir", "Suficientemente claro", "Bien presentado", "Excepcionalmente claro"],
-};
 
 function hora(iso: string): string {
   return new Date(iso).toLocaleString("es-CO", {
