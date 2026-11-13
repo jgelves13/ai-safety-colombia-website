@@ -147,6 +147,10 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "Detectar cuándo un agente de programación hace algo distinto a lo que se le pidió, revisando los archivos que toca, los comandos que ejecuta y las dependencias que instala.",
   },
+  "maria jose sierra barreto": {
+    afiliacion: "Universidad Externado",
+    problema: "Entender cómo se puede vulnerar el entrenamiento de los modelos de IA.",
+  },
   "marlon naranjo": {
     afiliacion: "MNaranjo Consultoría",
     problema:
