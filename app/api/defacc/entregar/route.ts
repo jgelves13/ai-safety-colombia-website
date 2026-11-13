@@ -1,14 +1,17 @@
 /* Recibe la entrega de un equipo del DefAcc Hackathon.
 
    Multipart: los campos de texto, la lista de integrantes en JSON y la ficha
-   técnica en PDF. Para actualizarla, el equipo vuelve a enviar con el mismo
-   nombre y al menos un correo de la entrega anterior. Después de guardar,
-   dispara en segundo plano la revisión automática con Gemini, que solo
-   levanta banderas para el jurado. */
+   técnica en PDF. Como en la plantilla V4 de Apart, los participantes no
+   editan su entrega: un envío por equipo, y si llega otro con el mismo
+   nombre se guarda aparte marcado como posible duplicado para que la
+   organización lo limpie después del cierre. Después de guardar, dispara en
+   segundo plano la revisión automática, que solo levanta banderas para el
+   jurado. */
 
 import { NextResponse, after } from "next/server";
 import { CORREO_HACKATHON } from "@/app/defacchackathon/datos";
 import {
+  CIERRE_ENTREGAS_ISO,
   PDF_MAX_BYTES,
   TRACKS_VALIDOS,
   entregasAbiertas,
@@ -61,21 +64,17 @@ async function avisarAlEquipo(e: Entrega): Promise<void> {
   const lineas = [
     `Hola, equipo ${e.equipo}:`,
     "",
-    e.version === 1
-      ? "Recibimos su entrega para el Defensive Acceleration Hackathon."
-      : `Actualizamos su entrega (versión ${e.version}).`,
+    "Recibimos su entrega para el Defensive Acceleration Hackathon.",
     "",
     `Proyecto: ${e.titulo}`,
     `Track: ${NOMBRES_TRACKS[e.track] ?? e.track}`,
     `Enlace: ${e.enlace}`,
     `Ficha técnica: ${e.pdf ? "recibida" : "no adjunta"}`,
     "",
-  ];
-  lineas.push(
-    "Pueden actualizarla hasta las 5:00 p.m. enviando de nuevo con el mismo nombre de equipo en https://aisafetycolombia.org/defacchackathon/entregar",
+    `Es un solo envío por equipo. Si necesitan corregir algo, escríbannos a ${CORREO_HACKATHON} antes de las 5:00 p.m.`,
     "",
     "AI Safety Colombia",
-  );
+  ];
   try {
     await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -164,53 +163,46 @@ export async function POST(req: Request) {
     if (!cabeza.startsWith("%PDF")) return mal("campo", "La ficha técnica debe ser un PDF.", 400, "pdf");
   }
 
-  let previa: Entrega | null;
+  if (!pdf) return mal("campo", "Adjunten la ficha técnica en PDF.", 400, "pdf");
+
+  /* Nunca se sobrescribe una entrega. Si el nombre ya existe, esta se guarda
+     con el siguiente slug libre y queda marcada como posible duplicado. */
+  let slugFinal = slug;
+  let duplicadoDe: string | undefined;
   try {
-    previa = await leerEntrega(slug);
+    for (let i = 2; await leerEntrega(slugFinal); i++) {
+      if (i > 50) return mal("almacenamiento", "Demasiados envíos con ese nombre de equipo.", 409, "equipo");
+      const sufijo = `-${i}`;
+      slugFinal = `${slug.slice(0, 60 - sufijo.length)}${sufijo}`;
+      duplicadoDe = slug;
+    }
   } catch {
     return mal("almacenamiento", "No pudimos consultar las entregas. Intenten de nuevo.", 502);
   }
 
-  /* Sin código de edición: basta con que al menos un correo coincida con la
-     entrega anterior, para que otro equipo no la pise por error. */
-  if (previa) {
-    const anteriores = new Set(previa.integrantes.map((i) => i.correo.toLowerCase()));
-    if (!integrantes.some((i) => anteriores.has(i.correo))) {
-      return mal(
-        "equipo_existe",
-        "Ya hay una entrega con ese nombre de equipo. Para actualizarla, incluyan al menos un correo de integrante de la entrega anterior.",
-        409,
-        "integrantes",
-      );
-    }
-  } else if (!pdf) {
-    return mal("campo", "Adjunten la ficha técnica en PDF.", 400, "pdf");
-  }
-
   const ahora = new Date().toISOString();
+  const tardia = Date.now() > new Date(CIERRE_ENTREGAS_ISO).getTime();
+  const ruta = `fichas/${slugFinal}.pdf`;
   const entrega: Entrega = {
-    slug,
+    slug: slugFinal,
     equipo,
     titulo,
     track,
     resumen,
     enlace,
     integrantes,
-    pdf: previa?.pdf ?? null,
-    ...(previa?.codigoHash ? { codigoHash: previa.codigoHash } : {}),
-    creada: previa?.creada ?? ahora,
+    pdf: { ruta, bytes: pdf.byteLength },
+    creada: ahora,
     actualizada: ahora,
-    version: (previa?.version ?? 0) + 1,
+    version: 1,
+    ...(duplicadoDe ? { duplicadoDe } : {}),
+    ...(tardia ? { tardia: true } : {}),
     ...(esPrueba ? { prueba: true } : {}),
   };
 
   try {
-    if (pdf) {
-      const ruta = `fichas/${slug}.pdf`;
-      await subir(ruta, new Uint8Array(pdf), "application/pdf");
-      entrega.pdf = { ruta, bytes: pdf.byteLength };
-    }
-    await subirJson(`entregas/${slug}.json`, entrega);
+    await subir(ruta, new Uint8Array(pdf), "application/pdf");
+    await subirJson(`entregas/${slugFinal}.json`, entrega);
   } catch {
     return mal("almacenamiento", "No pudimos guardar la entrega. Intenten de nuevo.", 502);
   }
@@ -218,15 +210,11 @@ export async function POST(req: Request) {
   after(async () => {
     if (!conBypass) await avisarAlEquipo(entrega);
     try {
-      await revisarConGemini(slug);
+      await revisarConGemini(slugFinal);
     } catch {
       /* la revisión se puede repetir desde la página de resultados */
     }
   });
 
-  return NextResponse.json({
-    ok: true,
-    slug,
-    version: entrega.version,
-  });
+  return NextResponse.json({ ok: true, slug: slugFinal });
 }

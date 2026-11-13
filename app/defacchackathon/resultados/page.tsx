@@ -257,8 +257,20 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
             <span className="text-kicker text-aisc-muted">{NOMBRES_TRACKS[f.e.track] ?? f.e.track}</span>
             <h3 className="text-body-lg font-medium text-aisc-ink">{f.e.titulo}</h3>
             <p className="text-body-sm text-aisc-muted">
-              Equipo {f.e.equipo} · {f.e.integrantes.map((p) => p.nombre).join(", ")} · versión {f.e.version}
+              Equipo {f.e.equipo} · {f.e.integrantes.map((p) => p.nombre).join(", ")}
             </p>
+            {f.e.duplicadoDe || f.e.tardia ? (
+              <div className="text-meta flex flex-wrap gap-2">
+                {f.e.duplicadoDe ? (
+                  <span className="rounded-full bg-aisc-coral px-3 py-1 text-aisc-cream">
+                    Posible duplicado de {f.e.duplicadoDe}
+                  </span>
+                ) : null}
+                {f.e.tardia ? (
+                  <span className="rounded-full bg-aisc-coral px-3 py-1 text-aisc-cream">Enviada después del cierre</span>
+                ) : null}
+              </div>
+            ) : null}
             <a
               href={f.e.enlace}
               target="_blank"

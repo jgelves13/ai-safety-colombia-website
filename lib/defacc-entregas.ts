@@ -16,10 +16,11 @@ import { TEXTOS_HACKATHON } from "@/app/defacchackathon/datos";
 
 export const BUCKET = "defacc-entregas";
 
-/* Hora límite de las entregas: 14-nov 5:00 p.m. Bogotá. Se aceptan cambios
-   hasta 10 minutos después por si el wifi del salón se cae justo al final. */
+/* Hora límite de las entregas: 14-nov 5:00 p.m. Bogotá. Como en la plantilla
+   V4 de Apart, el formulario se cierra solo una hora después; lo que llegue
+   en esa hora se marca como tardío y lo decide la organización. */
 export const CIERRE_ENTREGAS_ISO = "2026-11-14T17:00:00-05:00";
-const GRACIA_MS = 10 * 60 * 1000;
+const GRACIA_MS = 60 * 60 * 1000;
 /* Se abre el día del evento a las 7 a.m. */
 export const APERTURA_ENTREGAS_ISO = "2026-11-14T07:00:00-05:00";
 
@@ -59,6 +60,11 @@ export type Entrega = {
   version: number;
   /** Entrega del modo prueba: no la ven los jurados reales ni el ranking normal. */
   prueba?: boolean;
+  /** Slug de una entrega anterior con el mismo nombre de equipo. Nunca se
+      sobrescribe: la organización limpia duplicados después del cierre. */
+  duplicadoDe?: string;
+  /** Llegó después de las 5:00 p.m., dentro de la hora de gracia. */
+  tardia?: boolean;
 };
 
 export type Puntaje = {

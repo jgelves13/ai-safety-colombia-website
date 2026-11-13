@@ -4,8 +4,9 @@ import { useMemo, useState } from "react";
 import type { Idioma } from "@/lib/idiomas";
 
 /* Formulario de entrega de proyectos del DefAcc Hackathon. Envía multipart a
-   /api/defacc/entregar. Para actualizar, el equipo reenvía con el mismo nombre
-   y al menos un correo de integrante de la entrega anterior. */
+   /api/defacc/entregar. Un envío por equipo, sin edición por parte de
+   participantes (como la plantilla V4 de Apart). Correcciones por correo antes
+   del cierre. */
 
 type Estado = "abierto" | "noIniciado" | "cerrado";
 type Track = { id: string; titulo: string };
@@ -33,12 +34,10 @@ type Textos = {
   quitar: string;
   pdf: string;
   pdfAyuda: string;
-  pdfEdicion: string;
   enviar: string;
   enviando: string;
   listoTitulo: string;
-  listoTexto: (v: number) => string;
-  otraVez: string;
+  listoTexto: string;
   errores: Record<string, string>;
 };
 
@@ -47,9 +46,9 @@ const TEXTOS: Record<Idioma, Textos> = {
     noIniciado: "Las entregas abren el sábado 14 de noviembre a las 7:00 a. m. (hora de Colombia).",
     cerrado: "Las entregas cerraron el sábado 14 de noviembre a las 5:00 p. m. (hora de Colombia).",
     intro:
-      "Un solo envío por equipo. Pueden actualizarlo hasta el cierre (5:00 p. m.) enviando de nuevo con el mismo nombre de equipo.",
+      "Un solo envío por equipo. Revisen todo antes de enviar; si necesitan corregir algo, escríbannos al correo del hackathon antes del cierre (5:00 p. m.).",
     equipo: "Nombre del equipo",
-    equipoAyuda: "Identifica su entrega. Usen siempre el mismo nombre para actualizarla.",
+    equipoAyuda: "Identifica su entrega.",
     titulo: "Título del proyecto",
     track: "Track",
     elegir: "Elijan un track",
@@ -65,22 +64,21 @@ const TEXTOS: Record<Idioma, Textos> = {
     agregar: "Agregar integrante",
     quitar: "Quitar",
     pdf: "Ficha técnica (PDF, máximo 2 páginas)",
-    pdfAyuda: "Máximo 10 MB.",
-    pdfEdicion: "Si están actualizando y no adjuntan un PDF nuevo, conservamos el anterior.",
+    pdfAyuda: "Obligatoria. Máximo 10 MB.",
     enviar: "Enviar entrega",
     enviando: "Enviando…",
     listoTitulo: "Entrega recibida",
-    listoTexto: (v) => `Guardamos la versión ${v} de su entrega. Los jurados verán la última versión enviada antes del cierre.`,
-    otraVez: "Actualizar la entrega",
+    listoTexto:
+      "Les enviamos una confirmación al correo de cada integrante. Si necesitan corregir algo, escríbannos antes del cierre.",
     errores: {},
   },
   en: {
     noIniciado: "Submissions open Saturday, November 14 at 7:00 a.m. (Colombia time).",
     cerrado: "Submissions closed Saturday, November 14 at 5:00 p.m. (Colombia time).",
     intro:
-      "One submission per team. You can update it until the deadline (5:00 p.m.) by submitting again with the same team name.",
+      "One submission per team. Review everything before submitting; if you need to correct something, email the hackathon address before the deadline (5:00 p.m.).",
     equipo: "Team name",
-    equipoAyuda: "Identifies your submission. Always use the same name to update it.",
+    equipoAyuda: "Identifies your submission.",
     titulo: "Project title",
     track: "Track",
     elegir: "Choose a track",
@@ -96,17 +94,15 @@ const TEXTOS: Record<Idioma, Textos> = {
     agregar: "Add member",
     quitar: "Remove",
     pdf: "Technical brief (PDF, 2 pages max)",
-    pdfAyuda: "10 MB max.",
-    pdfEdicion: "If you are updating and do not attach a new PDF, we keep the previous one.",
+    pdfAyuda: "Required. 10 MB max.",
     enviar: "Submit project",
     enviando: "Submitting…",
     listoTitulo: "Submission received",
-    listoTexto: (v) => `We saved version ${v} of your submission. Judges will see the last version sent before the deadline.`,
-    otraVez: "Update the submission",
+    listoTexto:
+      "We sent a confirmation to each member's email. If you need to correct something, email us before the deadline.",
     errores: {
       limite: "Too many attempts. Wait a few minutes and try again.",
       cerrado: "Submissions are not open right now.",
-      equipo_existe: "A team with that name already submitted. To update it, include at least one member email from the previous submission.",
       almacenamiento: "We could not save your submission. Please try again.",
       equipo: "Enter the team name.",
       titulo: "Enter the project title.",
@@ -122,9 +118,9 @@ const TEXTOS: Record<Idioma, Textos> = {
     noIniciado: "As entregas abrem no sábado, 14 de novembro, às 7h (horário da Colômbia).",
     cerrado: "As entregas fecharam no sábado, 14 de novembro, às 17h (horário da Colômbia).",
     intro:
-      "Uma única entrega por equipe. Vocês podem atualizá-la até o prazo (17h) enviando de novo com o mesmo nome de equipe.",
+      "Uma única entrega por equipe. Revisem tudo antes de enviar; se precisarem corrigir algo, escrevam para o e-mail do hackathon antes do prazo (17h).",
     equipo: "Nome da equipe",
-    equipoAyuda: "Identifica a entrega. Usem sempre o mesmo nome para atualizá-la.",
+    equipoAyuda: "Identifica a entrega.",
     titulo: "Título do projeto",
     track: "Frente",
     elegir: "Escolham uma frente",
@@ -140,17 +136,15 @@ const TEXTOS: Record<Idioma, Textos> = {
     agregar: "Adicionar integrante",
     quitar: "Remover",
     pdf: "Ficha técnica (PDF, até 2 páginas)",
-    pdfAyuda: "Máximo 10 MB.",
-    pdfEdicion: "Se estiverem atualizando e não anexarem um PDF novo, mantemos o anterior.",
+    pdfAyuda: "Obrigatória. Máximo 10 MB.",
     enviar: "Enviar entrega",
     enviando: "Enviando…",
     listoTitulo: "Entrega recebida",
-    listoTexto: (v) => `Salvamos a versão ${v} da entrega. Os jurados verão a última versão enviada antes do prazo.`,
-    otraVez: "Atualizar a entrega",
+    listoTexto:
+      "Enviamos uma confirmação para o e-mail de cada integrante. Se precisarem corrigir algo, escrevam antes do prazo.",
     errores: {
       limite: "Muitas tentativas. Esperem alguns minutos e tentem de novo.",
       cerrado: "As entregas não estão abertas agora.",
-      equipo_existe: "Já existe uma entrega com esse nome de equipe. Para atualizá-la, incluam pelo menos um e-mail de integrante da entrega anterior.",
       almacenamiento: "Não conseguimos salvar a entrega. Tentem de novo.",
       equipo: "Escrevam o nome da equipe.",
       titulo: "Escrevam o título do projeto.",
@@ -174,8 +168,6 @@ const ERROR = "text-meta mt-1.5 block text-aisc-coral";
 const NOTA = "text-body-sm max-w-[640px] text-aisc-muted";
 const BOTON_LLENO =
   "text-body-sm inline-flex min-h-11 items-center rounded-full bg-aisc-coral px-6 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85 disabled:opacity-60";
-const BOTON_CONTORNO =
-  "text-body-sm inline-flex min-h-11 items-center rounded-full border border-aisc-ink px-6 font-medium text-aisc-ink transition-colors hover:bg-aisc-ink hover:text-aisc-cream";
 const TARJETA = "rounded-lg border border-aisc-ink bg-aisc-cream p-6 md:p-9 lg:p-11";
 
 function contarPalabras(texto: string): number {
@@ -207,7 +199,7 @@ export default function DefAccSubmitForm({
   const [pdf, setPdf] = useState<File | null>(null);
   const [enviando, setEnviando] = useState(false);
   const [error, setError] = useState<{ mensaje: string; campo?: string } | null>(null);
-  const [listo, setListo] = useState<{ version: number } | null>(null);
+  const [listo, setListo] = useState(false);
 
   const palabras = useMemo(() => contarPalabras(resumen), [resumen]);
   const palabrasOk = palabras >= 150 && palabras <= 250;
@@ -224,19 +216,7 @@ export default function DefAccSubmitForm({
     return (
       <div className={`${TARJETA} flex flex-col gap-5`}>
         <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.listoTitulo}</h2>
-        <p className="text-body text-aisc-ink">{t.listoTexto(listo.version)}</p>
-        <div>
-          <button
-            type="button"
-            className={BOTON_CONTORNO}
-            onClick={() => {
-              setPdf(null);
-              setListo(null);
-            }}
-          >
-            {t.otraVez}
-          </button>
-        </div>
+        <p className="text-body text-aisc-ink">{t.listoTexto}</p>
       </div>
     );
   }
@@ -251,6 +231,10 @@ export default function DefAccSubmitForm({
     ev.preventDefault();
     if (enviando) return;
     setError(null);
+    if (!pdf) {
+      setError({ mensaje: t.errores.pdf || "Adjunten la ficha técnica en PDF.", campo: "pdf" });
+      return;
+    }
     const fd = new FormData();
     fd.set("equipo", equipo);
     fd.set("titulo", titulo);
@@ -260,19 +244,18 @@ export default function DefAccSubmitForm({
     fd.set("integrantes", JSON.stringify(integrantes));
     fd.set("website", (ev.currentTarget.elements.namedItem("website") as HTMLInputElement | null)?.value ?? "");
     if (bypass) fd.set("bypass", bypass);
-    if (pdf) fd.set("pdf", pdf);
+    fd.set("pdf", pdf);
     setEnviando(true);
     try {
       const r = await fetch("/api/defacc/entregar", { method: "POST", body: fd });
       const d = (await r.json().catch(() => ({}))) as {
         ok?: boolean;
-        version?: number;
         error?: string;
         mensaje?: string;
         campo?: string;
       };
       if (r.ok && d.ok) {
-        setListo({ version: d.version ?? 1 });
+        setListo(true);
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
         const local =
@@ -428,9 +411,7 @@ export default function DefAccSubmitForm({
           className={`${INPUT} mt-2 file:mr-3 file:rounded-full file:border-0 file:bg-aisc-ink file:px-4 file:py-1.5 file:text-aisc-cream ${malEn("pdf") ? INPUT_MAL : ""}`}
           onChange={(e) => setPdf(e.target.files?.[0] ?? null)}
         />
-        <span className={AYUDA}>
-          {t.pdfAyuda} {t.pdfEdicion}
-        </span>
+        <span className={AYUDA}>{t.pdfAyuda}</span>
       </label>
 
       {error && (

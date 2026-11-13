@@ -228,7 +228,7 @@ export default function GuiaDefAcc() {
               <Parrafo>Cada equipo envía una sola entrega con:</Parrafo>
               <Lista
                 items={[
-                  "Nombre del equipo. Usen siempre el mismo para actualizar la entrega.",
+                  "Nombre del equipo.",
                   "Integrantes, de 2 a 5, con el correo con el que se postularon.",
                   "Título y frente temático.",
                   "Un resumen de 150 a 250 palabras.",
@@ -242,13 +242,16 @@ export default function GuiaDefAcc() {
                 cuenta.
               </Parrafo>
               <Parrafo>
-                Para corregir la entrega antes de las 5:00 p. m.,{" "}
-                <strong>envíen de nuevo con el mismo nombre de equipo</strong>{" "}
-                y al menos un correo de integrante de la entrega anterior.
+                <strong>Solo se envía una vez.</strong> Revisen todo antes de
+                enviar. Si necesitan corregir algo, escríbannos a{" "}
+                <a className={ENLACE} href={`mailto:${CORREO}`}>
+                  {CORREO}
+                </a>{" "}
+                antes de las 5:00 p. m.
               </Parrafo>
               <Parrafo>
                 Nuestro consejo: envíen hacia las 4:00 p. m. y dejen ese margen
-                por si hay que corregir algo.
+                por si algo falla.
               </Parrafo>
 
               <H2 id="calificacion">Cómo se califica</H2>
