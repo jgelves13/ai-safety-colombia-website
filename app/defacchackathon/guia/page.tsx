@@ -170,20 +170,46 @@ export default function GuiaDefAcc() {
 
               <H3 id="parqueaderos">Parqueaderos</H3>
               <Parrafo>
-                El parqueadero público de la universidad está en el edificio
-                Santo Domingo (SD), Calle 22 # 1-19. El sábado abre desde las
-                7:00 a. m., cobra por minuto y cierra antes de que terminen los
-                pitches, así que confirma la hora de cierre y la tarifa antes
-                de dejar el carro o la moto. La universidad indica que hay que
-                presentar carné para usarlo.
+                <strong>Ojo:</strong> los parqueaderos de la universidad cierran
+                el sábado a las 6:00 p. m. y los pitches van hasta las 8:00 p.
+                m. Si vienes en carro o moto, revisa estas opciones antes.
+              </Parrafo>
+              <Tabla
+                cabeceras={["Parqueadero", "Lo que sabemos"]}
+                filas={[
+                  [
+                    "Uniandes: edificio Santo Domingo (SD), Calle 22 # 1-19, y edificio Q, Carrera 1 # 18A-12",
+                    <>
+                      Sábado de 7:00 a. m. a 6:00 p. m. Carro $100 por minuto o
+                      tarifa plena $21.000. Moto $70 por minuto o plena $11.500.
+                      Bicicleta gratis. Solo para quien tenga carné activo de
+                      Uniandes, según disponibilidad. Pagas en efectivo o
+                      tarjeta en el piso 1 del SD o en la máquina del sótano.
+                    </>,
+                  ],
+                  [
+                    "Uniandes: edificios ML, AU y Q (mensualidades)",
+                    "Solo para profesores y personal administrativo con mensualidad. No están abiertos al público.",
+                  ],
+                  [
+                    "Quick Parking: Av. Calle 20 con Av. Carrera 1 (cerca a Monserrate) y Carrera 3 # 19-81",
+                    "Privado. No publica horario ni tarifa general en su web. Confirma antes al 300 347 2662 (también WhatsApp).",
+                  ],
+                  [
+                    "Parqueadero del edificio CityU: Calle 19 # 2A-10, Las Aguas",
+                    "Público, de pago. El operador indica acceso 24/7 y cobro por minuto. No publica la tarifa.",
+                  ],
+                ]}
+              />
+              <Parrafo>
+                En 2026 un parqueadero en Bogotá puede cobrar como máximo $230
+                por minuto a un carro y $161 a una moto ($253 y $177 si tiene
+                Sello Oro). Puede cobrar menos.
               </Parrafo>
               <Parrafo>
-                Los parqueaderos del edificio ML son para profesores, personal
-                y visitantes institucionales, no para el público general.
-              </Parrafo>
-              <Parrafo>
-                Si puedes, llega en transporte público: la estación Las Aguas
-                de TransMilenio, sobre el Eje Ambiental, queda a pocas cuadras.
+                Lo más fácil es llegar en transporte público: la estación Las
+                Aguas de TransMilenio, sobre el Eje Ambiental, queda a pocas
+                cuadras.
               </Parrafo>
 
               <H2 id="equipos">Equipos</H2>
