@@ -20,14 +20,11 @@ import {
 } from "../../sprint/guia-comun";
 
 /* Guía para participantes seleccionados. Solo en español, fuera del índice de
-   buscadores y sin enlaces desde el sitio: se comparte por correo. Lo que
-   todavía no está definido dice "Pendiente todavía" tal cual. */
+   buscadores y sin enlaces desde el sitio: se comparte por correo. */
 export const metadata: Metadata = {
   title: "Guía para participantes · Defensive Acceleration Hackathon",
   robots: { index: false, follow: false },
 };
-
-const PENDIENTE = <em>Pendiente todavía.</em>;
 
 const ENTREGAR = "/defacchackathon/entregar";
 
@@ -132,8 +129,8 @@ export default function GuiaDefAcc() {
                 y cómo se califica.
               </p>
               <Parrafo>
-                Guarda esta página. La vamos a ir actualizando, y lo que dice
-                «Pendiente todavía» lo completamos antes del sábado.
+                Guarda esta página. Si algo cambia antes del sábado, lo
+                actualizamos aquí.
               </Parrafo>
 
               <IndiceEnsayo items={INDICE} plegable />
@@ -291,10 +288,15 @@ export default function GuiaDefAcc() {
 
               <H2 id="contacto">Contacto y mentores</H2>
               <Parrafo>
-                <strong>Contactos del día:</strong> {PENDIENTE}
+                <strong>Contactos del día:</strong> Jose Gelves (AI Safety
+                Colombia) y Daniel Diab (IEEE Computer Society Uniandes). Nos
+                encuentras en el ML 607 durante toda la jornada.
               </Parrafo>
               <Parrafo>
-                <strong>Mentores:</strong> {PENDIENTE}
+                <strong>Mentores:</strong> Jairo Torregrosa (Mercado Libre),
+                Robert Gómez (AIMEDIC) y Pablo Pastrana (Dapper). Pasan por el
+                salón durante el sprint, sin horario fijo. Cuando estén,
+                acércate y pregúntales por tu proyecto.
               </Parrafo>
               <Parrafo>
                 Antes del sábado puedes escribirnos a{" "}
