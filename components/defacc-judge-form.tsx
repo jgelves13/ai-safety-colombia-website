@@ -155,21 +155,6 @@ export default function DefAccJudgeForm({
               </fieldset>
             );
           })}
-          <details className="text-meta text-aisc-muted">
-            <summary className="cursor-pointer">¿Qué significa cada nota?</summary>
-            <ul className="mt-2 flex flex-col gap-2">
-              {criterios.slice(0, CLAVES.length).map((c) => (
-                <li key={c.nombre}>
-                  <span className="font-medium text-aisc-ink">{c.nombre}:</span> {c.descripcion}
-                  {c.niveles ? (
-                    <span className="block">
-                      1: {c.niveles.n1} · 3: {c.niveles.n3} · 5: {c.niveles.n5}
-                    </span>
-                  ) : null}
-                </li>
-              ))}
-            </ul>
-          </details>
         </>
       ) : null}
 

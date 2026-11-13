@@ -58,7 +58,27 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
     <MarcoPanel
       kicker="DefAcc Hackathon · Jurado"
       titulo={`Hola, ${juez.nombre.split(" ")[0]}`}
-      texto={<p>Califica de 1 a 5. Puedes cambiar tus notas cuando quieras. Enlace personal.</p>}
+      texto={
+        <div className="flex flex-col gap-5">
+          <p>Califica de 1 a 5. Puedes cambiar tus notas cuando quieras. Enlace personal.</p>
+          <ul className="text-body-sm flex flex-col gap-4">
+            {criterios.map((c) => (
+              <li key={c.nombre} className="flex flex-col gap-1">
+                <span>
+                  <span className="font-medium text-aisc-sand">{c.nombre}:</span> {c.descripcion}
+                </span>
+                {c.niveles ? (
+                  <span className="flex flex-col text-aisc-sand/75">
+                    <span>1: {c.niveles.n1}</span>
+                    <span>3: {c.niveles.n3}</span>
+                    <span>5: {c.niveles.n5}</span>
+                  </span>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </div>
+      }
     >
       <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4">
         <h2 className="text-display-2 text-aisc-ink">
@@ -90,13 +110,13 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
                 </div>
                 <div className="text-body-sm flex flex-wrap items-center gap-4">
                   <details className="w-full">
-                    <summary className="cursor-pointer font-medium text-aisc-forest">Resumen</summary>
+                    <summary className="cursor-pointer font-medium text-aisc-forest">Resumen del equipo</summary>
                     <p className="mt-2 whitespace-pre-line text-aisc-ink">{e.resumen}</p>
                   </details>
                   {revision?.resumen ? (
                     <details className="w-full">
                       <summary className="cursor-pointer font-medium text-aisc-forest">
-                        Resumen de la IA <span className="text-meta font-normal text-aisc-muted">(orientativo)</span>
+                        Síntesis de la IA <span className="text-meta font-normal text-aisc-muted">(orientativa)</span>
                       </summary>
                       <p className="mt-2 text-aisc-ink">{revision.resumen}</p>
                       <p className="text-meta mt-1 text-aisc-muted">
@@ -108,7 +128,7 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
                     href={e.enlace}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
-                    className="font-medium text-aisc-forest underline underline-offset-4"
+                    className="inline-flex items-center rounded-full border border-aisc-forest/40 px-3 py-1 font-medium text-aisc-forest transition-colors hover:bg-aisc-forest/10"
                   >
                     Repo
                   </a>
@@ -117,7 +137,7 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
                       href={pdf}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-medium text-aisc-forest underline underline-offset-4"
+                      className="inline-flex items-center rounded-full border border-aisc-forest/40 px-3 py-1 font-medium text-aisc-forest transition-colors hover:bg-aisc-forest/10"
                     >
                       Ficha PDF
                     </a>
