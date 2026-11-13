@@ -39,7 +39,9 @@ export function MarcoPanel({
 
 export function BanderasIA({
   revision,
+  compacto = false,
 }: {
+  compacto?: boolean;
   revision: {
     fueraDeTema: boolean;
     motivoFueraDeTema: string;
@@ -54,9 +56,38 @@ export function BanderasIA({
   } | null;
 }) {
   if (!revision) {
-    return <p className="text-meta text-aisc-muted">Revisión automática pendiente.</p>;
+    return compacto ? null : <p className="text-meta text-aisc-muted">Revisión automática pendiente.</p>;
   }
   const limpia = !revision.fueraDeTema && !revision.inyeccionPrompt && !revision.infoPeligrosa;
+  if (compacto) {
+    if (limpia) return null;
+    const evidencia = [
+      revision.fueraDeTema ? revision.motivoFueraDeTema : "",
+      revision.inyeccionPrompt ? revision.evidenciaInyeccion || revision.hallazgosRegex.join(", ") : "",
+      revision.infoPeligrosa ? revision.evidenciaInfoPeligrosa ?? "" : "",
+    ].filter(Boolean);
+    return (
+      <details className="text-meta text-aisc-muted">
+        <summary className="flex cursor-pointer flex-wrap items-center gap-2">
+          {revision.fueraDeTema ? (
+            <span className="rounded-full bg-aisc-coral px-3 py-1 text-aisc-cream">Posible fuera de tema</span>
+          ) : null}
+          {revision.inyeccionPrompt ? (
+            <span className="rounded-full bg-aisc-coral px-3 py-1 text-aisc-cream">Posible inyección de prompt</span>
+          ) : null}
+          {revision.infoPeligrosa ? (
+            <span className="rounded-full bg-aisc-coral px-3 py-1 text-aisc-cream">Posible info peligrosa</span>
+          ) : null}
+        </summary>
+        <div className="mt-2 flex flex-col gap-1">
+          {evidencia.map((t, i) => (
+            <p key={i}>{t}</p>
+          ))}
+          <p>Alerta automática. No afecta el puntaje.</p>
+        </div>
+      </details>
+    );
+  }
   return (
     <div className="flex flex-col gap-2">
       <div className="flex flex-wrap gap-2">

@@ -11,7 +11,7 @@
 
    Solo el servidor toca el bucket, con la service role key. */
 
-import { createHash, createHmac, randomBytes, timingSafeEqual } from "node:crypto";
+import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 import { TEXTOS_HACKATHON } from "@/app/defacchackathon/datos";
 
 export const BUCKET = "defacc-entregas";
@@ -52,7 +52,8 @@ export type Entrega = {
   enlace: string;
   integrantes: Integrante[];
   pdf: { ruta: string; bytes: number } | null;
-  codigoHash: string;
+  /** Solo en entregas hechas antes de quitar el código de edición. */
+  codigoHash?: string;
   creada: string;
   actualizada: string;
   version: number;
@@ -226,21 +227,6 @@ export async function todasLasEntregas(): Promise<Entrega[]> {
   return lista
     .filter((e): e is Entrega => e !== null)
     .sort((a, b) => a.equipo.localeCompare(b.equipo, "es"));
-}
-
-/* Código de edición: lo recibe el equipo al entregar por primera vez y lo
-   necesita para cambiar la entrega. Guardamos solo su hash. */
-export function nuevoCodigo(): string {
-  const alfabeto = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  const b = randomBytes(8);
-  let c = "";
-  for (let i = 0; i < 8; i++) c += alfabeto[b[i] % alfabeto.length];
-  return `${c.slice(0, 4)}-${c.slice(4)}`;
-}
-
-export function hashCodigo(codigo: string): string {
-  const limpio = codigo.trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
-  return createHmac("sha256", secreto()).update(`codigo:${limpio}`).digest("hex");
 }
 
 export function iguales(a: string, b: string): boolean {

@@ -56,77 +56,63 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
 
   return (
     <MarcoPanel
-      kicker="DefAcc Hackathon · Panel de jurado"
+      kicker="DefAcc Hackathon · Jurado"
       titulo={`Hola, ${juez.nombre.split(" ")[0]}`}
-      texto={
-        <p>
-          Califica cada proyecto de 1 a 5 en Impacto, Ejecución y Presentación (3 es trabajo sólido para un día). Puedes
-          volver y cambiar tus notas cuantas veces quieras. Las entregas cierran el {cierre}. Este enlace es personal, no lo
-          compartas.
-        </p>
-      }
+      texto={<p>Califica de 1 a 5. Puedes cambiar tus notas cuando quieras. Enlace personal.</p>}
     >
       <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4">
         <h2 className="text-display-2 text-aisc-ink">
-          {entregas.length === 0 ? "Aún no hay entregas" : `${entregas.length} entregas`}
+          {entregas.length === 0 ? "Aún no hay entregas" : `${hechas} de ${entregas.length} calificadas`}
         </h2>
-        {entregas.length ? (
-          <span className="text-body-sm text-aisc-muted">
-            Llevas {hechas} de {entregas.length}
-          </span>
-        ) : null}
       </div>
 
       {entregas.length === 0 ? (
-        <p className="text-body text-aisc-muted">
-          Los equipos suben sus proyectos el sábado entre las 7:00 a.m. y las 5:00 p.m. Vuelve a esta página después del
-          cierre.
-        </p>
+        <p className="text-body text-aisc-muted">Vuelve después del cierre ({cierre}).</p>
       ) : (
-        <ol className="flex flex-col gap-8">
+        <ol className="flex flex-col gap-6">
           {filas.map(({ e, pdf, revision }) => (
-            <li key={e.slug} id={e.slug} className="rounded-lg border border-aisc-ink bg-aisc-cream p-6 md:p-9">
-              <div className="flex flex-col gap-4">
-                <div className="flex flex-wrap items-baseline justify-between gap-3">
-                  <span className="text-kicker text-aisc-muted">{NOMBRES_TRACKS[e.track] ?? e.track}</span>
-                  {puntajes[e.slug] ? (
-                    <span className="text-meta rounded-full border border-aisc-forest px-3 py-1 text-aisc-forest">
-                      Calificado
+            <li key={e.slug} id={e.slug} className="rounded-lg border border-aisc-ink bg-aisc-cream p-5 md:p-7">
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div className="flex flex-col gap-1">
+                    <h3 className="text-body-lg font-medium text-aisc-ink">{e.titulo}</h3>
+                    <span className="text-meta text-aisc-muted">
+                      {e.equipo} · {NOMBRES_TRACKS[e.track] ?? e.track}
                     </span>
+                  </div>
+                  {puntajes[e.slug] ? (
+                    <span className="text-meta rounded-full bg-aisc-forest px-3 py-1 text-aisc-cream">Calificado</span>
                   ) : (
                     <span className="text-meta rounded-full border border-aisc-muted px-3 py-1 text-aisc-muted">
                       Pendiente
                     </span>
                   )}
                 </div>
-                <h3 className="text-body-lg font-medium text-aisc-ink">{e.titulo}</h3>
-                <p className="text-body-sm text-aisc-muted">
-                  Equipo {e.equipo} · {e.integrantes.map((i) => i.nombre).join(", ")}
-                </p>
-                <p className="text-body-sm whitespace-pre-line text-aisc-ink">{e.resumen}</p>
-                <div className="flex flex-wrap gap-4">
+                <div className="text-body-sm flex flex-wrap items-center gap-4">
+                  <details className="w-full">
+                    <summary className="cursor-pointer font-medium text-aisc-forest">Resumen</summary>
+                    <p className="mt-2 whitespace-pre-line text-aisc-ink">{e.resumen}</p>
+                  </details>
                   <a
                     href={e.enlace}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
-                    className="text-body-sm font-medium text-aisc-forest underline underline-offset-4"
+                    className="font-medium text-aisc-forest underline underline-offset-4"
                   >
-                    Repositorio o demo
+                    Repo
                   </a>
                   {pdf ? (
                     <a
                       href={pdf}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-body-sm font-medium text-aisc-forest underline underline-offset-4"
+                      className="font-medium text-aisc-forest underline underline-offset-4"
                     >
-                      Ficha técnica (PDF)
+                      Ficha PDF
                     </a>
-                  ) : (
-                    <span className="text-body-sm text-aisc-muted">Sin ficha técnica</span>
-                  )}
+                  ) : null}
                 </div>
-                <BanderasIA revision={revision} />
+                <BanderasIA revision={revision} compacto />
                 <DefAccJudgeForm token={token} slug={e.slug} criterios={criterios} inicial={puntajes[e.slug] ?? null} />
               </div>
             </li>

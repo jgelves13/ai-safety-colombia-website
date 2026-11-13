@@ -4,8 +4,8 @@ import { useMemo, useState } from "react";
 import type { Idioma } from "@/lib/idiomas";
 
 /* Formulario de entrega de proyectos del DefAcc Hackathon. Envía multipart a
-   /api/defacc/entregar. La primera entrega de un equipo devuelve un código de
-   edición que se muestra una sola vez; con ese código pueden reenviar. */
+   /api/defacc/entregar. Para actualizar, el equipo reenvía con el mismo nombre
+   y al menos un correo de integrante de la entrega anterior. */
 
 type Estado = "abierto" | "noIniciado" | "cerrado";
 type Track = { id: string; titulo: string };
@@ -34,14 +34,10 @@ type Textos = {
   pdf: string;
   pdfAyuda: string;
   pdfEdicion: string;
-  codigo: string;
-  codigoAyuda: string;
   enviar: string;
   enviando: string;
   listoTitulo: string;
   listoTexto: (v: number) => string;
-  codigoTitulo: string;
-  codigoTexto: string;
   otraVez: string;
   errores: Record<string, string>;
 };
@@ -51,7 +47,7 @@ const TEXTOS: Record<Idioma, Textos> = {
     noIniciado: "Las entregas abren el sábado 14 de noviembre a las 7:00 a. m. (hora de Colombia).",
     cerrado: "Las entregas cerraron el sábado 14 de noviembre a las 5:00 p. m. (hora de Colombia).",
     intro:
-      "Un solo envío por equipo. Pueden actualizarlo hasta el cierre (5:00 p. m.) con el código de edición que les mostramos al enviar por primera vez.",
+      "Un solo envío por equipo. Pueden actualizarlo hasta el cierre (5:00 p. m.) enviando de nuevo con el mismo nombre de equipo.",
     equipo: "Nombre del equipo",
     equipoAyuda: "Identifica su entrega. Usen siempre el mismo nombre para actualizarla.",
     titulo: "Título del proyecto",
@@ -71,14 +67,10 @@ const TEXTOS: Record<Idioma, Textos> = {
     pdf: "Ficha técnica (PDF, máximo 2 páginas)",
     pdfAyuda: "Máximo 10 MB.",
     pdfEdicion: "Si están actualizando y no adjuntan un PDF nuevo, conservamos el anterior.",
-    codigo: "Código de edición",
-    codigoAyuda: "Solo si ya enviaron antes y quieren actualizar su entrega.",
     enviar: "Enviar entrega",
     enviando: "Enviando…",
     listoTitulo: "Entrega recibida",
     listoTexto: (v) => `Guardamos la versión ${v} de su entrega. Los jurados verán la última versión enviada antes del cierre.`,
-    codigoTitulo: "Su código de edición",
-    codigoTexto: "Guárdenlo ahora: no lo volveremos a mostrar en esta página. Lo necesitan para actualizar la entrega.",
     otraVez: "Actualizar la entrega",
     errores: {},
   },
@@ -86,7 +78,7 @@ const TEXTOS: Record<Idioma, Textos> = {
     noIniciado: "Submissions open Saturday, November 14 at 7:00 a.m. (Colombia time).",
     cerrado: "Submissions closed Saturday, November 14 at 5:00 p.m. (Colombia time).",
     intro:
-      "One submission per team. You can update it until the deadline (5:00 p.m.) with the edit code we show you after your first submission.",
+      "One submission per team. You can update it until the deadline (5:00 p.m.) by submitting again with the same team name.",
     equipo: "Team name",
     equipoAyuda: "Identifies your submission. Always use the same name to update it.",
     titulo: "Project title",
@@ -106,19 +98,15 @@ const TEXTOS: Record<Idioma, Textos> = {
     pdf: "Technical brief (PDF, 2 pages max)",
     pdfAyuda: "10 MB max.",
     pdfEdicion: "If you are updating and do not attach a new PDF, we keep the previous one.",
-    codigo: "Edit code",
-    codigoAyuda: "Only if you already submitted and want to update your submission.",
     enviar: "Submit project",
     enviando: "Submitting…",
     listoTitulo: "Submission received",
     listoTexto: (v) => `We saved version ${v} of your submission. Judges will see the last version sent before the deadline.`,
-    codigoTitulo: "Your edit code",
-    codigoTexto: "Save it now: we will not show it on this page again. You need it to update your submission.",
     otraVez: "Update the submission",
     errores: {
       limite: "Too many attempts. Wait a few minutes and try again.",
       cerrado: "Submissions are not open right now.",
-      equipo_existe: "A team with that name already submitted. To update it, enter your edit code.",
+      equipo_existe: "A team with that name already submitted. To update it, include at least one member email from the previous submission.",
       almacenamiento: "We could not save your submission. Please try again.",
       equipo: "Enter the team name.",
       titulo: "Enter the project title.",
@@ -134,7 +122,7 @@ const TEXTOS: Record<Idioma, Textos> = {
     noIniciado: "As entregas abrem no sábado, 14 de novembro, às 7h (horário da Colômbia).",
     cerrado: "As entregas fecharam no sábado, 14 de novembro, às 17h (horário da Colômbia).",
     intro:
-      "Uma única entrega por equipe. Vocês podem atualizá-la até o prazo (17h) com o código de edição que mostramos no primeiro envio.",
+      "Uma única entrega por equipe. Vocês podem atualizá-la até o prazo (17h) enviando de novo com o mesmo nome de equipe.",
     equipo: "Nome da equipe",
     equipoAyuda: "Identifica a entrega. Usem sempre o mesmo nome para atualizá-la.",
     titulo: "Título do projeto",
@@ -154,19 +142,15 @@ const TEXTOS: Record<Idioma, Textos> = {
     pdf: "Ficha técnica (PDF, até 2 páginas)",
     pdfAyuda: "Máximo 10 MB.",
     pdfEdicion: "Se estiverem atualizando e não anexarem um PDF novo, mantemos o anterior.",
-    codigo: "Código de edição",
-    codigoAyuda: "Só se já enviaram antes e querem atualizar a entrega.",
     enviar: "Enviar entrega",
     enviando: "Enviando…",
     listoTitulo: "Entrega recebida",
     listoTexto: (v) => `Salvamos a versão ${v} da entrega. Os jurados verão a última versão enviada antes do prazo.`,
-    codigoTitulo: "Seu código de edição",
-    codigoTexto: "Guardem agora: não vamos mostrá-lo de novo nesta página. Vocês precisam dele para atualizar a entrega.",
     otraVez: "Atualizar a entrega",
     errores: {
       limite: "Muitas tentativas. Esperem alguns minutos e tentem de novo.",
       cerrado: "As entregas não estão abertas agora.",
-      equipo_existe: "Já existe uma entrega com esse nome de equipe. Para atualizá-la, escrevam o código de edição.",
+      equipo_existe: "Já existe uma entrega com esse nome de equipe. Para atualizá-la, incluam pelo menos um e-mail de integrante da entrega anterior.",
       almacenamiento: "Não conseguimos salvar a entrega. Tentem de novo.",
       equipo: "Escrevam o nome da equipe.",
       titulo: "Escrevam o título do projeto.",
@@ -221,10 +205,9 @@ export default function DefAccSubmitForm({
     { nombre: "", correo: "" },
   ]);
   const [pdf, setPdf] = useState<File | null>(null);
-  const [codigo, setCodigo] = useState("");
   const [enviando, setEnviando] = useState(false);
   const [error, setError] = useState<{ mensaje: string; campo?: string } | null>(null);
-  const [listo, setListo] = useState<{ version: number; codigo?: string } | null>(null);
+  const [listo, setListo] = useState<{ version: number } | null>(null);
 
   const palabras = useMemo(() => contarPalabras(resumen), [resumen]);
   const palabrasOk = palabras >= 150 && palabras <= 250;
@@ -242,19 +225,11 @@ export default function DefAccSubmitForm({
       <div className={`${TARJETA} flex flex-col gap-5`}>
         <h2 className="text-display-3 md:text-display-3-lg text-balance">{t.listoTitulo}</h2>
         <p className="text-body text-aisc-ink">{t.listoTexto(listo.version)}</p>
-        {listo.codigo && (
-          <div className="rounded-[var(--radius)] border border-aisc-coral bg-white p-5">
-            <p className="text-body-sm font-medium text-aisc-ink">{t.codigoTitulo}</p>
-            <p className="mt-2 font-mono text-2xl tracking-widest text-aisc-ink select-all">{listo.codigo}</p>
-            <p className="text-body-sm mt-2 text-aisc-muted">{t.codigoTexto}</p>
-          </div>
-        )}
         <div>
           <button
             type="button"
             className={BOTON_CONTORNO}
             onClick={() => {
-              if (listo.codigo) setCodigo(listo.codigo);
               setPdf(null);
               setListo(null);
             }}
@@ -283,7 +258,6 @@ export default function DefAccSubmitForm({
     fd.set("resumen", resumen);
     fd.set("enlace", enlace);
     fd.set("integrantes", JSON.stringify(integrantes));
-    fd.set("codigo", codigo.trim());
     fd.set("website", (ev.currentTarget.elements.namedItem("website") as HTMLInputElement | null)?.value ?? "");
     if (bypass) fd.set("bypass", bypass);
     if (pdf) fd.set("pdf", pdf);
@@ -293,13 +267,12 @@ export default function DefAccSubmitForm({
       const d = (await r.json().catch(() => ({}))) as {
         ok?: boolean;
         version?: number;
-        codigo?: string;
         error?: string;
         mensaje?: string;
         campo?: string;
       };
       if (r.ok && d.ok) {
-        setListo({ version: d.version ?? 1, codigo: d.codigo });
+        setListo({ version: d.version ?? 1 });
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
         const local =
@@ -456,20 +429,8 @@ export default function DefAccSubmitForm({
           onChange={(e) => setPdf(e.target.files?.[0] ?? null)}
         />
         <span className={AYUDA}>
-          {t.pdfAyuda} {codigo ? t.pdfEdicion : ""}
+          {t.pdfAyuda} {t.pdfEdicion}
         </span>
-      </label>
-
-      <label className="block">
-        <span className={ETIQUETA}>{t.codigo}</span>
-        <input
-          className={`${INPUT} mt-2 max-w-[260px] font-mono ${malEn("codigo") ? INPUT_MAL : ""}`}
-          value={codigo}
-          maxLength={20}
-          autoComplete="off"
-          onChange={(e) => setCodigo(e.target.value)}
-        />
-        <span className={AYUDA}>{t.codigoAyuda}</span>
       </label>
 
       {error && (

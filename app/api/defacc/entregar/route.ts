@@ -1,8 +1,8 @@
 /* Recibe la entrega de un equipo del DefAcc Hackathon.
 
    Multipart: los campos de texto, la lista de integrantes en JSON y la ficha
-   técnica en PDF. La primera vez devuelve un código de edición que el equipo
-   necesita para cambiar la entrega antes del cierre. Después de guardar,
+   técnica en PDF. Para actualizarla, el equipo vuelve a enviar con el mismo
+   nombre y al menos un correo de la entrega anterior. Después de guardar,
    dispara en segundo plano la revisión automática con Gemini, que solo
    levanta banderas para el jurado. */
 
@@ -13,11 +13,9 @@ import {
   TRACKS_VALIDOS,
   entregasAbiertas,
   esTokenPrueba,
-  hashCodigo,
   iguales,
   ipDeLaPeticion,
   leerEntrega,
-  nuevoCodigo,
   pasaElLimite,
   slugDe,
   subir,
@@ -55,7 +53,7 @@ function esUrl(s: string): boolean {
   }
 }
 
-async function avisarAlEquipo(e: Entrega, codigo: string | null): Promise<void> {
+async function avisarAlEquipo(e: Entrega): Promise<void> {
   const key = process.env.RESEND_API_KEY;
   if (!key) return;
   const correos = e.integrantes.map((i) => i.correo).filter(Boolean);
@@ -73,14 +71,11 @@ async function avisarAlEquipo(e: Entrega, codigo: string | null): Promise<void> 
     `Ficha técnica: ${e.pdf ? "recibida" : "no adjunta"}`,
     "",
   ];
-  if (codigo) {
-    lineas.push(
-      `Código de edición: ${codigo}`,
-      "Guárdenlo. Lo necesitan para cambiar la entrega antes de las 5:00 p.m.",
-      "",
-    );
-  }
-  lineas.push("Pueden editarla en https://aisafetycolombia.org/defacchackathon/entregar", "", "AI Safety Colombia");
+  lineas.push(
+    "Pueden actualizarla hasta las 5:00 p.m. enviando de nuevo con el mismo nombre de equipo en https://aisafetycolombia.org/defacchackathon/entregar",
+    "",
+    "AI Safety Colombia",
+  );
   try {
     await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -126,7 +121,6 @@ export async function POST(req: Request) {
   const track = texto(form.get("track"), 20);
   const resumen = texto(form.get("resumen"), 4000);
   const enlace = texto(form.get("enlace"), 500);
-  const codigo = texto(form.get("codigo"), 20);
 
   /* En modo prueba el slug lleva el prefijo prueba- para que nunca choque
      con un equipo real y se pueda borrar todo junto. */
@@ -177,22 +171,20 @@ export async function POST(req: Request) {
     return mal("almacenamiento", "No pudimos consultar las entregas. Intenten de nuevo.", 502);
   }
 
-  let codigoNuevo: string | null = null;
-  let codigoHash: string;
+  /* Sin código de edición: basta con que al menos un correo coincida con la
+     entrega anterior, para que otro equipo no la pise por error. */
   if (previa) {
-    if (!codigo || !iguales(hashCodigo(codigo), previa.codigoHash)) {
+    const anteriores = new Set(previa.integrantes.map((i) => i.correo.toLowerCase()));
+    if (!integrantes.some((i) => anteriores.has(i.correo))) {
       return mal(
         "equipo_existe",
-        "Ya hay una entrega con ese nombre de equipo. Para cambiarla, escriban el código de edición que recibieron.",
+        "Ya hay una entrega con ese nombre de equipo. Para actualizarla, incluyan al menos un correo de integrante de la entrega anterior.",
         409,
-        "codigo",
+        "integrantes",
       );
     }
-    codigoHash = previa.codigoHash;
-  } else {
-    if (!pdf) return mal("campo", "Adjunten la ficha técnica en PDF.", 400, "pdf");
-    codigoNuevo = nuevoCodigo();
-    codigoHash = hashCodigo(codigoNuevo);
+  } else if (!pdf) {
+    return mal("campo", "Adjunten la ficha técnica en PDF.", 400, "pdf");
   }
 
   const ahora = new Date().toISOString();
@@ -205,7 +197,7 @@ export async function POST(req: Request) {
     enlace,
     integrantes,
     pdf: previa?.pdf ?? null,
-    codigoHash,
+    ...(previa?.codigoHash ? { codigoHash: previa.codigoHash } : {}),
     creada: previa?.creada ?? ahora,
     actualizada: ahora,
     version: (previa?.version ?? 0) + 1,
@@ -224,7 +216,7 @@ export async function POST(req: Request) {
   }
 
   after(async () => {
-    if (!conBypass) await avisarAlEquipo(entrega, codigoNuevo);
+    if (!conBypass) await avisarAlEquipo(entrega);
     try {
       await revisarConGemini(slug);
     } catch {
@@ -236,6 +228,5 @@ export async function POST(req: Request) {
     ok: true,
     slug,
     version: entrega.version,
-    ...(codigoNuevo ? { codigo: codigoNuevo } : {}),
   });
 }

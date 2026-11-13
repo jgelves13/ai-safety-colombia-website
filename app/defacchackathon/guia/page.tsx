@@ -242,9 +242,9 @@ export default function GuiaDefAcc() {
                 cuenta.
               </Parrafo>
               <Parrafo>
-                Al enviar recibes un <strong>código de edición</strong>.
-                Guárdalo, solo se muestra una vez. Sirve para corregir la
-                entrega antes de las 5:00 p. m. si algo quedó mal.
+                Para corregir la entrega antes de las 5:00 p. m.,{" "}
+                <strong>envíen de nuevo con el mismo nombre de equipo</strong>{" "}
+                y al menos un correo de integrante de la entrega anterior.
               </Parrafo>
               <Parrafo>
                 Nuestro consejo: envíen hacia las 4:00 p. m. y dejen ese margen

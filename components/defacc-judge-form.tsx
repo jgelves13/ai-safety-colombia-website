@@ -93,30 +93,18 @@ export default function DefAccJudgeForm({
   }
 
   return (
-    <div className="flex flex-col gap-6 border-t border-aisc-line pt-6">
-      <label className="text-body-sm flex items-center gap-3 text-aisc-ink">
-        <input
-          type="checkbox"
-          checked={abstiene}
-          onChange={(e) => {
-            setAbstiene(e.target.checked);
-            tocado();
-          }}
-          className="size-4 accent-aisc-forest"
-        />
-        Me abstengo de calificar este proyecto (conflicto de interés u otra razón)
-      </label>
-
+    <div className="flex flex-col gap-4 border-t border-aisc-line pt-4">
       {!abstiene ? (
         <>
           {CLAVES.map((clave, i) => {
             const c = criterios[i];
             if (!c) return null;
             return (
-              <fieldset key={clave} className="flex flex-col gap-3">
-                <legend className="text-body-sm mb-3 font-medium text-aisc-ink">
-                  {c.nombre} <span className="font-normal text-aisc-muted">· {c.descripcion}</span>
-                </legend>
+              <fieldset key={clave} className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <legend className="sr-only">{c.nombre}</legend>
+                <span className="text-body-sm w-28 font-medium text-aisc-ink" title={c.descripcion}>
+                  {c.nombre}
+                </span>
                 <div className="flex flex-wrap gap-2">
                   {[1, 2, 3, 4, 5].map((n) => {
                     const activo = notas[clave] === n;
@@ -141,27 +129,42 @@ export default function DefAccJudgeForm({
                     );
                   })}
                 </div>
-                {c.niveles ? (
-                  <dl className="text-meta grid gap-2 text-aisc-muted md:grid-cols-3 md:gap-4">
-                    <div>
-                      <dt className="font-medium text-aisc-ink">1</dt>
-                      <dd>{c.niveles.n1}</dd>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-aisc-ink">3</dt>
-                      <dd>{c.niveles.n3}</dd>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-aisc-ink">5</dt>
-                      <dd>{c.niveles.n5}</dd>
-                    </div>
-                  </dl>
-                ) : null}
               </fieldset>
             );
           })}
+          <details className="text-meta text-aisc-muted">
+            <summary className="cursor-pointer">¿Qué significa cada nota?</summary>
+            <ul className="mt-2 flex flex-col gap-2">
+              {criterios.slice(0, CLAVES.length).map((c) => (
+                <li key={c.nombre}>
+                  <span className="font-medium text-aisc-ink">{c.nombre}:</span> {c.descripcion}
+                  {c.niveles ? (
+                    <span className="block">
+                      1: {c.niveles.n1} · 3: {c.niveles.n3} · 5: {c.niveles.n5}
+                    </span>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+          </details>
+        </>
+      ) : null}
 
-          <label className="text-body-sm flex items-start gap-3 text-aisc-ink">
+      <div className="text-meta flex flex-wrap gap-x-6 gap-y-2 text-aisc-muted">
+        <label className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            checked={abstiene}
+            onChange={(e) => {
+              setAbstiene(e.target.checked);
+              tocado();
+            }}
+            className="size-4 accent-aisc-forest"
+          />
+          Me abstengo
+        </label>
+        {!abstiene ? (
+          <label className="flex items-center gap-2" title="Habilita ataques más que defensa. Queda fuera del ranking.">
             <input
               type="checkbox"
               checked={noElegible}
@@ -169,22 +172,20 @@ export default function DefAccJudgeForm({
                 setNoElegible(e.target.checked);
                 tocado();
               }}
-              className="mt-1 size-4 accent-aisc-coral"
+              className="size-4 accent-aisc-coral"
             />
-            <span>
-              No elegible: el proyecto principalmente habilita ataques en vez de defender.
-              <span className="block text-aisc-muted">Queda fuera del ranking aunque tenga puntaje.</span>
-            </span>
+            No elegible (ofensivo)
           </label>
-        </>
-      ) : null}
+        ) : null}
+      </div>
 
       <label className="flex flex-col gap-2">
-        <span className="text-body-sm font-medium text-aisc-ink">Comentario para la organización (opcional)</span>
+        <span className="sr-only">Comentario</span>
         <textarea
           value={comentario}
           maxLength={3000}
-          rows={3}
+          rows={2}
+          placeholder="Comentario (opcional)"
           onChange={(e) => {
             setComentario(e.target.value);
             tocado();
@@ -195,9 +196,9 @@ export default function DefAccJudgeForm({
 
       <div className="flex flex-wrap items-center gap-4">
         <button type="button" onClick={guardar} disabled={enviando} className={BOTON_LLENO}>
-          {enviando ? "Guardando…" : "Guardar calificación"}
+          {enviando ? "Guardando…" : "Guardar"}
         </button>
-        {!abstiene && total !== null ? <span className="text-body-sm text-aisc-ink">Total: {total} / 15</span> : null}
+        {!abstiene && total !== null ? <span className="text-body-sm text-aisc-ink">{total} / 15</span> : null}
         {guardado && !cambios ? <span className="text-meta text-aisc-forest">Guardado {hora(guardado)}</span> : null}
         {cambios ? <span className="text-meta text-aisc-muted">Cambios sin guardar</span> : null}
         {error ? <span className="text-meta text-aisc-coral">{error}</span> : null}
