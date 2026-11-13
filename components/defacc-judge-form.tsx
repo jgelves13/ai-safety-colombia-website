@@ -26,6 +26,13 @@ const BOTON_LLENO =
 const INPUT =
   "text-body-sm w-full rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 text-aisc-ink transition-colors placeholder:text-aisc-muted/60 focus:border-aisc-forest focus:outline-2 focus:outline-offset-[1px] focus:outline-aisc-forest/35";
 
+function nivelDe(niveles: { n1: string; n3: string; n5: string }, n: number): string {
+  if (n === 1) return `1: ${niveles.n1}`;
+  if (n === 3) return `3: ${niveles.n3}`;
+  if (n === 5) return `5: ${niveles.n5}`;
+  return n === 2 ? "2: entre 1 y 3." : "4: entre 3 y 5.";
+}
+
 function hora(iso: string): string {
   return new Date(iso).toLocaleString("es-CO", {
     timeZone: "America/Bogota",
@@ -99,35 +106,51 @@ export default function DefAccJudgeForm({
           {CLAVES.map((clave, i) => {
             const c = criterios[i];
             if (!c) return null;
+            const nota = notas[clave];
             return (
-              <fieldset key={clave} className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              <fieldset key={clave} className="flex flex-col gap-1.5 sm:flex-row sm:items-start sm:gap-4">
                 <legend className="sr-only">{c.nombre}</legend>
-                <span className="text-body-sm w-28 font-medium text-aisc-ink" title={c.descripcion}>
+                <span
+                  className="text-body-sm pt-2.5 font-medium text-aisc-ink sm:w-28 sm:shrink-0"
+                  title={c.descripcion}
+                >
                   {c.nombre}
                 </span>
-                <div className="flex flex-wrap gap-2">
-                  {[1, 2, 3, 4, 5].map((n) => {
-                    const activo = notas[clave] === n;
-                    return (
-                      <button
-                        key={n}
-                        type="button"
-                        aria-pressed={activo}
-                        aria-label={`${c.nombre}: ${n}`}
-                        onClick={() => {
-                          setNotas((prev) => ({ ...prev, [clave]: n }));
-                          tocado();
-                        }}
-                        className={`text-body-sm size-11 rounded-full border font-medium transition-colors ${
-                          activo
-                            ? "border-aisc-forest bg-aisc-forest text-aisc-cream"
-                            : "border-aisc-line bg-white text-aisc-ink hover:border-aisc-forest"
-                        }`}
-                      >
-                        {n}
-                      </button>
-                    );
-                  })}
+                <div className="flex w-full max-w-md flex-col gap-1">
+                  <div className="flex overflow-hidden rounded-full border border-aisc-forest/40 bg-white">
+                    {[1, 2, 3, 4, 5].map((n) => {
+                      const lleno = nota !== null && n <= nota;
+                      return (
+                        <button
+                          key={n}
+                          type="button"
+                          aria-pressed={nota === n}
+                          aria-label={`${c.nombre}: ${n} de 5`}
+                          onClick={() => {
+                            setNotas((prev) => ({ ...prev, [clave]: n }));
+                            tocado();
+                          }}
+                          className={`text-body-sm min-h-11 flex-1 font-medium transition-colors ${
+                            n > 1 ? "border-l border-aisc-forest/20" : ""
+                          } ${
+                            lleno
+                              ? "bg-aisc-forest text-aisc-cream"
+                              : "text-aisc-ink hover:bg-aisc-forest/10"
+                          } ${nota === n ? "font-semibold" : ""}`}
+                        >
+                          {n}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <div className="text-meta flex justify-between px-1 text-aisc-muted" aria-hidden>
+                    <span>Débil</span>
+                    <span>Sólido</span>
+                    <span>Excelente</span>
+                  </div>
+                  {nota !== null && c.niveles ? (
+                    <p className="text-meta text-aisc-ink">{nivelDe(c.niveles, nota)}</p>
+                  ) : null}
                 </div>
               </fieldset>
             );

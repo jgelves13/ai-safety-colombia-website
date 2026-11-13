@@ -93,6 +93,17 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
                     <summary className="cursor-pointer font-medium text-aisc-forest">Resumen</summary>
                     <p className="mt-2 whitespace-pre-line text-aisc-ink">{e.resumen}</p>
                   </details>
+                  {revision?.resumen ? (
+                    <details className="w-full">
+                      <summary className="cursor-pointer font-medium text-aisc-forest">
+                        Resumen de la IA <span className="text-meta font-normal text-aisc-muted">(orientativo)</span>
+                      </summary>
+                      <p className="mt-2 text-aisc-ink">{revision.resumen}</p>
+                      <p className="text-meta mt-1 text-aisc-muted">
+                        Escrito por un modelo a partir de lo que envió el equipo. Puede equivocarse y no afecta el puntaje.
+                      </p>
+                    </details>
+                  ) : null}
                   <a
                     href={e.enlace}
                     target="_blank"
