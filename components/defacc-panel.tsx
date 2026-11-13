@@ -45,15 +45,18 @@ export function BanderasIA({
     motivoFueraDeTema: string;
     inyeccionPrompt: boolean;
     evidenciaInyeccion: string;
+    infoPeligrosa?: boolean;
+    evidenciaInfoPeligrosa?: string;
     hallazgosRegex: string[];
     resumen: string;
+    modelo?: string;
     error?: string;
   } | null;
 }) {
   if (!revision) {
     return <p className="text-meta text-aisc-muted">Revisión automática pendiente.</p>;
   }
-  const limpia = !revision.fueraDeTema && !revision.inyeccionPrompt;
+  const limpia = !revision.fueraDeTema && !revision.inyeccionPrompt && !revision.infoPeligrosa;
   return (
     <div className="flex flex-col gap-2">
       <div className="flex flex-wrap gap-2">
@@ -66,9 +69,13 @@ export function BanderasIA({
         {revision.inyeccionPrompt ? (
           <span className="text-meta rounded-full bg-aisc-coral px-3 py-1 text-aisc-cream">Posible inyección de prompt</span>
         ) : null}
-        {revision.error ? (
-          <span className="text-meta rounded-full border border-aisc-muted px-3 py-1 text-aisc-muted">Gemini falló, solo regex</span>
+        {revision.infoPeligrosa ? (
+          <span className="text-meta rounded-full bg-aisc-coral px-3 py-1 text-aisc-cream">Posible información peligrosa</span>
         ) : null}
+        {revision.error ? (
+          <span className="text-meta rounded-full border border-aisc-muted px-3 py-1 text-aisc-muted">Modelo falló, solo regex</span>
+        ) : null}
+        {revision.modelo ? <span className="text-meta px-1 py-1 text-aisc-muted">Revisó: {revision.modelo}</span> : null}
       </div>
       {revision.fueraDeTema && revision.motivoFueraDeTema ? (
         <p className="text-meta text-aisc-muted">Motivo: {revision.motivoFueraDeTema}</p>
@@ -77,6 +84,9 @@ export function BanderasIA({
         <p className="text-meta text-aisc-muted">
           Evidencia: {revision.evidenciaInyeccion || revision.hallazgosRegex.join(", ")}
         </p>
+      ) : null}
+      {revision.infoPeligrosa && revision.evidenciaInfoPeligrosa ? (
+        <p className="text-meta text-aisc-muted">Info peligrosa: {revision.evidenciaInfoPeligrosa}</p>
       ) : null}
       <p className="text-meta text-aisc-muted">
         Esto es solo una alerta automática. No afecta el puntaje; la decisión es del jurado.

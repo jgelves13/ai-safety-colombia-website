@@ -4,7 +4,7 @@ import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { TEXTOS_HACKATHON } from "@/app/defacchackathon/datos";
-import { APERTURA_ENTREGAS_ISO, entregasAbiertas, iguales } from "@/lib/defacc-entregas";
+import { APERTURA_ENTREGAS_ISO, entregasAbiertas, esTokenPrueba, iguales } from "@/lib/defacc-entregas";
 import type { Idioma } from "@/lib/idiomas";
 
 const CABECERA: Record<Idioma, { kicker: string; titulo: string; texto: string }> = {
@@ -29,8 +29,10 @@ const CABECERA: Record<Idioma, { kicker: string; titulo: string; texto: string }
 };
 
 export function bypassValido(dado: string | undefined): string | undefined {
+  if (!dado) return undefined;
+  if (esTokenPrueba(dado)) return dado;
   const esperado = process.env.APPLY_BYPASS_TOKEN;
-  if (!esperado || !dado) return undefined;
+  if (!esperado) return undefined;
   return iguales(dado, esperado) ? dado : undefined;
 }
 
@@ -59,6 +61,11 @@ export function PaginaEntrega({ idioma, bypass }: { idioma: Idioma; bypass?: str
       </section>
       <section className="bg-aisc-sand">
         <div className="mx-auto w-full max-w-[900px] px-6 pt-12 pb-16 md:px-8 md:pt-16 md:pb-20">
+          {bypass && esTokenPrueba(bypass) ? (
+            <p className="mb-6 rounded-lg border border-aisc-forest/40 bg-aisc-cream px-4 py-3 text-body text-aisc-ink">
+              Modo prueba: esta entrega queda marcada como prueba, no envía correos y solo la ve el jurado de prueba.
+            </p>
+          ) : null}
           <DefAccSubmitForm idioma={idioma} estado={estado} tracks={tracks} bypass={bypass} />
         </div>
       </section>

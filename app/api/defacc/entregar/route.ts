@@ -12,6 +12,7 @@ import {
   PDF_MAX_BYTES,
   TRACKS_VALIDOS,
   entregasAbiertas,
+  esTokenPrueba,
   hashCodigo,
   iguales,
   ipDeLaPeticion,
@@ -113,7 +114,8 @@ export async function POST(req: Request) {
 
   const bypassEsperado = process.env.APPLY_BYPASS_TOKEN;
   const bypassDado = texto(form.get("bypass")) || req.headers.get("x-bypass") || "";
-  const conBypass = !!bypassEsperado && !!bypassDado && iguales(bypassDado, bypassEsperado);
+  const esPrueba = esTokenPrueba(bypassDado);
+  const conBypass = esPrueba || (!!bypassEsperado && !!bypassDado && iguales(bypassDado, bypassEsperado));
 
   if (!conBypass && !entregasAbiertas()) {
     return mal("cerrado", "Las entregas no están abiertas en este momento.", 403);
@@ -126,7 +128,10 @@ export async function POST(req: Request) {
   const enlace = texto(form.get("enlace"), 500);
   const codigo = texto(form.get("codigo"), 20);
 
-  const slug = slugDe(equipo);
+  /* En modo prueba el slug lleva el prefijo prueba- para que nunca choque
+     con un equipo real y se pueda borrar todo junto. */
+  const base = slugDe(equipo);
+  const slug = base && esPrueba ? `prueba-${base}`.slice(0, 60) : base;
   if (!equipo || !slug) return mal("campo", "Escriban el nombre del equipo.", 400, "equipo");
   if (!titulo) return mal("campo", "Escriban el título del proyecto.", 400, "titulo");
   if (!(TRACKS_VALIDOS as readonly string[]).includes(track)) return mal("campo", "Elijan un track.", 400, "track");
@@ -204,6 +209,7 @@ export async function POST(req: Request) {
     creada: previa?.creada ?? ahora,
     actualizada: ahora,
     version: (previa?.version ?? 0) + 1,
+    ...(esPrueba ? { prueba: true } : {}),
   };
 
   try {

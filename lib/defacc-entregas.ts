@@ -56,6 +56,8 @@ export type Entrega = {
   creada: string;
   actualizada: string;
   version: number;
+  /** Entrega del modo prueba: no la ven los jurados reales ni el ranking normal. */
+  prueba?: boolean;
 };
 
 export type Puntaje = {
@@ -73,6 +75,8 @@ export type RevisionIA = {
   motivoFueraDeTema: string;
   inyeccionPrompt: boolean;
   evidenciaInyeccion: string;
+  infoPeligrosa?: boolean;
+  evidenciaInfoPeligrosa?: string;
   hallazgosRegex: string[];
   resumen: string;
   modelo: string;
@@ -270,9 +274,28 @@ export function juezDelToken(token: string): Juez | null {
   if (i <= 0) return null;
   const id = token.slice(0, i);
   const f = token.slice(i + 1);
-  const juez = jueces().find((j) => j.id === id);
+  const juez = [...jueces(), JUEZ_PRUEBA].find((j) => j.id === id);
   if (!juez) return null;
   return iguales(f, firma(`jurado:${id}`)) ? juez : null;
+}
+
+/* ---------- modo prueba ----------
+   Un token firmado abre el formulario fuera de la ventana y marca la entrega
+   como prueba (slug "prueba-…", sin correos). Solo el jurado de prueba la ve
+   y solo aparece en /defacchackathon/resultados?prueba=1. */
+
+export const JUEZ_PRUEBA: Juez = {
+  id: "prueba",
+  nombre: "Jurado de prueba",
+  afiliacion: "AI Safety Colombia",
+};
+
+export function tokenPrueba(): string {
+  return firma("defacc-prueba");
+}
+
+export function esTokenPrueba(t: string | undefined | null): boolean {
+  return !!t && iguales(t, tokenPrueba());
 }
 
 export async function leerPuntaje(juezId: string, slug: string): Promise<Puntaje | null> {

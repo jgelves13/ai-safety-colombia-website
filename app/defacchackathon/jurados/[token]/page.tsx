@@ -5,6 +5,7 @@ import DefAccJudgeForm from "@/components/defacc-judge-form";
 import { TEXTOS_HACKATHON } from "@/app/defacchackathon/datos";
 import {
   CIERRE_ENTREGAS_ISO,
+  JUEZ_PRUEBA,
   juezDelToken,
   leerJson,
   puntajesDelJuez,
@@ -34,7 +35,9 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
     niveles: c.niveles,
   }));
 
-  const [entregas, puntajes] = await Promise.all([todasLasEntregas(), puntajesDelJuez(juez.id)]);
+  const [todas, puntajes] = await Promise.all([todasLasEntregas(), puntajesDelJuez(juez.id)]);
+  const esPrueba = juez.id === JUEZ_PRUEBA.id;
+  const entregas = todas.filter((e) => !!e.prueba === esPrueba);
   const filas = await Promise.all(
     entregas.map(async (e) => ({
       e,

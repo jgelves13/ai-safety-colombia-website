@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import {
+  JUEZ_PRUEBA,
   ipDeLaPeticion,
   juezDelToken,
   leerEntrega,
@@ -39,6 +40,10 @@ export async function POST(req: Request) {
   const slug = String(cuerpo.slug ?? "");
   const entrega = await leerEntrega(slug);
   if (!entrega) return fallo(404, "entrega", "Esa entrega no existe.");
+  /* El jurado de prueba solo califica entregas de prueba, y viceversa. */
+  if (!!entrega.prueba !== (juez.id === JUEZ_PRUEBA.id)) {
+    return fallo(403, "entrega", "Esa entrega no está disponible para este enlace.");
+  }
 
   const abstiene = cuerpo.abstiene === true;
   const noElegible = cuerpo.noElegible === true;

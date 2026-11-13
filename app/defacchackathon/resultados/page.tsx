@@ -4,8 +4,10 @@ import { BanderasIA, MarcoPanel } from "@/components/defacc-panel";
 import { CopiarEnlace, LoginAdmin, RevisarDeNuevo, SalirAdmin } from "@/components/defacc-admin-acciones";
 import {
   COOKIE_ADMIN,
+  JUEZ_PRUEBA,
   cookieAdminValida,
   jueces,
+  tokenPrueba,
   leerJson,
   puntajesDelJuez,
   todasLasEntregas,
@@ -46,7 +48,8 @@ function fmt(n: number | null, d = 2): string {
   return n === null ? "–" : n.toFixed(d);
 }
 
-export default async function PaginaResultados() {
+export default async function PaginaResultados({ searchParams }: { searchParams: Promise<{ prueba?: string }> }) {
+  const prueba = (await searchParams).prueba === "1";
   const galleta = (await cookies()).get(COOKIE_ADMIN)?.value;
 
   if (!cookieAdminValida(galleta)) {
@@ -61,11 +64,15 @@ export default async function PaginaResultados() {
     );
   }
 
-  const listaJueces = jueces();
-  const [entregas, porJuez] = await Promise.all([
+  /* Con ?prueba=1 la página muestra solo entregas de prueba y el jurado de
+     prueba, para ensayar el flujo completo sin tocar datos reales. */
+  const listaJueces = prueba ? [JUEZ_PRUEBA] : jueces();
+  const [todas, porJuez] = await Promise.all([
     todasLasEntregas(),
     Promise.all(listaJueces.map(async (j) => ({ j, puntajes: await puntajesDelJuez(j.id) }))),
   ]);
+  const entregas = todas.filter((e) => !!e.prueba === prueba);
+  const rutaEntregaPrueba = `/defacchackathon/entregar?bypass=${tokenPrueba()}`;
   const revisiones = await Promise.all(entregas.map((e) => leerJson<RevisionIA>(`revision-ia/${e.slug}.json`)));
 
   const filas: Fila[] = entregas.map((e, i) => {
@@ -101,8 +108,8 @@ export default async function PaginaResultados() {
 
   return (
     <MarcoPanel
-      kicker="DefAcc Hackathon · Organización"
-      titulo="Resultados"
+      kicker={prueba ? "DefAcc Hackathon · Modo prueba" : "DefAcc Hackathon · Organización"}
+      titulo={prueba ? "Resultados de prueba" : "Resultados"}
       texto={
         <p>
           Promedio por criterio entre los jurados que calificaron (las abstenciones no cuentan). Total sobre 15; el empate se
@@ -113,9 +120,36 @@ export default async function PaginaResultados() {
       <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
         <h2 className="text-display-2 text-aisc-ink">
           {entregas.length} {entregas.length === 1 ? "entrega" : "entregas"}
+          {prueba ? " de prueba" : ""}
         </h2>
-        <SalirAdmin />
+        <span className="flex flex-wrap items-center gap-4">
+          <a
+            href={prueba ? "/defacchackathon/resultados" : "/defacchackathon/resultados?prueba=1"}
+            className="text-meta font-medium text-aisc-forest underline underline-offset-4"
+          >
+            {prueba ? "Volver a resultados reales" : "Modo prueba"}
+          </a>
+          <SalirAdmin />
+        </span>
       </div>
+
+      {prueba ? (
+        <section className="mb-14 flex flex-col gap-3 rounded-lg border border-aisc-forest/40 bg-aisc-cream p-6">
+          <h2 className="text-body-lg font-medium text-aisc-ink">Ensayar el flujo</h2>
+          <p className="text-body-sm text-aisc-muted">
+            1. Sube una entrega con este enlace (funciona aunque las entregas estén cerradas, no envía correos y el nombre
+            del equipo queda con el prefijo prueba-). 2. Califícala con el enlace del jurado de prueba de abajo. 3. Vuelve
+            aquí para ver el ranking y las banderas de la revisión automática. Nada de esto lo ven los jurados reales.
+          </p>
+          <span className="flex flex-wrap items-center gap-3">
+            <span className="text-body-sm font-medium text-aisc-ink">Formulario de entrega de prueba</span>
+            <a href={rutaEntregaPrueba} className="text-meta font-medium text-aisc-forest underline underline-offset-4">
+              Abrir
+            </a>
+            <CopiarEnlace ruta={rutaEntregaPrueba} />
+          </span>
+        </section>
+      ) : null}
 
       {ranking.length ? (
         <div className="mb-14 overflow-x-auto rounded-lg border border-aisc-ink bg-aisc-cream">

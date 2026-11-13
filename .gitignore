@@ -53,3 +53,6 @@ scripts/__pycache__/
 scripts/variantes/
 scripts/*.npz
 borradores/
+
+# Datos de equipos para la revisión con Claude Code
+.defacc-revision/
