@@ -17,6 +17,7 @@ import {
   type RevisionIA,
 } from "@/lib/defacc-entregas";
 import { NOMBRES_TRACKS } from "@/lib/defacc-revision";
+import { ordenDelSorteo, ordenPublicado, todosLosRegistros } from "@/lib/defacc-registro";
 
 export const metadata: Metadata = {
   title: "Resultados · Defensive Acceleration Hackathon",
@@ -76,6 +77,8 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
   const rutaEntregaPrueba = `/defacchackathon/entregar?bypass=${tokenPrueba()}`;
   const rutaJuezPrueba = `/defacchackathon/jurados/${tokenJuez(JUEZ_PRUEBA.id)}`;
   const revisiones = await Promise.all(entregas.map((e) => leerJson<RevisionIA>(`revision-ia/${e.slug}.json`)));
+  const registros = (await todosLosRegistros()).filter((r) => !!r.prueba === prueba);
+  const orden = prueba ? registros.filter((r) => !r.duplicadoDe) : ordenDelSorteo(registros);
 
   const filas: Fila[] = entregas.map((e, i) => {
     const votos = porJuez
@@ -109,6 +112,8 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
   const ranking = vivas.filter((f) => !f.excluida && f.total !== null).sort(ordenar);
   const sinNotas = vivas.filter((f) => f.total === null);
   const excluidas = vivas.filter((f) => f.excluida).sort(ordenar);
+  /* Cuántos jurados calificaron cada entrega, sin decir quiénes. Las que tienen menos van primero. */
+  const cobertura = [...vivas].sort((a, b) => a.calificaron - b.calificaron || a.e.titulo.localeCompare(b.e.titulo));
 
   return (
     <MarcoPanel
@@ -266,6 +271,64 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
           </ul>
         </section>
       ) : null}
+
+      {cobertura.length ? (
+        <section className="mb-14 flex flex-col gap-3">
+          <h2 className="text-body-lg font-medium text-aisc-ink">Calificaciones por entrega</h2>
+          <p className="text-body-sm text-aisc-muted">
+            Cuántos jurados calificaron cada entrega (sin abstenciones). Las que tienen menos aparecen primero.
+          </p>
+          <ul className="text-body-sm flex flex-col gap-1 text-aisc-ink">
+            {cobertura.map((f) => (
+              <li key={f.e.slug}>
+                <a href={`#${f.e.slug}`} className="underline underline-offset-4">
+                  {f.e.titulo}
+                </a>{" "}
+                <span className={f.calificaron < 3 ? "font-medium text-aisc-coral" : "text-aisc-muted"}>
+                  · {f.calificaron} de {listaJueces.length}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      <section className="mb-14 flex flex-col gap-3">
+        <h2 className="text-body-lg font-medium text-aisc-ink">
+          Equipos registrados ({registros.filter((r) => !r.duplicadoDe).length})
+        </h2>
+        <p className="text-body-sm text-aisc-muted">
+          {prueba
+            ? "Registros de prueba, en orden alfabético."
+            : ordenPublicado()
+              ? "Orden de los pitches según el sorteo. Ya está publicado en la guía."
+              : "Orden de los pitches según el sorteo. Solo lo ve la organización hasta las 2:00 p. m., cuando se publica en la guía."}
+        </p>
+        {orden.length ? (
+          <ol className="text-body-sm flex list-decimal flex-col gap-1 pl-6 text-aisc-ink">
+            {orden.map((r) => (
+              <li key={r.slug}>
+                <span className="font-medium">{r.equipo}</span>
+                <span className="text-aisc-muted">
+                  {" "}
+                  · {NOMBRES_TRACKS[r.track] ?? r.track} · {r.integrantes.map((p) => p.nombre).join(", ")}
+                </span>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p className="text-body-sm text-aisc-muted">Todavía no hay equipos registrados.</p>
+        )}
+        {registros.some((r) => r.duplicadoDe) ? (
+          <p className="text-meta text-aisc-muted">
+            Duplicados (fuera del sorteo):{" "}
+            {registros
+              .filter((r) => r.duplicadoDe)
+              .map((r) => r.equipo)
+              .join(", ")}
+          </p>
+        ) : null}
+      </section>
 
       <section className="mb-14 flex flex-col gap-4">
         <h2 className="text-body-lg font-medium text-aisc-ink">Jurados</h2>

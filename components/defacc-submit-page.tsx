@@ -4,7 +4,13 @@ import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { TEXTOS_HACKATHON } from "@/app/defacchackathon/datos";
-import { APERTURA_ENTREGAS_ISO, entregasAbiertas, esTokenPrueba, iguales } from "@/lib/defacc-entregas";
+import {
+  APERTURA_ENTREGAS_ISO,
+  entregasAbiertas,
+  esTokenPrueba,
+  iguales,
+  type Integrante,
+} from "@/lib/defacc-entregas";
 import type { Idioma } from "@/lib/idiomas";
 
 const CABECERA: Record<Idioma, { kicker: string; titulo: string; texto: string }> = {
@@ -36,7 +42,15 @@ export function bypassValido(dado: string | undefined): string | undefined {
   return iguales(dado, esperado) ? dado : undefined;
 }
 
-export function PaginaEntrega({ idioma, bypass }: { idioma: Idioma; bypass?: string }) {
+export function PaginaEntrega({
+  idioma,
+  bypass,
+  inicial,
+}: {
+  idioma: Idioma;
+  bypass?: string;
+  inicial?: { equipo: string; track: string; integrantes: Integrante[] };
+}) {
   const c = CABECERA[idioma];
   const ahora = Date.now();
   const noIniciado = ahora < new Date(APERTURA_ENTREGAS_ISO).getTime();
@@ -66,7 +80,7 @@ export function PaginaEntrega({ idioma, bypass }: { idioma: Idioma; bypass?: str
               Modo prueba: esta entrega queda marcada como prueba, no envía correos y solo la ve el jurado de prueba.
             </p>
           ) : null}
-          <DefAccSubmitForm idioma={idioma} estado={estado} tracks={tracks} bypass={bypass} />
+          <DefAccSubmitForm idioma={idioma} estado={estado} tracks={tracks} bypass={bypass} inicial={inicial} />
         </div>
       </section>
       <SiteFooter />

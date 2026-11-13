@@ -158,6 +158,13 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
         <h2 className="text-display-2 text-aisc-ink">
           {entregas.length === 0 ? "Aún no hay entregas" : `${hechas} de ${entregas.length} calificadas`}
         </h2>
+        {entregas.length > 0 && (
+          <p className="text-body text-aisc-muted">
+            {hechas >= entregas.length
+              ? "Ya calificaste todas. Gracias."
+              : `Te faltan ${entregas.length - hechas}. Solo tú ves este conteo.`}
+          </p>
+        )}
       </div>
 
       {entregas.length === 0 ? (

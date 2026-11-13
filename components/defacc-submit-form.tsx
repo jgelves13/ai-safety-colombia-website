@@ -180,22 +180,25 @@ export default function DefAccSubmitForm({
   estado,
   tracks,
   bypass,
+  inicial,
 }: {
   idioma?: Idioma;
   estado: Estado;
   tracks: Track[];
   bypass?: string;
+  inicial?: { equipo: string; track: string; integrantes: Integrante[] };
 }) {
   const t = TEXTOS[idioma];
-  const [equipo, setEquipo] = useState("");
+  const [equipo, setEquipo] = useState(inicial?.equipo ?? "");
   const [titulo, setTitulo] = useState("");
-  const [track, setTrack] = useState("");
+  const [track, setTrack] = useState(inicial?.track ?? "");
   const [resumen, setResumen] = useState("");
   const [enlace, setEnlace] = useState("");
-  const [integrantes, setIntegrantes] = useState<Integrante[]>([
-    { nombre: "", correo: "" },
-    { nombre: "", correo: "" },
-  ]);
+  const [integrantes, setIntegrantes] = useState<Integrante[]>(() => {
+    const filas = (inicial?.integrantes ?? []).map((i) => ({ nombre: i.nombre, correo: i.correo }));
+    while (filas.length < 2) filas.push({ nombre: "", correo: "" });
+    return filas;
+  });
   const [pdf, setPdf] = useState<File | null>(null);
   const [enviando, setEnviando] = useState(false);
   const [error, setError] = useState<{ mensaje: string; campo?: string } | null>(null);

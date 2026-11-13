@@ -350,3 +350,14 @@ export function ipDeLaPeticion(req: Request): string {
   if (fwd) return fwd.split(",")[0].trim();
   return req.headers.get("x-real-ip") ?? "desconocida";
 }
+
+/* ---------- registro y sorteo ---------- */
+
+export function firmaRegistro(slug: string): string {
+  return firma(`registro:${slug}`);
+}
+
+/* Clave secreta del sorteo: nadie puede predecir el orden sin el secreto. */
+export function claveSorteo(slug: string): string {
+  return firma(`orden:${slug}`, 43);
+}

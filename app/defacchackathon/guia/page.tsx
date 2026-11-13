@@ -7,6 +7,7 @@ import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { NOMBRES_TRACKS } from "@/lib/defacc-revision";
+import { ordenDelSorteo, ordenPublicado, todosLosRegistros, type Registro } from "@/lib/defacc-registro";
 import {
   COL,
   CORREO,
@@ -26,7 +27,10 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+export const dynamic = "force-dynamic";
+
 const ENTREGAR = "/defacchackathon/entregar";
+const REGISTRO = "/defacchackathon/registro";
 
 /* Lista de quienes confirmaron y aceptaron salir en ella. Mismo régimen que
    esta guía: noindex y enlazada solo desde aquí. */
@@ -38,8 +42,9 @@ const CLAVE: Array<[string, React.ReactNode]> = [
   ["Lugar", "Universidad de los Andes, Bogotá"],
   ["Salón", "ML 607 todo el día. Pitches y cierre en el Auditorio ML C, de 5:00 a 8:00 p. m."],
   ["Equipos", "De 2 a 5 personas"],
+  ["Registro del equipo", "Antes de las 11:00 a. m. del sábado"],
   ["Entrega", "5:00 p. m. en punto, por la página de entregas"],
-  ["Pitch", "3 minutos por equipo, desde las 5:10 p. m."],
+  ["Pitch", "3 minutos por equipo, desde las 5:10 p. m., en el orden del sorteo"],
   ["Premios", "COP 1.000.000, 500.000 y 500.000 a los tres primeros puestos"],
   ["Comida", "Snacks para el desayuno y almuerzo incluidos"],
   ["Organizan", "IEEE Computer Society Uniandes y AI Safety Colombia"],
@@ -49,7 +54,9 @@ const AGENDA: Array<[string, React.ReactNode]> = [
   ["8:00 a. m.", "Registro, ingreso al campus y snacks para el desayuno."],
   ["8:30 a. m.", "Apertura, presentación del reto y formación de equipos."],
   ["9:00 a. m.", "Empieza el sprint. Tienen 8 horas de trabajo."],
+  ["11:00 a. m.", "Cierra el registro de equipos: nombre, integrantes y frente. Toma un minuto."],
   ["12:30 p. m.", "Almuerzo, aproximadamente."],
+  ["2:00 p. m.", "Publicamos el orden de los pitches."],
   ["5:00 p. m.", "Cierre de entregas. En punto."],
   ["5:10 p. m.", "Pitches de todos los equipos en el Auditorio ML C, 3 minutos cada uno."],
   ["6:40 p. m.", "Deliberación del jurado."],
@@ -80,14 +87,23 @@ const INDICE: ItemIndice[] = [
   { id: "equipos", label: "Equipos" },
   { id: "oracle", label: "Oracle Academy", nivel: 3 },
   { id: "participantes", label: "Quiénes van", nivel: 3 },
+  { id: "registro", label: "Registro del equipo", nivel: 3 },
   { id: "frentes", label: "Frentes temáticos" },
   { id: "entrega", label: "Cómo entregar" },
   { id: "calificacion", label: "Cómo se califica" },
+  { id: "orden", label: "Orden de los pitches", nivel: 3 },
   { id: "reglas", label: "Reglas de uso responsable" },
   { id: "contacto", label: "Contacto y mentores" },
 ];
 
-export default function GuiaDefAcc() {
+export default async function GuiaDefAcc() {
+  let orden: Registro[] | null = null;
+  try {
+    if (ordenPublicado()) orden = ordenDelSorteo(await todosLosRegistros());
+  } catch {
+    orden = null;
+  }
+
   return (
     <main className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
@@ -250,6 +266,22 @@ export default function GuiaDefAcc() {
                 que más gente confirma.
               </Parrafo>
 
+              <H3 id="registro">Registro del equipo</H3>
+              <Parrafo>
+                Cuando tengan equipo, registren el nombre, los integrantes y el
+                frente en{" "}
+                <a className={ENLACE} href={REGISTRO}>
+                  aisafetycolombia.org/defacchackathon/registro
+                </a>
+                . Toma un minuto y basta con que lo haga una persona por equipo.
+              </Parrafo>
+              <Parrafo>
+                <strong>El registro cierra a las 11:00 a. m. en punto.</strong>{" "}
+                Con esa lista sorteamos el orden de los pitches y lo publicamos a
+                las 2:00 p. m. Al registrarse les llega un correo con un enlace
+                a la página de entregas, con sus datos ya puestos.
+              </Parrafo>
+
               <H2 id="frentes">Frentes temáticos</H2>
               <Parrafo>
                 Cada equipo escoge uno de estos seis frentes:
@@ -304,8 +336,13 @@ export default function GuiaDefAcc() {
               <H2 id="calificacion">Cómo se califica</H2>
               <Parrafo>
                 Desde las 5:10 p. m. cada equipo presenta un pitch de{" "}
-                <strong>3 minutos, sin preguntas</strong>. Los jurados leen la
-                ficha y califican mientras presentan.
+                <strong>3 minutos</strong>, en el orden del sorteo. Después, el
+                jurado puede hacer unas pocas preguntas cortas.
+              </Parrafo>
+              <Parrafo>
+                <strong>No tienen que preparar diapositivas.</strong> Presentan
+                su ficha técnica de 2 páginas, que proyectamos en pantalla. Los
+                jurados la leen y califican mientras presentan.
               </Parrafo>
               <Parrafo>
                 Hay tres criterios. Cada uno va de 1 a 5, y los tres pesan lo
@@ -319,6 +356,21 @@ export default function GuiaDefAcc() {
                 En empate gana el proyecto con más puntaje en Impacto. Los tres
                 primeros puestos se anuncian a las 7:15 p. m.
               </Parrafo>
+
+              <H3 id="orden">Orden de los pitches</H3>
+              {orden && orden.length > 0 ? (
+                <ol className={`${COL} ${P} list-decimal pl-6`}>
+                  {orden.map((r) => (
+                    <li key={r.slug} className="mt-1">
+                      <strong>{r.equipo}</strong> · {NOMBRES_TRACKS[r.track] ?? r.track}
+                    </li>
+                  ))}
+                </ol>
+              ) : (
+                <Parrafo>
+                  Lo publicamos a las 2:00 p. m., aquí y en el grupo de WhatsApp.
+                </Parrafo>
+              )}
 
               <H2 id="reglas">Reglas de uso responsable</H2>
               <Lista
