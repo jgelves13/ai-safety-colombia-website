@@ -161,7 +161,7 @@ export default function DefAccJudgeForm({
             }}
             className="size-4 accent-aisc-forest"
           />
-          Me abstengo
+          Me abstengo (conflicto de interés o tema fuera de mi área)
         </label>
         {!abstiene ? (
           <label className="flex items-center gap-2" title="Habilita ataques más que defensa. Queda fuera del ranking.">

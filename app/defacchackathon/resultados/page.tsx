@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { BanderasIA, MarcoPanel } from "@/components/defacc-panel";
-import { CopiarEnlace, LoginAdmin, RevisarDeNuevo, SalirAdmin } from "@/components/defacc-admin-acciones";
+import { CopiarEnlace, DescartarEntrega, LoginAdmin, RevisarDeNuevo, SalirAdmin } from "@/components/defacc-admin-acciones";
 import {
   COOKIE_ADMIN,
   JUEZ_PRUEBA,
@@ -72,7 +72,9 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
     Promise.all(listaJueces.map(async (j) => ({ j, puntajes: await puntajesDelJuez(j.id) }))),
   ]);
   const entregas = todas.filter((e) => !!e.prueba === prueba);
+  const activas = entregas.filter((e) => !e.descartada);
   const rutaEntregaPrueba = `/defacchackathon/entregar?bypass=${tokenPrueba()}`;
+  const rutaJuezPrueba = `/defacchackathon/jurados/${tokenJuez(JUEZ_PRUEBA.id)}`;
   const revisiones = await Promise.all(entregas.map((e) => leerJson<RevisionIA>(`revision-ia/${e.slug}.json`)));
 
   const filas: Fila[] = entregas.map((e, i) => {
@@ -102,9 +104,11 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
 
   const ordenar = (a: Fila, b: Fila) =>
     (b.total ?? -1) - (a.total ?? -1) || (b.impacto ?? -1) - (a.impacto ?? -1) || a.e.titulo.localeCompare(b.e.titulo);
-  const ranking = filas.filter((f) => !f.excluida && f.total !== null).sort(ordenar);
-  const sinNotas = filas.filter((f) => f.total === null);
-  const excluidas = filas.filter((f) => f.excluida).sort(ordenar);
+  const vivas = filas.filter((f) => !f.e.descartada);
+  const descartadas = filas.filter((f) => f.e.descartada);
+  const ranking = vivas.filter((f) => !f.excluida && f.total !== null).sort(ordenar);
+  const sinNotas = vivas.filter((f) => f.total === null);
+  const excluidas = vivas.filter((f) => f.excluida).sort(ordenar);
 
   return (
     <MarcoPanel
@@ -119,8 +123,9 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
     >
       <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
         <h2 className="text-display-2 text-aisc-ink">
-          {entregas.length} {entregas.length === 1 ? "entrega" : "entregas"}
+          {activas.length} {activas.length === 1 ? "entrega" : "entregas"}
           {prueba ? " de prueba" : ""}
+          {descartadas.length ? <span className="text-aisc-muted"> · {descartadas.length} descartadas</span> : null}
         </h2>
         <span className="flex flex-wrap items-center gap-4">
           <a
@@ -136,18 +141,24 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
       {prueba ? (
         <section className="mb-14 flex flex-col gap-3 rounded-lg border border-aisc-forest/40 bg-aisc-cream p-6">
           <h2 className="text-body-lg font-medium text-aisc-ink">Ensayar el flujo</h2>
-          <p className="text-body-sm text-aisc-muted">
-            1. Sube una entrega con este enlace (funciona aunque las entregas estén cerradas, no envía correos y el nombre
-            del equipo queda con el prefijo prueba-). 2. Califícala con el enlace del jurado de prueba de abajo. 3. Vuelve
-            aquí para ver el ranking y las banderas de la revisión automática. Nada de esto lo ven los jurados reales.
-          </p>
-          <span className="flex flex-wrap items-center gap-3">
-            <span className="text-body-sm font-medium text-aisc-ink">Formulario de entrega de prueba</span>
-            <a href={rutaEntregaPrueba} className="text-meta font-medium text-aisc-forest underline underline-offset-4">
-              Abrir
-            </a>
-            <CopiarEnlace ruta={rutaEntregaPrueba} />
-          </span>
+          <ol className="text-body-sm flex flex-col gap-3 text-aisc-ink">
+            <li className="flex flex-wrap items-center gap-3">
+              <span className="font-medium">1. Sube una entrega de prueba</span>
+              <a href={rutaEntregaPrueba} className="text-meta font-medium text-aisc-forest underline underline-offset-4">
+                Abrir
+              </a>
+              <CopiarEnlace ruta={rutaEntregaPrueba} />
+            </li>
+            <li className="flex flex-wrap items-center gap-3">
+              <span className="font-medium">2. Califícala como jurado de prueba</span>
+              <a href={rutaJuezPrueba} className="text-meta font-medium text-aisc-forest underline underline-offset-4">
+                Abrir
+              </a>
+              <CopiarEnlace ruta={rutaJuezPrueba} />
+            </li>
+            <li className="font-medium">3. Vuelve aquí para ver el ranking y las banderas.</li>
+          </ol>
+          <p className="text-meta text-aisc-muted">No envía correos; nada de esto lo ven los jurados reales.</p>
         </section>
       ) : null}
 
@@ -213,6 +224,23 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
         </section>
       ) : null}
 
+      {descartadas.length ? (
+        <section className="mb-14 flex flex-col gap-3">
+          <h2 className="text-body-lg font-medium text-aisc-ink">Descartadas</h2>
+          <ul className="text-body-sm flex flex-col gap-1 text-aisc-ink">
+            {descartadas.map((f) => (
+              <li key={f.e.slug}>
+                <a href={`#${f.e.slug}`} className="underline underline-offset-4">
+                  {f.e.titulo}
+                </a>
+                {f.e.duplicadoDe ? " · duplicado" : ""}
+                {f.e.tardia ? " · tardía" : ""}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
       <section className="mb-14 flex flex-col gap-4">
         <h2 className="text-body-lg font-medium text-aisc-ink">Jurados</h2>
         <p className="text-body-sm text-aisc-muted">
@@ -220,7 +248,7 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
         </p>
         <ul className="flex flex-col gap-3">
           {porJuez.map(({ j, puntajes }) => {
-            const hechas = entregas.filter((e) => puntajes[e.slug]).length;
+            const hechas = activas.filter((e) => puntajes[e.slug]).length;
             const ruta = `/defacchackathon/jurados/${tokenJuez(j.id)}`;
             return (
               <li
@@ -233,7 +261,7 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
                 </span>
                 <span className="flex flex-wrap items-center gap-3">
                   <span className="text-meta text-aisc-muted">
-                    {hechas} de {entregas.length}
+                    {hechas} de {activas.length}
                   </span>
                   <a href={ruta} className="text-meta font-medium text-aisc-forest underline underline-offset-4">
                     Abrir
@@ -248,7 +276,7 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
 
       <section className="flex flex-col gap-6">
         <h2 className="text-body-lg font-medium text-aisc-ink">Detalle por entrega</h2>
-        {[...ranking, ...excluidas, ...sinNotas].map((f) => (
+        {[...ranking, ...excluidas, ...sinNotas, ...descartadas].map((f) => (
           <article
             key={f.e.slug}
             id={f.e.slug}
@@ -259,8 +287,11 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
             <p className="text-body-sm text-aisc-muted">
               Equipo {f.e.equipo} · {f.e.integrantes.map((p) => p.nombre).join(", ")}
             </p>
-            {f.e.duplicadoDe || f.e.tardia ? (
+            {f.e.duplicadoDe || f.e.tardia || f.e.descartada ? (
               <div className="text-meta flex flex-wrap gap-2">
+                {f.e.descartada ? (
+                  <span className="rounded-full bg-aisc-ink px-3 py-1 text-aisc-cream">Descartada</span>
+                ) : null}
                 {f.e.duplicadoDe ? (
                   <span className="rounded-full bg-aisc-coral px-3 py-1 text-aisc-cream">
                     Posible duplicado de {f.e.duplicadoDe}
@@ -280,8 +311,9 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
               Repositorio o demo
             </a>
             <BanderasIA revision={f.revision} />
-            <div>
+            <div className="flex flex-wrap items-center gap-3">
               <RevisarDeNuevo slug={f.e.slug} />
+              <DescartarEntrega slug={f.e.slug} descartada={!!f.e.descartada} />
             </div>
             {f.votos.length ? (
               <ul className="text-body-sm flex flex-col gap-2 border-t border-aisc-line pt-4 text-aisc-ink">

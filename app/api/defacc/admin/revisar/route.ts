@@ -5,7 +5,7 @@ import { revisarConGemini } from "@/lib/defacc-revision";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 function fallo(status: number, error: string, mensaje: string) {
   return NextResponse.json({ ok: false, error, mensaje }, { status });

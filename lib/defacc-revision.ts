@@ -78,8 +78,15 @@ Responde solo JSON con esta forma:
 {"fueraDeTema": boolean, "motivoFueraDeTema": string, "inyeccionPrompt": boolean, "evidenciaInyeccion": string, "infoPeligrosa": boolean, "evidenciaInfoPeligrosa": string, "resumen": string}
 "resumen" es una descripción neutral del proyecto en máximo 2 frases, en español.`;
 
-function modelo(): string {
-  return process.env.GEMINI_MODEL || "gemini-2.5-flash";
+/* Del más capaz al más estable. Los Flash nuevos a veces responden 503 por
+   demanda o tardan demasiado; en ese caso se pasa al siguiente. Los Pro no
+   entran en la cuota de nuestra llave. GEMINI_MODEL, si existe, va primero. */
+const MODELOS = ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-3-flash-preview", "gemini-2.5-flash"];
+const ESPERA_MS = 40_000;
+
+function modelos(): string[] {
+  const env = process.env.GEMINI_MODEL?.trim();
+  return env ? [env, ...MODELOS.filter((m) => m !== env)] : MODELOS;
 }
 
 function aBase64(b: ArrayBuffer): string {
@@ -96,7 +103,10 @@ type RespuestaModelo = {
   resumen?: string;
 };
 
-async function preguntarAGemini(e: Entrega, pdf: ArrayBuffer | null): Promise<RespuestaModelo> {
+async function preguntarAGemini(
+  e: Entrega,
+  pdf: ArrayBuffer | null,
+): Promise<{ respuesta: RespuestaModelo; modelo: string }> {
   const key = process.env.GEMINI_API_KEY;
   if (!key) throw new Error("Falta GEMINI_API_KEY");
 
@@ -113,29 +123,43 @@ async function preguntarAGemini(e: Entrega, pdf: ArrayBuffer | null): Promise<Re
   const partes: unknown[] = [{ text: datos }];
   if (pdf) partes.push({ inline_data: { mime_type: "application/pdf", data: aBase64(pdf) } });
 
-  const r = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${modelo()}:generateContent?key=${encodeURIComponent(key)}`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        systemInstruction: { parts: [{ text: INSTRUCCIONES_MODELO }] },
-        contents: [{ role: "user", parts: partes }],
-        generationConfig: { responseMimeType: "application/json", temperature: 0 },
-      }),
-      cache: "no-store",
-    },
-  );
-  if (!r.ok) throw new Error(`Gemini respondió ${r.status}: ${(await r.text()).slice(0, 200)}`);
-  const j = (await r.json()) as {
-    candidates?: { content?: { parts?: { text?: string }[] } }[];
-  };
-  const texto = j.candidates?.[0]?.content?.parts?.map((p) => p.text ?? "").join("") ?? "";
-  try {
-    return JSON.parse(texto) as RespuestaModelo;
-  } catch {
-    throw new Error("Gemini no devolvió JSON válido");
+  const cuerpo = JSON.stringify({
+    systemInstruction: { parts: [{ text: INSTRUCCIONES_MODELO }] },
+    contents: [{ role: "user", parts: partes }],
+    generationConfig: { responseMimeType: "application/json", temperature: 0 },
+  });
+
+  const fallas: string[] = [];
+  for (const m of modelos()) {
+    try {
+      const r = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${encodeURIComponent(key)}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: cuerpo,
+          cache: "no-store",
+          signal: AbortSignal.timeout(ESPERA_MS),
+        },
+      );
+      if (!r.ok) {
+        fallas.push(`${m}: ${r.status}`);
+        continue;
+      }
+      const j = (await r.json()) as {
+        candidates?: { content?: { parts?: { text?: string }[] } }[];
+      };
+      const texto = j.candidates?.[0]?.content?.parts?.map((p) => p.text ?? "").join("") ?? "";
+      try {
+        return { respuesta: JSON.parse(texto) as RespuestaModelo, modelo: m };
+      } catch {
+        fallas.push(`${m}: sin JSON`);
+      }
+    } catch (err) {
+      fallas.push(`${m}: ${err instanceof Error && err.name === "TimeoutError" ? "tiempo agotado" : "error de red"}`);
+    }
   }
+  throw new Error(`Ningún modelo respondió (${fallas.join("; ")})`);
 }
 
 export async function revisarConGemini(slug: string): Promise<RevisionIA | null> {
@@ -155,15 +179,16 @@ export async function revisarConGemini(slug: string): Promise<RevisionIA | null>
     evidenciaInfoPeligrosa: "",
     hallazgosRegex,
     resumen: "",
-    modelo: modelo(),
+    modelo: "",
     fecha: new Date().toISOString(),
   };
 
   let revision: RevisionIA;
   try {
-    const m = await preguntarAGemini(e, pdf);
+    const { respuesta: m, modelo } = await preguntarAGemini(e, pdf);
     revision = {
       ...base,
+      modelo,
       fueraDeTema: !!m.fueraDeTema,
       motivoFueraDeTema: String(m.motivoFueraDeTema ?? "").slice(0, 600),
       inyeccionPrompt: !!m.inyeccionPrompt || hallazgosRegex.length > 0,

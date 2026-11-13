@@ -65,6 +65,9 @@ export type Entrega = {
   duplicadoDe?: string;
   /** Llegó después de las 5:00 p.m., dentro de la hora de gracia. */
   tardia?: boolean;
+  /** La organización la sacó (duplicado, tardía, retiro). Se puede restaurar. */
+  descartada?: boolean;
+  descartadaEn?: string;
 };
 
 export type Puntaje = {

@@ -113,6 +113,40 @@ export function RevisarDeNuevo({ slug }: { slug: string }) {
   );
 }
 
+export function DescartarEntrega({ slug, descartada }: { slug: string; descartada: boolean }) {
+  const router = useRouter();
+  const [enviando, setEnviando] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function cambiar() {
+    setEnviando(true);
+    setError(null);
+    try {
+      const r = await fetch("/api/defacc/admin/descartar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug, descartar: !descartada }),
+      });
+      const j = (await r.json()) as { ok: boolean; mensaje?: string };
+      if (j.ok) router.refresh();
+      else setError(j.mensaje ?? "No se pudo cambiar.");
+    } catch {
+      setError("Sin conexión.");
+    } finally {
+      setEnviando(false);
+    }
+  }
+
+  return (
+    <span className="inline-flex flex-wrap items-center gap-3">
+      <button type="button" onClick={cambiar} disabled={enviando} className={BOTON_BORDE}>
+        {enviando ? "Guardando…" : descartada ? "Restaurar" : "Descartar"}
+      </button>
+      {error ? <span className="text-meta text-aisc-coral">{error}</span> : null}
+    </span>
+  );
+}
+
 export function CopiarEnlace({ ruta }: { ruta: string }) {
   const [copiado, setCopiado] = useState(false);
   return (

@@ -37,7 +37,7 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
 
   const [todas, puntajes] = await Promise.all([todasLasEntregas(), puntajesDelJuez(juez.id)]);
   const esPrueba = juez.id === JUEZ_PRUEBA.id;
-  const entregas = todas.filter((e) => !!e.prueba === esPrueba);
+  const entregas = todas.filter((e) => !!e.prueba === esPrueba && !e.descartada);
   const filas = await Promise.all(
     entregas.map(async (e) => ({
       e,

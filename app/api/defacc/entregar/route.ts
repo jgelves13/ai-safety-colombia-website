@@ -30,7 +30,7 @@ import { NOMBRES_TRACKS, revisarConGemini } from "@/lib/defacc-revision";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 const REMITENTE = "AI Safety Colombia <equipo@aisafetycolombia.org>";
 const CORREO_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
