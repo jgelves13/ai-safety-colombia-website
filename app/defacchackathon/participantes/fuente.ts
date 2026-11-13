@@ -206,7 +206,13 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "DÉDALO, una defensa contra agentes que automatizan el abuso de credenciales: señuelos para rastrearlos, un entorno falso con datos sintéticos que se adapta a lo que hacen y controles que revocan sesiones y limitan permisos.",
   },
+  "santiago gomez": {
+    afiliacion: "Universidad de los Andes",
+    problema:
+      "Supervisión con ayuda de IA para que las empresas tengan más control sobre la información que manejan.",
+  },
   "santiago ramos grateron": {
+    afiliacion: "Independiente",
     problema:
       "Comprobar que el código escrito con IA por personas sin formación técnica sea seguro antes de llegar a producción.",
   },
