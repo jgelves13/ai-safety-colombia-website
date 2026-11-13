@@ -41,12 +41,12 @@ const CLAVE: Array<[string, React.ReactNode]> = [
   ["Entrega", "5:00 p. m. en punto, por la página de entregas"],
   ["Pitch", "3 minutos por equipo, desde las 5:10 p. m."],
   ["Premios", "COP 1.000.000, 500.000 y 500.000 a los tres primeros puestos"],
-  ["Comida", "Almuerzo incluido"],
+  ["Comida", "Snacks para el desayuno y almuerzo incluidos"],
   ["Organizan", "IEEE Computer Society Uniandes y AI Safety Colombia"],
 ];
 
 const AGENDA: Array<[string, React.ReactNode]> = [
-  ["8:00 a. m.", "Registro e ingreso al campus."],
+  ["8:00 a. m.", "Registro, ingreso al campus y snacks para el desayuno."],
   ["8:30 a. m.", "Apertura, presentación del reto y formación de equipos."],
   ["9:00 a. m.", "Empieza el sprint. Tienen 8 horas de trabajo."],
   ["12:30 p. m.", "Almuerzo, aproximadamente."],
@@ -166,7 +166,7 @@ export default function GuiaDefAcc() {
                   "Termo para agua.",
                 ]}
               />
-              <Parrafo>El almuerzo lo ponemos nosotros.</Parrafo>
+              <Parrafo>Ponemos snacks para el desayuno y el almuerzo.</Parrafo>
 
               <H3 id="parqueaderos">Parqueaderos</H3>
               <Parrafo>

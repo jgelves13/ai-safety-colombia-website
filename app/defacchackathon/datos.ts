@@ -198,7 +198,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       premiosRotulo: "Premios",
       premiosValor: "COP 2.000.000 en total",
       comidaRotulo: "Alimentación",
-      comidaValor: "Almuerzo incluido en sala",
+      comidaValor: "Snacks para el desayuno y almuerzo incluidos",
       organizanRotulo: "Organizan",
     },
     pestañas: {
@@ -512,7 +512,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         },
         {
           q: "¿Tiene algún costo participar?",
-          a: "Ninguno. La participación es 100% gratuita e incluye credencial conmemorativa y almuerzo completo en el campus. El cupo es limitado por aforo para asegurar una experiencia de primer nivel.",
+          a: "Ninguno. La participación es 100% gratuita e incluye credencial conmemorativa, snacks para el desayuno y almuerzo completo en el campus. El cupo es limitado por aforo para asegurar una experiencia de primer nivel.",
         },
         {
           q: "¿Qué nivel técnico necesito tener?",
@@ -573,7 +573,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       premiosRotulo: "Prizes",
       premiosValor: "COP 2,000,000 total",
       comidaRotulo: "Catering",
-      comidaValor: "Lunch included on-site",
+      comidaValor: "Breakfast snacks and lunch included on-site",
       organizanRotulo: "Organizers",
     },
     pestañas: {
@@ -853,7 +853,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       faqTitulo: "Frequently Asked Questions",
       faqs: [
         { q: "Can I apply without a team?", a: "Yes. Solo applicants will join a team during the 8:30 AM opening session." },
-        { q: "Is there an entry fee?", a: "None. Attendance and lunch are 100% free. Capacity is limited to ensure a high-quality environment." },
+        { q: "Is there an entry fee?", a: "None. Attendance, breakfast snacks and lunch are 100% free. Capacity is limited to ensure a high-quality environment." },
         { q: "What technical experience is required?", a: "Beginners to advanced practitioners are welcome. Kits support basic Python to full agent architectures." },
         { q: "What should I bring?", a: "Your laptop, charger, water bottle, and national photo ID for Uniandes campus security." },
       ],
@@ -899,7 +899,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       premiosRotulo: "Prêmios",
       premiosValor: "COP 2.000.000 no total",
       comidaRotulo: "Alimentação",
-      comidaValor: "Almoço incluso no local",
+      comidaValor: "Lanches no café da manhã e almoço inclusos no local",
       organizanRotulo: "Organização",
     },
     pestañas: {
@@ -1179,7 +1179,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       faqTitulo: "Perguntas Frequentes",
       faqs: [
         { q: "Posso participar sem equipe?", a: "Sim, formaremos equipes de 2 a 5 pessoas durante a abertura às 8:30." },
-        { q: "Há algum custo?", a: "Nenhum. Participação 100% gratuita com almoço completo incluso. Vagas limitadas por capacidade." },
+        { q: "Há algum custo?", a: "Nenhum. Participação 100% gratuita com lanches no café da manhã e almoço completo inclusos. Vagas limitadas por capacidade." },
         { q: "Qual o nível de programação necessário?", a: "Há kits para todos os níveis, incluindo opções sem código no Track 5." },
         { q: "O que devo levar?", a: "Notebook, carregador, documento de identificação original e garrafa de água." },
       ],
