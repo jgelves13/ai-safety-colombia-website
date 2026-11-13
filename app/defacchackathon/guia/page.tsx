@@ -39,7 +39,7 @@ const CLAVE: Array<[string, React.ReactNode]> = [
   ["Fecha", "Sábado 14 de noviembre de 2026"],
   ["Horario", "8:00 a. m. a 8:00 p. m."],
   ["Lugar", "Universidad de los Andes, Bogotá"],
-  ["Salón", PENDIENTE],
+  ["Salón", "ML 607 todo el día. Pitches y cierre en el Auditorio ML C, de 5:00 a 8:00 p. m."],
   ["Equipos", "De 2 a 5 personas"],
   ["Entrega", "5:00 p. m. en punto, por la página de entregas"],
   ["Pitch", "3 minutos por equipo, desde las 5:10 p. m."],
@@ -54,7 +54,7 @@ const AGENDA: Array<[string, React.ReactNode]> = [
   ["9:00 a. m.", "Empieza el sprint. Tienen 8 horas de trabajo."],
   ["12:30 p. m.", "Almuerzo, aproximadamente."],
   ["5:00 p. m.", "Cierre de entregas. En punto."],
-  ["5:10 p. m.", "Pitches de todos los equipos, 3 minutos cada uno."],
+  ["5:10 p. m.", "Pitches de todos los equipos en el Auditorio ML C, 3 minutos cada uno."],
   ["6:40 p. m.", "Deliberación del jurado."],
   ["7:15 p. m.", "Premiación."],
   ["7:30 p. m.", "Cierre. Salimos a más tardar a las 8:00 p. m."],
@@ -150,11 +150,16 @@ export default function GuiaDefAcc() {
 
               <H2 id="lugar">Lugar y qué traer</H2>
               <Parrafo>
-                <strong>Salón:</strong> {PENDIENTE}
+                <strong>Salón:</strong> ML 607, en el edificio Mario Laserna
+                (ML). Está disponible todo el día y ahí trabajamos durante el
+                sprint.
               </Parrafo>
               <Parrafo>
-                Te lo enviamos por correo antes del evento, junto con el
-                registro de portería.
+                <strong>Pitches y cierre:</strong> Auditorio ML C, de 5:00 a
+                8:00 p. m. Al cerrar la entrega pasamos todos al auditorio.
+              </Parrafo>
+              <Parrafo>
+                El registro de portería te llega por correo antes del evento.
               </Parrafo>
               <Lista
                 items={[

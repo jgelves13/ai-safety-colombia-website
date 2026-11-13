@@ -519,7 +519,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         },
         {
           q: "¿Cómo llego al salón en Uniandes?",
-          a: "El número exacto del edificio y salón te llegará al correo de aceptación junto con el registro de portería antes del evento.",
+          a: "Trabajamos todo el día en el salón ML 607 del edificio Mario Laserna. Los pitches y el cierre son en el Auditorio ML C, de 5:00 a 8:00 p. m. El registro de portería te llega por correo antes del evento.",
         },
       ],
     },
