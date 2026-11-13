@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BanderasIA, MarcoPanel } from "@/components/defacc-panel";
+import { MarcoPanel } from "@/components/defacc-panel";
 import DefAccJudgeForm from "@/components/defacc-judge-form";
 import { TEXTOS_HACKATHON } from "@/app/defacchackathon/datos";
 import {
@@ -19,6 +19,43 @@ export const metadata: Metadata = {
   title: "Jurado · Defensive Acceleration Hackathon",
   robots: { index: false, follow: false },
 };
+
+const CHIP = "text-meta ml-2 inline-block rounded-full bg-aisc-coral px-2.5 py-0.5 align-middle font-normal text-aisc-cream";
+
+// Una sola caja con todo lo que dijo el modelo: síntesis, alertas y su evidencia.
+// El motivo de "fuera de tema" solo se muestra si no hay síntesis, porque la repite.
+function SintesisIA({ revision }: { revision: RevisionIA | null }) {
+  if (!revision) return null;
+  const { fueraDeTema, inyeccionPrompt, infoPeligrosa } = revision;
+  if (!revision.resumen && !fueraDeTema && !inyeccionPrompt && !infoPeligrosa) return null;
+  const texto = revision.resumen || (fueraDeTema ? revision.motivoFueraDeTema : "");
+  const evidencia = [
+    inyeccionPrompt ? revision.evidenciaInyeccion || revision.hallazgosRegex.join(", ") : "",
+    infoPeligrosa ? (revision.evidenciaInfoPeligrosa ?? "") : "",
+  ].filter(Boolean);
+  return (
+    <details className="w-full">
+      <summary className="cursor-pointer font-medium text-aisc-forest">
+        Síntesis de la IA <span className="text-meta font-normal text-aisc-muted">(orientativa)</span>
+        {fueraDeTema ? <span className={CHIP}>Posible fuera de tema</span> : null}
+        {inyeccionPrompt ? <span className={CHIP}>Posible inyección de prompt</span> : null}
+        {infoPeligrosa ? <span className={CHIP}>Posible info peligrosa</span> : null}
+      </summary>
+      <div className="mt-2 flex flex-col gap-2">
+        {texto ? <p className="text-aisc-ink">{texto}</p> : null}
+        {evidencia.map((t, i) => (
+          <p key={i} className="text-aisc-ink">
+            <span className="font-medium">Evidencia: </span>
+            {t}
+          </p>
+        ))}
+        <p className="text-meta text-aisc-muted">
+          Escrito por un modelo a partir de lo que envió el equipo. Puede equivocarse y no afecta el puntaje.
+        </p>
+      </div>
+    </details>
+  );
+}
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -61,22 +98,42 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
       texto={
         <div className="flex flex-col gap-5">
           <p>Califica de 1 a 5. Puedes cambiar tus notas cuando quieras. Enlace personal.</p>
-          <ul className="text-body-sm flex flex-col gap-4">
-            {criterios.map((c) => (
-              <li key={c.nombre} className="flex flex-col gap-1">
-                <span>
-                  <span className="font-medium text-aisc-sand">{c.nombre}:</span> {c.descripcion}
-                </span>
-                {c.niveles ? (
-                  <span className="flex flex-col text-aisc-sand/75">
-                    <span>1: {c.niveles.n1}</span>
-                    <span>3: {c.niveles.n3}</span>
-                    <span>5: {c.niveles.n5}</span>
-                  </span>
-                ) : null}
-              </li>
-            ))}
-          </ul>
+          <details className="group rounded-lg border border-aisc-sand/25 bg-aisc-sand/5">
+            <summary className="text-body-sm flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 font-medium text-aisc-sand [&::-webkit-details-marker]:hidden">
+              Criterios y qué significa cada nota
+              <span aria-hidden className="transition-transform group-open:rotate-180">
+                ▾
+              </span>
+            </summary>
+            <div className="flex flex-col divide-y divide-aisc-sand/15 border-t border-aisc-sand/15">
+              {criterios.map((c) => (
+                <section key={c.nombre} className="flex flex-col gap-3 px-4 py-5">
+                  <div className="flex flex-col gap-1">
+                    <h2 className="text-body font-medium text-aisc-sand">{c.nombre}</h2>
+                    <p className="text-body-sm text-aisc-sand/80">{c.descripcion}</p>
+                  </div>
+                  {c.niveles ? (
+                    <dl className="text-body-sm grid grid-cols-[auto_1fr] gap-x-3 gap-y-2">
+                      {(
+                        [
+                          ["1", c.niveles.n1],
+                          ["3", c.niveles.n3],
+                          ["5", c.niveles.n5],
+                        ] as const
+                      ).map(([n, t]) => (
+                        <div key={n} className="contents">
+                          <dt className="text-meta flex size-6 items-center justify-center rounded-full border border-aisc-sand/40 font-medium text-aisc-sand">
+                            {n}
+                          </dt>
+                          <dd className="pt-0.5 text-aisc-sand/75">{t}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  ) : null}
+                </section>
+              ))}
+            </div>
+          </details>
         </div>
       }
     >
@@ -113,17 +170,7 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
                     <summary className="cursor-pointer font-medium text-aisc-forest">Resumen del equipo</summary>
                     <p className="mt-2 whitespace-pre-line text-aisc-ink">{e.resumen}</p>
                   </details>
-                  {revision?.resumen ? (
-                    <details className="w-full">
-                      <summary className="cursor-pointer font-medium text-aisc-forest">
-                        Síntesis de la IA <span className="text-meta font-normal text-aisc-muted">(orientativa)</span>
-                      </summary>
-                      <p className="mt-2 text-aisc-ink">{revision.resumen}</p>
-                      <p className="text-meta mt-1 text-aisc-muted">
-                        Escrito por un modelo a partir de lo que envió el equipo. Puede equivocarse y no afecta el puntaje.
-                      </p>
-                    </details>
-                  ) : null}
+                  <SintesisIA revision={revision} />
                   <a
                     href={e.enlace}
                     target="_blank"
@@ -143,7 +190,6 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
                     </a>
                   ) : null}
                 </div>
-                <BanderasIA revision={revision} compacto />
                 <DefAccJudgeForm token={token} slug={e.slug} criterios={criterios} inicial={puntajes[e.slug] ?? null} />
               </div>
             </li>
