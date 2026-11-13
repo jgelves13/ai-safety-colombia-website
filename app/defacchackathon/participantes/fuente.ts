@@ -57,6 +57,11 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "Agentes de ciberdefensa para servidores VPS sin monitoreo, que no solo alerten temprano sino que contengan la amenaza antes de que el servidor quede comprometido.",
   },
+  "david orlando bastos castillejo": {
+    afiliacion: "Universidad de los Andes",
+    problema:
+      "Un servicio de IA generativa para uso pedagógico en universidades, que adapte modelos comerciales para hacer más transparente su uso frente al fraude estudiantil.",
+  },
   "esteban alejandro hernandez sulvara": {
     afiliacion: "Universidad de los Andes",
     problema:
@@ -132,6 +137,11 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "Tener certeza de cómo razona el modelo y de si está configurado para filtrar información.",
   },
+  "laura isabel zabaleta manrique": {
+    afiliacion: "Universidad Nacional",
+    problema:
+      "La seguridad y el control de agentes basados en LLMs, cuya autonomía para ejecutar código, usar APIs y modificar bases de datos multiplica la superficie de ataque.",
+  },
   "laura sofia londono perez": {
     afiliacion: "Universidad Sergio Arboleda",
     problema:
@@ -194,6 +204,11 @@ const AJUSTES: Record<string, Ajuste> = {
     afiliacion: "Universidad Nacional",
     problema:
       "Qué tan vulnerables son los modelos de frontera a la inyección de instrucciones a través de repositorios de skills contaminados.",
+  },
+  "valentina rodriguez nino": {
+    afiliacion: "Ciencia de Datos",
+    problema:
+      "Medir qué tan bien resisten distintos modelos la inyección indirecta de instrucciones, sobre todo con contenido en español, y probar Jev como filtro antes de que el contenido llegue al agente.",
   },
   "yohan felipe gaitan carvajal": {
     afiliacion: "Universidad de los Andes",
