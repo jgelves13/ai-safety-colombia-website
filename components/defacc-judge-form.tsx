@@ -26,12 +26,12 @@ const BOTON_LLENO =
 const INPUT =
   "text-body-sm w-full rounded-[var(--radius)] border border-aisc-line bg-white px-3.5 py-2.5 text-aisc-ink transition-colors placeholder:text-aisc-muted/60 focus:border-aisc-forest focus:outline-2 focus:outline-offset-[1px] focus:outline-aisc-forest/35";
 
-function nivelDe(niveles: { n1: string; n3: string; n5: string }, n: number): string {
-  if (n === 1) return `1: ${niveles.n1}`;
-  if (n === 3) return `3: ${niveles.n3}`;
-  if (n === 5) return `5: ${niveles.n5}`;
-  return n === 2 ? "2: entre 1 y 3." : "4: entre 3 y 5.";
-}
+// Nombre de cada nivel tal como aparece en la rúbrica oficial (Google Doc enlazado en la página).
+const NIVELES: Record<Clave, string[]> = {
+  impacto: ["Insignificante", "Limitado", "Moderado", "Significativo", "Excepcional"],
+  ejecucion: ["Con fallas graves", "Débil", "Competente", "Sólido", "Excepcional"],
+  presentacion: ["Incomprensible", "Difícil de seguir", "Suficientemente claro", "Bien presentado", "Excepcionalmente claro"],
+};
 
 function hora(iso: string): string {
   return new Date(iso).toLocaleString("es-CO", {
@@ -148,8 +148,10 @@ export default function DefAccJudgeForm({
                     <span>Sólido</span>
                     <span>Excelente</span>
                   </div>
-                  {nota !== null && c.niveles ? (
-                    <p className="text-meta text-aisc-ink">{nivelDe(c.niveles, nota)}</p>
+                  {nota !== null ? (
+                    <p className="text-meta text-aisc-ink">
+                      {nota}: {NIVELES[clave][nota - 1]}
+                    </p>
                   ) : null}
                 </div>
               </fieldset>

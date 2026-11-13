@@ -20,6 +20,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+const RUBRICA_URL = "https://docs.google.com/document/d/19xVIiadLqi-bJ-bxQ71gn37vAGWBYqJ-EvvBQYueU6c/edit";
+
 const CHIP = "text-meta ml-2 inline-block rounded-full bg-aisc-coral px-2.5 py-0.5 align-middle font-normal text-aisc-cream";
 
 // Una sola caja con todo lo que dijo el modelo: síntesis, alertas y su evidencia.
@@ -97,42 +99,22 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
       titulo={`Hola, ${juez.nombre.split(" ")[0]}`}
       texto="Califica de 1 a 5. Puedes cambiar tus notas cuando quieras. Enlace personal."
     >
-      <details className="group mb-10 w-full rounded-lg border border-aisc-ink bg-aisc-cream">
-        <summary className="text-body flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-medium text-aisc-ink md:px-7 [&::-webkit-details-marker]:hidden">
-          Criterios y qué significa cada nota
-          <span aria-hidden className="transition-transform group-open:rotate-180">
-            ▾
+      <a
+        href={RUBRICA_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group mb-10 flex w-full items-center justify-between gap-4 rounded-lg border border-aisc-ink bg-aisc-cream px-5 py-4 transition-colors hover:bg-white md:px-7"
+      >
+        <span className="flex flex-col gap-1">
+          <span className="text-body font-medium text-aisc-ink">Rúbrica de evaluación</span>
+          <span className="text-body-sm text-aisc-ink/80">
+            Qué significa cada nota del 1 al 5 en Impacto, Ejecución y Presentación. Léela antes de calificar.
           </span>
-        </summary>
-        <div className="flex flex-col divide-y divide-aisc-line border-t border-aisc-line md:grid md:grid-cols-3 md:divide-x md:divide-y-0">
-          {criterios.map((c) => (
-            <section key={c.nombre} className="flex flex-col gap-3 px-5 py-5 md:px-7">
-              <div className="flex flex-col gap-1">
-                <h2 className="text-body font-medium text-aisc-ink">{c.nombre}</h2>
-                <p className="text-body-sm text-aisc-ink/80">{c.descripcion}</p>
-              </div>
-              {c.niveles ? (
-                <dl className="text-body-sm grid grid-cols-[auto_1fr] gap-x-3 gap-y-2">
-                  {(
-                    [
-                      ["1", c.niveles.n1],
-                      ["3", c.niveles.n3],
-                      ["5", c.niveles.n5],
-                    ] as const
-                  ).map(([n, t]) => (
-                    <div key={n} className="contents">
-                      <dt className="text-meta flex size-6 items-center justify-center rounded-full bg-aisc-forest font-medium text-aisc-cream">
-                        {n}
-                      </dt>
-                      <dd className="pt-0.5 text-aisc-ink">{t}</dd>
-                    </div>
-                  ))}
-                </dl>
-              ) : null}
-            </section>
-          ))}
-        </div>
-      </details>
+        </span>
+        <span aria-hidden className="text-body shrink-0 text-aisc-forest transition-transform group-hover:translate-x-0.5">
+          ↗
+        </span>
+      </a>
       <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4">
         <h2 className="text-display-2 text-aisc-ink">
           {entregas.length === 0 ? "Aún no hay entregas" : `${hechas} de ${entregas.length} calificadas`}
