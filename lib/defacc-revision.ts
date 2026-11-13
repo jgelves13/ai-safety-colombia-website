@@ -78,11 +78,19 @@ Responde solo JSON con esta forma:
 {"fueraDeTema": boolean, "motivoFueraDeTema": string, "inyeccionPrompt": boolean, "evidenciaInyeccion": string, "infoPeligrosa": boolean, "evidenciaInfoPeligrosa": string, "resumen": string}
 "resumen" es una descripción neutral del proyecto en máximo 2 frases, en español.`;
 
-/* Del más capaz al más estable. Los Flash nuevos a veces responden 503 por
-   demanda o tardan demasiado; en ese caso se pasa al siguiente. Los Pro no
-   entran en la cuota de nuestra llave. GEMINI_MODEL, si existe, va primero. */
-const MODELOS = ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-3-flash-preview", "gemini-2.5-flash"];
-const ESPERA_MS = 40_000;
+/* Del más capaz al más estable. Pro va primero: mientras el proyecto de la
+   llave esté en el nivel gratuito, Google responde 429 al instante y se pasa
+   a Flash; cuando se active la facturación, Pro se usa solo. Los Flash nuevos
+   a veces responden 503 o tardan demasiado; en ese caso se pasa al siguiente.
+   GEMINI_MODEL, si existe, va primero. */
+const MODELOS = [
+  "gemini-3.1-pro-preview",
+  "gemini-3.8-flash",
+  "gemini-3.6-flash",
+  "gemini-3-flash-preview",
+  "gemini-2.5-flash",
+];
+const espera = (m: string) => (m.includes("-pro") ? 75_000 : 40_000);
 
 function modelos(): string[] {
   const env = process.env.GEMINI_MODEL?.trim();
@@ -139,7 +147,7 @@ async function preguntarAGemini(
           headers: { "Content-Type": "application/json" },
           body: cuerpo,
           cache: "no-store",
-          signal: AbortSignal.timeout(ESPERA_MS),
+          signal: AbortSignal.timeout(espera(m)),
         },
       );
       if (!r.ok) {
