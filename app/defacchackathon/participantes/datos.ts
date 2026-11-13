@@ -4,10 +4,10 @@ export type Frente = "track-1" | "track-2" | "track-3" | "track-4" | "track-5" |
 
 export const FRENTES: Record<Frente, string> = {
   "track-1": "Seguridad de agentes",
-  "track-2": "Control y monitoreo",
+  "track-2": "Control de IA",
   "track-3": "Ciberdefensa automatizada",
   "track-4": "Defensa epistémica",
-  "track-5": "Infraestructura y gobernanza",
+  "track-5": "Infraestructura y gobernanza (sin código)",
   "track-6": "Riesgos multiagente",
 };
 

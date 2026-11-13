@@ -23,6 +23,7 @@ export type TrackItem = {
   id: string;
   numero: string;
   titulo: string;
+  subtitulo?: string;
   resumen: string;
   paraEmpezar: string;
   conExperiencia: string;
@@ -256,7 +257,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-1",
           numero: "01",
-          titulo: "Seguridad de agentes y defensa contra inyección de instrucciones",
+          titulo: "Seguridad de agentes",
+          subtitulo: "Defensa contra la inyección de instrucciones",
           resumen:
             "Cuando los sistemas de IA pasan de conversar a ejecutar acciones con herramientas reales (archivos, navegadores, terminales o servidores MCP), una instrucción oculta en un documento o web puede secuestrar al agente (prompt injection indirecto) para exfiltrar información o ejecutar comandos no autorizados.",
           paraEmpezar:
@@ -272,7 +274,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-2",
           numero: "02",
-          titulo: "Control de IA, monitoreo y detección de sabotaje",
+          titulo: "Control de IA",
+          subtitulo: "Monitoreo y detección de sabotaje",
           resumen:
             "Un problema central de seguridad técnica de IA (impulsado por Redwood Research y UK AISI): si un modelo o agente autónomo actúa de forma engañosa, oculta intenciones en su razonamiento o intenta insertar puertas traseras sutiles en código, ¿cómo diseñamos protocolos de control que lo atrapen a tiempo?",
           paraEmpezar:
@@ -288,7 +291,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-3",
           numero: "03",
-          titulo: "Ciberdefensa automatizada y verificación formal de software",
+          titulo: "Ciberdefensa automatizada",
+          subtitulo: "Verificación formal de software",
           resumen:
             "Los modelos de frontera abaratan encontrar y explotar vulnerabilidades de software a gran escala. Para inclinar la balanza a favor de quien defiende, necesitamos usar IA para detectar fallas automáticamente, generar parches seguros y verificar matemáticamente que el código crítico sea invulnerable.",
           paraEmpezar:
@@ -304,7 +308,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-4",
           numero: "04",
-          titulo: "Defensa epistémica, autenticidad criptográfica y detección de suplantación",
+          titulo: "Defensa epistémica",
+          subtitulo: "Autenticidad criptográfica y detección de suplantación",
           resumen:
             "La IA reduce casi a cero el costo de clonar voces en tiempo real, fabricar evidencia sintética y desplegar campañas de manipulación persuasiva. La aceleración defensiva en el espacio informativo busca proteger la confianza pública mediante pruebas criptográficas de origen y detección resistente en canales reales.",
           paraEmpezar:
@@ -321,7 +326,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-5",
           numero: "05",
-          titulo: "Seguridad de infraestructura de IA y gobernanza defensiva (No-Code)",
+          titulo: "Infraestructura y gobernanza (sin código)",
+          subtitulo: "Seguridad de infraestructura de IA y gobernanza defensiva",
           resumen:
             "Evitar el robo o exfiltración de los pesos de modelos de frontera y garantizar que el despliegue de sistemas autónomos no comprometa servicios esenciales requiere estándares técnicos e institucionales rigurosos. Este frente no exige programar código.",
           paraEmpezar:
@@ -336,7 +342,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-6",
           numero: "06",
-          titulo: "Riesgos multiagente: colusión, explotación y resiliencia cooperativa",
+          titulo: "Riesgos multiagente",
+          subtitulo: "Colusión, explotación y resiliencia cooperativa",
           resumen:
             "Cada vez más agentes de IA negocian, compiten y cooperan entre sí sin una persona en el ciclo. Ahí aparecen riesgos que no se ven al evaluar un modelo aislado: agentes que se coluden en contra de los usuarios, modelos fuertes que explotan a otros más débiles en una negociación y grupos que colapsan cuando un solo agente deja de cooperar.",
           paraEmpezar:
@@ -631,7 +638,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-1",
           numero: "01",
-          titulo: "Agent Security & Indirect Prompt Injection Defense",
+          titulo: "Agent Security",
+          subtitulo: "Indirect prompt injection defense",
           resumen:
             "As AI systems move from chat to executing actions via external tools (browsers, terminals, files, or MCP servers), hidden instructions embedded in untrusted data can hijack the agent to exfiltrate data or execute unauthorized commands.",
           paraEmpezar:
@@ -647,7 +655,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-2",
           numero: "02",
-          titulo: "AI Control, Oversight & Sabotage Detection",
+          titulo: "AI Control",
+          subtitulo: "Oversight & sabotage detection",
           resumen:
             "A core technical AI safety paradigm (advanced by Redwood Research and UK AISI): if a frontier model or autonomous agent behaves deceptively, conceals unaligned reasoning, or attempts subtle code sabotage, how do we design control protocols that catch it before harm occurs?",
           paraEmpezar:
@@ -663,7 +672,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-3",
           numero: "03",
-          titulo: "Automated Cyberdefense & Formal Software Verification",
+          titulo: "Automated Cyberdefense",
+          subtitulo: "Formal software verification",
           resumen:
             "Frontier models dramatically lower the cost of discovering and exploiting software vulnerabilities at scale. To tilt the offense-defense balance toward defenders, we need AI systems that automatically find bugs, generate verified patches, and mathematically prove critical code is safe.",
           paraEmpezar:
@@ -679,7 +689,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-4",
           numero: "04",
-          titulo: "Epistemic Defense, Cryptographic Provenance & Impersonation Detection",
+          titulo: "Epistemic Defense",
+          subtitulo: "Cryptographic provenance & impersonation detection",
           resumen:
             "AI reduces the cost of real-time voice cloning, synthetic evidence fabrication, and mass persuasive manipulation to near zero. Defensive acceleration in the information ecosystem protects collective decision-making through cryptographic provenance and resilient detection.",
           paraEmpezar:
@@ -696,7 +707,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-5",
           numero: "05",
-          titulo: "AI Infrastructure Security & Defensive Governance (No-Code)",
+          titulo: "Infrastructure & Governance (No-Code)",
+          subtitulo: "AI infrastructure security & defensive governance",
           resumen:
             "Preventing the theft or exfiltration of frontier model weights and ensuring autonomous AI deployments do not compromise essential public services requires rigorous technical and institutional standards. No programming required.",
           paraEmpezar:
@@ -711,7 +723,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-6",
           numero: "06",
-          titulo: "Multi-Agent Risks: Collusion, Exploitation & Cooperative Resilience",
+          titulo: "Multi-Agent Risks",
+          subtitulo: "Collusion, exploitation & cooperative resilience",
           resumen:
             "AI agents increasingly negotiate, compete and cooperate with each other with no human in the loop. That creates risks you cannot see when testing one model on its own: agents colluding against their users, stronger models exploiting weaker ones in a negotiation, and groups that collapse when a single agent stops cooperating.",
           paraEmpezar:
@@ -957,7 +970,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-1",
           numero: "01",
-          titulo: "Segurança de Agentes e Defesa contra Injeção de Instruções",
+          titulo: "Segurança de agentes",
+          subtitulo: "Defesa contra injeção de instruções",
           resumen:
             "Quando sistemas de IA passam a executar ações com ferramentas reais (arquivos, navegadores, terminais ou servidores MCP), instruções ocultas em documentos ou páginas podem sequestrar o agente (prompt injection indireto).",
           paraEmpezar:
@@ -973,7 +987,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-2",
           numero: "02",
-          titulo: "Controle de IA, Supervisão e Detecção de Sabotagem",
+          titulo: "Controle de IA",
+          subtitulo: "Supervisão e detecção de sabotagem",
           resumen:
             "Um pilar central da segurança técnica de IA (Redwood Research e UK AISI): se um modelo ou agente autônomo agir de forma enganosa, ocultar intenções no raciocínio ou tentar inserir backdoors sutis em código, como detectá-lo a tempo?",
           paraEmpezar:
@@ -989,7 +1004,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-3",
           numero: "03",
-          titulo: "Ciberdefesa Automatizada e Verificação Formal de Software",
+          titulo: "Ciberdefesa automatizada",
+          subtitulo: "Verificação formal de software",
           resumen:
             "Modelos de fronteira barateiam a descoberta e exploração de vulnerabilidades em larga escala. Para inclinar a balança a favor de quem defende, precisamos automatizar a detecção de falhas, gerar patches verificáveis e provar matematicamente que o código crítico é seguro.",
           paraEmpezar:
@@ -1005,7 +1021,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-4",
           numero: "04",
-          titulo: "Defesa Epistêmica, Autenticidade Criptográfica e Detecção de Fraude",
+          titulo: "Defesa epistêmica",
+          subtitulo: "Autenticidade criptográfica e detecção de fraude",
           resumen:
             "A IA reduz a quase zero o custo de clonar vozes em tempo real, fabricar mídia sintética e executar campanhas de persuasão em massa. A aceleração defensiva protege a tomada de decisão coletiva por meio de procedência criptográfica e detecção robusta.",
           paraEmpezar:
@@ -1022,7 +1039,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-5",
           numero: "05",
-          titulo: "Segurança de Infraestrutura de IA e Governança Defensiva (No-Code)",
+          titulo: "Infraestrutura e governança (sem código)",
+          subtitulo: "Segurança de infraestrutura de IA e governança defensiva",
           resumen:
             "Prevenir o roubo dos pesos de modelos de fronteira e garantir que agentes autônomos não comprometam serviços públicos essenciais exige padrões técnicos e regulatórios rigorosos. Não exige programação.",
           paraEmpezar:
@@ -1037,7 +1055,8 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           id: "track-6",
           numero: "06",
-          titulo: "Riscos Multiagente: Conluio, Exploração e Resiliência Cooperativa",
+          titulo: "Riscos multiagente",
+          subtitulo: "Conluio, exploração e resiliência cooperativa",
           resumen:
             "Cada vez mais agentes de IA negociam, competem e cooperam entre si sem uma pessoa no ciclo. Surgem riscos que não aparecem ao avaliar um modelo isolado: agentes em conluio contra os usuários, modelos fortes explorando outros mais fracos numa negociação e grupos que colapsam quando um único agente deixa de cooperar.",
           paraEmpezar:

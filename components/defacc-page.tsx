@@ -793,6 +793,11 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                             {tr.titulo}
                           </h4>
                         </div>
+                        {tr.subtitulo && (
+                          <p className="text-body mt-2 font-medium text-aisc-ink/70">
+                            {tr.subtitulo}
+                          </p>
+                        )}
 
                         <p className="text-body mt-4 text-aisc-ink/90">
                           {tr.resumen}

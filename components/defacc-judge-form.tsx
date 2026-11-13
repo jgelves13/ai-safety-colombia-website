@@ -18,9 +18,16 @@ export type PuntajeInicial = {
   presentacion: number | null;
   comentario: string;
   abstiene: boolean;
+  motivoAbstencion?: MotivoAbstencion | null;
   noElegible: boolean;
   actualizado: string;
 } | null;
+
+type MotivoAbstencion = "conflicto" | "fuera_area";
+const MOTIVOS: { valor: MotivoAbstencion; texto: string }[] = [
+  { valor: "conflicto", texto: "Conflicto de interés" },
+  { valor: "fuera_area", texto: "Fuera de mi área" },
+];
 
 const BOTON_LLENO =
   "text-body-sm inline-flex min-h-11 items-center rounded-full bg-aisc-coral px-6 font-medium text-aisc-cream transition-colors hover:bg-aisc-coral/85 disabled:opacity-60";
@@ -55,6 +62,9 @@ export default function DefAccJudgeForm({
   });
   const [comentario, setComentario] = useState(inicial?.comentario ?? "");
   const [abstiene, setAbstiene] = useState(inicial?.abstiene ?? false);
+  const [motivoAbstencion, setMotivoAbstencion] = useState<MotivoAbstencion | null>(
+    inicial?.motivoAbstencion ?? null,
+  );
   const [noElegible, setNoElegible] = useState(inicial?.noElegible ?? false);
   const [enviando, setEnviando] = useState(false);
   const [guardado, setGuardado] = useState<string | null>(inicial?.actualizado ?? null);
@@ -71,13 +81,17 @@ export default function DefAccJudgeForm({
   }
 
   async function guardar() {
+    if (abstiene && !motivoAbstencion) {
+      setError("Elige el motivo: conflicto de interés o fuera de tu área.");
+      return;
+    }
     setEnviando(true);
     setError(null);
     try {
       const r = await fetch("/api/defacc/puntaje", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token, slug, ...notas, comentario, abstiene, noElegible }),
+        body: JSON.stringify({ token, slug, ...notas, comentario, abstiene, motivoAbstencion, noElegible }),
       });
       const j = (await r.json()) as { ok: boolean; mensaje?: string; puntaje?: { actualizado: string } };
       if (!j.ok) {
@@ -165,8 +179,27 @@ export default function DefAccJudgeForm({
             }}
             className="size-4 accent-aisc-forest"
           />
-          Me abstengo (conflicto de interés o tema fuera de mi área)
+          Me abstengo
         </label>
+        {abstiene ? (
+          <div role="radiogroup" aria-label="Motivo de la abstención" className="flex flex-wrap gap-x-5 gap-y-2">
+            {MOTIVOS.map((m) => (
+              <label key={m.valor} className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name={`motivo-${slug}`}
+                  checked={motivoAbstencion === m.valor}
+                  onChange={() => {
+                    setMotivoAbstencion(m.valor);
+                    tocado();
+                  }}
+                  className="size-4 accent-aisc-forest"
+                />
+                {m.texto}
+              </label>
+            ))}
+          </div>
+        ) : null}
         {!abstiene ? (
           <label className="flex items-center gap-2" title="Habilita ataques más que defensa. Queda fuera del ranking.">
             <input

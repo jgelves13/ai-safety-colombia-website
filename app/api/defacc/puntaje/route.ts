@@ -47,6 +47,10 @@ export async function POST(req: Request) {
 
   const abstiene = cuerpo.abstiene === true;
   const noElegible = cuerpo.noElegible === true;
+  const motivoAbstencion =
+    cuerpo.motivoAbstencion === "conflicto" || cuerpo.motivoAbstencion === "fuera_area"
+      ? cuerpo.motivoAbstencion
+      : null;
   const comentario = String(cuerpo.comentario ?? "").trim().slice(0, 3000);
 
   const notas = {
@@ -55,14 +59,18 @@ export async function POST(req: Request) {
     presentacion: nota(cuerpo.presentacion),
   };
 
-  let puntaje: Puntaje;
+  let puntaje: Puntaje & { motivoAbstencion?: "conflicto" | "fuera_area" };
   if (abstiene) {
+    if (!motivoAbstencion) {
+      return fallo(400, "motivo", "Elige el motivo: conflicto de interés o fuera de tu área.", "motivoAbstencion");
+    }
     puntaje = {
       impacto: null,
       ejecucion: null,
       presentacion: null,
       comentario,
       abstiene: true,
+      motivoAbstencion,
       noElegible: false,
       actualizado: new Date().toISOString(),
     };

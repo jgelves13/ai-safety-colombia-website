@@ -235,12 +235,12 @@ async function guardar(datos: Record<string, string>): Promise<boolean> {
 }
 
 const NOMBRES_TRACKS: Record<string, string> = {
-  "track-1": "Track 1: Seguridad de agentes e inyección de instrucciones (MCP, AgentDojo)",
-  "track-2": "Track 2: Control de IA, monitoreo y detección de sabotaje (ControlArena, Inspect)",
-  "track-3": "Track 3: Ciberdefensa automatizada y verificación formal (DafnyBench, CyberSecEval)",
-  "track-4": "Track 4: Defensa epistémica, procedencia C2PA y detección de suplantación (AASIST)",
-  "track-5": "Track 5: Seguridad de infraestructura de IA y gobernanza defensiva (No-Code, SL1 a SL5)",
-  "track-6": "Track 6: Riesgos multiagente: colusión, explotación y resiliencia cooperativa (Concordia, Melting Pot)",
+  "track-1": "Track 1: Seguridad de agentes",
+  "track-2": "Track 2: Control de IA",
+  "track-3": "Track 3: Ciberdefensa automatizada",
+  "track-4": "Track 4: Defensa epistémica",
+  "track-5": "Track 5: Infraestructura y gobernanza (sin código)",
+  "track-6": "Track 6: Riesgos multiagente",
   por_definir: "Por definir en la mañana del evento",
 };
 
