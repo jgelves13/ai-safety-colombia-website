@@ -13,6 +13,8 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
+const CONFIRMACIONES_CERRADAS = true;
+
 export default async function ConfirmarDefacc({
   searchParams,
 }: {
@@ -20,6 +22,18 @@ export default async function ConfirmarDefacc({
 }) {
   const { t } = await searchParams;
   const invitada = verificarInvitacionDefacc(t);
+
+  /* Plazo vencido (13 nov 2026, 12 m): ya no se reciben confirmaciones nuevas. */
+  if (CONFIRMACIONES_CERRADAS) {
+    return (
+      <DefaccConfirmarMarco>
+        <ConfirmarAviso
+          titulo="Las confirmaciones están cerradas."
+          texto={`${invitada ? `${invitada.nombre}, el` : "El"} plazo para confirmar cupo ya pasó. Si tienes una duda, responde el correo de aceptación.`}
+        />
+      </DefaccConfirmarMarco>
+    );
+  }
 
   if (!invitada) {
     return (
