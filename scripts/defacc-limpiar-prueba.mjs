@@ -1,4 +1,4 @@
-/* Borra todo lo de prueba del bucket del DefAcc: entregas, fichas,
+/* Borra todo lo de prueba del bucket del DefAcc: entregas, fichas, registros,
    revisiones y puntajes cuyo slug empieza con "prueba-". No toca nada real.
 
    Uso:
@@ -7,7 +7,7 @@
 import { borrar, carpetas, listar } from "./defacc-storage.mjs";
 
 const rutas = [];
-for (const pref of ["entregas/", "fichas/", "revision-ia/"]) {
+for (const pref of ["entregas/", "fichas/", "revision-ia/", "registros/"]) {
   for (const n of await listar(pref)) if (n.startsWith("prueba-")) rutas.push(`${pref}${n}`);
 }
 for (const juez of await carpetas("puntajes/")) {

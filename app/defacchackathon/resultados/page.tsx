@@ -30,11 +30,14 @@ export const dynamic = "force-dynamic";
 type Fila = {
   e: Entrega;
   revision: RevisionIA | null;
-  votos: { juez: string; p: Puntaje }[];
+  votos: { juez: string; juezId: string; p: Puntaje }[];
+  /* Ajustados: sin la generosidad de cada jurado y halados hacia 3,5 cuando hay pocas notas. */
   impacto: number | null;
   ejecucion: number | null;
   presentacion: number | null;
   total: number | null;
+  /* Promedio simple, para comparar. */
+  totalCrudo: number | null;
   calificaron: number;
   abstenciones: number;
   marcasNoElegible: number;
@@ -43,6 +46,20 @@ type Fila = {
 
 function promedio(xs: number[]): number | null {
   return xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null;
+}
+
+/* Encogimiento hacia la mitad de la escala: equivale a sumar 2 notas de 3,5.
+   Así un solo 5 no le gana a tres 4,5. */
+const PREVIO = 3.5;
+const PESO_PREVIO = 2;
+const CRITERIOS = ["impacto", "ejecucion", "presentacion"] as const;
+
+function encoger(xs: number[]): number | null {
+  return xs.length ? (xs.reduce((a, b) => a + b, 0) + PESO_PREVIO * PREVIO) / (xs.length + PESO_PREVIO) : null;
+}
+
+function acotar(x: number): number {
+  return Math.min(5, Math.max(1, x));
 }
 
 function fmt(n: number | null, d = 2): string {
@@ -80,15 +97,32 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
   const registros = (await todosLosRegistros()).filter((r) => !!r.prueba === prueba);
   const orden = prueba ? registros.filter((r) => !r.duplicadoDe) : ordenDelSorteo(registros);
 
+  /* Generosidad de cada jurado: su promedio (todas sus notas en entregas activas)
+     menos el promedio de todos. Se resta antes de promediar por proyecto. */
+  const notasDe = (p: Puntaje) => CRITERIOS.map((c) => p[c] ?? 0);
+  const notasPorJuez = porJuez.map(({ j, puntajes }) => ({
+    id: j.id,
+    notas: activas.flatMap((e) => {
+      const p = puntajes[e.slug];
+      return p && !p.abstiene ? notasDe(p) : [];
+    }),
+  }));
+  const media = promedio(notasPorJuez.flatMap((x) => x.notas));
+  const sesgo = new Map(
+    notasPorJuez.map((x) => [x.id, media === null || !x.notas.length ? 0 : (promedio(x.notas) ?? 0) - media]),
+  );
+
   const filas: Fila[] = entregas.map((e, i) => {
     const votos = porJuez
       .filter(({ puntajes }) => puntajes[e.slug])
-      .map(({ j, puntajes }) => ({ juez: j.nombre, p: puntajes[e.slug] }));
+      .map(({ j, puntajes }) => ({ juez: j.nombre, juezId: j.id, p: puntajes[e.slug] }));
     const validos = votos.filter((v) => !v.p.abstiene);
-    const impacto = promedio(validos.map((v) => v.p.impacto ?? 0));
-    const ejecucion = promedio(validos.map((v) => v.p.ejecucion ?? 0));
-    const presentacion = promedio(validos.map((v) => v.p.presentacion ?? 0));
+    const [impacto, ejecucion, presentacion] = CRITERIOS.map((c) =>
+      encoger(validos.map((v) => acotar((v.p[c] ?? 0) - (sesgo.get(v.juezId) ?? 0)))),
+    );
     const total = impacto !== null && ejecucion !== null && presentacion !== null ? impacto + ejecucion + presentacion : null;
+    const crudos = CRITERIOS.map((c) => promedio(validos.map((v) => v.p[c] ?? 0)));
+    const totalCrudo = crudos.every((x) => x !== null) ? crudos.reduce<number>((a, b) => a + (b ?? 0), 0) : null;
     const marcasNoElegible = validos.filter((v) => v.p.noElegible).length;
     return {
       e,
@@ -98,6 +132,7 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
       ejecucion,
       presentacion,
       total,
+      totalCrudo,
       calificaron: validos.length,
       abstenciones: votos.length - validos.length,
       marcasNoElegible,
@@ -121,8 +156,9 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
       titulo={prueba ? "Resultados de prueba" : "Resultados"}
       texto={
         <p>
-          Promedio por criterio entre los jurados que calificaron (las abstenciones no cuentan). Total sobre 15; el empate se
-          rompe por Impacto. Un proyecto sale del ranking si la mitad o más de sus jurados lo marcan como no elegible.
+          El total ajustado descuenta qué tan generoso es cada jurado y acerca a 3,5 los proyectos con pocas notas, para
+          que un solo 5 no le gane a tres 4,5. Las abstenciones no cuentan. Total sobre 15; el empate se rompe por Impacto.
+          Un proyecto sale del ranking si la mitad o más de sus jurados lo marcan como no elegible.
         </p>
       }
     >
@@ -183,7 +219,7 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
             <li className="flex flex-col gap-2">
               <span className="font-medium">4. Vuelve aquí y recarga</span>
               <span className="text-aisc-muted">
-                Revisa el ranking (promedio sobre 15). Prueba «Descartar» y luego «Restaurar».
+                Revisa el ranking (total ajustado sobre 15, con el promedio simple debajo). Prueba «Descartar» y luego «Restaurar».
               </span>
             </li>
           </ol>
@@ -203,7 +239,7 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
                 <th className="px-4 py-3">Impacto</th>
                 <th className="px-4 py-3">Ejecución</th>
                 <th className="px-4 py-3">Presentación</th>
-                <th className="px-4 py-3">Total</th>
+                <th className="px-4 py-3">Total ajustado</th>
                 <th className="px-4 py-3">Jurados</th>
               </tr>
             </thead>
@@ -221,11 +257,19 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
                         {f.marcasNoElegible} marca(s) de no elegible
                       </span>
                     ) : null}
+                    {i < 3 && f.calificaron < 3 ? (
+                      <span className="text-meta block text-aisc-coral">
+                        Pocas notas: revisar en la deliberación de las 6:40
+                      </span>
+                    ) : null}
                   </td>
                   <td className="px-4 py-3">{fmt(f.impacto)}</td>
                   <td className="px-4 py-3">{fmt(f.ejecucion)}</td>
                   <td className="px-4 py-3">{fmt(f.presentacion)}</td>
-                  <td className="px-4 py-3 font-medium">{fmt(f.total)}</td>
+                  <td className="px-4 py-3 font-medium">
+                    {fmt(f.total)}
+                    <span className="block text-meta font-normal text-aisc-muted">prom. {fmt(f.totalCrudo)}</span>
+                  </td>
                   <td className="px-4 py-3">
                     {f.calificaron}
                     {f.abstenciones ? <span className="text-aisc-muted"> (+{f.abstenciones} abst.)</span> : null}
@@ -248,7 +292,7 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
                 <a href={`#${f.e.slug}`} className="underline underline-offset-4">
                   {f.e.titulo}
                 </a>{" "}
-                · {f.marcasNoElegible} de {f.calificaron} jurados · total {fmt(f.total)}
+                · {f.marcasNoElegible} de {f.calificaron} jurados · total ajustado {fmt(f.total)}
               </li>
             ))}
           </ul>
