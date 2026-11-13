@@ -76,6 +76,7 @@ const INDICE: ItemIndice[] = [
   { id: "clave", label: "Información clave" },
   { id: "cronograma", label: "Cronograma" },
   { id: "lugar", label: "Lugar y qué traer" },
+  { id: "parqueaderos", label: "Parqueaderos", nivel: 3 },
   { id: "equipos", label: "Equipos" },
   { id: "oracle", label: "Oracle Academy", nivel: 3 },
   { id: "participantes", label: "Quiénes van", nivel: 3 },
@@ -166,6 +167,24 @@ export default function GuiaDefAcc() {
                 ]}
               />
               <Parrafo>El almuerzo lo ponemos nosotros.</Parrafo>
+
+              <H3 id="parqueaderos">Parqueaderos</H3>
+              <Parrafo>
+                El parqueadero público de la universidad está en el edificio
+                Santo Domingo (SD), Calle 22 # 1-19. El sábado abre desde las
+                7:00 a. m., cobra por minuto y cierra antes de que terminen los
+                pitches, así que confirma la hora de cierre y la tarifa antes
+                de dejar el carro o la moto. La universidad indica que hay que
+                presentar carné para usarlo.
+              </Parrafo>
+              <Parrafo>
+                Los parqueaderos del edificio ML son para profesores, personal
+                y visitantes institucionales, no para el público general.
+              </Parrafo>
+              <Parrafo>
+                Si puedes, llega en transporte público: la estación Las Aguas
+                de TransMilenio, sobre el Eje Ambiental, queda a pocas cuadras.
+              </Parrafo>
 
               <H2 id="equipos">Equipos</H2>
               <Parrafo>

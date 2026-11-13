@@ -37,6 +37,11 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "Trazabilidad criptográfica para agentes, con firmas y una bitácora encadenada que permita saber si una acción vino del usuario o de una herramienta maliciosa.",
   },
+  "angie camila gutierrez trujillo": {
+    afiliacion: "Universidad de los Andes",
+    problema:
+      "Interés en ciberseguridad y en cómo la IA está cambiando ese campo.",
+  },
   "brandon jahir cabra bulla": {
     afiliacion: "Iberoamericana",
     problema:
@@ -56,6 +61,11 @@ const AJUSTES: Record<string, Ajuste> = {
     afiliacion: "Niawi Tech",
     problema:
       "Agentes de ciberdefensa para servidores VPS sin monitoreo, que no solo alerten temprano sino que contengan la amenaza antes de que el servidor quede comprometido.",
+  },
+  "daniel diaz": {
+    afiliacion: "Universidad Nacional de Colombia",
+    problema:
+      "Monitoreo de cadenas de razonamiento (CoT), inyecciones de prompts y monitoreo de la comunicación entre agentes.",
   },
   "david orlando bastos castillejo": {
     afiliacion: "Universidad de los Andes",
@@ -81,6 +91,11 @@ const AJUSTES: Record<string, Ajuste> = {
     afiliacion: "Universidad Externado",
     problema:
       "Qué tanto resiste un modelo la inyección de instrucciones sin apartarse de lo que se le pidió, y si herramientas como JEV detectan contenido malicioso antes de que entre al contexto del agente.",
+  },
+  "jhostin aleck sanchez": {
+    afiliacion: "Universidad de los Andes",
+    problema:
+      "Defensa estructural contra la inyección de prompts en agentes con herramientas: rastrear el origen de cada dato dentro del agente y aplicar políticas que impidan que contenido no confiable controle acciones sensibles, al estilo del taint tracking.",
   },
   "jose carlos guerra martinez": {
     afiliacion: "Axmos Technologies",
@@ -219,6 +234,11 @@ const AJUSTES: Record<string, Ajuste> = {
     afiliacion: "Ciencia de Datos",
     problema:
       "Medir qué tan bien resisten distintos modelos la inyección indirecta de instrucciones, sobre todo con contenido en español, y probar Jev como filtro antes de que el contenido llegue al agente.",
+  },
+  "yefran cespedes cortes": {
+    afiliacion: "Universidad de los Andes",
+    problema:
+      "Defensa en dos capas contra la inyección indirecta de prompts en agentes con herramientas (que leen correos, PQRS o páginas web): un filtro sobre el contenido entrante y un verificador que revisa cada acción contra la intención original del usuario, validada con un banco de casos de prueba en español.",
   },
   "yohan felipe gaitan carvajal": {
     afiliacion: "Universidad de los Andes",
