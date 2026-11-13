@@ -103,7 +103,7 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
           href={RUBRICA_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center justify-between gap-4 rounded-t-lg px-5 py-4 transition-colors hover:bg-white md:px-7"
+          className="group flex flex-wrap items-center justify-between gap-4 rounded-t-lg px-5 py-4 transition-colors hover:bg-white md:px-7"
         >
           <span className="flex flex-col gap-1">
             <span className="text-body font-medium text-aisc-ink">Rúbrica de evaluación completa</span>
@@ -111,8 +111,8 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
               Qué significa cada nota del 1 al 5, con ejemplos. Léela antes de calificar.
             </span>
           </span>
-          <span aria-hidden className="text-body shrink-0 text-aisc-forest transition-transform group-hover:translate-x-0.5">
-            ↗
+          <span className="text-body-sm inline-flex shrink-0 items-center gap-1.5 rounded-full border border-aisc-forest/40 px-3 py-1 font-medium text-aisc-forest transition-colors group-hover:bg-aisc-forest/10">
+            Abrir en Google Docs <span aria-hidden>↗</span>
           </span>
         </a>
         <details className="group border-t border-aisc-ink/20">
