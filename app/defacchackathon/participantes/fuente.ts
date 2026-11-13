@@ -22,6 +22,21 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "El riesgo que aparece cuando un agente acumula demasiados permisos y autorizaciones.",
   },
+  "adriana la rotta": {
+    afiliacion: "Bet365",
+    problema:
+      "Un monitor independiente que revise las decisiones de agentes de QA sobre código y detecte rechazos falsos o recomendaciones que debiliten la seguridad.",
+  },
+  "ana maria vargas murcia": {
+    afiliacion: "Neo Plano Producciones",
+    problema:
+      "Clarity Web, una extensión de navegador que detecta estafas, suplantaciones e información engañosa y las explica en lenguaje sencillo para personas con necesidades cognitivas diversas.",
+  },
+  "andres botero ruiz": {
+    afiliacion: "Universidad de los Andes",
+    problema:
+      "Trazabilidad criptográfica para agentes, con firmas y una bitácora encadenada que permita saber si una acción vino del usuario o de una herramienta maliciosa.",
+  },
   "brandon jahir cabra bulla": {
     afiliacion: "Iberoamericana",
     problema:
@@ -122,6 +137,11 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "Un escáner que revise plugins y contenido antes de que un agente los use, y alerte sobre instrucciones ocultas o destinos sospechosos.",
   },
+  "luis angel nunez pinzon": {
+    afiliacion: "NeuronKids",
+    problema:
+      "Medir cuántas veces la inyección de instrucciones engaña a un clasificador de leads por WhatsApp y probar defensas en código, no solo en el prompt.",
+  },
   "manuel santiago figueroa gomez": {
     afiliacion: "Universidad de los Andes",
     problema:
@@ -137,10 +157,19 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "Cruzar automáticamente cada CVE nueva del NIST con el inventario de software de la empresa, avisar a los afectados y proponer los pasos para parchear.",
   },
+  "miguel ariza": {
+    afiliacion: "Business Support",
+    problema:
+      "Un asistente que resuma documentos sin confundir su texto con instrucciones y pida confirmación antes de compartir información fuera del chat.",
+  },
   "sadid romero": {
     afiliacion: "BASF",
     problema:
       "Clarity Web, una extensión de navegador que detecta estafas, suplantaciones e información engañosa y las explica en lenguaje sencillo para personas con necesidades cognitivas diversas.",
+  },
+  "santiago ramos grateron": {
+    problema:
+      "Comprobar que el código escrito con IA por personas sin formación técnica sea seguro antes de llegar a producción.",
   },
   "sergio alejandro castano arcila": {
     afiliacion: "Universidad de los Andes",
