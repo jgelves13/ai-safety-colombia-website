@@ -447,6 +447,15 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
           bio: ["Investigador en la ", { texto: "Universidad Tecnológica de Pereira", url: "https://www.utp.edu.co/" }, " e ingeniero de IA en el ", { texto: "LRC", url: "https://www.lrc.systems/" }, ". Primer autor de ", { texto: "PsychoAlign", url: "https://github.com/josefdc/psychoalign" }, ", una arquitectura de alineación con tres agentes que negocian, presentada como oral en LatinX in AI @ ICML 2026."],
         },
         {
+          nombre: "Manuela Chacón",
+          rol: "Jueza",
+          afiliacion: "Uniandes · Google DeepMind",
+          foto: "/aisc/mentores/manuela-chacon.png",
+          url: "https://www.linkedin.com/in/manuela-viviana-chac%C3%B3n-chamorro-04b0621bb/",
+          confirmado: true,
+          bio: ["Doctoranda en Ingeniería en la ", { texto: "Universidad de los Andes", url: "https://uniandes.edu.co/" }, " y ", { texto: "becaria de Google DeepMind", url: "https://ingenieria.uniandes.edu.co/es/noticias/ganadores-becas-deepmind-cinfonia" }, ". Primera autora de un ", { texto: "artículo", url: "https://ieeexplore.ieee.org/document/10988739/" }, " de IEEE sobre resiliencia cooperativa en sistemas multiagente; en 2025 participó en la ", { texto: "Cooperative AI Summer School", url: "https://www.cooperativeai.com/summer-school/summer-school-2025" }, "."],
+        },
+        {
           nombre: "Jairo Torregrosa",
           rol: "Juez y mentor",
           afiliacion: "Mercado Libre",
@@ -784,6 +793,15 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
           bio: ["Researcher at the ", { texto: "Universidad Tecnológica de Pereira", url: "https://www.utp.edu.co/" }, " and AI engineer at ", { texto: "LRC", url: "https://www.lrc.systems/" }, ". First author of ", { texto: "PsychoAlign", url: "https://github.com/josefdc/psychoalign" }, ", an alignment architecture with three negotiating agents, presented as an oral at LatinX in AI @ ICML 2026."],
         },
         {
+          nombre: "Manuela Chacón",
+          rol: "Judge",
+          afiliacion: "Uniandes · Google DeepMind",
+          foto: "/aisc/mentores/manuela-chacon.png",
+          url: "https://www.linkedin.com/in/manuela-viviana-chac%C3%B3n-chamorro-04b0621bb/",
+          confirmado: true,
+          bio: ["PhD student in Engineering at the ", { texto: "Universidad de los Andes", url: "https://uniandes.edu.co/" }, " and a ", { texto: "Google DeepMind scholar", url: "https://ingenieria.uniandes.edu.co/es/noticias/ganadores-becas-deepmind-cinfonia" }, ". First author of an IEEE ", { texto: "paper", url: "https://ieeexplore.ieee.org/document/10988739/" }, " on cooperative resilience in multi-agent systems; in 2025 she took part in the ", { texto: "Cooperative AI Summer School", url: "https://www.cooperativeai.com/summer-school/summer-school-2025" }, "."],
+        },
+        {
           nombre: "Jairo Torregrosa",
           rol: "Judge and mentor",
           afiliacion: "Mercado Libre",
@@ -1099,6 +1117,15 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
           url: "https://www.linkedin.com/in/josefeldc/",
           confirmado: true,
           bio: ["Pesquisador na ", { texto: "Universidad Tecnológica de Pereira", url: "https://www.utp.edu.co/" }, " e engenheiro de IA no ", { texto: "LRC", url: "https://www.lrc.systems/" }, ". Primeiro autor do ", { texto: "PsychoAlign", url: "https://github.com/josefdc/psychoalign" }, ", uma arquitetura de alinhamento com três agentes que negociam, apresentada como oral no LatinX in AI @ ICML 2026."],
+        },
+        {
+          nombre: "Manuela Chacón",
+          rol: "Jurada",
+          afiliacion: "Uniandes · Google DeepMind",
+          foto: "/aisc/mentores/manuela-chacon.png",
+          url: "https://www.linkedin.com/in/manuela-viviana-chac%C3%B3n-chamorro-04b0621bb/",
+          confirmado: true,
+          bio: ["Doutoranda em Engenharia na ", { texto: "Universidad de los Andes", url: "https://uniandes.edu.co/" }, " e ", { texto: "bolsista do Google DeepMind", url: "https://ingenieria.uniandes.edu.co/es/noticias/ganadores-becas-deepmind-cinfonia" }, ". Primeira autora de um ", { texto: "artigo", url: "https://ieeexplore.ieee.org/document/10988739/" }, " do IEEE sobre resiliência cooperativa em sistemas multiagente; em 2025 participou da ", { texto: "Cooperative AI Summer School", url: "https://www.cooperativeai.com/summer-school/summer-school-2025" }, "."],
         },
         {
           nombre: "Jairo Torregrosa",
