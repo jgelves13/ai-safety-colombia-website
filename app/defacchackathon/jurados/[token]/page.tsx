@@ -95,48 +95,44 @@ export default async function PaginaJurado({ params }: { params: Promise<{ token
     <MarcoPanel
       kicker="DefAcc Hackathon · Jurado"
       titulo={`Hola, ${juez.nombre.split(" ")[0]}`}
-      texto={
-        <div className="flex flex-col gap-5">
-          <p>Califica de 1 a 5. Puedes cambiar tus notas cuando quieras. Enlace personal.</p>
-          <details className="group rounded-lg border border-aisc-sand/25 bg-aisc-sand/5">
-            <summary className="text-body-sm flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 font-medium text-aisc-sand [&::-webkit-details-marker]:hidden">
-              Criterios y qué significa cada nota
-              <span aria-hidden className="transition-transform group-open:rotate-180">
-                ▾
-              </span>
-            </summary>
-            <div className="flex flex-col divide-y divide-aisc-sand/15 border-t border-aisc-sand/15">
-              {criterios.map((c) => (
-                <section key={c.nombre} className="flex flex-col gap-3 px-4 py-5">
-                  <div className="flex flex-col gap-1">
-                    <h2 className="text-body font-medium text-aisc-sand">{c.nombre}</h2>
-                    <p className="text-body-sm text-aisc-sand/80">{c.descripcion}</p>
-                  </div>
-                  {c.niveles ? (
-                    <dl className="text-body-sm grid grid-cols-[auto_1fr] gap-x-3 gap-y-2">
-                      {(
-                        [
-                          ["1", c.niveles.n1],
-                          ["3", c.niveles.n3],
-                          ["5", c.niveles.n5],
-                        ] as const
-                      ).map(([n, t]) => (
-                        <div key={n} className="contents">
-                          <dt className="text-meta flex size-6 items-center justify-center rounded-full border border-aisc-sand/40 font-medium text-aisc-sand">
-                            {n}
-                          </dt>
-                          <dd className="pt-0.5 text-aisc-sand/75">{t}</dd>
-                        </div>
-                      ))}
-                    </dl>
-                  ) : null}
-                </section>
-              ))}
-            </div>
-          </details>
-        </div>
-      }
+      texto="Califica de 1 a 5. Puedes cambiar tus notas cuando quieras. Enlace personal."
     >
+      <details className="group mb-10 w-full rounded-lg border border-aisc-ink bg-aisc-cream">
+        <summary className="text-body flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-medium text-aisc-ink md:px-7 [&::-webkit-details-marker]:hidden">
+          Criterios y qué significa cada nota
+          <span aria-hidden className="transition-transform group-open:rotate-180">
+            ▾
+          </span>
+        </summary>
+        <div className="flex flex-col divide-y divide-aisc-line border-t border-aisc-line md:grid md:grid-cols-3 md:divide-x md:divide-y-0">
+          {criterios.map((c) => (
+            <section key={c.nombre} className="flex flex-col gap-3 px-5 py-5 md:px-7">
+              <div className="flex flex-col gap-1">
+                <h2 className="text-body font-medium text-aisc-ink">{c.nombre}</h2>
+                <p className="text-body-sm text-aisc-ink/80">{c.descripcion}</p>
+              </div>
+              {c.niveles ? (
+                <dl className="text-body-sm grid grid-cols-[auto_1fr] gap-x-3 gap-y-2">
+                  {(
+                    [
+                      ["1", c.niveles.n1],
+                      ["3", c.niveles.n3],
+                      ["5", c.niveles.n5],
+                    ] as const
+                  ).map(([n, t]) => (
+                    <div key={n} className="contents">
+                      <dt className="text-meta flex size-6 items-center justify-center rounded-full bg-aisc-forest font-medium text-aisc-cream">
+                        {n}
+                      </dt>
+                      <dd className="pt-0.5 text-aisc-ink">{t}</dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : null}
+            </section>
+          ))}
+        </div>
+      </details>
       <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4">
         <h2 className="text-display-2 text-aisc-ink">
           {entregas.length === 0 ? "Aún no hay entregas" : `${hechas} de ${entregas.length} calificadas`}
