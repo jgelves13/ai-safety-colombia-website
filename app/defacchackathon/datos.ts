@@ -449,7 +449,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           nombre: "Manuela Chacón",
           rol: "Jueza",
-          afiliacion: "Uniandes · Google DeepMind",
+          afiliacion: "Uniandes",
           foto: "/aisc/mentores/manuela-chacon.png",
           url: "https://www.linkedin.com/in/manuela-viviana-chac%C3%B3n-chamorro-04b0621bb/",
           confirmado: true,
@@ -795,7 +795,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           nombre: "Manuela Chacón",
           rol: "Judge",
-          afiliacion: "Uniandes · Google DeepMind",
+          afiliacion: "Uniandes",
           foto: "/aisc/mentores/manuela-chacon.png",
           url: "https://www.linkedin.com/in/manuela-viviana-chac%C3%B3n-chamorro-04b0621bb/",
           confirmado: true,
@@ -1121,7 +1121,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
         {
           nombre: "Manuela Chacón",
           rol: "Jurada",
-          afiliacion: "Uniandes · Google DeepMind",
+          afiliacion: "Uniandes",
           foto: "/aisc/mentores/manuela-chacon.png",
           url: "https://www.linkedin.com/in/manuela-viviana-chac%C3%B3n-chamorro-04b0621bb/",
           confirmado: true,
