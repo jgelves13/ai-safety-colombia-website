@@ -142,6 +142,11 @@ const AJUSTES: Record<string, Ajuste> = {
     problema:
       "La seguridad y el control de agentes basados en LLMs, cuya autonomía para ejecutar código, usar APIs y modificar bases de datos multiplica la superficie de ataque.",
   },
+  "larry francisco aguirre junco": {
+    afiliacion: "Universidad Nacional de Colombia",
+    problema:
+      "Ataques hechos por colmenas de agentes de IA que actúan de forma coordinada.",
+  },
   "laura sofia londono perez": {
     afiliacion: "Universidad Sergio Arboleda",
     problema:
@@ -180,6 +185,11 @@ const AJUSTES: Record<string, Ajuste> = {
     afiliacion: "BASF",
     problema:
       "Clarity Web, una extensión de navegador que detecta estafas, suplantaciones e información engañosa y las explica en lenguaje sencillo para personas con necesidades cognitivas diversas.",
+  },
+  "samuel fonseca": {
+    afiliacion: "Universidad de los Andes",
+    problema:
+      "DÉDALO, una defensa contra agentes que automatizan el abuso de credenciales: señuelos para rastrearlos, un entorno falso con datos sintéticos que se adapta a lo que hacen y controles que revocan sesiones y limitan permisos.",
   },
   "santiago ramos grateron": {
     problema:
