@@ -46,12 +46,12 @@ const CLAVE: Array<[string, React.ReactNode]> = [
   ["Entrega", "5:00 p. m. en punto, por la página de entregas"],
   ["Pitch", "3 minutos por equipo, desde las 5:10 p. m., en el orden del sorteo"],
   ["Premios", "COP 1.000.000, 500.000 y 500.000 a los tres primeros puestos"],
-  ["Comida", "Snacks para el desayuno y almuerzo incluidos"],
+  ["Comida", "Snacks para el desayuno (hasta agotar existencias) y almuerzo incluidos"],
   ["Organizan", "IEEE Computer Society Uniandes y AI Safety Colombia"],
 ];
 
 const AGENDA: Array<[string, React.ReactNode]> = [
-  ["8:00 a. m.", "Registro, ingreso al campus y snacks para el desayuno."],
+  ["8:00 a. m.", "Registro, ingreso al campus y snacks para el desayuno, hasta agotar existencias."],
   ["8:30 a. m.", "Apertura, presentación del reto y formación de equipos."],
   ["9:00 a. m.", "Empieza el sprint. Tienen 8 horas de trabajo."],
   ["11:00 a. m.", "Cierra el registro de equipos: nombre, integrantes y frente. Toma un minuto."],
@@ -182,7 +182,11 @@ export default async function GuiaDefAcc() {
                   "Termo para agua.",
                 ]}
               />
-              <Parrafo>Ponemos snacks para el desayuno y el almuerzo.</Parrafo>
+              <Parrafo>
+                Ponemos el almuerzo y snacks para el desayuno. Los snacks del
+                desayuno son limitados y se reparten hasta agotar existencias,
+                así que si llegas tarde, mejor desayuna antes de salir.
+              </Parrafo>
 
               <H3 id="parqueaderos">Parqueaderos</H3>
               <Parrafo>

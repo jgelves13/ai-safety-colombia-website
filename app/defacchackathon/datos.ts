@@ -199,7 +199,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       premiosRotulo: "Premios",
       premiosValor: "COP 2.000.000 en total",
       comidaRotulo: "Alimentación",
-      comidaValor: "Snacks para el desayuno y almuerzo incluidos",
+      comidaValor: "Snacks para el desayuno (hasta agotar existencias) y almuerzo incluidos",
       organizanRotulo: "Organizan",
     },
     pestañas: {
@@ -580,7 +580,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       premiosRotulo: "Prizes",
       premiosValor: "COP 2,000,000 total",
       comidaRotulo: "Catering",
-      comidaValor: "Breakfast snacks and lunch included on-site",
+      comidaValor: "Breakfast snacks (while supplies last) and lunch included on-site",
       organizanRotulo: "Organizers",
     },
     pestañas: {
