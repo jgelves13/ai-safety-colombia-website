@@ -38,7 +38,7 @@ export default async function Pagina({ searchParams }: { searchParams: Promise<{
             <span className="text-kicker text-aisc-sand/70">DefAcc Hackathon · Registro</span>
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">Registren su equipo</h1>
             <p className="text-body md:text-body-lg text-aisc-sand/90">
-              Nombre del equipo, integrantes y track, antes de las 11:00 a. m. del sábado. Con esta lista sorteamos el
+              Nombre del equipo, integrantes y track, antes de las 10:00 a. m. del sábado. Con esta lista sorteamos el
               orden de los pitches y lo publicamos a las 2:00 p. m.
             </p>
           </div>
@@ -55,7 +55,7 @@ export default async function Pagina({ searchParams }: { searchParams: Promise<{
             <DefAccRegistroForm tracks={tracks} bypass={bypass ?? ""} />
           ) : (
             <div className={TARJETA}>
-              <h2 className="text-display-3 text-aisc-ink">El registro cerró a las 11:00 a. m.</h2>
+              <h2 className="text-display-3 text-aisc-ink">El registro cerró a las 10:00 a. m.</h2>
               <p className="text-body mt-4 text-aisc-ink">
                 A las 2:00 p. m. publicamos el orden de los pitches en el grupo de WhatsApp y en la guía.
               </p>

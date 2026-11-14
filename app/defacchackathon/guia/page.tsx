@@ -42,7 +42,7 @@ const CLAVE: Array<[string, React.ReactNode]> = [
   ["Lugar", "Universidad de los Andes, Bogotá"],
   ["Salón", "ML 607 todo el día. Pitches y cierre en el Auditorio ML C, de 5:00 a 8:00 p. m."],
   ["Equipos", "De 2 a 5 personas"],
-  ["Registro del equipo", "Antes de las 11:00 a. m. del sábado"],
+  ["Registro del equipo", "Antes de las 10:00 a. m. del sábado"],
   ["Entrega", "5:00 p. m. en punto, por la página de entregas"],
   ["Pitch", "3 minutos por equipo, desde las 5:10 p. m., en el orden del sorteo"],
   ["Premios", "COP 1.000.000, 500.000 y 500.000 a los tres primeros puestos"],
@@ -54,7 +54,7 @@ const AGENDA: Array<[string, React.ReactNode]> = [
   ["8:00 a. m.", "Registro e ingreso al campus."],
   ["8:30 a. m.", "Apertura, presentación del reto y formación de equipos."],
   ["9:00 a. m.", "Empieza el sprint. Tienen 8 horas de trabajo. Snacks para el desayuno, hasta agotar existencias."],
-  ["11:00 a. m.", "Cierra el registro de equipos: nombre, integrantes y frente. Toma un minuto."],
+  ["10:00 a. m.", "Cierra el registro de equipos: nombre, integrantes y frente. Toma un minuto."],
   ["12:30 p. m.", "Almuerzo, aproximadamente."],
   ["2:00 p. m.", "Publicamos el orden de los pitches."],
   ["5:00 p. m.", "Cierre de entregas. En punto."],
@@ -280,7 +280,7 @@ export default async function GuiaDefAcc() {
                 . Toma un minuto y basta con que lo haga una persona por equipo.
               </Parrafo>
               <Parrafo>
-                <strong>El registro cierra a las 11:00 a. m. en punto.</strong>{" "}
+                <strong>El registro cierra a las 10:00 a. m. en punto.</strong>{" "}
                 Con esa lista sorteamos el orden de los pitches y lo publicamos a
                 las 2:00 p. m. Al registrarse les llega un correo con un enlace
                 a la página de entregas, con sus datos ya puestos.

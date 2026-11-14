@@ -1,7 +1,7 @@
 /* Registro de equipos del DefAcc Hackathon.
 
    Cada equipo se registra una vez (nombre, integrantes y track) antes de las
-   11:00 a. m. del sábado. Con esa lista se sortea el orden de los pitches,
+   10:00 a. m. del sábado. Con esa lista se sortea el orden de los pitches,
    que se publica a las 2:00 p. m. Si llega otro registro con el mismo nombre
    se guarda aparte marcado como duplicado: nunca se sobrescribe. */
 
@@ -96,7 +96,7 @@ export async function POST(req: Request) {
   const conBypass = esPrueba || (!!bypassEsperado && !!bypassDado && iguales(bypassDado, bypassEsperado));
 
   if (!conBypass && !registroAbierto()) {
-    return mal("cerrado", "El registro cerró a las 11:00 a. m.", 403);
+    return mal("cerrado", "El registro cerró a las 10:00 a. m.", 403);
   }
 
   const equipo = texto(datos.equipo, 80);
