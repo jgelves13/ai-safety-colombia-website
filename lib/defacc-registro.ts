@@ -1,7 +1,7 @@
 /* Registro de equipos del DefAcc Hackathon y sorteo del orden de los pitches.
 
-   Cada equipo se registra (nombre, integrantes, frente) antes de las 10:00 a. m.
-   del sábado. A las 2:00 p. m. se publica el orden de los pitches, que sale de un
+   Cada equipo se registra (nombre, integrantes, frente) el sábado entre las
+   10:00 y las 11:00 a. m. A las 2:00 p. m. se publica el orden de los pitches, que sale de un
    sorteo: se ordena por una clave HMAC secreta del slug, así nadie lo puede
    predecir ni la hora de registro cambia nada. */
 
@@ -13,7 +13,8 @@ import {
   type Integrante,
 } from "@/lib/defacc-entregas";
 
-export const CIERRE_REGISTRO_ISO = "2026-11-14T10:00:00-05:00";
+export const APERTURA_REGISTRO_ISO = "2026-11-14T10:00:00-05:00";
+export const CIERRE_REGISTRO_ISO = "2026-11-14T11:00:00-05:00";
 export const PUBLICACION_ORDEN_ISO = "2026-11-14T14:00:00-05:00";
 
 export type Registro = {
@@ -29,7 +30,14 @@ export type Registro = {
 };
 
 export function registroAbierto(ahora = Date.now()): boolean {
-  return ahora < new Date(CIERRE_REGISTRO_ISO).getTime();
+  return (
+    ahora >= new Date(APERTURA_REGISTRO_ISO).getTime() &&
+    ahora < new Date(CIERRE_REGISTRO_ISO).getTime()
+  );
+}
+
+export function registroPorAbrir(ahora = Date.now()): boolean {
+  return ahora < new Date(APERTURA_REGISTRO_ISO).getTime();
 }
 
 export function ordenPublicado(ahora = Date.now()): boolean {

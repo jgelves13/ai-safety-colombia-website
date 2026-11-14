@@ -7,7 +7,7 @@ import SiteHeader from "@/components/site-header";
 import { HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { TEXTOS_HACKATHON } from "@/app/defacchackathon/datos";
 import { esTokenPrueba } from "@/lib/defacc-entregas";
-import { registroAbierto } from "@/lib/defacc-registro";
+import { registroAbierto, registroPorAbrir } from "@/lib/defacc-registro";
 
 export const metadata: Metadata = {
   title: "Registro de equipos · Defensive Acceleration Hackathon",
@@ -27,6 +27,7 @@ export default async function Pagina({ searchParams }: { searchParams: Promise<{
     titulo: `Track ${Number(t.numero)}: ${t.titulo}`,
   }));
   const abierto = registroAbierto() || !!bypass;
+  const porAbrir = registroPorAbrir();
 
   return (
     <main className={PAGE_SHELL}>
@@ -38,7 +39,7 @@ export default async function Pagina({ searchParams }: { searchParams: Promise<{
             <span className="text-kicker text-aisc-sand/70">DefAcc Hackathon · Registro</span>
             <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">Registren su equipo</h1>
             <p className="text-body md:text-body-lg text-aisc-sand/90">
-              Nombre del equipo, integrantes y track, antes de las 10:00 a. m. del sábado. Con esta lista sorteamos el
+              Nombre del equipo, integrantes y track, el sábado de 10:00 a 11:00 a. m. Con esta lista sorteamos el
               orden de los pitches y lo publicamos a las 2:00 p. m.
             </p>
           </div>
@@ -55,9 +56,13 @@ export default async function Pagina({ searchParams }: { searchParams: Promise<{
             <DefAccRegistroForm tracks={tracks} bypass={bypass ?? ""} />
           ) : (
             <div className={TARJETA}>
-              <h2 className="text-display-3 text-aisc-ink">El registro cerró a las 10:00 a. m.</h2>
+              <h2 className="text-display-3 text-aisc-ink">
+                {porAbrir ? "El registro abre a las 10:00 a. m." : "El registro cerró a las 11:00 a. m."}
+              </h2>
               <p className="text-body mt-4 text-aisc-ink">
-                A las 2:00 p. m. publicamos el orden de los pitches en el grupo de WhatsApp y en la guía.
+                {porAbrir
+                  ? "Vuelvan a esta página a las 10:00 a. m. Estará abierto hasta las 11:00 a. m."
+                  : "A las 2:00 p. m. publicamos el orden de los pitches en el grupo de WhatsApp y en la guía."}
               </p>
             </div>
           )}

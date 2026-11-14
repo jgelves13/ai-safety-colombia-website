@@ -1,7 +1,7 @@
 /* Registro de equipos del DefAcc Hackathon.
 
-   Cada equipo se registra una vez (nombre, integrantes y track) antes de las
-   10:00 a. m. del sábado. Con esa lista se sortea el orden de los pitches,
+   Cada equipo se registra una vez (nombre, integrantes y track) el sábado
+   entre las 10:00 y las 11:00 a. m. Con esa lista se sortea el orden de los pitches,
    que se publica a las 2:00 p. m. Si llega otro registro con el mismo nombre
    se guarda aparte marcado como duplicado: nunca se sobrescribe. */
 
@@ -18,7 +18,7 @@ import {
   subirJson,
   type Integrante,
 } from "@/lib/defacc-entregas";
-import { leerRegistro, registroAbierto, type Registro } from "@/lib/defacc-registro";
+import { leerRegistro, registroAbierto, registroPorAbrir, type Registro } from "@/lib/defacc-registro";
 import { NOMBRES_TRACKS } from "@/lib/defacc-revision";
 
 export const runtime = "nodejs";
@@ -96,7 +96,9 @@ export async function POST(req: Request) {
   const conBypass = esPrueba || (!!bypassEsperado && !!bypassDado && iguales(bypassDado, bypassEsperado));
 
   if (!conBypass && !registroAbierto()) {
-    return mal("cerrado", "El registro cerró a las 10:00 a. m.", 403);
+    return registroPorAbrir()
+      ? mal("cerrado", "El registro abre a las 10:00 a. m.", 403)
+      : mal("cerrado", "El registro cerró a las 11:00 a. m.", 403);
   }
 
   const equipo = texto(datos.equipo, 80);
