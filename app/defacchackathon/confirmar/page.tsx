@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import type { Metadata } from "next";
 import DefaccConfirmForm from "@/components/defacc-confirm-form";
 import { ConfirmarAviso } from "@/components/confirmar-marco";
@@ -15,6 +16,18 @@ export const dynamic = "force-dynamic";
 
 const CONFIRMACIONES_CERRADAS = true;
 
+/* Reaperturas puntuales: sha256 del correo en minúsculas → fin del plazo.
+   Se guarda el hash y no el correo para no dejar datos personales en el código. */
+const REABIERTAS: Record<string, string> = {
+  // Yamid González, hasta el 13 nov 2026 a la medianoche de Bogotá.
+  a96ac230810c68dc50f0fe9e96ddc069c258f6bfeedfb731f68679da727a665f: "2026-11-14T05:00:00Z",
+};
+
+function reabierta(correo: string): boolean {
+  const hasta = REABIERTAS[createHash("sha256").update(correo.toLowerCase()).digest("hex")];
+  return Boolean(hasta) && Date.now() < Date.parse(hasta);
+}
+
 export default async function ConfirmarDefacc({
   searchParams,
 }: {
@@ -24,7 +37,7 @@ export default async function ConfirmarDefacc({
   const invitada = verificarInvitacionDefacc(t);
 
   /* Plazo vencido (13 nov 2026, 12 m): ya no se reciben confirmaciones nuevas. */
-  if (CONFIRMACIONES_CERRADAS) {
+  if (CONFIRMACIONES_CERRADAS && !(invitada && reabierta(invitada.correo))) {
     return (
       <DefaccConfirmarMarco>
         <ConfirmarAviso
