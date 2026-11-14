@@ -21,6 +21,8 @@ const CONFIRMACIONES_CERRADAS = true;
 const REABIERTAS: Record<string, string> = {
   // Yamid González, hasta el 13 nov 2026 a la medianoche de Bogotá.
   a96ac230810c68dc50f0fe9e96ddc069c258f6bfeedfb731f68679da727a665f: "2026-11-14T05:00:00Z",
+  // Jose Manuel Pardo, hasta el 13 nov 2026 a la medianoche de Bogotá.
+  "1d138352a76e72fd3404134e63932b2bd3b468854ffed9b1d777966c3157b550": "2026-11-14T05:00:00Z",
 };
 
 function reabierta(correo: string): boolean {
