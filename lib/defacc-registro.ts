@@ -29,11 +29,10 @@ export type Registro = {
   duplicadoDe?: string;
 };
 
+/* Reabierto el día del evento por decisión de la organización: ya no se cierra a la hora
+   de CIERRE_REGISTRO_ISO, aunque los textos siguen diciendo 11:00 a. m. */
 export function registroAbierto(ahora = Date.now()): boolean {
-  return (
-    ahora >= new Date(APERTURA_REGISTRO_ISO).getTime() &&
-    ahora < new Date(CIERRE_REGISTRO_ISO).getTime()
-  );
+  return ahora >= new Date(APERTURA_REGISTRO_ISO).getTime();
 }
 
 export function registroPorAbrir(ahora = Date.now()): boolean {
