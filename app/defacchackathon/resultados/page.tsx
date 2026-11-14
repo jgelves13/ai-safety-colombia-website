@@ -142,13 +142,24 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
 
   const ordenar = (a: Fila, b: Fila) =>
     (b.total ?? -1) - (a.total ?? -1) || (b.impacto ?? -1) - (a.impacto ?? -1) || a.e.titulo.localeCompare(b.e.titulo);
-  const vivas = filas.filter((f) => !f.e.descartada);
-  const descartadas = filas.filter((f) => f.e.descartada);
-  const ranking = vivas.filter((f) => !f.excluida && f.total !== null).sort(ordenar);
-  const sinNotas = vivas.filter((f) => f.total === null);
-  const excluidas = vivas.filter((f) => f.excluida).sort(ordenar);
-  /* Cuántos jurados calificaron cada entrega, sin decir quiénes. Las que tienen menos van primero. */
-  const cobertura = [...vivas].sort((a, b) => a.calificaron - b.calificaron || a.e.titulo.localeCompare(b.e.titulo));
+  /* Puesto de cada entrega en el orden de los pitches (sorteo). Una entrega duplicada
+     toma el puesto de su equipo; las que no casan con ningún registro van al final.
+     Solo cambia cómo se muestra: el puesto por puntaje se sigue mostrando y las notas no se tocan. */
+  const puestoPitch = new Map(orden.map((r, i) => [r.slug, i + 1]));
+  const pitchDe = (e: Fila["e"]) => puestoPitch.get(e.duplicadoDe ?? e.slug) ?? null;
+  const etiquetaPitch = (e: Fila["e"]) => {
+    const n = pitchDe(e);
+    return n ? `Pitch ${n} · ` : "";
+  };
+  const porPitch = (a: Fila, b: Fila) =>
+    (pitchDe(a.e) ?? Infinity) - (pitchDe(b.e) ?? Infinity) || a.e.titulo.localeCompare(b.e.titulo);
+  const vivas = filas.filter((f) => !f.e.descartada).sort(porPitch);
+  const descartadas = filas.filter((f) => f.e.descartada).sort(porPitch);
+  const ranking = vivas.filter((f) => !f.excluida && f.total !== null);
+  const puestoPuntaje = new Map([...ranking].sort(ordenar).map((f, i) => [f.e.slug, i + 1]));
+  const excluidas = vivas.filter((f) => f.excluida);
+  /* Cuántos jurados calificaron cada entrega, sin decir quiénes. */
+  const cobertura = vivas;
 
   return (
     <MarcoPanel
@@ -234,7 +245,8 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
           <table className="text-body-sm w-full min-w-[720px] text-left text-aisc-ink">
             <thead className="text-meta text-aisc-muted">
               <tr className="border-b border-aisc-line">
-                <th className="px-4 py-3">#</th>
+                <th className="px-4 py-3">Pitch</th>
+                <th className="px-4 py-3">Puesto</th>
                 <th className="px-4 py-3">Proyecto</th>
                 <th className="px-4 py-3">Impacto</th>
                 <th className="px-4 py-3">Ejecución</th>
@@ -244,9 +256,12 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
               </tr>
             </thead>
             <tbody>
-              {ranking.map((f, i) => (
+              {ranking.map((f) => {
+                const puesto = puestoPuntaje.get(f.e.slug) ?? 0;
+                return (
                 <tr key={f.e.slug} className="border-b border-aisc-line last:border-0">
-                  <td className="px-4 py-3 font-medium">{i + 1}</td>
+                  <td className="px-4 py-3 text-aisc-muted">{pitchDe(f.e) ?? "—"}</td>
+                  <td className="px-4 py-3 font-medium">{puesto}</td>
                   <td className="px-4 py-3">
                     <a href={`#${f.e.slug}`} className="font-medium underline underline-offset-4">
                       {f.e.titulo}
@@ -257,7 +272,7 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
                         {f.marcasNoElegible} marca(s) de no elegible
                       </span>
                     ) : null}
-                    {i < 3 && f.calificaron < 3 ? (
+                    {puesto <= 3 && f.calificaron < 3 ? (
                       <span className="text-meta block text-aisc-coral">
                         Pocas notas: revisar en la deliberación de las 6:40
                       </span>
@@ -275,7 +290,8 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
                     {f.abstenciones ? <span className="text-aisc-muted"> (+{f.abstenciones} abst.)</span> : null}
                   </td>
                 </tr>
-              ))}
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -289,6 +305,7 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
           <ul className="text-body-sm flex flex-col gap-1 text-aisc-ink">
             {excluidas.map((f) => (
               <li key={f.e.slug}>
+                {etiquetaPitch(f.e)}
                 <a href={`#${f.e.slug}`} className="underline underline-offset-4">
                   {f.e.titulo}
                 </a>{" "}
@@ -305,6 +322,7 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
           <ul className="text-body-sm flex flex-col gap-1 text-aisc-ink">
             {descartadas.map((f) => (
               <li key={f.e.slug}>
+                {etiquetaPitch(f.e)}
                 <a href={`#${f.e.slug}`} className="underline underline-offset-4">
                   {f.e.titulo}
                 </a>
@@ -320,11 +338,12 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
         <section className="mb-14 flex flex-col gap-3">
           <h2 className="text-body-lg font-medium text-aisc-ink">Calificaciones por entrega</h2>
           <p className="text-body-sm text-aisc-muted">
-            Cuántos jurados calificaron cada entrega (sin abstenciones). Las que tienen menos aparecen primero.
+            Cuántos jurados calificaron cada entrega (sin abstenciones), en el orden de los pitches. En rojo, las que tienen menos de 3.
           </p>
           <ul className="text-body-sm flex flex-col gap-1 text-aisc-ink">
             {cobertura.map((f) => (
               <li key={f.e.slug}>
+                {etiquetaPitch(f.e)}
                 <a href={`#${f.e.slug}`} className="underline underline-offset-4">
                   {f.e.titulo}
                 </a>{" "}
@@ -409,13 +428,16 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
 
       <section className="flex flex-col gap-6">
         <h2 className="text-body-lg font-medium text-aisc-ink">Detalle por entrega</h2>
-        {[...ranking, ...excluidas, ...sinNotas, ...descartadas].map((f) => (
+        {[...vivas, ...descartadas].map((f) => (
           <article
             key={f.e.slug}
             id={f.e.slug}
             className="flex flex-col gap-4 rounded-lg border border-aisc-ink bg-aisc-cream p-6 md:p-8"
           >
-            <span className="text-kicker text-aisc-muted">{NOMBRES_TRACKS[f.e.track] ?? f.e.track}</span>
+            <span className="text-kicker text-aisc-muted">
+              {etiquetaPitch(f.e)}
+              {NOMBRES_TRACKS[f.e.track] ?? f.e.track}
+            </span>
             <h3 className="text-body-lg font-medium text-aisc-ink">{f.e.titulo}</h3>
             <p className="text-body-sm text-aisc-muted">
               Equipo {f.e.equipo} · {f.e.integrantes.map((p) => p.nombre).join(", ")}
