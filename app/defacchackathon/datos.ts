@@ -371,7 +371,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       entregablesHora: "Hora límite estricta: sábado 14 de noviembre a las 5:00 p.m.",
       entregables: [
         "Enlace al repositorio ejecutable (GitHub o Google Colab) con código documentado para los Tracks 1 al 4 y 6. El Track 5 (No-Code) entrega solo la ficha técnica; en el campo del enlace pongan el enlace a la ficha en Drive.",
-        "Ficha técnica de hasta 2 páginas (según la plantilla oficial): vector de amenaza, arquitectura o protocolo defensivo, metodología de evaluación, resultados cuantitativos, límites y análisis de riesgo dual.",
+        "Ficha técnica de hasta 2 páginas: vector de amenaza, arquitectura o protocolo defensivo, metodología de evaluación, resultados cuantitativos, límites y análisis de riesgo dual. Hay una plantilla sugerida y opcional en aisafetycolombia.org/defacc/plantilla-ficha-tecnica.pdf.",
       ],
       criteriosTitulo: "Criterios de evaluación y rúbrica",
       criteriosTexto:
@@ -1102,7 +1102,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       entregablesHora: "Prazo final: Sábado, 14 de novembro, às 17:00",
       entregables: [
         "Repositório executável (GitHub ou Colab) para os Tracks 1 a 4 e 6. O Track 5 (No-Code) entrega apenas a ficha técnica; no campo do link, coloquem o link da ficha no Drive.",
-        "Ficha técnica de até 2 páginas: vetor de ameaça, arquitetura ou protocolo defensivo, metodologia de avaliação, resultados quantitativos, limites e risco dual.",
+        "Ficha técnica de até 2 páginas: vetor de ameaça, arquitetura ou protocolo defensivo, metodologia de avaliação, resultados quantitativos, limites e risco dual. Há um modelo sugerido e opcional em aisafetycolombia.org/defacc/plantilla-ficha-tecnica.pdf.",
         "Vídeo opcional de até 2 minutos demonstrando o protótipo ou protocolo.",
       ],
       criteriosTitulo: "Critérios de Avaliação",

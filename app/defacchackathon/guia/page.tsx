@@ -321,6 +321,14 @@ export default async function GuiaDefAcc() {
                 ]}
               />
               <Parrafo>
+                Si les sirve, hay una{" "}
+                <a className={ENLACE} href="/defacc/plantilla-ficha-tecnica.pdf" target="_blank" rel="noopener noreferrer">
+                  plantilla sugerida para la ficha técnica
+                </a>
+                . Es opcional: pueden usar el formato que quieran, siempre que
+                quepa en 2 páginas y cubra esos puntos.
+              </Parrafo>
+              <Parrafo>
                 <strong>A las 5:00 p. m. se cierra la entrega</strong> y el
                 jurado empieza a calificar. Lo que no esté enviado a esa hora no
                 cuenta.
