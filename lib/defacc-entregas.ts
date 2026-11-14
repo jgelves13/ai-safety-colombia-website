@@ -248,8 +248,9 @@ export function iguales(a: string, b: string): boolean {
 
 export type Juez = { id: string; nombre: string; afiliacion: string };
 
+/* Solo quienes la web presenta como juez o jueza. Los mentores no califican. */
 export function jueces(): Juez[] {
-  return TEXTOS_HACKATHON.es.reglas.jurados.map((j) => ({
+  return TEXTOS_HACKATHON.es.reglas.jurados.filter((j) => /^juez/i.test(j.rol)).map((j) => ({
     id: slugDe(j.nombre),
     nombre: j.nombre,
     afiliacion: j.afiliacion,
