@@ -506,7 +506,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       agenda: [
         { hora: "08:00 a.m.", actividad: "Registro e ingreso al campus", detalle: "Control de acceso en portería de Uniandes y ubicación de los participantes." },
         { hora: "08:30 a.m.", actividad: "Apertura y presentación del reto", detalle: "Presentación de los frentes temáticos, criterios de evaluación y conformación de equipos." },
-        { hora: "09:00 a.m.", actividad: "Inicio del sprint de desarrollo (8 horas)", detalle: "Trabajo continuo de los equipos en sala.", destacado: true },
+        { hora: "09:00 a.m.", actividad: "Inicio del sprint de desarrollo (8 horas)", detalle: "Trabajo continuo de los equipos en sala. Snacks para el desayuno a las 9:00 a.m., hasta agotar existencias.", destacado: true },
         { hora: "05:00 p.m.", actividad: "Cierre de entregas", detalle: "Entrega del repositorio con código ejecutable y la ficha técnica de hasta 2 páginas.", destacado: true },
         { hora: "05:10 p.m.", actividad: "Pitches de todos los equipos", detalle: "Cada equipo presenta 3 minutos, en el orden del sorteo, con su ficha técnica proyectada (sin diapositivas). Los jurados califican y pueden hacer unas pocas preguntas cortas.", destacado: true },
         { hora: "06:40 p.m.", actividad: "Deliberación del jurado", detalle: "Los jurados consolidan los puntajes y eligen los tres primeros puestos." },
@@ -867,7 +867,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       agenda: [
         { hora: "08:00 AM", actividad: "Check-in & Campus Access", detalle: "Access control at Uniandes security gates and participant check-in." },
         { hora: "08:30 AM", actividad: "Opening Ceremony & Challenge Brief", detalle: "Presentation of research tracks, evaluation criteria, and team formation." },
-        { hora: "09:00 AM", actividad: "Sprint Begins (8 hours)", detalle: "Focused build sprint on site.", destacado: true },
+        { hora: "09:00 AM", actividad: "Sprint Begins (8 hours)", detalle: "Focused build sprint on site. Breakfast snacks at 9:00 AM, while supplies last.", destacado: true },
         { hora: "05:00 PM", actividad: "Submission Cutoff", detalle: "Strict deadline: repository with runnable code + summary sheet of up to 2 pages.", destacado: true },
         { hora: "05:10 PM", actividad: "Pitches from Every Team", detalle: "Each team presents for 3 minutes, in the drawn order, with its summary sheet projected (no slides). Judges score and may ask a few short questions.", destacado: true },
         { hora: "06:40 PM", actividad: "Judges' Deliberation", detalle: "Judges consolidate scores and choose the top three." },
@@ -1208,7 +1208,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       agenda: [
         { hora: "08:00", actividad: "Credenciamento e Entrada no Campus", detalle: "Controle de acesso nas portarias da Uniandes e recepção dos participantes." },
         { hora: "08:30", actividad: "Abertura Oficial e Apresentação do Desafio", detalle: "Apresentação dos frentes de pesquisa, critérios de avaliação e formação de equipes." },
-        { hora: "09:00", actividad: "Início do Sprint de Desenvolvimento (8 horas)", detalle: "Trabalho prático das equipes nas salas.", destacado: true },
+        { hora: "09:00", actividad: "Início do Sprint de Desenvolvimento (8 horas)", detalle: "Trabalho prático das equipes nas salas. Lanches do café da manhã às 9:00, enquanto durarem.", destacado: true },
         { hora: "17:00", actividad: "Encerramento das Entregas", detalle: "Envio do repositório com código executável e ficha técnica de até 2 páginas.", destacado: true },
         { hora: "17:10", actividad: "Pitches de Todas as Equipes", detalle: "Cada equipe apresenta 3 minutos, na ordem do sorteio, com a ficha técnica projetada (sem slides). Os jurados dão a nota e podem fazer algumas perguntas curtas.", destacado: true },
         { hora: "18:40", actividad: "Deliberação dos Jurados", detalle: "Os jurados consolidam as notas e escolhem os três primeiros lugares." },

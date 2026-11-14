@@ -51,9 +51,9 @@ const CLAVE: Array<[string, React.ReactNode]> = [
 ];
 
 const AGENDA: Array<[string, React.ReactNode]> = [
-  ["8:00 a. m.", "Registro, ingreso al campus y snacks para el desayuno, hasta agotar existencias."],
+  ["8:00 a. m.", "Registro e ingreso al campus."],
   ["8:30 a. m.", "Apertura, presentación del reto y formación de equipos."],
-  ["9:00 a. m.", "Empieza el sprint. Tienen 8 horas de trabajo."],
+  ["9:00 a. m.", "Empieza el sprint. Tienen 8 horas de trabajo. Snacks para el desayuno, hasta agotar existencias."],
   ["11:00 a. m.", "Cierra el registro de equipos: nombre, integrantes y frente. Toma un minuto."],
   ["12:30 p. m.", "Almuerzo, aproximadamente."],
   ["2:00 p. m.", "Publicamos el orden de los pitches."],
@@ -184,8 +184,8 @@ export default async function GuiaDefAcc() {
               />
               <Parrafo>
                 Ponemos el almuerzo y snacks para el desayuno. Los snacks del
-                desayuno son limitados y se reparten hasta agotar existencias,
-                así que si llegas tarde, mejor desayuna antes de salir.
+                desayuno se reparten a las 9:00 a. m., hasta agotar existencias,
+                así que si tienes mucha hambre, mejor desayuna antes de salir.
               </Parrafo>
 
               <H3 id="parqueaderos">Parqueaderos</H3>
