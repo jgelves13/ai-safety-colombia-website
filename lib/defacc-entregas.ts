@@ -20,15 +20,14 @@ export const BUCKET = "defacc-entregas";
    V4 de Apart, el formulario se cierra solo una hora después; lo que llegue
    en esa hora se marca como tardío y lo decide la organización. */
 export const CIERRE_ENTREGAS_ISO = "2026-11-14T17:00:00-05:00";
-const GRACIA_MS = 60 * 60 * 1000;
 /* Se abre el día del evento a las 7 a.m. */
 export const APERTURA_ENTREGAS_ISO = "2026-11-14T07:00:00-05:00";
 
+/* Reabierto el día del evento por decisión de la organización: el formulario ya no se
+   cierra a la hora de CIERRE_ENTREGAS_ISO, aunque los textos siguen diciendo 5:00 p. m.
+   Lo que llegue después de esa hora se sigue marcando como tardío en los resultados. */
 export function entregasAbiertas(ahora = Date.now()): boolean {
-  return (
-    ahora >= new Date(APERTURA_ENTREGAS_ISO).getTime() &&
-    ahora <= new Date(CIERRE_ENTREGAS_ISO).getTime() + GRACIA_MS
-  );
+  return ahora >= new Date(APERTURA_ENTREGAS_ISO).getTime();
 }
 
 export const TRACKS_VALIDOS = [
