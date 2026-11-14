@@ -315,7 +315,7 @@ export default async function GuiaDefAcc() {
                   "Integrantes, de 2 a 5, con el correo con el que se postularon.",
                   "Título y frente temático.",
                   "Un resumen de 150 a 250 palabras.",
-                  "El enlace al repositorio (GitHub o Colab) o a la demo. En el Track 5, al documento.",
+                  "El enlace al repositorio (GitHub o Colab) o a la demo. En el Track 5 basta la ficha técnica: pongan el enlace a la ficha en Drive.",
                   "La ficha técnica en PDF, de máximo 2 páginas y 10 MB: amenaza, defensa, cómo la evaluaron, resultados, límites y riesgo de uso dual.",
                 ]}
               />

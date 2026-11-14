@@ -370,7 +370,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       entregablesTitulo: "Entregables de cada equipo",
       entregablesHora: "Hora límite estricta: sábado 14 de noviembre a las 5:00 p.m.",
       entregables: [
-        "Enlace al repositorio ejecutable (GitHub o Google Colab) con código documentado para los Tracks 1 al 4 y 6, o al documento de modelado formal de amenazas / estándar técnico-regulatorio verificable para el Track 5 (No-Code).",
+        "Enlace al repositorio ejecutable (GitHub o Google Colab) con código documentado para los Tracks 1 al 4 y 6. El Track 5 (No-Code) entrega solo la ficha técnica; en el campo del enlace pongan el enlace a la ficha en Drive.",
         "Ficha técnica de hasta 2 páginas (según la plantilla oficial): vector de amenaza, arquitectura o protocolo defensivo, metodología de evaluación, resultados cuantitativos, límites y análisis de riesgo dual.",
       ],
       criteriosTitulo: "Criterios de evaluación y rúbrica",
@@ -760,7 +760,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       entregablesTitulo: "Submission Deliverables",
       entregablesHora: "Strict deadline: Saturday, November 14, 5:00 PM COT",
       entregables: [
-        "Runnable code repository link (GitHub or Colab) for Tracks 1 to 4 and 6, or a formal threat model / verifiable technical-regulatory standard document for Track 5 (No-Code).",
+        "Runnable code repository link (GitHub or Colab) for Tracks 1 to 4 and 6. Track 5 (No-Code) submits only the technical sheet; in the link field, paste a Drive link to the sheet.",
         "Technical summary sheet of up to 2 pages: threat vector, defensive architecture or protocol, evaluation methodology, quantitative results, limitations, and dual-use analysis.",
         "Optional 2-minute demo recording illustrating the prototype or protocol.",
       ],
@@ -1101,7 +1101,7 @@ export const TEXTOS_HACKATHON: Record<Idioma, DatosHackathon> = {
       entregablesTitulo: "Entregáveis da Equipe",
       entregablesHora: "Prazo final: Sábado, 14 de novembro, às 17:00",
       entregables: [
-        "Repositório executável (GitHub ou Colab) para os Tracks 1 a 4 e 6, ou documento de modelagem formal de ameaças / padrão técnico-regulatório verificável para o Track 5 (No-Code).",
+        "Repositório executável (GitHub ou Colab) para os Tracks 1 a 4 e 6. O Track 5 (No-Code) entrega apenas a ficha técnica; no campo do link, coloquem o link da ficha no Drive.",
         "Ficha técnica de até 2 páginas: vetor de ameaça, arquitetura ou protocolo defensivo, metodologia de avaliação, resultados quantitativos, limites e risco dual.",
         "Vídeo opcional de até 2 minutos demonstrando o protótipo ou protocolo.",
       ],
