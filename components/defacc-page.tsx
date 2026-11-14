@@ -1047,6 +1047,16 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
                           <p className="text-body-sm text-aisc-muted mt-1">
                             {ag.detalle}
                           </p>
+                          {ag.enlace ? (
+                            <a
+                              href={ag.enlace.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-body-sm mt-2 inline-flex items-center gap-1.5 rounded-full border border-aisc-forest/40 px-3 py-1 font-medium text-aisc-forest transition-colors hover:bg-aisc-forest/10"
+                            >
+                              {ag.enlace.texto} <span aria-hidden>↗</span>
+                            </a>
+                          ) : null}
                         </div>
                       </div>
                     ))}
