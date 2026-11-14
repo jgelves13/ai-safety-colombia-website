@@ -62,12 +62,28 @@ function acotar(x: number): number {
   return Math.min(5, Math.max(1, x));
 }
 
+/* Columnas por las que se puede ordenar la tabla del ranking (?orden=...&dir=...). */
+const COLUMNAS = [
+  { clave: "pitch", titulo: "Pitch", dir: "asc" },
+  { clave: "puesto", titulo: "Puesto", dir: "asc" },
+  { clave: "proyecto", titulo: "Proyecto", dir: "asc" },
+  { clave: "impacto", titulo: "Impacto", dir: "desc" },
+  { clave: "ejecucion", titulo: "Ejecución", dir: "desc" },
+  { clave: "presentacion", titulo: "Presentación", dir: "desc" },
+  { clave: "total", titulo: "Total ajustado", dir: "desc" },
+  { clave: "jurados", titulo: "Jurados", dir: "desc" },
+] as const;
+type ClaveColumna = (typeof COLUMNAS)[number]["clave"];
+
 function fmt(n: number | null, d = 2): string {
   return n === null ? "–" : n.toFixed(d);
 }
 
-export default async function PaginaResultados({ searchParams }: { searchParams: Promise<{ prueba?: string }> }) {
-  const prueba = (await searchParams).prueba === "1";
+export default async function PaginaResultados({ searchParams }: { searchParams: Promise<{ prueba?: string; orden?: string; dir?: string }> }) {
+  const params = await searchParams;
+  const prueba = params.prueba === "1";
+  const columna = COLUMNAS.find((c) => c.clave === params.orden) ?? COLUMNAS[0];
+  const dir: "asc" | "desc" = params.dir === "asc" || params.dir === "desc" ? params.dir : columna.dir;
   const galleta = (await cookies()).get(COOKIE_ADMIN)?.value;
 
   if (!cookieAdminValida(galleta)) {
@@ -157,6 +173,37 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
   const descartadas = filas.filter((f) => f.e.descartada).sort(porPitch);
   const ranking = vivas.filter((f) => !f.excluida && f.total !== null);
   const puestoPuntaje = new Map([...ranking].sort(ordenar).map((f, i) => [f.e.slug, i + 1]));
+  /* Ordenar la tabla solo cambia la vista; el desempate siempre es el orden de los pitches. */
+  const valorColumna = (f: Fila, c: ClaveColumna): number | string | null =>
+    c === "pitch"
+      ? pitchDe(f.e)
+      : c === "puesto"
+        ? (puestoPuntaje.get(f.e.slug) ?? null)
+        : c === "proyecto"
+          ? f.e.titulo.toLocaleLowerCase("es")
+          : c === "impacto"
+            ? f.impacto
+            : c === "ejecucion"
+              ? f.ejecucion
+              : c === "presentacion"
+                ? f.presentacion
+                : c === "total"
+                  ? f.total
+                  : f.calificaron;
+  const tabla = [...ranking].sort((a, b) => {
+    const va = valorColumna(a, columna.clave);
+    const vb = valorColumna(b, columna.clave);
+    if (va === null || vb === null) return va === vb ? porPitch(a, b) : va === null ? 1 : -1;
+    const cmp = typeof va === "string" ? va.localeCompare(vb as string, "es") : va - (vb as number);
+    return (dir === "asc" ? cmp : -cmp) || porPitch(a, b);
+  });
+  const enlaceOrden = (c: (typeof COLUMNAS)[number]) => {
+    const q = new URLSearchParams();
+    if (prueba) q.set("prueba", "1");
+    q.set("orden", c.clave);
+    q.set("dir", c.clave === columna.clave ? (dir === "asc" ? "desc" : "asc") : c.dir);
+    return `?${q.toString()}#ranking`;
+  };
   const excluidas = vivas.filter((f) => f.excluida);
   /* Cuántos jurados calificaron cada entrega, sin decir quiénes. */
   const cobertura = vivas;
@@ -241,22 +288,32 @@ export default async function PaginaResultados({ searchParams }: { searchParams:
       ) : null}
 
       {ranking.length ? (
-        <div className="mb-14 overflow-x-auto rounded-lg border border-aisc-ink bg-aisc-cream">
+        <div id="ranking" className="mb-14 scroll-mt-6 overflow-x-auto rounded-lg border border-aisc-ink bg-aisc-cream">
           <table className="text-body-sm w-full min-w-[720px] text-left text-aisc-ink">
             <thead className="text-meta text-aisc-muted">
               <tr className="border-b border-aisc-line">
-                <th className="px-4 py-3">Pitch</th>
-                <th className="px-4 py-3">Puesto</th>
-                <th className="px-4 py-3">Proyecto</th>
-                <th className="px-4 py-3">Impacto</th>
-                <th className="px-4 py-3">Ejecución</th>
-                <th className="px-4 py-3">Presentación</th>
-                <th className="px-4 py-3">Total ajustado</th>
-                <th className="px-4 py-3">Jurados</th>
+                {COLUMNAS.map((c) => {
+                  const activa = c.clave === columna.clave;
+                  return (
+                    <th
+                      key={c.clave}
+                      className="px-4 py-3"
+                      aria-sort={activa ? (dir === "asc" ? "ascending" : "descending") : undefined}
+                    >
+                      <a
+                        href={enlaceOrden(c)}
+                        className={`inline-flex items-center gap-1 hover:text-aisc-ink ${activa ? "font-medium text-aisc-ink" : ""}`}
+                      >
+                        {c.titulo}
+                        <span aria-hidden>{activa ? (dir === "asc" ? "↑" : "↓") : "↕"}</span>
+                      </a>
+                    </th>
+                  );
+                })}
               </tr>
             </thead>
             <tbody>
-              {ranking.map((f) => {
+              {tabla.map((f) => {
                 const puesto = puestoPuntaje.get(f.e.slug) ?? 0;
                 return (
                 <tr key={f.e.slug} className="border-b border-aisc-line last:border-0">
