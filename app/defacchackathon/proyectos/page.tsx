@@ -64,13 +64,29 @@ export default async function ProyectosPage() {
           <h1 className="font-display mt-6 text-[2.5rem] leading-[1.08] font-medium tracking-[-0.035em] text-balance text-aisc-forest-deep md:text-[3.75rem]">
             Proyectos del hackatón
           </h1>
-          <p className="mt-5 max-w-[768px] text-[1.0625rem] leading-[1.65] text-aisc-muted md:text-[1.125rem]">
+          <p className="mt-5 text-[1.0625rem] leading-[1.65] text-aisc-muted md:text-[1.125rem]">
             {proyectos.length} proyectos presentados al {NOMBRE_EVENTO} (Bogotá, 14 de noviembre
             de 2026), con su informe, su código y los comentarios anónimos del jurado. Son
             trabajos tempranos de sus participantes, no publicaciones de AI Safety Colombia.
           </p>
 
-          <div className="mt-10 md:mt-12">
+          <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-[var(--radius)] border border-aisc-line bg-aisc-line md:grid-cols-4">
+            {[
+              ["Proyectos", String(proyectos.length)],
+              ["Tracks", String(new Set(proyectos.map((p) => p.track)).size)],
+              ["Participantes", String(proyectos.reduce((n, p) => n + p.autores.length, 0))],
+              ["Fecha", "14 nov 2026"],
+            ].map(([k, v]) => (
+              <div key={k} className="bg-white px-5 py-4 md:px-6 md:py-5">
+                <dt className="text-[0.75rem] font-medium tracking-[0.06em] text-aisc-muted uppercase">{k}</dt>
+                <dd className="font-display mt-1 text-[1.5rem] leading-tight font-medium tracking-[-0.02em] text-aisc-forest-deep md:text-[1.75rem]">
+                  {v}
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="mt-12 md:mt-14">
             <ListaConBuscador proyectos={proyectos.map(tarjeta)} ruta={RUTA_PROYECTOS} />
           </div>
 

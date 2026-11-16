@@ -122,7 +122,7 @@ export default async function ProyectoPage({ params }: Props) {
 
           <div className="mt-12 grid grid-cols-1 gap-12 border-t border-aisc-line pt-10 lg:grid-cols-[minmax(0,1fr)_256px] lg:gap-20">
             <aside className="order-first lg:order-none lg:col-start-2 lg:row-start-1">
-              <div className="flex flex-col gap-3 lg:sticky lg:top-32">
+              <div className="flex flex-col gap-3 rounded-[var(--radius)] border border-aisc-line bg-aisc-sand/40 p-5 lg:sticky lg:top-32">
                 {p.tienePdf ? (
                   <a
                     className="inline-flex h-11 items-center justify-center rounded-[var(--radius)] bg-aisc-forest-deep px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-aisc-forest"
@@ -206,9 +206,9 @@ export default async function ProyectoPage({ params }: Props) {
                 Ver todos los proyectos →
               </Link>
             </div>
-            <ul className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+            <ul className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
               {otros.map((o) => (
-                <Tarjeta key={o.slug} p={o} ruta={RUTA_PROYECTOS} variante="caja" />
+                <Tarjeta key={o.slug} p={o} ruta={RUTA_PROYECTOS} />
               ))}
             </ul>
           </BodyMain>
