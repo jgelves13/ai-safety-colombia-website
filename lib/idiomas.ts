@@ -59,11 +59,10 @@ type Pagina = {
   detalle?: Record<Idioma, string>;
 };
 
-type Grupo = "programas" | "aprende";
+type Grupo = "programas";
 
 const GRUPOS: Record<Grupo, Record<Idioma, string>> = {
   programas: { es: "Programas", en: "Programs", pt: "Programas" },
-  aprende: { es: "Aprende", en: "Learn", pt: "Aprenda" },
 };
 
 type Seccion = "hackatones" | "seminarios";
@@ -78,9 +77,10 @@ const SECCIONES: Record<Seccion, Record<Idioma, string>> = {
       primero, y los dos seminarios
    2. Eventos
    3. Investigación
-   4. Aprende (Recursos, Oportunidades)
-   5. Únete
-   6. ¿Quiénes somos? */
+   4. Recursos
+   5. Oportunidades
+   6. Únete
+   7. ¿Quiénes somos? */
 export const PAGINAS: Pagina[] = [
   {
     ruta: { es: "/", en: "/en", pt: "/pt" },
@@ -95,9 +95,9 @@ export const PAGINAS: Pagina[] = [
     grupo: "programas",
     seccion: "hackatones",
     detalle: {
-      es: "Bogotá, noviembre de 2026",
-      en: "Bogotá, November 2026",
-      pt: "Bogotá, novembro de 2026",
+      es: "Con IEEE Computer Society Uniandes, noviembre de 2026",
+      en: "With IEEE Computer Society Uniandes, November 2026",
+      pt: "Com IEEE Computer Society Uniandes, novembro de 2026",
     },
   },
   {
@@ -129,9 +129,9 @@ export const PAGINAS: Pagina[] = [
     grupo: "programas",
     seccion: "hackatones",
     detalle: {
-      es: "Bogotá, junio de 2026",
-      en: "Bogotá, June 2026",
-      pt: "Bogotá, junho de 2026",
+      es: "Con Apart Research, junio de 2026",
+      en: "With Apart Research, June 2026",
+      pt: "Com Apart Research, junho de 2026",
     },
   },
   {
@@ -171,12 +171,10 @@ export const PAGINAS: Pagina[] = [
   {
     ruta: { es: "/recursos", en: "/en/resources", pt: "/pt/recursos" },
     nav: { es: "Recursos", en: "Resources", pt: "Recursos" },
-    grupo: "aprende",
   },
   {
     ruta: { es: "/oportunidades", en: "/en/opportunities", pt: "/pt/oportunidades" },
     nav: { es: "Oportunidades", en: "Opportunities", pt: "Oportunidades" },
-    grupo: "aprende",
   },
   {
     ruta: { es: "/unete", en: "/en/join", pt: "/pt/participe" },
