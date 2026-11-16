@@ -5,12 +5,13 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import SelectorIdioma from "./selector-idioma";
 import { BANDERA } from "./banderas";
-import { IDIOMAS_LISTOS, INICIO, NOMBRE_IDIOMA, type EntradaMenu, type Idioma, idiomaDe, menuAgrupado, rutaEn } from "@/lib/idiomas";
+import { IDIOMAS_LISTOS, INICIO, NOMBRE_IDIOMA, type EntradaMenu, type HijoMenu, type Idioma, idiomaDe, menuAgrupado, rutaEn } from "@/lib/idiomas";
 
-/* Cinco entradas, en el orden en que alguien nuevo las necesita: qué está
-   abierto ahora mismo (los seminarios, en un submenú como el «Get Involved» de
-   MIT), qué sale de acá, con qué estudiar, cómo entrar y quiénes somos. Los
-   nombres y las direcciones de los tres idiomas están en lib/idiomas.ts. */
+/* Seis entradas, en el orden en que alguien nuevo las necesita: los programas
+   (los tres hackatones y los dos seminarios, en un submenú como el «Programs»
+   de Apart), los eventos, lo que sale de acá, con qué estudiar, cómo entrar y
+   quiénes somos. Los nombres y las direcciones de los tres idiomas están en
+   lib/idiomas.ts. */
 
 /* The floating header is scroll-linked rather than a toggle: opacity tracks the
    band below, and the lift and scale ride the same progress. Read off the
@@ -53,8 +54,40 @@ const MENU_TITULO: Record<Idioma, string> = {
 
 const PILDORA = "text-body-sm whitespace-nowrap rounded-full px-3 py-1.5 text-aisc-sand transition-colors hover:bg-aisc-sand/10";
 
+/* Los hijos de un submenú, juntos por sección y en el orden de lib/idiomas.ts.
+   Los que no tienen sección van todos en un solo grupo sin nombre. */
+function porSeccion(hijos: HijoMenu[]): [string, HijoMenu[]][] {
+  const grupos = new Map<string, HijoMenu[]>();
+  for (const h of hijos) {
+    const clave = h.seccion ?? "";
+    if (!grupos.has(clave)) grupos.set(clave, []);
+    grupos.get(clave)!.push(h);
+  }
+  return [...grupos.entries()];
+}
+
+/* Una opción del submenú, como en el de Apart: el nombre del programa y
+   debajo, más tenue, cuándo y con quién. */
+function Opcion({ h, active, cerrar }: { h: HijoMenu; active?: string; cerrar: () => void }) {
+  const actual = h.href === active;
+  return (
+    <Link
+      href={h.href}
+      aria-current={actual ? "page" : undefined}
+      onClick={cerrar}
+      className={`flex flex-col gap-0.5 rounded-xl px-3.5 py-2.5 text-aisc-sand transition-colors hover:bg-aisc-sand/10 focus-visible:outline-2 focus-visible:outline-aisc-sand/60${
+        actual ? " bg-aisc-sand/10" : ""
+      }`}
+    >
+      <span className="text-body-sm leading-snug font-medium">{h.label}</span>
+      {h.detalle ? <span className="text-[0.8125rem] leading-snug text-aisc-sand/60">{h.detalle}</span> : null}
+    </Link>
+  );
+}
+
 /* El submenú de escritorio: abre al pasar el mouse y al hacer clic, y se
-   cierra con Escape o al hacer clic afuera. */
+   cierra con Escape o al hacer clic afuera. Si sus páginas tienen sección
+   (Programas: hackatones y seminarios), cada sección va en su columna. */
 function Submenu({
   entrada,
   active,
@@ -65,6 +98,7 @@ function Submenu({
   const [abierto, setAbierto] = useState(false);
   const caja = useRef<HTMLDivElement>(null);
   const dentro = entrada.hijos.some((h) => h.href === active);
+  const secciones = porSeccion(entrada.hijos);
 
   useEffect(() => {
     if (!abierto) return;
@@ -110,27 +144,30 @@ function Submenu({
       {/* El pt-2 es el puente invisible entre el botón y la caja, para que el
           mouse no la cierre al bajar. */}
       <div className={`absolute top-full left-0 z-30 pt-2 ${abierto ? "block" : "hidden"}`}>
-        <ul className="flex w-72 flex-col rounded-2xl bg-aisc-forest-deep p-1.5 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] ring-1 ring-aisc-sand/12">
-          {entrada.hijos.map((h) => (
-            <li key={h.href}>
-              <Link
-                href={h.href}
-                aria-current={h.href === active ? "page" : undefined}
-                onClick={() => setAbierto(false)}
-                className={`flex items-center justify-between rounded-xl px-3.5 py-2.5 text-aisc-sand transition-colors hover:bg-aisc-sand/10${
-                  h.href === active ? " bg-aisc-sand/10" : ""
-                }`}
-              >
-                <span className="text-body-sm font-medium">{h.label}</span>
-                {"destacado" in h && h.destacado ? (
-                  <span className="text-[.68rem] tracking-wider uppercase font-semibold px-2 py-0.5 rounded-full bg-aisc-coral text-aisc-cream shrink-0">
-                    14 Nov
-                  </span>
-                ) : null}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {secciones.length > 1 ? (
+          <div className="grid w-[38rem] grid-cols-2 divide-x divide-aisc-sand/12 rounded-2xl bg-aisc-forest-deep p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] ring-1 ring-aisc-sand/12">
+            {secciones.map(([nombre, hijos]) => (
+              <div key={nombre} className="flex flex-col px-1.5 first:pl-0 last:pr-0">
+                <p className="px-3.5 pt-2.5 pb-1.5 text-[0.8125rem] text-aisc-sand/55">{nombre}</p>
+                <ul className="flex flex-col">
+                  {hijos.map((h) => (
+                    <li key={h.href}>
+                      <Opcion h={h} active={active} cerrar={() => setAbierto(false)} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <ul className="flex w-72 flex-col rounded-2xl bg-aisc-forest-deep p-1.5 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] ring-1 ring-aisc-sand/12">
+            {entrada.hijos.map((h) => (
+              <li key={h.href}>
+                <Opcion h={h} active={active} cerrar={() => setAbierto(false)} />
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
@@ -150,20 +187,14 @@ function Nav({
       {menuAgrupado(idioma).map((item) => {
         if ("hijos" in item) return <Submenu key={item.label} entrada={item} active={active} />;
         const current = item.href === active;
-        const destacado = "destacado" in item && item.destacado;
         return (
           <Link
             key={item.href}
             aria-current={current ? "page" : undefined}
-            className={`${PILDORA}${current ? " bg-aisc-sand/15" : ""} inline-flex items-center gap-1.5`}
+            className={`${PILDORA}${current ? " bg-aisc-sand/15" : ""}`}
             href={item.href}
           >
-            <span>{item.label}</span>
-            {destacado ? (
-              <span className="text-[.68rem] tracking-wider uppercase font-semibold px-2 py-0.5 rounded-full bg-aisc-coral text-aisc-cream shrink-0 shadow-xs">
-                14 Nov
-              </span>
-            ) : null}
+            {item.label}
           </Link>
         );
       })}
@@ -278,50 +309,40 @@ function PanelMovil({
               return (
                 <div key={item.label} className="flex flex-col border-b border-aisc-sand/12 py-4">
                   <span className="text-display-4">{item.label}</span>
-                  <div className="mt-2 flex flex-col">
-                    {item.hijos.map((h) => (
-                      <Link
-                        key={h.href}
-                        href={h.href}
-                        onClick={cerrar}
-                        aria-current={h.href === active ? "page" : undefined}
-                        className={`text-body flex flex-col py-2 pl-4 transition-colors hover:text-aisc-coral${
-                          h.href === active ? " text-aisc-coral" : ""
-                        }`}
-                      >
-                        <span className="flex items-center justify-between gap-2">
+                  {porSeccion(item.hijos).map(([nombre, hijos]) => (
+                    <div key={nombre} className="mt-2 flex flex-col">
+                      {nombre ? <span className="text-body-sm mt-2 pl-4 text-aisc-sand/55">{nombre}</span> : null}
+                      {hijos.map((h) => (
+                        <Link
+                          key={h.href}
+                          href={h.href}
+                          onClick={cerrar}
+                          aria-current={h.href === active ? "page" : undefined}
+                          className={`text-body flex flex-col py-2 pl-4 transition-colors hover:text-aisc-coral${
+                            h.href === active ? " text-aisc-coral" : ""
+                          }`}
+                        >
                           <span>{h.label}</span>
-                          {"destacado" in h && h.destacado ? (
-                            <span className="text-[.68rem] tracking-wider uppercase font-semibold px-2 py-0.5 rounded-full bg-aisc-coral text-aisc-cream shrink-0">
-                              14 Nov
-                            </span>
-                          ) : null}
-                        </span>
-                        {h.detalle ? <span className="text-body-sm text-aisc-sand/60">{h.detalle}</span> : null}
-                      </Link>
-                    ))}
-                  </div>
+                          {h.detalle ? <span className="text-body-sm text-aisc-sand/60">{h.detalle}</span> : null}
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
                 </div>
               );
             }
             const current = item.href === active;
-            const destacado = "destacado" in item && item.destacado;
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={cerrar}
                 aria-current={current ? "page" : undefined}
-                className={`text-display-4 border-b border-aisc-sand/12 py-4 transition-colors hover:text-aisc-coral flex items-center justify-between gap-3${
+                className={`text-display-4 border-b border-aisc-sand/12 py-4 transition-colors hover:text-aisc-coral${
                   current ? " text-aisc-coral" : ""
                 }`}
               >
-                <span>{item.label}</span>
-                {destacado ? (
-                  <span className="text-body-sm font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-aisc-coral text-aisc-cream">
-                    14 Nov
-                  </span>
-                ) : null}
+                {item.label}
               </Link>
             );
           })}

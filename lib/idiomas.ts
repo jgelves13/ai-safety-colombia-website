@@ -45,31 +45,42 @@ export const INICIO: Record<Idioma, string> = {
 };
 
 type Pagina = {
-  ruta: Record<Idioma, string>;
+  /** La página y sus tres direcciones. Una entrada de menú que no es una
+      página propia (un ancla dentro de otra) no la lleva: usa `enlace`. */
+  ruta?: Record<Idioma, string>;
+  enlace?: Record<Idioma, string>;
   /** Si la página está en el menú, cómo se llama en cada idioma. */
   nav?: Record<Idioma, string>;
-  /** Si va dentro de un submenú del encabezado, cuál, y la línea que la
-      describe ahí. El pie la muestra suelta, como las demás. */
+  /** Si va dentro de un submenú del encabezado, cuál, en qué sección de ese
+      submenú y la línea que la describe ahí. El pie la muestra suelta, como
+      las demás. */
   grupo?: Grupo;
+  seccion?: Seccion;
   detalle?: Record<Idioma, string>;
-  destacado?: boolean;
 };
 
-type Grupo = "seminarios" | "aprende";
+type Grupo = "programas" | "aprende";
 
 const GRUPOS: Record<Grupo, Record<Idioma, string>> = {
-  seminarios: { es: "Seminarios", en: "Seminars", pt: "Seminários" },
+  programas: { es: "Programas", en: "Programs", pt: "Programas" },
   aprende: { es: "Aprende", en: "Learn", pt: "Aprenda" },
 };
 
+type Seccion = "hackatones" | "seminarios";
+
+const SECCIONES: Record<Seccion, Record<Idioma, string>> = {
+  hackatones: { es: "Hackatones", en: "Hackathons", pt: "Hackathons" },
+  seminarios: { es: "Seminarios", en: "Seminars", pt: "Seminários" },
+};
+
 /* El orden es el del menú:
-   1. Hackatón (destacado con píldora 14 Nov)
-   2. Seminarios (Técnico, Futuro y riesgos)
-   3. Eventos
-   4. Investigación
-   5. Aprende (Recursos, Oportunidades)
-   6. Únete
-   7. ¿Quiénes somos? */
+   1. Programas, como el de Apart: los tres hackatones, del más reciente al
+      primero, y los dos seminarios
+   2. Eventos
+   3. Investigación
+   4. Aprende (Recursos, Oportunidades)
+   5. Únete
+   6. ¿Quiénes somos? */
 export const PAGINAS: Pagina[] = [
   {
     ruta: { es: "/", en: "/en", pt: "/pt" },
@@ -81,6 +92,47 @@ export const PAGINAS: Pagina[] = [
       en: "Defensive Acceleration Hackathon",
       pt: "Defensive Acceleration Hackathon",
     },
+    grupo: "programas",
+    seccion: "hackatones",
+    detalle: {
+      es: "Bogotá, noviembre de 2026",
+      en: "Bogotá, November 2026",
+      pt: "Bogotá, novembro de 2026",
+    },
+  },
+  {
+    ruta: { es: "/sprint", en: "/en/sprint", pt: "/pt/sprint" },
+    nav: {
+      es: "AI Incident Response Sprint",
+      en: "AI Incident Response Sprint",
+      pt: "AI Incident Response Sprint",
+    },
+    grupo: "programas",
+    seccion: "hackatones",
+    detalle: {
+      es: "Con Apart Research y CeSIA, septiembre de 2026",
+      en: "With Apart Research and CeSIA, September 2026",
+      pt: "Com Apart Research e CeSIA, setembro de 2026",
+    },
+  },
+  {
+    enlace: {
+      es: "/investigacion#hackathons",
+      en: "/en/research#hackathons",
+      pt: "/pt/pesquisa#hackathons",
+    },
+    nav: {
+      es: "Global South AI Safety Hackathon",
+      en: "Global South AI Safety Hackathon",
+      pt: "Global South AI Safety Hackathon",
+    },
+    grupo: "programas",
+    seccion: "hackatones",
+    detalle: {
+      es: "Bogotá, junio de 2026",
+      en: "Bogotá, June 2026",
+      pt: "Bogotá, junho de 2026",
+    },
   },
   {
     ruta: {
@@ -89,12 +141,24 @@ export const PAGINAS: Pagina[] = [
       pt: "/pt/seminarios/tecnico",
     },
     nav: { es: "Seminario técnico", en: "Technical Seminar", pt: "Seminário técnico" },
-    grupo: "seminarios",
+    grupo: "programas",
+    seccion: "seminarios",
+    detalle: {
+      es: "Seis semanas: alineación, evaluaciones e interpretabilidad",
+      en: "Six weeks: alignment, evaluations and interpretability",
+      pt: "Seis semanas: alinhamento, avaliações e interpretabilidade",
+    },
   },
   {
     ruta: { es: "/seminarios/futuro-y-riesgos", en: "/en/seminars/future-and-risks", pt: "/pt/seminarios/futuro-e-riscos" },
     nav: { es: "Seminario futuro y riesgos", en: "Future & Risks Seminar", pt: "Seminário futuro e riscos" },
-    grupo: "seminarios",
+    grupo: "programas",
+    seccion: "seminarios",
+    detalle: {
+      es: "Cinco semanas sobre hacia dónde va la IA avanzada",
+      en: "Five weeks on where advanced AI is heading",
+      pt: "Cinco semanas sobre para onde vai a IA avançada",
+    },
   },
   {
     ruta: { es: "/eventos", en: "/en/events", pt: "/pt/eventos" },
@@ -132,9 +196,6 @@ export const PAGINAS: Pagina[] = [
     ruta: { es: "/seguridad-de-la-ia", en: "/en/ai-safety", pt: "/pt/seguranca-da-ia" },
   },
   {
-    ruta: { es: "/sprint", en: "/en/sprint", pt: "/pt/sprint" },
-  },
-  {
     ruta: { es: "/sprint/aplicar", en: "/en/sprint/apply", pt: "/pt/sprint/inscricao" },
   },
   {
@@ -155,23 +216,23 @@ export const PAGINAS: Pagina[] = [
 /** Las entradas del menú, ya en el idioma que se pida. */
 export function menu(idioma: Idioma): { href: string; label: string }[] {
   return PAGINAS.filter((p) => p.nav).map((p) => ({
-    href: p.ruta[idioma],
+    href: (p.enlace ?? p.ruta)![idioma],
     label: p.nav![idioma],
   }));
 }
 
-export type EntradaMenu =
-  | { href: string; label: string; destacado?: boolean }
-  | { label: string; hijos: { href: string; label: string; detalle?: string; destacado?: boolean }[] };
+export type HijoMenu = { href: string; label: string; detalle?: string; seccion?: string };
+
+export type EntradaMenu = { href: string; label: string } | { label: string; hijos: HijoMenu[] };
 
 /** El menú del encabezado: las páginas de un mismo grupo van juntas en un
-    submenú, en el lugar de la primera. */
+    submenú, en el lugar de la primera, cada una con el nombre de su sección. */
 export function menuAgrupado(idioma: Idioma): EntradaMenu[] {
   const salida: EntradaMenu[] = [];
-  const vistos = new Map<Grupo, { href: string; label: string; detalle?: string; destacado?: boolean }[]>();
+  const vistos = new Map<Grupo, HijoMenu[]>();
   for (const p of PAGINAS) {
     if (!p.nav) continue;
-    const item = { href: p.ruta[idioma], label: p.nav[idioma], destacado: p.destacado };
+    const item = { href: (p.enlace ?? p.ruta)![idioma], label: p.nav[idioma] };
     if (!p.grupo) {
       salida.push(item);
       continue;
@@ -182,7 +243,11 @@ export function menuAgrupado(idioma: Idioma): EntradaMenu[] {
       vistos.set(p.grupo, hijos);
       salida.push({ label: GRUPOS[p.grupo][idioma], hijos });
     }
-    hijos.push({ ...item, detalle: p.detalle?.[idioma], destacado: p.destacado });
+    hijos.push({
+      ...item,
+      detalle: p.detalle?.[idioma],
+      seccion: p.seccion ? SECCIONES[p.seccion][idioma] : undefined,
+    });
   }
   return salida;
 }
@@ -199,10 +264,8 @@ export function idiomaDe(ruta: string): Idioma {
     el inicio de ese idioma, que es mejor que un 404. */
 export function rutaEn(idioma: Idioma, rutaActual: string): string {
   const limpia = rutaActual.length > 1 ? rutaActual.replace(/\/+$/, "") : rutaActual;
-  const fila = PAGINAS.find((p) =>
-    IDIOMAS.some((i) => p.ruta[i] === limpia),
-  );
-  return fila ? fila.ruta[idioma] : INICIO[idioma];
+  const fila = PAGINAS.find((p) => p.ruta && IDIOMAS.some((i) => p.ruta![i] === limpia));
+  return fila?.ruta ? fila.ruta[idioma] : INICIO[idioma];
 }
 
 /** Las tres direcciones de una misma página, para el hreflang de los metadatos.
