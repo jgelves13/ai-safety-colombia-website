@@ -6,6 +6,7 @@ import SiteHeader from "@/components/site-header";
 import type { Idioma } from "@/lib/idiomas";
 import { FUENTE, type Programa, actualizado, cargarOportunidades } from "@/lib/oportunidades";
 import traducciones from "@/lib/oportunidades-traducciones.json";
+import { type Traduccion, traduccionesFaltantes } from "@/lib/oportunidades-traducir";
 
 /* La página de oportunidades en los tres idiomas, calcada de
    aisafety.com/training: mismas secciones, filtros, tarjetas y orden, con los
@@ -277,9 +278,10 @@ function fecha(iso: string, idioma: Idioma) {
 
 /* Los datos llegan en inglés; lo que se puede traducir sin ayuda (meses,
    duraciones, países y ciudades) se traduce acá, y las descripciones salen de
-   oportunidades-traducciones.json mientras su inglés siga siendo el mismo. Un
-   programa nuevo o reescrito en AISafety.com se ve en inglés hasta que se
-   vuelva a traducir. */
+   oportunidades-traducciones.json mientras su inglés siga siendo el mismo. Las
+   de un programa nuevo o reescrito en AISafety.com las traduce Claude solo
+   (lib/oportunidades-traducir.ts) y quedan en caché; si eso falla, se ven en
+   inglés hasta la próxima revalidación. */
 const MESES_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const MESES: Record<"es" | "pt", string[]> = {
   es: ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
@@ -288,10 +290,11 @@ const MESES: Record<"es" | "pt", string[]> = {
 
 const DESCRIPCIONES = traducciones as Record<string, { en: string; es?: string; pt?: string }>;
 
-function descripcion(p: Programa, idioma: Idioma) {
+function descripcion(p: Programa, idioma: Idioma, extra: Record<string, Traduccion>) {
   if (idioma === "en" || !p.description) return p.description;
   const t = DESCRIPCIONES[p.id];
-  return t && t.en === p.description && t[idioma] ? t[idioma]! : p.description;
+  if (t && t.en === p.description && t[idioma]) return t[idioma]!;
+  return extra[p.id]?.[idioma] ?? p.description;
 }
 
 /* «January 2027», «in April 2027», «early 2027», «beginning of October 2026»: ya con su preposición, «en enero de 2027». */
@@ -456,7 +459,7 @@ function ordenarProximos(ps: Programa[]) {
 
 const ICONO_NIVEL: Record<string, Detalle["icono"]> = { Low: "nivelBajo", Mid: "nivelMedio", High: "nivelAlto" };
 
-function vista(p: Programa, idioma: Idioma, t: Textos, proximo: boolean): ProgramaVista {
+function vista(p: Programa, idioma: Idioma, t: Textos, proximo: boolean, extra: Record<string, Traduccion>): ProgramaVista {
   const o = t.listado.opciones;
   const tr = (x: string) => o[x] ?? x;
   const minus = (x: string) => tr(x).toLowerCase();
@@ -496,7 +499,7 @@ function vista(p: Programa, idioma: Idioma, t: Textos, proximo: boolean): Progra
   return {
     id: p.id,
     name: p.name,
-    description: descripcion(p, idioma),
+    description: descripcion(p, idioma, extra),
     href: conUtm(p.url),
     logo: p.logo,
     types: p.type,
@@ -531,6 +534,7 @@ function Contribuir({ href, icono, children }: { href: string; icono: Icono; chi
 export default async function OportunidadesPagina({ idioma, active }: { idioma: Idioma; active: string }) {
   const t = TEXTOS[idioma];
   const datos = await cargarOportunidades();
+  const extra = idioma === "en" ? {} : await traduccionesFaltantes([...datos.programs, ...datos.recurring]);
   const [antes, despues] = t.credito(hace(actualizado(datos), idioma, new Date()));
   const eventos = idioma === "es" ? "/eventos" : idioma === "en" ? "/en/events" : "/pt/eventos";
 
@@ -611,11 +615,11 @@ export default async function OportunidadesPagina({ idioma, active }: { idioma: 
 
       <OportunidadesListado
         upcoming={destacadosPrimero(
-          proximos.map((p) => vista(p, idioma, t, true)),
+          proximos.map((p) => vista(p, idioma, t, true, extra)),
           proximos,
         )}
         recurring={destacadosPrimero(
-          recurrentes.map((p) => vista(p, idioma, t, false)),
+          recurrentes.map((p) => vista(p, idioma, t, false, extra)),
           recurrentes,
         )}
         t={t.listado}
