@@ -322,7 +322,10 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
 
             {/* Botones de acción principales */}
             <div className="mt-8 flex w-full max-w-[360px] flex-col items-stretch gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center [&>*]:justify-center">
-              <Link className={CTA_LINK_PRIMARY} href={rutaAplicar}>
+              <Link className={CTA_LINK_PRIMARY} href="/defacchackathon/proyectos">
+                {idioma === "en" ? "See the projects" : idioma === "pt" ? "Ver os projetos" : "Ver los proyectos"}
+              </Link>
+              <Link className={CTA_LINK} href={rutaAplicar}>
                 {d.ctaAplicar}
               </Link>
               <button
