@@ -549,7 +549,11 @@ export default function DefAccPage({
       </nav>
 
       {/* ------------------------------------------------ CUERPO PRINCIPAL SOBRIO (ESTILO APART) */}
-      <section className="mx-auto w-full max-w-[860px] px-6 py-12 md:px-8 md:py-16">
+      <section
+        className={`mx-auto w-full px-4 py-12 md:px-8 md:py-16 ${
+          pestaña === "proyectos" ? "max-w-[1240px]" : "max-w-[860px] px-6"
+        }`}
+      >
         <div className="min-w-0">
             {/* PESTAÑA 0: PROYECTOS (como Entries en Apart) */}
             {pestaña === "proyectos" && proyectos && (

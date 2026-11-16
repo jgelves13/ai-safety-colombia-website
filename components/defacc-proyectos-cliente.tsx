@@ -30,11 +30,12 @@ function Medalla({ className = "size-3.5" }: { className?: string }) {
   );
 }
 
-/* La pastilla del puesto: oscura y pequeña, con medalla, como el "1st place" de Apart. */
+/* La pastilla del puesto como el "1st place" de Apart: verde clara, texto
+   oscuro y la medalla en verde. */
 export function Puesto({ texto }: { texto: string }) {
   return (
-    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-aisc-forest-deep px-2.5 py-1 text-[0.75rem] leading-none font-medium text-white">
-      <Medalla className="size-3.5" />
+    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#d3e5d7] py-1 pr-2.5 pl-2 text-[0.875rem] leading-[1.4] font-medium text-aisc-ink">
+      <Medalla className="size-4 text-aisc-sage" />
       {texto}
     </span>
   );
@@ -88,28 +89,28 @@ export function Tarjeta({
   );
 }
 
-/* Una fila de la lista de proyectos, como las entradas de Apart: el puesto si
-   lo tiene, el título, quiénes lo hicieron, el resumen corto y el enlace. */
+/* Una entrada de la lista, copiada de las de Apart: toda la tarjeta es el
+   enlace, blanca y separada solo por un filete arriba; el puesto en pastilla
+   verde clara, el título, quiénes lo hicieron, el resumen en cuatro líneas y
+   "Ver proyecto" abajo del todo. */
 function Fila({ p, ruta }: { p: TarjetaProyecto; ruta: string }) {
   return (
-    <li>
+    <li className="flex">
       <Link
         href={`${ruta}/${p.slug}`}
-        className="group flex flex-col gap-4 rounded-[var(--radius)] border border-aisc-line bg-white p-5 transition-[border-color,box-shadow] hover:border-aisc-forest/45 hover:shadow-[0_14px_34px_-22px_rgba(19,32,26,0.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-aisc-forest md:flex-row md:items-center md:gap-8 md:p-6"
+        className="group flex w-full flex-col border-t border-aisc-line bg-white px-5 py-6 transition-colors hover:bg-[#f7faf7] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-aisc-forest md:px-6 md:py-8"
       >
-        <div className="min-w-0 flex-1">
-          {p.puesto ? (
-            <div className="mb-3">
-              <Puesto texto={p.puesto} />
-            </div>
-          ) : null}
-          <h3 className="font-display text-[1.1875rem] leading-[1.3] font-medium tracking-[-0.01em] text-aisc-forest-deep md:text-[1.25rem]">
-            {p.titulo}
-          </h3>
-          <p className="mt-1.5 text-[0.875rem] leading-snug text-aisc-ink/80">{p.autores}</p>
-          <p className="mt-3 line-clamp-2 text-[0.9375rem] leading-relaxed text-aisc-muted">{p.resumen}</p>
-        </div>
-        <span className="inline-flex shrink-0 items-center gap-1.5 text-[0.875rem] font-medium text-aisc-forest group-hover:text-aisc-forest-deep">
+        {p.puesto ? (
+          <div className="pb-4">
+            <Puesto texto={p.puesto} />
+          </div>
+        ) : null}
+        <h3 className="font-display text-[1.25rem] leading-[1.3] font-medium tracking-[-0.01em] text-aisc-ink transition-colors group-hover:text-aisc-forest">
+          {p.titulo}
+        </h3>
+        <p className="mt-2 text-[1rem] leading-[1.6] text-aisc-muted/90">{p.autores}</p>
+        <p className="mt-3 line-clamp-4 text-[1rem] leading-[1.6] text-aisc-ink/75">{p.resumen}</p>
+        <span className="mt-auto inline-flex items-center gap-1.5 pt-8 text-[1.125rem] font-medium text-aisc-ink">
           Ver proyecto
           <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
             →
@@ -120,8 +121,11 @@ function Fila({ p, ruta }: { p: TarjetaProyecto; ruta: string }) {
   );
 }
 
-/* Como la pestaña Entries de Apart: un buscador y una sola lista, con los
-   ganadores primero. Sin filtros, conteos ni secciones aparte. */
+const POR_PAGINA = 12;
+
+/* Como la pestaña Entries de Apart: un buscador a todo lo ancho y las
+   entradas en dos columnas, con los ganadores primero y un botón para ver
+   más cuando no caben. Sin filtros, conteos ni secciones aparte. */
 export function ListaConBuscador({
   proyectos,
   ruta,
@@ -130,6 +134,7 @@ export function ListaConBuscador({
   ruta: string;
 }) {
   const [q, setQ] = useState("");
+  const [cuantos, setCuantos] = useState(POR_PAGINA);
 
   const visibles = useMemo(() => {
     const n = normal(q.trim());
@@ -137,20 +142,25 @@ export function ListaConBuscador({
     return proyectos.filter((p) => normal(`${p.titulo} ${p.autores} ${p.track} ${p.resumen}`).includes(n));
   }, [q, proyectos]);
 
+  const quedan = visibles.length - cuantos;
+
   return (
-    <div>
+    <div className="rounded-[var(--radius)] bg-aisc-sand px-4 py-6 md:px-8 md:py-10">
       <label className="relative block w-full">
         <span className="sr-only">Buscar proyectos</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true" className="pointer-events-none absolute top-1/2 left-3.5 size-[1.125rem] -translate-y-1/2 text-aisc-muted">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true" className="pointer-events-none absolute top-1/2 left-4 size-5 -translate-y-1/2 text-aisc-muted">
           <circle cx="11" cy="11" r="7" />
           <path d="m20 20-3.5-3.5" />
         </svg>
         <input
           type="search"
           value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="Buscar proyectos"
-          className="h-11 w-full rounded-[var(--radius)] border border-aisc-line bg-white pr-4 pl-10 text-[0.9375rem] text-aisc-ink placeholder:text-aisc-muted/80 transition-colors focus:border-aisc-forest focus:outline-2 focus:outline-offset-[1px] focus:outline-aisc-forest/30"
+          onChange={(e) => {
+            setQ(e.target.value);
+            setCuantos(POR_PAGINA);
+          }}
+          placeholder={`Buscar ${proyectos.length} proyectos…`}
+          className="h-12 w-full rounded-[var(--radius)] border border-aisc-line bg-white pr-4 pl-12 text-[1rem] text-aisc-ink placeholder:text-aisc-muted/80 transition-colors focus:border-aisc-forest focus:outline-2 focus:outline-offset-[1px] focus:outline-aisc-forest/30"
         />
       </label>
 
@@ -159,13 +169,26 @@ export function ListaConBuscador({
       </p>
 
       {visibles.length ? (
-        <ul className="mt-6 flex flex-col gap-3">
-          {visibles.map((p) => (
-            <Fila key={p.slug} p={p} ruta={ruta} />
-          ))}
-        </ul>
+        <>
+          <ul className="mt-6 grid grid-cols-1 gap-x-5 md:mt-8 md:grid-cols-2">
+            {visibles.slice(0, cuantos).map((p) => (
+              <Fila key={p.slug} p={p} ruta={ruta} />
+            ))}
+          </ul>
+          {quedan > 0 ? (
+            <div className="mt-8 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setCuantos((c) => c + POR_PAGINA)}
+                className="inline-flex h-11 items-center rounded-full border border-aisc-line bg-white px-6 text-[0.9375rem] font-medium text-aisc-ink transition-colors hover:border-aisc-forest hover:text-aisc-forest-deep"
+              >
+                {`Mostrar ${Math.min(POR_PAGINA, quedan)} más (quedan ${quedan})`}
+              </button>
+            </div>
+          ) : null}
+        </>
       ) : (
-        <div className="mt-6 rounded-[var(--radius)] border border-dashed border-aisc-line px-6 py-12 text-center">
+        <div className="mt-6 border-t border-aisc-line bg-white px-6 py-12 text-center">
           <p className="text-[1rem] text-aisc-ink">Ningún proyecto coincide con esa búsqueda.</p>
           <button
             type="button"
