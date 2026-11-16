@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BodyMain from "@/components/body-main";
-import { FondoBinario } from "@/components/defacc-page";
-import { Cita, Comentario, Compartir, Tarjeta } from "@/components/defacc-proyectos-cliente";
+import { Cita, Comentario, Compartir, Puesto, Tarjeta, type TarjetaProyecto } from "@/components/defacc-proyectos-cliente";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
-import { CTA_LINK, CTA_LINK_PRIMARY, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
+import { HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { NOMBRES_TRACKS } from "@/lib/defacc-revision";
 import { openGraph } from "@/lib/metadatos";
 import {
@@ -18,20 +17,26 @@ import {
   bibtex,
   comentariosDe,
   masProyectos,
+  nombresAutores,
   proyectoPublico,
   proyectosPublicos,
+  type ProyectoPublico,
 } from "@/lib/defacc-proyectos";
-import { COL, ENLACE, H2, P } from "../../../sprint/guia-comun";
 
 /* La página de cada proyecto, en el orden de Apart: migas, etiquetas, título,
-   autores, aviso de trabajo temprano, informe y código, compartir, resumen,
-   comentarios del jurado, cita y más proyectos. */
+   autores y aviso de trabajo temprano; luego el resumen con el informe y el
+   código a la derecha, los comentarios del jurado, la cita y, al pie, más
+   proyectos del mismo hackatón. Firmado por sus participantes, nunca por el
+   nombre del equipo. */
 
 export const dynamic = "force-dynamic";
 
 type Props = { params: Promise<{ slug: string }> };
 
-const ETIQUETA = "text-meta rounded-full border border-aisc-sand/40 px-3 py-1 text-aisc-sand/90";
+const ETIQUETA =
+  "inline-flex items-center rounded-full border border-aisc-line px-2.5 py-1 text-[0.75rem] leading-none font-medium tracking-[0.04em] text-aisc-muted uppercase";
+const H2 = "text-[1rem] font-semibold text-aisc-ink";
+const PARRAFO = "text-[1.0625rem] leading-[1.65] text-aisc-ink md:text-[1.125rem]";
 
 function nombreTrack(t: string): string {
   return NOMBRES_TRACKS[t] ?? t;
@@ -42,6 +47,17 @@ function corto(t: string, n = 158): string {
   return limpio.length > n ? `${limpio.slice(0, n - 1).trimEnd()}…` : limpio;
 }
 
+function tarjeta(p: ProyectoPublico): TarjetaProyecto {
+  return {
+    slug: p.slug,
+    titulo: p.titulo,
+    autores: nombresAutores(p.autores),
+    track: nombreTrack(p.track),
+    resumen: p.resumen,
+    puesto: p.puesto ? NOMBRE_PUESTO[p.puesto] : null,
+  };
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const p = await proyectoPublico(slug);
@@ -50,6 +66,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${p.titulo} | DefAcc Hackathon`,
     description: corto(p.resumen),
+    authors: p.autores.map((name) => ({ name })),
     alternates: { canonical: ruta },
     openGraph: { ...openGraph("es", ruta), type: "article" },
   };
@@ -61,124 +78,142 @@ export default async function ProyectoPage({ params }: Props) {
   if (!p) notFound();
 
   const [comentarios, todos] = await Promise.all([comentariosDe(p.slug), proyectosPublicos()]);
-  const otros = masProyectos(todos, p.slug).map((o) => ({
-    slug: o.slug,
-    titulo: o.titulo,
-    equipo: o.equipo,
-    track: nombreTrack(o.track),
-    resumen: o.resumen,
-    puesto: o.puesto ? NOMBRE_PUESTO[o.puesto] : null,
-  }));
+  const otros = masProyectos(todos, p.slug).map(tarjeta);
   const url = `${SITIO}${RUTA_PROYECTOS}/${p.slug}`;
+  const parrafos = p.resumen.split(/\n\s*\n/).map((t) => t.trim()).filter(Boolean);
 
   return (
     <main className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
-        <FondoBinario />
         <SiteHeader active="/defacchackathon" />
-        <div className={`${HERO_INNER} flex flex-col gap-5 pt-10 pb-16 md:pt-14 md:pb-20`}>
-          <nav aria-label="Migas de pan" className="text-meta text-aisc-sand/75">
-            <Link href="/defacchackathon" className="hover:text-aisc-sand">
+        <div className="h-[84px] md:h-[92px]" />
+      </section>
+
+      <article className="bg-white pb-20 md:pb-24">
+        <BodyMain className="pt-10 md:pt-14">
+          <nav aria-label="Migas de pan" className="text-[0.875rem] text-aisc-muted">
+            <Link href="/defacchackathon" className="hover:text-aisc-forest-deep hover:underline">
               DefAcc Hackathon
             </Link>
-            {" / "}
-            <Link href={RUTA_PROYECTOS} className="hover:text-aisc-sand">
+            <span className="mx-2 text-aisc-line" aria-hidden="true">/</span>
+            <Link href={RUTA_PROYECTOS} className="hover:text-aisc-forest-deep hover:underline">
               Proyectos
             </Link>
           </nav>
-          <div className="flex flex-wrap gap-2">
-            {p.puesto ? (
-              <span className="text-meta rounded-full bg-aisc-coral px-3 py-1 font-semibold text-aisc-cream">
-                {NOMBRE_PUESTO[p.puesto]}
-              </span>
-            ) : null}
+
+          <div className="mt-8 flex flex-wrap items-center gap-2">
+            {p.puesto ? <Puesto texto={NOMBRE_PUESTO[p.puesto]} /> : null}
             <span className={ETIQUETA}>Proyecto de hackatón</span>
             <span className={ETIQUETA}>{FECHA_EVENTO}</span>
             <span className={ETIQUETA}>Bogotá</span>
             <span className={ETIQUETA}>{nombreTrack(p.track)}</span>
           </div>
-          <h1 className="text-display-2 md:text-display-1 max-w-[900px] text-balance text-aisc-sand">
+
+          <h1 className="font-display mt-5 max-w-[960px] text-[2.25rem] leading-[1.08] font-medium tracking-[-0.035em] text-balance text-aisc-forest-deep md:text-[3.75rem]">
             {p.titulo}
           </h1>
-          <p className="text-body md:text-body-lg max-w-[760px] text-aisc-sand/90">
-            {p.autores.length ? `${p.autores.join(", ")} · ` : ""}
-            Equipo {p.equipo}
+          <p className="mt-5 max-w-[860px] text-[1.0625rem] leading-[1.5] text-aisc-ink md:text-[1.125rem]">
+            {nombresAutores(p.autores)}
           </p>
-          <div className="mt-2 flex flex-wrap gap-3">
-            {p.tienePdf ? (
-              <a className={CTA_LINK_PRIMARY} href={`${RUTA_PROYECTOS}/${p.slug}/informe`} target="_blank" rel="noopener">
-                Leer el informe
-              </a>
-            ) : null}
-            {p.enlace ? (
-              <a className={CTA_LINK} href={p.enlace} target="_blank" rel="noopener noreferrer nofollow">
-                Código
-              </a>
-            ) : null}
-          </div>
-        </div>
-      </section>
+          <p className="mt-2 max-w-[768px] text-[0.875rem] leading-[1.55] text-aisc-muted">
+            Presentado al {NOMBRE_EVENTO}. Es un trabajo temprano de sus participantes y no una
+            publicación de AI Safety Colombia.
+          </p>
 
-      <article className="bg-aisc-cream pb-16 md:pb-20">
-        <BodyMain className="pt-12 md:pt-14">
-          <div className={COL}>
-            <p className="text-body-sm rounded-[var(--radius)] border border-aisc-ink/12 bg-white/50 p-4 text-aisc-ink/85">
-              Este es un trabajo de etapa temprana, hecho por participantes durante el{" "}
-              {NOMBRE_EVENTO}. Se publica tal como lo entregó el equipo y no es una publicación
-              de AI Safety Colombia.
-            </p>
-            <div className="mt-6">
-              <Compartir url={url} titulo={p.titulo} />
-            </div>
-          </div>
+          <div className="mt-12 grid grid-cols-1 gap-12 border-t border-aisc-line pt-10 lg:grid-cols-[minmax(0,1fr)_256px] lg:gap-20">
+            <aside className="order-first lg:order-none lg:col-start-2 lg:row-start-1">
+              <div className="flex flex-col gap-3 lg:sticky lg:top-32">
+                {p.tienePdf ? (
+                  <a
+                    className="inline-flex h-11 items-center justify-center rounded-[var(--radius)] bg-aisc-forest-deep px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-aisc-forest"
+                    href={`${RUTA_PROYECTOS}/${p.slug}/informe`}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Leer el informe →
+                  </a>
+                ) : null}
+                {p.enlace ? (
+                  <a
+                    className="inline-flex h-11 items-center justify-center rounded-[var(--radius)] border border-aisc-line px-5 text-[0.9375rem] font-medium text-aisc-ink transition-colors hover:border-aisc-forest hover:text-aisc-forest-deep"
+                    href={p.enlace}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                  >
+                    Código ↗
+                  </a>
+                ) : null}
+                {p.tienePdf || p.enlace ? <hr className="my-2 border-aisc-line" /> : null}
+                <Compartir url={url} titulo={p.titulo} />
+              </div>
+            </aside>
 
-          <H2 id="resumen">Resumen</H2>
-          <div className={`${COL} mt-4`}>
-            <p className={`${P} whitespace-pre-line`}>{p.resumen}</p>
-          </div>
-
-          <H2 id="comentarios">Comentarios del jurado</H2>
-          <div className={`${COL} mt-4`}>
-            {comentarios.length ? (
-              <>
-                <p className={`${P} text-aisc-ink/80`}>
-                  Escritos por el jurado durante la evaluación. Se publican sin nombre, sin nota y
-                  en orden aleatorio.
-                </p>
-                <ol className="mt-5 flex flex-col gap-3">
-                  {comentarios.map((c, i) => (
-                    <Comentario key={i} numero={i + 1} texto={c} />
-                  ))}
-                </ol>
-              </>
-            ) : (
-              <p className={P}>El jurado no dejó comentarios escritos sobre este proyecto.</p>
-            )}
-          </div>
-
-          <H2 id="citar">Citar este proyecto</H2>
-          <div className={COL}>
-            <Cita bibtex={bibtex(p)} />
-          </div>
-
-          {otros.length ? (
-            <>
-              <H2 id="mas">Más de DefAcc</H2>
-              <ul className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
-                {otros.map((o) => (
-                  <Tarjeta key={o.slug} p={o} ruta={RUTA_PROYECTOS} />
+            <div className="max-w-[680px] lg:col-start-1 lg:row-start-1">
+              <h2 className={H2}>Resumen</h2>
+              <div className="mt-4 flex flex-col gap-5">
+                {parrafos.map((t, i) => (
+                  <p key={i} className={`${PARRAFO} whitespace-pre-line`}>
+                    {t}
+                  </p>
                 ))}
-              </ul>
-            </>
-          ) : null}
+              </div>
 
-          <div className={`${COL} mt-10`}>
-            <Link className={ENLACE} href={RUTA_PROYECTOS}>
-              Ver todos los proyectos
-            </Link>
+              <hr className="my-12 border-aisc-line" />
+
+              <h2 id="comentarios" className={H2}>
+                Comentarios del jurado
+              </h2>
+              {comentarios.length ? (
+                <>
+                  <p className="mt-2 text-[0.9375rem] leading-[1.6] text-aisc-muted">
+                    Escritos por el jurado durante la evaluación. Se publican sin nombre, sin nota y
+                    en orden aleatorio.
+                  </p>
+                  <ol className="mt-6 flex flex-col gap-3">
+                    {comentarios.map((c, i) => (
+                      <Comentario key={i} texto={c} />
+                    ))}
+                  </ol>
+                </>
+              ) : (
+                <p className="mt-2 text-[0.9375rem] leading-[1.6] text-aisc-muted">
+                  El jurado no dejó comentarios escritos sobre este proyecto.
+                </p>
+              )}
+
+              <h2 id="citar" className={`${H2} mt-12`}>
+                Citar este proyecto
+              </h2>
+              <div className="mt-4">
+                <Cita bibtex={bibtex(p)} />
+              </div>
+            </div>
           </div>
         </BodyMain>
       </article>
+
+      {otros.length ? (
+        <section className="bg-aisc-sand py-14 md:py-16">
+          <BodyMain>
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <h2 className="font-display text-[1.5rem] font-medium tracking-[-0.02em] text-aisc-forest-deep md:text-[1.75rem]">
+                Más del {NOMBRE_EVENTO}
+              </h2>
+              <Link
+                href={RUTA_PROYECTOS}
+                className="text-[0.9375rem] font-medium text-aisc-forest hover:text-aisc-forest-deep hover:underline"
+              >
+                Ver todos los proyectos →
+              </Link>
+            </div>
+            <ul className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+              {otros.map((o) => (
+                <Tarjeta key={o.slug} p={o} ruta={RUTA_PROYECTOS} variante="caja" />
+              ))}
+            </ul>
+          </BodyMain>
+        </section>
+      ) : null}
       <SiteFooter />
     </main>
   );

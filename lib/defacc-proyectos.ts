@@ -108,20 +108,28 @@ function escaparBib(t: string): string {
   return t.replace(/[{}\\]/g, "");
 }
 
+const AUTOR_GENERICO = "Participantes del Defensive Acceleration Hackathon";
+
+/* Los nombres como se leen en español: "A", "A y B", "A, B y C". */
+export function nombresAutores(autores: string[]): string {
+  if (!autores.length) return AUTOR_GENERICO;
+  if (autores.length === 1) return autores[0];
+  return `${autores.slice(0, -1).join(", ")} y ${autores[autores.length - 1]}`;
+}
+
 export function bibtex(p: ProyectoPublico): string {
-  const primero = p.autores[0] ?? p.equipo;
-  const partes = primero.split(/\s+/).filter(Boolean);
-  const apellido = ascii(partes.length > 2 ? partes[partes.length - 2] : (partes[partes.length - 1] ?? "equipo"));
+  const partes = (p.autores[0] ?? "").split(/\s+/).filter(Boolean);
+  const apellido = ascii(partes.length > 2 ? partes[partes.length - 2] : (partes[partes.length - 1] ?? "")) || "defacc";
   const palabra = ascii(p.titulo.split(/\s+/).find((w) => ascii(w).length > 2) ?? p.titulo) || "proyecto";
   const url = `${SITIO}${RUTA_PROYECTOS}/${p.slug}`;
-  const autores = (p.autores.length ? p.autores : [p.equipo]).map(escaparBib).join(" and ");
+  const autores = p.autores.length ? p.autores.map(escaparBib).join(" and ") : `{${AUTOR_GENERICO}}`;
   return [
-    `@misc{${apellido || "equipo"}2026${palabra},`,
+    `@misc{${apellido}2026${palabra},`,
     `  title={{${escaparBib(p.titulo)}}},`,
     `  author={${autores}},`,
     `  year={2026},`,
     `  month={November},`,
-    `  note={Proyecto presentado al ${NOMBRE_EVENTO}, AI Safety Colombia × IEEE CS Uniandes, Bogotá},`,
+    `  note={Presentado al ${NOMBRE_EVENTO}, AI Safety Colombia, Bogotá},`,
     `  howpublished={\\url{${url}}},`,
     `  url={${url}}`,
     `}`,

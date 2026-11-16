@@ -1,25 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BodyMain from "@/components/body-main";
-import { FondoBinario } from "@/components/defacc-page";
-import { ListaConBuscador, Tarjeta, type TarjetaProyecto } from "@/components/defacc-proyectos-cliente";
+import { ListaConBuscador, type TarjetaProyecto } from "@/components/defacc-proyectos-cliente";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
-import { HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
+import { HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { NOMBRES_TRACKS } from "@/lib/defacc-revision";
 import { openGraph } from "@/lib/metadatos";
 import {
-  NOMBRE_PUESTO,
   NOMBRE_EVENTO,
+  NOMBRE_PUESTO,
   RUTA_PROYECTOS,
+  nombresAutores,
   proyectosPublicos,
   type ProyectoPublico,
 } from "@/lib/defacc-proyectos";
-import { COL, ENLACE, H2, P } from "../../sprint/guia-comun";
 
-/* Todos los proyectos del hackatón, al modo de Apart: primero el podio y
-   después todas las entregas con un buscador. Cada tarjeta lleva a la página
-   del proyecto, con su informe, su código y los comentarios del jurado. */
+/* Todos los proyectos del hackatón, al modo de Apart: encabezado sobrio en
+   blanco, buscador con filtros por track y una cuadrícula de tarjetas firmadas
+   por sus participantes. Los ganadores van primero. */
 
 export const dynamic = "force-dynamic";
 
@@ -31,16 +30,12 @@ export const metadata: Metadata = {
   openGraph: openGraph("es", RUTA_PROYECTOS),
 };
 
-function nombreTrack(t: string): string {
-  return NOMBRES_TRACKS[t] ?? t;
-}
-
 function tarjeta(p: ProyectoPublico): TarjetaProyecto {
   return {
     slug: p.slug,
     titulo: p.titulo,
-    equipo: p.equipo,
-    track: nombreTrack(p.track),
+    autores: nombresAutores(p.autores),
+    track: NOMBRES_TRACKS[p.track] ?? p.track,
     resumen: p.resumen,
     puesto: p.puesto ? NOMBRE_PUESTO[p.puesto] : null,
   };
@@ -48,69 +43,49 @@ function tarjeta(p: ProyectoPublico): TarjetaProyecto {
 
 export default async function ProyectosPage() {
   const proyectos = await proyectosPublicos();
-  const podio = proyectos.filter((p) => p.puesto).map(tarjeta);
-  const todos = proyectos.map(tarjeta);
 
   return (
     <main className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
-        <FondoBinario />
         <SiteHeader active="/defacchackathon" />
-        <div className={`${HERO_INNER} flex flex-col gap-5 pt-10 pb-16 md:pt-14 md:pb-20`}>
-          <p className="text-kicker text-aisc-sand/80">
-            <Link href="/defacchackathon" className="hover:text-aisc-sand">
-              {NOMBRE_EVENTO}
-            </Link>{" "}
-            · Bogotá · 14 nov 2026
-          </p>
-          <h1 className="text-display-1 md:text-display-1-lg text-balance text-aisc-sand">
-            Proyectos del hackatón
-          </h1>
-          <p className="text-body md:text-body-lg max-w-[660px] text-aisc-sand/90">
-            {proyectos.length} equipos pasaron un día en la Universidad de los Andes construyendo
-            prototipos que usan IA para defender sistemas, personas o información. Aquí está cada
-            proyecto con su informe, su código y los comentarios anónimos del jurado.
-          </p>
-        </div>
+        <div className="h-[84px] md:h-[92px]" />
       </section>
 
-      <article className="bg-aisc-cream pb-16 md:pb-20">
-        <BodyMain className="pt-14 md:pt-16">
-          <div className={COL}>
-            <p className={`${P} text-aisc-ink/80`}>
-              Son trabajos de etapa temprana hechos en pocas horas. Los presentamos tal como los
-              entregaron los equipos; no son publicaciones de AI Safety Colombia. Los comentarios
-              del jurado se publican sin nombre ni nota.
-            </p>
+      <div className="bg-white pb-20 md:pb-28">
+        <BodyMain className="pt-10 md:pt-14">
+          <nav aria-label="Migas de pan" className="text-[0.875rem] text-aisc-muted">
+            <Link href="/defacchackathon" className="hover:text-aisc-forest-deep hover:underline">
+              DefAcc Hackathon
+            </Link>
+            <span className="mx-2 text-aisc-line" aria-hidden="true">/</span>
+            <span className="text-aisc-ink">Proyectos</span>
+          </nav>
+
+          <h1 className="font-display mt-6 text-[2.5rem] leading-[1.08] font-medium tracking-[-0.035em] text-balance text-aisc-forest-deep md:text-[3.75rem]">
+            Proyectos del hackatón
+          </h1>
+          <p className="mt-5 max-w-[768px] text-[1.0625rem] leading-[1.65] text-aisc-muted md:text-[1.125rem]">
+            {proyectos.length} proyectos presentados al {NOMBRE_EVENTO} (Bogotá, 14 de noviembre
+            de 2026), con su informe, su código y los comentarios anónimos del jurado. Son
+            trabajos tempranos de sus participantes, no publicaciones de AI Safety Colombia.
+          </p>
+
+          <div className="mt-10 md:mt-12">
+            <ListaConBuscador proyectos={proyectos.map(tarjeta)} ruta={RUTA_PROYECTOS} />
           </div>
 
-          {podio.length ? (
-            <>
-              <H2 id="ganadores">Ganadores</H2>
-              <ul className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
-                {podio.map((p) => (
-                  <Tarjeta key={p.slug} p={p} ruta={RUTA_PROYECTOS} />
-                ))}
-              </ul>
-            </>
-          ) : null}
-
-          <H2 id="todos">Todos los proyectos</H2>
-          <div className="mt-6">
-            <ListaConBuscador proyectos={todos} ruta={RUTA_PROYECTOS} />
-          </div>
-
-          <div className={`${COL} mt-14`}>
-            <p className={P}>
-              ¿Hiciste parte de un equipo y quieres corregir algo de tu página? Escríbenos a{" "}
-              <a className={ENLACE} href="mailto:equipo@aisafetycolombia.org">
-                equipo@aisafetycolombia.org
-              </a>
-              .
-            </p>
-          </div>
+          <p className="mt-16 border-t border-aisc-line pt-6 text-[0.9375rem] text-aisc-muted">
+            ¿Participaste y quieres corregir algo de tu página? Escríbenos a{" "}
+            <a
+              className="text-aisc-forest underline decoration-aisc-forest/35 underline-offset-4 hover:decoration-aisc-forest"
+              href="mailto:equipo@aisafetycolombia.org"
+            >
+              equipo@aisafetycolombia.org
+            </a>
+            .
+          </p>
         </BodyMain>
-      </article>
+      </div>
       <SiteFooter />
     </main>
   );

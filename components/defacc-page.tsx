@@ -11,10 +11,8 @@ import {
   PAGE_SHELL,
 } from "@/components/ui";
 import {
-  CIERRE_INSCRIPCIONES_ISO,
   FECHA_EVENTO_ISO,
   TEXTOS_HACKATHON,
-  inscripcionesCerradas,
 } from "@/app/defacchackathon/datos";
 import type { Premio } from "@/app/defacchackathon/datos";
 import type { Idioma } from "@/lib/idiomas";
@@ -234,8 +232,6 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
     setDiasFaltan(diasHasta(FECHA_EVENTO_ISO));
   }, []);
 
-  const cerrada = inscripcionesCerradas();
-  const rutaAplicar = rutaEn(idioma, "/defacchackathon/aplicar");
 
   const datosClave =
     idioma === "en"
@@ -314,7 +310,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
               />
             </div>
 
-            {/* Subtítulo y estado de postulación */}
+            {/* Subtítulo */}
             <p className="mt-8 max-w-[720px] text-body md:text-body-lg text-aisc-sand/90">
               {d.lema}
             </p>
@@ -324,9 +320,6 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
             <div className="mt-8 flex w-full max-w-[360px] flex-col items-stretch gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center [&>*]:justify-center">
               <Link className={CTA_LINK_PRIMARY} href="/defacchackathon/proyectos">
                 {idioma === "en" ? "See the projects" : idioma === "pt" ? "Ver os projetos" : "Ver los proyectos"}
-              </Link>
-              <Link className={CTA_LINK} href={rutaAplicar}>
-                {d.ctaAplicar}
               </Link>
               <button
                 type="button"
@@ -350,13 +343,6 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
               </button>
               )}
             </div>
-            <p className="mt-4 text-body-sm font-medium text-aisc-sand/90">
-              {idioma === "en"
-                ? "Application deadline: Tuesday, November 10, 11:59 PM (Bogotá time)"
-                : idioma === "pt"
-                  ? "Prazo para se candidatar: terça, 10 de novembro, 23:59 (horário de Bogotá)"
-                  : "Cierre de postulaciones: martes 10 de noviembre, 11:59 p.m. (hora de Bogotá)"}
-            </p>
           </div>
         </div>
       </section>
