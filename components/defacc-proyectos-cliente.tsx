@@ -41,46 +41,96 @@ export function Puesto({ texto }: { texto: string }) {
   );
 }
 
-/* Una sola tarjeta en caja para todo: el track arriba como antetítulo, el
-   título, quiénes lo hicieron, el resumen corto y un pie con el enlace. Las
-   de los ganadores van sobre verde pálido. */
-export function Tarjeta({
-  p,
-  ruta,
-  destacada = false,
-}: {
-  p: TarjetaProyecto;
-  ruta: string;
-  destacada?: boolean;
-}) {
+/* El resumen de la tarjeta, limpio: sin el párrafo de título en negrita con
+   que abren algunos, sin asteriscos de markdown y sin el "Problema." de
+   entrada, para que las cuatro líneas digan de qué trata el proyecto. */
+function extracto(t: string): string {
+  const partes = t
+    .replace(/\r\n?/g, "\n")
+    .split(/\n\s*\n/)
+    .map((x) => x.trim())
+    .filter(Boolean);
+  if (partes.length > 1 && /^\*\*[^*]+\*\*$/.test(partes[0])) partes.shift();
+  const s = partes
+    .join(" ")
+    .replace(/\*\*|__/g, "")
+    .replace(/^#+\s*/gm, "")
+    .replace(/^(el\s+)?problema\s*[.:]\s*/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+function partesTrack(t: string): { numero: string | null; nombre: string } {
+  const m = /^Track (\d+):\s*(.*)$/.exec(t);
+  return m ? { numero: m[1], nombre: m[2] } : { numero: null, nombre: t };
+}
+
+function Flecha() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-0.5">
+      <path d="M4 10h12M11 5l5 5-5 5" />
+    </svg>
+  );
+}
+
+/* La tarjeta de un proyecto, la misma en la lista y en "Más del…": toda es
+   el enlace. Título, quiénes lo hicieron y el resumen; al pie, el track y una
+   flecha. Los ganadores son lo único con color: van sobre verde bosque con su
+   pastilla de puesto, y así abren la lista como una fila propia. */
+export function Tarjeta({ p, ruta }: { p: TarjetaProyecto; ruta: string }) {
+  const ganador = Boolean(p.puesto);
+  const { numero, nombre } = partesTrack(p.track);
   return (
     <li className="flex">
       <Link
         href={`${ruta}/${p.slug}`}
-        className={`group flex w-full flex-col rounded-[var(--radius)] border p-6 transition-[border-color,box-shadow] hover:border-aisc-forest/45 hover:shadow-[0_14px_34px_-22px_rgba(19,32,26,0.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-aisc-forest ${
-          destacada ? "border-aisc-forest/20 bg-aisc-sand" : "border-aisc-line bg-white"
+        className={`group flex w-full flex-col rounded-[var(--radius)] border p-6 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-aisc-forest md:p-7 ${
+          ganador
+            ? "border-aisc-forest-deep bg-aisc-forest-deep hover:border-aisc-forest hover:bg-aisc-forest"
+            : "border-aisc-line bg-white hover:border-aisc-forest/55"
         }`}
       >
-        <div className="flex min-h-6 items-start justify-between gap-3">
-          <span className="pt-0.5 text-[0.75rem] leading-snug font-medium tracking-[0.06em] text-aisc-muted uppercase">
-            {p.track}
-          </span>
-          {p.puesto ? <Puesto texto={p.puesto} /> : null}
-        </div>
-        <h3 className="font-display mt-4 text-[1.25rem] leading-[1.25] font-medium tracking-[-0.015em] text-balance text-aisc-forest-deep">
+        {p.puesto ? (
+          <div className="mb-5">
+            <Puesto texto={p.puesto} />
+          </div>
+        ) : null}
+        <h3
+          className={`font-display text-[1.375rem] leading-[1.2] font-medium tracking-[-0.02em] text-balance ${
+            ganador ? "text-white" : "text-aisc-forest-deep"
+          }`}
+        >
           {p.titulo}
         </h3>
-        <p className="mt-2 line-clamp-2 text-[0.875rem] leading-snug text-aisc-ink/80">{p.autores}</p>
-        <p className="mt-4 line-clamp-3 text-[0.9375rem] leading-relaxed text-aisc-muted">{p.resumen}</p>
-        <div className="mt-auto pt-6">
+        <p className={`mt-3 text-[0.9375rem] leading-[1.5] ${ganador ? "text-white/70" : "text-aisc-muted"}`}>
+          {p.autores}
+        </p>
+        <p className={`mt-4 line-clamp-4 text-[0.9375rem] leading-[1.6] ${ganador ? "text-white/85" : "text-aisc-ink/80"}`}>
+          {extracto(p.resumen)}
+        </p>
+        <div className="mt-auto pt-7">
           <div
-            className={`flex items-center justify-between border-t pt-4 text-[0.875rem] font-medium text-aisc-forest ${
-              destacada ? "border-aisc-forest/15" : "border-aisc-line"
+            className={`flex items-end justify-between gap-4 border-t pt-4 ${
+              ganador ? "border-white/15" : "border-aisc-line"
             }`}
           >
-            <span className="group-hover:text-aisc-forest-deep">Ver proyecto</span>
-            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-              →
+            <p className="text-[0.875rem] leading-[1.4]">
+              {numero ? (
+                <span className={`block font-medium ${ganador ? "text-white" : "text-aisc-ink"}`}>
+                  Track {numero}
+                </span>
+              ) : null}
+              <span className={`block ${ganador ? "text-white/65" : "text-aisc-muted"}`}>{nombre}</span>
+            </p>
+            <span
+              className={`flex size-10 shrink-0 items-center justify-center rounded-full border transition-colors ${
+                ganador
+                  ? "border-white/30 text-white group-hover:border-white group-hover:bg-white group-hover:text-aisc-forest-deep"
+                  : "border-aisc-line text-aisc-forest-deep group-hover:border-aisc-forest-deep group-hover:bg-aisc-forest-deep group-hover:text-white"
+              }`}
+            >
+              <Flecha />
             </span>
           </div>
         </div>
@@ -89,42 +139,10 @@ export function Tarjeta({
   );
 }
 
-/* Una entrada de la lista, copiada de las de Apart: toda la tarjeta es el
-   enlace, blanca y separada solo por un filete arriba; el puesto en pastilla
-   verde clara, el título, quiénes lo hicieron, el resumen en cuatro líneas y
-   "Ver proyecto" abajo del todo. */
-function Fila({ p, ruta }: { p: TarjetaProyecto; ruta: string }) {
-  return (
-    <li className="flex">
-      <Link
-        href={`${ruta}/${p.slug}`}
-        className="group flex w-full flex-col border-t border-aisc-line bg-white px-5 py-6 transition-colors hover:bg-[#f7faf7] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-aisc-forest md:px-6 md:py-8"
-      >
-        {p.puesto ? (
-          <div className="pb-4">
-            <Puesto texto={p.puesto} />
-          </div>
-        ) : null}
-        <h3 className="font-display text-[1.25rem] leading-[1.3] font-medium tracking-[-0.01em] text-aisc-ink transition-colors group-hover:text-aisc-forest">
-          {p.titulo}
-        </h3>
-        <p className="mt-2 text-[1rem] leading-[1.6] text-aisc-muted/90">{p.autores}</p>
-        <p className="mt-3 line-clamp-4 text-[1rem] leading-[1.6] text-aisc-ink/75">{p.resumen}</p>
-        <span className="mt-auto inline-flex items-center gap-1.5 pt-8 text-[1.125rem] font-medium text-aisc-ink">
-          Ver proyecto
-          <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-            →
-          </span>
-        </span>
-      </Link>
-    </li>
-  );
-}
-
 const POR_PAGINA = 12;
 
 /* Como la pestaña Entries de Apart: un buscador a todo lo ancho y las
-   entradas en dos columnas, con los ganadores primero y un botón para ver
+   entradas en tres columnas, con los ganadores primero y un botón para ver
    más cuando no caben. Sin filtros, conteos ni secciones aparte. */
 export function ListaConBuscador({
   proyectos,
@@ -170,9 +188,9 @@ export function ListaConBuscador({
 
       {visibles.length ? (
         <>
-          <ul className="mt-6 grid grid-cols-1 gap-x-5 md:mt-8 md:grid-cols-2">
+          <ul className="mt-6 grid grid-cols-1 gap-4 md:mt-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-5">
             {visibles.slice(0, cuantos).map((p) => (
-              <Fila key={p.slug} p={p} ruta={ruta} />
+              <Tarjeta key={p.slug} p={p} ruta={ruta} />
             ))}
           </ul>
           {quedan > 0 ? (
@@ -188,7 +206,7 @@ export function ListaConBuscador({
           ) : null}
         </>
       ) : (
-        <div className="mt-6 border-t border-aisc-line bg-white px-6 py-12 text-center">
+        <div className="mt-6 rounded-[var(--radius)] border border-aisc-line bg-white px-6 py-12 text-center">
           <p className="text-[1rem] text-aisc-ink">Ningún proyecto coincide con esa búsqueda.</p>
           <button
             type="button"
