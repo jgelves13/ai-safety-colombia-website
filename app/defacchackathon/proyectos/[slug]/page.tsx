@@ -96,7 +96,7 @@ export default async function ProyectoPage({ params }: Props) {
               DefAcc Hackathon
             </Link>
             <span className="mx-2 text-aisc-line" aria-hidden="true">/</span>
-            <Link href={RUTA_PROYECTOS} className="hover:text-aisc-forest-deep hover:underline">
+            <Link href="/defacchackathon#proyectos" className="hover:text-aisc-forest-deep hover:underline">
               Proyectos
             </Link>
           </nav>
@@ -200,7 +200,7 @@ export default async function ProyectoPage({ params }: Props) {
                 Más del {NOMBRE_EVENTO}
               </h2>
               <Link
-                href={RUTA_PROYECTOS}
+                href="/defacchackathon#proyectos"
                 className="text-[0.9375rem] font-medium text-aisc-forest hover:text-aisc-forest-deep hover:underline"
               >
                 Ver todos los proyectos →

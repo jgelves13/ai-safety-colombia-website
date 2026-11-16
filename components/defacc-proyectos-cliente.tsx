@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState } from "react";
 
 /* Las piezas con estado de las páginas de proyectos, al modo de Apart: el
    buscador con filtros del listado, los comentarios largos que se abren, la
@@ -88,19 +88,40 @@ export function Tarjeta({
   );
 }
 
-const CUADRICULA = "grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3";
-
-function Seccion({ titulo, children }: { titulo: string; children: ReactNode }) {
+/* Una fila de la lista de proyectos, como las entradas de Apart: el puesto si
+   lo tiene, el título, quiénes lo hicieron, el resumen corto y el enlace. */
+function Fila({ p, ruta }: { p: TarjetaProyecto; ruta: string }) {
   return (
-    <section>
-      <h2 className="text-[0.8125rem] font-semibold tracking-[0.08em] text-aisc-forest-deep uppercase">
-        {titulo}
-      </h2>
-      <div className="mt-5">{children}</div>
-    </section>
+    <li>
+      <Link
+        href={`${ruta}/${p.slug}`}
+        className="group flex flex-col gap-4 rounded-[var(--radius)] border border-aisc-line bg-white p-5 transition-[border-color,box-shadow] hover:border-aisc-forest/45 hover:shadow-[0_14px_34px_-22px_rgba(19,32,26,0.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-aisc-forest md:flex-row md:items-center md:gap-8 md:p-6"
+      >
+        <div className="min-w-0 flex-1">
+          {p.puesto ? (
+            <div className="mb-3">
+              <Puesto texto={p.puesto} />
+            </div>
+          ) : null}
+          <h3 className="font-display text-[1.1875rem] leading-[1.3] font-medium tracking-[-0.01em] text-aisc-forest-deep md:text-[1.25rem]">
+            {p.titulo}
+          </h3>
+          <p className="mt-1.5 text-[0.875rem] leading-snug text-aisc-ink/80">{p.autores}</p>
+          <p className="mt-3 line-clamp-2 text-[0.9375rem] leading-relaxed text-aisc-muted">{p.resumen}</p>
+        </div>
+        <span className="inline-flex shrink-0 items-center gap-1.5 text-[0.875rem] font-medium text-aisc-forest group-hover:text-aisc-forest-deep">
+          Ver proyecto
+          <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+            →
+          </span>
+        </span>
+      </Link>
+    </li>
   );
 }
 
+/* Como la pestaña Entries de Apart: un buscador y una sola lista, con los
+   ganadores primero. Sin filtros, conteos ni secciones aparte. */
 export function ListaConBuscador({
   proyectos,
   ruta,
@@ -109,131 +130,50 @@ export function ListaConBuscador({
   ruta: string;
 }) {
   const [q, setQ] = useState("");
-  const [filtro, setFiltro] = useState<string>("todos");
-  const tracks = useMemo(
-    () => [...new Set(proyectos.map((p) => p.track))].sort((a, b) => a.localeCompare(b, "es")),
-    [proyectos],
-  );
-  const hayPodio = proyectos.some((p) => p.puesto);
 
   const visibles = useMemo(() => {
     const n = normal(q.trim());
-    return proyectos.filter((p) => {
-      if (filtro === "ganadores" && !p.puesto) return false;
-      if (filtro !== "todos" && filtro !== "ganadores" && p.track !== filtro) return false;
-      if (!n) return true;
-      return normal(`${p.titulo} ${p.autores} ${p.track} ${p.resumen}`).includes(n);
-    });
-  }, [q, filtro, proyectos]);
-
-  const opciones = [
-    { id: "todos", label: "Todos", n: proyectos.length },
-    ...(hayPodio ? [{ id: "ganadores", label: "Ganadores", n: proyectos.filter((p) => p.puesto).length }] : []),
-    ...tracks.map((t) => ({ id: t, label: t, n: proyectos.filter((p) => p.track === t).length })),
-  ];
-
-  const separado = hayPodio && filtro === "todos" && !q.trim();
-  const ganadores = visibles.filter((p) => p.puesto);
-  const resto = visibles.filter((p) => !p.puesto);
+    if (!n) return proyectos;
+    return proyectos.filter((p) => normal(`${p.titulo} ${p.autores} ${p.track} ${p.resumen}`).includes(n));
+  }, [q, proyectos]);
 
   return (
     <div>
-      <div className="flex flex-col gap-5 border-b border-aisc-line lg:flex-row lg:items-end lg:justify-between lg:gap-10">
-        <div
-          className="-mb-px flex gap-6 overflow-x-auto [scrollbar-width:none] md:gap-7"
-          role="group"
-          aria-label="Filtrar proyectos"
-        >
-          {opciones.map((o) => {
-            const activo = filtro === o.id;
-            return (
-              <button
-                key={o.id}
-                type="button"
-                aria-pressed={activo}
-                onClick={() => setFiltro(o.id)}
-                className={`inline-flex shrink-0 items-center gap-2 border-b-2 pb-3.5 text-[0.9375rem] font-medium whitespace-nowrap transition-colors ${
-                  activo
-                    ? "border-aisc-forest-deep text-aisc-forest-deep"
-                    : "border-transparent text-aisc-muted hover:border-aisc-line hover:text-aisc-ink"
-                }`}
-              >
-                {o.label}
-                <span
-                  className={`inline-flex min-w-6 items-center justify-center rounded-full px-1.5 py-0.5 text-[0.75rem] leading-none tabular-nums ${
-                    activo ? "bg-aisc-forest-deep text-white" : "bg-aisc-sand text-aisc-forest-deep"
-                  }`}
-                >
-                  {o.n}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        <label className="relative mb-4 block w-full lg:max-w-[340px]">
-          <span className="sr-only">Buscar proyectos</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true" className="pointer-events-none absolute top-1/2 left-3.5 size-[1.125rem] -translate-y-1/2 text-aisc-muted">
-            <circle cx="11" cy="11" r="7" />
-            <path d="m20 20-3.5-3.5" />
-          </svg>
-          <input
-            type="search"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Buscar por título, participante o tema"
-            className="h-11 w-full rounded-[var(--radius)] border border-aisc-line bg-white pr-4 pl-10 text-[0.9375rem] text-aisc-ink placeholder:text-aisc-muted/80 transition-colors focus:border-aisc-forest focus:outline-2 focus:outline-offset-[1px] focus:outline-aisc-forest/30"
-          />
-        </label>
-      </div>
+      <label className="relative block w-full">
+        <span className="sr-only">Buscar proyectos</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true" className="pointer-events-none absolute top-1/2 left-3.5 size-[1.125rem] -translate-y-1/2 text-aisc-muted">
+          <circle cx="11" cy="11" r="7" />
+          <path d="m20 20-3.5-3.5" />
+        </svg>
+        <input
+          type="search"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder="Buscar proyectos"
+          className="h-11 w-full rounded-[var(--radius)] border border-aisc-line bg-white pr-4 pl-10 text-[0.9375rem] text-aisc-ink placeholder:text-aisc-muted/80 transition-colors focus:border-aisc-forest focus:outline-2 focus:outline-offset-[1px] focus:outline-aisc-forest/30"
+        />
+      </label>
 
       <p className="sr-only" aria-live="polite">
         {`${visibles.length} de ${proyectos.length} proyectos`}
       </p>
 
-      {!visibles.length ? (
-        <div className="mt-10 rounded-[var(--radius)] border border-dashed border-aisc-line px-6 py-14 text-center">
+      {visibles.length ? (
+        <ul className="mt-6 flex flex-col gap-3">
+          {visibles.map((p) => (
+            <Fila key={p.slug} p={p} ruta={ruta} />
+          ))}
+        </ul>
+      ) : (
+        <div className="mt-6 rounded-[var(--radius)] border border-dashed border-aisc-line px-6 py-12 text-center">
           <p className="text-[1rem] text-aisc-ink">Ningún proyecto coincide con esa búsqueda.</p>
           <button
             type="button"
-            onClick={() => {
-              setQ("");
-              setFiltro("todos");
-            }}
+            onClick={() => setQ("")}
             className="mt-3 text-[0.9375rem] font-medium text-aisc-forest underline decoration-aisc-forest/35 underline-offset-4 hover:decoration-aisc-forest"
           >
             Ver todos los proyectos
           </button>
-        </div>
-      ) : separado ? (
-        <div className="mt-10 flex flex-col gap-14">
-          <Seccion titulo="Ganadores">
-            <ul className={CUADRICULA}>
-              {ganadores.map((p) => (
-                <Tarjeta key={p.slug} p={p} ruta={ruta} destacada />
-              ))}
-            </ul>
-          </Seccion>
-          {resto.length ? (
-            <Seccion titulo="Todos los proyectos">
-              <ul className={CUADRICULA}>
-                {resto.map((p) => (
-                  <Tarjeta key={p.slug} p={p} ruta={ruta} />
-                ))}
-              </ul>
-            </Seccion>
-          ) : null}
-        </div>
-      ) : (
-        <div className="mt-8">
-          <p className="text-[0.875rem] text-aisc-muted">
-            {visibles.length} de {proyectos.length} proyectos
-          </p>
-          <ul className={`mt-5 ${CUADRICULA}`}>
-            {visibles.map((p) => (
-              <Tarjeta key={p.slug} p={p} ruta={ruta} destacada={!!p.puesto} />
-            ))}
-          </ul>
         </div>
       )}
     </div>

@@ -15,6 +15,7 @@ import {
   TEXTOS_HACKATHON,
 } from "@/app/defacchackathon/datos";
 import type { Premio } from "@/app/defacchackathon/datos";
+import { ListaConBuscador, type TarjetaProyecto } from "@/components/defacc-proyectos-cliente";
 import type { Idioma } from "@/lib/idiomas";
 import { rutaEn } from "@/lib/idiomas";
 
@@ -195,9 +196,21 @@ function PremiosSoberos({ premios }: { premios: Premio[] }) {
   );
 }
 
-export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
+/* Como en Apart, los proyectos presentados viven en la primera pestaña del
+   evento (Entries) y no en una página aparte. Solo la versión en español los
+   recibe; si no hay proyectos, la pestaña no aparece. */
+export default function DefAccPage({
+  idioma = "es",
+  proyectos,
+}: {
+  idioma?: Idioma;
+  proyectos?: TarjetaProyecto[];
+}) {
   const d = TEXTOS_HACKATHON[idioma];
-  const [pestaña, setPestaña] = useState<"resumen" | "tracks" | "reglas" | "cronograma">("resumen");
+  const hayProyectos = Boolean(proyectos?.length);
+  const [pestaña, setPestaña] = useState<"proyectos" | "resumen" | "tracks" | "reglas" | "cronograma">(
+    hayProyectos ? "proyectos" : "resumen",
+  );
   const inicioPestañas = useRef<HTMLDivElement>(null);
   const [pegada, setPegada] = useState(false);
 
@@ -226,6 +239,11 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
     const tope = el.getBoundingClientRect().top + window.scrollY - (window.innerWidth >= 768 ? 88 : 72);
     if (siempre || window.scrollY > tope) window.scrollTo({ top: tope, behavior: "smooth" });
   };
+  /* Los enlaces de vuelta desde cada proyecto llegan con #proyectos. */
+  useEffect(() => {
+    if (hayProyectos && window.location.hash === "#proyectos") abrirPestaña("proyectos", true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [diasFaltan, setDiasFaltan] = useState<number | null>(null);
 
   useEffect(() => {
@@ -318,9 +336,19 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
 
             {/* Botones de acción principales */}
             <div className="mt-8 flex w-full max-w-[360px] flex-col items-stretch gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center [&>*]:justify-center">
-              <Link className={CTA_LINK_PRIMARY} href="/defacchackathon/proyectos">
-                {idioma === "en" ? "See the projects" : idioma === "pt" ? "Ver os projetos" : "Ver los proyectos"}
-              </Link>
+              {hayProyectos ? (
+                <button
+                  type="button"
+                  onClick={() => abrirPestaña("proyectos", true)}
+                  className={CTA_LINK_PRIMARY}
+                >
+                  Ver los {proyectos?.length} proyectos
+                </button>
+              ) : (
+                <Link className={CTA_LINK_PRIMARY} href="/defacchackathon#proyectos">
+                  {idioma === "en" ? "See the projects" : idioma === "pt" ? "Ver os projetos" : "Ver los proyectos"}
+                </Link>
+              )}
               <button
                 type="button"
                 onClick={() => abrirPestaña("tracks", true)}
@@ -481,7 +509,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
       </section>
 
       {/* ------------------------------------------------ SUBNAV PESTAÑAS ESTILO APART */}
-      <div ref={inicioPestañas} aria-hidden="true" />
+      <div ref={inicioPestañas} id="proyectos" aria-hidden="true" />
       {/* Se pega justo debajo de la pastilla flotante del sitio (72px / 88px),
           no en top-0, donde la pastilla la tapaba. */}
       <nav
@@ -492,6 +520,7 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
           <div className="flex items-center gap-1 md:gap-2">
             {(
               [
+                ...(hayProyectos ? [{ id: "proyectos" as const, label: "Proyectos" }] : []),
                 { id: "resumen", label: d.pestañas.resumen },
                 { id: "tracks", label: d.pestañas.tracks },
                 { id: "reglas", label: d.pestañas.reglas },
@@ -522,6 +551,11 @@ export default function DefAccPage({ idioma = "es" }: { idioma?: Idioma }) {
       {/* ------------------------------------------------ CUERPO PRINCIPAL SOBRIO (ESTILO APART) */}
       <section className="mx-auto w-full max-w-[860px] px-6 py-12 md:px-8 md:py-16">
         <div className="min-w-0">
+            {/* PESTAÑA 0: PROYECTOS (como Entries en Apart) */}
+            {pestaña === "proyectos" && proyectos && (
+              <ListaConBuscador proyectos={proyectos} ruta="/defacchackathon/proyectos" />
+            )}
+
             {/* PESTAÑA 1: RESUMEN */}
             {pestaña === "resumen" && (
               <div className="space-y-12">
