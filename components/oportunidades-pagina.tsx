@@ -304,7 +304,12 @@ function inicioAprox(x: string, idioma: Idioma) {
   };
   const en = idioma === "es" ? "en" : "em";
   const s = x.trim();
-  let m = s.match(/^(?:in\s+)?([A-Za-z]+)\s+(\d{4})$/i);
+  let m = s.match(/^flexibly,\s*after offers in\s+([A-Za-z]+)\s+(\d{4})$/i);
+  if (m && mes(m[1]))
+    return idioma === "es"
+      ? `con flexibilidad, tras las ofertas de ${mes(m[1])} de ${m[2]}`
+      : `com flexibilidade, após as ofertas de ${mes(m[1])} de ${m[2]}`;
+  m = s.match(/^(?:in\s+)?([A-Za-z]+)\s+(\d{4})$/i);
   if (m && mes(m[1])) return `${en} ${mes(m[1])} de ${m[2]}`;
   m = s.match(/^(?:in\s+)?(\d{4})$/i);
   if (m) return `${en} ${m[1]}`;
@@ -358,6 +363,10 @@ const LUGARES: [RegExp, string, string][] = [
   [/\bSouth Africa\b/g, "Sudáfrica", "África do Sul"],
   [/\bCzech Republic\b/g, "República Checa", "República Tcheca"],
   [/\bNew Zealand\b/g, "Nueva Zelanda", "Nova Zelândia"],
+  [/\bNew Delhi\b/g, "Nueva Delhi", "Nova Délhi"],
+  [/\bTurkey\b/g, "Turquía", "Turquia"],
+  [/\bCanada\b/g, "Canadá", "Canadá"],
+  [/\bIndia\b/g, "India", "Índia"],
   [/\bLondon\b/g, "Londres", "Londres"],
   [/\bPrague\b/g, "Praga", "Praga"],
   [/\bBrussels\b/g, "Bruselas", "Bruxelas"],

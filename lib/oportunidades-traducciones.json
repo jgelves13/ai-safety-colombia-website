@@ -498,5 +498,155 @@
     "en": "Interdisciplinary research program connecting PhD and postdoctoral researchers from fields like mathematics, neuroscience, physics, and philosophy with AI safety mentors. Projects bridge the participant's field and AI safety.",
     "es": "Programa de investigación interdisciplinario que conecta a investigadores doctorales y posdoctorales de campos como matemáticas, neurociencia, física y filosofía con mentores en seguridad de la IA. Los proyectos tienden puentes entre el campo del participante y la seguridad de la IA.",
     "pt": "Programa de pesquisa interdisciplinar que conecta pesquisadores de doutorado e pós-doutorado de áreas como matemática, neurociência, física e filosofia a mentores em segurança da IA. Os projetos fazem a ponte entre a área do participante e a segurança da IA."
+  },
+  "recghkQoZT2vPeQ6b": {
+    "en": "Program by AI Safety Montréal (AISM) for anyone who wants to work on how frontier AI is governed. Uses BlueDot Impact's curriculum to assess the evidence, map institutions and power, and plan how to contribute.",
+    "es": "Programa de AI Safety Montréal (AISM) para quien quiera trabajar en cómo se gobierna la IA de frontera. Usa el currículo de BlueDot Impact para evaluar la evidencia, mapear instituciones y poder, y planear cómo contribuir.",
+    "pt": "Programa da AI Safety Montréal (AISM) para quem quer trabalhar em como a IA de fronteira é governada. Usa o currículo da BlueDot Impact para avaliar as evidências, mapear instituições e poder, e planejar como contribuir."
+  },
+  "recXMfiFlyGEL5zl4": {
+    "en": "Course by the Center on Long-Term Risk (CLR) on how transformative AI might be involved in creating large amounts of suffering (s-risks). Covers model personas, safe Pareto improvements, and multiagent AI safety.",
+    "es": "Curso del Center on Long-Term Risk (CLR) sobre cómo la IA transformadora podría contribuir a generar grandes cantidades de sufrimiento (s-risks). Cubre personas de modelos, mejoras de Pareto seguras y seguridad de la IA multiagente.",
+    "pt": "Curso do Center on Long-Term Risk (CLR) sobre como a IA transformadora poderia contribuir para gerar grandes quantidades de sofrimento (s-risks). Aborda personas de modelos, melhorias de Pareto seguras e segurança da IA multiagente."
+  },
+  "recvJz2F58gww1dc7": {
+    "en": "Teams of 1–3 work on open questions in technical AI safety, each mentored by a board member. Projects cover monitoring AI agents for attacks, evaluation awareness, and jailbreak defenses – ending with a blog post.",
+    "es": "Equipos de 1 a 3 personas trabajan en preguntas abiertas de seguridad técnica de la IA, cada uno con la mentoría de un miembro de la junta. Los proyectos cubren el monitoreo de agentes de IA frente a ataques, la conciencia de evaluación y las defensas contra jailbreaks, y terminan con una entrada de blog.",
+    "pt": "Equipes de 1 a 3 pessoas trabalham em questões abertas de segurança técnica da IA, cada uma com a mentoria de um membro do conselho. Os projetos abordam o monitoramento de agentes de IA contra ataques, a consciência de avaliação e as defesas contra jailbreaks, e terminam com um post de blog."
+  },
+  "recE5cXu3U1KzuHqh": {
+    "en": "Program by Secure AI Futures Lab (SAFL) on looking inside small open language models. Covers the logit lens, steering vectors, activation patching, and probes, with teams of three testing whether a model uses a concept.",
+    "es": "Programa de Secure AI Futures Lab (SAFL) para mirar dentro de modelos de lenguaje abiertos y pequeños. Cubre el logit lens, los vectores de dirección, el activation patching y las sondas, con equipos de tres que ponen a prueba si un modelo usa un concepto.",
+    "pt": "Programa do Secure AI Futures Lab (SAFL) para olhar dentro de modelos de linguagem abertos e pequenos. Aborda o logit lens, os vetores de direção, o activation patching e as sondas, com equipes de três que testam se um modelo usa um conceito."
+  },
+  "recieVuRm7X8N4HqJ": {
+    "en": "Guided study of the ARENA materials, run by AI Safety Montréal (AISM). Covers deep learning fundamentals, transformers and mechanistic interpretability, reinforcement learning, and model evaluations.",
+    "es": "Estudio guiado de los materiales de ARENA, a cargo de AI Safety Montréal (AISM). Cubre fundamentos de deep learning, transformers e interpretabilidad mecanicista, aprendizaje por refuerzo y evaluaciones de modelos.",
+    "pt": "Estudo guiado dos materiais do ARENA, conduzido pela AI Safety Montréal (AISM). Aborda fundamentos de deep learning, transformers e interpretabilidade mecanicista, aprendizado por reforço e avaliações de modelos."
+  },
+  "recJuesPwwKWUKLEL": {
+    "en": "For generalists moving into AI safety. Participants build a project sourced from an AI safety org, with talks, red teaming, and mentor 1-1s – ending with a demo day.",
+    "es": "Para generalistas que quieren pasar a la seguridad de la IA. Los participantes construyen un proyecto propuesto por una organización de seguridad de la IA, con charlas, red teaming y reuniones uno a uno con mentores, y cierran con un demo day.",
+    "pt": "Para generalistas que querem migrar para a segurança da IA. Os participantes constroem um projeto proposto por uma organização de segurança da IA, com palestras, red teaming e conversas individuais com mentores, e encerram com um demo day."
+  },
+  "recBSEeRdoLPHqoM9": {
+    "en": "Run by AI Safety Montréal (AISM) for anyone who wants to upskill in AI safety and get a clearer view of the field and their own place in it. Uses BlueDot Impact's AGI Strategy curriculum. Sessions in English or French.",
+    "es": "A cargo de AI Safety Montréal (AISM), para quien quiera formarse en seguridad de la IA y ver con más claridad el campo y su propio lugar en él. Usa el currículo AGI Strategy de BlueDot Impact. Sesiones en inglés o en francés.",
+    "pt": "Conduzido pela AI Safety Montréal (AISM), para quem quer se capacitar em segurança da IA e ver com mais clareza o campo e o seu próprio lugar nele. Usa o currículo AGI Strategy da BlueDot Impact. Sessões em inglês ou em francês."
+  },
+  "recTnG8tMEztTCP4j": {
+    "en": "Program by Poedat introducing AI safety and governance in Turkish. Covers alignment, reward hacking, catastrophe scenarios, and control of advanced AI. Includes talks, paper discussions, and a career planning workshop.",
+    "es": "Programa de Poedat que introduce la seguridad y la gobernanza de la IA en turco. Cubre alineación, reward hacking, escenarios de catástrofe y control de la IA avanzada. Incluye charlas, discusiones de papers y un taller de planeación de carrera.",
+    "pt": "Programa da Poedat que introduz a segurança e a governança da IA em turco. Aborda alinhamento, reward hacking, cenários de catástrofe e controle da IA avançada. Inclui palestras, discussões de artigos e uma oficina de planejamento de carreira."
+  },
+  "rec1d1wP5qHp5OsZm": {
+    "en": "Program by Kairos for students who lead or plan to found university AI safety or AI policy groups. Fellows are paired with experienced organizers and get group funding, workshops, and a Slack community.",
+    "es": "Programa de Kairos para estudiantes que lideran o planean fundar grupos universitarios de seguridad o de política de la IA. Cada becario trabaja en pareja con un organizador con experiencia y recibe financiación para su grupo, talleres y una comunidad en Slack.",
+    "pt": "Programa da Kairos para estudantes que lideram ou pretendem fundar grupos universitários de segurança ou de política da IA. Cada bolsista forma dupla com um organizador experiente e recebe financiamento para o grupo, oficinas e uma comunidade no Slack."
+  },
+  "recJHFTMqypiIAxQr": {
+    "en": "Course by the Hong Kong AI Safety Hub (HASH) introducing the Chinese AI ecosystem through small-group discussion. Covers key players, how regulation gets made, and how AI risk discourse compares with Western approaches.",
+    "es": "Curso del Hong Kong AI Safety Hub (HASH) que presenta el ecosistema chino de IA a través de discusiones en grupos pequeños. Cubre los actores clave, cómo se hace la regulación y cómo se compara el discurso sobre el riesgo de la IA con los enfoques occidentales.",
+    "pt": "Curso do Hong Kong AI Safety Hub (HASH) que apresenta o ecossistema chinês de IA por meio de discussões em grupos pequenos. Aborda os principais atores, como a regulação é feita e como o discurso sobre o risco da IA se compara às abordagens ocidentais."
+  },
+  "recRWVgfkDRYnVByM": {
+    "en": "For professors in quantitative disciplines, technical founders, and staff-level engineers moving into AI research. Includes a mentored project, plus self-study time and talks to learn modern ML and AI safety.",
+    "es": "Para profesores de disciplinas cuantitativas, fundadores técnicos e ingenieros de nivel staff que quieren pasar a la investigación en IA. Incluye un proyecto con mentoría, además de tiempo de estudio autónomo y charlas para aprender ML moderno y seguridad de la IA.",
+    "pt": "Para professores de disciplinas quantitativas, fundadores técnicos e engenheiros de nível staff que querem migrar para a pesquisa em IA. Inclui um projeto com mentoria, além de tempo de estudo autônomo e palestras para aprender ML moderno e segurança da IA."
+  },
+  "recnFExF0xPJhMFqf": {
+    "en": "Run by the Oxford AI Safety Initiative (OAISI) with a curriculum adapted from ARENA. Covers ML fundamentals, building GPT-2 small, mechanistic interpretability, RL, and evals – ending with a short capstone project.",
+    "es": "A cargo de la Oxford AI Safety Initiative (OAISI), con un currículo adaptado de ARENA. Cubre fundamentos de ML, construir GPT-2 small, interpretabilidad mecanicista, RL y evaluaciones, y cierra con un proyecto final corto.",
+    "pt": "Conduzido pela Oxford AI Safety Initiative (OAISI), com um currículo adaptado do ARENA. Aborda fundamentos de ML, construir o GPT-2 small, interpretabilidade mecanicista, RL e avaliações, e termina com um projeto final curto."
+  },
+  "recTuJQHlnxV7VuAp": {
+    "en": "Working group by the Center for Reducing Suffering (CRS) on how AI governance could reduce s-risk (risk of astronomical suffering). People from both fields rank open questions and identify potential interventions.",
+    "es": "Grupo de trabajo del Center for Reducing Suffering (CRS) sobre cómo la gobernanza de la IA podría reducir el s-risk (riesgo de sufrimiento astronómico). Personas de ambos campos priorizan preguntas abiertas e identifican posibles intervenciones.",
+    "pt": "Grupo de trabalho do Center for Reducing Suffering (CRS) sobre como a governança da IA poderia reduzir o s-risk (risco de sofrimento astronômico). Pessoas dos dois campos priorizam questões abertas e identificam possíveis intervenções."
+  },
+  "recXCPNlZGpcDLnNQ": {
+    "en": "Program in Spanish by Seguridad de la IA (iaS) using BlueDot Impact's AGI Strategy curriculum. Covers how AI is developing, the risks and opportunities of different outcomes, and how to steer AI toward better scenarios.",
+    "es": "Programa en español de Seguridad de la IA (iaS) con el currículo AGI Strategy de BlueDot Impact. Cubre cómo se está desarrollando la IA, los riesgos y oportunidades de distintos desenlaces y cómo orientar la IA hacia mejores escenarios.",
+    "pt": "Programa em espanhol da Seguridad de la IA (iaS) com o currículo AGI Strategy da BlueDot Impact. Aborda como a IA está se desenvolvendo, os riscos e oportunidades de diferentes desfechos e como orientar a IA para cenários melhores."
+  },
+  "recvnEAy4XeZ7U19d": {
+    "en": "Research program where expert mentors guide teams of 4–5 fellows from research question to paper submission. Projects span technical and governance topics.",
+    "es": "Programa de investigación en el que mentores expertos guían a equipos de 4 a 5 becarios desde la pregunta de investigación hasta el envío del paper. Los proyectos abarcan temas técnicos y de gobernanza.",
+    "pt": "Programa de pesquisa em que mentores especialistas orientam equipes de 4 a 5 bolsistas desde a pergunta de pesquisa até a submissão do artigo. Os projetos abrangem temas técnicos e de governança."
+  },
+  "reckjoC9BgXtFz1I9": {
+    "en": "For graduate students, early-career researchers, and professionals. Modules include adversarial evaluations and red teaming, mechanistic interpretability, and misuse and extreme risk – alongside a team capstone study.",
+    "es": "Para estudiantes de posgrado, investigadores al inicio de su carrera y profesionales. Los módulos incluyen evaluaciones adversariales y red teaming, interpretabilidad mecanicista, y mal uso y riesgo extremo, junto con un estudio final en equipo.",
+    "pt": "Para estudantes de pós-graduação, pesquisadores em início de carreira e profissionais. Os módulos incluem avaliações adversariais e red teaming, interpretabilidade mecanicista, e mau uso e risco extremo, junto com um estudo final em equipe."
+  },
+  "recmcXoMtUgDfdbSd": {
+    "en": "Mentored research in applied mathematics for alignment, preceded by a course covering the field. For PhD students, postdocs, and researchers of equivalent experience. About half of fellows go on to a research extension.",
+    "es": "Investigación con mentoría en matemáticas aplicadas para la alineación, precedida por un curso que recorre el campo. Para estudiantes de doctorado, posdoctorados e investigadores con experiencia equivalente. Cerca de la mitad de los becarios sigue con una extensión de investigación.",
+    "pt": "Pesquisa com mentoria em matemática aplicada para o alinhamento, precedida por um curso que percorre o campo. Para doutorandos, pós-doutorandos e pesquisadores com experiência equivalente. Cerca de metade dos bolsistas segue para uma extensão de pesquisa."
+  },
+  "recZiGLpUcsXc1Ojp": {
+    "en": "Program by Talos Network helping experienced professionals in policy, law, defense, and similar fields apply their expertise to European AI governance. Includes discussion calls, 1-1s, a summit, and optional placement.",
+    "es": "Programa de Talos Network que ayuda a profesionales con experiencia en política, derecho, defensa y campos similares a aplicar lo que saben a la gobernanza europea de la IA. Incluye llamadas de discusión, reuniones uno a uno, una cumbre y una pasantía opcional.",
+    "pt": "Programa da Talos Network que ajuda profissionais experientes em política, direito, defesa e áreas semelhantes a aplicar o que sabem à governança europeia da IA. Inclui chamadas de discussão, conversas individuais, uma cúpula e um estágio opcional."
+  },
+  "recZXasVrAyHwA2PN": {
+    "en": "Program by Talos Network for recent graduates and early-career professionals who want to work in European AI governance. Includes a weekly seminar, 1-1s, a published policy piece, a summit, and an optional placement.",
+    "es": "Programa de Talos Network para recién graduados y profesionales al inicio de su carrera que quieren trabajar en la gobernanza europea de la IA. Incluye un seminario semanal, reuniones uno a uno, una pieza de política publicada, una cumbre y una pasantía opcional.",
+    "pt": "Programa da Talos Network para recém-formados e profissionais em início de carreira que querem trabalhar na governança europeia da IA. Inclui um seminário semanal, conversas individuais, um texto de política publicado, uma cúpula e um estágio opcional."
+  },
+  "recXTW5sjxAqYtyQa": {
+    "en": "Program by the Centre for the Governance of AI (GovAI) for those pursuing non-research careers in AI governance. Includes applied projects in events, communications, and policy engagement, plus expert Q&As and seminars.",
+    "es": "Programa del Centre for the Governance of AI (GovAI) para quienes buscan carreras fuera de la investigación en gobernanza de la IA. Incluye proyectos aplicados en eventos, comunicaciones e incidencia en política, además de sesiones de preguntas con expertos y seminarios.",
+    "pt": "Programa do Centre for the Governance of AI (GovAI) para quem busca carreiras fora da pesquisa em governança da IA. Inclui projetos aplicados em eventos, comunicação e incidência em políticas, além de sessões de perguntas com especialistas e seminários."
+  },
+  "recfgzMeoHiisoVWT": {
+    "en": "Program by the Centre for the Governance of AI (GovAI) where fellows research an AI governance topic of their choice with a supervisor. Includes expert Q&As, weekly seminars, skills workshops, and peer feedback.",
+    "es": "Programa del Centre for the Governance of AI (GovAI) en el que los becarios investigan un tema de gobernanza de la IA de su elección con un supervisor. Incluye sesiones de preguntas con expertos, seminarios semanales, talleres de habilidades y feedback entre pares.",
+    "pt": "Programa do Centre for the Governance of AI (GovAI) em que os bolsistas pesquisam um tema de governança da IA de sua escolha com um supervisor. Inclui sessões de perguntas com especialistas, seminários semanais, oficinas de habilidades e feedback entre pares."
+  },
+  "recmEvFfjT2YXOMjg": {
+    "en": "Bipartisan program for people launching or accelerating careers in American AI governance and policy. Fellows research a topic of their choice with a supervisor, plus expert Q&As, skills workshops, and peer feedback.",
+    "es": "Programa bipartidista para quienes empiezan o quieren acelerar su carrera en gobernanza y política de la IA en Estados Unidos. Los becarios investigan un tema de su elección con un supervisor, con sesiones de preguntas con expertos, talleres de habilidades y feedback entre pares.",
+    "pt": "Programa bipartidário para quem está começando ou quer acelerar a carreira em governança e política da IA nos Estados Unidos. Os bolsistas pesquisam um tema de sua escolha com um supervisor, com sessões de perguntas com especialistas, oficinas de habilidades e feedback entre pares."
+  },
+  "rec3iAZTQNKuifPlj": {
+    "en": "Research with the Oxford Martin AI Governance Initiative (AIGI) on compute oversight, model evaluation, privacy-preserving transparency, and standards development. Each student has a technical and a policy supervisor.",
+    "es": "Investigación con la Oxford Martin AI Governance Initiative (AIGI) sobre supervisión del cómputo, evaluación de modelos, transparencia que preserva la privacidad y desarrollo de estándares. Cada estudiante tiene un supervisor técnico y uno de política.",
+    "pt": "Pesquisa com a Oxford Martin AI Governance Initiative (AIGI) sobre supervisão da computação, avaliação de modelos, transparência que preserva a privacidade e desenvolvimento de padrões. Cada estudante tem um orientador técnico e um de políticas."
+  },
+  "recGItPwN2S5ghvat": {
+    "en": "Program run by Kairos and Constellation for AI safety generalists. Residents start a new project or join an organization, with mentorship and help landing full-time roles.",
+    "es": "Programa a cargo de Kairos y Constellation para generalistas de la seguridad de la IA. Los residentes empiezan un proyecto nuevo o se suman a una organización, con mentoría y apoyo para conseguir un puesto de tiempo completo.",
+    "pt": "Programa conduzido pela Kairos e pela Constellation para generalistas da segurança da IA. Os residentes começam um projeto novo ou entram em uma organização, com mentoria e apoio para conseguir uma vaga em tempo integral."
+  },
+  "recEB5PWJZ1eAwF8u": {
+    "en": "For generalists moving into AI safety. Participants build a project sourced from an AI safety org, with talks, red teaming, and mentor 1-1s – ending with a demo day.",
+    "es": "Para generalistas que quieren pasar a la seguridad de la IA. Los participantes construyen un proyecto propuesto por una organización de seguridad de la IA, con charlas, red teaming y reuniones uno a uno con mentores, y cierran con un demo day.",
+    "pt": "Para generalistas que querem migrar para a segurança da IA. Os participantes constroem um projeto proposto por uma organização de segurança da IA, com palestras, red teaming e conversas individuais com mentores, e encerram com um demo day."
+  },
+  "recgJEVbY1cIrernp": {
+    "en": "Program by Legal Advocates for Safe Science and Technology (LASST) for law students and attorneys. Fellows research legal and regulatory issues in AI governance and advanced technology, and write a white paper or memo.",
+    "es": "Programa de Legal Advocates for Safe Science and Technology (LASST) para estudiantes de derecho y abogados. Los becarios investigan asuntos legales y regulatorios de la gobernanza de la IA y de las tecnologías avanzadas, y escriben un white paper o un memorando.",
+    "pt": "Programa da Legal Advocates for Safe Science and Technology (LASST) para estudantes de direito e advogados. Os bolsistas pesquisam questões jurídicas e regulatórias da governança da IA e das tecnologias avançadas, e escrevem um white paper ou um memorando."
+  },
+  "recfwHRiWOpXq6370": {
+    "en": "Course by the Vista Institute for AI Policy for staffers, policy professionals, researchers, and recent graduates. Expert-led sessions cover export controls, military applications of AI, and securing model weights.",
+    "es": "Curso del Vista Institute for AI Policy para asesores, profesionales de política, investigadores y recién graduados. Sesiones dirigidas por expertos cubren controles a la exportación, aplicaciones militares de la IA y la protección de los pesos de los modelos.",
+    "pt": "Curso do Vista Institute for AI Policy para assessores, profissionais de políticas, pesquisadores e recém-formados. Sessões conduzidas por especialistas abordam controles de exportação, aplicações militares da IA e a proteção dos pesos dos modelos."
+  },
+  "recHQNFyMtOHioixI": {
+    "en": "Course by the Vista Institute for AI Policy on how the law applies to increasingly capable AI agents. An introductory module covers technical and legal foundations, then research streams lead to a research proposal.",
+    "es": "Curso del Vista Institute for AI Policy sobre cómo se aplica la ley a agentes de IA cada vez más capaces. Un módulo introductorio cubre los fundamentos técnicos y legales, y luego líneas de investigación llevan a una propuesta de investigación.",
+    "pt": "Curso do Vista Institute for AI Policy sobre como a lei se aplica a agentes de IA cada vez mais capazes. Um módulo introdutório aborda os fundamentos técnicos e jurídicos, e depois linhas de pesquisa levam a uma proposta de pesquisa."
+  },
+  "recJiW7BYwY52fmC8": {
+    "en": "Self-directed program at Tsinghua University's Beijing AI Safety Hub (BASH) for researchers in alignment, evaluations, oversight, or control. Residents bring their own agenda and work with Chinese counterparts.",
+    "es": "Programa autodirigido en el Beijing AI Safety Hub (BASH) de la Universidad de Tsinghua para investigadores en alineación, evaluaciones, supervisión o control. Los residentes traen su propia agenda y trabajan con contrapartes chinas.",
+    "pt": "Programa autodirigido no Beijing AI Safety Hub (BASH) da Universidade Tsinghua para pesquisadores em alinhamento, avaliações, supervisão ou controle. Os residentes trazem a própria agenda e trabalham com contrapartes chinesas."
+  },
+  "recEcD9GrI0Yr0N6s": {
+    "en": "Program by the Federation of American Scientists (FAS) supporting early- to mid-career professionals in advancing a frontier AI safety policy idea toward implementation – ending with a published policy memo.",
+    "es": "Programa de la Federation of American Scientists (FAS) que apoya a profesionales al inicio o a mitad de su carrera para llevar una idea de política de seguridad de la IA de frontera hacia su implementación, y que cierra con un memorando de política publicado.",
+    "pt": "Programa da Federation of American Scientists (FAS) que apoia profissionais em início ou meio de carreira a levar uma ideia de política de segurança da IA de fronteira até a implementação, e que termina com um memorando de política publicado."
   }
 }
