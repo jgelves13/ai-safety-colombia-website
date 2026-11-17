@@ -61,7 +61,7 @@
 .gsh .alt-hero { background: var(--bg-primary);
     border-bottom: 1px solid var(--hairline);
     overflow: hidden;
-    padding: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(1.5rem, 3vw, 2.5rem);
+    padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(2.5rem, 6vw, 5rem);
     position: relative; }
 .gsh .alt-hero::before { aspect-ratio: 1;
     background: var(--accent-yellow);
@@ -73,7 +73,7 @@
     right: -4.5rem;
     top: 2rem;
     width: clamp(140px, 20vw, 260px); }
-.gsh .alt-hero-grid { align-items: start;
+.gsh .alt-hero-grid { align-items: center;
     display: grid;
     gap: clamp(2rem, 6vw, 4.5rem);
     grid-template-columns: minmax(0, 1fr) minmax(300px, 0.48fr);

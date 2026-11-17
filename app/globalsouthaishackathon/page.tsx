@@ -21,6 +21,7 @@ export default function PaginaGlobalSouthHackathon() {
     <main className={PAGE_SHELL}>
       <section className={HERO_SECTION}>
         <SiteHeader active={RUTA} />
+        <div aria-hidden="true" className="h-24 md:h-28" />
       </section>
       <div className="gsh">
         <GlobalSouthHackathon locale="es" />
