@@ -31,4 +31,9 @@ export const PORTADAS: Record<string, string> = {
     "/aisc/hackathon/efecto-certificado.jpg",
   "https://apartresearch.com/project/containment-does-not-compose-provenance-graphs-for-tracing-collective-escape-in-multiagent-systems-pm4n":
     "/aisc/hackathon/procedencia.jpg",
+  /* El podio del Defensive Acceleration Hackathon de noviembre de 2026, sacado
+     del informe que cada equipo entregó. */
+  "/defacchackathon/proyectos/ni-de-riesgo": "/aisc/hackathon/defacc-ni-de-riesgo.jpg",
+  "/defacchackathon/proyectos/dedalus": "/aisc/hackathon/defacc-dedalus.jpg",
+  "/defacchackathon/proyectos/ecotrace-team": "/aisc/hackathon/defacc-ecotrace-team.jpg",
 };
