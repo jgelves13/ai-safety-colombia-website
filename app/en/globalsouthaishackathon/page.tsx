@@ -19,9 +19,8 @@ export const metadata: Metadata = {
 export default function GlobalSouthHackathonPage() {
   return (
     <main className={PAGE_SHELL}>
-      <section className={HERO_SECTION}>
+      <section className={`${HERO_SECTION} [&>header:first-child]:relative`}>
         <SiteHeader active={RUTA} />
-        <div aria-hidden="true" className="h-24 md:h-28" />
       </section>
       <div className="gsh">
         <GlobalSouthHackathon locale="en" />
