@@ -1,6 +1,5 @@
 import Link from "next/link";
 import CtaPanel from "./cta-panel";
-import HackathonBanner from "./hackathon-banner";
 import Puntos, { type Patron } from "./puntos";
 import SiteFooter from "./site-footer";
 import SiteHeader from "./site-header";
@@ -315,13 +314,6 @@ export default async function Portada({ idioma }: { idioma: Idioma }) {
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      {/* -------------------------------------------------- banner hackathon */}
-      <section className="pt-10 pb-2">
-        <div className={COLUMNA}>
-          <HackathonBanner />
         </div>
       </section>
 
