@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function PaginaGlobalSouthHackathonPt() {
   return (
     <main className={PAGE_SHELL}>
-      <section className={`${HERO_SECTION} [&>header:first-child]:relative`}>
+      <section className={`${HERO_SECTION} [&>header:first-child]:relative z-30 overflow-visible!`}>
         <SiteHeader active={RUTA} />
       </section>
       <div className="gsh">
