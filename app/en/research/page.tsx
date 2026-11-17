@@ -4,10 +4,13 @@ import CtaPanel from "@/components/cta-panel";
 import SiteFooter from "@/components/site-footer";
 import PremiadosHackathon, { type Premiado } from "@/components/premiados-hackathon";
 import OtrosProyectos from "@/components/otros-proyectos";
+import DefaccEnInvestigacion from "@/components/defacc-en-investigacion";
 import SiteHeader from "@/components/site-header";
 import { CTA_LINK, CTA_LINK_PRIMARY, HERO_CORNER_CLASS, HERO_INNER, HERO_SECTION, PAGE_SHELL } from "@/components/ui";
 import { alternativas } from "@/lib/idiomas";
 import { PORTADAS } from "@/lib/portadas";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Research",
@@ -452,13 +455,15 @@ export default function Research() {
           <div className="grid grid-cols-1 gap-8 pt-5 pb-10 md:gap-10 md:pt-7 md:pb-12 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.95fr)] lg:gap-10">
             <h2 className="text-display-2 md:text-display-2-lg text-balance">Hackathon projects</h2>
             <p className="text-body md:text-body-lg text-aisc-ink">
-              Community teams in the hackathons run by{" "}
+              Community teams in our Defensive Acceleration Hackathon and in the hackathons run by{" "}
               <a className={ENLACE} href="https://apartresearch.com" target="_blank" rel="noopener noreferrer">
                 Apart Research
               </a>
               , each with a published report and an evaluation by external judges.
             </p>
           </div>
+
+          <DefaccEnInvestigacion idioma="en" className="mb-12 md:mb-14" />
 
           <a
             className="text-meta text-aisc-muted transition-colors hover:text-aisc-forest"

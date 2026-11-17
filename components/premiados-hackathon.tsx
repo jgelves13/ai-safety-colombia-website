@@ -21,8 +21,7 @@ export default function PremiadosHackathon({ premiados }: { premiados: Premiado[
         <li key={p.href} className="flex">
           <a
             href={p.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            {...(p.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             className="group flex w-full flex-col rounded-[var(--radius)] bg-aisc-sand p-5 transition-colors hover:bg-aisc-sand/60"
           >
             {PORTADAS[p.href] ? (
