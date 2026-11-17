@@ -116,10 +116,10 @@ export const PAGINAS: Pagina[] = [
     },
   },
   {
-    enlace: {
-      es: "/investigacion#hackathons",
-      en: "/en/research#hackathons",
-      pt: "/pt/pesquisa#hackathons",
+    ruta: {
+      es: "/globalsouthaishackathon",
+      en: "/en/globalsouthaishackathon",
+      pt: "/pt/globalsouthaishackathon",
     },
     nav: {
       es: "Global South AI Safety Hackathon",

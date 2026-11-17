@@ -1,0 +1,335 @@
+{
+  "date": "2026-06-19",
+  "endDate": "2026-06-21",
+  "deadlineDate": "2026-06-12",
+  "location": "Online + hub Bogotá",
+  "organizer": "Apart Research",
+  "hubOrganizer": "AI Safety Colombia",
+  "registrationUrl": "https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21?utm_source=hub-bogota",
+  "contactEmail": "sprints@apartresearch.com",
+  "support": "Schmidt Sciences",
+  "panelFactsEs": [
+    "Charlas con Juan Cerón (OpenAI) y Alejandro Toro (Congreso de Colombia)",
+    "Jurado con expertos de OpenAI, Google, UC Berkeley, PNUD, BID Lab, entre otros",
+    "USD 3.000 en premios para los tres mejores equipos de LATAM",
+    "Los ganadores reciben invitación al Apart Lab Fellowship, donde algunos fellows han publicado en ICLR, NeurIPS y ACL"
+  ],
+  "panelFactsEn": [
+    "Talks by Juan Cerón (OpenAI) and Alejandro Toro (Congress of Colombia)",
+    "Judges from OpenAI, Google, UC Berkeley, UNDP, IDB Lab, among others",
+    "US$3,000 in prizes for the top three LATAM teams",
+    "Winners are invited to the Apart Lab Fellowship, where some fellows have published at ICLR, NeurIPS, and ACL"
+  ],
+  "detailCards": [
+    {
+      "labelEs": "Fecha",
+      "labelEn": "Date",
+      "titleEs": "19-21 de junio",
+      "titleEn": "June 19-21",
+      "bodyEs": "Arranca el viernes en la tarde y va hasta el domingo en la noche. Cierre de aplicaciones el 12 de junio.",
+      "bodyEn": "Kicks off Friday evening and runs through Sunday night. Applications close June 12."
+    },
+    {
+      "labelEs": "Formato",
+      "labelEn": "Format",
+      "titleEs": "Bogotá u online",
+      "titleEn": "Bogotá or online",
+      "bodyEs": "Sede presencial en el norte de Bogotá o participación virtual desde cualquier lugar del Sur Global.",
+      "bodyEn": "In-person hub in north Bogotá, or virtual participation from anywhere in the Global South."
+    },
+    {
+      "labelEs": "Entrega",
+      "labelEn": "Submission",
+      "titleEs": "Reporte o hallazgo",
+      "titleEn": "Report or finding",
+      "bodyEs": "La entrega puede ser un hallazgo técnico, una evaluación, una herramienta o un memo de gobernanza.",
+      "bodyEn": "The deliverable can be a technical finding, an evaluation, a tool, or a governance memo.",
+      "links": [
+        { "labelEs": "Ejemplo técnico", "labelEn": "Technical example", "href": "https://apartresearch.com/project/voyager-selfevolving-ai-control-platform-72m9" },
+        { "labelEs": "Ejemplo gobernanza", "labelEn": "Governance example", "href": "https://apartresearch.com/project/technical-ai-governance-via-an-agentic-bill-of-materials-and-risk-tiering-uuts" }
+      ]
+    }
+  ],
+  "primerEs": "<p><strong>AI safety</strong> (seguridad y alineación de inteligencia artificial) es el campo que estudia cómo construir sistemas de IA que sean robustos, comprensibles y que persigan los objetivos que las personas realmente queremos, incluso a medida que se vuelven más capaces. Sus líneas activas incluyen <em>mechanistic interpretability</em> (cómo razonan los modelos por dentro), <em>red-teaming</em> y evaluaciones (<em>evals</em>) para detectar fallos de seguridad, y gobernanza de IA (política pública, regulación y estándares). Organizaciones como <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, <a href=\"https://bluedot.org\" target=\"_blank\" rel=\"noopener noreferrer\">BlueDot Impact</a> y <a href=\"https://www.aisafety.camp\" target=\"_blank\" rel=\"noopener noreferrer\">AI Safety Camp</a> forman talento en estos temas en todo el mundo; este hackathon es la puerta de entrada para investigadores y profesionales del Global South.</p>",
+  "primerEn": "<p><strong>AI safety</strong> is the field studying how to build AI systems that are robust, understandable, and that pursue the goals people actually want, even as they grow more capable. Active research areas include <em>mechanistic interpretability</em> (how models reason internally), <em>red-teaming</em> and evaluations (<em>evals</em>) to surface safety failures, and AI governance (public policy, regulation, and standards). Organizations such as <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, <a href=\"https://bluedot.org\" target=\"_blank\" rel=\"noopener noreferrer\">BlueDot Impact</a>, and <a href=\"https://www.aisafety.camp\" target=\"_blank\" rel=\"noopener noreferrer\">AI Safety Camp</a> train talent on these topics worldwide; this hackathon is the entry point for researchers and practitioners from the Global South.</p>",
+  "whatIsEs": "<p>Hoy, gran parte de la investigación en seguridad de IA se concentra en un número reducido de países. Sin embargo, estos sistemas ya están siendo desplegados en nuestra región, muchas veces con riesgos poco evaluados: sesgos no auditados, vulnerabilidades sin documentar y decisiones automatizadas sin mecanismos claros de rendición de cuentas. La capacidad de analizar, verificar y cuestionar estos sistemas desde contextos locales sigue siendo muy limitada.</p><p>El <a href=\"https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21?utm_source=hub-bogota\" target=\"_blank\" rel=\"noopener noreferrer\">Global South AIS Hackathon</a> es un sprint internacional de investigación de tres días diseñado para cerrar esa brecha. Los participantes forman equipos pequeños y trabajan en retos definidos por expertos en seguridad y gobernanza de IA, con mentoría en vivo durante todo el evento. Los equipos ganadores reciben una invitación al <a href=\"https://apartresearch.com/fellowships\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Lab Fellowship</a>, donde continúan desarrollando sus proyectos junto al equipo de investigación de <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, con oportunidades de publicación y vinculación a organizaciones dedicadas a la seguridad de la IA.</p>",
+  "whatIsEn": "<p>Today, most AI safety research is concentrated in a small number of countries. Yet these systems are already being deployed across our region, often with risks that remain poorly evaluated: unaudited biases, undocumented vulnerabilities, and automated decisions with no clear accountability mechanisms. The capacity to analyze, verify, and challenge these systems from local contexts remains very limited.</p><p>The <a href=\"https://apartresearch.com/sprints/global-south-ais-hackathon-2026-06-19-to-2026-06-21?utm_source=hub-bogota\" target=\"_blank\" rel=\"noopener noreferrer\">Global South AIS Hackathon</a> is a three-day international research sprint designed to close that gap. Participants form small teams and work on challenges defined by AI safety and governance experts, with live mentoring throughout the event. Winning teams receive an invitation to the <a href=\"https://apartresearch.com/fellowships\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Lab Fellowship</a>, where they continue developing their projects alongside the <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a> team, with opportunities for publication and placement at organizations dedicated to AI safety.</p>",
+  "organizerNoteEs": "El evento es organizado por <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, y el hub de Bogotá es coordinado por AI Safety Colombia.",
+  "organizerNoteEn": "The event is organized by <a href=\"https://apartresearch.com\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Research</a>, and the Bogotá hub is coordinated by AI Safety Colombia.",
+  "submissionEs": "Cada equipo entrega un reporte de investigación en PDF de 4 a 8 páginas que documenta enfoque, resultados e implicaciones.",
+  "submissionEn": "Each team submits a 4–8 page research report (PDF) documenting approach, results, and implications.",
+  "whyIntroEs": "Estos riesgos no son hipotéticos. Modelos que aprenden a engañar a su propia supervisión, asistentes convertidos en herramientas de ataque por un párrafo escondido en cualquier texto, sentencias que se apoyan en información que un modelo inventó, drones militares que ya vuelan en modo autónomo. La investigación en seguridad de IA agrupa el trabajo necesario en cuatro frentes. Cada caso a continuación es un ejemplo concreto de uno de ellos, apenas una muestra de lo que podrías trabajar.",
+  "whyIntroEn": "These risks are not hypothetical. Models that learn to deceive their own oversight, assistants turned into attack tools by a paragraph hidden in any text, court rulings based on information a model invented, military attack drones already flying in autonomous mode. AI safety research groups the necessary work across four fronts. Each case below is a concrete example of one of them, just a sample of what you could take on.",
+  "whyCases": [
+    { "accent": "is-green", "areaEs": "Technical AI Safety", "areaEn": "Technical AI Safety",
+      "bodyEs": "Los modelos de frontera ya actúan solos: navegan, escriben y ejecutan código por su cuenta. En pruebas controladas, <a href=\"https://arxiv.org/abs/2412.04984\" target=\"_blank\" rel=\"noopener noreferrer\">Apollo Research documentó</a> modelos que intentaban desactivar su propia supervisión y mentían al respecto para cumplir un objetivo. Llegan a la región sin que nadie verifique cómo razonan por dentro. Evaluar a los agentes e inspeccionar lo que aprenden es la única forma de detectarlo a tiempo.",
+      "bodyEn": "Frontier models already act on their own: they browse the web, write, and run code without supervision. In controlled tests, <a href=\"https://arxiv.org/abs/2412.04984\" target=\"_blank\" rel=\"noopener noreferrer\">Apollo Research documented</a> models that tried to disable their own oversight and lied about it to reach a goal. They are reaching the region with no one verifying how they reason inside. Evaluating agents and inspecting what they learn is the only way to catch that in time." },
+    { "accent": "is-coral", "areaEs": "AI Security", "areaEn": "AI Security",
+      "bodyEs": "Empresas y gobiernos de la región ya conectan modelos de IA a correos, documentos y sistemas internos. Con inyección de prompts, un atacante esconde instrucciones en cualquier texto que el modelo lea y logra que el asistente filtre datos o actúe en nombre del usuario, algo <a href=\"https://arxiv.org/abs/2302.12173\" target=\"_blank\" rel=\"noopener noreferrer\">ya demostrado contra aplicaciones reales</a>. Un modelo capaz sin pipelines asegurados ni control sobre sus acciones es una puerta abierta.",
+      "bodyEn": "Companies and governments across the region are already wiring AI models into email, documents, and internal systems. Through prompt injection, an attacker hides instructions in any text the model reads and gets the assistant to leak data or act on the user's behalf, something <a href=\"https://arxiv.org/abs/2302.12173\" target=\"_blank\" rel=\"noopener noreferrer\">already demonstrated against real-world applications</a>. A capable model with unsecured pipelines and no control over its actions is an open door." },
+    { "accent": "is-blue", "areaEs": "IA Responsable", "areaEn": "Responsible AI",
+      "bodyEs": "Los modelos de IA ya entran en decisiones sobre las personas, y producen información falsa con total fluidez. En 2023 un <a href=\"https://www.eltiempo.com/justicia/servicios/juez-de-cartagena-uso-chatgpt-en-sentencia-de-tutela-739042\" target=\"_blank\" rel=\"noopener noreferrer\">juzgado de Cartagena</a> resolvió con ChatGPT una tutela de salud de un niño con autismo; al revisar el fallo, un profesor pidió las sentencias que el modelo citaba y descubrió que las había inventado. Medir cuándo alucina un modelo y detectarlo antes de que llegue a una decisión es trabajo de IA responsable.",
+      "bodyEn": "AI models are already entering decisions that affect people, and they produce false information with complete fluency. In 2023 a <a href=\"https://www.eltiempo.com/justicia/servicios/juez-de-cartagena-uso-chatgpt-en-sentencia-de-tutela-739042\" target=\"_blank\" rel=\"noopener noreferrer\">court in Cartagena</a> used ChatGPT to help resolve a healthcare case for a child with autism; on review, a professor asked for the court rulings the model had cited and found it had invented them. Measuring when and why a model hallucinates, and catching it before it reaches a decision, is responsible-AI work." },
+    { "accent": "is-yellow", "areaEs": "Gobernanza de IA", "areaEn": "AI Governance",
+      "bodyEs": "La gobernanza de IA define qué usos de estos sistemas se permiten, cómo se auditan y quién responde cuando fallan. En octubre de 2025 la estatal colombiana CIAC presentó el <a href=\"https://www.zona-militar.com/2025/10/17/conociendo-al-dragom-el-nuevo-drone-de-ataque-desarrollado-por-la-ciac-para-las-fuerzas-armadas-de-colombia/\" target=\"_blank\" rel=\"noopener noreferrer\">Dragom</a>, un dron militar de ataque que vuela en modo manual, semiautomático o autónomo. Que un sistema mate por su cuenta no es una decisión técnica sino política, y por eso la Cámara discute un <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017\" target=\"_blank\" rel=\"noopener noreferrer\">proyecto de ley</a> para prohibir las armas autónomas letales (SAAL).",
+      "bodyEn": "AI governance defines which uses of these systems are allowed, how they are audited, and who answers when they fail. In October 2025 Colombia's state corporation CIAC unveiled the <a href=\"https://www.zona-militar.com/2025/10/17/conociendo-al-dragom-el-nuevo-drone-de-ataque-desarrollado-por-la-ciac-para-las-fuerzas-armadas-de-colombia/\" target=\"_blank\" rel=\"noopener noreferrer\">Dragom</a>, a military attack drone that flies in manual, semi-automatic, or autonomous mode. Letting a system kill on its own is not a technical decision but a political one, which is why the Chamber of Representatives is debating a <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017\" target=\"_blank\" rel=\"noopener noreferrer\">bill</a> to ban lethal autonomous weapons (LAWS)." }
+  ],
+  "whyCloseEs": "Los retos completos se publican el viernes; los cuatro frentes anteriores son apenas el mapa. Los tracks de abajo detallan los subtemas concretos.",
+  "whyCloseEn": "The full challenges are released on Friday; the four fronts above are only the map. The tracks below break out the concrete subtopics.",
+  "tracks": [
+    { "titleEs": "Technical AI Safety", "titleEn": "Technical AI Safety", "accent": "is-green",
+      "descEs": "Entender y verificar cómo se comportan los modelos por dentro: cómo evalúan, planean y actúan los sistemas agénticos, y cómo inspeccionar lo que aprenden.",
+      "descEn": "Understand and verify how models behave inside: how agentic systems evaluate, plan and act, and how to inspect what they learn.",
+      "subareas": [
+      { "es": "Evaluaciones para sistemas agénticos", "en": "Evaluations for agentic systems" },
+      { "es": "Interpretabilidad mecanicista", "en": "Mechanistic interpretability" }
+    ]},
+    { "titleEs": "AI Security", "titleEn": "AI Security", "accent": "is-coral",
+      "descEs": "Proteger los sistemas de IA frente a abuso y ataques: asegurar pipelines de despliegue, resistir inyección de prompts y jailbreaks, y mantener el control sobre modelos capaces.",
+      "descEn": "Protect AI systems against misuse and attacks: secure deployment pipelines, resist prompt injection and jailbreaks, and keep control over capable models.",
+      "subareas": [
+      { "es": "Seguridad de pipelines (API/Cloud)", "en": "Pipeline security (API/Cloud)" },
+      { "es": "Ataques adversariales", "en": "Adversarial attacks" },
+      { "es": "Control de IA", "en": "AI control" }
+    ]},
+    { "titleEs": "IA Responsable", "titleEn": "Responsible AI", "accent": "is-blue",
+      "descEs": "Reducir daños en el uso real: mitigar alucinaciones, auditar el comportamiento de los modelos en distintos idiomas y culturas, y evaluar su impacto social.",
+      "descEn": "Reduce harm in real-world use: mitigate hallucinations, audit model behavior across languages and cultures, and evaluate social impact.",
+      "subareas": [
+      { "es": "Mitigación de alucinaciones", "en": "Hallucination mitigation" },
+      { "es": "Auditoría de comportamiento (multilingüe, intercultural)", "en": "Behavioral audit (multilingual, cross-cultural)" },
+      { "es": "Evaluación de impacto social", "en": "Social impact evaluation" }
+    ]},
+    { "titleEs": "Gobernanza de IA", "titleEn": "AI Governance", "accent": "is-yellow",
+      "descEs": "Las reglas e instituciones que guían a la IA: regulación, auditoría y rendición de cuentas, monitoreo del ecosistema y armas autónomas letales (SAAL), un eje liderado desde Bogotá.",
+      "descEn": "The rules and institutions that steer AI: regulation, auditing and accountability, ecosystem monitoring, and lethal autonomous weapons (LAWS), a focus area led from Bogotá.",
+      "subareas": [
+      { "es": "Regulación de IA", "en": "AI regulation" },
+      { "es": "Auditoría y rendición de cuentas de sistemas", "en": "System auditing and accountability" },
+      { "es": "Monitoreo del ecosistema", "en": "Ecosystem monitoring" },
+      { "es": "Gobernanza de sistemas de armas autónomas letales (SAAL)", "en": "Governance of lethal autonomous weapons systems (LAWS)" }
+    ]}
+  ],
+  "eligibility": [
+    { "es": "Investigadores e ingenieros de IA/ML", "en": "AI/ML researchers and engineers" },
+    { "es": "Desarrolladores de software y científicos de datos", "en": "Software developers and data scientists" },
+    { "es": "Profesionales de política, derecho y gobernanza", "en": "Policy, law, and governance professionals" },
+    { "es": "Especialistas en seguridad y red teaming", "en": "Security and red-teaming specialists" },
+    { "es": "Estudiantes y personas en inicios de carrera", "en": "Students and early-career professionals" },
+    { "es": "Curiosos de otras disciplinas, sin experiencia previa", "en": "Curious minds from other fields, no experience required" }
+  ],
+  "regions": [
+    { "nameEs": "América Latina", "nameEn": "Latin America", "accent": "is-green",
+      "teamsEs": "3 equipos ganadores", "teamsEn": "3 winning teams", "prizeEs": "USD 3.000", "prizeEn": "US$3,000",
+      "cities": [
+        { "name": "São Paulo" }, { "name": "Buenos Aires" }, { "name": "Bogotá", "bogota": true },
+        { "name": "Mérida" }, { "name": "Guadalajara" }, { "name": "Santa Cruz" }
+      ]},
+    { "nameEs": "África", "nameEn": "Africa", "accent": "is-coral",
+      "teamsEs": "1 equipo ganador", "teamsEn": "1 winning team", "prizeEs": "USD 1.000", "prizeEn": "US$1,000",
+      "cities": [ { "name": "Cape Town", "nameEs": "Ciudad del Cabo" }, { "name": "Johannesburg", "nameEs": "Johannesburgo" }, { "name": "Dodoma" }, { "name": "Lusaka" } ]},
+    { "nameEs": "Asia", "nameEn": "Asia", "accent": "is-blue",
+      "teamsEs": "2 equipos ganadores", "teamsEn": "2 winning teams", "prizeEs": "USD 2.000", "prizeEn": "US$2,000",
+      "cities": [ { "name": "Bengaluru", "nameEs": "Bangalore" }, { "name": "Delhi" }, { "name": "Hanoi", "nameEs": "Hanói" }, { "name": "Ho Chi Minh City", "nameEs": "Ciudad Ho Chi Minh" } ]}
+  ],
+  "prizesDetail": {
+    "amountEs": "USD 3.000",
+    "amountEn": "US$3,000",
+    "headlineEs": "para los 3 equipos ganadores de América Latina",
+    "headlineEn": "for the 3 winning teams in Latin America",
+    "totalEs": "USD 1.000 por equipo, dentro de un pool de USD 6.000 para 6 equipos del Sur Global.",
+    "totalEn": "US$1,000 per team, within a US$6,000 pool for 6 teams across the Global South.",
+    "perks": [
+      { "es": "Invitación al Apart Lab Fellowship", "en": "Apart Lab Fellowship invitation" },
+      { "es": "Mentoría y revisión de expertos", "en": "Expert mentoring and review" }
+    ],
+    "fellowsEs": "El <a href=\"https://apartresearch.com/fellowships\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Lab Fellowship</a> es un programa remoto y asíncrono de 12 a 24 semanas en el que cada equipo convierte su prototipo del hackathon en una investigación publicable, con acompañamiento de un Research Project Manager y del equipo de Apart Research. Más de 100 personas han pasado por el programa, que ya suma 22 publicaciones en seguridad de IA. Lo que cada equipo construye depende del track: prototipos, evaluaciones o herramientas técnicas en seguridad; memorandos o análisis de política en gobernanza. Está diseñado para ser accesible desde cualquier país y compatible con un empleo de tiempo completo.",
+    "fellowsEn": "The <a href=\"https://apartresearch.com/fellowships\" target=\"_blank\" rel=\"noopener noreferrer\">Apart Lab Fellowship</a> is a remote, asynchronous 12-to-24-week program in which each team turns its hackathon prototype into publishable research, supported by a Research Project Manager and the Apart Research team. More than 100 people have come through it, producing 22 AI safety publications to date. What each team builds depends on the track: prototypes, evaluations, or technical tools in safety; policy memos or analysis in governance. It is designed to be globally accessible and compatible with full-time work.",
+    "successTitleEs": "Trayectorias después del hackathon",
+    "successTitleEn": "Trajectories after the hackathon",
+    "successExamples": [
+      { "es": "Trabajos de fellows de Apart han sido publicados en conferencias técnicas de aprendizaje automático, incluyendo ICLR 2025 (<a href=\"https://iclr.cc/virtual/2025/poster/28346\" target=\"_blank\" rel=\"noopener noreferrer\">DarkBench</a>), NeurIPS 2024 (<a href=\"https://neurips.cc/virtual/2024/poster/93081\" target=\"_blank\" rel=\"noopener noreferrer\">Interpreting Learned Feedback Patterns in LLMs</a>) y ACL 2024 (<a href=\"https://aclanthology.org/2024.findings-acl.492/\" target=\"_blank\" rel=\"noopener noreferrer\">Large Language Models Relearn Removed Concepts</a>).", "en": "Apart fellows' work has been published at technical machine-learning conferences, including ICLR 2025 (<a href=\"https://iclr.cc/virtual/2025/poster/28346\" target=\"_blank\" rel=\"noopener noreferrer\">DarkBench</a>), NeurIPS 2024 (<a href=\"https://neurips.cc/virtual/2024/poster/93081\" target=\"_blank\" rel=\"noopener noreferrer\">Interpreting Learned Feedback Patterns in LLMs</a>), and ACL 2024 (<a href=\"https://aclanthology.org/2024.findings-acl.492/\" target=\"_blank\" rel=\"noopener noreferrer\">Large Language Models Relearn Removed Concepts</a>).", "url": "https://apartresearch.com/research" },
+      { "es": "El programa también ha llevado a roles a tiempo completo en seguridad de IA, como ingeniero de investigación en <a href=\"https://www.cooperativeai.com/\" target=\"_blank\" rel=\"noopener noreferrer\">CAIF</a> o líder de investigación en <a href=\"https://withmartian.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Martian</a>.", "en": "The program has also led to full-time AI safety roles, such as research engineer at <a href=\"https://www.cooperativeai.com/\" target=\"_blank\" rel=\"noopener noreferrer\">CAIF</a> and research lead at <a href=\"https://withmartian.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Martian</a>.", "url": "https://apartresearch.com/fellowships" }
+    ],
+    "venueNoteEs": "",
+    "venueNoteEn": ""
+  },
+  "inPerson": {
+    "para1Es": "La postulación al hub presencial de Bogotá se hace desde este sitio: completas un formulario corto y nuestro equipo de selección la revisa. La fecha límite es el 12 de junio a las 23:59 (hora Colombia).",
+    "para1En": "Bogotá hub applications are made from this site: you fill out a short form and our selection team reviews it. The deadline is June 12 at 23:59 (Colombia time).",
+    "modeInpersonLabelEs": "Presencial",
+    "modeInpersonLabelEn": "In-person",
+    "modeOnlineLabelEs": "En línea",
+    "modeOnlineLabelEn": "Online",
+    "bogotaHubTitleEs": "Hub Bogotá",
+    "bogotaHubTitleEn": "Bogotá Hub",
+    "onlineTitleEs": "Sur Global",
+    "onlineTitleEn": "Global South",
+    "bogotaTagEs": "Hub Bogotá · postulaciones cerradas",
+    "bogotaTagEn": "Bogotá Hub · applications closed",
+    "bogotaApplyEs": "Las postulaciones al hub presencial cerraron el <strong>12 de junio</strong>. Si quieres participar, puedes hacerlo en línea registrándote con Apart Research.",
+    "bogotaApplyEn": "Applications to the in-person hub closed on <strong>June 12</strong>. If you still want to take part, you can join online by registering with Apart Research.",
+    "virtualTagEs": "Abierto a participantes del Sur Global.",
+    "virtualTagEn": "Open to participants from the Global South.",
+    "items": [
+      { "es": "Espacio de trabajo presencial abierto 24 horas durante los tres días del evento.", "en": "In-person workspace open around the clock throughout the three days of the event." },
+      { "es": "Alimentación vegana incluida durante todo el fin de semana.", "en": "Vegan meals included throughout the entire weekend." },
+      { "es": "Mentorías, charlas y Q&A en vivo con investigadores, jueces y expertos.", "en": "Live mentoring, talks, and Q&A with researchers, judges, and experts." },
+      { "es": "Apoyo limitado de viaje y alojamiento para participantes seleccionados de otras ciudades del país.", "en": "Limited travel and accommodation support for selected participants from other cities in the country." }
+    ],
+    "onlineItems": [
+      { "es": "Charlas técnicas y Q&A en vivo por Zoom.", "en": "Technical talks and live Q&A over Zoom." },
+      { "es": "Canales oficiales del hackathon en Discord para mentoría y colaboración.", "en": "Official hackathon Discord channels for mentoring and collaboration." },
+      { "es": "Acceso completo a los retos, recursos y entregables del hackathon.", "en": "Full access to all hackathon challenges, resources, and deliverables." }
+    ]
+  },
+  "schedule": [
+    { "day": "Viernes 19", "dayEn": "Friday 19", "accent": "is-green", "events": [
+      { "time": "~4:00 PM", "timeEn": "~4:00 PM",
+        "title": "Charla de apertura y presentación de los retos",
+        "titleEn": "Opening talk and challenge briefing",
+        "note": "Con Alejandro Toro (Congreso de Colombia)",
+        "noteEn": "With Alejandro Toro (Congress of Colombia)" },
+      { "time": "Noche", "timeEn": "Evening",
+        "title": "Formación de equipos e inicio del desarrollo",
+        "titleEn": "Team formation and start of building",
+        "note": "", "noteEn": "" }
+    ]},
+    { "day": "Sábado 20", "dayEn": "Saturday 20", "accent": "is-blue", "events": [
+      { "time": "Mañana", "timeEn": "Morning",
+        "title": "Desarrollo en equipos",
+        "titleEn": "Team development",
+        "note": "", "noteEn": "" },
+      { "time": "Tarde", "timeEn": "Afternoon",
+        "title": "Charlas técnicas y mentoría con expertos",
+        "titleEn": "Technical talks and expert mentoring",
+        "note": "", "noteEn": "" },
+      { "time": "Noche", "timeEn": "Evening",
+        "title": "El desarrollo continúa",
+        "titleEn": "Building continues",
+        "note": "", "noteEn": "" }
+    ]},
+    { "day": "Domingo 21", "dayEn": "Sunday 21", "accent": "is-yellow", "events": [
+      { "time": "Mañana", "timeEn": "Morning",
+        "title": "Desarrollo final del proyecto",
+        "titleEn": "Final project development",
+        "note": "", "noteEn": "" },
+      { "time": "Tarde", "timeEn": "Afternoon",
+        "title": "Escritura del reporte de investigación",
+        "titleEn": "Writing the research report",
+        "note": "", "noteEn": "" },
+      { "time": "Tarde", "timeEn": "Afternoon",
+        "title": "Charla de cierre",
+        "titleEn": "Closing talk",
+        "note": "Con Juan Felipe Cerón (OpenAI)",
+        "noteEn": "With Juan Felipe Cerón (OpenAI)" },
+      { "time": "Noche", "timeEn": "Evening",
+        "title": "Entrega del reporte de investigación",
+        "titleEn": "Research report submission",
+        "note": "Fecha límite del hackathon",
+        "noteEn": "Hackathon deadline" }
+    ]}
+  ],
+  "speakers": [
+    { "name": "Juan Felipe Cerón", "affiliationEs": "<a href=\"https://openai.com/\" target=\"_blank\" rel=\"noopener noreferrer\">OpenAI</a>", "affiliationEn": "<a href=\"https://openai.com/\" target=\"_blank\" rel=\"noopener noreferrer\">OpenAI</a>", "attendance": "remote", "bioEs": "Ingeniero de investigación en alineación de IA en OpenAI. Coautor de <a href=\"https://arxiv.org/abs/2603.10521\" target=\"_blank\" rel=\"noopener noreferrer\">IH-Challenge</a> (RL para resistir inyección de prompts), y de <a href=\"https://arxiv.org/abs/2407.00215\" target=\"_blank\" rel=\"noopener noreferrer\">LLM Critics</a> (modelos de crítica para evaluar salidas de LLMs).", "bioEn": "AI Alignment Research Engineer at OpenAI. Co-author of <a href=\"https://arxiv.org/abs/2603.10521\" target=\"_blank\" rel=\"noopener noreferrer\">IH-Challenge</a> (RL to resist prompt injection), and <a href=\"https://arxiv.org/abs/2407.00215\" target=\"_blank\" rel=\"noopener noreferrer\">LLM Critics</a> (critic models for evaluating LLM outputs).", "linkedin": "https://www.linkedin.com/in/juan-felipe-ceron-uribe/", "photo": "juan-felipe.jpg" },
+    { "name": "Alejandro Toro", "affiliationEs": "<a href=\"https://www.camara.gov.co/\" target=\"_blank\" rel=\"noopener noreferrer\">Congreso de la República de Colombia</a>", "affiliationEn": "<a href=\"https://www.camara.gov.co/\" target=\"_blank\" rel=\"noopener noreferrer\">Congress of the Republic of Colombia</a>", "attendance": "inperson", "bioEs": "Representante a la Cámara. Coautor y coordinador para primer debate del <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017/\" target=\"_blank\" rel=\"noopener noreferrer\">Proyecto de Ley 368/2025</a>, que prohíbe los sistemas de armas autónomas letales (SAAL) y regula los semiautónomos.", "bioEn": "Member of the House of Representatives. Co-author and First-Debate Coordinator of <a href=\"https://www.camara.gov.co/prohibicion-y-regulacion-de-armas-autonomas-017/\" target=\"_blank\" rel=\"noopener noreferrer\">House Bill 368/2025</a>, which prohibits lethal autonomous weapons systems (LAWS) and regulates semi-autonomous ones.", "camara": "https://www.camara.gov.co/representantes/david-alejandro-toro-ramirez/", "photo": "alejandro.jpg" }
+  ],
+  "judges": [
+    { "name": "Juan Liévano-Karim", "affiliationEs": "<a href=\"https://www.berkeley.edu/\" target=\"_blank\" rel=\"noopener noreferrer\">UC Berkeley</a>", "affiliationEn": "<a href=\"https://www.berkeley.edu/\" target=\"_blank\" rel=\"noopener noreferrer\">UC Berkeley</a>", "attendance": "remote", "evalTopicEs": "Control de IA", "evalTopicEn": "AI control", "bioEs": "Coautor con Stuart Russell de un <a href=\"https://arxiv.org/abs/2502.14043\" target=\"_blank\" rel=\"noopener noreferrer\">marco de aprendizaje por refuerzo con consulta a mentor</a>, diseñado para reducir el riesgo catastrófico de sistemas de IA.", "bioEn": "Co-author with Stuart Russell of a <a href=\"https://arxiv.org/abs/2502.14043\" target=\"_blank\" rel=\"noopener noreferrer\">reinforcement-learning framework with mentor queries</a>, designed to reduce catastrophic risk from AI systems without resets.", "openreview": "https://openreview.net/profile?id=~Juan_Liévano-Karim1", "photo": "juan-lievano.jpg" },
+    { "name": "Juan Felipe Cerón Uribe", "affiliationEs": "<a href=\"https://openai.com/\" target=\"_blank\" rel=\"noopener noreferrer\">OpenAI</a>", "affiliationEn": "<a href=\"https://openai.com/\" target=\"_blank\" rel=\"noopener noreferrer\">OpenAI</a>", "attendance": "remote", "evalTopicEs": "Ataques adversariales · Control de IA", "evalTopicEn": "Adversarial attacks · AI control", "bioEs": "Autor de <a href=\"https://arxiv.org/abs/2603.10521\" target=\"_blank\" rel=\"noopener noreferrer\">IH-Challenge</a>, benchmark de RL para resistir inyección de prompts en agentes LLM; y de <a href=\"https://arxiv.org/abs/2407.00215\" target=\"_blank\" rel=\"noopener noreferrer\">LLM Critics</a>, modelos críticos para supervisar outputs de LLMs.", "bioEn": "Author of <a href=\"https://arxiv.org/abs/2603.10521\" target=\"_blank\" rel=\"noopener noreferrer\">IH-Challenge</a>, RL benchmark for prompt injection resistance in LLM agents; and <a href=\"https://arxiv.org/abs/2407.00215\" target=\"_blank\" rel=\"noopener noreferrer\">LLM Critics</a>, on critic models to supervise and correct LLM outputs.", "linkedin": "https://www.linkedin.com/in/juan-felipe-ceron-uribe/", "photo": "juan-felipe.jpg" },
+    { "name": "Diego Ortiz Barbosa", "affiliationEs": "<a href=\"https://www.ucsc.edu/\" target=\"_blank\" rel=\"noopener noreferrer\">UC Santa Cruz</a>", "affiliationEn": "<a href=\"https://www.ucsc.edu/\" target=\"_blank\" rel=\"noopener noreferrer\">UC Santa Cruz</a>", "attendance": "remote", "evalTopicEs": "Ataques adversariales", "evalTopicEn": "Adversarial attacks", "bioEs": "Coautor de <a href=\"https://arxiv.org/abs/2510.00181\" target=\"_blank\" rel=\"noopener noreferrer\">CHAI</a> (SatML 2026), inyección de prompts vía señales visuales falsas en el entorno que secuestra agentes multimodales en drones, autos y robots.", "bioEn": "Co-author of <a href=\"https://arxiv.org/abs/2510.00181\" target=\"_blank\" rel=\"noopener noreferrer\">CHAI</a> (SatML 2026), a physical prompt injection attack via fake visual cues that hijacks multimodal LLM agents in drones, vehicles, and robots.", "linkedin": "https://www.linkedin.com/in/diegortba/", "photo": "diego-ortiz.jpg" },
+    { "name": "Diego Gomez", "affiliationEs": "<a href=\"https://www.youtube.com/\" target=\"_blank\" rel=\"noopener noreferrer\">YouTube</a> (Google)", "affiliationEn": "<a href=\"https://www.youtube.com/\" target=\"_blank\" rel=\"noopener noreferrer\">YouTube</a> (Google)", "attendance": "remote", "evalTopicEs": "Interpretabilidad mecanicista", "evalTopicEn": "Mechanistic interpretability", "bioEs": "Trabaja en seguridad de LLMs multimodales en YouTube y desarrolla un proyecto de interpretabilidad mecanicista sobre <em>persona vectors</em> en <a href=\"https://bluedot.org\" target=\"_blank\" rel=\"noopener noreferrer\">BlueDot Impact</a>.", "bioEn": "Works on multimodal LLM safety at YouTube and develops a mechanistic interpretability project on <em>persona vectors</em> through the <a href=\"https://bluedot.org\" target=\"_blank\" rel=\"noopener noreferrer\">BlueDot Impact</a> program.", "linkedin": "https://www.linkedin.com/in/diegoalejogm/", "photo": "diego-gomez.jpg" },
+    { "name": "Alejandro Acelas", "affiliationEs": "<a href=\"https://cliver.bio/\" target=\"_blank\" rel=\"noopener noreferrer\">Cliver</a>", "affiliationEn": "<a href=\"https://cliver.bio/\" target=\"_blank\" rel=\"noopener noreferrer\">Cliver</a>", "attendance": "remote", "evalTopicEs": "Interpretabilidad mecanicista", "evalTopicEn": "Mechanistic interpretability", "bioEs": "Coautor en <a href=\"https://orcg.info/alejandroacelas\" target=\"_blank\" rel=\"noopener noreferrer\">ORCG</a> de <a href=\"http://orcg.info/s/V1_Informe-Computo-para-el-bien.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Cómputo para el bien</a>, sobre supercomputación europea para IA; autor de <a href=\"https://www.lesswrong.com/posts/SbLRsdajhMQdAbaqL/capture-the-flag-mechanistic-interpretability-challenges\" target=\"_blank\" rel=\"noopener noreferrer\">Capture the Flag</a>, retos de reparar pesos y detectar backdoors en transformers.", "bioEn": "Co-author at <a href=\"https://orcg.info/alejandroacelas\" target=\"_blank\" rel=\"noopener noreferrer\">ORCG</a> of <a href=\"http://orcg.info/s/V1_Report-Compute-for-Good.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Computing for Good</a> (European supercomputing for AI); author of <a href=\"https://www.lesswrong.com/posts/SbLRsdajhMQdAbaqL/capture-the-flag-mechanistic-interpretability-challenges\" target=\"_blank\" rel=\"noopener noreferrer\">Capture the Flag</a>, weight-repair and backdoor challenges in transformers.", "linkedin": "https://www.linkedin.com/in/alejandro-acelas/", "photo": "alejo-acelas.jpg" },
+    { "name": "Melissa Robles", "affiliationEs": "<a href=\"https://quantil.co/\" target=\"_blank\" rel=\"noopener noreferrer\">Quantil</a>", "affiliationEn": "<a href=\"https://quantil.co/\" target=\"_blank\" rel=\"noopener noreferrer\">Quantil</a>", "attendance": "inperson", "evalTopicEs": "Auditoría de comportamiento", "evalTopicEn": "Behavioral audit", "bioEs": "Coautora de <a href=\"https://arxiv.org/abs/2509.03329\" target=\"_blank\" rel=\"noopener noreferrer\">SESGO</a>, evaluación de sesgos culturales en LLMs en español, y de un <a href=\"https://arxiv.org/abs/2508.19481\" target=\"_blank\" rel=\"noopener noreferrer\">modelo de traducción al wayuunaiki</a>, lengua indígena hablada en La Guajira.", "bioEn": "Co-author of <a href=\"https://arxiv.org/abs/2509.03329\" target=\"_blank\" rel=\"noopener noreferrer\">SESGO</a>, an evaluation of cultural bias in Spanish-language LLMs, and a <a href=\"https://arxiv.org/abs/2508.19481\" target=\"_blank\" rel=\"noopener noreferrer\">Spanish-Wayuunaiki MT model</a>, an Indigenous language of La Guajira.", "linkedin": "https://www.linkedin.com/in/melissa-robles-carmona/", "photo": "melissa.jpg" },
+    { "name": "Catalina Bernal", "affiliationEs": "<a href=\"https://www.linkedin.com/company/bipantesadvantis/\" target=\"_blank\" rel=\"noopener noreferrer\">BIP Colombia</a>", "affiliationEn": "<a href=\"https://www.linkedin.com/company/bipantesadvantis/\" target=\"_blank\" rel=\"noopener noreferrer\">BIP Colombia</a>", "attendance": "inperson", "evalTopicEs": "Auditoría de comportamiento", "evalTopicEn": "Behavioral audit", "bioEs": "Coautora de <a href=\"https://arxiv.org/abs/2509.03329\" target=\"_blank\" rel=\"noopener noreferrer\">SESGO</a>, evaluación de sesgos culturales en LLMs en español, y contribuyente reconocida en la <a href=\"https://static1.squarespace.com/static/69d89e10e81c3842f70fbebf/t/69de74621241cb01e4d2c443/1776186466368/2026_CLA+Guide_Final.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Guía de Auditoría Comunitaria de Eticas</a>.", "bioEn": "Co-author of <a href=\"https://arxiv.org/abs/2509.03329\" target=\"_blank\" rel=\"noopener noreferrer\">SESGO</a>, an evaluation of cultural bias in Spanish-language LLMs, and acknowledged contributor to the <a href=\"https://static1.squarespace.com/static/69d89e10e81c3842f70fbebf/t/69de74621241cb01e4d2c443/1776186466368/2026_CLA+Guide_Final.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Eticas Community-Led Audit Guide</a>.", "linkedin": "https://www.linkedin.com/in/catalina-bernal-0612/", "photo": "catalina.jpg" },
+    { "name": "Steve Hege", "affiliationEs": "<a href=\"https://www.linkedin.com/company/instituto-latinoamericano-para-la-paz-y-la-seguridad\" target=\"_blank\" rel=\"noopener noreferrer\">ILAPS</a>", "affiliationEn": "<a href=\"https://www.linkedin.com/company/instituto-latinoamericano-para-la-paz-y-la-seguridad\" target=\"_blank\" rel=\"noopener noreferrer\">ILAPS</a>", "attendance": "inperson", "evalTopicEs": "Gobernanza de SAAL", "evalTopicEn": "LAWS governance", "bioEs": "Director del <a href=\"https://www.linkedin.com/company/instituto-latinoamericano-para-la-paz-y-la-seguridad\" target=\"_blank\" rel=\"noopener noreferrer\">Instituto Latinoamericano para la Paz y la Seguridad</a> sobre IA en defensa y seguridad; antes investigador ONU sobre embargos de armas.", "bioEn": "Cofounder and director of <a href=\"https://www.linkedin.com/company/instituto-latinoamericano-para-la-paz-y-la-seguridad\" target=\"_blank\" rel=\"noopener noreferrer\">ILAPS</a>, leading its work on AI for defense and security across Latin America; previously a UN arms-embargo investigator.", "linkedin": "https://www.linkedin.com/in/steve-hege-1a77881/", "photo": "steve.jpg" },
+    { "name": "Wanda Muñoz", "affiliationEs": "<a href=\"https://iafeminista.lat\" target=\"_blank\" rel=\"noopener noreferrer\">Red Feminista de IA en América Latina y el Caribe</a>", "affiliationEn": "<a href=\"https://iafeminista.lat\" target=\"_blank\" rel=\"noopener noreferrer\">Feminist AI Network for Latin America and the Caribbean</a>", "attendance": "remote", "evalTopicEs": "Gobernanza de SAAL", "evalTopicEn": "LAWS governance", "bioEs": "Coautora del estudio <a href=\"https://www.stopkillerrobots.org/wp-content/uploads/2020/09/Los-riesgos-de-las-armas-autonomas-una-perspec-min.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Los riesgos de las armas autónomas</a> (SEHLAC, 2020) sobre interseccionalidad en LATAM, y de un <a href=\"https://unesdoc.unesco.org/ark:/48223/pf0000384787/PDF/384787eng.pdf.multi#page=323\" target=\"_blank\" rel=\"noopener noreferrer\">capítulo UNESCO/Mila</a> sobre deepfakes.", "bioEn": "Co-author of <a href=\"https://www.stopkillerrobots.org/wp-content/uploads/2020/09/Los-riesgos-de-las-armas-autonomas-una-perspec-min.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Los riesgos de las armas autónomas</a> (SEHLAC, 2020), an intersectional LATAM study on autonomous weapons, and a <a href=\"https://unesdoc.unesco.org/ark:/48223/pf0000384787/PDF/384787eng.pdf.multi#page=323\" target=\"_blank\" rel=\"noopener noreferrer\">UNESCO/Mila chapter</a> on deepfakes.", "linkedin": "https://www.linkedin.com/in/wandamunoz/", "photo": "wanda.jpg" },
+    { "name": "Maria Paula Mujica", "affiliationEs": "<a href=\"https://www.undp.org/es\" target=\"_blank\" rel=\"noopener noreferrer\">PNUD</a>", "affiliationEn": "<a href=\"https://www.undp.org/\" target=\"_blank\" rel=\"noopener noreferrer\">UNDP</a>", "attendance": "tbc", "evalTopicEs": "Monitoreo del ecosistema · Regulación de IA", "evalTopicEn": "Ecosystem monitoring · AI regulation", "bioEs": "Lidera el <a href=\"https://www.undp.org/digital/aila\" target=\"_blank\" rel=\"noopener noreferrer\">Artificial Intelligence Landscape Assessment</a> (AILA) del PNUD en 16+ países del Sur Global. Coautora del <a href=\"https://dapre.presidencia.gov.co/TD/MARCO-ETICO-PARA-LA-INTELIGENCIA-ARTIFICIAL-EN-COLOMBIA-2021.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Marco Ético para la IA en Colombia</a>.", "bioEn": "Leads UNDP's <a href=\"https://www.undp.org/digital/aila\" target=\"_blank\" rel=\"noopener noreferrer\">Artificial Intelligence Landscape Assessment</a> (AILA) across 16+ countries in the Global South. Co-author of <a href=\"https://dapre.presidencia.gov.co/TD/MARCO-ETICO-PARA-LA-INTELIGENCIA-ARTIFICIAL-EN-COLOMBIA-2021.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Colombia's Ethical Framework for AI</a>.", "linkedin": "https://www.linkedin.com/in/maria-paula-mujica-ia2022/", "photo": "maria-paula-mujica.jpg" },
+    { "name": "Mónica Ulloa", "affiliationEs": "<a href=\"https://carrerasconimpacto.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Carreras con Impacto</a> · <a href=\"https://fairlac.iadb.org/\" target=\"_blank\" rel=\"noopener noreferrer\">BID Lab</a>", "affiliationEn": "<a href=\"https://carrerasconimpacto.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Carreras con Impacto</a> · <a href=\"https://fairlac.iadb.org/en\" target=\"_blank\" rel=\"noopener noreferrer\">IDB Lab</a>", "attendance": "inperson", "evalTopicEs": "Regulación de IA", "evalTopicEn": "AI regulation", "bioEs": "Coautora en <a href=\"https://orcg.info/monicaulloa\" target=\"_blank\" rel=\"noopener noreferrer\">ORCG</a> de <a href=\"https://journals.openedition.org/revestudsoc/59380\" target=\"_blank\" rel=\"noopener noreferrer\">La securitización de la inteligencia artificial</a>, sobre cómo enmarcarla como amenaza o como riesgo lleva a regulaciones muy distintas.", "bioEn": "Co-author at <a href=\"https://orcg.info/monicaulloa\" target=\"_blank\" rel=\"noopener noreferrer\">ORCG</a> of <a href=\"https://journals.openedition.org/revestudsoc/59380\" target=\"_blank\" rel=\"noopener noreferrer\">The Securitization of Artificial Intelligence</a>, on how framing AI as a threat or as a risk leads to very different regulation.", "linkedin": "https://www.linkedin.com/in/monicaulloa/", "photo": "monica-ulloa.jpg" },
+    { "name": "Germán López-Ardila", "affiliationEs": "<a href=\"https://www.ccit.org.co/\" target=\"_blank\" rel=\"noopener noreferrer\">CCIT</a>", "affiliationEn": "<a href=\"https://www.ccit.org.co/\" target=\"_blank\" rel=\"noopener noreferrer\">CCIT</a>", "attendance": "inperson", "evalTopicEs": "Regulación de IA", "evalTopicEn": "AI regulation", "bioEs": "Coordinó el <a href=\"https://www.unesco.org/es/articles/colombia-avanza-hacia-una-inteligencia-artificial-etica-con-la-presentacion-del-informe-ram-de-la\" target=\"_blank\" rel=\"noopener noreferrer\">Informe RAM Colombia</a> (UNESCO, 2025) sobre capacidad del país para gobernar IA, y facilita el curso UNESCO <a href=\"https://www.unesco.org/es/articles/fortaleciendo-las-capacidades-publicas-en-inteligencia-artificial-en-america-latina-una-alianza\" target=\"_blank\" rel=\"noopener noreferrer\">Alfabetización en IA para Servidores</a>.", "bioEn": "Coordinated <a href=\"https://www.unesco.org/es/articles/colombia-avanza-hacia-una-inteligencia-artificial-etica-con-la-presentacion-del-informe-ram-de-la\" target=\"_blank\" rel=\"noopener noreferrer\">Colombia's UNESCO RAM Report</a> (2025) on the country's readiness to govern AI, and facilitates UNESCO's <a href=\"https://www.unesco.org/es/articles/fortaleciendo-las-capacidades-publicas-en-inteligencia-artificial-en-america-latina-una-alianza\" target=\"_blank\" rel=\"noopener noreferrer\">AI Literacy for Civil Servants</a> program.", "linkedin": "https://www.linkedin.com/in/germán-lópez-ardila-52084845/", "photo": "german-lopez.jpg" },
+    { "name": "Katerine Hernández", "affiliationEs": "<a href=\"https://bogota.gov.co/\" target=\"_blank\" rel=\"noopener noreferrer\">Alcaldía Mayor de Bogotá</a>", "affiliationEn": "<a href=\"https://bogota.gov.co/\" target=\"_blank\" rel=\"noopener noreferrer\">Bogotá Mayor's Office</a>", "attendance": "inperson", "evalTopicEs": "Auditoría y rendición de cuentas de sistemas", "evalTopicEn": "System auditing and accountability", "bioEs": "Dictó <a href=\"https://www.linkedin.com/posts/katerine-hern%C3%A1ndez-7229b095_gobernanzaalgoraedtmica-iaenelsectorpaeqblico-activity-7432958199764410368-WUbI\" target=\"_blank\" rel=\"noopener noreferrer\">capacitación a +400 servidores</a> del Distrito de Bogotá sobre uso responsable de IA, y co-lidera el <a href=\"https://www.linkedin.com/posts/katerine-hern%C3%A1ndez-7229b095_iaconcriterio-inteligenciaartificial-sectorpaeqblico-activity-7463603194443595776-CCA7\" target=\"_blank\" rel=\"noopener noreferrer\">programa recurrente</a> desde la Secretaría de Gobierno.", "bioEn": "Delivered <a href=\"https://www.linkedin.com/posts/katerine-hern%C3%A1ndez-7229b095_gobernanzaalgoraedtmica-iaenelsectorpaeqblico-activity-7432958199764410368-WUbI\" target=\"_blank\" rel=\"noopener noreferrer\">training for 400+ Bogotá Distrito public servants</a> on responsible AI use, and co-runs the <a href=\"https://www.linkedin.com/posts/katerine-hern%C3%A1ndez-7229b095_iaconcriterio-inteligenciaartificial-sectorpaeqblico-activity-7463603194443595776-CCA7\" target=\"_blank\" rel=\"noopener noreferrer\">recurring program</a> from Bogotá's Secretariat of Government.", "linkedin": "https://www.linkedin.com/in/katerine-hernández-7229b095/", "photo": "katerine.jpg" }
+  ],
+  "judgesHidden": [],
+  "prizes": {
+    "regional": "US$3,000 across 3 winning teams in LATAM",
+    "regionalEs": "USD 3.000 entre 3 equipos ganadores en LATAM"
+  },
+  "faqs": {
+    "es": [
+      {
+        "q": "¿Es gratuito participar en el hackathon?",
+        "a": "Sí. La participación es totalmente gratuita, tanto en línea como en el hub presencial de Bogotá. Los participantes del hub reciben alimentación y bebidas durante los tres días."
+      },
+      {
+        "q": "¿Necesito experiencia previa en AI safety o alineación de IA?",
+        "a": "No. El hackathon recibe a personas sin background previo en AI safety. Apart Research publica materiales introductorios antes del evento, y durante los tres días hay mentorías en vivo para aterrizar conceptos y herramientas."
+      },
+      {
+        "q": "¿Cuándo es el hackathon y hasta cuándo puedo postular?",
+        "a": "El hackathon es del 19 al 21 de junio de 2026. La fecha límite para postular al hub presencial en Bogotá es el 12 de junio de 2026. El registro al evento en línea con Apart Research permanece abierto hasta el inicio del evento."
+      },
+      {
+        "q": "¿Qué tipo de proyectos puedo presentar?",
+        "a": "Los proyectos se enmarcan en cuatro tracks: Technical AI Safety (alineación, interpretabilidad, evaluaciones), AI Security (red-teaming, jailbreaks, adversarial robustness), AI Governance (política, regulación, estándares) y Behavioral Audit con foco multilingüe e intercultural. Cada equipo entrega un reporte de investigación al cierre."
+      },
+      {
+        "q": "¿Cuáles son los premios?",
+        "a": "USD 3.000 repartidos entre los tres mejores equipos de LATAM. Adicionalmente, los equipos ganadores reciben una invitación al Apart Lab Fellowship, donde algunos fellows han publicado en conferencias como ICLR, NeurIPS y ACL."
+      },
+      {
+        "q": "¿Puedo participar en solitario o necesito un equipo?",
+        "a": "Ambas opciones son válidas. Puedes postular en solitario y los organizadores facilitan formación de equipos antes del evento, o registrarte con un equipo de hasta cuatro personas que tú mismo armes."
+      },
+      {
+        "q": "¿Quién puede participar y hay restricciones geográficas o de perfil?",
+        "a": "El hackathon está abierto al Global South con énfasis en LATAM. Pueden participar estudiantes, investigadores, ingenieros de ML, desarrolladores, profesionales de política pública y ciberseguridad, así como personas de otras disciplinas interesadas en seguridad de IA. No hay restricciones por edad. Puedes unirte de forma remota desde cualquier país o presencialmente desde el hub de Bogotá."
+      },
+      {
+        "q": "¿Qué es la alineación de IA y por qué importa?",
+        "a": "La alineación de IA estudia cómo construir sistemas de IA que persigan los objetivos que los humanos realmente queremos, incluso a medida que se vuelven más capaces. Áreas activas incluyen interpretabilidad mecanística, red-teaming, evaluaciones (evals) y gobernanza. Organizaciones como Apart Research, BlueDot Impact y AI Safety Camp están formando talento en estos temas en todo el mundo."
+      },
+      {
+        "q": "¿Habrá mentoría durante el evento?",
+        "a": "Sí. Durante los tres días hay mentorías, charlas y sesiones de Q&A en vivo con investigadores, jueces y expertos de YouTube (Google), PNUD, BID Lab, ILAPS, BIP Colombia, 80,000 Hours, Carreras con Impacto y CCIT."
+      }
+    ],
+    "en": [
+      {
+        "q": "Is participation free?",
+        "a": "Yes. Participation is fully free, both online and at the Bogotá in-person hub. Hub participants receive food and drinks during the three days."
+      },
+      {
+        "q": "Do I need prior AI safety or alignment experience?",
+        "a": "No. The hackathon welcomes participants without prior AI safety background. Apart Research publishes introductory materials before the event, and live mentoring throughout the three days helps participants ground concepts and tooling."
+      },
+      {
+        "q": "When does the hackathon take place and when does applications close?",
+        "a": "The hackathon runs June 19–21, 2026. Applications to the Bogotá in-person hub close on June 12, 2026. Online registration with Apart Research stays open until the event start."
+      },
+      {
+        "q": "What kind of projects can I submit?",
+        "a": "Projects fit four tracks: Technical AI Safety (alignment, interpretability, evaluations), AI Security (red-teaming, jailbreaks, adversarial robustness), AI Governance (policy, regulation, standards), and Behavioral Audit with a multilingual and cross-cultural focus. Each team submits a research report at the end."
+      },
+      {
+        "q": "What are the prizes?",
+        "a": "US$3,000 split across the top three LATAM teams. In addition, winning teams receive an invitation to the Apart Lab Fellowship, where some fellows have published at venues like ICLR, NeurIPS, and ACL."
+      },
+      {
+        "q": "Can I participate solo or do I need a team?",
+        "a": "Both options are valid. You can apply solo and organizers facilitate team formation before the event, or register with a team of up to four people you bring yourself."
+      },
+      {
+        "q": "Who can participate, and are there geographic or background restrictions?",
+        "a": "The hackathon is open to the Global South with a focus on LATAM. Students, researchers, ML engineers, developers, public policy and cybersecurity professionals, and people from adjacent disciplines interested in AI safety can all participate. There are no age restrictions. You can join remotely from any country or in person at the Bogotá hub."
+      },
+      {
+        "q": "What is AI alignment and why does it matter?",
+        "a": "AI alignment studies how to build AI systems that pursue the goals humans actually want, even as those systems grow more capable. Active areas include mechanistic interpretability, red-teaming, evaluations (evals), and governance. Organizations such as Apart Research, BlueDot Impact, and AI Safety Camp are training talent on these topics worldwide."
+      },
+      {
+        "q": "Will there be mentoring during the event?",
+        "a": "Yes. Throughout the three days there are mentoring sessions, talks, and live Q&A with researchers, judges, and experts from YouTube (Google), UNDP, IDB Lab, ILAPS, BIP Colombia, 80,000 Hours, Carreras con Impacto, and CCIT."
+      }
+    ]
+  }
+}
