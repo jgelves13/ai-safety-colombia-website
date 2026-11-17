@@ -15,6 +15,8 @@ export type TarjetaProyecto = {
   track: string;
   resumen: string;
   puesto: string | null;
+  /* La primera página del informe, cuando hay. */
+  portada?: string | null;
 };
 
 function normal(t: string): string {
@@ -91,6 +93,19 @@ export function Tarjeta({ p, ruta }: { p: TarjetaProyecto; ruta: string }) {
             : "border-aisc-line bg-white hover:border-aisc-forest/55"
         }`}
       >
+        {p.portada ? (
+          <img
+            src={p.portada}
+            alt=""
+            aria-hidden="true"
+            width={900}
+            height={1165}
+            loading="lazy"
+            className={`mb-6 aspect-[4/3] w-full bg-white object-cover object-top transition-transform duration-300 group-hover:-translate-y-1 ${
+              ganador ? "ring-1 ring-white/15" : "ring-1 ring-aisc-forest-deep/10"
+            }`}
+          />
+        ) : null}
         {p.puesto ? (
           <div className="mb-5">
             <Puesto texto={p.puesto} />

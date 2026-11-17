@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { portadaDefAcc } from "./defacc-portadas";
 import { jueces, puntajesDelJuez, todasLasEntregas, type Entrega } from "./defacc-entregas";
 
 /* Proyectos públicos del Defensive Acceleration Hackathon, al modo de Apart:
@@ -40,6 +41,8 @@ export type ProyectoPublico = {
   enlace: string;
   autores: string[];
   tienePdf: boolean;
+  /* La primera página del informe, si scripts/portadas-defacc.mjs ya la sacó. */
+  portada: string | null;
   puesto: 1 | 2 | 3 | null;
 };
 
@@ -53,6 +56,7 @@ function publico(e: Entrega): ProyectoPublico {
     enlace: /^https?:\/\//i.test(e.enlace) ? e.enlace.trim() : "",
     autores: e.integrantes.map((i) => i.nombre.trim()).filter(Boolean),
     tienePdf: !!e.pdf,
+    portada: e.pdf ? portadaDefAcc(e.slug) : null,
     puesto: PODIO[e.slug] ?? null,
   };
 }

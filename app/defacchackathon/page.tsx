@@ -24,6 +24,7 @@ export default async function PaginaDefAccHackathon() {
     track: NOMBRES_TRACKS[p.track] ?? p.track,
     resumen: p.resumen,
     puesto: p.puesto ? NOMBRE_PUESTO[p.puesto] : null,
+    portada: p.portada,
   }));
   return <DefAccPage idioma="es" proyectos={proyectos} />;
 }

@@ -2,7 +2,7 @@
   "nota": "Huella de cada página en español el día en que sus traducciones quedaron al día. Lo escribe `pnpm idiomas --sellar`; no se edita a mano.",
   "paginas": {
     "/": "2bf8871bc90ccf8c",
-    "/defacchackathon": "7b217ab6479766f0",
+    "/defacchackathon": "0b4a4b0f8916af4c",
     "/sprint": "2f85f5650bcdca33",
     "/globalsouthaishackathon": "b8c398bac3171fe5",
     "/seminarios/tecnico": "9560df48db14f87c",

@@ -55,6 +55,7 @@ function tarjeta(p: ProyectoPublico): TarjetaProyecto {
     track: nombreTrack(p.track),
     resumen: p.resumen,
     puesto: p.puesto ? NOMBRE_PUESTO[p.puesto] : null,
+    portada: p.portada,
   };
 }
 
@@ -123,6 +124,23 @@ export default async function ProyectoPage({ params }: Props) {
           <div className="mt-12 grid grid-cols-1 gap-12 border-t border-aisc-line pt-10 lg:grid-cols-[minmax(0,1fr)_256px] lg:gap-20">
             <aside className="order-first lg:order-none lg:col-start-2 lg:row-start-1">
               <div className="flex flex-col gap-3 rounded-[var(--radius)] border border-aisc-line bg-aisc-sand/40 p-5 lg:sticky lg:top-32">
+                {p.portada ? (
+                  <a
+                    href={`${RUTA_PROYECTOS}/${p.slug}/informe`}
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Abrir el informe en PDF"
+                    className="group mb-2 block"
+                  >
+                    <img
+                      src={p.portada}
+                      alt=""
+                      width={900}
+                      height={1165}
+                      className="aspect-[4/3] w-full bg-white object-cover object-top ring-1 ring-aisc-forest-deep/10 transition-transform duration-300 group-hover:-translate-y-1 lg:aspect-[4/5]"
+                    />
+                  </a>
+                ) : null}
                 {p.tienePdf ? (
                   <a
                     className="inline-flex h-11 items-center justify-center rounded-[var(--radius)] bg-aisc-forest-deep px-5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-aisc-forest"
