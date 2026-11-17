@@ -1200,3 +1200,27 @@
   .gsh .partner-feature-logo { height: 52px; }
   .gsh .partner-feature-desc { font-size: 0.875rem; }
 }
+/* Hero centrado: título, texto y botones al centro; Destacados debajo */
+.gsh .alt-hero-grid { grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: clamp(2rem, 4vw, 3rem); }
+.gsh .alt-copy { align-items: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 860px; }
+.gsh .alt-copy h1 { max-width: none; }
+.gsh .alt-meta,
+.gsh .alt-lead,
+.gsh .alt-closed-note { margin-left: auto;
+    margin-right: auto; }
+.gsh .alt-closed-note { border-left: 0;
+    border-radius: 8px; }
+.gsh .alt-actions { justify-content: center; }
+.gsh .alt-panel { max-width: 860px;
+    text-align: left;
+    width: 100%; }
+@media (min-width: 720px) {
+  .gsh .alt-panel ul { column-gap: 2rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
