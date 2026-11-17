@@ -101,7 +101,7 @@ async function armarInstantanea(): Promise<Instantanea> {
   return { entregas, comentarios };
 }
 
-const instantaneaGuardada = unstable_cache(armarInstantanea, ["defacc-publico-v1"], { revalidate: 600 });
+const instantaneaGuardada = unstable_cache(armarInstantanea, ["defacc-publico-v2"], { revalidate: 600 });
 const instantanea = cache(() => instantaneaGuardada());
 
 export async function entregaPublica(slug: string): Promise<Entrega | null> {
