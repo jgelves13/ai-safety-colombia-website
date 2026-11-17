@@ -1,12 +1,16 @@
 import { createHash } from "node:crypto";
+import { cache } from "react";
+import { unstable_cache } from "next/cache";
 import { portadaDefAcc } from "./defacc-portadas";
 import { jueces, puntajesDelJuez, todasLasEntregas, type Entrega } from "./defacc-entregas";
 
 /* Proyectos públicos del Defensive Acceleration Hackathon, al modo de Apart:
    cada entrega tiene su página, con el informe, el código y los comentarios
-   del jurado sin nombre, sin nota y sin fecha. Todo se lee del bucket en cada
-   visita, así que ni los comentarios ni los datos de los equipos viven en el
-   repositorio. Nunca sale de acá un correo ni un puntaje. */
+   del jurado sin nombre, sin nota y sin fecha. Todo sale del bucket, así que
+   ni los comentarios ni los datos de los equipos viven en el repositorio, pero
+   se guarda una instantánea por diez minutos: leer el bucket entero en cada
+   visita agotaba el límite de Storage (429) y la página caía con un 500.
+   Nunca sale de acá un correo ni un puntaje. */
 
 export const SITIO = "https://aisafetycolombia.org";
 export const RUTA_PROYECTOS = "/defacchackathon/proyectos";
@@ -65,14 +69,48 @@ function esPublica(e: Entrega): boolean {
   return !e.prueba && !e.descartada && !e.duplicadoDe && !OCULTOS.has(e.slug);
 }
 
+type Instantanea = { entregas: Entrega[]; comentarios: Record<string, string[]> };
+
+/* Las entregas públicas y, por cada una, los comentarios de todos los jurados
+   reales (el de prueba no está en jueces()), sin vacíos ni repetidos, en un
+   orden que no deja adivinar quién escribió cuál pero que no cambia entre
+   visitas. Los jurados se leen de a uno para no saturar Storage. */
+async function armarInstantanea(): Promise<Instantanea> {
+  const entregas = (await todasLasEntregas()).filter(esPublica);
+  const vistos: Record<string, Set<string>> = {};
+  const comentarios: Record<string, string[]> = {};
+  for (const e of entregas) {
+    vistos[e.slug] = new Set();
+    comentarios[e.slug] = [];
+  }
+  for (const j of jueces()) {
+    const puntajes = await puntajesDelJuez(j.id);
+    for (const [slug, p] of Object.entries(puntajes)) {
+      const t = p?.comentario?.trim();
+      if (!t || !comentarios[slug]) continue;
+      const clave = t.replace(/\s+/g, " ").toLowerCase();
+      if (vistos[slug].has(clave)) continue;
+      vistos[slug].add(clave);
+      comentarios[slug].push(t);
+    }
+  }
+  for (const slug of Object.keys(comentarios)) {
+    const orden = (t: string) => createHash("sha256").update(`${slug}\n${t}`).digest("hex");
+    comentarios[slug].sort((a, b) => orden(a).localeCompare(orden(b)));
+  }
+  return { entregas, comentarios };
+}
+
+const instantaneaGuardada = unstable_cache(armarInstantanea, ["defacc-publico-v1"], { revalidate: 600 });
+const instantanea = cache(() => instantaneaGuardada());
+
 export async function entregaPublica(slug: string): Promise<Entrega | null> {
-  const todas = await todasLasEntregas();
-  return todas.find((e) => e.slug === slug && esPublica(e)) ?? null;
+  return (await instantanea()).entregas.find((e) => e.slug === slug) ?? null;
 }
 
 /* Podio primero, el resto por título. */
 export async function proyectosPublicos(): Promise<ProyectoPublico[]> {
-  const lista = (await todasLasEntregas()).filter(esPublica).map(publico);
+  const lista = (await instantanea()).entregas.map(publico);
   return lista.sort(
     (a, b) => (a.puesto ?? 9) - (b.puesto ?? 9) || a.titulo.localeCompare(b.titulo, "es"),
   );
@@ -83,23 +121,8 @@ export async function proyectoPublico(slug: string): Promise<ProyectoPublico | n
   return e ? publico(e) : null;
 }
 
-/* Los comentarios de todos los jurados reales (el de prueba no está en
-   jueces()), sin vacíos ni repetidos, en un orden que no deja adivinar quién
-   escribió cuál pero que no cambia entre visitas. */
 export async function comentariosDe(slug: string): Promise<string[]> {
-  const porJuez = await Promise.all(jueces().map((j) => puntajesDelJuez(j.id)));
-  const vistos = new Set<string>();
-  const textos: string[] = [];
-  for (const puntajes of porJuez) {
-    const t = puntajes[slug]?.comentario?.trim();
-    if (!t) continue;
-    const clave = t.replace(/\s+/g, " ").toLowerCase();
-    if (vistos.has(clave)) continue;
-    vistos.add(clave);
-    textos.push(t);
-  }
-  const orden = (t: string) => createHash("sha256").update(`${slug}\n${t}`).digest("hex");
-  return textos.sort((a, b) => orden(a).localeCompare(orden(b)));
+  return [...((await instantanea()).comentarios[slug] ?? [])];
 }
 
 /* Clave BibTeX al estilo de Apart: apellido del primer autor, año y primera
