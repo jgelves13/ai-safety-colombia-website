@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import SelectorIdioma from "./selector-idioma";
 import { BANDERA } from "./banderas";
 import { IDIOMAS_LISTOS, INICIO, NOMBRE_IDIOMA, type EntradaMenu, type HijoMenu, type Idioma, idiomaDe, menuAgrupado, rutaEn } from "@/lib/idiomas";
@@ -96,14 +97,18 @@ function Submenu({
   active?: string;
 }) {
   const [abierto, setAbierto] = useState(false);
+  const [pos, setPos] = useState<{ top: number; left: number } | null>(null);
   const caja = useRef<HTMLDivElement>(null);
+  const boton = useRef<HTMLButtonElement>(null);
+  const panel = useRef<HTMLDivElement>(null);
   const dentro = entrada.hijos.some((h) => h.href === active);
   const secciones = porSeccion(entrada.hijos);
 
   useEffect(() => {
     if (!abierto) return;
     const fuera = (e: PointerEvent) => {
-      if (!caja.current?.contains(e.target as Node)) setAbierto(false);
+      const t = e.target as Node;
+      if (!caja.current?.contains(t) && !panel.current?.contains(t)) setAbierto(false);
     };
     const tecla = (e: KeyboardEvent) => {
       if (e.key === "Escape") setAbierto(false);
@@ -116,6 +121,27 @@ function Submenu({
     };
   }, [abierto]);
 
+  /* La caja se dibuja en el body, fija bajo el botón, y no dentro del
+     encabezado: así ningún contenedor con overflow-hidden la recorta ni la
+     tapa lo que viene después, sea cual sea la página. */
+  useLayoutEffect(() => {
+    if (!abierto) {
+      setPos(null);
+      return;
+    }
+    const ubicar = () => {
+      const r = boton.current?.getBoundingClientRect();
+      if (r) setPos({ top: r.bottom, left: r.left });
+    };
+    ubicar();
+    window.addEventListener("scroll", ubicar, { passive: true });
+    window.addEventListener("resize", ubicar, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", ubicar);
+      window.removeEventListener("resize", ubicar);
+    };
+  }, [abierto]);
+
   return (
     <div
       ref={caja}
@@ -124,6 +150,7 @@ function Submenu({
       onMouseLeave={() => setAbierto(false)}
     >
       <button
+        ref={boton}
         type="button"
         aria-expanded={abierto}
         onClick={() => setAbierto((v) => !v)}
@@ -143,7 +170,8 @@ function Submenu({
       </button>
       {/* El pt-2 es el puente invisible entre el botón y la caja, para que el
           mouse no la cierre al bajar. */}
-      <div className={`absolute top-full left-0 z-30 pt-2 ${abierto ? "block" : "hidden"}`}>
+      {abierto && pos ? createPortal(
+      <div ref={panel} style={{ top: pos.top, left: pos.left }} className="fixed z-[55] pt-2 text-aisc-sand">
         {secciones.length > 1 ? (
           <div className="grid w-[38rem] grid-cols-2 divide-x divide-aisc-sand/12 rounded-2xl bg-aisc-forest-deep p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] ring-1 ring-aisc-sand/12">
             {secciones.map(([nombre, hijos]) => (
@@ -168,7 +196,9 @@ function Submenu({
             ))}
           </ul>
         )}
-      </div>
+      </div>,
+      document.body,
+      ) : null}
     </div>
   );
 }
